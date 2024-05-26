@@ -16,6 +16,6 @@ class UserSeeder extends Seeder {
             'email'             => 'user@user.com',
             'email_verified_at' => now(),
             'password'          => Hash::make('12345678'),
-        ])->assignRole('user');
+        ]);
     }
 }

@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- ==== Favicon ==== -->
+    <link rel="icon" type="image/png" href="{{asset('admin/images/logo-sm.svg')}}" />
     <title>@yield('title')</title>
     @include('admin.partials.styles')
 </head>
 
 <body>
-    {{--  ======== Preloader ===========  --}}
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-    {{--  ======== Preloader ===========  --}}
+<!---Header Section--->
+@include('admin.partials.header')
+<main>
+    <!-- start sidebar area  -->
     @include('admin.partials.sidebar')
-    <main class="main-wrapper">
-        @include('admin.partials.header')
-        <section class="section">
-            <div class="container-fluid">
-                @yield('content')
-            </div>
-        </section>
-        @include('admin.partials.footer')
-    </main>
-    @include('admin.partials.scripts')
+    <!-- end sidebar area  -->
+    <!-- start app content area  -->
+    <section class="app--content--main">
+        @yield('content')
+    </section>
+    <!-- end app content area  -->
+</main>
+@include('admin.partials.scripts')
 </body>
-
 </html>
+

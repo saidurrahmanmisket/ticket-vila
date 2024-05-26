@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['role:admin'])->group(function () {
     //! Route for DashboardController
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //! Route for ProfileController
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.setting');

@@ -1,90 +1,61 @@
-@php
-    $userDetails = null;
-    if (auth()->check()) {
-        $userDetails = \App\Models\UserDetail::where('user_id', auth()->id())->first();
-    }
-@endphp
-
-<header class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-5 col-md-5 col-6">
-                <div class="header-left d-flex align-items-center">
-                    <div class="menu-toggle-btn mr-15">
-                        <button id="menu-toggle" class="main-btn primary-btn btn-hover">
-                            <i class="lni lni-chevron-left me-2"></i> Menu
-                        </button>
-                    </div>
-                    <div class="header-search d-none d-md-flex">
-                        <form action="#">
-                            <input type="text" placeholder="Search..." />
-                            <button><i class="lni lni-search-alt"></i></button>
-                        </form>
-                    </div>
-                </div>
+<!-- start header area  -->
+<header>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- profile--name  -->
+            <div class="header--title">
+                <h1>
+                    Welcome Back, Sakib Al
+                    <img src="{{ asset('admin/images/jumper.svg') }}" alt="" />
+                </h1>
             </div>
-            <div class="col-lg-7 col-md-7 col-6">
-                <div class="header-right">
-                    <div class="profile-box ml-15">
-                        <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="profile-info">
-                                <div class="info">
-                                    <div class="image">
-                                        @if ($userDetails && $userDetails->profile_picture)
-                                            <img src="{{ asset($userDetails->profile_picture) }}" alt="image">
-                                        @else
-                                            <img src="{{ asset('backend/images/profile/profile-image.png') }}"
-                                                alt="image">
-                                        @endif
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-500">{{ Auth::user()->name }}</h6>
-                                        <p>Admin</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
-                            <li>
-                                <div class="author-info flex items-center !p-1">
-                                    <div class="image">
-                                        @if ($userDetails && $userDetails->profile_picture)
-                                            <img src="{{ asset($userDetails->profile_picture) }}" alt="image">
-                                        @else
-                                            <img src="{{ asset('backend/images/profile/profile-image.png') }}"
-                                                alt="image">
-                                        @endif
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="text-sm">{{ Auth::user()->name }}</h4>
-                                        <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
-                                            href="{{ route('dashboard') }}">{{ Auth::user()->email }}</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('profile.setting') }}"><i class="lni lni-user"></i> Profile </a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('system.index') }}"> <i class="lni lni-cog"></i> Settings </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="lni lni-exit"></i> Sign Out </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
+        </div>
+        <div class="col-md-6">
+            <!-- notification--and--profile  -->
+            <div class="notification--and--profile">
+                <!-- notifications  -->
+                <a href="#" class="notification">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                    >
+                        <path
+                            d="M11 6.2041V9.07704"
+                            stroke="#CFCFCF"
+                            stroke-width="1.29412"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M11.0176 2.37305C7.84272 2.37305 5.27174 4.94403 5.27174 8.11893V9.93069C5.27174 10.5174 5.03018 11.3974 4.72821 11.8978L3.63253 13.7268C2.95959 14.857 3.42547 16.1166 4.66782 16.5307C8.79174 17.9025 13.2521 17.9025 17.3761 16.5307C18.5408 16.1425 19.0412 14.7793 18.4114 13.7268L17.3157 11.8978C17.0137 11.3974 16.7721 10.5087 16.7721 9.93069V8.11893C16.7635 4.96128 14.1753 2.37305 11.0176 2.37305Z"
+                            stroke="#CFCFCF"
+                            stroke-width="1.29412"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M13.8748 16.8848C13.8748 18.4636 12.5807 19.7577 11.0018 19.7577C10.2167 19.7577 9.49204 19.4299 8.9744 18.9122C8.45675 18.3946 8.12891 17.6699 8.12891 16.8848"
+                            stroke="#CFCFCF"
+                            stroke-width="1.29412"
+                            stroke-miterlimit="10"
+                        />
+                    </svg>
+                    <!-- status  -->
+                    <span class="status"></span>
+                </a>
+                <!-- profile -->
+                <a href="#" class="profile">
+                    <img src="{{ asset('admin/images/profile.png') }}" alt="" />
+                    <div>
+                        <h4>Sakib Al</h4>
+                        <p>Super Admin</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
 </header>
+<!-- end header area  -->
