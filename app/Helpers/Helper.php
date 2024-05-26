@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class Helper {

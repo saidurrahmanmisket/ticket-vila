@@ -69,7 +69,7 @@
                         <td>1</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{asset('admin/images/profile.png')}}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -77,7 +77,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{asset('admin/images/user-ticket.png')}}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -112,7 +112,7 @@
                         <td>2</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -120,7 +120,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -155,7 +155,7 @@
                         <td>3</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -163,7 +163,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -198,7 +198,7 @@
                         <td>4</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -206,7 +206,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -241,7 +241,7 @@
                         <td>5</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -249,7 +249,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -284,7 +284,7 @@
                         <td>6</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -292,7 +292,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -327,7 +327,7 @@
                         <td>7</td>
                         <td>
                             <div class="profile">
-                                <img src="./assets/images/profile.png" alt="" />
+                                <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                                 <p>Max Musternann</p>
                             </div>
                         </td>
@@ -335,7 +335,7 @@
                         <td>
                             <div class="user--tickets">
                                 <p>03</p>
-                                <img src="./assets/images/user-ticket.png" alt="" />
+                                <img src="{{ asset('admin/images/user-ticket.png') }}" alt="" />
                             </div>
                         </td>
                         <td>
@@ -373,10 +373,3 @@
     </div>
 @endsection
 
-
-@extends('admin.app')
-@section('title', 'User')
-
-@section('content')
-
-@endsection

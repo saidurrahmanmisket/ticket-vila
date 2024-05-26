@@ -1,6 +1,7 @@
 @extends('admin.app')
 
 @section('title', 'Tickets')
+@section('content')
     <!-- tickets area  -->
     <div class="tickets--area">
         <h4 class="common--title">Filter</h4>
@@ -87,7 +88,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -190,7 +191,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{ asset('/admin/images/ticket.png') }}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -293,7 +294,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -396,7 +397,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{ asset('admin/images/ticket.png') }}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -499,7 +500,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{ asset('admin/images/ticket.png') }}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -598,6 +599,4 @@
             </div>
         </div>
     </div>
-@section('content')
-
 @endsection

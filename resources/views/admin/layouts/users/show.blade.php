@@ -38,7 +38,7 @@
                 <div class="user--information information--box">
                     <h4 class="common--title">User Information</h4>
                     <div class="informations">
-                        <img src="./assets/images/profile.png" alt="" />
+                        <img src="{{ asset('admin/images/profile.png') }}" alt="" />
                         <p class="common--pair--text">
                             First Name : <span>Max</span>
                         </p>
@@ -112,7 +112,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -246,7 +246,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -380,7 +380,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -514,7 +514,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -648,7 +648,7 @@
                 <div class="ticket--and--name">
                     <!-- ticket box  -->
                     <div class="ticket--box">
-                        <img src="./assets/images/ticket.png" alt="" />
+                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
                         <p>Ticket ID: #3373493B46</p>
                         <span>#2</span>
                     </div>
@@ -780,7 +780,7 @@
     </div>
     <!-- warning popup  -->
     <div class="warning--popup" id="ban--popup">
-        <img src="./assets/images/ban.png" alt="" />
+        <img src="{{asset('admin/images/ban.png')}}" alt="" />
         <h3>Are you Sure!!</h3>
         <p>Do you want to Ban this User on this app?</p>
         <div class="buttons">
@@ -804,7 +804,7 @@
     </div>
     <!-- warning popup  -->
     <div class="warning--popup" id="refund--popup">
-        <img src="./assets/images/refund.png" alt="" />
+        <img src="{{asset('admin/images/refund.png')}}" alt="" />
         <h3>Are you Sure!!</h3>
         <p>Do you want to Refund this Payments?</p>
         <div class="buttons">
