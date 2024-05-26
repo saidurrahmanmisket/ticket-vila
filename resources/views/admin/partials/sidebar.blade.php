@@ -8,7 +8,7 @@
         <h4>MAINMENU</h4>
         <ul class="menu">
             <li>
-                <a href="{{route('dashboard')}}" class="dashboard {{ Route::is('dashboard') ? 'active' : '' }}">
+                <a href="{{route('admin.dashboard')}}" class="dashboard {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('ticket.index') }}" class="tickets {{ Route::is('ticket.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.ticket.index') }}" class="tickets {{ Route::is('admin.ticket.*') ? 'active' : '' }}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.index') }}" class="user {{ Route::is('user.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.user.index') }}" class="user {{ Route::is('admin.user.*') ? 'active' : '' }}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -98,7 +98,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('statistics.index') }}" class="statistics {{ Route::is('statistics.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.statistics.index') }}" class="statistics {{ Route::is('admin.statistics.*') ? 'active' : '' }}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"

@@ -34,9 +34,9 @@ class RouteServiceProvider extends ServiceProvider {
 
             Route::middleware(['web', 'auth'])
                 ->group(base_path('routes/backend.php'));
-            Route::middleware(['web', 'auth'])->prefix('/admin')
+            Route::middleware(['web', 'auth'])->prefix('/admin')->name('admin.')
                 ->group(base_path('routes/rasel_backend.php'));
-            Route::middleware(['web', 'auth'])->prefix('/admin')
+            Route::middleware(['web', 'auth'])->prefix('/admin')->name('admin.')
                 ->group(base_path('routes/saidur_backend.php'));
             Route::middleware(['web', 'auth'])
                 ->group(base_path('routes/rasel_frontend.php'));
