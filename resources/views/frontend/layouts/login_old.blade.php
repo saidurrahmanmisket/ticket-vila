@@ -36,18 +36,29 @@
             </div>
 
             <div class="middle--area">
-                <form action="#" class="form--area">
+                <form method="POST" action="{{ route('login') }} class="form--area">
+                    @csrf
                     <div class="input--holder">
                         <div class="single--input">
                             <label for="email">Email Address</label>
-                            <input type="email" name="email" id="email" placeholder="ticketvilla@gmail.com"
+                            <input type="email" class=" @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" id="email" placeholder="ticketvilla@gmail.com"
                                 required />
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="single--input pass">
                             <label for="password">Password</label>
-                            <input type="password" name="password" id="password" placeholder="******************"
-                                required />
-
+                            <input type="password" class=" @error('password') is-invalid @enderror" name="password"
+                                id="password" placeholder="******************" required />
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <!-- show pass -->
                             <div class="show--pass">
                                 <div class="icon">
@@ -70,7 +81,8 @@
                         </div>
                         <div class="bottom--input--holder">
                             <div class="checkbox--wrapper">
-                                <input type="checkbox" name="remember" id="remember" />
+                                <input type="checkbox" name="remember" id="remember"
+                                    {{ old('remember') ? 'checked' : '' }} id="remember" />
                                 <label for="remember">Remember me</label>
                             </div>
 
@@ -80,6 +92,11 @@
 
                     <!-- submit button -->
                     <button class="submit">Log In</button>
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
                 </form>
 
                 <!-- other logins area -->
@@ -95,7 +112,7 @@
             </div>
 
             <div class="lower--area">
-                <p>Don’t have an account? <a href="{{ route('frontend.sign-up') }}">Sign Up</a></p>
+                <p>Don’t have an account? <a href="{{ route('register') }}">Sign Up</a></p>
             </div>
         </div>
     </main>

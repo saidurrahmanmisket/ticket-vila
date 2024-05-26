@@ -10,10 +10,8 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/imprint', 'imprint')->name('imprint');
-    Route::get('/login', 'login')->name('login');
     Route::get('/privacy', 'privacy')->name('privacy');
     Route::get('/rules', 'rules')->name('rules');
-    Route::get('/sign-up', 'signUp')->name('sign-up');
     Route::get('/support', 'support')->name('support');
     Route::get('/terms', 'terms')->name('terms');
     Route::get('/the-house', 'theHouse')->name('the-house');

@@ -39,10 +39,10 @@
 
             <!-- button area -->
             <div data-aos="fade-left" data-aos-duration="600" class="button--area">
-                <a href="{{ route('frontend.login') }}" class="link">
+                <a href="{{ route('login') }}" class="link">
                     <span>Login</span>
                 </a>
-                <a href="{{ route('frontend.sign-up') }}" class="btn--fill">
+                <a href="{{ route('register') }}" class="btn--fill">
                     <span>Registration</span>
                 </a>
                 <a href="#" class="btn--fill blue--btn">
