@@ -1,0 +1,2574 @@
+
+@media only screen and (min-width:1366px){
+    .container{
+        max-width: 1616px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }    
+}
+
+@media only screen and (min-width:1600px) and (max-width:1919px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 16px 20px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 14px 30px;
+        font-size: 18px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment{
+        margin-top: 0;
+        margin-left: 40px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 20px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 18px;
+    }
+}
+
+@media only screen and (min-width:1440px) and (max-width:1599px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 16px 20px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 20px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 40px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 32px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 20px;
+        font-size: 20px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+    }
+    .sidebar {
+        width: 266px;
+        padding-top: 85px;
+    }
+    .app--content--area {
+        margin-left: 266px;
+    }
+    .container{
+        padding:0 20px
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding-left: 30px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 20px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 40px 0 54px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 20px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 344px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .auth--form--area form {
+        padding: 45px 124px 60px 124px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 21%;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment{
+        margin-top: 0;
+        margin-left: 40px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 33px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -15px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 18px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 20px;
+    }
+    .deafult--table.project--table tr td:nth-child(1),
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 26px;
+    }
+    .deafult--table.project--table tr td:nth-child(6){
+        padding-right: 26px;
+    }
+}
+@media only screen and (min-width:1366px) and (max-width:1439px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 16px 20px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 20px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 40px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 32px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 20px;
+        font-size: 20px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+    }
+    .sidebar {
+        width: 266px;
+        padding-top: 85px;
+    }
+    .app--content--area {
+        margin-left: 266px;
+    }
+    .container{
+        padding:0 20px
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding-left: 30px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 20px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 40px 0 54px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 20px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 344px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 12px;
+    }
+    .auth--form--area form {
+        padding: 45px 120px 60px 120px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 60px;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: left;
+    }
+    .back--btn {
+        font-size: 20px;
+        margin: 28px 0 28px;
+    }
+    .back--btn svg {
+        height: 20px;
+        width: 20px;
+        margin-right: 6px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 20px;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 21%;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment{
+        margin-top: 0;
+        margin-left: 40px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -50px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2),
+    .project--details .details--box:nth-child(3){
+        min-width: 40%;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .deafult--table.project--table tr td:nth-child(1),
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 26px;
+    }
+    .deafult--table.project--table tr td:nth-child(6){
+        padding-right: 26px;
+    }
+}
+@media only screen and (min-width:1200px) and (max-width:1365px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 34px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 28px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 514px;
+    }
+    .sidebar {
+        width: 234px;
+        padding-top: 85px;
+    }
+    .app--content--area {
+        margin-left: 234px;
+        margin-bottom: 20px;
+    }
+    .container{
+        padding:0 20px
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 17px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 6px;
+        height: 20px;
+        width: 20px;
+    }
+    .sidebar ul.menu li a svg {
+        margin-right: 12px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 8px 6px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .auth--form--area form {
+        padding: 45px 80px 60px 80px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 220px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 32px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: 390px;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 20px;
+        margin: 28px 0 28px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 20px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 22%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment{
+        margin-top: 0;
+        margin-left: 40px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -33px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2),
+    .project--details .details--box:nth-child(3){
+        min-width: 40%;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .chart--wrapper svg {
+        margin-left: 0px;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .latest--update--table--area.quote--details--table--area:before{
+        display: none;
+    }
+    .project--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 1100px;
+    }
+    .project--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .deafult--table.project--table tr td:nth-child(1),
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 26px;
+    }
+    .deafult--table.project--table tr td:nth-child(6){
+        padding-right: 26px;
+    }
+    .deafult--table.project--table{
+        overflow: hidden;
+    }
+    .deafult--table.project--table .table--wrapper{
+        overflow: auto;
+    }
+    .deafult--table.project--table table{
+        width: 1200px;
+    }
+    .deafult--table.project--table::-webkit-scrollbar{
+        width: 8px;
+    }
+}
+@media only screen and (min-width:992px) and (max-width:1199px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 34px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 28px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 514px;
+    }
+    .sidebar {
+        width: 234px;
+        padding-top: 85px;
+    }
+    .app--content--area {
+        margin-left: 234px;
+        margin-bottom: 20px;
+    }
+    .container{
+        padding:0 20px
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 17px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 6px;
+        height: 20px;
+        width: 20px;
+    }
+    .sidebar ul.menu li a svg {
+        margin-right: 12px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .auth--form--area form {
+        padding: 45px 80px 60px 80px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 220px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 32px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 18px;
+        margin: 26px 0 26px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 20px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 22%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .quotes--details--wrapper{
+        flex-wrap: wrap;
+        padding: 20px 30px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 43% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 20px;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 0px;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment {
+        margin-top: 0;
+        margin-left: 0px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -33px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2),
+    .project--details .details--box:nth-child(3){
+        min-width: 40%;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .chart--wrapper svg {
+        margin-left: 0px;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .latest--update--table--area.quote--details--table--area:before{
+        display: none;
+    }
+    .project--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 1100px;
+    }
+    .project--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .project--details .details--box .cost h4 {
+        font-size: 20px;
+    }
+    .project--details .chart--box .posi--text {
+        font-size: 16px;
+        line-height: 25px;
+        right: -12px;
+    }
+    .deafult--table.project--table tr td:nth-child(1),
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 26px;
+    }
+    .deafult--table.project--table tr td:nth-child(6){
+        padding-right: 26px;
+    }
+    .deafult--table.project--table{
+        overflow: hidden;
+    }
+    .deafult--table.project--table .table--wrapper{
+        overflow: auto;
+    }
+    .deafult--table.project--table table{
+        width: 1200px;
+    }
+    .deafult--table.project--table::-webkit-scrollbar{
+        width: 8px;
+    }
+}
+@media only screen and (min-width:768px) and (max-width:991px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 34px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 28px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 15px 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 514px;
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 17px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 6px;
+        height: 20px;
+        width: 20px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .header--main .container-fluid{
+        max-width: 720px;
+    }
+    .auth--form--area form {
+        padding: 45px 80px 60px 80px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 220px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 32px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 18px;
+        margin: 26px 0 26px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 18px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 22%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .quotes--details--wrapper{
+        flex-wrap: wrap;
+        padding: 20px 30px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 42% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 20px;
+    }
+    .quotes--details--tab .nav-link {
+        font-size: 16px;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 0px;
+    }
+    .project--details .chart--box .info{
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment {
+        margin-top: 0;
+        margin-left: 0px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 12px;
+    }
+    .project--details .details--box .next--payment p{
+        margin-bottom: 15px;
+    }
+    .project--details .details--box .chart--box--two .next--payment {
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -33px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2),
+    .project--details .details--box:nth-child(3){
+        min-width: 40%;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .chart--wrapper svg {
+        margin-left: 0px;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .latest--update--table--area.quote--details--table--area:before{
+        display: none;
+    }
+    .project--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 1100px;
+    }
+    .project--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .project--details .details--box .cost h4 {
+        font-size: 20px;
+    }
+    .project--details .chart--box .posi--text {
+        font-size: 16px;
+        line-height: 25px;
+        right: -32px;
+    }
+      
+}
+
+@media only screen and (max-width:991px){
+    .hamburger--menu{
+        display: block !important;
+        position: absolute;
+        left: calc((100% - 720px) / 2 + 10px);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .hamburger--menu svg{
+        width: 40px;
+        height: 40px;
+        transition: all 0.3s ease-in-out;
+    }
+    .hamburger--menu svg path{
+        fill: var(--white);
+    }
+    .sidebar{
+        width: 240px;
+        left: -100%;
+        transition: all 0.5s ease-in-out;
+        padding-top: 68px;
+        z-index: 999;
+    }
+    .sidebar.show{
+        left: 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .app--content--area {
+        margin-left: 0;
+    }
+    .header--main .column--left,
+    .header--main .column--right {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .custom--portal--area {
+        left: 50%;
+        left: auto;
+        right: calc((100% - 720px) / 2 + 12px);
+        transform: translate(0, -50%);
+    }
+    .logo img {
+        width: 210px;
+        margin-left: 40px;
+    }
+    .custom--portal--area h3 {
+        font-size: 22px;
+    }
+    .auth--row{
+        display: block !important;
+    }
+    .auth--form--area {
+        width: 100%;
+    }
+    .auth--area .auth--img{
+        display: none;
+    }
+    .deafult--table.project--table tr td:nth-child(1),
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 0;
+    }
+    .deafult--table.project--table tr td:nth-child(6){
+        padding-right: 0;
+    }
+    .deafult--table.project--table th{
+        display: none;
+    }
+    .deafult--table.project--table tr,
+    .deafult--table.project--table tr td{
+        display: block;
+    }
+    .deafult--table td{
+        border-bottom: none;
+    }
+    .deafult--table.project--table tr{
+        margin: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(91, 89, 88, 0.14);
+        position: relative;
+    }
+    .deafult--table.project--table thead tr{
+        margin: 0;
+        border: none;
+        padding: 0;
+    }
+    .deafult--table.project--table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: auto;
+        display: flex;
+        color: var(--secondary-color);
+    }
+    .deafult--table.project--table tr td:nth-child(6) {
+        padding-right: 0;
+        position: absolute;
+        top: 0;
+        right: 0px;
+    }
+    .deafult--table.project--table tr:last-child{
+        border: none;
+        padding-bottom: 0;
+    }
+}
+@media only screen and (min-width:576px) and (max-width:767px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px 6px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 34px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 22px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 15px 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table { 
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 514px;
+    }
+    .app--content--area {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 17px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 6px;
+        height: 20px;
+        width: 20px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .header--main .container-fluid{
+        max-width: 540px;
+    }
+    .custom--portal--area {
+        right: calc((100% - 540px) / 2 + 12px);
+    }
+    .hamburger--menu {
+        left: calc((100% - 540px) / 2 + 10px);
+    }
+    .auth--form--area form {
+        padding: 45px 60px 45px 60px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 220px;
+    }
+    .auth--form--area form .nav {
+        width: 338px;
+    }
+    .auth--form--area form .nav-link {
+        padding: 10px;
+        font-size: 18px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 18px;
+        margin: 26px 0 26px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 18px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 100%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .quotes--details--wrapper{
+        flex-wrap: wrap;
+        padding: 20px 30px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 100% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 20px;
+    }
+    .quotes--details--tab .nav-link {
+        font-size: 16px;
+        padding: 10px 21px;
+    }
+    .desc--table th{
+        display: none;
+    }
+    .desc--table tr{
+        padding: 10px 0;
+    }
+    .desc--table tr,
+    .desc--table td{
+        display: block;
+    }
+    .desc--table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100px;
+        display: flex;
+        color: var(--secondary-color);
+        margin-bottom: 6px;
+    }
+    .desc--table table tr td:nth-child(4) {
+        font-size: 14px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: var(--white);
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: rgba(128, 128, 128, 0.10);
+    }
+    .project--tab .desc--table thead tr{
+        padding: 0;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 0px;
+    }
+    .project--details .chart--box .info {
+        display: block;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment {
+        margin-top: 0;
+        margin-left: 0px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 2px;
+    }
+    .project--details .details--box .next--payment p {
+        margin-bottom: 6px;
+    }
+    .project--details .details--box .next--payment {
+        margin-top: 20px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 65px;
+    }
+    .project--details .details--box:before {
+        left: -33px;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2),
+    .project--details .details--box:nth-child(3){
+        min-width: 40% !important;
+        max-width: 40% !important;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .chart--wrapper svg {
+        margin-left: 0px;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .latest--update--table--area.quote--details--table--area:before{
+        display: none;
+    }
+    .project--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 1100px;
+    }
+    .project--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .project--details .details--box .cost h4 {
+        font-size: 20px;
+    }
+    .project--details .chart--box .posi--text {
+        font-size: 16px;
+        line-height: 25px;
+        right: -32px;
+    }
+    .project--details .chart--box .posi--text{
+        display: none;
+    }
+    .project--tab .desc--table,
+    .desc--table {
+        padding: 0;
+    }
+}
+@media only screen and (min-width:480px) and (max-width:575px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 8px 6px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 20px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 34px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 22px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 15px 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 514px;
+        margin-top: 10px;
+    }
+    .app--content--area {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 20px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 17px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td,
+    .latest--table table tr td:nth-child(3) {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 6px;
+        height: 20px;
+        width: 20px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .auth--form--area form {
+        padding: 45px 20px 30px 20px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 220px;
+    }
+    .auth--form--area form .nav {
+        width: 338px;
+    }
+    .auth--form--area form .nav-link {
+        padding: 10px;
+        font-size: 18px;
+    }
+    .auth--form--area form label {
+        font-size: 16px;  
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 18px;
+        margin: 26px 0 26px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 16px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 100%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .quotes--details--wrapper{
+        flex-wrap: wrap;
+        padding: 20px 30px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 100% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 20px;
+    }
+    .quotes--details--tab .nav-link {
+        font-size: 16px;
+        padding: 10px 13px;
+    }
+    .desc--table th{
+        display: none;
+    }
+    .desc--table tr{
+        padding: 10px 0;
+        border-bottom: 0;
+    }
+    .desc--table tr,
+    .desc--table td{
+        display: block;
+    }
+    .desc--table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100px;
+        display: flex;
+        color: var(--secondary-color);
+        margin-bottom: 6px;
+    }
+    .desc--table table tr td:nth-child(4) {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: var(--white);
+    }
+}
+@media only screen and (max-width:575px){
+
+    .header--main .container-fluid{
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    .container{
+        padding: 0 20px;
+    }
+    .custom--portal--area {
+        display: none;
+    }
+    .hamburger--menu {
+        left: auto;
+        right:20px;
+    }
+    .logo img {
+        width: 210px;
+        margin-left: -16px;
+    }
+    table th{
+        display: none;
+    }
+    table tr{
+        padding: 10px 0;
+        position: relative;
+        display: block;
+    }
+    table tr:first-child{
+        padding: 0;
+    }
+    table tr:first-child,
+    table tr:last-child{
+        border-bottom: 0;
+    }
+    table td{
+        display: block;
+    }
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100px;
+        display: flex;
+        color: var(--secondary-color);
+    }
+    .latest--table table tr td:nth-child(3):before{
+        margin-bottom: 5px;
+    }
+    .latest--table table tr td:nth-child(4):before{
+        display: none;
+    }
+    .latest--table table tr td:nth-child(4){
+        position: absolute;
+        top: 20px;
+        right: 16px;
+        padding: 5px 8px;
+        background-color: var(--white);
+        border-radius: 4px;
+    }
+    .latest--table table tr td:nth-child(4) svg {
+        margin-left: 0;
+    }
+    .auth--form--area form {
+        padding: 20px;
+    }
+    .auth--form--area form .nav {
+        width: 280px;
+        margin-bottom: 32px;
+    }
+    .auth--form--area form .nav .nav-link{
+        font-size: 16px;
+        padding: 10px;
+    }
+    .auth--form--area form input {
+        height: 52px;
+        font-size: 16px;
+    }
+    .auth--form--area .top--header a img{
+        max-width: 200px;
+    }
+    .auth--form--area form label {
+        font-size: 16px;
+    }
+    .register--info .last-name{
+        margin-top: 14px !important;
+    }
+    .project--details .chart--box {
+        flex-direction: column;
+        padding: 0px;
+    }
+    .project--details .chart--box .info {
+        display: flex;
+        order: 2;
+    }
+    .project--details .chart--box .next--payment {
+        margin-top: 0;
+        margin-left: 0px;
+    }
+    .project--details .details--box .cost p {
+        margin-bottom: 2px;
+    }
+    .project--details .details--box .next--payment p {
+        margin-bottom: 6px;
+    }
+    .project--details .details--box .next--payment {
+        margin-top: 0px !important;
+        margin-left: 20px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2):before{
+        display: none;
+    }
+    .quotes--details--wrapper .details--box:nth-child(3) {
+        margin-left: 0px;
+        margin-top: 30px;
+    }
+    .project--details .details--box:before {
+        display: none;
+    }
+    .project--tab .nav-link {
+        padding: 13px 15px;
+        font-size: 16px;
+    }
+    .project--tab .nav-link.active{
+        font-size: 18px;
+    }
+    .quotes--details--wrapper.project--details{
+        flex-wrap: wrap;
+    }
+    .project--details .details--box:first-child{
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+    .project--details .details--box:nth-child(2), .project--details .details--box:nth-child(3) {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .quotes--details--wrapper .details--box .item span br{
+        display: none;
+    }
+    .project--details .chart--box .posi--text{
+        right: 30px;
+    }
+    .chart--wrapper svg {
+        margin-left: 0px;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .latest--update--table--area.quote--details--table--area:before{
+        display: none;
+    }
+    .project--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 1100px !important;
+    }
+    .project--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .project--details .details--box .cost h4 {
+        font-size: 20px;
+    }
+    .project--details .chart--box .posi--text {
+        font-size: 16px;
+        line-height: 25px;
+        right: -32px;
+    }
+    .project--tab .desc--table {
+        padding: 0;
+    }
+    .project--details .chart--box .posi--text {
+        font-size: 14px;
+        line-height: 20px;
+        right: auto;
+        left: 163px;
+        top: 22px;
+    }
+    .latest--table tr{
+        padding: 10px !important;
+        border-radius: 10px;
+    }
+    .latest--table thead tr{
+        padding: 0 !important;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: rgba(128, 128, 128, 0.10);
+    }
+
+}
+@media only screen and (min-width:375px) and (max-width:479px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px 6px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 16px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 38px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 22px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 12px 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 10px;
+        margin-right: 10px;
+        max-height: 426px;
+        margin-top: 10px;
+    }
+    .app--content--area {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 12px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 18px;
+        margin-left: 12px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 20px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 12px;
+        height: 20px;
+        width: 20px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .latest--table table tr td:nth-child(3) {
+        font-size: 14px;
+    }
+    .project--image--slider--area {
+        padding: 20px;
+    }
+    .latest--update--table--area .top--header svg {
+        margin-right: 12px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 16px;
+        margin: 20px 0 18px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 16px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 100%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 16px 15px;
+    }
+    .quotes--details--wrapper {
+        flex-wrap: wrap;
+        padding: 4px 20px 2px 20px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 100% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .quotes--details--tab .nav-link {
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        padding: 6px 12px;
+        margin-top: 10px;
+    }
+    .desc--table th{
+        display: none;
+    }
+    .desc--table tr{
+        padding: 10px 0;
+        border-bottom: 0;
+    }
+    .desc--table tr,
+    .desc--table td{
+        display: block;
+    }
+    .desc--table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100px;
+        display: flex;
+        color: var(--secondary-color);
+        margin-bottom: 6px;
+    }
+    .desc--table table tr td:nth-child(4) {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: var(--white);
+    }
+    .quotes--details--wrapper .button {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+    .back--btn svg {
+        height: 16px;
+        width: 18px;
+        margin-right: 6px;
+    }
+    .nav-tabs{
+        margin-bottom: 20px;
+        border: 0;
+    }
+    .desc--table {
+        padding: 0;
+    }
+    .project--details .details--box .next--payment {
+        margin-top: 0px !important;
+        margin-left: 12px;
+    }
+    .project--details .chart--box {
+        margin-top: 16px;
+    }
+    .quotes--details--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .quotes--details--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .quotes--details--tab .nav--wrapper .nav{
+        width: 430px;
+    }
+    .project--tab .nav--wrapper .nav{
+        width: 970px !important;
+    }
+    .deafult--table td .button {
+        padding: 6px 10px;
+    }
+    .deafult--table.project--table tr td:nth-child(1), 
+    .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 0;
+        max-width: 180px;
+        font-size: 15px;
+    }
+    .deafult--table td {
+        padding: 10px 0px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: rgba(128, 128, 128, 0.10);
+    }
+    .project--tab .desc--table thead tr{
+        padding: 0;
+    }
+}
+@media only screen and (min-width:320px) and (max-width:374px){
+    .latest--table table tr td:nth-child(3) br{
+        display: none;
+    }
+    .latest--table table th, .latest--table table td {
+        padding: 12px 6px;
+        vertical-align: top;
+    }
+    .button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    .carousel--area {
+        padding: 0 38px;
+    }
+    .shownum--box {
+        padding: 16px;
+    }
+    .box--title h3 {
+        font-size: 18px;
+    }
+    .shownum--box .number--area .counter--wrapper p {
+        font-size: 38px;
+        line-height: normal;
+    }
+    .custom--portal--area h3 {
+        font-size: 22px;
+    }
+    .latest--update--table--area .top--header {
+        padding: 12px 20px;
+        font-size: 18px;
+        line-height: normal;
+    }
+    .latest--table {
+        padding: 0 10px 0 12px;
+        margin-right: 10px;
+        max-height: 426px;
+        margin-top: 10px;
+    }
+    .app--content--area {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .sidebar ul.menu li a, .sidebar .logout--area a{
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--top h3 {
+        font-size: 18px;
+        margin-left: 12px;
+    }
+    .right--sidebar--area .profile--box .profile--name h2 {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+    .right--sidebar--area .profile--box .profile--name {
+        margin: 26px 0 50px;
+    }
+    .project--slider .item img {
+        height: 182px;
+    }
+    .top--title h3 {
+        font-size: 18px;
+        margin-left: 12px;
+    }
+    .progress--bar {
+        height: 160px;
+        width: 160px;
+    }
+    .progress--bar:before{
+        width: 150px;
+        height: 150px;
+        top: 7px;
+        left: 7px;
+    }
+    .progress--bar:after {
+        width: 110px;
+        height: 110px;
+    }
+    .right--sidebar--area .progress--desc {
+        margin-top: 26px;
+    }
+    .right--sidebar--area .profile--box, .project--extension--box, .system--info--box {
+        padding: 20px;
+    }
+    .progress--bar .num p {
+        font-size: 28px;
+    }
+    .system--info--box .info--wrapper .inner {
+        height: 253px;
+    }
+    .header--main{
+        padding: 0;
+    }
+    .latest--table table td {
+        font-size: 14px;
+    }
+    .box--title svg {
+        margin-right: 12px;
+        height: 20px;
+        width: 20px;
+    }
+    .latest--table table th {
+        font-size: 16px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a {
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .profile--box .profile--buttons a:nth-child(2) {
+        min-width: 215px;
+        max-width: 215px;
+        padding: 8px 14px;
+    }
+    .right--sidebar--area .button {
+        font-size: 14px;
+    }
+    .column--left,
+    .column--right {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .right--sidebar--area {
+        padding-left: 0px;
+    }
+    .latest--table table tr td:nth-child(3) {
+        font-size: 14px;
+    }
+    .project--image--slider--area {
+        padding: 20px;
+    }
+    .latest--update--table--area .top--header svg {
+        margin-right: 12px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(2) {
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .quotes--details--wrapper .details--box:nth-child(1) {
+        width: auto;
+    }
+    .quotes--details--wrapper .button--box {
+        text-align: center;
+    }
+    .back--btn {
+        font-size: 16px;
+        margin: 20px 0 18px;
+    }
+    .quotes--details--tab .nav-link.active {
+        font-size: 16px;
+    }
+    .desc--table table tr td:nth-child(4) br{
+        display: none;
+    }
+    .desc--table table tr td:nth-child(-n+3) {
+        width: 100%;
+    }
+    .desc--table table th, .desc--table table td {
+        padding: 10px 15px;
+    }
+    .quotes--details--wrapper {
+        flex-wrap: wrap;
+        padding: 4px 20px 2px 20px;
+    }
+    .quotes--details--wrapper .details--box {
+        width: 100% !important;
+    }
+    .quotes--details--wrapper .button--box{
+        width: auto;
+        margin-top: 40px;
+    }
+    .latest--update--table--area.quote--details--table--area::before{
+        display: none;
+    }
+    .latest--update--table--area .top--header h3 {
+        font-size: 18px;
+    }
+    .quotes--details--tab .nav-link {
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        padding: 6px 12px;
+        margin-top: 8px;
+    }
+    .desc--table th{
+        display: none;
+    }
+    .desc--table tr{
+        padding: 10px 0;
+        border-bottom: 0;
+    }
+    .desc--table tr,
+    .desc--table td{
+        display: block;
+    }
+    .desc--table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100px;
+        display: flex;
+        color: var(--secondary-color);
+        margin-bottom: 6px;
+    }
+    .desc--table table tr td:nth-child(4) {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: var(--white);
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: rgba(128, 128, 128, 0.10);
+    }
+    .quotes--details--wrapper .button {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+    .back--btn svg {
+        height: 16px;
+        width: 18px;
+        margin-right: 6px;
+    }
+    .nav-tabs{
+        margin-bottom: 20px;
+        border: 0;
+    }
+    .desc--table table tr td{
+        font-size: 14px;
+    }
+    .project--details .details--box .cost h4 {
+        font-size: 18px;
+    }
+    .project--details .details--box .cost p {
+        font-size: 14px;
+    }
+    .project--details .details--box .next--payment p {
+        font-size: 13px;
+        line-height: 18px;
+    }
+    .project--details .details--box .next--payment {
+        margin-left: 8px;
+    }
+    .quotes--details--wrapper .details--box .item p, .quotes--details--wrapper .details--box .item span {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .quotes--details--tab .nav--wrapper{
+        overflow: auto;
+    }
+    .quotes--details--tab .nav--wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    .quotes--details--tab .nav--wrapper .nav{
+        width: 430px;
+    }
+    .deafult--table.project--table tr td{
+        font-size: 14px;
+    }
+    .deafult--table.project--table tr td:nth-child(1), .deafult--table.project--table tr th:nth-child(1) {
+        padding-left: 0;
+        max-width: 150px;
+        font-size: 15px;
+    }
+    .deafult--table td .button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .deafult--table td {
+        padding: 8px 0px;
+    }
+    .desc--table table tr:nth-child(even) {
+        background-color: rgba(128, 128, 128, 0.10);
+    }
+
+}
+@media only screen and (max-width:320px){
+    .project--details .details--box .next--payment {
+        margin-left: -10px;
+    }
+}
