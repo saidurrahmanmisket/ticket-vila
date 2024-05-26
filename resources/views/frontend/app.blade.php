@@ -13,6 +13,8 @@
     @yield('content')
 </main>
 <!-- main area ends -->
+@include('frontend.partials.footer')
+
 <!-- ==== All Js Links ==== -->
 @include('frontend.partials.scripts')
 </body>

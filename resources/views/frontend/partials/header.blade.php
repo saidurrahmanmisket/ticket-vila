@@ -11,7 +11,7 @@
             <div class="content--area">
                 <!-- logo -->
                 <div class="logo">
-                    <img src="./assets/images/logo.svg" alt="" />
+                    <img src="{{ asset('frontend/images/logo.svg') }}" alt="" />
                     <p>TicketVilla</p>
                 </div>
 
@@ -19,34 +19,30 @@
                 <div class="menu--links">
                     <ul>
                         <li data-aos="fade-down" data-aos-duration="500">
-                            <a href="index.html" class="active">Home</a>
+                            <a href="{{ route('frontend.home') }}" class="active">Home</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="800">
-                            <a href="about.html">About Us</a>
+                            <a href="{{ route('frontend.about') }}">About Us</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1000">
-                            <a href="how-it-works.html">How it Works</a>
+                            <a href="{{ route('frontend.how-it-works') }}">How it Works</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1200">
-                            <a href="the-house.html">The House</a>
+                            <a href="{{ route('frontend.the-house') }}">The House</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1400">
-                            <a href="contact.html">Contact</a>
+                            <a href="{{ route('frontend.contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <!-- button area -->
-            <div
-                data-aos="fade-left"
-                data-aos-duration="600"
-                class="button--area"
-            >
-                <a href="login.html" class="link">
+            <div data-aos="fade-left" data-aos-duration="600" class="button--area">
+                <a href="{{ route('frontend.login') }}" class="link">
                     <span>Login</span>
                 </a>
-                <a href="sign-up.html" class="btn--fill">
+                <a href="{{ route('frontend.sign-up') }}" class="btn--fill">
                     <span>Registration</span>
                 </a>
                 <a href="#" class="btn--fill blue--btn">

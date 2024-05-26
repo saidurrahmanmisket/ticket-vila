@@ -8,7 +8,7 @@
     <!-- favicon -->
     <link
       rel="shortcut icon"
-      href="./assets/images/logo.svg"
+      href="{{ asset('frontend/images/logo.svg') }}"
       type="image/x-icon"
     />
 
@@ -43,7 +43,7 @@
   <body>
     <main class="auth--main--area--wrapper verify">
       <div class="banner--area">
-        <img src="./assets/images/last-step-banner.png" alt="" />
+        <img src="{{ asset('frontend/images/last-step-banner.png') }}" alt="" />
       </div>
       <div class="input--area">
         <div class="top--area">

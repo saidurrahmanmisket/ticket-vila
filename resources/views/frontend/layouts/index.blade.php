@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" class="right">
-                        <img src="./assets/images/home-hero-banner.png" alt="" />
+                        <img src="{{ asset('frontend/images/home-hero-banner.png') }}" alt="" />
                         <!-- <video autoplay loop src="./assets/videos/ticketvilla EN.mp4"></video> -->
                         <!-- <iframe
                           src="https://player.vimeo.com/video/950150289?h=a62df445a8"
@@ -173,7 +173,7 @@
                             class="single--facts"
                         >
                             <div class="icon">
-                                <img src="./assets/images/facts1.svg" alt="" />
+                                <img src="{{ asset('frontend/images/facts1.svg') }}" alt="" />
                             </div>
 
                             <div class="text--wrapper">
@@ -187,7 +187,7 @@
                             class="single--facts"
                         >
                             <div class="icon">
-                                <img src="./assets/images/facts2.svg" alt="" />
+                                <img src="{{ asset('frontend/images/facts2.svg') }}" alt="" />
                             </div>
 
                             <div class="text--wrapper">
@@ -201,7 +201,7 @@
                             class="single--facts"
                         >
                             <div class="icon">
-                                <img src="./assets/images/facts3.svg" alt="" />
+                                <img src="{{ asset('frontend/images/facts3.svg') }}" alt="" />
                             </div>
 
                             <div class="text--wrapper">
@@ -215,7 +215,7 @@
                             class="single--facts"
                         >
                             <div class="icon">
-                                <img src="./assets/images/facts4.svg" alt="" />
+                                <img src="{{ asset('frontend/images/facts4.svg') }}" alt="" />
                             </div>
 
                             <div class="text--wrapper">
@@ -229,7 +229,7 @@
                             class="single--facts"
                         >
                             <div class="icon">
-                                <img src="./assets/images/facts1.svg" alt="" />
+                                <img src="{{ asset('frontend/images/facts5.svg') }}" alt="" />
                             </div>
 
                             <div class="text--wrapper">
@@ -323,7 +323,8 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance1.png"
+                                        src="{{ asset('frontend/images/single-chance1.png') }}"
+                                        {{-- facts1.svg') }} --}}
                                         alt=""
                                     />
 
@@ -331,7 +332,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon1.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon1.png') }}" alt="" />
                                         </div>
                                         <p class="text">Gallery</p>
                                     </div>
@@ -341,7 +342,7 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance2.png"
+                                        src="{{ asset('frontend/images/single-chance2.png') }}"
                                         alt=""
                                     />
 
@@ -349,7 +350,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon2.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
                                         </div>
                                         <p class="text">3D walkaround <span>(inside)</span></p>
                                     </div>
@@ -359,7 +360,7 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance3.png"
+                                        src="{{ asset('frontend/images/single-chance3.png') }}"
                                         alt=""
                                     />
 
@@ -367,7 +368,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon2.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
                                         </div>
                                         <p class="text">3D walkaround <span>(outside)</span></p>
                                     </div>
@@ -377,7 +378,7 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance4.png"
+                                        src="{{ asset('frontend/images/single-chance4.png') }}"
                                         alt=""
                                     />
 
@@ -385,7 +386,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon2.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
                                         </div>
                                         <p class="text">3D walkaround <span>(outside)</span></p>
                                     </div>
@@ -395,7 +396,7 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance3.png"
+                                        src="{{ asset('frontend/images/single-chance3.png') }}"
                                         alt=""
                                     />
 
@@ -403,7 +404,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon2.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
                                         </div>
                                         <p class="text">3D walkaround <span>(outside)</span></p>
                                     </div>
@@ -413,7 +414,7 @@
                                 <div class="single--card">
                                     <img
                                         class="cover--img"
-                                        src="./assets/images/single-chance4.png"
+                                        src="{{ asset('frontend/images/single-chance4.png') }}"
                                         alt=""
                                     />
 
@@ -421,7 +422,7 @@
 
                                     <div class="content">
                                         <div class="icon">
-                                            <img src="./assets/images/chance-icon2.png" alt="" />
+                                            <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
                                         </div>
                                         <p class="text">3D walkaround <span>(outside)</span></p>
                                     </div>
@@ -448,7 +449,7 @@
                 <div class="the--process--area--content">
                     <div class="single--process">
                         <div class="img--container">
-                            <img src="./assets/images/single-process.png" alt="" />
+                            <img src="{{ asset('frontend/images/single-process.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -467,7 +468,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">E-BOOK SALE STARTS</p>
-                                <img src="./assets/images/process-icon1.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon1.png') }}" alt="" />
 
                                 <div class="bottom--arrow"></div>
                             </div>
@@ -475,7 +476,7 @@
                     </div>
                     <div class="single--process with--btn">
                         <div class="img--container">
-                            <img src="./assets/images/single-process.png" alt="" />
+                            <img src="{{ asset('frontend/images/single-process.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -519,7 +520,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">All your needs</p>
-                                <img src="./assets/images/process-icon2.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon2.png') }}" alt="" />
 
                                 <div class="bottom--arrow"></div>
                             </div>
@@ -527,7 +528,7 @@
                     </div>
                     <div class="single--process with--btn extra--content">
                         <div class="img--container">
-                            <img src="./assets/images/single-process.png" alt="" />
+                            <img src="{{ asset('frontend/images/single-process.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -572,7 +573,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">15.000 E-book sold</p>
-                                <img src="./assets/images/process-icon3.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon3.png') }}" alt="" />
 
                                 <div class="bottom--arrow"></div>
                             </div>
@@ -580,7 +581,7 @@
                     </div>
                     <div class="single--process with--btn">
                         <div class="img--container">
-                            <img src="./assets/images/process-new1.png" alt="" />
+                            <img src="{{ asset('frontend/images/process-new1.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">€20,000 extra furniture voucher.</h3>
@@ -623,7 +624,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">17.000 tickets sold</p>
-                                <img src="./assets/images/process-icon4.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon4.png') }}" alt="" />
                                 <p class="bonus--text">bonus</p>
 
                                 <div class="bottom--arrow"></div>
@@ -632,7 +633,7 @@
                     </div>
                     <div class="single--process with--btn less--content">
                         <div class="img--container">
-                            <img src="./assets/images/single-process.png" alt="" />
+                            <img src="{{ asset('frontend/images/single-process.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">Proven fair, legally secure</h3>
@@ -672,7 +673,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">Good to Know</p>
-                                <img src="./assets/images/process-icon5.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon5.png') }}" alt="" />
 
                                 <div class="bottom--arrow"></div>
                             </div>
@@ -680,7 +681,7 @@
                     </div>
                     <div class="single--process with--btn over--text extra--content">
                         <div class="img--container">
-                            <img src="./assets/images/process-new2.png" alt="" />
+                            <img src="{{ asset('frontend/images/process-new2.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -725,7 +726,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">20.000 tickets sold</p>
-                                <img src="./assets/images/process-icon4.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon4.png') }}" alt="" />
                                 <p class="bonus--text">bonus</p>
 
                                 <div class="bottom--arrow"></div>
@@ -734,7 +735,7 @@
                     </div>
                     <div class="single--process with--btn">
                         <div class="img--container">
-                            <img src="./assets/images/single-process.png" alt="" />
+                            <img src="{{ asset('frontend/images/single-process.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -777,7 +778,7 @@
                                 <div class="left--arrow"></div>
                                 <div class="top--arrow"></div>
                                 <p class="text">Live drawing</p>
-                                <img src="./assets/images/process-icon6.png" alt="" />
+                                <img src="{{ asset('frontend/images/process-icon6.png') }}" alt="" />
 
                                 <div class="bottom--arrow"></div>
                             </div>
@@ -785,7 +786,7 @@
                     </div>
                     <div class="single--process with--btn">
                         <div class="img--container">
-                            <img src="./assets/images/process-new3.png" alt="" />
+                            <img src="{{ asset('frontend/images/process-new3.png') }}" alt="" />
                         </div>
                         <div class="text--area">
                             <h3 class="main--text">
@@ -865,23 +866,23 @@
                         <div class="img--box">
                             <img
                                 class="ticket1"
-                                src="./assets/images/ticket-main.png"
+                                src="{{ asset('frontend/images/ticket-main.png') }}"
                                 alt=""
                             />
                             <img
                                 class="ticket2"
-                                src="./assets/images/ticket-main.png"
+                                src="{{ asset('frontend/images/ticket-main.png') }}"
                                 alt=""
                             />
                             <img
                                 class="ticket3"
-                                src="./assets/images/ticket-main.png"
+                                src="{{ asset('frontend/images/ticket-main.png') }}"
                                 alt=""
                             />
                         </div>
 
                         <div class="base--holder">
-                            <img src="./assets/images/base-circle.svg" alt="" />
+                            <img src="{{ asset('frontend/images/base-circle.svg') }}" alt="" />
                         </div>
                     </div>
 
@@ -979,11 +980,11 @@
 
             <!-- spinner -->
             <div class="spinner--holder">
-                <img class="spin" src="./assets/images/spinner.png" alt="" />
+                <img class="spin" src="{{ asset('frontend/images/spinner.png') }}" alt="" />
 
                 <!-- spinner pointer -->
                 <div class="pointer">
-                    <img src="./assets/images/spinner-pointer.svg" alt="" />
+                    <img src="{{ asset('frontend/images/spinner-pointer.svg') }}" alt="" />
                 </div>
             </div>
         </section>
@@ -999,7 +1000,7 @@
                         class="single--step"
                     >
                         <div class="icon">
-                            <img src="./assets/images/small-step1.svg" alt="" />
+                            <img src="{{ asset('frontend/images/small-step1.svg') }}" alt="" />
                         </div>
 
                         <div class="text">
@@ -1009,7 +1010,7 @@
 
                         <!-- id -->
                         <div class="id">
-                            <img src="./assets/images/01.svg" alt="" />
+                            <img src="{{ asset('frontend/images/01.svg') }}" alt="" />
                         </div>
                     </div>
                     <div
@@ -1018,7 +1019,7 @@
                         class="single--step"
                     >
                         <div class="icon">
-                            <img src="./assets/images/small-step2.svg" alt="" />
+                            <img src="{{ asset('frontend/images/small-step2.svg') }}" alt="" />
                         </div>
 
                         <div class="text">
@@ -1026,7 +1027,7 @@
                             <p class="sub">Buy any number of tickets.</p>
                         </div>
                         <!-- id -->
-                        <div class="id"><img src="./assets/images/02.svg" alt="" /></div>
+                        <div class="id"><img src="{{ asset('frontend/images/02.svg') }}" alt="" /></div>
                     </div>
                     <div
                         data-aos="fade-up"
@@ -1034,7 +1035,7 @@
                         class="single--step"
                     >
                         <div class="icon">
-                            <img src="./assets/images/small-step3.svg" alt="" />
+                            <img src="{{ asset('frontend/images/small-step3.svg') }}" alt="" />
                         </div>
 
                         <div class="text">
@@ -1042,7 +1043,7 @@
                             <p class="sub">Follow the status and the draw live.</p>
                         </div>
                         <!-- id -->
-                        <div class="id"><img src="./assets/images/03.svg" alt="" /></div>
+                        <div class="id"><img src="{{ asset('frontend/images/03.svg') }}" alt="" /></div>
                     </div>
                     <div
                         data-aos="fade-up"
@@ -1050,7 +1051,7 @@
                         class="single--step"
                     >
                         <div class="icon">
-                            <img src="./assets/images/small-step4.svg" alt="" />
+                            <img src="{{ asset('frontend/images/small-step4.svg') }}" alt="" />
                         </div>
 
                         <div class="text">
@@ -1058,7 +1059,7 @@
                             <p class="sub">Enjoy your turnkey dream home.</p>
                         </div>
                         <!-- id -->
-                        <div class="id"><img src="./assets/images/04.svg" alt="" /></div>
+                        <div class="id"><img src="{{ asset('frontend/images/04.svg') }}" alt="" /></div>
                     </div>
                 </div>
             </div>
@@ -1093,7 +1094,7 @@
                         class="single--feature common"
                     >
                         <div class="icon">
-                            <img src="./assets/images/feature--book.svg" alt="" />
+                            <img src="{{ asset('frontend/images/feature--book.svg') }}" alt="" />
                         </div>
                         <div>
                             <p class="title">Done notarized</p>
@@ -1135,7 +1136,7 @@
                         <div class="overlay">
                             <div class="instruction--text">
                                 <div class="icon">
-                                    <img src="./assets/images/icon-360.png" alt="" />
+                                    <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
                                 </div>
                                 <p>Click to start</p>
                             </div>
@@ -1173,7 +1174,7 @@
                         class="single--feature"
                     >
                         <div class="icon">
-                            <img src="./assets/images/business-feature1.png" alt="" />
+                            <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                         </div>
                         <p class="title">Secure</p>
                     </div>
@@ -1183,7 +1184,7 @@
                         class="single--feature"
                     >
                         <div class="icon">
-                            <img src="./assets/images/business-feature2.png" alt="" />
+                            <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                         </div>
                         <p class="title">Legal</p>
                     </div>
@@ -1193,7 +1194,7 @@
                         class="single--feature"
                     >
                         <div class="icon">
-                            <img src="./assets/images/business-feature3.png" alt="" />
+                            <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                         </div>
                         <p class="title">Fair</p>
                     </div>
@@ -1203,7 +1204,7 @@
                         class="single--feature"
                     >
                         <div class="icon">
-                            <img src="./assets/images/business-feature4.png" alt="" />
+                            <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                         </div>
                         <p class="title">Real opportunity</p>
                     </div>
@@ -1213,7 +1214,7 @@
                         class="single--feature"
                     >
                         <div class="icon">
-                            <img src="./assets/images/business-feature5.png" alt="" />
+                            <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                         </div>
                         <p class="title">Cheap</p>
                     </div>
