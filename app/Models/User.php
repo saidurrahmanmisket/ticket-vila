@@ -42,14 +42,4 @@ class User extends Authenticatable {
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function userDetails() {
-        return $this->hasOne(UserDetail::class);
-    }
-
-    public function hasPermissionTo($permission) {
-        $permissions = ['mail_setting', 'dynamic_page', 'profile setting'];
-
-        return in_array($permission, $permissions);
-    }
 }
