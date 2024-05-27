@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->integer('max_limit')->default(0);
             $table->string('unique_text')->unique();
-            // $table->foreignId('ebook_id')->nullable()->constrained('ebooks')->nullOnDelete();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();
             $table->enum('status',['draft','published'])->default('published');
             $table->timestamps();
