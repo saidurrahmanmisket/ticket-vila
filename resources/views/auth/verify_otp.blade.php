@@ -34,18 +34,33 @@
             </div>
 
             <div class="middle--area">
-                <form action="#" class="form--area">
-                    <div class="otp-input-fields">
-                        <input type="number" class="otp__digit otp__field__1" />
-                        <input type="number" class="otp__digit otp__field__2" />
-                        <input type="number" class="otp__digit otp__field__3" />
-                        <input type="number" class="otp__digit otp__field__4" />
-                        <input type="number" class="otp__digit otp__field__5" />
-                        <input type="number" class="otp__digit otp__field__6" />
+                <form method="POST" action="{{ route('verify.otp.post') }}">
+                    @csrf
+
+                    <input type="hidden" name="email" value="{{ $email ?? '' }}">
+
+                    <div class="form-group row">
+                        <label for="otp" class="col-md-4 col-form-label text-md-right">{{ __('OTP') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="otp" type="text" class="form-control @error('otp') is-invalid @enderror"
+                                name="otp" required autofocus>
+
+                            @error('otp')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
-                    <!-- submit button -->
-                    <button class="submit">Submit</button>
+                    <div class="form-group row mb-0 mt-4    ">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Verify') }}
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
 
