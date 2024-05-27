@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- ==== Favicon ==== -->
-    <link rel="icon" type="image/png" href="{{asset('admin/images/logo-sm.svg')}}" />
+    <link rel="icon" type="image/png" href="{{asset('user/images/logo-sm.svg')}}" />
     <title>@yield('title')</title>
     @include('user.partials.styles')
 </head>

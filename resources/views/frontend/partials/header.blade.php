@@ -39,12 +39,22 @@
 
             <!-- button area -->
             <div data-aos="fade-left" data-aos-duration="600" class="button--area">
-                <a href="{{ route('login') }}" class="link">
-                    <span>Login</span>
-                </a>
-                <a href="{{ route('register') }}" class="btn--fill">
-                    <span>Registration</span>
-                </a>
+                @if (Auth::user())
+                    <a href="{{ route('user.dashboard') }}" class="profile">
+                        <img src="{{ asset('user/images/profile.png') }}" alt="" />
+                        <div>
+                            <p> user</p>
+                        </div>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="link">
+                        <span>Login</span>
+                    </a>
+                    <a href="{{ route('register') }}" class="btn--fill">
+                        <span>Registration</span>
+                    </a>
+                @endif
+
                 <a href="#" class="btn--fill blue--btn">
                     <span>Buy Now</span>
                 </a>
