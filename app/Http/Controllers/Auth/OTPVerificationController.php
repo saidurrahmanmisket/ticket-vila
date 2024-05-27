@@ -21,6 +21,7 @@ class OTPVerificationController extends Controller
             return redirect()->route('frontend.home');
         }
 
+        flash()->addSuccess('We Sent 6 Digit Code in your Mail');
         return view('auth.verify_otp', ['email' => $email]);
     }
 
@@ -60,7 +61,7 @@ class OTPVerificationController extends Controller
 
         // Delete the used OTP
         $otp->delete();
-
+        flash()->addSuccess('Email verified');
         return redirect()->route('user.dashboard');
     }
 }

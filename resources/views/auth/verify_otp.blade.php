@@ -19,7 +19,7 @@
         <div class="input--area">
             <div class="top--area">
                 <h3 class="main--text">You Almost there, last Step 🥳</h3>
-                <p class="sub--text">Please Verify Your Email Address</p>
+                <p class="sub--text">Please Verify Your Email Address.</p>
             </div>
 
             <div class="middle--area">
@@ -70,7 +70,7 @@
             <div class="lower--area resend--pass">
                 <p>
                     Did you not receive the email?
-                    <a href="#"> Resend Code</a>
+                    <a href="{{ route('verify.otp', ['email' => $email]) }}"> Resend Code</a>
                 </p>
             </div>
         </div>
