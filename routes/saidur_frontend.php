@@ -24,7 +24,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
 });
 
 // Route to handle OTP verification by : saidur
-Route::controller(OTPVerificationController::class)->name('frontend.')->group(function () {
+Route::controller(OTPVerificationController::class)->group(function () {
 
     // Route to show OTP verification form
     Route::get('/verify-otp/{email}', 'showVerificationForm')->name('verify.otp');
