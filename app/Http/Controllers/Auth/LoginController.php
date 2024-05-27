@@ -30,11 +30,11 @@ class LoginController extends Controller
     {
         $user = auth()->user(); // get the authenticated user
 
-        if ($user->hasRole('admin')) {
-            return '/dashboard';
+        if ($user->role === 'admin') {
+            return '/admin/dashboard';
         }
 
-        return '/home';
+        return '/dashboard';
     }
 
     /**

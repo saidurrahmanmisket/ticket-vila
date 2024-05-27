@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('discount_quantity')->default(0);
             $table->double('total_price')->default(0);
             $table->string('payment_method')->nullable();
-            $table->foreignId('ebook_id')->nullable()->constrained('ebooks')->nullOnDelete();
+            // $table->foreignId('ebook_id')->nullable()->constrained('ebooks')->nullOnDelete();
             $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->nullOnDelete();
             $table->enum('payment_status', ['pending', 'processing', 'completed'])->default('pending');
             $table->timestamps();

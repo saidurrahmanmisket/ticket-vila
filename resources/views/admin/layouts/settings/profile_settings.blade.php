@@ -77,10 +77,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="input-style-1">
-                                    <label for="name">User Name</label>
-                                    <input type="text" @error('name') is-invalid @enderror" name="name" id="name"
-                                        value="{{ Auth::user()->name }}" placeholder="Full Name" />
-                                    @error('name')
+                                    <label for="first_name">User First Name</label>
+                                    <input type="text" @error('first_name') is-invalid @enderror" name="first_name"
+                                        id="first_name" value="{{ Auth::user()->first_name }}" placeholder="First Name" />
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-style-1">
+                                    <label for="last_name">User Last Name</label>
+                                    <input type="text" @error('last_name') is-invalid @enderror" name="last_name"
+                                        id="name" value="{{ Auth::user()->last_name }}" placeholder="Full Last Name" />
+                                    @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
