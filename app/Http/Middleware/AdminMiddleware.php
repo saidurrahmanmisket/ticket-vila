@@ -16,14 +16,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role === "admin"){
+        if (Auth::user()->role === "admin") {
             return $next($request);
-        }elseif(Auth::check()) {
+        } elseif (Auth::check()) {
             Auth::guard('web')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
-        flasher()->addWarning('You are not authorized to access this page!');
+        flash()->addWarning('You are not authorized to access this page!');
         return redirect()->route('login');
     }
 }
