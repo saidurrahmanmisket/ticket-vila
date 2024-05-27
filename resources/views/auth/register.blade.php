@@ -40,12 +40,24 @@
                     @csrf
                     <div class="input--holder">
                         <div class="single--input">
-                            <label for="full-name">Full Name</label>
-                            <input class="  @error('name') is-invalid @enderror" type="text" name="name"
-                                id="full-name" value="{{ old('name') }}" placeholder="Enter your full name"
+                            <label for="full-name">First Name</label>
+                            <input class="  @error('first_name') is-invalid @enderror" type="text" name="first_name"
+                                id="full-name" value="{{ old('first_name') }}" placeholder="Enter your First name"
                                 required />
 
-                            @error('name')
+                            @error('first_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="single--input">
+                            <label for="full-name">Last Name</label>
+                            <input class="  @error('last_name') is-invalid @enderror" type="text" name="last_name"
+                                id="full-name" value="{{ old('last_name') }}" placeholder="Enter your Last name"
+                                required />
+
+                            @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

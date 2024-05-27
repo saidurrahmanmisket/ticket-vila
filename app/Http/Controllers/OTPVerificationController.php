@@ -45,6 +45,6 @@ class OTPVerificationController extends Controller
         // Delete the used OTP
         $otp->delete();
 
-        return redirect()->route('frontend.home');
+        return redirect()->route('user.dashboard');
     }
 }
