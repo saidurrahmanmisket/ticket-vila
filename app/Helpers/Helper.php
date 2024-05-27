@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,13 @@ class Helper {
         $file->move($path, $imageName);
         return 'uploads/' . $folder . '/' . $imageName;
     }
-
+    public static function deleteFile($filePath)
+    {
+        if (File::exists($filePath)) {
+            return File::delete($filePath);
+        }
+        return false;
+    }
     // Make Slug
     public static function makeSlug($model, string $title): string {
         $slug = Str::slug($title);

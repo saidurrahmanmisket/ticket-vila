@@ -4,8 +4,7 @@
 @section('content')
     <!-- profile area  -->
     <div class="profile--area">
-
-        <form method="POST" action="{{ route('admin.profile.update') }}">@csrf @method('PATCH')
+        <div>
             <!-- profile  -->
             <div class="profile">
                 <div class="upload--wrapper">
@@ -16,9 +15,9 @@
                             alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}"
                         />
                         @error('avatar')
-                        <span class="invalid-feedback d-block" role="alert">
+                              <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
-                                </span>
+                              </span>
                         @enderror
                     </div>
                     <label for="upload">
@@ -43,7 +42,6 @@
                             ></path>
                         </svg>
                     </label>
-                    <input type="file" name="avatar" id="upload" />
                 </div>
                 <!-- profile name  -->
                 <div class="profile--name">
@@ -53,7 +51,9 @@
             </div>
             <div class="row mt_70">
                 <div class="col-md-6 mt_30">
-                    <div class="personal--info profile--info--box">
+                    <form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">@csrf @method('PATCH')
+                        <div class="personal--info profile--info--box">
+                        <input type="file" class="d-none" name="avatar" id="upload" />
                         <h3>Personal Info <span>(Name, Surname, Email address)</span></h3>
                         <div class="input--group">
                             <label for="first_name">First Name</label>
@@ -84,26 +84,44 @@
                         </div>
                         <button type="submit">Update Personal Info</button>
                     </div>
+                    </form>
                 </div>
                 <div class="col-md-6 mt_30">
-                    <div class="security--info profile--info--box">
+                    <form action="{{ route('admin.profile.change') }}" method="POST"> @csrf @method('PATCH')
+                       <div class="security--info profile--info--box">
                         <h3>Security <span>(Your email address is {{ Auth::user()->email }})</span></h3>
                         <div class="input--group">
-                            <label for="password">Current password</label>
-                            <input id="password" type="password" placeholder="6632645fsdg12105">
+                            <label for="current_password">Current password</label>
+                            <input id="current_password" name="current_password" type="password" placeholder="6632645fsdg12105">
+                            @error('current_password')
+                            <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                         </div>
                         <div class="input--group">
-                            <label for="npassword">New password</label>
-                            <input id="npassword" type="password" placeholder="Enter your new password">
+                            <label for="password">New password</label>
+                            <input id="password" type="password" name="password" placeholder="Enter your new password">
+                            @error('password')
+                            <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                         </div>
                         <div class="input--group">
-                            <label for="password">Confirm password</label>
-                            <input id="password" type="password" placeholder="Confirm password">
+                            <label for="password_confirmation">Confirm password</label>
+                            <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirm password">
+                            @error('password_confirmation')
+                            <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
                         </div>
-                        <button type="button">Update Password</button>
+                        <button type="submit">Update Password</button>
                     </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 @endsection
