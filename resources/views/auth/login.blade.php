@@ -36,7 +36,7 @@
             </div>
 
             <div class="middle--area">
-                <form method="POST" action="{{ route('login') }} class="form--area">
+                <form method="POST" action="{{ route('login') }}" class="form--area">
                     @csrf
                     <div class="input--holder">
                         <div class="single--input">

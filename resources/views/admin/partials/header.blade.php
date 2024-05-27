@@ -5,7 +5,7 @@
             <!-- profile--name  -->
             <div class="header--title">
                 <h1>
-                    Welcome Back, Sakib Al
+                    Welcome Back, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                     <img src="{{ asset('admin/images/jumper.svg') }}" alt="" />
                 </h1>
             </div>
@@ -47,11 +47,11 @@
                     <span class="status"></span>
                 </a>
                 <!-- profile -->
-                <a href="#" class="profile">
-                    <img src="{{ asset('admin/images/profile.png') }}" alt="" />
+                <a href="{{route('admin.profile.index')}}" class="profile">
+                    <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('admin/images/user.png') }}" alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" />
                     <div>
-                        <h4>Sakib Al</h4>
-                        <p>Super Admin</p>
+                        <h4>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
+                        <p>{{ ucfirst(Auth::user()->role) }}</p>
                     </div>
                 </a>
             </div>
