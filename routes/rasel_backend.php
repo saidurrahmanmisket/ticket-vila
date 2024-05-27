@@ -18,7 +18,7 @@ Route::middleware(['auth','verified','admin'])->group(function (){
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile','index')->name('profile.index');
         Route::patch('/profile/update','update')->name('profile.update');
-        Route::patch('/profile/change','change')->name('profile.change');
+        Route::patch('/profile/change','updatePassword')->name('profile.change');
     });
 
 
