@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\Admin\CampaignController;
+use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\ProfileController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
@@ -20,6 +22,10 @@ Route::middleware(['auth','verified','admin'])->group(function (){
         Route::patch('/profile/update','update')->name('profile.update');
         Route::patch('/profile/change','updatePassword')->name('profile.change');
     });
+
+    //Gift controller
+    Route::resource('/gift', GiftController::class);
+    Route::resource('/campaign', CampaignController::class);
 
 
 });

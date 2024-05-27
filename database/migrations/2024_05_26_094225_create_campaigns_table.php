@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('max_limit')->default(0);
+            $table->enum('target_type',[2,3])->comment('2=date,3=campaign limit');
+            $table->integer('limit')->nullable()->default(0);
+            $table->dateTime('end_time')->nullable()->default(null);
             $table->string('unique_text')->unique();
+            $table->string('thumbnail')->nullable();
+            $table->string('ebook')->nullable();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();
-            $table->enum('status',['draft','published'])->default('published');
+            $table->enum('status',['draft','published','complete'])->default('published');
             $table->timestamps();
         });
     }
