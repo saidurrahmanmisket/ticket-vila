@@ -6,7 +6,7 @@
             <div class="header--title">
                 <h1>
                     Welcome Back, Sakib Al
-                    <img src="{{ asset('admin/images/jumper.svg') }}" alt="" />
+                    <img src="{{ asset('user/images/jumper.svg') }}" alt="" />
                 </h1>
             </div>
         </div>
@@ -48,10 +48,10 @@
                 </a>
                 <!-- profile -->
                 <a href="#" class="profile">
-                    <img src="{{ asset('admin/images/profile.png') }}" alt="" />
+                    <img src="{{ asset('user/images/profile.png') }}" alt="" />
                     <div>
                         <h4>Sakib Al</h4>
-                        <p>Super Admin</p>
+                        <p> user</p>
                     </div>
                 </a>
             </div>
