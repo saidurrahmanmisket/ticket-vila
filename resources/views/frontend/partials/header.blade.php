@@ -43,7 +43,7 @@
                     <a href="{{ route('user.dashboard') }}" class="profile">
                         <img src="{{ asset('user/images/profile.png') }}" alt="" />
                         <div>
-                            <p> user</p>
+                            <p>{{ Auth::user()->first_name }}</p>
                         </div>
                     </a>
                 @else

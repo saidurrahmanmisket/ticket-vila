@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\OTPVerificationController;
+use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use Illuminate\Support\Facades\Route;
 

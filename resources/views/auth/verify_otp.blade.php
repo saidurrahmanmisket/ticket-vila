@@ -6,23 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Verfiy</title>
 
-    <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.svg') }}" type="image/x-icon" />
-
-    <!-- ==== All Css Links ==== -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/bootstrap.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/aos.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/owl.carousel.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/magnific-popup.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/nice-select.min.css') }}" />
-
-    <!-- All custom CSS Links -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/helper.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/responsive.css') }}" />
+    @include('auth.partials.styles')
 </head>
 
 <body>
+
+
     <main class="auth--main--area--wrapper verify">
         <div class="banner--area">
             <img src="{{ asset('frontend/images/last-step-banner.png') }}" alt="" />
@@ -34,33 +23,47 @@
             </div>
 
             <div class="middle--area">
-                <form method="POST" action="{{ route('verify.otp.post') }}">
+                <form method="POST" class="form--area" action="{{ route('verify.otp.post') }}">
                     @csrf
-
-                    <input type="hidden" name="email" value="{{ $email ?? '' }}">
-
-                    <div class="form-group row">
-                        <label for="otp" class="col-md-4 col-form-label text-md-right">{{ __('OTP') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="otp" type="text" class="form-control @error('otp') is-invalid @enderror"
-                                name="otp" required autofocus>
-
-                            @error('otp')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <input type="hidden" name="email" value="{{ $email }}">
+                    <div class="otp-input-fields">
+                        <input name="otp1" type="number"
+                            class="otp__digit otp__field__1 {{ $errors->has('otp1') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp1') }}" />
+                        <input name="otp2" type="number"
+                            class="otp__digit otp__field__2 {{ $errors->has('otp2') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp2') }}" />
+                        <input name="otp3" type="number"
+                            class="otp__digit otp__field__3 {{ $errors->has('otp3') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp3') }}" />
+                        <input name="otp4" type="number"
+                            class="otp__digit otp__field__4 {{ $errors->has('otp4') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp4') }}" />
+                        <input name="otp5" type="number"
+                            class="otp__digit otp__field__5 {{ $errors->has('otp5') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp5') }}" />
+                        <input name="otp6" type="number"
+                            class="otp__digit otp__field__6 {{ $errors->has('otp6') ? 'is-invalid' : '' }}"
+                            value="{{ old('otp6') }}" />
                     </div>
 
-                    <div class="form-group row mb-0 mt-4    ">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Verify') }}
-                            </button>
-                        </div>
-                    </div>
+                    @if ($errors->any())
+                        <span class="invalid-feedback" role="alert"
+                            style="display: block; width: 100%;
+                            text-align: center;
+                            margin-top: 16px;">
+
+
+                            @foreach ($errors->all() as $error)
+                                <strong>{{ $error }}</strong><br>
+                            @endforeach
+
+                            {{-- <strong>Please, Enter a valid OTP.</strong> --}}
+                        </span>
+                    @endif
+
+                    <!-- submit button -->
+                    <button class="submit">Submit</button>
                 </form>
             </div>
 
@@ -73,10 +76,7 @@
         </div>
     </main>
 
-    <!-- ==== All Js Links ==== -->
-    <script src="{{ asset('frontend/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins.js') }}"></script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
+    @include('auth.partials.scripts')
 </body>
 
 </html>

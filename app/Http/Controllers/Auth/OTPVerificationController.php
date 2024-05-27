@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\OTP;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,13 +26,28 @@ class OTPVerificationController extends Controller
 
     public function verify(Request $request)
     {
-        $request->validate([
+
+        $this->validate($request, [
             'email' => 'required|email|exists:users,email',
-            'otp' => 'required|digits:6',
+            'otp1' => 'required|digits:1',
+            'otp2' => 'required|digits:1',
+            'otp3' => 'required|digits:1',
+            'otp4' => 'required|digits:1',
+            'otp5' => 'required|digits:1',
+            'otp6' => 'required|digits:1',
+        ], [
+            'otp1.required' => 'OTP 1 is required.',
+            'otp2.required' => 'OTP 2 is required.',
+            'otp3.required' => 'OTP 3 is required.',
+            'otp4.required' => 'OTP 4 is required.',
+            'otp5.required' => 'OTP 5 is required.',
+            'otp6.required' => 'OTP 6 is required.',
         ]);
 
-        $otp = OTP::where('otp', $request->otp)->first();
+        $makeOtp = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4') . $request->input('otp5') . $request->input('otp6');
 
+        $otp = OTP::where('otp', $makeOtp)->first();
+        // dd(o)
         if (!$otp || $otp->user->email !== $request->input('email')) {
             return back()->withErrors(['otp' => 'Invalid OTP.']);
         }

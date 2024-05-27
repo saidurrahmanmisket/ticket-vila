@@ -2673,3 +2673,6 @@ footer {
   margin: 80px auto 0px;
 }
 /* the house page style ends */
+.is-invalid{
+  border: 1px solid #cd2020 !important;
+}

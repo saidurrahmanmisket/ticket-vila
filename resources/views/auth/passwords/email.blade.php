@@ -1,47 +1,51 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verfiy</title>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    @include('auth.partials.styles')
+</head>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+<body>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <main class="auth--main--area--wrapper verify">
+        <div class="banner--area">
+            <img src="{{ asset('frontend/images/last-step-banner.png') }}" alt="" />
+        </div>
+        <div class="input--area">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
                 </div>
+            @endif
+            <div class="top--area">
+                <h3 class="main--text">You Almost there 🥳</h3>
+                <p class="sub--text">Please Enter Your Email Address</p>
+            </div>
+
+            <div class="middle--area">
+                <form method="POST" action="{{ route('password.email') }}" class="form--area">
+                    @csrf
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <!-- submit button -->
+                    <button class="submit">Send Password Reset Link</button>
+                </form>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </main>
+
+    @include('auth.partials.scripts')
+</body>
+
+</html>
