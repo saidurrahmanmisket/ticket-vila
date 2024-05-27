@@ -49,22 +49,22 @@ class Handler extends ExceptionHandler {
         });
     }
 
-    public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response|RedirectResponse
-    {
-        if ($e instanceof NotFoundHttpException) {
-            return response()->view('backend.layouts.settings.errors.404', [], 404);
-        }
-
-        if ($e instanceof HttpException) {
-            if ($e->getStatusCode() == 403) {
-                return response()->view('backend.layouts.settings.errors.403', [], 403);
-            }
-
-            if ($e->getStatusCode() == 500) {
-                return response()->view('backend.layouts.settings.errors.500', [], 500);
-            }
-        }
-
-        return parent::render($request, $e);
-    }
+//    public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response|RedirectResponse
+//    {
+//        if ($e instanceof NotFoundHttpException) {
+//            return response()->view('backend.layouts.settings.errors.404', [], 404);
+//        }
+//
+//        if ($e instanceof HttpException) {
+//            if ($e->getStatusCode() == 403) {
+//                return response()->view('backend.layouts.settings.errors.403', [], 403);
+//            }
+//
+//            if ($e->getStatusCode() == 500) {
+//                return response()->view('backend.layouts.settings.errors.500', [], 500);
+//            }
+//        }
+//
+//        return parent::render($request, $e);
+//    }
 }
