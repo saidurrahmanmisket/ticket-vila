@@ -38,11 +38,13 @@ class CampaignController extends Controller
            'name' => 'required|string',
            'gift_id'=>'required|integer|exists:gifts,id',
            'campaign_type'=>'required|in:2,3',
-           'unique_text'=> 'required|string',
+           'unique_text'=> 'required|string|unique:campaigns,unique_text',
+           'purchase_limit'=>'integer|required',
            'end_date' => 'required_if:campaign_type,2',
+           'price'   => 'required|numeric',
            'limit'=>'nullable|integer|required_if:campaign_type,3',
            'ebook_file'=>'file|required',
-            'thumbnail'=>'image|nullable|mimes:jpeg,jpg,png|max:2048',
+           'thumbnail'=>'required|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [
                 'thumbnail.max'=> 'Thumbnail max size 2 MB',
@@ -50,7 +52,7 @@ class CampaignController extends Controller
         );
         $thumbnail = $request->file('thumbnail');
         if ($request->file('thumbnail') && $request->file('thumbnail')->isValid()) {
-            $thumbnail_path = Helper::fileUpload($thumbnail,'/campaign/',time().'_'.pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME));
+            $thumbnail_path = Helper::fileUpload($thumbnail,'campaign/',time().'_'.pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME));
         }else{
             $thumbnail_path = null;
         }
@@ -62,7 +64,9 @@ class CampaignController extends Controller
                 'gift_id' => $request->gift_id,
                 'target_type' => $request->campaign_type,
                 'unique_text' => $request->unique_text,
+                'purchase_limit' => $request->purchase_limit,
                 'thumbnail' => $thumbnail_path,
+                'price' => $request->price,
                 'end_time' => $request->end_date,
                 'limit' => $request->limit,
                 'ebook' => $file_path,
@@ -103,7 +107,9 @@ class CampaignController extends Controller
             'name' => 'required|string',
             'gift_id'=>'required|integer|exists:gifts,id',
             'campaign_type'=>'required|in:2,3',
-            'unique_text'=> 'required|string',
+            'unique_text'=> 'required|string|unique:campaigns,unique_text,'.$id,
+            'purchase_limit'=>'integer|required',
+            'price'   => 'required|numeric',
             'end_date' => 'required_if:campaign_type,2',
             'limit'=>'nullable|integer|required_if:campaign_type,3',
             'ebook_file'=>'file|nullable',
@@ -136,7 +142,9 @@ class CampaignController extends Controller
             'gift_id' => $request->gift_id,
             'target_type' => $request->campaign_type,
             'unique_text' => $request->unique_text,
+            'purchase_limit' => $request->purchase_limit,
             'thumbnail' => $thumbnail_path,
+            'price' => $request->price,
             'end_time' => $request->end_date,
             'limit' => $request->limit,
             'ebook' => $file_path,

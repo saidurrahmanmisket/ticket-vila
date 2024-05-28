@@ -9,5 +9,5 @@ class Campaign extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','target_type','thumbnail','limit','end_time','ebook','unique_text','gift_id','status'];
+    protected $fillable = ['name','target_type','thumbnail','limit','end_time','purchase_limit','price','ebook','unique_text','gift_id','status'];
 }
