@@ -4,12 +4,7 @@
 
 @section('content')
     <!-- start app content area  -->
-    {{-- <section class="app--content--main user--portal "> --}}
-
-    {{-- active if user is before buy  --}}
-    <section class="app--content--main user--portal before-buy">
-
-
+    <section class="app--content--main user--portal">
         <!-- live statistics  -->
         <div class="live--statistics--wrapper">
             <p class="intro">Live Statistics</p>
@@ -135,7 +130,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="#" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more Ticket</a>
@@ -202,7 +197,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="#" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
@@ -270,7 +265,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="#" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
@@ -338,7 +333,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="#" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
@@ -406,7 +401,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="#" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
@@ -418,190 +413,228 @@
                 </div>
             </div>
             <div class="col-md-7 mt_35 pl_17">
-                <div class="news--wrapper ">
-                    <!-- top title  -->
-                    <div class="top--title mb_25">
-                        <h3 class="common--title">News</h3>
-                        <a href="#" class="button">See All</a>
+                <!-- ticket--history--box  -->
+                <div class="ticket--history--box position-relative">
+                    <div class="top--title">
+                        <h3 class="common--title">History</h3>
+                        <a href="#" class="button mb_25">See All</a>
                     </div>
-                    <div class="all--news default--scrollbar">
-                        <!-- single card  -->
-                        <div class="ticket--post--card">
-                            <!-- top -->
-                            <div class="top">
-                                <div class="ticket--info">
-                                    <!-- icon  -->
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                fill="#FEC054" />
-                                        </svg>
-                                    </div>
-                                    <p>12.500 Tickets Sold</p>
+                    <div class="all--purchase--tickets default--scrollbar">
+                        <!-- ticket single  -->
+                        <div class="ticket--single">
+                            <!-- ticket & name  -->
+                            <div class="ticket--and--name">
+                                <!-- ticket box  -->
+                                <div class="ticket--box">
+                                    <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                 </div>
-                                <!-- date and actions  -->
-                                <div class="date--and--actions">
-                                    <p class="date">03/04/2024 - 11:20 AM</p>
+                                <div class="details">
+                                    <p>1 X House Ticket</p>
+                                    <p class="text-green">99.00€</p>
+                                    <p>11.052024 - 11:01:25</p>
                                 </div>
                             </div>
-                            <p class="message">
-                                12.500 Ticket sold, Thanks to everyone. We wish best of
-                                luck. 👍
-                            </p>
-                            <div class="moderator--area">
-                                <!-- moderator  -->
-                                <div class="moderator">
-                                    <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                    <p>Henrik</p>
-                                </div>
-                                <a href="#" class="read--more">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                        viewBox="0 0 18 15" fill="none">
-                                        <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <div class="ticket--actions">
+                                <a href="#" class="action--btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    Download
+                                </a>
+                                <a href="user.html" class="action--btn action--btnv2 mt_20">
+                                    View User
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
+                                        viewBox="0 0 17 15" fill="none">
+                                        <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="#04BAFF"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                 </a>
                             </div>
                         </div>
-                        <!-- single card  -->
-                        <div class="ticket--post--card">
-                            <!-- top -->
-                            <div class="top">
-                                <div class="ticket--info">
-                                    <!-- icon  -->
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                fill="#FEC054" />
-                                        </svg>
-                                    </div>
-                                    <p>12.500 Tickets Sold</p>
+                        <!-- ticket single  -->
+                        <div class="ticket--single">
+                            <!-- ticket & name  -->
+                            <div class="ticket--and--name">
+                                <!-- ticket box  -->
+                                <div class="ticket--box">
+                                    <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                 </div>
-                                <!-- date and actions  -->
-                                <div class="date--and--actions">
-                                    <p class="date">03/04/2024 - 11:20 AM</p>
+                                <div class="details">
+                                    <p>1 X House Ticket</p>
+                                    <p class="text-green">99.00€</p>
+                                    <p>11.052024 - 11:01:25</p>
                                 </div>
                             </div>
-                            <p class="message">
-                                12.500 Ticket sold, Thanks to everyone. We wish best of
-                                luck. 👍
-                            </p>
-                            <div class="moderator--area">
-                                <!-- moderator  -->
-                                <div class="moderator">
-                                    <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                    <p>Henrik</p>
-                                </div>
-                                <a href="#" class="read--more">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                        viewBox="0 0 18 15" fill="none">
-                                        <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <div class="ticket--actions">
+                                <a href="#" class="action--btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    Download
+                                </a>
+                                <a href="user.html" class="action--btn action--btnv2 mt_20">
+                                    View User
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
+                                        viewBox="0 0 17 15" fill="none">
+                                        <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="#04BAFF"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                 </a>
                             </div>
                         </div>
-                        <!-- single card  -->
-                        <div class="ticket--post--card">
-                            <!-- top -->
-                            <div class="top">
-                                <div class="ticket--info">
-                                    <!-- icon  -->
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                fill="#FEC054" />
-                                        </svg>
-                                    </div>
-                                    <p>12.500 Tickets Sold</p>
+                        <!-- ticket single  -->
+                        <div class="ticket--single">
+                            <!-- ticket & name  -->
+                            <div class="ticket--and--name">
+                                <!-- ticket box  -->
+                                <div class="ticket--box">
+                                    <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                 </div>
-                                <!-- date and actions  -->
-                                <div class="date--and--actions">
-                                    <p class="date">03/04/2024 - 11:20 AM</p>
+                                <div class="details">
+                                    <p>1 X House Ticket</p>
+                                    <p class="text-green">99.00€</p>
+                                    <p>11.052024 - 11:01:25</p>
                                 </div>
                             </div>
-                            <p class="message">
-                                12.500 Ticket sold, Thanks to everyone. We wish best of
-                                luck. 👍
-                            </p>
-                            <div class="moderator--area">
-                                <!-- moderator  -->
-                                <div class="moderator">
-                                    <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                    <p>Henrik</p>
-                                </div>
-                                <a href="#" class="read--more">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                        viewBox="0 0 18 15" fill="none">
-                                        <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <div class="ticket--actions">
+                                <a href="#" class="action--btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
+                                            stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    Download
+                                </a>
+                                <a href="user.html" class="action--btn action--btnv2 mt_20">
+                                    View User
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
+                                        viewBox="0 0 17 15" fill="none">
+                                        <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="#04BAFF"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                 </a>
                             </div>
                         </div>
-                        <!-- single card  -->
-                        <div class="ticket--post--card">
-                            <!-- top -->
-                            <div class="top">
-                                <div class="ticket--info">
-                                    <!-- icon  -->
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                fill="#FEC054" />
-                                        </svg>
-                                    </div>
-                                    <p>12.500 Tickets Sold</p>
-                                </div>
-                                <!-- date and actions  -->
-                                <div class="date--and--actions">
-                                    <p class="date">03/04/2024 - 11:20 AM</p>
-                                </div>
-                            </div>
-                            <p class="message">
-                                12.500 Ticket sold, Thanks to everyone. We wish best of
-                                luck. 👍
-                            </p>
-                            <div class="moderator--area">
-                                <!-- moderator  -->
-                                <div class="moderator">
-                                    <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                    <p>Henrik</p>
-                                </div>
-                                <a href="#" class="read--more">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                        viewBox="0 0 18 15" fill="none">
-                                        <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </div>
+                    <div class="blur--box">
+                        <p>
+                            You can't see this section, buy a ticket to get full data
+                            access
+                        </p>
+                    </div>
+                </div>
+                <!-- social share  -->
+                <div class="social--share mt_30 position-relative">
+                    <h4 class="common--title">Social Share</h4>
+                    <div class="icon--box">
+                        <p>
+                            "I'm in for a chance to win a stunning house for just €99—why
+                            not you? It's easy, fun, and somebody's got to win. Might as
+                            well be one of us, right?🥳 "
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                        viewBox="0 0 17 17" fill="none">
+                                        <path
+                                            d="M8.28258 1.52447C10.494 1.52447 10.7559 1.53293 11.6295 1.57362C12.1548 1.58018 12.6751 1.6787 13.1677 1.86489C13.525 2.00563 13.8495 2.22123 14.1202 2.49781C14.391 2.77438 14.6021 3.1058 14.7398 3.47074C14.9221 3.97397 15.0186 4.50541 15.025 5.04194C15.0644 5.9343 15.0731 6.20181 15.0731 8.46071C15.0731 10.7196 15.0648 10.9871 15.025 11.8795C15.0186 12.416 14.9221 12.9475 14.7398 13.4507C14.6021 13.8156 14.391 14.147 14.1202 14.4236C13.8495 14.7002 13.525 14.9158 13.1677 15.0565C12.6751 15.2427 12.1548 15.3412 11.6295 15.3478C10.7563 15.3881 10.4944 15.397 8.28258 15.397C6.07074 15.397 5.80885 15.3885 4.93563 15.3478C4.41037 15.3412 3.8901 15.2427 3.39743 15.0565C3.04016 14.9158 2.7157 14.7002 2.44494 14.4236C2.17417 14.147 1.96311 13.8156 1.82532 13.4507C1.64304 12.9475 1.54659 12.416 1.54017 11.8795C1.50072 10.9871 1.49205 10.7196 1.49205 8.46071C1.49205 6.20181 1.50033 5.9343 1.54017 5.04194C1.54659 4.50541 1.64304 3.97397 1.82532 3.47074C1.96311 3.1058 2.17417 2.77438 2.44494 2.49781C2.7157 2.22123 3.04016 2.00563 3.39743 1.86489C3.8901 1.6787 4.41037 1.58018 4.93563 1.57362C5.80924 1.53333 6.07113 1.52447 8.28258 1.52447ZM8.28258 0C6.03445 0 5.75126 0.0096689 4.86779 0.0507618C4.18035 0.0647286 3.50022 0.197681 2.85631 0.443965C2.30394 0.656547 1.80363 0.989681 1.39029 1.42012C0.968509 1.84248 0.642094 2.35382 0.433849 2.9184C0.19274 3.57613 0.06258 4.27086 0.0489067 4.97305C0.00946583 5.87468 0 6.16394 0 8.46031C0 10.7567 0.00946578 11.0459 0.0496954 11.9484C0.0633688 12.6506 0.193529 13.3453 0.434638 14.003C0.642652 14.5675 0.968794 15.0789 1.39029 15.5013C1.80386 15.9318 2.30444 16.265 2.8571 16.4775C3.50101 16.7237 4.18114 16.8567 4.86858 16.8707C5.75205 16.911 6.03406 16.9214 8.28337 16.9214C10.5327 16.9214 10.8147 16.9118 11.6982 16.8707C12.3856 16.8567 13.0657 16.7237 13.7096 16.4775C14.2597 16.2597 14.7592 15.927 15.1761 15.5008C15.5931 15.0746 15.9185 14.5642 16.1313 14.0022C16.3724 13.3445 16.5026 12.6498 16.5163 11.9476C16.5557 11.0459 16.5652 10.7567 16.5652 8.46031C16.5652 6.16394 16.5557 5.87468 16.5155 4.97225C16.5018 4.27006 16.3716 3.57533 16.1305 2.9176C15.9225 2.35309 15.5964 1.84176 15.1749 1.41932C14.7613 0.988777 14.2607 0.655637 13.7081 0.443159C13.0642 0.196876 12.384 0.0639229 11.6966 0.0499562C10.8139 0.00966895 10.5307 0 8.28258 0Z"
+                                            fill="#03232C" />
+                                        <path
+                                            d="M8.28431 4.11914C7.44314 4.11914 6.62085 4.37395 5.92144 4.85133C5.22203 5.32872 4.6769 6.00725 4.355 6.80112C4.03309 7.59498 3.94887 8.46853 4.11297 9.3113C4.27708 10.1541 4.68214 10.9282 5.27695 11.5358C5.87175 12.1434 6.62957 12.5572 7.45458 12.7248C8.2796 12.8924 9.13474 12.8064 9.91189 12.4776C10.689 12.1487 11.3533 11.5919 11.8206 10.8774C12.2879 10.163 12.5374 9.32299 12.5374 8.46371C12.5374 7.31146 12.0893 6.2064 11.2917 5.39164C10.4941 4.57687 9.4123 4.11914 8.28431 4.11914ZM8.28431 11.2838C7.7383 11.2838 7.20454 11.1184 6.75055 10.8085C6.29655 10.4987 5.94271 10.0582 5.73376 9.54292C5.5248 9.02761 5.47013 8.46058 5.57666 7.91354C5.68318 7.36649 5.94611 6.864 6.3322 6.4696C6.71829 6.0752 7.2102 5.80661 7.74573 5.6978C8.28125 5.58898 8.83634 5.64483 9.34079 5.85828C9.84524 6.07172 10.2764 6.43318 10.5798 6.89695C10.8831 7.36071 11.045 7.90595 11.045 8.46371C11.045 9.21165 10.7542 9.92896 10.2364 10.4578C9.71869 10.9867 9.0165 11.2838 8.28431 11.2838Z"
+                                            fill="#03232C" />
+                                        <path
+                                            d="M12.697 4.95821C13.2459 4.95821 13.6908 4.50367 13.6908 3.94297C13.6908 3.38227 13.2459 2.92773 12.697 2.92773C12.1481 2.92773 11.7031 3.38227 11.7031 3.94297C11.7031 4.50367 12.1481 4.95821 12.697 4.95821Z"
+                                            fill="#03232C" />
                                     </svg>
                                 </a>
-                            </div>
-                        </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16"
+                                        viewBox="0 0 8 16" fill="none">
+                                        <path
+                                            d="M2.28489 15.2053V8.26944H0V5.5664H2.28489V3.57299C2.28489 1.25966 3.66804 0 5.68823 0C6.65592 0 7.4876 0.073597 7.72997 0.106492V2.52406L6.32886 2.52471C5.23017 2.52471 5.01744 3.05803 5.01744 3.84063V5.5664H7.63771L7.29654 8.26944H5.01743V15.2053H2.28489Z"
+                                            fill="#03232C" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17"
+                                        viewBox="0 0 15 17" fill="none">
+                                        <path
+                                            d="M14.3543 4.09303C13.4199 4.09303 12.5578 3.78349 11.8655 3.26131C11.0716 2.66271 10.5011 1.78463 10.2996 0.772559C10.2491 0.518085 10.2226 0.259433 10.2203 0H7.55123V7.29327L7.54804 11.2881C7.54804 12.3562 6.85254 13.2617 5.88844 13.5802C5.59966 13.6757 5.2955 13.7161 4.99181 13.6992C4.59018 13.6771 4.21382 13.5559 3.88669 13.3602C3.19056 12.9439 2.71858 12.1886 2.70579 11.3246C2.68564 9.9742 3.77733 8.87324 5.12675 8.87324C5.39312 8.87324 5.64893 8.91673 5.88844 8.99571V6.28568C5.63582 6.24827 5.37873 6.22876 5.11876 6.22876C3.64175 6.22876 2.26035 6.84272 1.27291 7.94879C0.526571 8.78467 0.0788962 9.85109 0.00982628 10.9693C-0.080668 12.4383 0.456862 13.8348 1.49931 14.8651C1.65247 15.0163 1.81332 15.1567 1.98152 15.2862C2.87527 15.974 3.96791 16.3469 5.11876 16.3469C5.37873 16.3469 5.63582 16.3277 5.88844 16.2903C6.9635 16.131 7.95542 15.6389 8.73821 14.8651C9.70008 13.9144 10.2315 12.6523 10.2373 11.3089L10.2235 5.34332C10.6835 5.69809 11.1873 5.99194 11.7226 6.21757C12.5601 6.57091 13.4481 6.74998 14.362 6.74966V4.09239C14.3626 4.09303 14.3549 4.09303 14.3543 4.09303Z"
+                                            fill="#03232C" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                        viewBox="0 0 12 12" fill="none">
+                                        <path
+                                            d="M0 3.97043H2.87094V11.9902H0V3.97043ZM8.95467 3.95996C6.90699 3.95996 6.56513 5.08322 6.56513 5.08322V3.97043H4.35001V11.9902H6.58955V7.36462C6.58955 6.7088 6.96978 5.84369 8.17676 5.84369C9.38374 5.84369 9.52676 7.02276 9.51281 7.16578C9.49885 7.3088 9.4849 11.9867 9.4849 11.9867H11.85V6.42276C11.8535 4.61926 10.643 3.95996 8.95467 3.95996Z"
+                                            fill="#03232C" />
+                                        <path
+                                            d="M1.43372 2.86745C2.22555 2.86745 2.86745 2.22555 2.86745 1.43372C2.86745 0.6419 2.22555 0 1.43372 0C0.6419 0 0 0.6419 0 1.43372C0 2.22555 0.6419 2.86745 1.43372 2.86745Z"
+                                            fill="#03232C" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 18 18" fill="none">
+                                        <path
+                                            d="M13.0262 10.6473L13.0195 10.7031C11.3831 9.88746 11.2119 9.77881 11.0005 10.0958C10.8539 10.3154 10.4268 10.8132 10.298 10.9606C10.1678 11.1057 10.0383 11.1169 9.81728 11.0164C9.59403 10.9048 8.87738 10.6703 8.029 9.91127C7.36816 9.31964 6.92463 8.59406 6.79365 8.37081C6.5756 7.99425 7.03179 7.94067 7.44705 7.1548C7.52147 6.99852 7.48351 6.87573 7.42844 6.76485C7.37263 6.65322 6.92835 5.55927 6.7423 5.12317C6.5637 4.68857 6.37988 4.74364 6.24221 4.74364C5.81356 4.70643 5.50025 4.71238 5.22416 4.99964C4.02304 6.31982 4.32593 7.68169 5.35365 9.12988C7.37337 11.7732 8.44947 12.2599 10.4171 12.9356C10.9485 13.1046 11.4329 13.0808 11.8162 13.0257C12.2433 12.958 13.1312 12.4891 13.3165 11.9645C13.5062 11.4398 13.5062 11.0045 13.4504 10.904C13.3953 10.8036 13.2495 10.7477 13.0262 10.6473Z"
+                                            fill="#03232C" />
+                                        <path
+                                            d="M15.2707 2.56702C9.54867 -2.96452 0.0788839 1.04739 0.0751629 8.85094C0.0751629 10.4108 0.483722 11.9319 1.26214 13.2751L0 17.8608L4.71443 16.6314C10.5972 19.8091 17.8575 15.5896 17.8605 8.85541C17.8605 6.49187 16.9377 4.26749 15.2596 2.59605L15.2707 2.56702ZM16.3736 8.83085C16.3691 14.5112 10.1336 18.0588 5.20187 15.1594L4.93396 15.0002L2.14326 15.7257L2.89117 13.0132L2.71331 12.7341C-0.355722 7.84852 3.17024 1.46339 8.98383 1.46339C9.95467 1.46095 10.9164 1.6511 11.8132 2.02282C12.7101 2.39454 13.5243 2.94046 14.2088 3.62898C14.897 4.30885 15.4428 5.119 15.8145 6.01212C16.1862 6.90525 16.3763 7.86347 16.3736 8.83085Z"
+                                            fill="#03232C" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="blur--box">
+                        <p>
+                            You can't see this section, buy a ticket to get full data
+                            access
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-9 mt_35 pr_17">
-                <div class="cool--facts box--common h-100 position-relative">
+                <div class="cool--facts box--common position-relative h-100">
                     <h4 class="common--title">Some cool facts 😎</h4>
                     <div class="row">
                         <div class="col-md-4 mt_20 pr_10">
@@ -638,7 +671,9 @@
                                         <h3>0,023 %</h3>
                                     </div>
                                 </div>
-                                <p class="mt_40">Based on the amount of your current tickets.</p>
+                                <p class="mt_40">
+                                    Based on the amount of your current tickets.
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4 mt_20 pr_10 pl_10">
@@ -693,7 +728,9 @@
                                         <h3>#456</h3>
                                     </div>
                                 </div>
-                                <p class="mt_40">Your amount of tickets compared to other Users.</p>
+                                <p class="mt_40">
+                                    Your amount of tickets compared to other Users.
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4 mt_20 pl_10">
@@ -721,20 +758,28 @@
                                         <h3>7.471 + You</h3>
                                     </div>
                                 </div>
-                                <p class="mt_40">Based on the amount of your current tickets.</p>
+                                <p class="mt_40">
+                                    Based on the amount of your current tickets.
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="blur--box">
-                        <p>You can't see this section, buy a ticket to get full data access</p>
-                        <a href="#" class="user--common--btn">Buy a E-Book</a>
+                        <p>
+                            You can't see this section, buy a ticket to get full data
+                            access
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 pl_17 mt_35">
-                <div class="affiliate--box h-100 text-center">
-                    <h3>Join Affiliate Program</h3>
-                    <p>Become an affiliates partner and earn extra money.</p>
+                <div class="affiliate--box gift--box h-100 text-center">
+                    <img src="{{ asset('user/images/gift--box.png') }}" alt="" />
+                    <h3>Buy Tickets as a Gift</h3>
+                    <p>
+                        Surprise your friends and loved ones with a unique gift that
+                        could change their lives forever!
+                    </p>
                     <a href="#" class="user--common--btn">Join Now</a>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<!-- start sidebar area  -->
 <div class="sidebar">
     <!-- logo -->
     <a href="/" class="sidebar--logo">
@@ -25,11 +26,11 @@
                             d="M17.7119 22.4999C20.0812 22.4999 22.0019 20.5792 22.0019 18.2099C22.0019 15.8406 20.0812 13.9199 17.7119 13.9199C15.3426 13.9199 13.4219 15.8406 13.4219 18.2099C13.4219 20.5792 15.3426 22.4999 17.7119 22.4999Z"
                             fill="white" />
                     </svg>
-                    Dashboard ffsf
+                    Dashboard
                 </a>
             </li>
             <li>
-                <a href="#" class="tickets">
+                <a href="{{ route('user.tickets') }}" class="tickets">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -44,21 +45,45 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="user">
+                <a href="user-expose.html" class="expose">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
+                        <path d="M6.87891 18.6501V16.5801" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M12 18.6498V14.5098" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M17.1211 18.6502V12.4302" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M17.1189 6.3501L16.6589 6.8901C14.1089 9.8701 10.6889 11.9801 6.87891 12.9301"
+                            stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M14.1914 6.3501H17.1214V9.2701" stroke="#868A9B" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
                         <path
-                            d="M12.1586 11.37C12.0586 11.36 11.9386 11.36 11.8286 11.37C9.44859 11.29 7.55859 9.34 7.55859 6.94C7.55859 4.49 9.53859 2.5 11.9986 2.5C14.4486 2.5 16.4386 4.49 16.4386 6.94C16.4286 9.34 14.5386 11.29 12.1586 11.37Z"
-                            stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M7.15875 15.06C4.73875 16.68 4.73875 19.32 7.15875 20.93C9.90875 22.77 14.4188 22.77 17.1688 20.93C19.5888 19.31 19.5888 16.67 17.1688 15.06C14.4288 13.23 9.91875 13.23 7.15875 15.06Z"
+                            d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
                             stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    Users
+                    Expose
                 </a>
             </li>
             <li>
-                <a href="#" class="statistics">
+                <a href="user-house.html" class="house">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                        fill="none">
+                        <path d="M2 22.5H22" stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M2.94922 22.5003L2.99922 10.4702C2.99922 9.86023 3.28922 9.28029 3.76922 8.90029L10.7692 3.45027C11.4892 2.89027 12.4992 2.89027 13.2292 3.45027L20.2292 8.89028C20.7192 9.27028 20.9992 9.85023 20.9992 10.4702V22.5003"
+                            stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
+                        <path d="M15.5 11.5H8.5C7.67 11.5 7 12.17 7 13V22.5H17V13C17 12.17 16.33 11.5 15.5 11.5Z"
+                            stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M10 16.75V18.25" stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.5 8H13.5" stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    The House
+                </a>
+            </li>
+            <li>
+                <a href="user-statistics.html" class="statistics">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path d="M3 22.5H21" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round"
@@ -83,7 +108,7 @@
         <h4>HELP & SUPPORT</h4>
         <ul class="menu">
             <li>
-                <a href="help.html" class="help">
+                <a href="user-help-center.html" class="help">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -98,7 +123,7 @@
                 </a>
             </li>
             <li>
-                <a href="settings.html" class="settings">
+                <a href="user-settings.html" class="settings">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -133,3 +158,4 @@
         @csrf
     </form>
 </div>
+<!-- end sidebar area  -->

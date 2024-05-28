@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 //-----all page route ------by: saidur
 
 Route::controller(PageController::class)->name('frontend.')->group(function () {
-    
+
     Route::get('/', 'index')->name('/');
     Route::get('/home', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
@@ -20,7 +20,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/the-house', 'theHouse')->name('the-house');
     Route::get('/verify-email', 'verifyEmail')->name('verify-email');
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
-    
+
 });
 
 // Route to handle OTP verification by : saidur
@@ -30,5 +30,15 @@ Route::controller(OTPVerificationController::class)->group(function () {
     Route::get('/verify-otp/{email}', 'showVerificationForm')->name('verify.otp');
     // Route to handle OTP verification
     Route::post('/verify-otp', 'verify')->name('verify.otp.post');
-    
+
 });
+
+//-----user dashboard route start from here =====================================------by: saidur
+Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
+
+    Route::view('/dashboard', 'user.layouts.dashboard')->name('dashboard');
+    Route::view('/user/tickets', 'user.layouts.tickets')->name('tickets');
+    Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
+
+});
+//-----user dashboard route end  here ===========================================------by: saidur
