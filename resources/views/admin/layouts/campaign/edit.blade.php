@@ -1,6 +1,8 @@
 @extends('admin.app')
-@section('title', 'Campaign create')
-
+@section('title', 'Campaign Edit')
+@section('header_title')
+    Campaign
+@endsection;
 @section('content')
     <!-- profile area  -->
     <div class="profile--area main-section-margin">

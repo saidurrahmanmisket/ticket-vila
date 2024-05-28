@@ -1,6 +1,8 @@
 @extends('admin.app')
-
 @section('title', 'Tickets')
+@section('header_title')
+    Tickets
+@endsection;
 @section('content')
     <!-- tickets area  -->
     <div class="tickets--area">

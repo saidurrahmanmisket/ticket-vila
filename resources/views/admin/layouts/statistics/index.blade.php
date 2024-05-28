@@ -1,6 +1,8 @@
 @extends('admin.app')
-
 @section('title', 'Statistics')
+@section('header_title')
+    Statistics
+@endsection;
 @section('content')
     <!-- live statistics  -->
     <div class="live--statistics--wrapper">

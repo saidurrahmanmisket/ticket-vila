@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\GiftController;
+use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\ProfileController;
+use App\Http\Controllers\Web\Admin\SettingController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
 use App\Http\Controllers\Web\Admin\UserController;
@@ -26,6 +28,14 @@ Route::middleware(['auth','verified','admin'])->group(function (){
     //Gift controller
     Route::resource('/gift', GiftController::class);
     Route::resource('/campaign', CampaignController::class);
+
+
+    //Notification Routes
+    Route::get('/notifications',[NotificationController::class,'index'])->name('notifications.index');
+
+    //Settings Routes
+    Route::get('/settings',[SettingController::class,'index'])->name('settings.index');
+    Route::get('/settings/help',[SettingController::class,'help'])->name('settings.help');
 
 
 });

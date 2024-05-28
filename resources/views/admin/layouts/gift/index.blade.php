@@ -1,6 +1,8 @@
 @extends('admin.app')
 @section('title', 'Gift list')
-
+@section('header_title')
+    Gift
+@endsection;
 @section('content')
     <div class="tickets--area users--area">
         <h4 class="common--title">Filter</h4>

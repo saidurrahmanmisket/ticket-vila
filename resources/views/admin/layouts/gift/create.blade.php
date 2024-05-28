@@ -1,6 +1,8 @@
 @extends('admin.app')
 @section('title', 'Gift create')
-
+@section('header_title')
+   Gift
+@endsection;
 @section('content')
     <!-- profile area  -->
     <div class="profile--area">
