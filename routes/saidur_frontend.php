@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout/{quantity}', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/user/tickets', [UserTicketController::class, 'index'])->name('tickets');
 
 });

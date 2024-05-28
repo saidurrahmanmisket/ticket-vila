@@ -18,16 +18,16 @@
                                 <li>
                                     <div class="options">
                                         <p>Escrow account notary</p>
-                                        <p>59.00€</p>
+                                        <p>{{ $ticket->price ?? '' }}€</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="options">
-                                        <p>Service and administration fee</p>
-                                        <p>40.00€</p>
+                                        <p>Quentity</p>
+                                        <p>{{ $quantity }}</p>
                                     </div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <p class="extra">
                                         Of the 99C Price, 59C is directly allocated to the
                                         notary escrow account, ensuring secure transaction
@@ -38,11 +38,11 @@
                                         <p>VAT Included (3%)</p>
                                         <p>18.81€</p>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <div class="options total">
                                         <p>Total</p>
-                                        <p class="text-green">99.00€</p>
+                                        <p class="text-green">{{ $totalPrice }}€</p>
                                     </div>
                                 </li>
                             </ul>

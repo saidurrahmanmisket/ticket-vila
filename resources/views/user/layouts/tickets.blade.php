@@ -29,7 +29,7 @@
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </button>
-                                <input id="quantityInput" type="number" min="1" value="1" max="9"
+                                <input id="quantityInput" name="quantity" type="number" min="1" value="1" max="9"
                                     readonly />
                                 <button class="plus" id="price-plus">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
@@ -49,7 +49,7 @@
                         </p>
                         <div class="buttons">
                             <a href="#" class="user--common--btn gift">Buy as a Gift 🎁</a>
-                            <a href="{{ route('user.checkout') }}" class="user--common--btn">
+                            <a href="{{ route('user.checkout', ['quantity' => 2]) }}" class="user--common--btn">
                                 Buy Ticket
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15"
                                     fill="none">
@@ -243,18 +243,22 @@
 
     @push('script')
         <script>
-            var price = 99;
-            $('#price-plus').on('click', function() {
-                // var price = {{ $ticket->price ?? '' }};
-                price += price;
-                $('#totalPrice').text(price);
-            })
-            var price = 99;
-            $('#price-minus').on('click', function() {
-                // var price = {{ $ticket->price ?? '' }};
-                price -= price;
-                $('#totalPrice').text(price);
-            })
+            $(document).ready(function() {
+                var price = parseFloat("{{ $ticket->price ?? 99 }}"); //change later
+                var totalPrice = price;
+
+                $('#price-plus').on('click', function() {
+                    totalPrice += price;
+                    $('#totalPrice').text(totalPrice.toFixed(2));
+                });
+
+                $('#price-minus').on('click', function() {
+                    if (totalPrice - price >= 0) {
+                        totalPrice -= price;
+                        $('#totalPrice').text(totalPrice.toFixed(2));
+                    }
+                });
+            });
         </script>
     @endpush
 
