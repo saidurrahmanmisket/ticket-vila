@@ -53,7 +53,7 @@
                                 <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
                                     <option selected>Select gift</option>
                                     @foreach($gifts as $gift)
-                                        <option @if(old('gift_id') == $gift->id) @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
+                                        <option @if(old('gift_id') == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('gift_id')
@@ -75,6 +75,15 @@
                                 <label for="purchase_limit" class="form-label">Purchase Limit</label>
                                 <input type="text" class="form-control" id="purchase_limit" value="{{ old('purchase_limit') }}" name="purchase_limit">
                                 @error('purchase_limit')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price" value="{{ old('price') }}" name="price">
+                                @error('price')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
