@@ -4,16 +4,28 @@ namespace App\Http\Controllers\Web\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use Flasher\Laravel\Http\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
-    public function index($quantity )
+    public function index(Request $request)
     {
-        $ticket = Campaign::latest()->where('status', 'published')->first();
-        $ticket->price = 99;
-        // $totalPrice = $ticket->price * $quantity;
-        $totalPrice = 99 * $quantity;
-        return view('user.layouts.checkout',compact('ticket', 'totalPrice', 'quantity'));
+        try {
+            $quantity = $request->quantity;
+            $ticket = Campaign::latest()->where('status', 'published')->first();
+            $totalPrice = $ticket->price * $quantity;
+
+            if (!$quantity) {
+                flash()->addError('Quantity Required');
+                return redirect()->back();
+            }
+
+            return view('user.layouts.checkout', compact('ticket', 'totalPrice', 'quantity'));
+        } catch (\Exception $e) {
+            // Handle the exception
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 }

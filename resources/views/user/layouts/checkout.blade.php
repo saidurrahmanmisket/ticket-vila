@@ -17,7 +17,7 @@
                             <ul>
                                 <li>
                                     <div class="options">
-                                        <p>Escrow account notary</p>
+                                        <p>{{ $ticket->name }}</p>
                                         <p>{{ $ticket->price ?? '' }}€</p>
                                     </div>
                                 </li>
@@ -47,10 +47,11 @@
                                 </li>
                             </ul>
                             <!-- gift holder  -->
-                            <div class="gift--holder mt_35">
+                            {{-- future  --}}
+                            {{-- <div class="gift--holder mt_35">
                                 <label for="gift-holder">Gift Holder Email</label>
                                 <input type="email" id="gift-holder" placeholder="Enter Gift Holder Email" required />
-                            </div>
+                            </div> --}}
                             <!-- payment method  -->
                             <div class="payment--method mt_45">
                                 <h4>Payment Method</h4>
@@ -206,7 +207,7 @@
                     <!-- step  -->
                     <div class="step successful">
                         <div class="img--area text-center">
-                            <img src="./assets/images/congra.png" alt="" />
+                            <img src="{{ asset('user/images/congra.png') }}" alt="" />
                         </div>
                         <h4>Congratulation!!!</h4>
                         <p>
