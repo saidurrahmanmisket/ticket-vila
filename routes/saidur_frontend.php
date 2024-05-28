@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Web\Frontend\PageController;
+use App\Http\Controllers\Web\User\CheckoutController;
+use App\Http\Controllers\Web\User\DashboardController;
+use App\Http\Controllers\Web\User\TicketController as UserTicketController;
 use Illuminate\Support\Facades\Route;
 
 //-----all page route ------by: saidur
@@ -36,9 +39,10 @@ Route::controller(OTPVerificationController::class)->group(function () {
 //-----user dashboard route start from here =====================================------by: saidur
 Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
 
-    Route::view('/dashboard', 'user.layouts.dashboard')->name('dashboard');
-    Route::view('/user/tickets', 'user.layouts.tickets')->name('tickets');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/user/tickets', [UserTicketController::class, 'index'])->name('tickets');
 
 });
 //-----user dashboard route end  here ===========================================------by: saidur

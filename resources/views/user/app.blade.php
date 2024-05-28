@@ -24,9 +24,6 @@
         @yield('content')
 
         {{-- daynamic content end  --}}
-
-        
-
     </main>
     @include('user.partials.scripts')
 </body>
