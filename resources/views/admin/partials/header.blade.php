@@ -14,7 +14,7 @@
             <!-- notification--and--profile  -->
             <div class="notification--and--profile">
                 <!-- notifications  -->
-                <a href="#" class="notification">
+                <a href="{{ route('admin.notifications.index') }}" class="notification">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"

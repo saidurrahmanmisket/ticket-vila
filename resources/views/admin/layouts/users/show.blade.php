@@ -1,6 +1,8 @@
 @extends('admin.app')
 @section('title', 'User|create')
-
+@section('header_title')
+    User
+@endsection;
 @section('content')
     <div class="user--area tickets--area">
         <!-- top title  -->

@@ -1,6 +1,8 @@
 @extends('admin.app')
 @section('title', 'Campaign create')
-
+@section('header_title')
+    Campaign
+@endsection;
 @section('content')
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
@@ -17,7 +19,7 @@
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" value="{{old('name')}}" name="name">
                                 @error('name')
                                    <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
@@ -28,8 +30,8 @@
                                 <label for="campaign_type" class="form-label">Campaign Type</label>
                                 <select class="form-select form-select-lg mb-3" id="campaign_type" name="campaign_type">
                                     <option selected>Select type</option>
-                                    <option value="2">Target end date</option>
-                                    <option value="3">Target limit</option>
+                                    <option @if(old('campaign_type') == '2') selected @endif value="2">Target end date</option>
+                                    <option @if(old('campaign_type') == '3') selected @endif value="3">Target limit</option>
                                 </select>
                                 @error('campaign_type')
                                    <span class="invalid-feedback d-block" role="alert">
@@ -39,7 +41,7 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="limit" class="form-label">Ticket Limit</label>
-                                <input type="number" class="form-control" id="limit" name="limit">
+                                <input type="number" class="form-control" id="limit" value="{{old('limit')}}" name="limit">
                                 @error('limit')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -51,7 +53,7 @@
                                 <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
                                     <option selected>Select gift</option>
                                     @foreach($gifts as $gift)
-                                        <option value="{{ $gift->id }}">{{ $gift->name }}</option>
+                                        <option @if(old('gift_id') == $gift->id) @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('gift_id')
@@ -62,7 +64,7 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="unique_text" class="form-label">Unique Text</label>
-                                <input type="text" class="form-control" id="unique_text" name="unique_text">
+                                <input type="text" class="form-control" id="unique_text" value="{{ old('unique_text') }}" name="unique_text">
                                 @error('unique_text')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -71,7 +73,7 @@
                             </div>
                             <div class="col-6 mb-3">
                                 <label for="end_date" class="form-label">Campaign End Date</label>
-                                <input type="datetime-local" class="form-control" id="end_date" name="end_date">
+                                <input type="datetime-local" class="form-control" value="{{ old('end_date') }}" id="end_date" name="end_date">
                                 @error('end_date')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
