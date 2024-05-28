@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('end_time')->nullable()->default(null);
             $table->string('unique_text')->unique();
             $table->string('thumbnail')->nullable();
+            $table->double('price')->nullable();
             $table->string('ebook')->nullable();
             $table->integer('purchase_limit')->nullable();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();

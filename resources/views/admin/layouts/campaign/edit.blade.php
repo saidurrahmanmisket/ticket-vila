@@ -81,6 +81,15 @@
                                 @enderror
                             </div>
                             <div class="col-6 mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price" value="{{ $campaign->price }}" name="price">
+                                @error('price')
+                                <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6 mb-3">
                                 <label for="end_date" class="form-label">Campaign End Date</label>
                                 <input type="datetime-local" value="{{ $campaign->end_time ? date('Y-m-d\TH:i',strtotime($campaign->end_time)) : null }}" class="form-control" id="end_date" name="end_date">
                                 @error('end_date')

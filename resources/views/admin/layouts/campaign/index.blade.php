@@ -69,6 +69,8 @@
                         <th>Target Type</th>
                         <th>Limit</th>
                         <th>Unique Text</th>
+                        <th>Purchase Limit</th>
+                        <th>Price</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -81,6 +83,8 @@
                             <td>{{ $campaign->target_type == '2' ? 'Date' : 'Limit' }}</td>
                             <td>{{ $campaign->limit }}</td>
                             <td>{{ $campaign->unique_text }}</td>
+                            <td>{{ $campaign->purchase_limit }}</td>
+                            <td>{{ number_format($campaign->price,2) }}</td>
                             <td>{{ $campaign->status }}</td>
                             <td>
                                 <div class="d-flex gap-2 align-items-center">
