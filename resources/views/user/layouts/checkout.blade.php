@@ -8,9 +8,10 @@
         <div class="checkout--area">
             <!-- checkout popup  -->
             <div class="checkout--popup default--scrollbar" id="checkout--popup">
-                <form action="#" id="checkout-form">
+                <form method="POST" action="{{ route('user.stripe.payment') }}">
+                    @csrf
                     <!-- step  -->
-                    <div class="step">
+                    <div class="">
                         <div class="billing--info">
                             <h4 class="common--title">Billing Information</h4>
                             <!-- billing information  -->
@@ -145,7 +146,7 @@
                             </div>
                             <!-- button  -->
                             <div class="buttons mt_40">
-                                <a href="#" class="checkout-next-button user--common--btn">
+                                <button type="submit" class=" user--common--btn">
                                     Next
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
                                         viewBox="0 0 18 15" fill="none">
@@ -154,11 +155,12 @@
                                         <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="white"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                </a>
+                                </button>
+
                             </div>
                         </div>
                     </div>
-                    <!-- step  -->
+                    {{-- <!-- step  -->
                     <div class="step">
                         <!-- card information  -->
                         <div class="card--info--wrap">
@@ -226,7 +228,7 @@
                                 </svg>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

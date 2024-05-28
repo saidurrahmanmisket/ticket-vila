@@ -4,7 +4,8 @@ use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
-use App\Http\Controllers\Web\User\TicketController as UserTicketController;
+use App\Http\Controllers\Web\User\TicketController;
+use App\Http\Controllers\Payment\StripeController;
 use Illuminate\Support\Facades\Route;
 
 //-----all page route ------by: saidur
@@ -42,7 +43,9 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::get('/user/tickets', [UserTicketController::class, 'index'])->name('tickets');
+    Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
+    Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
 });
+
 //-----user dashboard route end  here ===========================================------by: saidur
