@@ -3,7 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <section class="app--content--main user--portal buy-ebook ">
+    <!-- start app content area  -->
+    <section class="app--content--main user--portal buy-ebook">
         <!-- buy--ebook--area  -->
         <div class="buy--ebook--area">
             <!-- buy-ebook  -->
@@ -13,15 +14,15 @@
                     <div class="book--details">
                         <!-- book  -->
                         <div class="book">
-                            <img src="{{ asset('user/images/ticket.png') }}" alt="" />
+                            <img src="{{ asset($ticket->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
                         </div>
                         <div class="details">
-                            <h3>E-Book</h3>
-                            <p class="id">Ticket ID: #XXXXX</p>
-                            <p class="price">Price: <span> 99.00€</span></p>
+                            <h3>{{ $ticket->name ?? 'No Ticket Found' }}</h3>
+                            <p class="id">Ticket ID: #{{ $ticket->unique_text ?? 'Not Found' }}</p>
+                            <p class="price">Price: <span id="totalPrice"> {{ $ticket->price ?? 'Not Found' }}</span>€</p>
                             <!-- quantity  -->
                             <div class="quantity">
-                                <button class="minus disabled">
+                                <button class="minus disabled" id="price-minus">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="3" viewBox="0 0 16 3"
                                         fill="none">
                                         <path d="M14.5094 1.38124H1.10547" stroke="#04BAFF" stroke-width="2.18344"
@@ -30,7 +31,7 @@
                                 </button>
                                 <input id="quantityInput" type="number" min="1" value="1" max="9"
                                     readonly />
-                                <button class="plus">
+                                <button class="plus" id="price-plus">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
                                         viewBox="0 0 17 15" fill="none">
                                         <path d="M8.42116 1.5957V13.3846" stroke="white" stroke-width="2.18344"
@@ -48,7 +49,7 @@
                         </p>
                         <div class="buttons">
                             <a href="#" class="user--common--btn gift">Buy as a Gift 🎁</a>
-                            <a href="#" class="user--common--btn">
+                            <a href="{{ route('user.checkout') }}" class="user--common--btn">
                                 Buy Ticket
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15"
                                     fill="none">
@@ -78,19 +79,23 @@
                                     <div id="collapseOne" class="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            The house rattle operates by selling tickets to participants each ticket
-                                            offering a chance to win a house. Here's a simplified process:
+                                            The house rattle operates by selling tickets to
+                                            participants each ticket offering a chance to win a
+                                            house. Here's a simplified process:
 
                                             <br />
                                             <ul class="mt_30">
                                                 <li>
-                                                    1. 'Ticket Purchase: Buy your ticket’s from our website.
+                                                    1. 'Ticket Purchase: Buy your ticket’s from our
+                                                    website.
                                                 </li>
                                                 <li>
-                                                    2. Draw: Once sales close. a winner is randomly selected.
+                                                    2. Draw: Once sales close. a winner is randomly
+                                                    selected.
                                                 </li>
                                                 <li>
-                                                    3. Winner Notification: The winner gets notified and receives the house.
+                                                    3. Winner Notification: The winner gets notified
+                                                    and receives the house.
                                                 </li>
                                             </ul>
                                         </div>
@@ -129,7 +134,8 @@
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseThree" aria-expanded="false"
                                             aria-controls="collapseThree">
-                                            What happens if the minimum number of tickets isn't sold?
+                                            What happens if the minimum number of tickets isn't
+                                            sold?
                                         </button>
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse"
@@ -158,7 +164,8 @@
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                             aria-expanded="false" aria-controls="collapseFour">
-                                            Are there any additional costs for the house winner, such as taxes or fees?
+                                            Are there any additional costs for the house winner,
+                                            such as taxes or fees?
                                         </button>
                                     </h2>
                                     <div id="collapseFour" class="accordion-collapse collapse"
@@ -230,14 +237,25 @@
             </div>
         </div>
 
-        <!-- checkout popup  -->
-        <div class="checkout--popup">
-            <form action="#">
-                <div class="step">
-                    <h3>Checkout</h3>
-                    <div class="billing    "></div>
-                </div>
-            </form>
-        </div>
+
     </section>
+    <!-- end app content area  -->
+
+    @push('script')
+        <script>
+            var price = 99;
+            $('#price-plus').on('click', function() {
+                // var price = {{ $ticket->price ?? '' }};
+                price += price;
+                $('#totalPrice').text(price);
+            })
+            var price = 99;
+            $('#price-minus').on('click', function() {
+                // var price = {{ $ticket->price ?? '' }};
+                price -= price;
+                $('#totalPrice').text(price);
+            })
+        </script>
+    @endpush
+
 @endsection
