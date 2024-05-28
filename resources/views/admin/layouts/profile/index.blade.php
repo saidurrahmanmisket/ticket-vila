@@ -1,6 +1,8 @@
 @extends('admin.app')
 @section('title', 'Dashboard')
-
+@section('header_title')
+    Profile
+@endsection;
 @section('content')
     <!-- profile area  -->
     <div class="profile--area">

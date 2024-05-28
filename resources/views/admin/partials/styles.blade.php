@@ -26,3 +26,21 @@
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/helper.css" />
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css" />
+
+
+<style>
+    .nice-select{
+        margin-bottom: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    .nice-select:after{
+        display: none !important;
+    }
+    .profile--area.main-section-margin{
+        margin-top: 30px;
+    }
+    .users--table--wrapper.campaign th:nth-child(1),.users--table--wrapper.campaign th:nth-child(2),.users--table--wrapper.campaign th:nth-child(3),.users--table--wrapper.campaign th:nth-child(4){
+        width: auto;
+    }
+</style>

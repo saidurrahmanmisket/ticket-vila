@@ -1,6 +1,10 @@
 @extends('admin.app')
 
 @section('title', 'Dashboard')
+@section('header_title')
+    Welcome Back, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+    <img src="{{ asset('admin/images/jumper.svg') }}" alt="" />
+@endsection;
 
 @section('content')
     <!-- live statistics  -->
