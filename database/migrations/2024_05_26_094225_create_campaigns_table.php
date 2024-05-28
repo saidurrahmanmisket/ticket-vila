@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('unique_text')->unique();
             $table->string('thumbnail')->nullable();
             $table->string('ebook')->nullable();
+            $table->integer('purchase_limit')->nullable();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();
             $table->enum('status',['draft','published','complete'])->default('published');
             $table->timestamps();
