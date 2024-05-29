@@ -10,6 +10,13 @@
             <div class="checkout--popup default--scrollbar" id="checkout--popup">
                 <form method="POST" action="{{ route('user.stripe.payment') }}">
                     @csrf
+
+                    <input type="hidden" name="productId" value="{{ $ticket->id ?? '' }}">
+                    <input type="hidden" name="productName" value="{{ $ticket->name ?? '' }}">
+                    <input type="hidden" name="perPrice" value="{{ $ticket->price ?? '' }}">
+                    <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? '' }}">
+                    <input type="hidden" name="quantity" value="{{ $quantity ?? '' }}">
+                    <input type="hidden" name="paymentMethod" value="stripe">
                     <!-- step  -->
                     <div class="">
                         <div class="billing--info">
@@ -18,14 +25,14 @@
                             <ul>
                                 <li>
                                     <div class="options">
-                                        <p>{{ $ticket->name }}</p>
+                                        <p>{{ $ticket->name ?? '' }}</p>
                                         <p>{{ $ticket->price ?? '' }}€</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="options">
                                         <p>Quentity</p>
-                                        <p>{{ $quantity }}</p>
+                                        <p>{{ $quantity ?? '' }}</p>
                                     </div>
                                 </li>
                                 {{-- <li>
@@ -43,7 +50,7 @@
                                 <li>
                                     <div class="options total">
                                         <p>Total</p>
-                                        <p class="text-green">{{ $totalPrice }}€</p>
+                                        <p class="text-green">{{ $totalPrice ?? '' }}€</p>
                                     </div>
                                 </li>
                             </ul>
@@ -58,7 +65,8 @@
                                 <h4>Payment Method</h4>
                                 <div class="methods">
                                     <!-- radio group  -->
-                                    <div class="radio--group">
+                                    {{-- implement it later --}}
+                                    {{-- <div class="radio--group">
                                         <input id="ipay" type="radio" name="radio--group" />
                                         <label for="ipay">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="19"
@@ -119,7 +127,7 @@
                                                     fill="#28356A" />
                                             </svg>
                                         </label>
-                                    </div>
+                                    </div> --}}
                                     <!-- radio group  -->
                                     <div class="radio--group">
                                         <input id="stripe" type="radio" name="radio--group" />
@@ -135,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="condition mt_35">
-                                <input id="terms" type="checkbox" />
+                                <input id="terms" type="checkbox" name="terms_and_condition" />
                                 <label for="terms">By checking this box, I agree to the
                                     <a href="#">Terms of Service</a> and
                                     <a href="#">Privacy Policy</a> confirm I am of legal age,

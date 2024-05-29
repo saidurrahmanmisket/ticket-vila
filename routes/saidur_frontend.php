@@ -46,6 +46,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
+    Route::get('/stripe/payment/success/{reference}', [StripeController::class, 'success'])->name('stripe.success');
 });
 
 //-----user dashboard route end  here ===========================================------by: saidur
