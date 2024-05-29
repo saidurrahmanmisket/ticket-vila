@@ -95,6 +95,7 @@ class StripeController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+            flash()->addError($e->getMessage());
             return redirect()->route('user.tickets')->with($e->getMessage());
         }
     }

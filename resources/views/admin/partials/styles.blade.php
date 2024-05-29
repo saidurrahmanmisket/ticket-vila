@@ -43,4 +43,10 @@
     .users--table--wrapper.campaign th:nth-child(1),.users--table--wrapper.campaign th:nth-child(2),.users--table--wrapper.campaign th:nth-child(3),.users--table--wrapper.campaign th:nth-child(4){
         width: auto;
     }
+
+    .select .nice-select .current {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 </style>
