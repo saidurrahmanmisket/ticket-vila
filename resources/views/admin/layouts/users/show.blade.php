@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'User|create')
+@section('title', 'User')
 @section('header_title')
     User
 @endsection;
@@ -7,8 +7,8 @@
     <div class="user--area tickets--area">
         <!-- top title  -->
         <div class="top--title">
-            <h3>User: Max Mustermann</h3>
-            <a href="#" class="action--btn">
+            <h3>User : {{$user->first_name}} {{$user->last_name}}</h3>
+            <a href="{{url()->previous()}}" class="action--btn">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
@@ -40,21 +40,21 @@
                 <div class="user--information information--box">
                     <h4 class="common--title">User Information</h4>
                     <div class="informations">
-                        <img src="{{ asset('admin/images/profile.png') }}" alt="" />
+                        <img src="{{!empty($user->avatar) ? asset($user->avatar) : asset('admin/images/user.png') }}" alt="" />
                         <p class="common--pair--text">
-                            First Name : <span>Max</span>
+                            First Name : <span>{{$user->first_name}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Last Name : <span>Mustermann</span>
+                            Last Name : <span>{{$user->last_name}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Email Address : <span>musternann@gmail.com</span>
+                            Email Address : <span>{{$user->email}}</span>
                         </p>
-                        <p class="common--pair--text">Tickets : <span>03</span></p>
+                        <p class="common--pair--text">Tickets : <span>{{count($tickets)}}</span></p>
                         <p class="common--pair--text">
-                            Total spend : <span class="text--green">297,00€</span>
+                            Total spend : <span class="text--green">{{$totalSpent}}€</span>
                         </p>
-                        <p class="common--pair--text">Role : <span>User</span></p>
+                        <p class="common--pair--text">Role : <span>{{$user->role}}</span></p>
                     </div>
                 </div>
             </div>
@@ -65,13 +65,13 @@
                         <div>
                             <h4 class="common--title">General Information</h4>
                             <p class="common--pair--text">
-                                Account Created : <span>01/04/2024 - 2:33 PM</span>
+                                Account Created : <span>{{date('d/m/Y - g:i A',strtotime($user->created_at))}}</span>
                             </p>
                             <p class="common--pair--text">
-                                Last Login : <span>03/04/2024 - 11:20 AM</span>
+                                Last Login : <span>{{ !empty($user->last_login_at) ? date('d/m/Y - g:i A',strtotime($user->created_at)) : 'N/A' }}</span>
                             </p>
                             <p class="common--pair--text">
-                                IP Address : <span> 3.334.343122</span>
+                                IP Address : <span> {{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
                             </p>
                         </div>
                         <a href="#" class="action--btn" id="ban-user">Ban User</a>
@@ -81,703 +81,171 @@
                     <div class="payment--information mt_25">
                         <h4 class="common--title">Payment Information</h4>
                         <p class="common--pair--text">
-                            Name : <span>Max Mustermann</span>
+                            Name : <span>{{$user->first_name}} {{$user->last_name}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Address 01 : <span> Musterstrabe 4</span>
+                            Address 01 : <span> {{!empty($user->address_1) ? $user->address_1 : 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">
-                            IP Address : <span> 3.334.343122</span>
+                            IP Address : <span> {{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Address 02 : <span>N/A</span>
+                            Address 02 : <span>{{!empty($user->address_2) ? $user->address_2 : 'N/A'}}</span>
                         </p>
-                        <p class="common--pair--text">City : <span> Berline</span></p>
+                        <p class="common--pair--text">City : <span> {{!empty($user->city) ? $user->city : 'N/A'}}</span></p>
                         <p class="common--pair--text">
-                            State : <span> Musterstrabe Berline</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Zip Code : <span>10010</span>
+                            State : <span> {{!empty($user->state) ? $user->state : 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Payment Method : <span class="text-orange">Stripe</span>
+                            Zip Code : <span>{{!empty($user->zip_code) ? $user->zip_code : 'N/A'}}</span>
                         </p>
+{{--                        <p class="common--pair--text">--}}
+{{--                            Payment Method : <span class="text-orange">Stripe</span>--}}
+{{--                        </p>--}}
                     </div>
                 </div>
             </div>
         </div>
         <!-- tickets  -->
         <div class="tickets default--scrollbar mt_35">
-            <!-- ticket--single  -->
-            <div class="ticket--single">
-                <!-- ticket & name  -->
-                <div class="ticket--and--name">
-                    <!-- ticket box  -->
-                    <div class="ticket--box">
-                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
-                        <p>Ticket ID: #3373493B46</p>
-                        <span>#2</span>
+            @forelse($tickets as $ticket)
+                <!-- ticket--single  -->
+                <div class="ticket--single">
+                    <!-- ticket & name  -->
+                    <div class="ticket--and--name">
+                        <!-- ticket box  -->
+                        <div class="ticket--box">
+                            <img src="{{ $ticket->campaign->thumbnail ? asset($ticket->campaign->thumbnail) : asset('admin/images/ticket.png')}}" alt="" />
+                            <p>Ticket ID: #{{$ticket->ticket_number}}</p>
+                            <span>#{{$loop->iteration}}</span>
+                        </div>
+                        <div>
+                            <p class="common--pair--text">
+                                Name :
+                                <span>{{$ticket->user->first_name}} {{$ticket->user->last_name}}</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Email :
+                                <span>{{$ticket->user->email}}</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Gift :
+                                <span class="text-orange">No Gift</span>
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="common--pair--text">
-                            Name :
-                            <span>Max Musternann</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Email :
-                            <span>mustermann@gmail.com</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Gift :
-                            <span class="text-orange">No Gift</span>
-                        </p>
-                    </div>
-                </div>
-                <!-- payment--and--actions  -->
-                <div class="payment--and--actions">
-                    <!-- payment informations  -->
-                    <div class="payment--informations">
-                        <p class="common--pair--text">
-                            Payment Method :
-                            <span>Stripe</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment Date :
-                            <span>11.052024 - 11:01:25</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Amount :
-                            <span class="text-green">99,00 €</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment ID :
-                            <span>#3373493846</span>
-                        </p>
-                    </div>
-                    <!-- ticket actions  -->
-                    <div class="ticket--actions">
-                        <a href="#" class="action--btn">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            Download
-                        </a>
-                        <a href="#" class="action--btn action--btnv2 mt_20">
-                            Refund
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 8.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 16.5H8"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10.5 16.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 9.5V3.5L22 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 3.5L18 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- ticket--single  -->
-            <div class="ticket--single">
-                <!-- ticket & name  -->
-                <div class="ticket--and--name">
-                    <!-- ticket box  -->
-                    <div class="ticket--box">
-                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
-                        <p>Ticket ID: #3373493B46</p>
-                        <span>#2</span>
-                    </div>
-                    <div>
-                        <p class="common--pair--text">
-                            Name :
-                            <span>Max Musternann</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Email :
-                            <span>mustermann@gmail.com</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Gift :
-                            <span class="text-orange">No Gift</span>
-                        </p>
+                    <!-- payment--and--actions  -->
+                    <div class="payment--and--actions">
+                        <!-- payment informations  -->
+                        <div class="payment--informations">
+                            <p class="common--pair--text">
+                                Payment Method :
+                                <span>{{ ucfirst($ticket->order->payment_method) }}</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Payment Date :
+                                <span>{{date('d.m.Y - H:i:s',strtotime($ticket->order->created_at))}}</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Amount :
+                                <span class="text-green">{{$ticket->campaign->price}} €</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Payment ID :
+                                <span>#{{substr($ticket->order->order_number,0,14)}}...</span>
+                            </p>
+                        </div>
+                        <!-- ticket actions  -->
+                        <div class="ticket--actions">
+                            <a href="#" class="action--btn">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
+                                        stroke="#141414"
+                                        stroke-width="1.5"
+                                        stroke-miterlimit="10"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
+                                        stroke="#141414"
+                                        stroke-width="1.5"
+                                        stroke-miterlimit="10"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                Download
+                            </a>
+                            <a href="#" class="action--btn action--btnv2 mt_20">
+                                Refund
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M2 8.5H14.5"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-miterlimit="10"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M6 16.5H8"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-miterlimit="10"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M10.5 16.5H14.5"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-miterlimit="10"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M20 9.5V3.5L22 5.5"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M20 3.5L18 5.5"
+                                        stroke="#FF5630"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- payment--and--actions  -->
-                <div class="payment--and--actions">
-                    <!-- payment informations  -->
-                    <div class="payment--informations">
-                        <p class="common--pair--text">
-                            Payment Method :
-                            <span>Stripe</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment Date :
-                            <span>11.052024 - 11:01:25</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Amount :
-                            <span class="text-green">99,00 €</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment ID :
-                            <span>#3373493846</span>
-                        </p>
-                    </div>
-                    <!-- ticket actions  -->
-                    <div class="ticket--actions">
-                        <a href="#" class="action--btn">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            Download
-                        </a>
-                        <a href="#" class="action--btn action--btnv2 mt_20">
-                            Refund
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 8.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 16.5H8"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10.5 16.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 9.5V3.5L22 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 3.5L18 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- ticket--single  -->
-            <div class="ticket--single">
-                <!-- ticket & name  -->
-                <div class="ticket--and--name">
-                    <!-- ticket box  -->
-                    <div class="ticket--box">
-                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
-                        <p>Ticket ID: #3373493B46</p>
-                        <span>#2</span>
-                    </div>
-                    <div>
-                        <p class="common--pair--text">
-                            Name :
-                            <span>Max Musternann</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Email :
-                            <span>mustermann@gmail.com</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Gift :
-                            <span class="text-orange">No Gift</span>
-                        </p>
-                    </div>
-                </div>
-                <!-- payment--and--actions  -->
-                <div class="payment--and--actions">
-                    <!-- payment informations  -->
-                    <div class="payment--informations">
-                        <p class="common--pair--text">
-                            Payment Method :
-                            <span>Stripe</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment Date :
-                            <span>11.052024 - 11:01:25</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Amount :
-                            <span class="text-green">99,00 €</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment ID :
-                            <span>#3373493846</span>
-                        </p>
-                    </div>
-                    <!-- ticket actions  -->
-                    <div class="ticket--actions">
-                        <a href="#" class="action--btn">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            Download
-                        </a>
-                        <a href="#" class="action--btn action--btnv2 mt_20">
-                            Refund
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 8.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 16.5H8"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10.5 16.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 9.5V3.5L22 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 3.5L18 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- ticket--single  -->
-            <div class="ticket--single">
-                <!-- ticket & name  -->
-                <div class="ticket--and--name">
-                    <!-- ticket box  -->
-                    <div class="ticket--box">
-                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
-                        <p>Ticket ID: #3373493B46</p>
-                        <span>#2</span>
-                    </div>
-                    <div>
-                        <p class="common--pair--text">
-                            Name :
-                            <span>Max Musternann</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Email :
-                            <span>mustermann@gmail.com</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Gift :
-                            <span class="text-orange">No Gift</span>
-                        </p>
-                    </div>
-                </div>
-                <!-- payment--and--actions  -->
-                <div class="payment--and--actions">
-                    <!-- payment informations  -->
-                    <div class="payment--informations">
-                        <p class="common--pair--text">
-                            Payment Method :
-                            <span>Stripe</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment Date :
-                            <span>11.052024 - 11:01:25</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Amount :
-                            <span class="text-green">99,00 €</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment ID :
-                            <span>#3373493846</span>
-                        </p>
-                    </div>
-                    <!-- ticket actions  -->
-                    <div class="ticket--actions">
-                        <a href="#" class="action--btn">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            Download
-                        </a>
-                        <a href="#" class="action--btn action--btnv2 mt_20">
-                            Refund
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 8.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 16.5H8"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10.5 16.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 9.5V3.5L22 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 3.5L18 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- ticket--single  -->
-            <div class="ticket--single">
-                <!-- ticket & name  -->
-                <div class="ticket--and--name">
-                    <!-- ticket box  -->
-                    <div class="ticket--box">
-                        <img src="{{asset('admin/images/ticket.png')}}" alt="" />
-                        <p>Ticket ID: #3373493B46</p>
-                        <span>#2</span>
-                    </div>
-                    <div>
-                        <p class="common--pair--text">
-                            Name :
-                            <span>Max Musternann</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Email :
-                            <span>mustermann@gmail.com</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Gift :
-                            <span class="text-orange">No Gift</span>
-                        </p>
-                    </div>
-                </div>
-                <!-- payment--and--actions  -->
-                <div class="payment--and--actions">
-                    <!-- payment informations  -->
-                    <div class="payment--informations">
-                        <p class="common--pair--text">
-                            Payment Method :
-                            <span>Stripe</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment Date :
-                            <span>11.052024 - 11:01:25</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Amount :
-                            <span class="text-green">99,00 €</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Payment ID :
-                            <span>#3373493846</span>
-                        </p>
-                    </div>
-                    <!-- ticket actions  -->
-                    <div class="ticket--actions">
-                        <a href="#" class="action--btn">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                    stroke="#141414"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            Download
-                        </a>
-                        <a href="#" class="action--btn action--btnv2 mt_20">
-                            Refund
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 8.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 16.5H8"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M10.5 16.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 9.5V3.5L22 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M20 3.5L18 5.5"
-                                    stroke="#FF5630"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @empty
+                <div class="mx-auto">Ticket not found!</div>
+            @endforelse
         </div>
     </div>
     <!-- warning popup  -->

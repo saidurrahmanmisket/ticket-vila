@@ -15,6 +15,7 @@ Route::middleware(['auth','verified','admin'])->group(function (){
 
     Route::get('/statistics',[StatisticsController::class,'index'])->name('statistics.index');
     Route::get('/ticket',[TicketController::class,'index'])->name('ticket.index');
+    Route::get('/ticket/download/{id}',[TicketController::class,'download'])->name('ticket.download');
     Route::get('/user',[UserController::class,'index'])->name('user.index');
     Route::get('/user/show/{id}',[UserController::class,'show'])->name('user.show');
 
