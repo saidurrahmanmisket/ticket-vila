@@ -8,26 +8,34 @@
         <div class="checkout--area">
             <!-- checkout popup  -->
             <div class="checkout--popup default--scrollbar" id="checkout--popup">
-                <form action="#" id="checkout-form">
+                <form method="POST" action="{{ route('user.stripe.payment') }}">
+                    @csrf
+
+                    <input type="hidden" name="productId" value="{{ $ticket->id ?? '' }}">
+                    <input type="hidden" name="productName" value="{{ $ticket->name ?? '' }}">
+                    <input type="hidden" name="perPrice" value="{{ $ticket->price ?? '' }}">
+                    <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? '' }}">
+                    <input type="hidden" name="quantity" value="{{ $quantity ?? '' }}">
+                    <input type="hidden" name="paymentMethod" value="stripe">
                     <!-- step  -->
-                    <div class="step">
+                    <div class="">
                         <div class="billing--info">
                             <h4 class="common--title">Billing Information</h4>
                             <!-- billing information  -->
                             <ul>
                                 <li>
                                     <div class="options">
-                                        <p>Escrow account notary</p>
-                                        <p>59.00€</p>
+                                        <p>{{ $ticket->name ?? '' }}</p>
+                                        <p>{{ $ticket->price ?? '' }}€</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="options">
-                                        <p>Service and administration fee</p>
-                                        <p>40.00€</p>
+                                        <p>Quentity</p>
+                                        <p>{{ $quantity ?? '' }}</p>
                                     </div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <p class="extra">
                                         Of the 99C Price, 59C is directly allocated to the
                                         notary escrow account, ensuring secure transaction
@@ -38,25 +46,27 @@
                                         <p>VAT Included (3%)</p>
                                         <p>18.81€</p>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <div class="options total">
                                         <p>Total</p>
-                                        <p class="text-green">99.00€</p>
+                                        <p class="text-green">{{ $totalPrice ?? '' }}€</p>
                                     </div>
                                 </li>
                             </ul>
                             <!-- gift holder  -->
-                            <div class="gift--holder mt_35">
+                            {{-- future  --}}
+                            {{-- <div class="gift--holder mt_35">
                                 <label for="gift-holder">Gift Holder Email</label>
                                 <input type="email" id="gift-holder" placeholder="Enter Gift Holder Email" required />
-                            </div>
+                            </div> --}}
                             <!-- payment method  -->
                             <div class="payment--method mt_45">
                                 <h4>Payment Method</h4>
                                 <div class="methods">
                                     <!-- radio group  -->
-                                    <div class="radio--group">
+                                    {{-- implement it later --}}
+                                    {{-- <div class="radio--group">
                                         <input id="ipay" type="radio" name="radio--group" />
                                         <label for="ipay">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="44" height="19"
@@ -117,7 +127,7 @@
                                                     fill="#28356A" />
                                             </svg>
                                         </label>
-                                    </div>
+                                    </div> --}}
                                     <!-- radio group  -->
                                     <div class="radio--group">
                                         <input id="stripe" type="radio" name="radio--group" />
@@ -133,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="condition mt_35">
-                                <input id="terms" type="checkbox" />
+                                <input id="terms" type="checkbox" name="terms_and_condition" />
                                 <label for="terms">By checking this box, I agree to the
                                     <a href="#">Terms of Service</a> and
                                     <a href="#">Privacy Policy</a> confirm I am of legal age,
@@ -144,7 +154,7 @@
                             </div>
                             <!-- button  -->
                             <div class="buttons mt_40">
-                                <a href="#" class="checkout-next-button user--common--btn">
+                                <button type="submit" class=" user--common--btn">
                                     Next
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
                                         viewBox="0 0 18 15" fill="none">
@@ -153,11 +163,12 @@
                                         <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="white"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                </a>
+                                </button>
+
                             </div>
                         </div>
                     </div>
-                    <!-- step  -->
+                    {{-- <!-- step  -->
                     <div class="step">
                         <!-- card information  -->
                         <div class="card--info--wrap">
@@ -206,7 +217,7 @@
                     <!-- step  -->
                     <div class="step successful">
                         <div class="img--area text-center">
-                            <img src="./assets/images/congra.png" alt="" />
+                            <img src="{{ asset('user/images/congra.png') }}" alt="" />
                         </div>
                         <h4>Congratulation!!!</h4>
                         <p>
@@ -225,7 +236,7 @@
                                 </svg>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

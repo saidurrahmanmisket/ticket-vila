@@ -8,6 +8,7 @@
         <!-- buy--ebook--area  -->
         <div class="buy--ebook--area">
             <!-- buy-ebook  -->
+
             <div class="buy-ebook--wrap">
                 <h4>Buy a E- Book get a free Ticket</h4>
                 <div class="buy-ebook">
@@ -19,7 +20,8 @@
                         <div class="details">
                             <h3>{{ $ticket->name ?? 'No Ticket Found' }}</h3>
                             <p class="id">Ticket ID: #{{ $ticket->unique_text ?? 'Not Found' }}</p>
-                            <p class="price">Price: <span id="totalPrice"> {{ $ticket->price ?? 'Not Found' }}</span>€</p>
+                            <p class="price">Price: <span id="totalPrice"> {{ $ticket->price ?? 'Not Found' }}</span>€
+                            </p>
                             <!-- quantity  -->
                             <div class="quantity">
                                 <button class="minus disabled" id="price-minus">
@@ -47,22 +49,28 @@
                         <p class="text-green">
                             #9 Tickets left until you get 1 for free 🎉
                         </p>
-                        <div class="buttons">
-                            <a href="#" class="user--common--btn gift">Buy as a Gift 🎁</a>
-                            <a href="{{ route('user.checkout') }}" class="user--common--btn">
-                                Buy Ticket
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15"
-                                    fill="none">
-                                    <path d="M16.25 7.72607L1.25 7.72607" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M10.1992 1.70149L16.2492 7.72549L10.1992 13.7505" stroke="white"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </a>
-                        </div>
+
+                        <form action="{{ route('user.checkout') }}" method="POST">
+                            <div class="buttons">
+                                @csrf
+                                <input type="hidden" id="quantity" name="quantity" value="1">
+                                <a href="#" class="user--common--btn gift">Buy as a Gift 🎁</a>
+                                <button href="#" type="submit" class="user--common--btn">
+                                    Buy Ticket
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
+                                        viewBox="0 0 18 15" fill="none">
+                                        <path d="M16.25 7.72607L1.25 7.72607" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.1992 1.70149L16.2492 7.72549L10.1992 13.7505" stroke="white"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-7 mt_35 pr_17">
                     <div class="faq--box">
@@ -131,9 +139,9 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree">
                                             What happens if the minimum number of tickets isn't
                                             sold?
                                         </button>
@@ -243,18 +251,32 @@
 
     @push('script')
         <script>
-            var price = 99;
-            $('#price-plus').on('click', function() {
-                // var price = {{ $ticket->price ?? '' }};
-                price += price;
-                $('#totalPrice').text(price);
-            })
-            var price = 99;
-            $('#price-minus').on('click', function() {
-                // var price = {{ $ticket->price ?? '' }};
-                price -= price;
-                $('#totalPrice').text(price);
-            })
+            $(document).ready(function() {
+                var price = parseFloat("{{ $ticket->price ?? 0 }}");
+                var totalPrice = price;
+                var quantity = 1;
+
+                $('#price-plus').on('click', function() {
+                    if (quantity < 9) {
+
+                        totalPrice += price;
+                        quantity++;
+                        $('#totalPrice').text(totalPrice.toFixed(2));
+                        $('#quantity').val(quantity);
+                    }
+                });
+
+                $('#price-minus').on('click', function() {
+                    if (quantity > 1) {
+                        if (totalPrice - price >= 0) {
+                            totalPrice -= price;
+                            $('#totalPrice').text(totalPrice.toFixed(2));
+                            quantity--;
+                            $('#quantity').val(quantity);
+                        }
+                    }
+                });
+            });
         </script>
     @endpush
 

@@ -37,7 +37,8 @@
         },
         "files": [
             "app/Helpers/Helper.php",
-            "app/Helpers/otp_helper.php"
+            "app/Helpers/otp_helper.php",
+            "app/Helpers/unique_ticket_number.php"
         ]
     },
     "autoload-dev": {
