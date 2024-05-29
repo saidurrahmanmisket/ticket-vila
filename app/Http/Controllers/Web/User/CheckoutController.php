@@ -13,12 +13,16 @@ class CheckoutController extends Controller
     {
         try {
             $quantity = $request->quantity;
-            $ticket = Campaign::latest()->where('status', 'published')->first();
+            $ticket = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
             $totalPrice = $ticket->price * $quantity;
 
             if (!$quantity) {
                 flash()->addError('Quantity Required');
                 return redirect()->back();
+            }
+            if ($ticket->limit < $ticket->tickets_count) {
+                flash()->addWarning('Ticket limit exceeded');
+                return redirect()->route('user.tickets');
             }
 
             return view('user.layouts.checkout', compact('ticket', 'totalPrice', 'quantity'));
