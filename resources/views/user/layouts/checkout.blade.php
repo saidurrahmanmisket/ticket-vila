@@ -11,9 +11,9 @@
                 <form method="POST" action="{{ route('user.stripe.payment') }}">
                     @csrf
 
-                    <input type="hidden" name="productId" value="{{ $ticket->id ?? '' }}">
-                    <input type="hidden" name="productName" value="{{ $ticket->name ?? '' }}">
-                    <input type="hidden" name="perPrice" value="{{ $ticket->price ?? '' }}">
+                    <input type="hidden" name="productId" value="{{ $campaign->id ?? '' }}">
+                    <input type="hidden" name="productName" value="{{ $campaign->name ?? '' }}">
+                    <input type="hidden" name="perPrice" value="{{ $campaign->price ?? '' }}">
                     <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? '' }}">
                     <input type="hidden" name="quantity" value="{{ $quantity ?? '' }}">
                     <input type="hidden" name="paymentMethod" value="stripe">
@@ -25,8 +25,8 @@
                             <ul>
                                 <li>
                                     <div class="options">
-                                        <p>{{ $ticket->name ?? '' }}</p>
-                                        <p>{{ $ticket->price ?? '' }}€</p>
+                                        <p>{{ $campaign->name ?? '' }}</p>
+                                        <p>{{ $campaign->price ?? '' }}€</p>
                                     </div>
                                 </li>
                                 <li>

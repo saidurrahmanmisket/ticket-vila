@@ -9,9 +9,9 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $ticket = Campaign::latest()->where('status', 'published')->first();
+        $campaign = Campaign::latest()->where('status', 'published')->first();
 
-        return view('user.layouts.tickets', compact('ticket'));
+        return view('user.layouts.tickets', compact('campaign'));
     }
 
     public function tickets()
