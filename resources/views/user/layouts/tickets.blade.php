@@ -15,12 +15,12 @@
                     <div class="book--details">
                         <!-- book  -->
                         <div class="book">
-                            <img src="{{ asset($ticket->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
+                            <img src="{{ asset($campaign->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
                         </div>
                         <div class="details">
-                            <h3>{{ $ticket->name ?? 'No Ticket Found' }}</h3>
-                            <p class="id">Ticket ID: #{{ $ticket->unique_text ?? 'Not Found' }}</p>
-                            <p class="price">Price: <span id="totalPrice"> {{ $ticket->price ?? 'Not Found' }}</span>€
+                            <h3>{{ $campaign->name ?? 'No Ticket Found' }}</h3>
+                            <p class="id">Ticket ID: #{{ $campaign->unique_text ?? 'Not Found' }}</p>
+                            <p class="price">Price: <span id="totalPrice"> {{ $campaign->price ?? 'Not Found' }}</span>€
                             </p>
                             <!-- quantity  -->
                             <div class="quantity">
@@ -252,7 +252,7 @@
     @push('script')
         <script>
             $(document).ready(function() {
-                var price = parseFloat("{{ $ticket->price ?? 0 }}");
+                var price = parseFloat("{{ $campaign->price ?? 0 }}");
                 var totalPrice = price;
                 var quantity = 1;
 
