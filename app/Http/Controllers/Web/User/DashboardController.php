@@ -36,7 +36,7 @@ class DashboardController extends Controller
             ->get();
 
         // cool facts statistics
-        $userWiningChance = floor(($userTickets->count() / $totalTicketSold) * 100);
+        $userWiningChance = floor(($userTickets->count() ?? 0 / $totalTicketSold) * 100);
 
         // logic for user rank
         $ticketCounts = DB::table('tickets')
