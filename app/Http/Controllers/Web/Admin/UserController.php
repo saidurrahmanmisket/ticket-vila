@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $tickets = Ticket::latest()->with(['user','campaign','order'])->where('user_id',$id)->get();
-        $totalSpent = Order::where('payment_status','completed')->sum('total_price');
+        $totalSpent = Order::where('user_id',$user->id)->where('payment_status','completed')->sum('total_price');
         return view('admin.layouts.users.show',compact('user','tickets','totalSpent'));
     }
 

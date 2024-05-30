@@ -157,7 +157,7 @@
                         </div>
                         <!-- ticket actions  -->
                         <div class="ticket--actions">
-                            <a href="#" class="action--btn">
+                            <a href="{{route('admin.ticket.download',$ticket->id)}}" class="action--btn download">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
