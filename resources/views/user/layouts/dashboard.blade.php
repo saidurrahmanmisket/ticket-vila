@@ -17,17 +17,17 @@
             <div class="live--statistic--content">
                 <div class="milestone--wrapper">
                     <div class="single--one">
-                        <p><span>4,358</span> Tickets Sold</p>
+                        <p><span>{{ $totalTicketSold ?? '0' }}</span> Tickets Sold</p>
                     </div>
                     <div class="single--one">
-                        <p><span>10,642</span> to The Finish</p>
+                        <p><span>{{ $campaign->limit - $totalTicketSold }}</span> to The Finish</p>
                     </div>
                     <div class="single--one goal">
                         <p>Goal 🎉</p>
                     </div>
                     <div class="single--one bonus tickets">
                         <p>
-                            <span>17,000</span> Tickets
+                            <span>{{ round(($campaign->limit / 100) * 80) }}</span> Tickets
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11"
                                 fill="none">
                                 <circle cx="5" cy="5.5" r="5" fill="url(#paint0_linear_13878_1385)" />
@@ -43,7 +43,7 @@
                     </div>
                     <div class="single--one bonus">
                         <p>
-                            <span>20,000</span> Tickets
+                            <span>{{ $campaign->limit ?? 0 }}</span> Tickets
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11"
                                 fill="none">
                                 <circle cx="5" cy="5.5" r="5" fill="url(#paint0_linear_13878_1385)" />
@@ -64,7 +64,7 @@
                     <span>66%</span>
                     <span>Bonus</span>
                     <span>Bonus</span>
-                    <div class="progress--bar"></div>
+                    <div style="width: {{ $soldPercentage ?? 0 }}%" class="progress--bar"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                                 <!-- no ticket  -->
                                 <div class="no--ticket d-none text-center">
                                     <p>Currently, you don’t own a ticket.</p>
-                                    <a href="buy-ticket.html" class="user--common--btn">Buy Now</a>
+                                    <a href="{{ route('user.tickets') }}" class="user--common--btn">Buy Now</a>
                                 </div>
                                 <div class="button--area text-center">
                                     <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more Ticket</a>

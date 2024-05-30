@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TicketMail;
 use App\Models\Campaign;
 use App\Models\Order;
 use App\Models\Ticket;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Validator;
@@ -129,7 +131,7 @@ class StripeController extends Controller
                     'campaign_id' => $campaignId,
                     'payment_status' => $paymentStatus,
                 ]);
-
+                
                 // Generate the ticket numbers and create ticket entries
                 $prefix = $campaign->unique_text;
                 $lastTicket = Ticket::where('user_id', $userId)
@@ -139,6 +141,7 @@ class StripeController extends Controller
                     ->first();
 
                 $last_sequence = $lastTicket ? $lastTicket->ticket_number : $prefix . '-000000';
+                $ticketNumbers = [];
 
                 for ($i = 0; $i < $quantity + $discountQuantity; $i++) {
                     $newTicketNumber = unique_ticket_number($prefix, $last_sequence);
@@ -151,9 +154,13 @@ class StripeController extends Controller
                     ]);
 
                     $last_sequence = $newTicketNumber; // Update last sequence for next iteration
+                    $ticketNumbers[] = $newTicketNumber;
                 }
 
                 DB::commit(); // Commit transaction
+
+                // Send the email with tickets and ebook
+                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers));
 
                 // Clear session
                 LaravelSession::forget(['unique_id', 'productId', 'productName', 'perPrice', 'totalPrice', 'quantity', 'paymentMethod']);
