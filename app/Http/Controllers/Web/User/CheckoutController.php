@@ -25,7 +25,7 @@ class CheckoutController extends Controller
                     $ticketRemain = '0';
                 }
                 flash()->addWarning('Only ' . $ticketRemain . ' Tickets Are Available');
-                return redirect()->route('user.tickets');
+                return redirect()->route('user.buy-tickets');
             }
 
             $totalPrice = $campaign->price * $quantity;

@@ -42,8 +42,9 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
 
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
     Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::get('/user/buy/tickets', [TicketController::class, 'index'])->name('tickets');
+    Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
     //work on payment
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');

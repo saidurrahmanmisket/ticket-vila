@@ -81,10 +81,10 @@
                                         <!-- no ticket  -->
                                         <div class="no--ticket d-none text-center">
                                             <p>Currently, you don’t own a ticket.</p>
-                                            <a href="{{ route('user.tickets') }}" class="user--common--btn">Buy Now</a>
+                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
                                         </div>
                                         <div class="button--area text-center">
-                                            <a href="{{ route('user.tickets') }}" class="user--common--btn mt_45">Buy more
+                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">Buy more
                                                 E-Book to get more
                                                 Ticket</a>
                                         </div>
@@ -560,7 +560,7 @@
                                     <!-- no ticket  -->
                                     <div class="no--ticket d-none text-center">
                                         <p>Currently, you don’t own a ticket.</p>
-                                        <a href="{{ route('user.tickets') }}" class="user--common--btn">Buy Now</a>
+                                        <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
                                     </div>
                                     <div class="button--area text-center">
                                         <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more

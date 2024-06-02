@@ -86,4 +86,11 @@ class DashboardController extends Controller
         }
     }
 
+    public function buyTickets()
+    {
+        $campaign = Campaign::latest()->where('status', 'published')->first();
+
+        return view('user.layouts.buy-tickets', compact('campaign'));
+    }
+
 }

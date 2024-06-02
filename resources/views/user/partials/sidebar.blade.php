@@ -10,7 +10,7 @@
         <ul class="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}"
-                    class="dashboard {{ Route::is('user.dashboard') ? 'active' : '' }}">
+                    class="dashboard {{ in_array(Route::currentRouteName(), ['user.dashboard', 'user.buy-tickets', 'user.checkout']) ? 'active' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
