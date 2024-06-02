@@ -9,4 +9,11 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
+    public function campaign(){
+        return $this->belongsTo(Campaign::class);
+    }
 }

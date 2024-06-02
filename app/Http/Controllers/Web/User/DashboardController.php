@@ -17,10 +17,7 @@ class DashboardController extends Controller
         if ($campaign) {
 
             // all tickets
-            $tickets = Ticket::with('user', 'order');
-
-            // user running campaign ticket
-            $userTickets = $tickets->where('campaign_id', $campaign->id)
+            $userTickets = Ticket::where('campaign_id', $campaign->id)
                 ->where('user_id', '=', $user->id)
                 ->get();
 

@@ -101,7 +101,7 @@ class StripeController extends Controller
             return redirect()->route('user.buy-tickets')->with($e->getMessage());
         }
     }
-    public function success($reference, Request $request)
+    public function success($reference)
     {
         try {
             $unique_id = $reference;

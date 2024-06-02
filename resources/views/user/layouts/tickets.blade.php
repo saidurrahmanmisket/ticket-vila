@@ -18,14 +18,15 @@
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
                         <h4 class="common--title">Your Ticket</h4>
-                        {{-- <p class="total--tickets">Total Ticket : 08</p> --}}
+                        <p class="total--tickets">Total Ticket : {{ $data['userTickets']->count() ?? 0 }}</p>
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
                             @foreach ($data['userTickets'] as $ticket)
                                 <div class="item">
                                     <div class="user--ticket--slider">
                                         <div class="img--area">
-                                            <img src="{{asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
+                                            <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
+                                                alt="" />
                                         </div>
                                         <p class="ticket--id">Ticket ID: {{ $ticket->ticket_number }}</p>
 
@@ -104,7 +105,7 @@
                             <a href="#" class="button mb_25">See All</a>
                         </div>
                         <div class="all--purchase--tickets default--scrollbar">
-                            @foreach ($data['userTickets'] as $ticket)
+                            @foreach ($data['userOrder'] as $order)
                                 <!-- ticket single  -->
                                 <div class="ticket--single">
                                     <!-- ticket & name  -->
@@ -115,8 +116,8 @@
                                                 alt="" />
                                         </div>
                                         <div class="details">
-                                            <p>1 X House Ticket</p>
-                                            <p class="text-green">99.00€</p>
+                                            <p>{{ $order->quantity ?? '' }} X {{ $order->discount_quantity ? '+ ' . $order->discount_quantity : '' }} {{ $order->campaign->name ?? '' }}</p>
+                                            <p class="text-green">{{ $order->total_price }}€</p>
                                             <p>11.052024 - 11:01:25</p>
                                         </div>
                                     </div>

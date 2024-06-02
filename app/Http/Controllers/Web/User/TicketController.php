@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\Order;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,21 +17,21 @@ class TicketController extends Controller
         $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
         if ($campaign) {
 
-            //for live statistics
-            $totalTicketSold = $campaign->tickets_count ?? 0;
-
             // all tickets
-            $tickets = Ticket::with('user', 'order');
-
-            // user running campaign ticket
-            $userTickets = $tickets->where('campaign_id', $campaign->id)
+            $userTickets = Ticket::where('campaign_id', $campaign->id)
                 ->where('user_id', '=', $user->id)
                 ->get();
-            // dd($userTickets);
 
+            $userOrder = Order::with('campaign:id,name,thumbnail,price,ebook')->where('campaign_id', $campaign->id)
+                ->where('user_id', $user->id)
+                ->where('payment_status', 'completed')
+                ->get();
+
+            // return $userOrder;
             $data = [
                 'campaign' => $campaign,
                 'userTickets' => $userTickets,
+                'userOrder' => $userOrder,
             ];
 
             return view('user.layouts.tickets', compact('data'));
@@ -38,6 +39,7 @@ class TicketController extends Controller
             $data = [
                 'campaign' => null,
                 'userTickets' => null,
+                'userOrder' => null,
             ];
 
             return view('user.layouts.tickets', compact('data'));
