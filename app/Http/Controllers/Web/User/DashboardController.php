@@ -38,8 +38,9 @@ class DashboardController extends Controller
                 ->get();
 
             // cool facts statistics
-            $userWiningChance = floor(($userTickets->count() ?? 0 / 100) * 100);
-            // dd($userWiningChance);
+            $userTicketsCount = $userTickets->count() ?? 0;
+            $userWiningChance = $totalTicketSold > 0 ? ($userTicketsCount / $totalTicketSold) * 100 : 0;
+
             // logic for user rank
             $ticketCounts = DB::table('tickets')
                 ->select('user_id', DB::raw('COUNT(*) as ticket_count'))
@@ -69,7 +70,8 @@ class DashboardController extends Controller
             ];
 
             return view('user.layouts.dashboard', compact('data'));
-        }else{
+
+        } else {
             $data = [
                 'campaign' => null,
                 'totalTicketSold' => null,
