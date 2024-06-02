@@ -116,7 +116,9 @@
                                                 alt="" />
                                         </div>
                                         <div class="details">
-                                            <p>{{ $order->quantity ?? '' }} X {{ $order->discount_quantity ? '+ ' . $order->discount_quantity : '' }} {{ $order->campaign->name ?? '' }}</p>
+                                            <p>{{ $order->quantity ?? '' }}
+                                                {{ $order->discount_quantity ? '+ ' . $order->discount_quantity : '' }} X
+                                                {{ $order->campaign->name ?? '' }}</p>
                                             <p class="text-green">{{ $order->total_price }}€</p>
                                             <p>11.052024 - 11:01:25</p>
                                         </div>
