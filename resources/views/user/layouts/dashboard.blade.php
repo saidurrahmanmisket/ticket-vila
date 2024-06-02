@@ -6,7 +6,7 @@
     <!-- start app content area  -->
     {{-- <section class="app--content--main user--portal "> --}}
     {{-- active if user is before buy  --}}
-    @if ($data['userTickets']->count() > 0)
+    @if ($data['userTickets'] && $data['userTickets']->count() > 0)
         <section class="app--content--main user--portal ">
 
 
@@ -17,7 +17,7 @@
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
                         <h4 class="common--title">Your Ticket</h4>
-                        <p class="total--tickets">Total Ticket : {{ $data['userTickets']->count() }}</p>
+                        <p class="total--tickets">Total Ticket : {{ $data['userTickets']->count() ?? 0 }}</p>
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
                             @foreach ($data['userTickets'] as $ticket)
@@ -463,7 +463,7 @@
                                         </div>
                                         <div>
                                             <p>Total Users</p>
-                                            <h3>{{ ($data['totalUserPurchasing'] - 1) ?? 0  }} + You</h3>
+                                            <h3>{{ $data['totalUserPurchasing'] - 1 ?? 0 }} + You</h3>
                                         </div>
                                     </div>
                                     <p class="mt_40">Based on the amount of your current tickets.</p>
@@ -491,7 +491,7 @@
 
             <!-- live statistics  -->
             <x-user.live-ticket-statistics :data="$data" />
-            
+
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
