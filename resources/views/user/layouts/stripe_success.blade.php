@@ -2,6 +2,11 @@
 
 @section('title', 'Dashboard')
 
+@section('header_title')
+Payment Success
+@endsection;
+
+
 @section('content')
 
     <section class="app--content--main user--portal buy-ebook">

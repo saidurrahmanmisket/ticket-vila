@@ -1,7 +1,9 @@
 @extends('user.app')
 
 @section('title', 'Dashboard')
-
+@section('header_title')
+Tickets
+@endsection;
 @section('content')
     <!-- start app content area  -->
     @if ($data['userTickets'] && $data['userTickets']->count() > 0)

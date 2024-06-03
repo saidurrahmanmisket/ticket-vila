@@ -1,7 +1,9 @@
 @extends('user.app')
 
 @section('title', 'Dashboard')
-
+@section('header_title')
+    {{ $campaign->name ?? 'Ticket' }}
+@endsection;
 @section('content')
     <!-- start app content area  -->
     <section class="app--content--main user--portal buy-ebook">

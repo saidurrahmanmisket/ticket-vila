@@ -2,6 +2,10 @@
 
 @section('title', 'Dashboard')
 
+@section('header_title')
+Checkout
+@endsection;
+
 @section('content')
     <!-- start app content area  -->
     <section class="app--content--main user--portal buy-ebook">

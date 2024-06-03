@@ -1,6 +1,9 @@
 @extends('user.app')
 
 @section('title', 'Dashboard')
+@section('header_title')
+Dashboard
+@endsection;
 
 @section('content')
     <!-- start app content area  -->
@@ -24,7 +27,8 @@
                                 <div class="item">
                                     <div class="user--ticket--slider">
                                         <div class="img--area">
-                                            <img src="{{asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
+                                            <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
+                                                alt="" />
                                         </div>
                                         <p class="ticket--id">Ticket ID: {{ $ticket->ticket_number }}</p>
 
@@ -279,7 +283,7 @@
                     </div>
                 </div>
 
-            <!-- user ranking statistics components  -->
+                <!-- user ranking statistics components  -->
                 <x-user.user-ranking-statistics />
 
                 <div class="col-md-3 pl_17 mt_35">
