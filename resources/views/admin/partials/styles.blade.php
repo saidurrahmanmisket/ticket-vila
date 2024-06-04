@@ -41,11 +41,25 @@
         -ms-overflow-style: none !important;
         scrollbar-width: none !important;
     }
+
     .sidebar::-webkit-scrollbar {
-    display: none !important;
-}
+        display: none !important;
+    }
 
     .sidebar .logout {
         position: static;
+    }
+
+    .sidebar--logo {
+        padding: 40px 67px !important;
+        position: fixed !important;
+        top: 0 !important;
+        margin-bottom: 79px !important;
+        background-color: var(--sidebar-color) !important;
+    }
+
+    .sub-item {
+        margin-left: -17px !important;
+        padding-left: 93px !important;
     }
 </style>

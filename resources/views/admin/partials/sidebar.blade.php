@@ -130,29 +130,7 @@
                 </a>
             </li>
             <li>
-            <li class="nav-item ">
-                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#e-commerce" aria-expanded="false"
-                    aria-controls="e-commerce">
-                    <i class="menu-icon bi bi-gear-fill"></i>
-                    <span class="menu-title">Settings</span>
-                    <i class="bi bi-menu-arrow"></i>
-                </a>
-                <div class="collapse" id="e-commerce" style="">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"><a class="nav-link "
-                                href="https://autosonly.reigeeky.com/admin/system-setting">System</a></li>
-
-                        <li class="nav-item"><a class="nav-link "
-                                href="https://autosonly.reigeeky.com/admin/system/mail">Mail</a></li>
-
-
-
-                        <li class="nav-item"><a class="nav-link "
-                                href="https://autosonly.reigeeky.com/admin/dynamic-page">Add Dynamic Page</a></li>
-                    </ul>
-                </div>
-            </li>
-            {{-- <a href="{{ route('admin.faq.index') }}"
+                <a href="{{ route('admin.faq.index') }}"
                     class="gift {{ Route::is('admin.faq.*') ? 'active' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
@@ -167,35 +145,8 @@
                             stroke-linejoin="round" />
                     </svg>
                     Faq
-                </a> --}}
-            </li>
-            {{-- <li>
-                <a href="{{ route('admin.system-setting.index') }}"
-                    class="gift {{ Route::is('admin.system-setting.*') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
-                        <path d="M19 22V11" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M19 7V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12 22V17" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12 13V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M5 22V11" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M5 7V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3 11H7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M17 11H21" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M10 13H14" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    System Settings
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </div>
     <!-- help and support  -->
@@ -218,9 +169,10 @@
                     Help & Center
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.settings.index') }}"
-                    class="settings {{ Route::is('admin.settings.index') ? 'active' : '' }}">
+            <li class="settings">
+                <a class="collapsed" data-bs-toggle="collapse" href="#a-setting"
+                    aria-expanded="{{ Route::is('admin.settings.index') ? 'true' : 'false' }}"
+                    aria-controls="a-setting">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -232,8 +184,58 @@
                             stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    Settings
+                    <span class="menu-title">Settings</span>
                 </a>
+                <div class="collapse" id="a-setting" style="background-color:#252525">
+                    <ul class="nav flex-column sub-menu">
+                        <li>
+
+                            <a href="{{ route('admin.settings.index') }}"
+                                class="{{ Route::is('admin.settings.index') ? 'active sub-item' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 6.43994V9.76994" stroke="#292D32" stroke-width="1.5"
+                                        stroke-miterlimit="10" stroke-linecap="round" />
+                                    <path
+                                        d="M12.02 2C8.34 2 5.36 4.98 5.36 8.66V10.76C5.36 11.44 5.08 12.46 4.73 13.04L3.46 15.16C2.68 16.47 3.22 17.93 4.66 18.41C9.44 20 14.61 20 19.39 18.41C20.74 17.96 21.32 16.38 20.59 15.16L19.32 13.04C18.97 12.46 18.69 11.43 18.69 10.76V8.66C18.68 5 15.68 2 12.02 2Z"
+                                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" />
+                                    <path
+                                        d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65 21.1701C9.05 20.5701 8.67 19.7301 8.67 18.8201"
+                                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" />
+                                </svg>
+                                Notifications
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.system-setting.index') }}"
+                                class="gift {{ Route::is('admin.system-setting.*') ? 'active' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path d="M19 22V11" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M19 7V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12 22V17" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12 13V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5 22V11" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5 7V2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3 11H7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M17 11H21" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10 13H14" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                System Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li>
                 <!-- logout  -->
