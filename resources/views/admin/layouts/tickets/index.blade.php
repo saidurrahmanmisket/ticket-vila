@@ -53,8 +53,6 @@
                     <div class="ticket--and--name">
                         <!-- ticket box  -->
                         <div class="ticket--box">
-                            {{-- @dd($ticket->campaign->thumbnail) --}}
-
                             <img src="{{ isset($ticket->campaign->thumbnail ) ? asset($ticket->campaign->thumbnail) : asset('admin/images/ticket.png') }}"
                                 alt="" />
                             <p>Ticket ID: #{{ $ticket->ticket_number }}</p>
