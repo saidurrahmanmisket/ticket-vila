@@ -82,28 +82,17 @@ class FaqController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|string',
-            'position' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ],
-            [
-                'image.max'=>'Maximum upload file size 2MB',
-            ]
-        );
+            'question' => 'required|string',
+            'answer' => 'required|string',
+        ]);
+
 
         $faq = FAQ::findOrFail($id);
-        $file = $request->file('image');
-        if ($file) {
-            $image_path = Helper::fileUpload($file,'/gifts/',time().'_'.pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME));
-            Helper::deleteFile(public_path($faq->image));
-        }else{
-            $image_path = $faq->image;
-        }
 
 
         $faq->update([
-            'name' => $request->name,
-            'image' => $image_path,
+            'question' => $request->question,
+            'answer' => $request->answer,
         ]);
 
         flash()->addSuccess("Updated Successfully.");

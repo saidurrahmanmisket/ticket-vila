@@ -11,8 +11,9 @@
             <div class="content--area">
                 <!-- logo -->
                 <div class="logo">
-                    <img src="{{ asset('frontend/images/logo.svg') }}" alt="" />
-                    <p>TicketVilla</p>
+                    <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('frontend/images/logo.svg') }}"
+                        alt="" />
+                    <p>{{ $systemSetting->system_name ?? 'TicketVilla' }}</p>
                 </div>
 
                 <!-- menu links -->

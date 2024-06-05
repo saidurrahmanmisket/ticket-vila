@@ -1,3 +1,9 @@
+@php
+use App\Models\SystemSetting;
+
+$systemSetting = SystemSetting::first();
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>

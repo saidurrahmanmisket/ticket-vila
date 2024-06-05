@@ -1,8 +1,15 @@
+@php
+use App\Models\SystemSetting;
+
+$systemSetting = SystemSetting::first();
+
+@endphp
+
 <!-- start sidebar area  -->
 <div class="sidebar">
     <!-- logo -->
     <a href="/" class="sidebar--logo">
-        <img src="{{ asset('/user/images/logo.svg') }}" alt="" />
+        <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('/user/images/logo.svg') }}" alt="" />
     </a>
     <!-- mainmenu  -->
     <div class="main--menu">
