@@ -184,7 +184,7 @@
                             stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <span class="menu-title">Settings</span>
+                    Settings
                 </a>
                 <div class="collapse" id="a-setting" style="background-color:#252525">
                     <ul class="nav flex-column sub-menu">
