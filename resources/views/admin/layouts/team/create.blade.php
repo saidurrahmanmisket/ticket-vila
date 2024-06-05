@@ -23,7 +23,7 @@
                                 @enderror
                             </div>
                             <div class="input--group">
-                                <label for="position">Name</label>
+                                <label for="position">Position</label>
                                 <input id="position" name="position" type="text" value="{{ old('position') }}"
                                     placeholder="Team position...">
                                 @error('position')
