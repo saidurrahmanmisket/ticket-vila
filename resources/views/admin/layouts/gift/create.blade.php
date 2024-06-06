@@ -22,6 +22,11 @@
                                     <input class="form-control @error('name') is-invalid @enderror" id="name"
                                         name="name" type="text" value="{{ old('name') }}"
                                         placeholder="Gift name...">
+                                    @error('name')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mt-5">
                                     <label for="gift_image">Gift Image</label>
@@ -34,6 +39,11 @@
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
                                         name="gift_thum_image" id="gift_thum_image" data-show-remove="true" accept="image/*"
                                         value="{{ old('gift_thum_image', '') }}" data-default-file="">
+                                        @error('gift_thum_image')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -61,6 +71,11 @@
                                             class="form-control form-control-lg mt-2 border-left-0 dropify"
                                             name="inside_image[]" data-show-remove="true" accept="image/*"
                                             value="{{ old('inside_image') }}" data-default-file="">
+                                            @error('inside_image')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                         @error('inside_image')
                                             <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -84,6 +99,11 @@
                                             class="form-control form-control-lg mt-2 border-left-0 dropify"
                                             name="outside_image[]" data-show-remove="true" accept="image/*"
                                             value="{{ old('outside_image', '') }}" data-default-file="">
+                                            @error('outside_image')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                         @error('outside_image')
                                             <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>

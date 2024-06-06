@@ -10,7 +10,6 @@ use App\Models\GiftGallary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class GiftController extends Controller
 {
@@ -37,47 +36,44 @@ class GiftController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
+
+        $validator = $request->validate([
+            'name' => 'required|integer',
+            'video_inside' => 'nullable|string',
+            'video_outside' => 'nullable|string',
+            'feature_title.*' => 'nullable|string',
+            'feature_sub_title.*' => 'nullable|string',
+            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         try {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string',
-                'video_inside' => 'nullable|string',
-                'video_outside' => 'nullable|string',
-                'feature_title.*' => 'nullable|string',
-                'feature_sub_title.*' => 'nullable|string',
-                'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-    
-            if ($validator->fails()) {
-                $firstErrorMessage = $validator->errors()->first();
-                return redirect()->back()->with('error', $firstErrorMessage)->withInput();
-            }
-    
+
             // Store data in the 'gifts' table
             if ($request->has('gift_image')) {
                 $file = $request->file('gift_image');
-                $gift_image_path = Helper::fileUpload($file, 'gifts', time(). '_'. pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-            }else{
+                $gift_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            } else {
                 $gift_image_path = null;
             }
             if ($request->hasFile('gift_thum_image')) {
                 $file = $request->file('gift_thum_image');
-                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time(). '_'. pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-            }else{
+                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            } else {
                 $gift_thum_image_path = null;
             }
             $gift = new Gift();
             $gift->name = $request->name;
             $gift->video_link_inside = $request->video_inside;
             $gift->video_link_outside = $request->video_outside;
-            $gift->image = $gift_image_path ;
-            $gift->thumbnail_image = $gift_thum_image_path ;
+            $gift->image = $gift_image_path;
+            $gift->thumbnail_image = $gift_thum_image_path;
             $gift->save();
-    
+
             // Store gallery images in the 'gift_galleries' table
             if ($request->hasFile('inside_image')) {
                 foreach ($request->file('inside_image') as $file) {
@@ -89,7 +85,7 @@ class GiftController extends Controller
                     $gallery->save();
                 }
             }
-    
+
             // Store gallery images in the 'gift_galleries' table
             if ($request->hasFile('outside_image')) {
                 foreach ($request->file('outside_image') as $file) {
@@ -112,13 +108,13 @@ class GiftController extends Controller
                     $gallery->save();
                 }
             }
-    
+
             // Store featured items in the 'gift_featured_items' table
             if ($request->has('feature_title')) {
                 foreach ($request->input('feature_title') as $key => $title) {
                     if ($request->hasFile('feature_image')) {
                         $image_path = Helper::fileUpload($request->file('feature_image.' . $key), 'gifts/feature-image', time() . '_' . pathinfo($request->file('feature_image.' . $key)->getClientOriginalName(), PATHINFO_FILENAME));
-                    }else{
+                    } else {
                         $image_path = null;
                     }
                     $featuredItem = new GiftFeaturedItem();
@@ -129,9 +125,9 @@ class GiftController extends Controller
                     $featuredItem->save();
                 }
             }
-    
+
             flash()->addSuccess("Gift Created Successfully.");
-    
+
             DB::commit();
             return redirect()->route('admin.gift.index');
 
@@ -139,7 +135,7 @@ class GiftController extends Controller
             // Handle the exception
             DB::rollBack();
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Something went wrong'.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong' . $e->getMessage());
         }
     }
 
