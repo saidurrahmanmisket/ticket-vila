@@ -13,9 +13,14 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         try {
-            $quantity = $request->quantity;
             $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
+
+            if (!$campaign) {
+                return redirect()->back()->with('error', 'No campaign found');
+            }
+
             $ticket = Ticket::where('campaign_id', $campaign->id);
+            $quantity = $request->quantity;
             $totalTicketSold = $ticket->count();
 
             $ticketRemain = $campaign->limit - $totalTicketSold;
@@ -25,7 +30,7 @@ class CheckoutController extends Controller
                     $ticketRemain = '0';
                 }
                 flash()->addWarning('Only ' . $ticketRemain . ' Tickets Are Available');
-                return redirect()->route('user.tickets');
+                return redirect()->route('user.buy-tickets');
             }
 
             $totalPrice = $campaign->price * $quantity;
@@ -39,7 +44,7 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Something went wrong');
+            return redirect()->back()->with('error', 'Something went wrong ');
         }
     }
 }

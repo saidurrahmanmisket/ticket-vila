@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\OTPVerificationController;
+use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
 use App\Http\Controllers\Web\User\TicketController;
-use App\Http\Controllers\Payment\StripeController;
 use Illuminate\Support\Facades\Route;
 
 //-----all page route ------by: saidur
@@ -40,10 +40,17 @@ Route::controller(OTPVerificationController::class)->group(function () {
 //-----user dashboard route start from here =====================================------by: saidur
 Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
 
-    Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
     Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::get('/user/buy/tickets', [TicketController::class, 'index'])->name('tickets');
+    Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
+
+    Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
+    Route::view('/user/expose', 'user.layouts.expose')->name('expose');
+    Route::view('/user/house', 'user.layouts.house')->name('house');
+    Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
+    Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
+    Route::view('/user/settings', 'user.layouts.settings')->name('settings');
 
     //work on payment
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');

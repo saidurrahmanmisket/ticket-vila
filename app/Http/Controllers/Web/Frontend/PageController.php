@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\FAQ;
+use App\Models\Team;
 
 class PageController extends Controller
 {
@@ -13,7 +15,9 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('frontend.layouts.about');
+        $teams = Team::where('status', 'active')->get();
+
+        return view('frontend.layouts.about', compact('teams'));
     }
 
     public function contact()
@@ -68,6 +72,7 @@ class PageController extends Controller
 
     public function howItWorks()
     {
-        return view('frontend.layouts.how-it-works');
+        $faqs = FAQ::where('status', 'active')->get();
+        return view('frontend.layouts.how-it-works', compact('faqs'));
     }
 }

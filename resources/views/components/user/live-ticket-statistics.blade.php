@@ -1,3 +1,30 @@
+{{-- 
+    this component need this 3 data for daynamic
+    $data['totalTicketSold']
+    $data['campaign']->limit
+    $data['soldPercentage']
+
+    --}}
+@php
+    use App\Models\Campaign;
+    use Illuminate\Support\Facades\Auth;
+
+    $user = Auth::user();
+
+    // Fetch campaign and related data
+    $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
+    $totalTicketSold = $campaign->tickets_count ?? 0;
+    $soldPercentage = ($totalTicketSold / ($campaign->limit ?? 1)) * 100;
+
+    // Prepare data array
+    $data = [
+        'campaign' => $campaign,
+        'totalTicketSold' => $totalTicketSold,
+        'soldPercentage' => $soldPercentage,
+        // Add any other data needed
+    ];
+@endphp
+
 <!-- live statistics  -->
 <div class="live--statistic--content">
     <div class="milestone--wrapper">
@@ -5,14 +32,14 @@
             <p><span>{{ $data['totalTicketSold'] ?? '0' }}</span> Tickets Sold</p>
         </div>
         <div class="single--one">
-            <p><span>{{ $data['campaign']->limit - $data['totalTicketSold'] }}</span> to The Finish</p>
+            <p><span>{{ $data['campaign']->limit ?? 0 - $data['totalTicketSold'] }}</span> to The Finish</p>
         </div>
         <div class="single--one goal">
             <p>Goal 🎉</p>
         </div>
         <div class="single--one bonus tickets">
             <p>
-                <span>{{ round(($data['campaign']->limit / 100) * 80) }}</span> Tickets
+                <span>{{ round((($data['campaign']->limit ?? 0) / 100) * 80) }}</span> Tickets
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
                     <circle cx="5" cy="5.5" r="5" fill="url(#paint0_linear_13878_1385)" />
                     <defs>

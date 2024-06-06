@@ -5,8 +5,7 @@
             <!-- profile--name  -->
             <div class="header--title">
                 <h1>
-                    Welcome Back, Sakib Al
-                    <img src="{{ asset('user/images/jumper.svg') }}" alt="" />
+                    @yield('header_title')
                 </h1>
             </div>
         </div>

@@ -49,7 +49,7 @@ class StripeController extends Controller
                 }
 
                 // Redirect back with input and errors
-                return redirect()->route('user.tickets');
+                return redirect()->route('user.buy-tickets');
             }
 
             $productName = $request->productName;
@@ -98,10 +98,10 @@ class StripeController extends Controller
             // Handle the exception
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
-            return redirect()->route('user.tickets')->with($e->getMessage());
+            return redirect()->route('user.buy-tickets')->with($e->getMessage());
         }
     }
-    public function success($reference, Request $request)
+    public function success($reference)
     {
         try {
             $unique_id = $reference;
@@ -131,7 +131,7 @@ class StripeController extends Controller
                     'campaign_id' => $campaignId,
                     'payment_status' => $paymentStatus,
                 ]);
-                
+
                 // Generate the ticket numbers and create ticket entries
                 $prefix = $campaign->unique_text;
                 $lastTicket = Ticket::where('user_id', $userId)
@@ -168,12 +168,12 @@ class StripeController extends Controller
                 flash()->addSuccess('Payment Success');
                 return view('user.layouts.stripe_success');
             } else {
-                return redirect()->route('user.tickets')->with('error', 'Something went wrong');
+                return redirect()->route('user.buy-tickets')->with('error', 'Something went wrong');
             }
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback transaction in case of error
             Log::error($e->getMessage());
-            return redirect()->route('user.tickets')->with('error', $e->getMessage());
+            return redirect()->route('user.buy-tickets')->with('error', $e->getMessage());
         }
     }
 }

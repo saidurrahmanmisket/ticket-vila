@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Web\Admin\CampaignController;
+use App\Http\Controllers\Web\Admin\CMS\HeroController;
+use App\Http\Controllers\Web\Admin\CMSController;
 use App\Http\Controllers\Web\Admin\DashboardController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
@@ -27,9 +29,18 @@ Route::middleware(['auth','verified','admin'])->group(function (){
         Route::patch('/profile/change','updatePassword')->name('profile.change');
     });
 
-    //Gift controller
+    //Gift routes
     Route::resource('/gift', GiftController::class);
+
+    //Campaign routes
     Route::resource('/campaign', CampaignController::class);
+
+
+    //CMS routes
+    Route::resource('cms-hero', HeroController::class)->except('show');
+    Route::post('/cms-hero/status/{id}',[HeroController::class,'status'])->name('cms-hero.status');
+
+
 
 
     //Notification Routes

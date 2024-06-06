@@ -125,86 +125,21 @@
                     Meet Our Team
                 </h3>
                 <div class="meet--team--area--content">
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member1.png') }}" alt="" />
-                        </div>
+                    @if ($teams)
+                        @foreach ($teams as $team)
+                            <div class="single--member">
+                                <div class="img--area">
+                                    <img src="{{ isset($team->image) ? asset($team->image) : asset('frontend/images/member1.png') }}"
+                                        alt="" />
+                                </div>
 
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member2.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member3.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member4.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member3.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member4.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member1.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
-                    <div class="single--member">
-                        <div class="img--area">
-                            <img src="{{ asset('frontend/images/member2.png') }}" alt="" />
-                        </div>
-
-                        <div class="text--area">
-                            <p class="name">Max Mustermann</p>
-                            <p class="title">CEO</p>
-                        </div>
-                    </div>
+                                <div class="text--area">
+                                    <p class="name">{{ $team->name }}</p>
+                                    <p class="title">{{ $team->position }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>

@@ -1,8 +1,15 @@
+@php
+use App\Models\SystemSetting;
+
+$systemSetting = SystemSetting::first();
+
+@endphp
+
 <!-- start sidebar area  -->
 <div class="sidebar">
     <!-- logo -->
     <a href="/" class="sidebar--logo">
-        <img src="{{ asset('/user/images/logo.svg') }}" alt="" />
+        <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('/user/images/logo.svg') }}" alt="" />
     </a>
     <!-- mainmenu  -->
     <div class="main--menu">
@@ -10,7 +17,7 @@
         <ul class="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}"
-                    class="dashboard {{ Route::is('user.dashboard') ? 'active' : '' }}">
+                    class="dashboard {{ in_array(Route::currentRouteName(), ['user.dashboard', 'user.buy-tickets', 'user.checkout']) ? 'active' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -30,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('user.tickets') }}" class="tickets">
+                <a href="{{ route('user.tickets') }}" class="tickets {{ Route::is('user.tickets') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -45,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a href="user-expose.html" class="expose">
+                <a href="{{ route('user.expose') }}" class="expose {{ Route::is('user.expose') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path d="M6.87891 18.6501V16.5801" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
@@ -63,7 +70,7 @@
                 </a>
             </li>
             <li>
-                <a href="user-house.html" class="house">
+                <a href="{{ route('user.house') }}" class="house {{ Route::is('user.house') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path d="M2 22.5H22" stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10"
@@ -83,7 +90,8 @@
                 </a>
             </li>
             <li>
-                <a href="user-statistics.html" class="statistics">
+                <a href="{{ route('user.statistics') }}"
+                    class="statistics {{ Route::is('user.statistics') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path d="M3 22.5H21" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round"
@@ -108,7 +116,8 @@
         <h4>HELP & SUPPORT</h4>
         <ul class="menu">
             <li>
-                <a href="user-help-center.html" class="help">
+                <a href="{{ route('user.help-center') }}"
+                    class="help {{ Route::is('user.help-center') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
@@ -123,7 +132,7 @@
                 </a>
             </li>
             <li>
-                <a href="user-settings.html" class="settings">
+                <a href="{{ route('user.settings') }}" class="settings {{ Route::is('user.settings') ? 'active' : ' ' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
