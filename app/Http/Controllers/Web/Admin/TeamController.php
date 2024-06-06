@@ -48,7 +48,7 @@ class TeamController extends Controller
         );
 
         $file = $request->file('image');
-        $image_path = Helper::fileUpload($file, '/teams/', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+        $image_path = Helper::fileUpload($file, 'teams', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
 
         Team::create([
             'name' => $request->name,

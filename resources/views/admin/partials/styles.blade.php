@@ -63,3 +63,6 @@
         padding-left: 93px !important;
     }
 </style>
+
+
+@stack('style')
