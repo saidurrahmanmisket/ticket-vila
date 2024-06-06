@@ -8,8 +8,6 @@
     {{-- active if user is before buy  --}}
     @if ($data['userTickets']->count() > 0)
         <section class="app--content--main user--portal ">
-
-
             <!-- live statistics  -->
             <x-user.live-ticket-statistics :data="$data" />
 
@@ -491,7 +489,7 @@
 
             <!-- live statistics  -->
             <x-user.live-ticket-statistics :data="$data" />
-            
+
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
@@ -895,6 +893,5 @@
             </div>
         </section>
     @endif
-
     <!-- end app content area  -->
 @endsection

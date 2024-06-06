@@ -19,19 +19,19 @@
                 <div class="menu--links">
                     <ul>
                         <li data-aos="fade-down" data-aos-duration="500">
-                            <a href="{{ route('frontend.home') }}" class="active">Home</a>
+                            <a href="{{ route('frontend.home') }}" class="{{ (Route::is('frontend.home') || Route::is('frontend./')) ? 'active' : '' }}">Home</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="800">
-                            <a href="{{ route('frontend.about') }}">About Us</a>
+                            <a href="{{ route('frontend.about') }}" class="{{ Route::is('frontend.about')  ? 'active' : '' }}">About Us</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1000">
-                            <a href="{{ route('frontend.how-it-works') }}">How it Works</a>
+                            <a href="{{ route('frontend.how-it-works') }}" class="{{ Route::is('frontend.how-it-works')  ? 'active' : '' }}">How it Works</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1200">
-                            <a href="{{ route('frontend.the-house') }}">The House</a>
+                            <a href="{{ route('frontend.the-house') }}" class="{{ Route::is('frontend.the-house')  ? 'active' : '' }}">The House</a>
                         </li>
                         <li data-aos="fade-down" data-aos-duration="1400">
-                            <a href="{{ route('frontend.contact') }}">Contact</a>
+                            <a href="{{ route('frontend.contact') }}" class="{{ Route::is('frontend.contact')  ? 'active' : '' }}">Contact</a>
                         </li>
                     </ul>
                 </div>

@@ -7,6 +7,7 @@
     <!-- ==== Favicon ==== -->
     <link rel="icon" type="image/png" href="{{ asset('user/images/logo-sm.svg') }}" />
     <title>@yield('title')</title>
+    @livewireStyles
     @include('user.partials.styles')
 </head>
 
@@ -25,6 +26,7 @@
 
         {{-- daynamic content end  --}}
     </main>
+    @livewireScripts
     @include('user.partials.scripts')
 </body>
 
