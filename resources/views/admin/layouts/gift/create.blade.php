@@ -11,6 +11,7 @@
     <div>
         <div class="row ">
             <div class="col-md-8 mx-auto">
+
                 <form method="POST" action="{{ route('admin.gift.store') }}" enctype="multipart/form-data">@csrf
                     <div class="personal--info profile--info--box">
                         <h3>Gift Create</h3>
@@ -18,25 +19,21 @@
                             <div class="card-body">
                                 <div class="input--group">
                                     <label for="name">Gift Name</label>
-                                    <input id="name" name="name" type="text" value="{{ old('name') }}"
+                                    <input class="form-control @error('name') is-invalid @enderror" id="name"
+                                        name="name" type="text" value="{{ old('name') }}"
                                         placeholder="Gift name...">
-                                    @error('name')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
-                                <div class="input--group">
-                                    <label for="name">Gift Image</label>
+                                <div class="mt-5">
+                                    <label for="gift_image">Gift Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                        name="image[]" id="image" data-show-remove="true" accept="image/*"
-                                        value="{{ old('image', '') }}" data-default-file="">
+                                        name="gift_image" id="gift_image" data-show-remove="true" accept="gift_image/*"
+                                        data-default-file="">
                                 </div>
-                                <div class="input--group">
-                                    <label for="name">Gift Thumbnail Image</label>
+                                <div class="mt-4">
+                                    <label for="gift_thum_image">Gift Thumbnail Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                        name="image[]" id="image" data-show-remove="true" accept="image/*"
-                                        value="{{ old('image', '') }}" data-default-file="">
+                                        name="gift_thum_image" id="gift_thum_image" data-show-remove="true" accept="image/*"
+                                        value="{{ old('gift_thum_image', '') }}" data-default-file="">
                                 </div>
                             </div>
                         </div>
@@ -61,12 +58,12 @@
                                     <div class="col">
                                         {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                            class="form-control form-control-lg mt-2 border-left-0 dropify" name="image[]"
-                                            id="image" data-show-remove="true" accept="image/*"
-                                            value="{{ old('image', '') }}" data-default-file="">
-                                        @error('image')
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="inside_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('inside_image') }}" data-default-file="">
+                                        @error('inside_image')
                                             <span class="text-danger" role="alert">
-                                                <strong>Image is Required and size should not exceed 4MB.</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -84,12 +81,12 @@
                                     <div class="col">
                                         {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                            class="form-control form-control-lg mt-2 border-left-0 dropify" name="image[]"
-                                            id="image" data-show-remove="true" accept="image/*"
-                                            value="{{ old('image', '') }}" data-default-file="">
-                                        @error('image')
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="outside_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('outside_image', '') }}" data-default-file="">
+                                        @error('outside_image')
                                             <span class="text-danger" role="alert">
-                                                <strong>Image is Required and size should not exceed 4MB.</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -108,12 +105,12 @@
                                     <div class="col">
                                         {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                            class="form-control form-control-lg mt-2 border-left-0 dropify" name="image[]"
-                                            id="image" data-show-remove="true" accept="image/*"
-                                            value="{{ old('image', '') }}" data-default-file="">
-                                        @error('image')
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="plan_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('plan_image', '') }}" data-default-file="">
+                                        @error('plan_image')
                                             <span class="text-danger" role="alert">
-                                                <strong>Image is Required and size should not exceed 4MB.</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
@@ -129,20 +126,20 @@
                                     <h4 class="">Property Link</h4>
                                 </div>
                                 <div class="input--group">
-                                    <label for="name">Property Inside Link</label>
-                                    <input id="name" name="name" type="text" value="{{ old('name') }}"
-                                        placeholder="Vedio Link...">
-                                    @error('name')
+                                    <label for="video_inside">Property Inside Link</label>
+                                    <input name="video_inside" type="text" value="{{ old('video_inside') }}"
+                                        placeholder="Video Link...">
+                                    @error('video_inside')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="input--group">
-                                    <label for="name">Property View Link</label>
-                                    <input id="name" name="name" type="text" value="{{ old('name') }}"
-                                        placeholder="Vedio Link...">
-                                    @error('name')
+                                    <label for="video_outside">Property View Link</label>
+                                    <input id="video_outside" name="video_outside" type="text"
+                                        value="{{ old('video_outside') }}" placeholder="Video Link...">
+                                    @error('video_outside')
                                         <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -164,20 +161,20 @@
                                     </h4>
 
                                     <div class="input--group">
-                                        <label for="name">Feature Title</label>
-                                        <input id="name" name="name" type="text" value="{{ old('name') }}"
+                                        <label for="feature_title">Feature Title</label>
+                                        <input id="feature_title" name="feature_title[]" type="text"
                                             placeholder="Feature Title..">
-                                        @error('name')
+                                        @error('feature_title')
                                             <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                     <div class="input--group">
-                                        <label for="name">Feature Sub Title</label>
-                                        <input id="name" name="name" type="text" value="{{ old('name') }}"
+                                        <label for="feature_sub_title">Feature Sub Title</label>
+                                        <input id="feature_sub_title" name="feature_sub_title[]" type="text"
                                             placeholder="Feature Sub Title..">
-                                        @error('name')
+                                        @error('feature_sub_title')
                                             <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -188,11 +185,11 @@
                                             {{-- <label for="image">Gallery Image:</label> --}}
                                             <input type="file"
                                                 class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                                name="image[]" id="image" data-show-remove="true" accept="image/*"
-                                                value="{{ old('image', '') }}" data-default-file="">
-                                            @error('image')
+                                                name="feature_image[]" data-show-remove="true" accept="image/*"
+                                                value="{{ old('feature_image', '') }}" data-default-file="">
+                                            @error('feature_image')
                                                 <span class="text-danger" role="alert">
-                                                    <strong>Image is Required and size should not exceed 4MB.</strong>
+                                                    <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
@@ -279,7 +276,7 @@
                 var newInput = document.createElement('div');
                 newInput.classList.add('col-md-4');
                 newInput.innerHTML = `
-                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
+                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="inside_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
                 // <label for="image">Gallery Image:</label>
@@ -298,7 +295,7 @@
                 var newInput = document.createElement('div');
                 newInput.classList.add('col-md-4');
                 newInput.innerHTML = `
-                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
+                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="outside_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
                 // <label for="image">Gallery Image:</label>
@@ -319,7 +316,7 @@
                 var newInput = document.createElement('div');
                 newInput.classList.add('col-md-4');
                 newInput.innerHTML = `
-                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
+                <input type="file"  class="form-control form-control-md border-left-0 dropify" name="plan_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
                 // <label for="image">Gallery Image:</label>
@@ -350,12 +347,12 @@
                 <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
                 <div class="input--group">
-                    <label for="name">Feature Title</label>
-                    <input id="name" name="name[]" type="text" value="" placeholder="Feature Title..">
+                    <label for="feature_title">Feature Title</label>
+                    <input id="feature_title" name="feature_title[]" type="text" value="" placeholder="Feature Title..">
                 </div>
                 <div class="input--group">
-                    <label for="name">Feature Sub Title</label>
-                    <input id="name" name="name[]" type="text" value="" placeholder="Feature Sub Title..">
+                    <label for="feature_sub_title">Feature Sub Title</label>
+                    <input id="feature_sub_title" name="feature_sub_title[]" type="text" value="" placeholder="Feature Sub Title..">
                 </div>
 
                 <div class="form-group row mt-4" id="imageUploadContainerPlan">
@@ -363,7 +360,7 @@
                         {{-- <label for="image">Gallery Image:</label> --}}
                         <input type="file"
                             class="form-control form-control-lg mt-2 border-left-0 dropify"
-                            name="image[]" id="image${featureCount}" data-show-remove="true" accept="image/*"
+                            name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
                             data-default-file="">
                     </div>
                 </div>
