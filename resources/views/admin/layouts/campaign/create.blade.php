@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <form action="{{ route('admin.campaign.store') }}"> @csrf
+                    <div>
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </form>

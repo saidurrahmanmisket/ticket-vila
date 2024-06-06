@@ -11,8 +11,6 @@ Dashboard
     {{-- active if user is before buy  --}}
     @if ($data['userTickets'] && $data['userTickets']->count() > 0)
         <section class="app--content--main user--portal ">
-
-
             <!-- live statistics  -->
             <x-user.live-ticket-statistics />
 
@@ -297,11 +295,8 @@ Dashboard
         </section>
     @else
         <section class="app--content--main user--portal before-buy"> {{-- before-buy tickets add before-buy class and don't show statics --}}
-
-
             <!-- live statistics components  -->
             <x-user.live-ticket-statistics />
-
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
@@ -705,6 +700,5 @@ Dashboard
             </div>
         </section>
     @endif
-
     <!-- end app content area  -->
 @endsection

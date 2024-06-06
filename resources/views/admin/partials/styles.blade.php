@@ -62,4 +62,10 @@
         margin-left: -17px !important;
         padding-left: 93px !important;
     }
+    span.current {
+        display: block;
+        padding-top: 7px;
+    }
 </style>
+
+@stack('style')
