@@ -1,9 +1,8 @@
 @extends('admin.app')
-@section('title', 'Hero Section create')
+@section('title', 'CMS')
 @section('header_title')
     CMS
 @endsection;
-
 {{-- Push Style --}}
 @push('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
@@ -12,12 +11,12 @@
     <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
-        <form method="POST" action="{{ route('admin.cms-hero.store') }}" enctype="multipart/form-data">@csrf
+        <form method="POST" action="{{ route('admin.cms-hero.update',$hero_section->id) }}" enctype="multipart/form-data">@csrf @method('PATCH')
             <!-- profile  -->
             <div class="row">
                 <div class="col-md-6 mb-5">
                     <div class="personal--info profile--info--box">
-                        <h3>Hero Section Create</h3>
+                        <h3>Hero Section Edit</h3>
                     </div>
                 </div>
                 <div class="col-12">
@@ -29,18 +28,18 @@
                                     <select class="form-select form-select-lg mb-3" id="page" name="page">
                                         <option selected value="">Select page</option>
                                         @foreach(\App\Enums\Page::map() as $index =>$page)
-                                            <option @if(old('page') == $index) selected @endif value="{{$index}}">{{ $page }}</option>
+                                            <option @if($hero_section->page == $index) selected @endif value="{{$index}}">{{ $page }}</option>
                                         @endforeach
                                     </select>
                                     @error('page')
-                                        <span class="invalid-feedback d-block" role="alert">
+                                    <span class="invalid-feedback d-block" role="alert">
                                            <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="mt-3">
                                     <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="title" value="{{old('title')}}" name="title">
+                                    <input type="text" class="form-control" id="title" value="{{$hero_section->title}}" name="title">
                                     @error('title')
                                     <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
@@ -49,7 +48,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea type="text" class="form-control" rows="4" id="description" name="description" placeholder="Write here....">{{old('description')}}</textarea>
+                                    <textarea type="text" class="form-control" rows="4" id="description"  name="description" placeholder="Write here....">{{$hero_section->description}}</textarea>
                                     @error('description')
                                     <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
@@ -58,9 +57,9 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="image"  class="form-label">Image</label>
-                                    <input type="file" class="form-control dropify" id="image" name="image" accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
+                                    <input type="file" class="form-control dropify" id="image" name="image" accept="image/png,image/gif,image/jpeg,image/jpg,image/svg" data-default-file="{{ asset($hero_section->image) }}">
                                     @error('image')
-                                        <span class="invalid-feedback d-block" role="alert">
+                                    <span class="invalid-feedback d-block" role="alert">
                                           <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror

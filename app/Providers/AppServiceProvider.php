@@ -21,27 +21,6 @@ class AppServiceProvider extends ServiceProvider {
      * Bootstrap any application services.
      */
     public function boot(): void {
-        Paginator::useBootstrap();
 
-        View::composer('admin.partials.sidebar',function ($view){
-            $systemSetting = SystemSetting::first();
-            $view->with('systemSetting',$systemSetting);
-        });
-
-        View::composer('components.user.live-ticket-statistics',function ($view){
-            // Fetch campaign and related data
-            $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
-            $totalTicketSold = $campaign->tickets_count ?? 0;
-            $soldPercentage = ($totalTicketSold / ($campaign->limit ?? 1)) * 100;
-
-            // Prepare data array
-            $data = [
-                'campaign' => $campaign,
-                'totalTicketSold' => $totalTicketSold,
-                'soldPercentage' => $soldPercentage,
-                // Add any other data needed
-            ];
-            $view->with('data',$data);
-        });
     }
 }

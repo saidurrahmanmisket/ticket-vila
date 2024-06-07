@@ -148,10 +148,15 @@
                 <div class="collapse" id="a-hero-section" style="background-color:#252525">
                     <ul class="nav flex-column sub-menu" style="padding-left: 40px">
                         <li>
-
                             <a href="{{ route('admin.cms-hero.index') }}"
                                class="{{ Route::is('admin.cms-hero.index') ? 'active sub-item' : '' }}">
                                 Hero Section
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.cms-the-process.index') }}"
+                               class="{{ Route::is('admin.cms-the-process.index') ? 'active sub-item' : '' }}">
+                                The Process
                             </a>
                         </li>
                     </ul>
