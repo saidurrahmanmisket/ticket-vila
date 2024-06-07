@@ -16,15 +16,15 @@ $systemSetting = SystemSetting::first();
             <div class="about--us--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                        Get in Touch
+                        {{ !empty($hero_section) ? $hero_section->title : 'Get in Touch' }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        We are here to assist you with any inquiries or concerns you may
-                        have.
+                        {{ !empty($hero_section) ? $hero_section->description : 'We are here to assist you with any inquiries or concerns you may
+                        have.' }}
                     </p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="600" class="right">
-                    <img src="{{ asset('frontend/images/contact-us-banner.png') }}" alt="" />
+                    <img src="{{ asset( !empty($hero_section) ? $hero_section->image : 'frontend/images/contact-us-banner.png') }}" alt="" />
                 </div>
             </div>
         </div>

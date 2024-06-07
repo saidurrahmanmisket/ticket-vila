@@ -9,14 +9,14 @@
             <div class="about--us--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                        Discover the Process
+                      {{!empty($hero_section) ? $hero_section->title : 'Discover the Process'}}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        Learn how you can win your dream house with just one ticket!
+                        {{!empty($hero_section) ? $hero_section->description : 'Learn how you can win your dream house with just one ticket!'}}
                     </p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="600" class="right">
-                    <img src="{{ asset('frontend/images/how-it-work-banner.png') }}" alt="" />
+                    <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/how-it-work-banner.png') }}" alt="" />
                 </div>
             </div>
         </div>

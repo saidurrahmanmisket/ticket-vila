@@ -3,6 +3,11 @@
 @section('header_title')
     Hero Section
 @endsection;
+
+@push('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
+
 @section('content')
     <div class="tickets--area users--area">
         <h4 class="common--title">Filter</h4>
@@ -67,7 +72,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $hero->title }}</td>
-                            <td>{{ $hero->page }}</td>
+                            <td>{{ \App\Enums\Page::map()[$hero->page] ?? null }}</td>
                             <td>
                                 <img src="{{asset($hero->image)}}" style="max-height: 100px"  alt="">
                             </td>
@@ -110,6 +115,7 @@
 
 
 @push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function statusChange(id, element) {
             var url = '{{ route('admin.cms-hero.status', ':id') }}';
@@ -120,7 +126,20 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(resp) {
-                    location.reload();
+                    if (resp.success === true) {
+                        // show toast message
+                        toastr.success(resp.message);
+                        if (resp.data.status == "{{\App\Enums\Status::ACTIVE}}") {
+                            element.checked = true;
+                        } else {
+                            element.checked = false;
+                        }
+
+                    } else if (resp.errors) {
+                        toastr.error(resp.errors[0]);
+                    } else {
+                        toastr.error(resp.message);
+                    }
                 }, // success end
                 error: function(error) {
                     // location.reload();

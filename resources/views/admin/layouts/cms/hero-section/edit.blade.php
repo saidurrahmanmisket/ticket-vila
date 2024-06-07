@@ -25,7 +25,7 @@
                                 <div class="d-flex flex-column">
                                     <label for="page" class="form-label">Select Page</label>
                                     <select class="form-select form-select-lg mb-3" id="page" name="page">
-                                        <option selected>Select page</option>
+                                        <option selected value="">Select page</option>
                                         @foreach(\App\Enums\Page::map() as $index =>$page)
                                             <option @if($hero_section->page == $index) selected @endif value="{{$index}}">{{ $page }}</option>
                                         @endforeach

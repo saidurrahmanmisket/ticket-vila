@@ -15,17 +15,17 @@
                 data-aos-duration="600"
                 class="banner--main--text"
               >
-                The House
+                  {{!empty($hero_section) ? $hero_section->title : 'The House'}}
               </h3>
               <p
                 data-aos="fade-up"
                 data-aos-duration="800"
                 class="banner--para"
               >
-                Welcome to i he House, where dreams come true. This stunning
+                  {{!empty($hero_section) ? $hero_section->description : 'Welcome to i he House, where dreams come true. This stunning
                 property offers the perfect blend of luxury, modern design, and
                 spacious living. Enter our raffle for a chance to win this
-                incredible home and make it your own.
+                incredible home and make it your own.'}}
               </p>
 
               <div

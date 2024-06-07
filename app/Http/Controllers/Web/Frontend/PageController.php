@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Web\Frontend;
 
+use App\Enums\Page;
+use App\Enums\Section;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\CMS;
 use App\Models\FAQ;
 use App\Models\Team;
 
@@ -10,19 +14,21 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('frontend.layouts.index');
+        $hero_section = CMS::where('page',Page::HOME)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        return view('frontend.layouts.index',compact('hero_section'));
     }
 
     public function about()
     {
         $teams = Team::where('status', 'active')->get();
-
-        return view('frontend.layouts.about', compact('teams'));
+        $hero_section = CMS::where('page',Page::ABOUT_US)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        return view('frontend.layouts.about', compact('teams','hero_section'));
     }
 
     public function contact()
     {
-        return view('frontend.layouts.contact');
+        $hero_section = CMS::where('page',Page::CONTACT)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        return view('frontend.layouts.contact',compact('hero_section'));
     }
 
     public function imprint()
@@ -62,7 +68,8 @@ class PageController extends Controller
 
     public function theHouse()
     {
-        return view('frontend.layouts.the-house');
+        $hero_section = CMS::where('page',Page::THE_HOUSE())->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        return view('frontend.layouts.the-house', compact('hero_section'));
     }
 
     public function verifyEmail()
@@ -72,7 +79,8 @@ class PageController extends Controller
 
     public function howItWorks()
     {
+        $hero_section = CMS::where('page',Page::HOW_IT_WORKS)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
         $faqs = FAQ::where('status', 'active')->get();
-        return view('frontend.layouts.how-it-works', compact('faqs'));
+        return view('frontend.layouts.how-it-works', compact('faqs','hero_section'));
     }
 }
