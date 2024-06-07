@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
-use App\Http\Controllers\Web\Admin\CMSController;
+use App\Http\Controllers\Web\Admin\CMS\TheProcessController;
 use App\Http\Controllers\Web\Admin\DashboardController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
 use App\Http\Controllers\Web\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+
 Route::middleware(['auth','verified','admin'])->group(function (){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
@@ -36,11 +37,13 @@ Route::middleware(['auth','verified','admin'])->group(function (){
     Route::resource('/campaign', CampaignController::class);
 
 
-    //CMS routes
+    //CMS Hero Section routes
     Route::resource('cms-hero', HeroController::class)->except('show');
     Route::post('/cms-hero/status/{id}',[HeroController::class,'status'])->name('cms-hero.status');
 
 
+    //CSM The process routes
+    Route::resource('/cms-the-process', TheProcessController::class)->except('show');
 
 
     //Notification Routes

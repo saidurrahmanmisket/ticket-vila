@@ -66,6 +66,14 @@
         display: block;
         padding-top: 7px;
     }
+    .required:after {
+        content: "*";
+        position: relative;
+        font-size: inherit;
+        color: rgba(var(--bs-danger-rgb)) !important;
+        padding-left: 0.15rem;
+        font-weight: 600;
+    }
 </style>
 @stack('style')
 

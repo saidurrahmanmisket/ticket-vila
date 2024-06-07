@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'CMS')
+@section('title', 'Hero Section Edit')
 @section('header_title')
     CMS
 @endsection;
