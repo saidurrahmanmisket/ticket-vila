@@ -4,6 +4,7 @@
     Tickets
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <!-- tickets area  -->
     <div class="tickets--area">
         <h4 class="common--title">Filter</h4>
@@ -132,4 +133,5 @@
             {{ $tickets->links() }}
         </div>
     </div>
+    </section>
 @endsection

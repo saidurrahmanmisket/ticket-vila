@@ -67,5 +67,5 @@
         padding-top: 7px;
     }
 </style>
-
 @stack('style')
+

@@ -4,8 +4,7 @@
     Faq
 @endsection;
 @section('content')
-
-    <div>
+    <div class="app--content--main">
         <div class="row mt-5">
             <div class="col-md-6 mt_30 mx-auto">
                 <form method="POST" action="{{ route('admin.faq.update', $faq->id) }}" enctype="multipart/form-data">@csrf

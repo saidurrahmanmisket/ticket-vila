@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 @endpush;
 @section('content')
+    <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
         <form method="POST" action="{{ route('admin.cms-hero.store') }}" enctype="multipart/form-data">@csrf
@@ -26,7 +27,7 @@
                                 <div class="d-flex flex-column">
                                     <label for="page" class="form-label">Select Page</label>
                                     <select class="form-select form-select-lg mb-3" id="page" name="page">
-                                        <option selected>Select page</option>
+                                        <option selected value="">Select page</option>
                                         @foreach(\App\Enums\Page::map() as $index =>$page)
                                             <option @if(old('page') == $index) selected @endif value="{{$index}}">{{ $page }}</option>
                                         @endforeach
@@ -72,6 +73,7 @@
             </div>
         </form>
     </div>
+    </section>
 @endsection
 
 {{-- Push Script --}}

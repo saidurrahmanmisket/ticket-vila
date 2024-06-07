@@ -4,9 +4,10 @@
     Campaign
 @endsection;
 @section('content')
-    <!-- profile area  -->
-    <div class="profile--area main-section-margin">
-        <form method="POST" action="{{ route('admin.campaign.update',$campaign->id) }}" enctype="multipart/form-data">@csrf @method('PUT')
+    <section class="app--content--main statistics">
+        <!-- profile area  -->
+        <div class="profile--area main-section-margin">
+           <form method="POST" action="{{ route('admin.campaign.update',$campaign->id) }}" enctype="multipart/form-data">@csrf @method('PUT')
             <!-- profile  -->
             <div class="row">
                 <div class="col-md-6 mt-5">
@@ -122,5 +123,6 @@
                 </div>
             </div>
         </form>
-    </div>
+         </div>
+    </section>
 @endsection

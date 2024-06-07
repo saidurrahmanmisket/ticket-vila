@@ -5,6 +5,7 @@
 @endsection;
 @section('content')
     <!-- profile area  -->
+    <section class="app--content--main">
     <div class="profile--area">
         <div>
             <div class="row mt-5">
@@ -37,4 +38,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

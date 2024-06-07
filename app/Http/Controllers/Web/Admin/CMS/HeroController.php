@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin\CMS;
 
+use App\Enums\Section;
 use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
@@ -35,11 +36,17 @@ class HeroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+           'page' => 'required|string',
            'title'=> 'required|string',
            'description'=> 'required|string',
            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
-           'page' => 'required|string'
         ]);
+
+        //Check section already exist
+        if (CMS::where('page',$request->page)->where('section_name',Section::HERO)->exists()) {
+             flash()->addWarning('Section already exists');
+             return redirect()->back()->withInput($request->all());
+        }
 
         if ($request->hasFile('image')) {
            $image_path = Helper::fileUpload($request->file('image'),'hero-section',time().'_'.Str::uuid());
@@ -47,8 +54,10 @@ class HeroController extends Controller
             $image_path = null;
         }
 
+
         $hero_section = new CMS();
         $hero_section->title = $request->title;
+        $hero_section->section_name = Section::HERO;
         $hero_section->description = $request->description;
         $hero_section->image = $image_path;
         $hero_section->page = $request->page;
@@ -68,8 +77,11 @@ class HeroController extends Controller
               $hero_section->status = Status::ACTIVE;
           }
           $hero_section->save();
-          flash()->addSuccess('Hero Section Status Changed Successfully');
-          return redirect()->route('admin.cms-hero.index');
+          return response()->json([
+              'success' => true,
+              'message' => 'Hero Section Status Changed Successfully',
+              'data' => $hero_section,
+         ]);
     }
 
     /**
@@ -92,6 +104,12 @@ class HeroController extends Controller
             'image'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'page' => 'required|string'
         ]);
+
+        //Check section already exist
+        if (CMS::where('id','!=',$id)->where('page',$request->page)->where('section_name',Section::HERO)->exists()) {
+            flash()->addWarning('Section already exists');
+            return redirect()->back();
+        }
         $hero_section = CMS::findOrFail($id);
         if ($request->hasFile('image')) {
             $image_path = Helper::fileUpload($request->file('image'),'hero-section',time().'_'.Str::uuid());
@@ -116,6 +134,7 @@ class HeroController extends Controller
      */
     public function destroy(string $id)
     {
+
         $hero_section = CMS::findOrFail($id);
         Helper::deleteFile(public_path($hero_section->image));
         $hero_section->delete();

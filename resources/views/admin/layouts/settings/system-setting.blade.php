@@ -5,7 +5,7 @@
     System Settings
 @endsection;
 @section('content')
-
+    <section class="app--content--main">
     <form method="POST" action="{{ route('admin.system-setting.update') }}" enctype="multipart/form-data">@csrf
         @method('POST')
         <div class="row mt_70">
@@ -100,5 +100,5 @@
             </div>
         </div>
     </form>
-
+    </section>
 @endsection

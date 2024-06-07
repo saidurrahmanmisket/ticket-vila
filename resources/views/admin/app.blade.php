@@ -76,9 +76,7 @@
     @include('admin.partials.sidebar')
     <!-- end sidebar area  -->
     <!-- start app content area  -->
-    <section class="app--content--main">
-        @yield('content')
-    </section>
+    @yield('content')
     <!-- end app content area  -->
 </main>
 @include('admin.partials.scripts')
