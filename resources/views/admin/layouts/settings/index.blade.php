@@ -5,6 +5,7 @@
     Settings
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <div class="management--area">
         <h3>Management</h3>
         <div class="main--settings--area default--scrollbar">
@@ -57,6 +58,7 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection
 
 

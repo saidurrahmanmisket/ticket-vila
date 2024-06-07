@@ -5,6 +5,7 @@
     Help Center
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <!-- tickets area  -->
     <div class="help--area tickets--area">
         <h4 class="common--title">Support Ticket</h4>
@@ -438,4 +439,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

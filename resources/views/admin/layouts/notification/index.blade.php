@@ -5,6 +5,7 @@
     Notification
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <!-- top title  -->
     <div class="notification--area">
         <div class="top--title">
@@ -1578,4 +1579,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

@@ -4,6 +4,7 @@
     Team
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <div>
         <div class="row mt-5">
             <div class="col-md-6 mt_30 mx-auto">
@@ -46,4 +47,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

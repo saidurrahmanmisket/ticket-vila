@@ -4,6 +4,7 @@
     User
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <div class="user--area tickets--area">
         <!-- top title  -->
         <div class="top--title">
@@ -248,6 +249,7 @@
             @endforelse
         </div>
     </div>
+    </section>
     <!-- warning popup  -->
     <div class="warning--popup" id="ban--popup">
         <img src="{{asset('admin/images/ban.png')}}" alt="" />

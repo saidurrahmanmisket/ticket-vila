@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 @endpush;
 @section('content')
+    <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
         <form method="POST" action="{{ route('admin.cms-hero.store') }}" enctype="multipart/form-data">@csrf
@@ -72,6 +73,7 @@
             </div>
         </form>
     </div>
+    </section>
 @endsection
 
 {{-- Push Script --}}

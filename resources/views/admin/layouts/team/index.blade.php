@@ -4,6 +4,7 @@
     Team
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <div class="tickets--area users--area">
         <h4 class="common--title">Filter</h4>
         <!-- filter--and--search  -->
@@ -118,5 +119,6 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection
 

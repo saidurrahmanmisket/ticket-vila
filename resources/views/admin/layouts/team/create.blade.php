@@ -4,6 +4,7 @@
     Team
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <!-- profile area  -->
     <div class="profile--area">
         <div>
@@ -48,4 +49,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

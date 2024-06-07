@@ -4,6 +4,7 @@
     Configuration Settings
 @endsection;
 @section('content')
+    <section class="app--content--main">
     <div class="account--settings--area">
         <!-- information box  -->
         <div class="info--box">
@@ -176,4 +177,5 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection

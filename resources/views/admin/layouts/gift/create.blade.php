@@ -8,7 +8,7 @@
 @endpush
 @section('content')
     <!-- profile area  -->
-    <div>
+    <div class="app--content--main">
         <div class="row ">
             <div class="col-md-8 mx-auto">
 
@@ -275,94 +275,91 @@
             </div>
         </div>
     </div>
+@endsection
+@push('script')
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a file here or click.',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong happended.'
+            }
+        });
 
-
-
-
-    @push('script')
-        <script>
-            $('.dropify').dropify({
-                messages: {
-                    'default': 'Drag and drop a file here or click.',
-                    'replace': 'Drag and drop or click to replace',
-                    'remove': 'Remove',
-                    'error': 'Ooops, something wrong happended.'
-                }
-            });
-
-            //for inside image 
-            document.getElementById('addImageInput').addEventListener('click', function() {
-                var container = document.getElementById('imageUploadContainer');
-                var newInput = document.createElement('div');
-                newInput.classList.add('col-md-4');
-                newInput.innerHTML = `
+        //for inside image
+        document.getElementById('addImageInput').addEventListener('click', function() {
+            var container = document.getElementById('imageUploadContainer');
+            var newInput = document.createElement('div');
+            newInput.classList.add('col-md-4');
+            newInput.innerHTML = `
                 <input type="file"  class="form-control form-control-md border-left-0 dropify" name="inside_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
-                // <label for="image">Gallery Image:</label>
-                container.appendChild(newInput);
-                // Initialize Dropify for the new input field
-                $('.dropify').dropify();
-            });
-            // Event delegation to handle remove button click for dynamically added fields
-            $('#imageUploadContainer').on('click', '.remove-image', function() {
-                $(this).parent().remove();
-            });
+            // <label for="image">Gallery Image:</label>
+            container.appendChild(newInput);
+            // Initialize Dropify for the new input field
+            $('.dropify').dropify();
+        });
+        // Event delegation to handle remove button click for dynamically added fields
+        $('#imageUploadContainer').on('click', '.remove-image', function() {
+            $(this).parent().remove();
+        });
 
-            //for outside image
-            document.getElementById('addImageInputOutside').addEventListener('click', function() {
-                var container = document.getElementById('imageUploadContainerOutside');
-                var newInput = document.createElement('div');
-                newInput.classList.add('col-md-4');
-                newInput.innerHTML = `
+        //for outside image
+        document.getElementById('addImageInputOutside').addEventListener('click', function() {
+            var container = document.getElementById('imageUploadContainerOutside');
+            var newInput = document.createElement('div');
+            newInput.classList.add('col-md-4');
+            newInput.innerHTML = `
                 <input type="file"  class="form-control form-control-md border-left-0 dropify" name="outside_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
-                // <label for="image">Gallery Image:</label>
-                container.appendChild(newInput);
-                // Initialize Dropify for the new input field
-                $('.dropify').dropify();
-            });
-            // Event delegation to handle remove button click for dynamically added fields
-            $('#imageUploadContainer').on('click', '.remove-image', function() {
-                $(this).parent().remove();
-            });
+            // <label for="image">Gallery Image:</label>
+            container.appendChild(newInput);
+            // Initialize Dropify for the new input field
+            $('.dropify').dropify();
+        });
+        // Event delegation to handle remove button click for dynamically added fields
+        $('#imageUploadContainer').on('click', '.remove-image', function() {
+            $(this).parent().remove();
+        });
 
 
 
-            //for plan image 
-            document.getElementById('addImageInputPlan').addEventListener('click', function() {
-                var container = document.getElementById('imageUploadContainerPlan');
-                var newInput = document.createElement('div');
-                newInput.classList.add('col-md-4');
-                newInput.innerHTML = `
+        //for plan image
+        document.getElementById('addImageInputPlan').addEventListener('click', function() {
+            var container = document.getElementById('imageUploadContainerPlan');
+            var newInput = document.createElement('div');
+            newInput.classList.add('col-md-4');
+            newInput.innerHTML = `
                 <input type="file"  class="form-control form-control-md border-left-0 dropify" name="plan_image[]" accept="image/*" value="{{ old('image', '') }}" data-show-remove="true">
                 <a type="button" class="btn btn-danger btn-sm remove-image" >X</a>
                 `;
-                // <label for="image">Gallery Image:</label>
-                container.appendChild(newInput);
-                // Initialize Dropify for the new input field
-                $('.dropify').dropify();
-            });
-            // Event delegation to handle remove button click for dynamically added fields
-            $('#imageUploadContainer').on('click', '.remove-image', function() {
-                $(this).parent().remove();
-            });
+            // <label for="image">Gallery Image:</label>
+            container.appendChild(newInput);
+            // Initialize Dropify for the new input field
+            $('.dropify').dropify();
+        });
+        // Event delegation to handle remove button click for dynamically added fields
+        $('#imageUploadContainer').on('click', '.remove-image', function() {
+            $(this).parent().remove();
+        });
 
 
 
-            //feature section
+        //feature section
 
-            document.addEventListener('DOMContentLoaded', function() {
-                let featureCount = 1;
+        document.addEventListener('DOMContentLoaded', function() {
+            let featureCount = 1;
 
-                document.getElementById('addFeature').addEventListener('click', function() {
-                    featureCount++;
-                    const featureContent = document.getElementById('feature-content');
+            document.getElementById('addFeature').addEventListener('click', function() {
+                featureCount++;
+                const featureContent = document.getElementById('feature-content');
 
-                    const newFeature = document.createElement('div');
-                    newFeature.classList.add('feature-item');
-                    newFeature.innerHTML = `
+                const newFeature = document.createElement('div');
+                newFeature.classList.add('feature-item');
+                newFeature.innerHTML = `
                     <hr class="mt-4 ">
                 <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
@@ -378,22 +375,19 @@
                 <div class="form-group row mt-4" id="imageUploadContainerPlan">
                     <div class="col">
                         {{-- <label for="image">Gallery Image:</label> --}}
-                        <input type="file"
-                            class="form-control form-control-lg mt-2 border-left-0 dropify"
-                            name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
+                <input type="file"
+                    class="form-control form-control-lg mt-2 border-left-0 dropify"
+                    name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
                             data-default-file="">
                     </div>
                 </div>
             `;
 
-                    featureContent.appendChild(newFeature);
+                featureContent.appendChild(newFeature);
 
-                    // Re-initialize dropify for the new input
-                    $('.dropify').dropify();
-                });
+                // Re-initialize dropify for the new input
+                $('.dropify').dropify();
             });
-        </script>
-    @endpush
-
-
-@endsection
+        });
+    </script>
+@endpush

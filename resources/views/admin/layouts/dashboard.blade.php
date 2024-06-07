@@ -7,6 +7,7 @@
 @endsection;
 
 @section('content')
+    <section class="app--content--main">
     <!-- live statistics  -->
     <div class="live--statistics--wrapper">
         <p class="intro">Live Statistics</p>
@@ -1217,6 +1218,7 @@
             </div>
         </div>
     </div>
+    </section>
 @endsection
 
 

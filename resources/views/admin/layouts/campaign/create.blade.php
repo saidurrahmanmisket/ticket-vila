@@ -4,8 +4,9 @@
     Campaign
 @endsection;
 @section('content')
-    <!-- profile area  -->
-    <div class="profile--area main-section-margin">
+    <section class="app--content--main">
+         <!-- profile area  -->
+        <div class="profile--area main-section-margin">
         <form method="POST" action="{{ route('admin.campaign.store') }}" enctype="multipart/form-data">@csrf
             <!-- profile  -->
             <div class="row">
@@ -123,4 +124,5 @@
             </div>
         </form>
     </div>
+    </section>
 @endsection
