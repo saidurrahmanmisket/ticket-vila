@@ -37,13 +37,16 @@ Route::middleware(['auth','verified','admin'])->group(function (){
     Route::resource('/campaign', CampaignController::class);
 
 
-    //CMS Hero Section routes
-    Route::resource('cms-hero', HeroController::class)->except('show');
-    Route::post('/cms-hero/status/{id}',[HeroController::class,'status'])->name('cms-hero.status');
+    Route::prefix('cms')->name('cms.')->group(function () {
+        //CMS Hero Section routes
+        Route::resource('hero', HeroController::class)->except('show');
+        Route::post('/hero/status/{id}',[HeroController::class,'status'])->name('hero.status');
+        //CSM The process routes
+        Route::resource('/the-process', TheProcessController::class)->except('show');
+        Route::post('/the-process/status/{id}',[TheProcessController::class,'status'])->name('the-process.status');
+        Route::post('/the-process/order-update',[TheProcessController::class,'orderUpdate'])->name('the-process.order-update');
 
-
-    //CSM The process routes
-    Route::resource('/cms-the-process', TheProcessController::class)->except('show');
+    });
 
 
     //Notification Routes

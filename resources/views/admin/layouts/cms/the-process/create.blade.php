@@ -12,7 +12,7 @@
     <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
-        <form method="POST" action="{{ route('admin.cms-the-process.store') }}" enctype="multipart/form-data">@csrf
+        <form method="POST" action="{{ route('admin.cms.the-process.store') }}" enctype="multipart/form-data">@csrf
             <!-- profile  -->
             <div class="row">
                 <div class="col-md-6 mb-5">
@@ -50,7 +50,7 @@
                                           <select class="form-select form-select-lg mb-3" id="button_type" name="button_type">
                                               <option selected value="">Select button type</option>
                                                @foreach(\App\Enums\ButtonType::map() as $index => $button)
-                                                  <option @if(old('page') == $index) selected @endif value="{{$index}}">{{ $button }}</option>
+                                                  <option @if(old('button_type') == $index) selected @endif value="{{$index}}">{{ $button }}</option>
                                                @endforeach
                                         </select>
                                         @error('button_type')

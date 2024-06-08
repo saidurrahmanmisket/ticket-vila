@@ -11,7 +11,7 @@
     <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
-        <form method="POST" action="{{ route('admin.cms-hero.update',$hero_section->id) }}" enctype="multipart/form-data">@csrf @method('PATCH')
+        <form method="POST" action="{{ route('admin.cms.hero.update',$hero_section->id) }}" enctype="multipart/form-data">@csrf @method('PATCH')
             <!-- profile  -->
             <div class="row">
                 <div class="col-md-6 mb-5">
