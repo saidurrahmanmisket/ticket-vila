@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('icon_top_text')->nullable();
             $table->string('icon_bottom_text')->nullable();
+            $table->string('sort_id')->default(0);
             $table->enum('button_type',['buy_now','learn_more','both','none'])->default('buy_now');
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();

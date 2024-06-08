@@ -64,7 +64,7 @@ class HeroController extends Controller
         $hero_section->save();
 
         flash()->addSuccess('Hero Section Added Successfully');
-        return redirect()->route('admin.cms-hero.index');
+        return redirect()->route('admin.cms.hero.index');
     }
 
 
@@ -126,7 +126,7 @@ class HeroController extends Controller
         $hero_section->save();
 
         flash()->addSuccess('Hero Section Updated Successfully');
-        return redirect()->route('admin.cms-hero.index');
+        return redirect()->route('admin.cms.hero.index');
     }
 
     /**
@@ -140,6 +140,6 @@ class HeroController extends Controller
         $hero_section->delete();
 
         flash()->addSuccess("Hero Section Deleted Successfully.");
-        return redirect()->route('admin.cms-hero.index');
+        return redirect()->route('admin.cms.hero.index');
     }
 }

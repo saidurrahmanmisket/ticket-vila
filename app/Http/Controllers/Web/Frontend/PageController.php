@@ -9,13 +9,15 @@ use App\Http\Controllers\Controller;
 use App\Models\CMS;
 use App\Models\FAQ;
 use App\Models\Team;
+use App\Models\TheProcess;
 
 class PageController extends Controller
 {
     public function index()
     {
         $hero_section = CMS::where('page',Page::HOME)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        return view('frontend.layouts.index',compact('hero_section'));
+        $theProcess = TheProcess::orderBy('sort_id','asc')->where('status',Status::ACTIVE)->get();
+        return view('frontend.layouts.index',compact('hero_section','theProcess'));
     }
 
     public function about()

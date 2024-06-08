@@ -12,7 +12,7 @@
     <section class="app--content--main statistics">
     <!-- profile area  -->
     <div class="profile--area main-section-margin">
-        <form method="POST" action="{{ route('admin.cms-hero.store') }}" enctype="multipart/form-data">@csrf
+        <form method="POST" action="{{ route('admin.cms.hero.store') }}" enctype="multipart/form-data">@csrf
             <!-- profile  -->
             <div class="row">
                 <div class="col-md-6 mb-5">
