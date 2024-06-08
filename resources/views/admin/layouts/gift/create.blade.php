@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="input--group">
                                     <label for="video_inside">Property Inside Link</label>
-                                    <input name="video_inside" type="text" value="{{ old('video_inside') }}"
+                                    <input name="video_inside" type="url" value="{{ old('video_inside') }}"
                                         placeholder="Video Link...">
                                     @error('video_inside')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="input--group">
                                     <label for="video_outside">Property View Link</label>
-                                    <input id="video_outside" name="video_outside" type="text"
+                                    <input id="video_outside" name="video_outside" type="url"
                                         value="{{ old('video_outside') }}" placeholder="Video Link...">
                                     @error('video_outside')
                                         <span class="invalid-feedback d-block" role="alert">

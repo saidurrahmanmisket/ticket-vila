@@ -38,7 +38,7 @@ class GiftController extends Controller
         DB::beginTransaction();
 
         $validator = $request->validate([
-            'name' => 'required|integer',
+            'name' => 'required|string',
             'video_inside' => 'nullable|string',
             'video_outside' => 'nullable|string',
             'feature_title.*' => 'nullable|string',
@@ -60,12 +60,14 @@ class GiftController extends Controller
             } else {
                 $gift_image_path = null;
             }
+
             if ($request->hasFile('gift_thum_image')) {
                 $file = $request->file('gift_thum_image');
                 $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
             } else {
                 $gift_thum_image_path = null;
             }
+
             $gift = new Gift();
             $gift->name = $request->name;
             $gift->video_link_inside = $request->video_inside;
@@ -152,7 +154,7 @@ class GiftController extends Controller
      */
     public function edit(string $id)
     {
-        $gift = Gift::findOrFail($id);
+        $gift = Gift::where('id',$id)->with('giftGallary','giftFeaturedItem')->first();
 
         return view('admin.layouts.gift.edit', compact('gift'));
     }

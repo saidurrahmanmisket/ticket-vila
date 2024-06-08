@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('gifts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('video_link_inside')->nullable();
+            $table->string('video_link_outside')->nullable();
             $table->string('image')->nullable();
-            $table->json('gallery')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
