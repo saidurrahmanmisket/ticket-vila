@@ -3766,20 +3766,20 @@
         },
         {
             "name": "rexlabs/enum",
-            "version": "2.3.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rexlabsio/enum-php.git",
-                "reference": "1cd66f358b7c6df20df96052a76ef947bf23a2c2"
+                "reference": "3bd70d990e02e2180ef3fa6c0f11c910527183fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rexlabsio/enum-php/zipball/1cd66f358b7c6df20df96052a76ef947bf23a2c2",
-                "reference": "1cd66f358b7c6df20df96052a76ef947bf23a2c2",
+                "url": "https://api.github.com/repos/rexlabsio/enum-php/zipball/3bd70d990e02e2180ef3fa6c0f11c910527183fe",
+                "reference": "3bd70d990e02e2180ef3fa6c0f11c910527183fe",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0 <8.3"
+                "php": "^7.0|^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5.7|^7.5|^8.5"
@@ -3810,9 +3810,9 @@
             ],
             "support": {
                 "issues": "https://github.com/rexlabsio/enum-php/issues",
-                "source": "https://github.com/rexlabsio/enum-php/tree/2.3.0"
+                "source": "https://github.com/rexlabsio/enum-php/tree/2.2.1"
             },
-            "time": "2023-07-20T01:12:31+00:00"
+            "time": "2021-09-19T23:36:20+00:00"
         },
         {
             "name": "spatie/laravel-permission",
