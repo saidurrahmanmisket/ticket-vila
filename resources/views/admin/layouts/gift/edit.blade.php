@@ -16,16 +16,16 @@
                     @csrf
                     @method('PUT')
                     <div class="personal--info profile--info--box">
-                        <h3>Gift Create</h3>
+                        <h3>Gift Edit</h3>
                         <div class="card">
                             <div class="card-body">
                                 <div class="input--group">
                                     <label for="name">Gift Name</label>
                                     <input class="form-control @error('name') is-invalid @enderror" id="name"
-                                           name="name" type="text" value="{{ $gift->name }}"
-                                           placeholder="Gift name...">
+                                        name="name" type="text" value="{{ $gift->name }}"
+                                        placeholder="Gift name...">
                                     @error('name')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                        <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -33,16 +33,17 @@
                                 <div class="mt-5">
                                     <label for="gift_image">Gift Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                           name="gift_image" id="gift_image" data-show-remove="true" accept="gift_image/*"
-                                           data-default-file="{{ asset($gift->image) }}">
+                                        name="gift_image" id="gift_image" data-show-remove="true" accept="gift_image/*"
+                                        data-default-file="{{ asset($gift->image) }}">
                                 </div>
                                 <div class="mt-4">
                                     <label for="gift_thum_image">Gift Thumbnail Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                           name="gift_thum_image" id="gift_thum_image" data-show-remove="true" accept="image/*"
-                                           value="{{ old('gift_thum_image', '') }}" data-default-file="{{ asset($gift->thumbnail_image) }}">
+                                        name="gift_thum_image" id="gift_thum_image" data-show-remove="true" accept="image/*"
+                                        value="{{ old('gift_thum_image', '') }}"
+                                        data-default-file="{{ asset($gift->thumbnail_image) }}">
                                     @error('gift_thum_image')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                        <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -68,19 +69,18 @@
 
                                 <div class="form-group row" id="imageUploadContainer">
 
-                                    @foreach($gift->giftGallary as $insideImageItem)
-
-                                        @if($insideImageItem->gift_image_type == 'inside')
+                                    @foreach ($gift->giftGallary as $insideImageItem)
+                                        @if ($insideImageItem->gift_image_type == 'inside')
                                             <div class="col-12 col-md-6 col-lg-4 mb-2">
                                                 <input type="file"
-                                                       class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                                       name="inside_image[]" data-show-remove="false" accept="image/*"
-                                                       value="{{ old('inside_image') }}" data-default-file="{{ asset($insideImageItem->image) }}">
+                                                class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                name="inside_image[]"
+                                                data-show-remove="false" accept="image/*"
+                                                data-default-file="{{ asset($insideImageItem->image) }}">
                                                 <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
-
                                     @endforeach
 
 
@@ -88,19 +88,19 @@
                                     <div class="col-12 col-md-6 col-lg-4 mb-2">
                                         {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                               class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                               name="inside_image[]" data-show-remove="true" accept="image/*"
-                                               value="{{ old('inside_image') }}" data-default-file="">
-                                                @error('inside_image')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            @error('inside_image')
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="inside_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('inside_image') }}" data-default-file="">
+                                        @error('inside_image')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        @error('inside_image')
                                             <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -113,19 +113,30 @@
                                         image</a>
                                 </div>
                                 <div class="form-group row" id="imageUploadContainerOutside">
+                                    @foreach ($gift->giftGallary as $outsideImageItem)
+                                        @if ($outsideImageItem->gift_image_type == 'outside')
+                                            <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                                <input type="file"
+                                                    class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                    data-show-remove="false" accept="image/*" value="{{ old('outside') }}"
+                                                    data-default-file="{{ asset($insideImageItem->image) }}">
+                                                <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
+
+                                            </div>
+                                        @endif
+                                    @endforeach
                                     <div class="col">
-                                        {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                               class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                               name="outside_image[]" data-show-remove="true" accept="image/*"
-                                               value="{{ old('outside_image', '') }}" data-default-file="">
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="outside_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('outside_image', '') }}" data-default-file="">
                                         @error('outside_image')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                         @error('outside_image')
-                                        <span class="text-danger" role="alert">
+                                            <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -139,17 +150,30 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between gap-2 mb-4">
                                     <h4 class="">Plan Image</h4>
-                                    <a type="button" id="addImageInputPlan" class="btn btn-primary ">Add Another image</a>
+                                    <a type="button" id="addImageInputPlan" class="btn btn-primary ">Add Another
+                                        image</a>
                                 </div>
                                 <div class="form-group row" id="imageUploadContainerPlan">
+                                    @foreach ($gift->giftGallary as $planImageItem)
+                                        @if ($planImageItem->gift_image_type == 'plan')
+                                            <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                                <input type="file"
+                                                    class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                    data-show-remove="false" accept="image/*"
+                                                    data-default-file="{{ asset($planImageItem->image) }}">
+                                                <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
+
+                                            </div>
+                                        @endif
+                                    @endforeach
                                     <div class="col">
                                         {{-- <label for="image">Gallery Image:</label> --}}
                                         <input type="file"
-                                               class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                               name="plan_image[]" data-show-remove="true" accept="image/*"
-                                               value="{{ old('plan_image', '') }}" data-default-file="">
+                                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                            name="plan_image[]" data-show-remove="true" accept="image/*"
+                                            value="{{ old('plan_image', '') }}" data-default-file="">
                                         @error('plan_image')
-                                        <span class="text-danger" role="alert">
+                                            <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -167,10 +191,10 @@
                                 </div>
                                 <div class="input--group">
                                     <label for="video_inside">Property Inside Link</label>
-                                    <input name="video_inside" type="url" value="{{ old('video_inside') }}"
-                                           placeholder="Video Link...">
+                                    <input name="video_inside" type="url" value="{{ $gift->video_link_inside }}"
+                                        placeholder="Video Link...">
                                     @error('video_inside')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                        <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -178,9 +202,9 @@
                                 <div class="input--group">
                                     <label for="video_outside">Property View Link</label>
                                     <input id="video_outside" name="video_outside" type="url"
-                                           value="{{ old('video_outside') }}" placeholder="Video Link...">
+                                        value="{{ $gift->video_link_outside }}" placeholder="Video Link...">
                                     @error('video_outside')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                        <span class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -196,45 +220,94 @@
                                     <a type="button" id="addFeature" class="btn btn-primary ">Add Another
                                         image</a>
                                 </div>
-                                <div class="">
-                                    <h4 class="">Feature <strong class="feature-no">1</strong>
-                                    </h4>
 
-                                    <div class="input--group">
-                                        <label for="feature_title">Feature Title</label>
-                                        <input id="feature_title" name="feature_title[]" type="text"
-                                               placeholder="Feature Title..">
-                                        @error('feature_title')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="feature_sub_title">Feature Sub Title</label>
-                                        <input id="feature_sub_title" name="feature_sub_title[]" type="text"
-                                               placeholder="Feature Sub Title..">
-                                        @error('feature_sub_title')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row mt-4" id="imageUploadContainerPlan">
-                                        <div class="col">
-                                            {{-- <label for="image">Gallery Image:</label> --}}
-                                            <input type="file"
-                                                   class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                                   name="feature_image[]" data-show-remove="true" accept="image/*"
-                                                   value="{{ old('feature_image', '') }}" data-default-file="">
-                                            @error('feature_image')
-                                            <span class="text-danger" role="alert">
+                                @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem != null)
+                                    @foreach ($gift->giftFeaturedItem as $key => $featureItem)
+                                        <div class="">
+                                            <h4 class="mt-4">Feature <strong
+                                                    class="feature-no">{{ $key + 1 }}</strong>
+                                            </h4>
+
+                                            <div class="input--group">
+                                                <label for="feature_title">Feature Title</label>
+                                                <input id="feature_title" type="text"
+                                                    value="{{ $featureItem->title }}" placeholder="Feature Title..">
+                                                @error('feature_title')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="input--group">
+                                                <label for="feature_sub_title">Feature Sub Title</label>
+                                                <input id="feature_sub_title" type="text"
+                                                    value="{{ $featureItem->sub_title }}"
+                                                    placeholder="Feature Sub Title..">
+                                                @error('feature_sub_title')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group row mt-4" id="imageUploadContainerPlan">
+                                                <div class="col">
+                                                    {{-- <label for="image">Gallery Image:</label> --}}
+                                                    <input type="file"
+                                                        class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                        data-show-remove="true" accept="image/*"
+                                                        value="{{ asset($featureItem->image) }}"
+                                                        data-default-file="{{ asset($featureItem->image) }}">
+                                                    @error('feature_image')
+                                                        <span class="text-danger" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="">
+                                        <h4 class="">Feature <strong class="feature-no">1</strong>
+                                        </h4>
+
+                                        <div class="input--group">
+                                            <label for="feature_title">Feature Title</label>
+                                            <input id="feature_title" name="feature_title[]" type="text"
+                                                placeholder="Feature Title..">
+                                            @error('feature_title')
+                                                <span class="invalid-feedback d-block" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
+                                        <div class="input--group">
+                                            <label for="feature_sub_title">Feature Sub Title</label>
+                                            <input id="feature_sub_title" name="feature_sub_title[]" type="text"
+                                                placeholder="Feature Sub Title..">
+                                            @error('feature_sub_title')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group row mt-4" id="imageUploadContainerPlan">
+                                            <div class="col">
+                                                {{-- <label for="image">Gallery Image:</label> --}}
+                                                <input type="file"
+                                                    class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                                    name="feature_image[]" data-show-remove="true" accept="image/*"
+                                                    value="{{ old('feature_image', '') }}" data-default-file="">
+                                                @error('feature_image')
+                                                    <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+
                             </div>
                         </div>
                         {{-- gift feature section  --}}
@@ -288,7 +361,7 @@
 
 
                         <div class="d-flex justify-content-center mb-5">
-                            <button type="submit ">Create Gift</button>
+                            <button type="submit ">Update Gift</button>
                         </div>
                     </div>
                 </form>
@@ -324,6 +397,25 @@
         // Event delegation to handle remove button click for dynamically added fields
         $('#imageUploadContainer').on('click', '.remove-image', function() {
             $(this).parent().remove();
+            showLoader();
+            $.ajax({
+                url:  '{{ route('admin.deleteGiftGallaryImage') }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    gift_id: '{{ $gift->id }}',
+                    gift_image_type: 'inside'
+                },
+                success: function(response) {
+                console.log(response);
+                
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr, status, error);
+                
+                },
+            });
+            
         });
 
         //for outside image
@@ -341,7 +433,7 @@
             $('.dropify').dropify();
         });
         // Event delegation to handle remove button click for dynamically added fields
-        $('#imageUploadContainer').on('click', '.remove-image', function() {
+        $('#imageUploadContainerOutside').on('click', '.remove-image', function() {
             $(this).parent().remove();
         });
 
@@ -362,7 +454,7 @@
             $('.dropify').dropify();
         });
         // Event delegation to handle remove button click for dynamically added fields
-        $('#imageUploadContainer').on('click', '.remove-image', function() {
+        $('#imageUploadContainerPlan').on('click', '.remove-image', function() {
             $(this).parent().remove();
         });
 
@@ -371,7 +463,7 @@
         //feature section
 
         document.addEventListener('DOMContentLoaded', function() {
-            let featureCount = 1;
+            let featureCount = $('.feature-no:last').text().toLowerCase();
 
             document.getElementById('addFeature').addEventListener('click', function() {
                 featureCount++;
@@ -409,6 +501,19 @@
                 $('.dropify').dropify();
             });
         });
+
+
+        // disable image for upload 
+        $(document).ready(function() {
+
+            $('.dropify-disabled').on('click', function(event, element) {
+                
+                // Prevent the input from being clicked
+                event.preventDefault();
+                event.stopPropagation();
+                
+                return false;
+            })
+        });
     </script>
 @endpush
-

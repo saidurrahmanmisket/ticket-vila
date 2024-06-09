@@ -60,14 +60,12 @@ class GiftController extends Controller
             } else {
                 $gift_image_path = null;
             }
-
             if ($request->hasFile('gift_thum_image')) {
                 $file = $request->file('gift_thum_image');
                 $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
             } else {
                 $gift_thum_image_path = null;
             }
-
             $gift = new Gift();
             $gift->name = $request->name;
             $gift->video_link_inside = $request->video_inside;
@@ -115,7 +113,7 @@ class GiftController extends Controller
             if ($request->has('feature_title')) {
                 foreach ($request->input('feature_title') as $key => $title) {
                     if ($request->hasFile('feature_image')) {
-                        $image_path = Helper::fileUpload($request->file('feature_image.' . $key), 'gifts/feature-image', time() . '_' . pathinfo($request->file('feature_image.' . $key)->getClientOriginalName(), PATHINFO_FILENAME));
+                        $image_path = Helper::fileUpload($request->file('feature_image' . $key), 'gifts/feature-image', time() . '_' . pathinfo($request->file('feature_image' . $key)->getClientOriginalName(), PATHINFO_FILENAME));
                     } else {
                         $image_path = null;
                     }
@@ -154,42 +152,125 @@ class GiftController extends Controller
      */
     public function edit(string $id)
     {
-        $gift = Gift::where('id',$id)->with('giftGallary','giftFeaturedItem')->first();
+        $gift = Gift::findOrFail($id);
 
         return view('admin.layouts.gift.edit', compact('gift'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        // dd($request->all());
+        DB::beginTransaction();
+
+        $validator = $request->validate([
             'name' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ],
-            [
-                'image.max' => 'Maximum upload file size 2MB',
-            ]
-        );
-
-        $gift = Gift::findOrFail($id);
-        $file = $request->file('image');
-        if ($file) {
-            $image_path = Helper::fileUpload($file, '/gifts/', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-            Helper::deleteFile(public_path($gift->image));
-        } else {
-            $image_path = $gift->image;
-        }
-
-        $gift->update([
-            'name' => $request->name,
-            'image' => $image_path,
+            'video_inside' => 'nullable|string',
+            'video_outside' => 'nullable|string',
+            'feature_title.*' => 'required|string',
+            'feature_sub_title.*' => 'nullable|string',
+            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        flash()->addSuccess("Gift Updated Successfully.");
+        try {
+            $gift = Gift::findOrFail($id);
 
-        return redirect()->route('admin.gift.index');
+            // Update gift image
+            if ($request->hasFile('gift_image')) {
+                Helper::deleteFile($gift->image);
+                $file = $request->file('gift_image');
+                $gift_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift->image = $gift_image_path;
+            }
+
+            // Update gift thumbnail image
+            if ($request->hasFile('gift_thum_image')) {
+                Helper::deleteFile($gift->thumbnail_image);
+                $file = $request->file('gift_thum_image');
+                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift->thumbnail_image = $gift_thum_image_path;
+            }
+
+            // Update other gift fields
+            $gift->name = $request->name;
+            $gift->video_link_inside = $request->video_inside;
+            $gift->video_link_outside = $request->video_outside;
+            $gift->save();
+
+            // Handle inside images
+            if ($request->hasFile('inside_image')) {
+                foreach ($request->file('inside_image') as $file) {
+                    $image_path = Helper::fileUpload($file, 'gifts/inside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $gallery = new GiftGallary();
+                    $gallery->gift_image_type = 'inside';
+                    $gallery->image = $image_path;
+                    $gallery->gift_id = $gift->id;
+                    $gallery->save();
+                }
+            }
+
+            // Handle outside images
+            if ($request->hasFile('outside_image')) {
+                foreach ($request->file('outside_image') as $file) {
+                    $image_path = Helper::fileUpload($file, 'gifts/outside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $gallery = new GiftGallary();
+                    $gallery->gift_image_type = 'outside';
+                    $gallery->image = $image_path;
+                    $gallery->gift_id = $gift->id;
+                    $gallery->save();
+                }
+            }
+
+            // Handle plan images
+            if ($request->hasFile('plan_image')) {
+                foreach ($request->file('plan_image') as $file) {
+                    $image_path = Helper::fileUpload($file, 'gifts/plan-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $gallery = new GiftGallary();
+                    $gallery->gift_image_type = 'plan';
+                    $gallery->image = $image_path;
+                    $gallery->gift_id = $gift->id;
+                    $gallery->save();
+                }
+            }
+
+            // Handle featured items
+            if ($request->has('feature_title')) {
+                foreach ($request->input('feature_title') as $key => $title) {
+                    if ($request->hasFile('feature_image')) {
+                        $file = $request->file('feature_image')[$key] ?? null;
+                        if ($file) {
+                            $image_path = Helper::fileUpload($file, 'gifts/feature-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+
+                        } else {
+                            $image_path = null;
+                        }
+                    } else {
+                        $image_path = null;
+                    }
+                    $featuredItem = new GiftFeaturedItem();
+                    $featuredItem->title = $title;
+                    $featuredItem->sub_title = $request->input('feature_sub_title.' . $key);
+                    $featuredItem->image = $image_path;
+                    $featuredItem->gift_id = $gift->id;
+                    $featuredItem->save();
+                }
+            }
+
+            flash()->addSuccess("Gift Updated Successfully.");
+
+            DB::commit();
+            return redirect()->route('admin.gift.index');
+
+        } catch (\Exception $e) {
+            // Handle the exception
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -203,5 +284,17 @@ class GiftController extends Controller
 
         flash()->addSuccess("Gift Deleted Successfully.");
         return redirect()->route('admin.gift.index');
+    }
+
+
+    public function deleteGiftGallaryImage(Request $request){
+        
+        $type = $request->gift_image_type;
+        $gift_id = $request->gift_id;
+        $image = GiftGallary::findOrFail($request->id)->where('gift_image_type', $type)->where('gift_id', $gift_id);
+        Helper::deleteFile(public_path($image->image));
+        $image->delete();
+        flash()->addSuccess('Image Delete Successfully');
+        return response()->json(['success' => true]);
     }
 }
