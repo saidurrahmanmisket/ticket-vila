@@ -55,12 +55,15 @@ class TheProcessController extends Controller
             $icon_path = null;
         }
 
+        $lastOrderItem = TheProcess::orderBy('sort_id','desc')->first();
+
         $theProcess = new TheProcess();
         $theProcess->title = $request->title;
         $theProcess->description = $request->description;
         $theProcess->button_type  = $request->button_type;
         $theProcess->image = $image_path;
         $theProcess->icon = $icon_path;
+        $theProcess->sort_id = !empty($lastOrderItem) ? $lastOrderItem->sort_id + 1 : 0;
         $theProcess->icon_top_text = $request->icon_top_text;
         $theProcess->icon_bottom_text = $request->icon_bottom_text;
         $theProcess->save();

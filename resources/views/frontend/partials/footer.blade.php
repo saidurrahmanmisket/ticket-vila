@@ -61,6 +61,9 @@
             </div>
         </div>
     </div>
+    @foreach(\App\Enums\Lang::map() as $code => $lang)
+        <a class="btn" style="color: #ffffff" href="{{route('setLocale',$code)}}">{{$lang}}</a>
+    @endforeach
     <div class="lower--footer">
         <p>© {{ $systemSetting->copy_rights_text ?? 'Copyright 2023, All Rights Reserved by TicketVilla' }}</p>
     </div>

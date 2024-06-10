@@ -15,9 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('page');
             $table->string('section_name')->nullable();
-            $table->string('title')->nullable();
-            $table->string('sub_title')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('title_en')->nullable();
+            $table->string('title_de')->nullable();
+            $table->string('title_hu')->nullable();
+            $table->string('sub_title_en')->nullable();
+            $table->string('sub_title_de')->nullable();
+            $table->string('sub_title_hu')->nullable();
+            $table->longText('description_en')->nullable();
+            $table->longText('description_de')->nullable();
+            $table->longText('description_du')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
