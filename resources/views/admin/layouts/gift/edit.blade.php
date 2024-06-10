@@ -22,7 +22,7 @@
                             <div class="card-body">
                                 <div class="input--group">
                                     <label for="name">
-                                        <span class="text-red">*</span> Gift Name
+                                         Gift Name <span class="text-danger">*</span>
                                     </label>
                                     <input class="form-control @error('name') is-invalid @enderror" id="name"
                                         name="name" type="text" value="{{ $gift->name }}"
