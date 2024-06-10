@@ -32,6 +32,7 @@ Route::middleware(['auth','verified','admin'])->group(function (){
 
     //Gift routes
     Route::resource('/gift', GiftController::class);
+//    Route::get('/gift/')
 
     //Campaign routes
     Route::resource('/campaign', CampaignController::class);

@@ -6,8 +6,10 @@ use App\Enums\Page;
 use App\Enums\Section;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\FAQ;
+use App\Models\Gift;
 use App\Models\Team;
 use App\Models\TheProcess;
 
@@ -17,7 +19,11 @@ class PageController extends Controller
     {
         $hero_section = CMS::where('page',Page::HOME)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
         $theProcess = TheProcess::orderBy('sort_id','asc')->where('status',Status::ACTIVE)->get();
-        return view('frontend.layouts.index',compact('hero_section','theProcess'));
+
+        $campaign = Campaign::latest()->where('status', 'published')->first();
+        $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
+        
+        return view('frontend.layouts.index',compact('hero_section','theProcess', 'gift'));
     }
 
     public function about()
@@ -71,7 +77,15 @@ class PageController extends Controller
     public function theHouse()
     {
         $hero_section = CMS::where('page',Page::THE_HOUSE())->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        return view('frontend.layouts.the-house', compact('hero_section'));
+        $campaign = Campaign::latest()->where('status', 'published')->first();
+        $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
+
+        $giftImages = [
+            'insideImage' => $gift->giftGallary->where('gift_image_type' , 'inside'),
+            'outsideImage' => $gift->giftGallary->where('gift_image_type' , 'outside'),
+            'planImage' => $gift->giftGallary->where('gift_image_type' , 'plan'),
+        ];
+        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages'));
     }
 
     public function verifyEmail()
