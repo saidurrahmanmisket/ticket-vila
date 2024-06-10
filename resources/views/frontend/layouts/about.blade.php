@@ -33,12 +33,9 @@
                         <img src="{{ asset('frontend/images/about-mission-bg.png') }}" alt="" />
                     </div>
                     <div class="right">
-                        <h3 class="common--heading--title">The Mission</h3>
+                        <h3 class="common--heading--title"> {{ __('about-page.the_mission') }}</h3>
                         <p class="subtext">
-                            Transforming home ownership dreams into reality with just a €99
-                            ticket. Our house raffle is more than a chance to win; it's a
-                            step towards making owning a home accessible for everyone. Join
-                            the movement. Own your dream.
+                            {{ __('about-page.the_mission_content') }}
                         </p>
                     </div>
                 </div>
@@ -49,37 +46,37 @@
         <!-- business feature area starts -->
         <section data-aos-duration="600" data-aos="fade-up" class="business--feature--area--wrapper section--bottom--gap">
             <div class="container">
-                <h3 class="common--heading--title">Our Values</h3>
+                <h3 class="common--heading--title">{{ __('about-page.our_values') }}</h3>
                 <div class="business--feature--area--content">
                     <div data-aos="fade-up" data-aos-duration="500" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                         </div>
-                        <p class="title">Secure</p>
+                        <p class="title">{{ __('about-page.secure') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                         </div>
-                        <p class="title">Legal</p>
+                        <p class="title">{{ __('about-page.legal') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1100" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                         </div>
-                        <p class="title">Fair</p>
+                        <p class="title">{{ __('about-page.fair') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1300" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                         </div>
-                        <p class="title">Real opportunity</p>
+                        <p class="title">{{ __('about-page.real_opportunity') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                         </div>
-                        <p class="title">Cheap</p>
+                        <p class="title">{{ __('about-page.cheap') }}</p>
                     </div>
                 </div>
             </div>
@@ -91,16 +88,11 @@
             <div class="container">
                 <div class="our--commitment--area--content">
                     <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                        Our Commitment to Transparency, Security, and Fairness in the
-                        <span class="gold--text">Raffle Process</span>
+                        {{ __('about-page.commitment_to_transparency_security_and_fairness') }}
                     </h3>
 
                     <p data-aos="fade-up" data-aos-duration="700" class="sub--text">
-                        At House Villa, we prioritize transparency, security, and fairness
-                        throughout the entire raffle process. We believe in providing our
-                        participants with a trustworthy and reliable experience, ensuring
-                        that every ticket purchased has an equal chance of winning the
-                        house.
+                        {{ __('about-page.security_and_fairness_content') }}
                     </p>
 
                     <a href="#" class="btn--fill">
@@ -122,7 +114,7 @@
         <section class="meet--team--area--wrapper section--bottom--gap">
             <div class="container">
                 <h3 data-aos="fade-up" data-aos-duration="500" class="common--heading--title">
-                    Meet Our Team
+                    {{ __('about-page.meet_our_team') }}
                 </h3>
                 <div class="meet--team--area--content">
                     @if ($teams)
@@ -151,8 +143,7 @@
                 <div class="special--information--content">
                     <div data-aos="fade-up" data-aos-duration="600" class="text--area">
                         <p>
-                            For more information about our company or if there any question
-                            please contact us
+                            {{ __('about-page.contact_information') }}
                         </p>
                     </div>
 
