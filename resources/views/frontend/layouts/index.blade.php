@@ -9,21 +9,21 @@
             <div class="home--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="500" class="main--text">
-                        {{ !empty($hero_section) ? $hero_section->title : 'dream house Raffle' }}
+                        {{ !empty($hero_section) ? $hero_section["title_".locale()] ?? '' : 'dream house Raffle' }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="500" class="main--subtext">
                         {{ !empty($hero_section)
-                            ? $hero_section->description
+                            ? $hero_section["description_".locale()] ?? ''
                             : 'Be the lucky owner of a dream home, win €850,000.00 for the
                                                                             purchase of a € 99.00 eBook' }}
                     </p>
 
                     <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper">
                         <a href="#" class="btn--fill">
-                            <span>Join now</span>
+                            <span>{{ __('common.buy_now') }}</span>
                         </a>
                         <a href="#" class="btn--normal">
-                            <span>How does this work?</span>
+                            <span>{{ __('common.how_does_this_work') }}</span>
                         </a>
                     </div>
                 </div>
@@ -66,7 +66,8 @@
                 </h3>
 
                 <div class="facts--wrapper">
-                    @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem->isNotEmpty())
+                    @if($gift != null)
+                        @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem->isNotEmpty()  )
                         @foreach ($gift->giftFeaturedItem as $item)
                             <div data-aos="fade-up" data-aos-duration="500" class="single--facts">
                                 <div class="icon">
@@ -91,7 +92,7 @@
                             </div>
                         @endforeach
                     @endif
-
+                    @endif
                 </div>
             </div>
         </div>

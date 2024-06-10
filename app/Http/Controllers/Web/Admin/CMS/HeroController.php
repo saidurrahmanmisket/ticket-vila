@@ -37,8 +37,12 @@ class HeroController extends Controller
     {
         $request->validate([
            'page' => 'required|string',
-           'title'=> 'required|string',
-           'description'=> 'required|string',
+           'title_en'=> 'required|string',
+           'title_de'=> 'required|string',
+           'title_hu'=> 'required|string',
+           'description_en'=> 'required|string',
+           'description_de'=> 'required|string',
+           'description_hu'=> 'required|string',
            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
         ]);
 
@@ -56,9 +60,13 @@ class HeroController extends Controller
 
 
         $hero_section = new CMS();
-        $hero_section->title = $request->title;
+        $hero_section->title_en = $request->title_en;
+        $hero_section->title_de = $request->title_de;
+        $hero_section->title_hu = $request->title_hu;
         $hero_section->section_name = Section::HERO;
-        $hero_section->description = $request->description;
+        $hero_section->description_en = $request->description_en;
+        $hero_section->description_de = $request->description_de;
+        $hero_section->description_hu = $request->description_hu;
         $hero_section->image = $image_path;
         $hero_section->page = $request->page;
         $hero_section->save();

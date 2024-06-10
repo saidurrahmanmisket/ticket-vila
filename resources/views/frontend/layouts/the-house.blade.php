@@ -32,18 +32,18 @@
                 <div class="right image--holder">
                     <div class="single--row">
                         <div data-aos="fade-down" data-aos-duration="400" class="image">
-                            <img src="{{ asset('frontend/images/the-house-banner1.png') }}" alt="" />
+                            <img src="{{ asset('frontend/images/the-house-banner1.png') }}" alt=""/>
                         </div>
                         <div data-aos="fade-up" data-aos-duration="500" class="image">
-                            <img src="{{ asset('frontend/images/the-house-banner2.png') }}" alt="" />
+                            <img src="{{ asset('frontend/images/the-house-banner2.png') }}" alt=""/>
                         </div>
                     </div>
                     <div class="single--row row2">
                         <div data-aos="fade-down" data-aos-duration="600" class="image">
-                            <img src="{{ asset('frontend/images/the-house-banner3.png') }}" alt="" />
+                            <img src="{{ asset('frontend/images/the-house-banner3.png') }}" alt=""/>
                         </div>
                         <div data-aos="fade-up" data-aos-duration="700" class="image">
-                            <img src="{{ asset('frontend/images/the-house-banner4.png') }}" alt="" />
+                            <img src="{{ asset('frontend/images/the-house-banner4.png') }}" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -70,23 +70,25 @@
                         <a href="#" class="btn--normal border blank">
                             <span>Sign Up</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
+                                 fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
                 </div>
 
                 <div class="image--grid">
-                    @if ($giftImages['insideImage'] && $giftImages['insideImage']->isNotEmpty())
-                        @foreach ($giftImages['insideImage'] as $item)
-                            <div class="img--holder">
-                                <img src="{{ asset($item->image) }}" alt="" />
-                            </div>
-                        @endforeach
+                    @if($gift != null)
+                        @if ($giftImages['insideImage'] && $giftImages['insideImage']->isNotEmpty())
+                            @foreach ($giftImages['insideImage'] as $item)
+                                <div class="img--holder">
+                                    <img src="{{ asset($item->image) }}" alt=""/>
+                                </div>
+                            @endforeach
+                        @endif
                     @endif
                 </div>
 
@@ -109,23 +111,25 @@
                         <a href="#" class="btn--normal border blank">
                             <span>Join Now</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
+                                 fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
                 </div>
 
                 <div class="image--grid">
+                    @if($gift != null)
                     @if ($giftImages['outsideImage'] && $giftImages['outsideImage']->isNotEmpty())
                         @foreach ($giftImages['outsideImage'] as $item)
                             <div class="img--holder">
-                                <img src="{{ asset($item->image) }}" alt="" />
+                                <img src="{{ asset($item->image) }}" alt=""/>
                             </div>
                         @endforeach
+                    @endif
                     @endif
                 </div>
             </div>
@@ -143,25 +147,27 @@
                         <a href="#" class="btn--normal border blank">
                             <span>Join Now</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
+                                 fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
                 </div>
                 <div class="the--floor--plan--content">
                     <div data-aos="fade-up" data-aos-duration="400" class="single--floor">
-                        <img src="{{ asset('frontend/images/floor-plan1.png') }}" alt="" />
+                        <img src="{{ asset('frontend/images/floor-plan1.png') }}" alt=""/>
                     </div>
+                    @if($gift != null)
                     @if ($giftImages['planImage'] && $giftImages['planImage']->isNotEmpty())
                         @foreach ($giftImages['planImage'] as $item)
                             <div data-aos="fade-up" data-aos-duration="400" class="single--floor">
-                                <img src="{{ asset($item->image) }}" alt="" />
+                                <img src="{{ asset($item->image) }}" alt=""/>
                             </div>
                         @endforeach
+                    @endif
                     @endif
                 </div>
             </div>
@@ -185,7 +191,7 @@
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
-                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
                             <p>Click to start</p>
                         </div>
@@ -205,11 +211,12 @@
                     <a href="#" class="btn--normal blank border">
                         <span>Join Now</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                            fill="none">
+                             fill="none">
                             <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.70117 1.70124L15.7512 7.72524L9.70117 13.7502" stroke="#010C0F" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.70117 1.70124L15.7512 7.72524L9.70117 13.7502" stroke="#010C0F"
+                                  stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
                 </div>
@@ -223,7 +230,7 @@
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
-                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
                             <p>Click to start</p>
                         </div>
@@ -242,6 +249,7 @@
                     Some Highlights
                 </h3>
                 <div data-aos="fade-up" data-aos-duration="700" class="highlights--section--content">
+                    @if($gift != null)
                     @if (
                         ($giftImages['insideImage'] && $giftImages['insideImage']->isNotEmpty()) ||
                             ($giftImages['outsideImage'] && $giftImages['outsideImage']->isNotEmpty()))
@@ -255,26 +263,27 @@
                         @foreach ($allImages as $image)
                             <div class="single--row">
                                 <div class="img--holder">
-                                    <img src="{{ asset($image->image) }}" alt="" />
+                                    <img src="{{ asset($image->image) }}" alt=""/>
                                 </div>
                             </div>
                         @endforeach
                     @endif
+                    @endif
 
                 </div>
-                    <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
-                        <a href="#" class="btn--fill">
-                            <span>Join Now</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72571L0.75 7.72571" stroke="white" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.7002 1.70131L15.7502 7.72531L9.7002 13.7503" stroke="white" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
+                    <a href="#" class="btn--fill">
+                        <span>Join Now</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                             fill="none">
+                            <path d="M15.75 7.72571L0.75 7.72571" stroke="white" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.7002 1.70131L15.7502 7.72531L9.7002 13.7503" stroke="white" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
+            </div>
         </section>
     </section>
     <!-- inner padding area ends -->
