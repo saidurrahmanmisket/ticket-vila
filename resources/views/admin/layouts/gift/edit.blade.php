@@ -229,7 +229,8 @@
                                         <div class="card mb-4 border border-primary">
                                             <div class="card-body">
                                                 <div class="d-flex flex-row-reverse">
-                                                    <a type="button" data-id="{{ $featureItem->id }}" class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                                                    <input type="hidden" name="featureId[]" value="{{ $featureItem->id }}">
+                                                    <a type="button" data-id="{{ $featureItem->id }}"  class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
                                                 </div>
                                             <h4 class="">Feature 
                                                 <strong class="feature-no">{{ $key + 1 }}</strong>
@@ -238,6 +239,7 @@
                                             <div class="input--group">
                                                 <label for="feature_title">Feature Title <span class="text-danger">*</span></label>
                                                 <input id="feature_title" type="text"
+                                                name="feature_title_old[]" 
                                                     value="{{ $featureItem->title }}" placeholder="Feature Title..">
                                                 @error('feature_title')
                                                     <span class="invalid-feedback d-block" role="alert">
@@ -249,6 +251,7 @@
                                                 <label for="feature_sub_title">Feature Sub Title</label>
                                                 <input id="feature_sub_title" type="text"
                                                     value="{{ $featureItem->sub_title }}"
+                                                    name="feature_sub_title_old[]"
                                                     placeholder="Feature Sub Title..">
                                                 @error('feature_sub_title')
                                                     <span class="invalid-feedback d-block" role="alert">

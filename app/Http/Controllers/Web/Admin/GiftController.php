@@ -176,6 +176,9 @@ class GiftController extends Controller
             'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'feature_title_old.*' => 'nullable',
+            'feature_sub_title_old.*' => 'nullable|string',
+
         ]);
 
         try {
@@ -236,6 +239,18 @@ class GiftController extends Controller
                     $gallery->image = $image_path;
                     $gallery->gift_id = $gift->id;
                     $gallery->save();
+                }
+            }
+            // Handle updating existing featured items
+            if ($request->has('featureId')) {
+                foreach ($request->input('featureId') as $key => $featuredId) {
+                    $featuredItem = GiftFeaturedItem::find($featuredId);
+                    if ($featuredItem) {
+                        // Update fields
+                        $featuredItem->title = $request->input('feature_title_old.' . $key);
+                        $featuredItem->sub_title = $request->input('feature_sub_title_old.' . $key);
+                        $featuredItem->save();
+                    }
                 }
             }
 
