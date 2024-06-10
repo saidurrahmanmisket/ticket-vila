@@ -41,7 +41,7 @@ class GiftController extends Controller
             'name' => 'required|string',
             'video_inside' => 'nullable|string',
             'video_outside' => 'nullable|string',
-            'feature_title.*' => 'nullable|string',
+            'feature_title.*' => 'required|string',
             'feature_sub_title.*' => 'nullable|string',
             'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

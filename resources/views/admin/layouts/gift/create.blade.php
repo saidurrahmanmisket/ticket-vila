@@ -18,7 +18,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="input--group">
-                                    <label for="name">Gift Name</label>
+                                    <label for="name">
+                                        Gift Name <span class="text-danger">*</span>
+                                    </label>
                                     <input class="form-control @error('name') is-invalid @enderror" id="name"
                                         name="name" type="text" value="{{ old('name') }}"
                                         placeholder="Gift name...">
@@ -181,7 +183,7 @@
                                     </h4>
 
                                     <div class="input--group">
-                                        <label for="feature_title">Feature Title</label>
+                                        <label for="feature_title">Feature Title <span class="text-danger">*</span></label>
                                         <input id="feature_title" name="feature_title[]" type="text"
                                             placeholder="Feature Title..">
                                         @error('feature_title')
@@ -191,7 +193,7 @@
                                         @enderror
                                     </div>
                                     <div class="input--group">
-                                        <label for="feature_sub_title">Feature Sub Title</label>
+                                        <label for="feature_sub_title">Feature Sub Title </label>
                                         <input id="feature_sub_title" name="feature_sub_title[]" type="text"
                                             placeholder="Feature Sub Title..">
                                         @error('feature_sub_title')
@@ -364,7 +366,7 @@
                 <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
                 <div class="input--group">
-                    <label for="feature_title">Feature Title</label>
+                    <label for="feature_title">Feature Title <span class="text-danger">*</span></label>
                     <input id="feature_title" name="feature_title[]" type="text" value="" placeholder="Feature Title..">
                 </div>
                 <div class="input--group">
