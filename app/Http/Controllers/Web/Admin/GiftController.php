@@ -289,12 +289,58 @@ class GiftController extends Controller
 
     public function deleteGiftGallaryImage(Request $request){
         
-        $type = $request->gift_image_type;
-        $gift_id = $request->gift_id;
-        $image = GiftGallary::findOrFail($request->id)->where('gift_image_type', $type)->where('gift_id', $gift_id);
-        Helper::deleteFile(public_path($image->image));
-        $image->delete();
-        flash()->addSuccess('Image Delete Successfully');
+        try {
+            $type = $request->gift_image_type;
+            $gift_id = $request->gift_id;
+            
+            // Retrieve the GiftGallary instance
+            $image = GiftGallary::where('id', $request->id)
+                ->where('gift_image_type', $type)
+                ->where('gift_id', $gift_id)
+                ->firstOrFail();
+            
+            // Delete the file
+            Helper::deleteFile(public_path($image->image));
+            
+            // Delete the database record
+            $image->delete();
+
         return response()->json(['success' => true]);
+
+        } catch (\Exception $e) {
+            // Handle the exception
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage()
+        ]);
+        }
+    }
+    public function deleteGifFeatureItem(Request $request){
+        
+        try {
+            $gift_id = $request->gift_id;
+            
+            // Retrieve the GiftGallary instance
+            $featuredItem = GiftFeaturedItem::where('id', $request->id)
+                ->where('gift_id', $gift_id)
+                ->firstOrFail();
+            
+            // Delete the file
+            Helper::deleteFile(public_path($featuredItem->image));
+            
+            // Delete the database record
+            $featuredItem->delete();
+
+        return response()->json(['success' => true]);
+
+        } catch (\Exception $e) {
+            // Handle the exception
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage()
+        ]);
+        }
     }
 }

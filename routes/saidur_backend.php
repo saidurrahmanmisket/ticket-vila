@@ -20,5 +20,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/mailSettingUpdate', [ConfigurationSettingController::class, 'mailSettingUpdate'])->name('mailSettingUpdate');
     Route::post('/paymentConfigurationUpdate', [ConfigurationSettingController::class, 'paymentConfigurationUpdate'])->name('paymentConfigurationUpdate');
     Route::post('/delete-gift-gallary-image', [GiftController::class, 'deleteGiftGallaryImage'])->name('deleteGiftGallaryImage');
+    Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
 
 });

@@ -5,6 +5,7 @@
 @endsection;
 @push('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
+
 @endpush
 @section('content')
     <!-- profile area  -->
@@ -20,7 +21,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="input--group">
-                                    <label for="name">Gift Name</label>
+                                    <label for="name"> Gift Name</label>
                                     <input class="form-control @error('name') is-invalid @enderror" id="name"
                                         name="name" type="text" value="{{ $gift->name }}"
                                         placeholder="Gift name...">
@@ -77,7 +78,7 @@
                                                 name="inside_image[]"
                                                 data-show-remove="false" accept="image/*"
                                                 data-default-file="{{ asset($insideImageItem->image) }}">
-                                                <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
+                                                <a type="button" data-id="{{ $insideImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -119,8 +120,8 @@
                                                 <input type="file"
                                                     class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
                                                     data-show-remove="false" accept="image/*" value="{{ old('outside') }}"
-                                                    data-default-file="{{ asset($insideImageItem->image) }}">
-                                                <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
+                                                    data-default-file="{{ asset($outsideImageItem->image) }}">
+                                                <a type="button" data-id="{{ $outsideImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -161,7 +162,7 @@
                                                     class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
                                                     data-show-remove="false" accept="image/*"
                                                     data-default-file="{{ asset($planImageItem->image) }}">
-                                                <a type="button" class="btn btn-danger btn-sm remove-image">X</a>
+                                                <a type="button" data-id="{{ $planImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -223,9 +224,13 @@
 
                                 @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem != null)
                                     @foreach ($gift->giftFeaturedItem as $key => $featureItem)
-                                        <div class="">
-                                            <h4 class="mt-4">Feature <strong
-                                                    class="feature-no">{{ $key + 1 }}</strong>
+                                        <div class="card mb-4 border border-primary">
+                                            <div class="card-body">
+                                                <div class="d-flex flex-row-reverse">
+                                                    <a type="button" data-id="{{ $featureItem->id }}" class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                                                </div>
+                                            <h4 class="">Feature 
+                                                <strong class="feature-no">{{ $key + 1 }}</strong>
                                             </h4>
 
                                             <div class="input--group">
@@ -255,7 +260,6 @@
                                                     <input type="file"
                                                         class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
                                                         data-show-remove="true" accept="image/*"
-                                                        value="{{ asset($featureItem->image) }}"
                                                         data-default-file="{{ asset($featureItem->image) }}">
                                                     @error('feature_image')
                                                         <span class="text-danger" role="alert">
@@ -265,9 +269,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
                                     @endforeach
                                 @else
-                                    <div class="">
+                                    <div class="" id="featureItemSection">
                                         <h4 class="">Feature <strong class="feature-no">1</strong>
                                         </h4>
 
@@ -310,55 +315,6 @@
 
                             </div>
                         </div>
-                        {{-- gift feature section  --}}
-                        {{-- <div class="card my-4 p-2 ">
-                            <div class="card-body" id="feature-content">
-                                <h2 class="text-center card-title">Gift Features </h2>
-                                <div class="d-flex justify-content-end gap-2 mb-4">
-                                    <a type="button" id="addFeature" class="btn btn-primary">Add Another
-                                        Feature</a>
-                                </div>
-                                <div class="feature-item">
-                                    <h4 class="">Feature <strong class="feature-no">1</strong></h4>
-
-                                    <div class="input--group">
-                                        <label for="name">Feature Title</label>
-                                        <input id="name" name="name[]" type="text" value="{{ old('name') }}"
-                                            placeholder="Feature Title..">
-                                        @error('name')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="name">Feature Sub Title</label>
-                                        <input id="name" name="name[]" type="text" value="{{ old('name') }}"
-                                            placeholder="Feature Sub Title..">
-                                        @error('name')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row input--group" id="imageUploadContainerPlan">
-                                        <div class="col">
-                                            <input type="file"
-                                            class="form-control form-control-lg mt-2 border-left-0 dropify" name="image[]"
-                                            id="image" data-show-remove="true" accept="image/*"
-                                            value="{{ old('image', '') }}" data-default-file="">
-                                            @error('image')
-                                                <span class="text-danger" role="alert">
-                                                    <strong>Image is Required and size should not exceed 4MB.</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-
-
 
                         <div class="d-flex justify-content-center mb-5">
                             <button type="submit ">Update Gift</button>
@@ -397,12 +353,12 @@
         // Event delegation to handle remove button click for dynamically added fields
         $('#imageUploadContainer').on('click', '.remove-image', function() {
             $(this).parent().remove();
-            showLoader();
             $.ajax({
-                url:  '{{ route('admin.deleteGiftGallaryImage') }}',
+                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
+                    id: $(this).data('id'),
                     gift_id: '{{ $gift->id }}',
                     gift_image_type: 'inside'
                 },
@@ -435,6 +391,24 @@
         // Event delegation to handle remove button click for dynamically added fields
         $('#imageUploadContainerOutside').on('click', '.remove-image', function() {
             $(this).parent().remove();
+            $.ajax({
+                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: $(this).data('id'),
+                    gift_id: '{{ $gift->id }}',
+                    gift_image_type: 'outside',
+                },
+                success: function(response) {
+                console.log(response);
+                
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr, status, error);
+                
+                },
+            });
         });
 
 
@@ -456,11 +430,29 @@
         // Event delegation to handle remove button click for dynamically added fields
         $('#imageUploadContainerPlan').on('click', '.remove-image', function() {
             $(this).parent().remove();
+            $.ajax({
+                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: $(this).data('id'),
+                    gift_id: '{{ $gift->id }}',
+                    gift_image_type: 'plan'
+                },
+                success: function(response) {
+                console.log(response);
+                
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr, status, error);
+                
+                },
+            });
         });
 
 
 
-        //feature section
+        //add feature section 
 
         document.addEventListener('DOMContentLoaded', function() {
             let featureCount = $('.feature-no:last').text().toLowerCase();
@@ -472,25 +464,31 @@
                 const newFeature = document.createElement('div');
                 newFeature.classList.add('feature-item');
                 newFeature.innerHTML = `
-                    <hr class="mt-4 ">
-                <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
+                <div class="card border border-primary">
+                    <div class="card-body">
+                        <div class="d-flex flex-row-reverse">
+                                                    <a type="button" class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                                                </div>
+                        <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
-                <div class="input--group">
-                    <label for="feature_title">Feature Title</label>
-                    <input id="feature_title" name="feature_title[]" type="text" value="" placeholder="Feature Title..">
-                </div>
-                <div class="input--group">
-                    <label for="feature_sub_title">Feature Sub Title</label>
-                    <input id="feature_sub_title" name="feature_sub_title[]" type="text" value="" placeholder="Feature Sub Title..">
-                </div>
+                        <div class="input--group">
+                            <label for="feature_title">Feature Title</label>
+                            <input id="feature_title" name="feature_title[]" type="text" value="" placeholder="Feature Title..">
+                        </div>
+                        <div class="input--group">
+                            <label for="feature_sub_title">Feature Sub Title</label>
+                            <input id="feature_sub_title" name="feature_sub_title[]" type="text" value="" placeholder="Feature Sub Title..">
+                        </div>
 
-                <div class="form-group row mt-4" id="imageUploadContainerPlan">
-                    <div class="col">
-                        {{-- <label for="image">Gallery Image:</label> --}}
-                <input type="file"
-                    class="form-control form-control-lg mt-2 border-left-0 dropify"
-                    name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
-                            data-default-file="">
+                        <div class="form-group row mt-4" id="imageUploadContainerPlan">
+                            <div class="col">
+                                {{-- <label for="image">Gallery Image:</label> --}}
+                        <input type="file"
+                            class="form-control form-control-lg mt-2 border-left-0 dropify"
+                            name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
+                                    data-default-file="">
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -511,9 +509,33 @@
                 // Prevent the input from being clicked
                 event.preventDefault();
                 event.stopPropagation();
+
                 
                 return false;
             })
+        });
+
+        //delete feature item 
+        $('#feature-content').on('click', '.remove-feature', function() {
+            console.log('ok');
+            $(this).parent().parent().parent().remove();
+            $.ajax({
+                url:  "{{ route('admin.deleteGifFeatureItem') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: $(this).data('id'),
+                    gift_id: '{{ $gift->id }}',
+                },
+                success: function(response) {
+                console.log(response);
+                
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr, status, error);
+                
+                },
+            });
         });
     </script>
 @endpush
