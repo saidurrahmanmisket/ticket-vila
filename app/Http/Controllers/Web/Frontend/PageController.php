@@ -21,8 +21,13 @@ class PageController extends Controller
         $theProcess = TheProcess::orderBy('sort_id','asc')->where('status',Status::ACTIVE)->get();
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
-        $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
-        
+        if ($campaign){
+            $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
+        }else{
+            $gift = null;
+        }
+
+
         return view('frontend.layouts.index',compact('hero_section','theProcess', 'gift'));
     }
 
@@ -78,13 +83,18 @@ class PageController extends Controller
     {
         $hero_section = CMS::where('page',Page::THE_HOUSE())->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
         $campaign = Campaign::latest()->where('status', 'published')->first();
+        if ($campaign){
         $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
+            $giftImages = [
+                'insideImage' => $gift->giftGallary->where('gift_image_type' , 'inside'),
+                'outsideImage' => $gift->giftGallary->where('gift_image_type' , 'outside'),
+                'planImage' => $gift->giftGallary->where('gift_image_type' , 'plan'),
+            ];
+        }else{
+            $gift = null;
+            $giftImages = null ;
+        }
 
-        $giftImages = [
-            'insideImage' => $gift->giftGallary->where('gift_image_type' , 'inside'),
-            'outsideImage' => $gift->giftGallary->where('gift_image_type' , 'outside'),
-            'planImage' => $gift->giftGallary->where('gift_image_type' , 'plan'),
-        ];
         return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages'));
     }
 

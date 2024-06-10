@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('sub_title_hu')->nullable();
             $table->longText('description_en')->nullable();
             $table->longText('description_de')->nullable();
-            $table->longText('description_du')->nullable();
+            $table->longText('description_hu')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

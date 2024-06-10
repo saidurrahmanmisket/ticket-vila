@@ -39,7 +39,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="title_en" class="form-label required">Title(en)</label>
+                                    <label for="title_en" class="form-label required">Title(En)</label>
                                     <input type="text" class="form-control" id="title_en" value="{{old('title_en')}}" name="title_en">
                                     @error('title_en')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -48,7 +48,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="title_de" class="form-label required">Title(de)</label>
+                                    <label for="title_de" class="form-label required">Title(De)</label>
                                     <input type="text" class="form-control" id="title_de" value="{{old('title_de')}}" name="title_de">
                                     @error('title_de')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -57,18 +57,9 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="title_hu" class="form-label required">Title(hu)</label>
+                                    <label for="title_hu" class="form-label required">Title(Hu)</label>
                                     <input type="text" class="form-control" id="title_hu" value="{{old('title_hu')}}" name="title_hu">
                                     @error('title_hu')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
-                                    @enderror
-                                </div>
-                                <div class="mt-3">
-                                    <label for="description" class="form-label required">Description</label>
-                                    <textarea type="text" class="form-control" rows="4" id="description" name="description" placeholder="Write here....">{{old('description')}}</textarea>
-                                    @error('description')
                                     <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
@@ -81,6 +72,35 @@
                                         <span class="invalid-feedback d-block" role="alert">
                                           <strong>{{ $message }}</strong>
                                         </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="description_en" class="form-label required">Description(En)</label>
+                                    <textarea type="text" class="form-control" rows="4" id="description_en" name="description_en" placeholder="Write here....">{{old('description_en')}}</textarea>
+                                    @error('description_en')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                    @enderror
+                                </div>
+                                <div class="mt-3">
+                                    <label for="description_de" class="form-label required">Description(De)</label>
+                                    <textarea type="text" class="form-control" rows="4" id="description_de" name="description_de" placeholder="Write here....">{{old('description_de')}}</textarea>
+                                    @error('description_de')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                    @enderror
+                                </div>
+                                <div class="mt-3">
+                                    <label for="description_hu" class="form-label required">Description(Hu)</label>
+                                    <textarea type="text" class="form-control" rows="4" id="description_hu" name="description_hu" placeholder="Write here....">{{old('description_hu')}}</textarea>
+                                    @error('description_hu')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
                                     @enderror
                                 </div>
                             </div>
