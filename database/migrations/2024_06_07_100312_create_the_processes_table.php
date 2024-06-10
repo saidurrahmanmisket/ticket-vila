@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('the_processes', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->string('title_en')->nullable();
+            $table->string('title_de')->nullable();
+            $table->string('title_hu')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_de')->nullable();
+            $table->text('description_hu')->nullable();
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
-            $table->string('icon_top_text')->nullable();
-            $table->string('icon_bottom_text')->nullable();
+            $table->string('icon_top_text_en')->nullable();
+            $table->string('icon_top_text_de')->nullable();
+            $table->string('icon_top_text_hu')->nullable();
+            $table->string('icon_bottom_text_en')->nullable();
+            $table->string('icon_bottom_text_de')->nullable();
+            $table->string('icon_bottom_text_hu')->nullable();
             $table->string('sort_id')->default(0);
             $table->enum('button_type',['buy_now','learn_more','both','none'])->default('buy_now');
             $table->enum('status',['active','inactive'])->default('active');

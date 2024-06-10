@@ -10,7 +10,7 @@
 
         <div class="the--process--area--content">
             @forelse($theProcess as $process)
-                <div class="single--process {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}}">
+                <div class="single--process {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}} {{ (strlen($process->description) < 160 && strlen($process->title) < 35 ) ? 'less--content' : '' }} {{ (strlen($process->description)  > 250 && strlen($process->title) > 50) ? 'extra--content' : '' }} {{ (strlen($process->title) > 45 && strlen($process->description) > 280) ? 'over--text' : '' }}">
                     <div class="img--container">
                         <img src="{{ asset(!empty($process->image) ? $process->image :'frontend/images/single-process.png') }}" alt="" />
                     </div>
@@ -131,11 +131,16 @@
 
 
                         <!-- featured content -->
-                        <div class="featured--content">
+                        <div class="featured--content {{!empty($process->icon_bottom_text) ? 'bonus' : ''}}">
                             <div class="left--arrow"></div>
                             <div class="top--arrow"></div>
-                            <p class="text">{{$process->icon_top_text}}</p>
+                            @if($process->icon_top_text)
+                                <p class="text">{{$process->icon_top_text}}</p>
+                            @endif
                             <img src="{{ asset(!empty($process->icon) ? $process->icon :'frontend/images/process-icon1.png') }}" alt="" />
+                           @if($process->icon_bottom_text)
+                                <p class="bonus--text">{{ $process->icon_bottom_text }}</p>
+                           @endif
 
                             <div class="bottom--arrow"></div>
                         </div>

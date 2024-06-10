@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <div class="d-flex flex-column">
-                                    <label for="page" class="form-label">Select Page</label>
+                                    <label for="page" class="form-label required">Select Page</label>
                                     <select class="form-select form-select-lg mb-3" id="page" name="page">
                                         <option selected value="">Select page</option>
                                         @foreach(\App\Enums\Page::map() as $index =>$page)
@@ -39,16 +39,34 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="title" value="{{old('title')}}" name="title">
-                                    @error('title')
+                                    <label for="title_en" class="form-label required">Title(en)</label>
+                                    <input type="text" class="form-control" id="title_en" value="{{old('title_en')}}" name="title_en">
+                                    @error('title_en')
                                     <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="description" class="form-label">Description</label>
+                                    <label for="title_de" class="form-label required">Title(de)</label>
+                                    <input type="text" class="form-control" id="title_de" value="{{old('title_de')}}" name="title_de">
+                                    @error('title_de')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                    @enderror
+                                </div>
+                                <div class="mt-3">
+                                    <label for="title_hu" class="form-label required">Title(hu)</label>
+                                    <input type="text" class="form-control" id="title_hu" value="{{old('title_hu')}}" name="title_hu">
+                                    @error('title_hu')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                    @enderror
+                                </div>
+                                <div class="mt-3">
+                                    <label for="description" class="form-label required">Description</label>
                                     <textarea type="text" class="form-control" rows="4" id="description" name="description" placeholder="Write here....">{{old('description')}}</textarea>
                                     @error('description')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -57,7 +75,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="image"  class="form-label">Image</label>
+                                    <label for="image"  class="form-label required">Image</label>
                                     <input type="file" class="form-control dropify" id="image" name="image" accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
                                     @error('image')
                                         <span class="invalid-feedback d-block" role="alert">

@@ -36,5 +36,8 @@ class Helper {
         }
         return $slug;
     }
-    
+
 }
+
+
+

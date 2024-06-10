@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <div class="d-flex flex-column">
-                                    <label for="page" class="form-label">Select Page</label>
+                                    <label for="page" class="form-label required">Select Page</label>
                                     <select class="form-select form-select-lg mb-3" id="page" name="page">
                                         <option selected value="">Select page</option>
                                         @foreach(\App\Enums\Page::map() as $index =>$page)
@@ -38,7 +38,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="title" class="form-label">Title</label>
+                                    <label for="title" class="form-label required">Title</label>
                                     <input type="text" class="form-control" id="title" value="{{$hero_section->title}}" name="title">
                                     @error('title')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -47,7 +47,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <label for="description" class="form-label">Description</label>
+                                    <label for="description" class="form-label required">Description</label>
                                     <textarea type="text" class="form-control" rows="4" id="description"  name="description" placeholder="Write here....">{{$hero_section->description}}</textarea>
                                     @error('description')
                                     <span class="invalid-feedback d-block" role="alert">
