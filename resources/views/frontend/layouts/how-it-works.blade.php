@@ -326,29 +326,8 @@
                     FAQs and answers on a particular topic you product on Residence
                 </p>
             </div>
-            <div class="faq--area--content">
-                <div class="accordion" id="accordionExample">
-                    @if ($faqs)
-                        @foreach ($faqs as $faq)
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne{{ $faq->id }}" aria-expanded="false"
-                                        aria-controls="collapseOne">
-                                        {{ $faq->question ?? ' ' }}
-                                    </button>
-                                </h2>
-                                <div id="collapseOne{{ $faq->id }}" class="accordion-collapse collapse "
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        {{ $faq->answer ?? '' }}
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
+            {{-- this is daynamic faq component --}}
+            <x-faq></x-faq>
         </div>
     </section>
     <!-- faq area ends -->

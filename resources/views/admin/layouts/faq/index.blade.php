@@ -58,8 +58,8 @@
                         @forelse($faqs as $faq)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $faq->question }}</td>
-                                <td>{{ $faq->answer }}</td>
+                                <td>{{ $faq->question_en }}</td>
+                                <td>{{ $faq->answer_en }}</td>
                                 <td>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" @if ($faq->status == 'active') checked @endif

@@ -106,7 +106,6 @@ class PageController extends Controller
     public function howItWorks()
     {
         $hero_section = CMS::where('page',Page::HOW_IT_WORKS)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        $faqs = FAQ::where('status', 'active')->get();
-        return view('frontend.layouts.how-it-works', compact('faqs','hero_section'));
+        return view('frontend.layouts.how-it-works', compact('hero_section'));
     }
 }
