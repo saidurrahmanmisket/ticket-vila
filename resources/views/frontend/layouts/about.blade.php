@@ -9,12 +9,10 @@
                 <div class="about--us--banner--content">
                     <div class="left">
                         <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                            {{!empty($hero_section) ? $hero_section->title : 'Our Mission & Values'}}
+                            {{!empty($hero_section) ? $hero_section["title_".locale()] ?? '' : __('Our Mission & Values')}}
                         </h3>
                         <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                            {{!empty($hero_section) ? $hero_section->description : 'At Ticket villa, we are dedicated to providing an opportunity
-                            for everyone to win their dream home. With our Innovative raffle
-                            system, we make homeownership accessible and exciting.'}}
+                            {{!empty($hero_section) ? $hero_section["description_".locale()] ?? '' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.')}}
                         </p>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" class="right">
