@@ -9,23 +9,20 @@
             <div class="about--us--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                        {{ !empty($hero_section) ? $hero_section->title : 'The House' }}
+                        {{ !empty($hero_section) ? $hero_section['title_'.locale()] : __('The House') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
                         {{ !empty($hero_section)
-                            ? $hero_section->description
-                            : 'Welcome to i he House, where dreams come true. This stunning
-                                                                                                                                                                property offers the perfect blend of luxury, modern design, and
-                                                                                                                                                                spacious living. Enter our raffle for a chance to win this
-                                                                                                                                                                incredible home and make it your own.' }}
+                            ? $hero_section['description_'.locale()]
+                            : __('Welcome to i he House, where dreams come true. This stunning property offers the perfect blend of luxury, modern design, and spacious living. Enter our raffle for a chance to win this incredible home and make it your own.') }}
                     </p>
 
                     <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
                         <a href="#" class="btn--fill">
-                            <span>Join now</span>
+                            <span>{{ __("Join Now") }}</span>
                         </a>
                         <a href="#" class="btn--normal">
-                            <span>How does this work?</span>
+                            <span>{{ __('How does this work?') }}</span>
                         </a>
                     </div>
                 </div>

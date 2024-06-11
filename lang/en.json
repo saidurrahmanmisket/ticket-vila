@@ -1,10 +1,16 @@
 {
 
+    "Home": "Home",
+    "About Us": "About Us",
+    "How it Works": "How it Works",
+    "Contact": "Contact",
+
     "Buy Now": "Buy Now",
     "Join Now": "Join now",
     "See More": "See More",
     "How does this work?": "How does this work?",
     "Live Statistics": "Live Statistics",
+    "Registration": "Registration",
 
     "Dream house Raffle": "Dream house Raffle",
     "Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook": "Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook",
@@ -18,5 +24,13 @@
     "At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.": "At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.",
 
     "Discover the Process": "Discover the Process",
-    "Learn how you can win your dream house with just one ticket!": "Learn how you can win your dream house with just one ticket!"
+    "Learn how you can win your dream house with just one ticket!": "Learn how you can win your dream house with just one ticket!",
+
+    "The House": "The House",
+    "Welcome to i he House, where dreams come true. This stunning property offers the perfect blend of luxury, modern design, and spacious living. Enter our raffle for a chance to win this incredible home and make it your own.": "Welcome to i he House, where dreams come true. This stunning property offers the perfect blend of luxury, modern design, and spacious living. Enter our raffle for a chance to win this incredible home and make it your own.",
+
+    "Get in Touch": "Get in Touch",
+    "We are here to assist you with any inquiries or concerns you may have.": "We are here to assist you with any inquiries or concerns you may have.",
+
+
 }
