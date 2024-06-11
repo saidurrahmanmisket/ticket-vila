@@ -31,9 +31,9 @@
                         <img src="{{ asset('frontend/images/about-mission-bg.png') }}" alt="" />
                     </div>
                     <div class="right">
-                        <h3 class="common--heading--title"> {{ __('about-page.the_mission') }}</h3>
+                        <h3 class="common--heading--title"> {{ __('The Mission') }}</h3>
                         <p class="subtext">
-                            {{ __('about-page.the_mission_content') }}
+                            {{ __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
                         </p>
                     </div>
                 </div>
@@ -44,37 +44,37 @@
         <!-- business feature area starts -->
         <section data-aos-duration="600" data-aos="fade-up" class="business--feature--area--wrapper section--bottom--gap">
             <div class="container">
-                <h3 class="common--heading--title">{{ __('about-page.our_values') }}</h3>
+                <h3 class="common--heading--title">{{ __('Our Values') }}</h3>
                 <div class="business--feature--area--content">
                     <div data-aos="fade-up" data-aos-duration="500" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('about-page.secure') }}</p>
+                        <p class="title">{{ __('Secure') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('about-page.legal') }}</p>
+                        <p class="title">{{ __('Legal') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1100" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('about-page.fair') }}</p>
+                        <p class="title">{{ __('Fair') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1300" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('about-page.real_opportunity') }}</p>
+                        <p class="title">{{ __('Real Opportunity') }}</p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('about-page.cheap') }}</p>
+                        <p class="title">{{ __('Cheap') }}</p>
                     </div>
                 </div>
             </div>
@@ -86,11 +86,11 @@
             <div class="container">
                 <div class="our--commitment--area--content">
                     <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                        {{ __('about-page.commitment_to_transparency_security_and_fairness') }}
+                        {{ __("Our Commitment To Transparency, Security, And Fairness In The Raffle Process") }}
                     </h3>
 
                     <p data-aos="fade-up" data-aos-duration="700" class="sub--text">
-                        {{ __('about-page.security_and_fairness_content') }}
+                        {{ __('At House Villa, we prioritize transparency, security, and fairness throughout the entire raffle process. We believe in providing our participants with a trustworthy and reliable experience, ensuring that every ticket purchased has an equal chance of winning the house.') }}
                     </p>
 
                     <a href="#" class="btn--fill">
@@ -112,7 +112,7 @@
         <section class="meet--team--area--wrapper section--bottom--gap">
             <div class="container">
                 <h3 data-aos="fade-up" data-aos-duration="500" class="common--heading--title">
-                    {{ __('about-page.meet_our_team') }}
+                    {{ __('Meet Our Team') }}
                 </h3>
                 <div class="meet--team--area--content">
                     @if ($teams)
@@ -141,7 +141,7 @@
                 <div class="special--information--content">
                     <div data-aos="fade-up" data-aos-duration="600" class="text--area">
                         <p>
-                            {{ __('about-page.contact_information') }}
+                            {{ __('For more information about our company or if there any question please contact us') }}
                         </p>
                     </div>
 
