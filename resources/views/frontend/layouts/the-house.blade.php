@@ -56,9 +56,9 @@
             <div class="container">
                 <div class="top--part">
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
-                        <h3 class="common--heading--title">{{ __('the-house-page.inside_the_house') }}</h3>
+                        <h3 class="common--heading--title">{{ __('Inside The House') }}</h3>
                         <p class="subtitle">
-                            {{ __('the-house-page.outside_the_house_content') }}
+                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
@@ -95,9 +95,9 @@
             <div class="container">
                 <div class="top--part">
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
-                        <h3 class="common--heading--title">{{ __('the-house-page.outside_the_house') }}</h3>
+                        <h3 class="common--heading--title">{{ __('Outside The House') }}</h3>
                         <p class="subtitle">
-                            {{ __('the-house-page.inside_the_house_content') }}
+                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
@@ -134,7 +134,7 @@
             <div class="container">
                 <div class="top--part">
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
-                        <h3 class="common--heading--title">{{ __('the-house-page.the_floor_plan') }}</h3>
+                        <h3 class="common--heading--title">{{ __('The Floor Plan') }}</h3>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
                         <a href="#" class="btn--normal border blank">
@@ -173,7 +173,7 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __('the-house-page.3d_house_tour') }}</h3>
+                <h3 class="title">{{ __('3D House Tour') }}</h3>
 
                 <div class="area--wrapper">
                     <iframe
@@ -186,7 +186,7 @@
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
-                            <p>{{ __('the-house-page.click_to_start') }}</p>
+                            <p>{{ __('Click To Start') }}</p>
                         </div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
         <div class="container">
             <div class="house--tour--area--content">
                 <div class="top--part">
-                    <h3 class="title">{{ __('the-house-page.3d_property_view') }}</h3>
+                    <h3 class="title">{{ __('3D Property View') }}</h3>
                     <a href="#" class="btn--normal blank border">
                         <span>Join Now</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
@@ -225,7 +225,7 @@
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
-                            <p>{{ __('the-house-page.click_to_start') }}</p>
+                            <p>{{ __('Click To Start') }}</p>
                         </div>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
         <section class="highlights--section--wrapper section--bottom--gap">
             <div class="container">
                 <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                    {{ __('the-house-page.some_highlights') }}
+                    {{ __('Some Highlights') }}
                 </h3>
                 <div data-aos="fade-up" data-aos-duration="700" class="highlights--section--content">
                     @if($gift != null)
