@@ -3,10 +3,7 @@
 @section('header_title')
     Gift Edit
 @endsection;
-@push('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
 
-@endpush
 @section('content')
     <!-- profile area  -->
     <div class="app--content--main">

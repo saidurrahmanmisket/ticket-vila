@@ -34,7 +34,10 @@
                         </div>
                         <div class="mt-3">
                             <label for="image" class="mb-2">Image</label>
-                            <input class="form-control form-control-lg" name="image" id="image" type="file">
+                            <input class="form-control form-control-lg mt-2 border-left-0 dropify "
+                            data-default-file="{{ asset($team->image) }}" 
+                            accept="image/*"
+                            name="image" id="image" type="file">
                             @error('image')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -48,4 +51,6 @@
         </div>
     </div>
     </section>
-@endsection
+
+
+    @endsection

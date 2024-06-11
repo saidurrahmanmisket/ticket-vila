@@ -6,7 +6,7 @@
 @section('content')
     <section class="app--content--main">
     <!-- profile area  -->
-    <div class="profile--area">
+    <div class="">
         <div>
             <div class="row mt-5">
                 <div class="col-md-6 mt_30 mx-auto">
@@ -35,7 +35,7 @@
                             </div>
                             <div class="mt-3">
                                 <label for="image" class="mb-2">Image</label>
-                                <input class="form-control form-control-lg" name="image" id="image" type="file">
+                                <input class="form-control form-control-lg dropify" data-default-file="{{ asset('admin/images/placeholder.png') ?? '' }}" accept="image/*" name="image" id="image" type="file">
                                 @error('image')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
