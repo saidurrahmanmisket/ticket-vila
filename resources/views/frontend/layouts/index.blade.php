@@ -9,13 +9,12 @@
             <div class="home--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="500" class="main--text">
-                        {{ !empty($hero_section) ? $hero_section["title_".locale()] ?? '' : 'dream house Raffle' }}
+                        {{ !empty($hero_section) ? $hero_section["title_".locale()] ?? '' : __('Dream house Raffle') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="500" class="main--subtext">
                         {{ !empty($hero_section)
                             ? $hero_section["description_".locale()] ?? ''
-                            : 'Be the lucky owner of a dream home, win €850,000.00 for the
-                                                                            purchase of a € 99.00 eBook' }}
+                            : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') }}
                     </p>
 
                     <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper">
@@ -48,8 +47,7 @@
 
                 <!-- live statistics wrapper -->
                 <div data-aos="fade-up" data-aos-duration="800" class="live--statistics--wrapper">
-                    <p class="intro">Live Statistics</p>
-
+                    <p class="intro">{{ __('common.live_statistics') }}</p>
                     <x-user.live-ticket-statistics />
                 </div>
             </div>
