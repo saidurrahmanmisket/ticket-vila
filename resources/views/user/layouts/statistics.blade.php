@@ -18,7 +18,7 @@ Statistics
             <x-user.live-ticket-statistics />
         </div>
         <!-- user details box  -->
-        {{-- <div class="user--details-box mt_35 position-relative"> --}}
+        <div class="user--details-box mt_35 position-relative">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="facts--card">
