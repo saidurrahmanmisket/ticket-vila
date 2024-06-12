@@ -1,3 +1,6 @@
+{{-- dropify cdn --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
+
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
     href="https://ticketvilla-admin.netlify.app/assets/icon/boxicons/css/boxicons.min.css" />
