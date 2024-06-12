@@ -57,7 +57,7 @@ class SocialMediaController extends Controller
 
         flash()->addSuccess("  Created Successfully.");
 
-        return redirect()->route('admin.social-media.index');
+        return redirect()->route('admin.settings.social-media.index');
     }
 
     /**
@@ -111,11 +111,11 @@ class SocialMediaController extends Controller
 
             flash()->addSuccess("  Updated Successfully.");
 
-            return redirect()->route('admin.social-media.index');
+            return redirect()->route('admin.settings.social-media.index');
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
-            return redirect()->route('admin.social-media.index')->with('error', $e->getMessage());
+            return redirect()->route('admin.settings.social-media.index')->with('error', $e->getMessage());
         }
     }
 
@@ -129,6 +129,6 @@ class SocialMediaController extends Controller
         $social->delete();
 
         flash()->addSuccess("  Deleted Successfully.");
-        return redirect()->route('admin.social-media.index');
+        return redirect()->route('admin.settings.social-media.index');
     }
 }

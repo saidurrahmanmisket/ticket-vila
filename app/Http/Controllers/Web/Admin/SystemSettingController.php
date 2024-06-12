@@ -128,7 +128,7 @@ class SystemSettingController extends Controller
 
         flash()->addSuccess("Updated Successfully.");
 
-        return redirect()->route('admin.system-setting.index');
+        return redirect()->route('admin.settings.system-setting.index');
 
     }
 

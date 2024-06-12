@@ -134,41 +134,52 @@
             <li class="accordion-item">
                 <div class="accordion-header" id="headingBooks">
                     <a href="#"
-                       class="accordion-button {{ Route::is('admin.cms.*') ? 'active' : 'collapsed' }}"
-                       data-bs-toggle="collapse" data-bs-target="#collapseBooks"
-                       aria-expanded="{{ Route::is('admin.cms.*') ? 'true' : 'false' }}"
-                       aria-controls="collapseBooks">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M21.93 6.76001L18.56 20.29C18.32 21.3 17.42 22 16.38 22H3.24001C1.73001 22 0.650023 20.5199 1.10002 19.0699L5.31001 5.55005C5.60001 4.61005 6.47003 3.95996 7.45003 3.95996H19.75C20.7 3.95996 21.49 4.53997 21.82 5.33997C22.01 5.76997 22.05 6.26001 21.93 6.76001Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
-                            <path d="M16 22H20.78C22.07 22 23.08 20.91 22.99 19.62L22 6" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.67999 6.38L10.72 2.06006" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16.38 6.39001L17.32 2.05005" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.70001 12H15.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        class="accordion-button {{ Route::is('admin.cms.*') ? 'active' : 'collapsed' }}"
+                        data-bs-toggle="collapse" data-bs-target="#collapseBooks"
+                        aria-expanded="{{ Route::is('admin.cms.*') ? 'true' : 'false' }}"
+                        aria-controls="collapseBooks">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <path
+                                d="M21.93 6.76001L18.56 20.29C18.32 21.3 17.42 22 16.38 22H3.24001C1.73001 22 0.650023 20.5199 1.10002 19.0699L5.31001 5.55005C5.60001 4.61005 6.47003 3.95996 7.45003 3.95996H19.75C20.7 3.95996 21.49 4.53997 21.82 5.33997C22.01 5.76997 22.05 6.26001 21.93 6.76001Z"
+                                stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" />
+                            <path d="M16 22H20.78C22.07 22 23.08 20.91 22.99 19.62L22 6" stroke="#292D32"
+                                stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M9.67999 6.38L10.72 2.06006" stroke="#292D32" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.38 6.39001L17.32 2.05005" stroke="#292D32" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.70001 12H15.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <span class="accordion--header-text">CMS</span>
                         <span class="bi-chevron-down ms-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                             </svg>
                         </span>
                     </a>
                 </div>
 
                 <div id="collapseBooks"
-                     class="accordion-collapse collapse {{ Route::is('admin.cms.*') ? 'show' : '' }}"
-                     aria-labelledby="headingBooks" data-bs-parent="#accordionExample">
+                    class="accordion-collapse collapse {{ Route::is('admin.cms.*') ? 'show' : '' }}"
+                    aria-labelledby="headingBooks" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <ul>
                             <li>
                                 <a href="{{ route('admin.cms.hero.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.cms.hero.*') ? 'sub--active' : '' }}">
+                                    class="sub--menu--title {{ Route::is('admin.cms.hero.*') ? 'sub--active' : '' }}">
                                     Hero Section
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.cms.the-process.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.cms.the-process.*') ? 'sub--active' : '' }}">
+                                    class="sub--menu--title {{ Route::is('admin.cms.the-process.*') ? 'sub--active' : '' }}">
                                     The Process
                                 </a>
                             </li>
@@ -236,53 +247,64 @@
 
                 <div class="accordion-header" id="setting_collaps">
                     <a href="#"
-                       class="accordion-button {{ Route::is('admin.settings.*') ? 'active' : 'collapsed' }}"
-                       data-bs-toggle="collapse" data-bs-target="#setting_sidebar_section"
-                       aria-expanded="{{ Route::is('admin.settings.*') ? 'true' : 'false' }}"
-                       aria-controls="setting_sidebar_section">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M21.93 6.76001L18.56 20.29C18.32 21.3 17.42 22 16.38 22H3.24001C1.73001 22 0.650023 20.5199 1.10002 19.0699L5.31001 5.55005C5.60001 4.61005 6.47003 3.95996 7.45003 3.95996H19.75C20.7 3.95996 21.49 4.53997 21.82 5.33997C22.01 5.76997 22.05 6.26001 21.93 6.76001Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
-                            <path d="M16 22H20.78C22.07 22 23.08 20.91 22.99 19.62L22 6" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M9.67999 6.38L10.72 2.06006" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M16.38 6.39001L17.32 2.05005" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.70001 12H15.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        class="accordion-button {{ Route::is('admin.settings.*') ? 'active' : 'collapsed' }}"
+                        data-bs-toggle="collapse" data-bs-target="#setting_sidebar_section"
+                        aria-expanded="{{ Route::is('admin.settings.*') ? 'true' : 'false' }}"
+                        aria-controls="setting_sidebar_section">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <path
+                                d="M21.93 6.76001L18.56 20.29C18.32 21.3 17.42 22 16.38 22H3.24001C1.73001 22 0.650023 20.5199 1.10002 19.0699L5.31001 5.55005C5.60001 4.61005 6.47003 3.95996 7.45003 3.95996H19.75C20.7 3.95996 21.49 4.53997 21.82 5.33997C22.01 5.76997 22.05 6.26001 21.93 6.76001Z"
+                                stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" />
+                            <path d="M16 22H20.78C22.07 22 23.08 20.91 22.99 19.62L22 6" stroke="#292D32"
+                                stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M9.67999 6.38L10.72 2.06006" stroke="#292D32" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.38 6.39001L17.32 2.05005" stroke="#292D32" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.70001 12H15.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <span class="accordion--header-text">Settings</span>
                         <span class="bi-chevron-down ms-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                             </svg>
                         </span>
                     </a>
                 </div>
                 <div id="setting_sidebar_section"
-                     class="accordion-collapse collapse {{ Route::is('admin.settings.*') ? 'show' : '' }}"
-                     aria-labelledby="setting_collaps" data-bs-parent="#accordionExample">
+                    class="accordion-collapse collapse {{ Route::is('admin.settings.*') ? 'show' : '' }}"
+                    aria-labelledby="setting_collaps" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <ul>
                             <li>
                                 <a href="{{ route('admin.settings.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.settings.index') ? 'sub--active' : '' }}">
-                                   Notifications
+                                    class="sub--menu--title {{ Route::is('admin.settings.index') ? 'sub--active' : '' }}">
+                                    Notifications
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.system-setting.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.system-setting.index') ? 'sub--active' : '' }}">
-                                   System Settings
+                                <a href="{{ route('admin.settings.system-setting.index') }}"
+                                    class="sub--menu--title {{ Route::is('admin.settings.system-setting.index') ? 'sub--active' : '' }}">
+                                    System Settings
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.social-media.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.social-media.*') ? 'sub--active' : '' }}">
-                                   Social Media
+                                <a href="{{ route('admin.settings.social-media.index') }}"
+                                    class="sub--menu--title {{ Route::is('admin.settings.social-media.*') ? 'sub--active' : '' }}">
+                                    Social Media
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.configuration.index') }}"
-                                   class="sub--menu--title {{ Route::is('admin.configuration.*') ? 'sub--active' : '' }}">
-                                   Configuration
+                                <a href="{{ route('admin.settings.configuration.index') }}"
+                                    class="sub--menu--title {{ Route::is('admin.settings.configuration.*') ? 'sub--active' : '' }}">
+                                    Configuration
                                 </a>
                             </li>
                         </ul>
@@ -312,8 +334,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.system-setting.index') }}"
-                                class="gift {{ Route::is('admin.system-setting.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.settings.system-setting.index') }}"
+                                class="gift {{ Route::is('admin.settings.system-setting.*') ? 'active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none">
                                     <path d="M19 22V11" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
@@ -339,8 +361,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.social-media.index') }}"
-                                class="gift {{ Route::is('admin.social-media.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.settings.social-media.index') }}"
+                                class="gift {{ Route::is('admin.settings.social-media.*') ? 'active' : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M4.91998 20.28L6.68999 21.65C6.91999 21.88 7.42998 21.99 7.77998 21.99H9.94998C10.64 21.99 11.38 21.48 11.55 20.79L12.92 16.62C13.21 15.82 12.69 15.13 11.83 15.13H9.53999C9.19999 15.13 8.90999 14.8399 8.96999 14.4399L9.25999 12.61C9.36999 12.1 9.02998 11.52 8.51998 11.35C8.05998 11.18 7.48999 11.41 7.25999 11.75L4.91998 15.24" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
                                     <path d="M2 20.28V14.6801C2 13.8801 2.34 13.59 3.14 13.59H3.71C4.51 13.59 4.85 13.8801 4.85 14.6801V20.28C4.85 21.08 4.51 21.37 3.71 21.37H3.14C2.34 21.37 2 21.09 2 20.28Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -351,8 +373,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.configuration.index') }}"
-                                class=" {{ Route::is('admin.configuration.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.settings.configuration.index') }}"
+                                class=" {{ Route::is('admin.settings.configuration.*') ? 'active' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M22 17.5H15" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M5 17.5H2" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
