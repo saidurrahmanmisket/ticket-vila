@@ -212,8 +212,7 @@
         <h4>HELP & SUPPORT</h4>
         <ul class="menu">
             <li>
-                <a href="{{ route('admin.settings.help') }}"
-                    class="help {{ Route::is('admin.settings.help') ? 'active' : '' }}">
+                <a href="{{ route('admin.help') }}" class="help {{ Route::is('admin.help') ? 'active' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
                         fill="none">
                         <path
