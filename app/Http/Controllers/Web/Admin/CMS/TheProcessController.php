@@ -35,16 +35,28 @@ class TheProcessController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
+            'title_en' => 'required|string',
+            'title_de' => 'required|string',
+            'title_hu' => 'required|string',
+            'description_en' => 'required|string',
+            'description_de' => 'required|string',
+            'description_hu' => 'required|string',
             'button_type' => 'required|string',
-            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'image'=> 'required_if:thumbnail_type,image|image|mimes:jpeg,png,jpg,gif,svg|max:4096|nullable',
             'icon'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'icon_top_text'=> 'nullable|string',
-            'icon_bottom_text'=> 'nullable|string',
+            'icon_top_text_en'=> 'required_with:icon_top_text_de,icon_top_text_hu|string|nullable',
+            'icon_top_text_de'=> 'required_with:icon_top_text_en,icon_top_text_hu|string|nullable',
+            'icon_top_text_hu'=> 'required_with:icon_top_text_en,icon_top_text_de|string|nullable',
+            'icon_bottom_text_en'=> 'required_with:icon_bottom_text_hu,icon_bottom_text_de|string|nullable',
+            'icon_bottom_text_de'=> 'required_with:icon_bottom_text_en,icon_bottom_text_hu|string|nullable',
+            'icon_bottom_text_hu'=> 'required_with:icon_bottom_text_en,icon_bottom_text_de|string|nullable',
+            'thumbnail_type' => 'required|string|in:image,video',
+            'video_url_en'=> 'required_if:thumbnail_type,video|string|url|nullable',
+            'video_url_de'=> 'required_if:thumbnail_type,video|string|url|nullable',
+            'video_url_hu'=> 'required_if:thumbnail_type,video|string|url|nullable',
         ]);
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image') && $request->thumbnail_type == 'image') {
             $image_path = Helper::fileUpload($request->file('image'),'the-process',time().'_'.Str::uuid());
         }else{
             $image_path = null;
@@ -58,14 +70,27 @@ class TheProcessController extends Controller
         $lastOrderItem = TheProcess::orderBy('sort_id','desc')->first();
 
         $theProcess = new TheProcess();
-        $theProcess->title = $request->title;
-        $theProcess->description = $request->description;
+        $theProcess->title_en = $request->title_en;
+        $theProcess->title_de = $request->title_de;
+        $theProcess->title_hu = $request->title_hu;
+        $theProcess->description_en = $request->description_en;
+        $theProcess->description_de = $request->description_de;
+        $theProcess->description_hu = $request->description_hu;
         $theProcess->button_type  = $request->button_type;
         $theProcess->image = $image_path;
         $theProcess->icon = $icon_path;
         $theProcess->sort_id = !empty($lastOrderItem) ? $lastOrderItem->sort_id + 1 : 0;
-        $theProcess->icon_top_text = $request->icon_top_text;
-        $theProcess->icon_bottom_text = $request->icon_bottom_text;
+        $theProcess->icon_top_text_en = $request->icon_top_text_en;
+        $theProcess->icon_top_text_de = $request->icon_top_text_de;
+        $theProcess->icon_top_text_hu = $request->icon_top_text_hu;
+        $theProcess->icon_bottom_text_en = $request->icon_bottom_text_en;
+        $theProcess->icon_bottom_text_de = $request->icon_bottom_text_de;
+        $theProcess->icon_bottom_text_hu = $request->icon_bottom_text_hu;
+        if ($request->thumbnail_type == 'video') {
+            $theProcess->video_url_en = $request->video_url_en;
+            $theProcess->video_url_de = $request->video_url_de;
+            $theProcess->video_url_hu = $request->video_url_hu;
+        }
         $theProcess->save();
 
         flash()->addSuccess("The process has been created");
@@ -101,21 +126,44 @@ class TheProcessController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
+            'title_en' => 'required|string',
+            'title_de' => 'required|string',
+            'title_hu' => 'required|string',
+            'description_en' => 'required|string',
+            'description_de' => 'required|string',
+            'description_hu' => 'required|string',
             'button_type' => 'required|string',
-            'image'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'image'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096|nullable',
             'icon'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'icon_top_text'=> 'nullable|string',
-            'icon_bottom_text'=> 'nullable|string',
+            'icon_top_text_en'=> 'required_with:icon_top_text_de,icon_top_text_hu|string|nullable',
+            'icon_top_text_de'=> 'required_with:icon_top_text_en,icon_top_text_hu|string|nullable',
+            'icon_top_text_hu'=> 'required_with:icon_top_text_en,icon_top_text_de|string|nullable',
+            'icon_bottom_text_en'=> 'required_with:icon_bottom_text_hu,icon_bottom_text_de|string|nullable',
+            'icon_bottom_text_de'=> 'required_with:icon_bottom_text_en,icon_bottom_text_hu|string|nullable',
+            'icon_bottom_text_hu'=> 'required_with:icon_bottom_text_en,icon_bottom_text_de|string|nullable',
+            'thumbnail_type' => 'required|string|in:image,video',
+            'video_url_en'=> 'required_if:thumbnail_type,video|string|url|nullable',
+            'video_url_de'=> 'required_if:thumbnail_type,video|string|url|nullable',
+            'video_url_hu'=> 'required_if:thumbnail_type,video|string|url|nullable',
         ]);
         $theProcess = TheProcess::findOrFail($id);
-        if ($request->hasFile('image')) {
-            $image_path = Helper::fileUpload($request->file('image'),'the-process',time().'_'.Str::uuid());
-            Helper::deleteFile(public_path($theProcess->image));
+        if ($request->thumbnail_type == 'image') {
+            if ($request->hasFile('image')) {
+                $image_path = Helper::fileUpload($request->file('image'),'the-process',time().'_'.Str::uuid());
+                Helper::deleteFile(public_path($theProcess->image));
+            }else{
+                $image_path = $theProcess->image;
+            }
+            $theProcess->video_url_en = null;
+            $theProcess->video_url_de = null;
+            $theProcess->video_url_hu = null;
         }else{
-            $image_path = $theProcess->image;
+            $image_path = null;
+            $theProcess->video_url_en = $request->video_url_en;
+            $theProcess->video_url_de = $request->video_url_de;
+            $theProcess->video_url_hu = $request->video_url_hu;
         }
+
         if ($request->hasFile('icon')) {
             $icon_path = Helper::fileUpload($request->file('icon'),'the-process-icon',time().'_'.Str::uuid());
             Helper::deleteFile(public_path($theProcess->icon));
@@ -123,13 +171,21 @@ class TheProcessController extends Controller
             $icon_path = $theProcess->icon;
         }
 
-        $theProcess->title = $request->title;
-        $theProcess->description = $request->description;
+        $theProcess->title_en = $request->title_en;
+        $theProcess->title_de = $request->title_de;
+        $theProcess->title_hu = $request->title_hu;
+        $theProcess->description_en = $request->description_en;
+        $theProcess->description_de = $request->description_de;
+        $theProcess->description_hu = $request->description_hu;
         $theProcess->button_type  = $request->button_type;
         $theProcess->image = $image_path;
         $theProcess->icon = $icon_path;
-        $theProcess->icon_top_text = $request->icon_top_text;
-        $theProcess->icon_bottom_text = $request->icon_bottom_text;
+        $theProcess->icon_top_text_en = $request->icon_top_text_en;
+        $theProcess->icon_top_text_de = $request->icon_top_text_de;
+        $theProcess->icon_top_text_hu = $request->icon_top_text_hu;
+        $theProcess->icon_bottom_text_en = $request->icon_bottom_text_en;
+        $theProcess->icon_bottom_text_de = $request->icon_bottom_text_de;
+        $theProcess->icon_bottom_text_hu = $request->icon_bottom_text_hu;
         $theProcess->save();
 
         flash()->addSuccess("The process has been updated");

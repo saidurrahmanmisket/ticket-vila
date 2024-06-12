@@ -20,6 +20,9 @@ return new class extends Migration
             $table->text('description_de')->nullable();
             $table->text('description_hu')->nullable();
             $table->string('image')->nullable();
+            $table->string('video_url_en')->nullable();
+            $table->string('video_url_de')->nullable();
+            $table->string('video_url_hu')->nullable();
             $table->string('icon')->nullable();
             $table->string('icon_top_text_en')->nullable();
             $table->string('icon_top_text_de')->nullable();

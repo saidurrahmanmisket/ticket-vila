@@ -68,7 +68,7 @@
                     @forelse($hero_sections as $hero)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $hero->title }}</td>
+                            <td>{{ $hero->title_en }}</td>
                             <td>{{ \App\Enums\Page::map()[$hero->page] ?? null }}</td>
                             <td>
                                 <img src="{{asset($hero->image)}}" style="max-height: 100px"  alt="">

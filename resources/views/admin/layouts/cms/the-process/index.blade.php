@@ -71,7 +71,7 @@
                         <th>Title</th>
                         <th>Button Type</th>
                         <th>Position</th>
-                        <th>Image</th>
+                        <th>Image/vide</th>
                         <th>Icon</th>
                         <th>Status</th>
                         <th class="text-center">Action</th>
@@ -88,11 +88,15 @@
                                 </svg>
                                 {{ $loop->iteration }}
                             </td>
-                            <td>{{ $process->title }}</td>
+                            <td>{{ $process->title_en }}</td>
                             <td>{{ \App\Enums\ButtonType::map()[$process->button_type] ?? '' }}</td>
                             <td>{{$process->status == \App\Enums\Status::ACTIVE ? $odd_or_even == 'odd' ? 'Left' : 'Right' : 'None' }}</td>
                             <td>
-                                <img src="{{asset($process->image)}}" style="max-height: 100px"  alt="">
+                                @if(!empty($process->image))
+                                    <img src="{{asset($process->image)}}" style="max-height: 100px"  alt="">
+                                @else
+                                    <iframe  width="200" height="100" src="{{convertToEmbedUrl($process->video_url_en)}}" allowfullscreen></iframe>
+                                @endif
                             </td>
                             <td>
                                 <img src="{{asset($process->icon)}}" style="max-height: 60px"  alt="">
