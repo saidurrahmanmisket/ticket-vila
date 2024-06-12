@@ -49,7 +49,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Question</th>
-                            <th>Answer</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -59,7 +58,6 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $faq->question_en }}</td>
-                                <td>{{ $faq->answer_en }}</td>
                                 <td>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" @if ($faq->status == 'active') checked @endif
