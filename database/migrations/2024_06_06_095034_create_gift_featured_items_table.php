@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('gift_featured_items', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('sub_title')->nullable();
+            $table->string('title_en')->nullable();
+            $table->string('title_de')->nullable();
+            $table->string('title_hu')->nullable();
+            $table->string('sub_title_en')->nullable();
+            $table->string('sub_title_de')->nullable();
+            $table->string('sub_title_hu')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('gift_id');
             $table->foreign('gift_id')->references('id')->on('gifts')->onDelete('cascade');

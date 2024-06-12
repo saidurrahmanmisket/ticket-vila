@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('gifts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_de');
+            $table->string('name_hu');
             $table->string('video_link_inside')->nullable();
             $table->string('video_link_outside')->nullable();
             $table->string('image')->nullable();
