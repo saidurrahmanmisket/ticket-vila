@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
+use App\Http\Controllers\Web\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
@@ -21,5 +22,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/paymentConfigurationUpdate', [ConfigurationSettingController::class, 'paymentConfigurationUpdate'])->name('paymentConfigurationUpdate');
     Route::post('/delete-gift-gallary-image', [GiftController::class, 'deleteGiftGallaryImage'])->name('deleteGiftGallaryImage');
     Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
+
 
 });

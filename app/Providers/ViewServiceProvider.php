@@ -30,6 +30,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('systemSetting',$systemSetting);
         });
 
+        // for user dashboard ticket statistics component
         View::composer('components.user.live-ticket-statistics',function ($view){
             // Fetch campaign and related data
             $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
@@ -45,5 +46,8 @@ class ViewServiceProvider extends ServiceProvider
             ];
             $view->with('data',$data);
         });
+
+
+
     }
 }
