@@ -9,7 +9,7 @@ class Gift extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'video_link_inside', 'video_link_outside','image', 'thumbnail_image','status'];
+    protected $guarded = [];
 
 
     public function giftGallary() {

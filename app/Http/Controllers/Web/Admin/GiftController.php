@@ -177,20 +177,23 @@ class GiftController extends Controller
         DB::beginTransaction();
 
         $validator = $request->validate([
-            'name' => 'required|string',
+            'name_en' => 'required|string',
+            'name_de' => 'required|string',
+            'name_hu' => 'required|string',
             'video_inside' => 'nullable|string',
             'video_outside' => 'nullable|string',
-            'feature_title.*' => 'required',
-            'feature_sub_title.*' => 'nullable|string',
+            'feature_title_en.*' => 'required',
+            'feature_title_de.*' => 'required',
+            'feature_title_hu.*' => 'required',
+            'feature_sub_title_en.*' => 'nullable|string',
+            'feature_sub_title_de.*' => 'nullable|string',
+            'feature_sub_title_hu.*' => 'nullable|string',
             'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_title_old.*' => 'nullable',
-            'feature_sub_title_old.*' => 'nullable|string',
-
         ]);
 
         try {
@@ -213,7 +216,9 @@ class GiftController extends Controller
             }
 
             // Update other gift fields
-            $gift->name = $request->name;
+            $gift->name_en = $request->name_en;
+            $gift->name_de = $request->name_de;
+            $gift->name_hu = $request->name_hu;
             $gift->video_link_inside = $request->video_inside;
             $gift->video_link_outside = $request->video_outside;
             $gift->save();
@@ -259,16 +264,20 @@ class GiftController extends Controller
                     $featuredItem = GiftFeaturedItem::find($featuredId);
                     if ($featuredItem) {
                         // Update fields
-                        $featuredItem->title = $request->input('feature_title_old.' . $key);
-                        $featuredItem->sub_title = $request->input('feature_sub_title_old.' . $key);
+                        $featuredItem->title_en = $request->input('feature_title_en_old.' . $key);
+                        $featuredItem->title_de = $request->input('feature_title_de_old.' . $key);
+                        $featuredItem->title_hu = $request->input('feature_title_hu_old.' . $key);
+                        $featuredItem->sub_title_en = $request->input('feature_sub_title_en_old.' . $key);
+                        $featuredItem->sub_title_de = $request->input('feature_sub_title_de_old.' . $key);
+                        $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu_old.' . $key);
                         $featuredItem->save();
                     }
                 }
             }
 
             // Handle featured items
-            if ($request->has('feature_title')) {
-                foreach ($request->input('feature_title') as $key => $title) {
+            if ($request->has('feature_title_en')) {
+                foreach ($request->input('feature_title_en') as $key => $title) {
                     if ($request->hasFile('feature_image')) {
                         $file = $request->file('feature_image')[$key] ?? null;
                         if ($file) {
@@ -281,8 +290,12 @@ class GiftController extends Controller
                         $image_path = null;
                     }
                     $featuredItem = new GiftFeaturedItem();
-                    $featuredItem->title = $title;
-                    $featuredItem->sub_title = $request->input('feature_sub_title.' . $key);
+                    $featuredItem->title_en = $request->input('feature_title_en.' . $key);
+                    $featuredItem->title_de = $request->input('feature_title_de.' . $key);
+                    $featuredItem->title_hu = $request->input('feature_title_hu.' . $key);
+                    $featuredItem->sub_title_en = $request->input('feature_sub_title_en.' . $key);
+                    $featuredItem->sub_title_de = $request->input('feature_sub_title_de.' . $key);
+                    $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu.' . $key);
                     $featuredItem->image = $image_path;
                     $featuredItem->gift_id = $gift->id;
                     $featuredItem->save();

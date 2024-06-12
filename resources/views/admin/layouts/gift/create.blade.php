@@ -436,7 +436,10 @@
                 newFeature.innerHTML = `
                     <div class="card mb-4 border border-primary">
                         <div class="card-body">
-                                                
+                            <div class="d-flex flex-row-reverse">
+                                <input type="hidden" name="featureId[]" value="">
+                                <a type="button" data-id=""  class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                            </div>
                             <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
                             <div class="input--group">

@@ -76,7 +76,7 @@
                     @forelse($gifts as $gift)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $gift->name }}</td>
+                            <td>{{ $gift->name_en }}</td>
                             <td>
                                 <div class="user--tickets">
                                     <img src="{{asset($gift->image)}}" alt="" />
