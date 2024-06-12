@@ -22,7 +22,7 @@
                         <div id="collapseOne{{ $faq->id }}" class="accordion-collapse collapse "
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                {{ $faq['answer_' . locale()] ?? '' }}
+                                {!! $faq['answer_' . locale()] ?? '' !!}
                             </div>
                         </div>
                     </div>
