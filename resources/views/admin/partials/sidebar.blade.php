@@ -217,7 +217,7 @@
                 </a>
             </li>
             <li class="settings">
-                <a class="collapsed" data-bs-toggle="collapse" href="#a-setting"
+                {{-- <a class="collapsed" data-bs-toggle="collapse" href="#a-setting"
                     aria-expanded="{{ Route::is('admin.settings.index') ? 'true' : 'false' }}"
                     aria-controls="a-setting">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
@@ -232,8 +232,65 @@
                             stroke-linejoin="round" />
                     </svg>
                     Settings
-                </a>
-                <div class="collapse" id="a-setting" style="background-color:#252525">
+                </a> --}}
+
+                <div class="accordion-header" id="setting_collaps">
+                    <a href="#"
+                       class="accordion-button {{ Route::is('admin.settings.*') ? 'active' : 'collapsed' }}"
+                       data-bs-toggle="collapse" data-bs-target="#setting_sidebar_section"
+                       aria-expanded="{{ Route::is('admin.settings.*') ? 'true' : 'false' }}"
+                       aria-controls="setting_sidebar_section">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M21.93 6.76001L18.56 20.29C18.32 21.3 17.42 22 16.38 22H3.24001C1.73001 22 0.650023 20.5199 1.10002 19.0699L5.31001 5.55005C5.60001 4.61005 6.47003 3.95996 7.45003 3.95996H19.75C20.7 3.95996 21.49 4.53997 21.82 5.33997C22.01 5.76997 22.05 6.26001 21.93 6.76001Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
+                            <path d="M16 22H20.78C22.07 22 23.08 20.91 22.99 19.62L22 6" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.67999 6.38L10.72 2.06006" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.38 6.39001L17.32 2.05005" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.70001 12H15.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="accordion--header-text">Settings</span>
+                        <span class="bi-chevron-down ms-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                               <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div id="setting_sidebar_section"
+                     class="accordion-collapse collapse {{ Route::is('admin.settings.*') ? 'show' : '' }}"
+                     aria-labelledby="setting_collaps" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>
+                                <a href="{{ route('admin.settings.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.settings.index') ? 'sub--active' : '' }}">
+                                   Notifications
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.system-setting.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.system-setting.index') ? 'sub--active' : '' }}">
+                                   System Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.social-media.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.social-media.*') ? 'sub--active' : '' }}">
+                                   Social Media
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.configuration.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.configuration.*') ? 'sub--active' : '' }}">
+                                   Configuration
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                {{-- <div class="collapse" id="a-setting" style="background-color:#252525">
                     <ul class="nav flex-column sub-menu">
                         <li>
 
@@ -309,7 +366,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </li>
             <li>
                 <!-- logout  -->
