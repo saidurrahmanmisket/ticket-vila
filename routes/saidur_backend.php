@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
+use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
@@ -22,4 +23,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/delete-gift-gallary-image', [GiftController::class, 'deleteGiftGallaryImage'])->name('deleteGiftGallaryImage');
     Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
 
+    Route::resource('/dynamic-page', DynamicPageController::class);
+    
 });

@@ -8,6 +8,7 @@ use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CMS;
+use App\Models\DynamicPage;
 use App\Models\Gift;
 use App\Models\Team;
 use App\Models\TheProcess;
@@ -32,11 +33,11 @@ class PageController extends Controller
                     ->inRandomOrder()
                     ->limit(20)
                     ->get();
-            }else{
+            } else {
                 $gift = null;
                 $giftRandomImages = null;
             }
-        } 
+        }
         return view('frontend.layouts.index', compact('hero_section', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
@@ -94,14 +95,16 @@ class PageController extends Controller
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
-            $giftImages = [
-                'insideImage' => $gift->giftGallary->where('gift_image_type', 'inside'),
-                'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
-                'planImage' => $gift->giftGallary->where('gift_image_type', 'plan'),
-            ];
-        } else {
-            $gift = null;
-            $giftImages = null;
+            if ($gift && !empty($gift)) {
+                $giftImages = [
+                    'insideImage' => $gift->giftGallary->where('gift_image_type', 'inside'),
+                    'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
+                    'planImage' => $gift->giftGallary->where('gift_image_type', 'plan'),
+                ];
+            } else {
+                $gift = null;
+                $giftImages = null;
+            }
         }
 
         return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages'));
@@ -116,5 +119,18 @@ class PageController extends Controller
     {
         $hero_section = CMS::where('page', Page::HOW_IT_WORKS)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         return view('frontend.layouts.how-it-works', compact('hero_section'));
+    }
+
+    public function dynamicPage(string $page_slug)
+    {
+        $pageData = DynamicPage::where('status', 'active')
+            ->where('page_slug', $page_slug)
+            ->first();
+            
+        if (!$pageData) {
+            abort(404);
+        }
+
+        return view('frontend.layouts.dynamic-page', compact('pageData'));
     }
 }

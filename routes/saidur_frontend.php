@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\Web\Frontend\DynamicPageController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
@@ -26,6 +27,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/the-house', 'theHouse')->name('the-house');
     Route::get('/verify-email', 'verifyEmail')->name('verify-email');
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
+    Route::get('page/{page_slug}',  'dynamicPage')->name('custom.page');
 
 });
 
@@ -38,6 +40,7 @@ Route::controller(OTPVerificationController::class)->group(function () {
     Route::post('/verify-otp', 'verify')->name('verify.otp.post');
 
 });
+
 
 //-----user dashboard route start from here =====================================------by: saidur
 Route::middleware(['auth', 'verified'])->name('user.')->group(function () {

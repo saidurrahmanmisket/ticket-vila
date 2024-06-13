@@ -1,8 +1,10 @@
 @php
     use App\Models\SocialMedia;
+    use App\Models\DynamicPage;
 
     $socialMedia = SocialMedia::where('status', 'active')->get();
 
+    $pageData = DynamicPage::where('status', 'active')->get();
 @endphp
 <!-- footer area starts -->
 <footer>
@@ -30,10 +32,16 @@
             <div class="right">
                 <div data-aos="fade-up" data-aos-duration="700" class="site--links">
                     <p>Legal</p>
-                    <a href="{{ route('frontend.imprint') }}">imprint</a>
+                    {{-- <a href="{{ route('frontend.imprint') }}">imprint</a>
                     <a href="{{ route('frontend.terms') }}">Terms of services</a>
                     <a href="{{ route('frontend.privacy') }}">Privacy Policy</a>
-                    <a href="{{ route('frontend.contact') }}">Contact</a>
+                    <a href="{{ route('frontend.contact') }}">Contact</a> --}}
+                    @foreach ($pageData as $index => $item)
+                    
+                        <a
+                            href="{{ route('frontend.custom.page', ['page_slug' => $item->page_slug]) }}">{{ $item['title_'.locale()] }}
+                        </a>
+                    @endforeach
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="site--links">
                     <p>House Raffle</p>
@@ -61,8 +69,8 @@
             </div>
         </div>
     </div>
-    @foreach(\App\Enums\Lang::map() as $code => $lang)
-        <a class="btn" style="color: #ffffff" href="{{route('setLocale',$code)}}">{{$lang}}</a>
+    @foreach (\App\Enums\Lang::map() as $code => $lang)
+        <a class="btn" style="color: #ffffff" href="{{ route('setLocale', $code) }}">{{ $lang }}</a>
     @endforeach
     <div class="lower--footer">
         <p>© {{ $systemSetting->copy_rights_text ?? 'Copyright 2023, All Rights Reserved by TicketVilla' }}</p>
