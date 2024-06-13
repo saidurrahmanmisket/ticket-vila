@@ -23,7 +23,7 @@ class PageController extends Controller
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
 
-            if ($gift) {
+            if ($gift && !empty($gift)) {
                 $giftRandomImages = $gift->giftGallary()
                     ->where(function ($query) {
                         $query->where('gift_image_type', 'inside')
@@ -32,12 +32,11 @@ class PageController extends Controller
                     ->inRandomOrder()
                     ->limit(20)
                     ->get();
+            }else{
+                $gift = null;
+                $giftRandomImages = null;
             }
-        } else {
-            $gift = null;
-
-        }
-
+        } 
         return view('frontend.layouts.index', compact('hero_section', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
