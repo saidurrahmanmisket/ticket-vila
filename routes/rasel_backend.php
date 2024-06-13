@@ -36,6 +36,8 @@ Route::middleware(['auth','verified','admin'])->group(function (){
 
     //Campaign routes
     Route::resource('/campaign', CampaignController::class);
+    Route::post('/campaign/status/{id}',[CampaignController::class,'status'])->name('campaign.status');
+    Route::delete('/campaign/ebook/destroy/{id}',[CampaignController::class,'destroyEbook'])->name('campaign.destroyEbook');
 
 
     Route::prefix('cms')->name('cms.')->group(function () {
