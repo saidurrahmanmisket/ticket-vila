@@ -64,6 +64,7 @@
                 </h3>
 
                 <div class="facts--wrapper">
+                    {{-- @dd($gift) --}}
                     @if($gift != null)
                         @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem->isNotEmpty()  )
                         @foreach ($gift->giftFeaturedItem as $item)
@@ -73,19 +74,19 @@
                                 </div>
 
                                 <div class="text--wrapper">
-                                    @if (is_numeric($item->title))
+                                    @if (is_numeric($item['title_'.locale()]))
                                     <p class="main">
                                         <span>
-                                            {{ intval($item->title) }}
+                                            {{ intval($item['title_'.locale()]) }}
                                         </span>
                                             </p>
                                         @else
                                         <h3 class="fw-bold">
 
-                                            {{ $item->title }}
+                                            {{ $item['title_'.locale()] }}
                                             </h3>
                                         @endif
-                                    <p class="sub">{{ $item->sub_title }}</p>
+                                    <p class="sub">{{ $item["sub_title_".locale()] }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -104,13 +105,11 @@
                 <div class="top--area">
                     <div data-aos="fade-up" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">
-                            Your chance for a dream home.
+                            {{ __("Your Chance For A Dream Home.") }}
                         </h3>
 
                         <p class="sub--text">
-                            Experience the thrill of winning a house through our raffle
-                            with just a 99€ ticket. Don't miss out on this incredible
-                            opportunity!
+                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">

@@ -293,7 +293,7 @@
                                                 @enderror
                                             </div>
                                             <div class="input--group">
-                                                <label for="feature_sub_title_en">Feature Sub Title</label>
+                                                <label for="feature_sub_title_en">Feature Sub Title (en)</label>
                                                 <input id="feature_sub_title_en" type="text"
                                                     value="{{ $featureItem->sub_title_en }}"
                                                     name="feature_sub_title_en_old[]"
@@ -305,7 +305,7 @@
                                                 @enderror
                                             </div>
                                             <div class="input--group">
-                                                <label for="feature_sub_title_de">Feature Sub Title</label>
+                                                <label for="feature_sub_title_de">Feature Sub Title (de)</label>
                                                 <input id="feature_sub_title_de" type="text"
                                                     value="{{ $featureItem->sub_title_de }}"
                                                     name="feature_sub_title_de_old[]"
@@ -317,7 +317,7 @@
                                                 @enderror
                                             </div>
                                             <div class="input--group">
-                                                <label for="feature_sub_title_hu">Feature Sub Title</label>
+                                                <label for="feature_sub_title_hu">Feature Sub Title (hu)</label>
                                                 <input id="feature_sub_title_hu" type="text"
                                                     value="{{ $featureItem->sub_title_en }}"
                                                     name="feature_sub_title_hu_old[]"
@@ -554,19 +554,19 @@
                             <input id="feature_title_de" name="feature_title_de[]" type="text" value="" placeholder="Feature Title (de)..">
                         </div>
                         <div class="input--group">
-                            <label for="feature_title_de">Feature Title (de) <span class="text-danger">*</span></label>
-                            <input id="feature_title_de" name="feature_title_de[]" type="text" value="" placeholder="Feature Title (hu)..">
+                            <label for="feature_title_de">Feature Title (hu) <span class="text-danger">*</span></label>
+                            <input id="feature_title_de" name="feature_title_hu[]" type="text" value="" placeholder="Feature Title (hu)..">
                         </div>
                         <div class="input--group">
-                            <label for="feature_sub_title_en">Feature Sub Title</label>
+                            <label for="feature_sub_title_en">Feature Sub Title (en)</label>
                             <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text" value="" placeholder="Feature Sub Title (hu)..">
                         </div>
                         <div class="input--group">
-                            <label for="feature_sub_title_de">Feature Sub Title</label>
+                            <label for="feature_sub_title_de">Feature Sub Title (de)</label>
                             <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text" value="" placeholder="Feature Sub Title (de)..">
                         </div>
                         <div class="input--group">
-                            <label for="feature_sub_title_hu">Feature Sub Title</label>
+                            <label for="feature_sub_title_hu">Feature Sub Title (hu)</label>
                             <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text" value="" placeholder="Feature Sub Title (hu)..">
                         </div>
 
