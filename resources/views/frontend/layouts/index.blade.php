@@ -9,11 +9,11 @@
             <div class="home--banner--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="500" class="main--text">
-                        {{ !empty($hero_section) ? $hero_section["title_".locale()] ?? '' : __('Dream house Raffle') }}
+                        {{ !empty($hero_section) ? $hero_section['title_' . locale()] ?? '' : __('Dream house Raffle') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="500" class="main--subtext">
                         {{ !empty($hero_section)
-                            ? $hero_section["description_".locale()] ?? ''
+                            ? $hero_section['description_' . locale()] ?? ''
                             : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') }}
                     </p>
 
@@ -31,18 +31,18 @@
                         alt="" />
                     <!-- <video autoplay loop src="./assets/videos/ticketvilla EN.mp4"></video> -->
                     <!-- <iframe
-                                  src="https://player.vimeo.com/video/950150289?h=a62df445a8"
-                                  width="640"
-                                  height="360"
-                                  frameborder="0"
-                                  allow="autoplay; fullscreen; picture-in-picture"
-                                  allowfullscreen
-                                ></iframe>
-                                <p>
-                                  <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
-                                  <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
-                                  on <a href="https://vimeo.com">Vimeo</a>.
-                                </p> -->
+                                      src="https://player.vimeo.com/video/950150289?h=a62df445a8"
+                                      width="640"
+                                      height="360"
+                                      frameborder="0"
+                                      allow="autoplay; fullscreen; picture-in-picture"
+                                      allowfullscreen
+                                    ></iframe>
+                                    <p>
+                                      <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
+                                      <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
+                                      on <a href="https://vimeo.com">Vimeo</a>.
+                                    </p> -->
                 </div>
 
                 <!-- live statistics wrapper -->
@@ -65,32 +65,32 @@
 
                 <div class="facts--wrapper">
                     {{-- @dd($gift) --}}
-                    @if($gift != null)
-                        @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem->isNotEmpty()  )
-                        @foreach ($gift->giftFeaturedItem as $item)
-                            <div data-aos="fade-up" data-aos-duration="500" class="single--facts">
-                                <div class="icon">
-                                    <img src="{{ asset($item->image) }}" alt="" />
-                                </div>
+                    @if ($gift != null)
+                        @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem->isNotEmpty())
+                            @foreach ($gift->giftFeaturedItem as $item)
+                                <div data-aos="fade-up" data-aos-duration="500" class="single--facts">
+                                    <div class="icon">
+                                        <img src="{{ asset($item->image) }}" alt="" />
+                                    </div>
 
-                                <div class="text--wrapper">
-                                    @if (is_numeric($item['title_'.locale()]))
-                                    <p class="main">
-                                        <span>
-                                            {{ intval($item['title_'.locale()]) }}
-                                        </span>
+                                    <div class="text--wrapper">
+                                        @if (is_numeric($item['title_' . locale()]))
+                                            <p class="main">
+                                                <span>
+                                                    {{ intval($item['title_' . locale()]) }}
+                                                </span>
                                             </p>
                                         @else
-                                        <h3 class="fw-bold">
+                                            <h3 class="fw-bold">
 
-                                            {{ $item['title_'.locale()] }}
+                                                {{ $item['title_' . locale()] }}
                                             </h3>
                                         @endif
-                                    <p class="sub">{{ $item["sub_title_".locale()] }}</p>
+                                        <p class="sub">{{ $item['sub_title_' . locale()] }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    @endif
+                            @endforeach
+                        @endif
                     @endif
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 <div class="top--area">
                     <div data-aos="fade-up" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">
-                            {{ __("Your Chance For A Dream Home.") }}
+                            {{ __('Your Chance For A Dream Home.') }}
                         </h3>
 
                         <p class="sub--text">
@@ -139,98 +139,32 @@
 
                 <!-- slider area -->
                 <div class="home--chance--slider">
-                    <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance1.png') }}"
-                                    {{-- facts1.svg') }} --}} alt="" />
 
-                                <div class="overlay"></div>
+                    @if (isset($giftRandomImages) && $giftRandomImages)
+                        <div class="owl-carousel owl-theme">
+                            @foreach ($giftRandomImages as $item)
+                                <div class="item">
+                                    <div class="single--card">
+                                        <img class="cover--img" src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}"
+                                            {{-- facts1.svg') }} --}} alt="" />
 
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon1.png') }}" alt="" />
+                                        {{-- <div class="overlay"></div> --}}
+
+                                        <div class="content">
+                                            <div class="icon">
+                                                <img src="{{ asset('frontend/images/chance-icon1.png') }}"
+                                                    alt="" />
+                                            </div>
+                                            <p class="text">{{ $item->gift_image_type ?? '' }}</p>
+                                        </div>
                                     </div>
-                                    <p class="text">Gallery</p>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance2.png') }}"
-                                    alt="" />
+                    @endif
 
-                                <div class="overlay"></div>
 
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
-                                    </div>
-                                    <p class="text">3D walkaround <span>(inside)</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance3.png') }}"
-                                    alt="" />
 
-                                <div class="overlay"></div>
-
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
-                                    </div>
-                                    <p class="text">3D walkaround <span>(outside)</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance4.png') }}"
-                                    alt="" />
-
-                                <div class="overlay"></div>
-
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
-                                    </div>
-                                    <p class="text">3D walkaround <span>(outside)</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance3.png') }}"
-                                    alt="" />
-
-                                <div class="overlay"></div>
-
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
-                                    </div>
-                                    <p class="text">3D walkaround <span>(outside)</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single--card">
-                                <img class="cover--img" src="{{ asset('frontend/images/single-chance4.png') }}"
-                                    alt="" />
-
-                                <div class="overlay"></div>
-
-                                <div class="content">
-                                    <div class="icon">
-                                        <img src="{{ asset('frontend/images/chance-icon2.png') }}" alt="" />
-                                    </div>
-                                    <p class="text">3D walkaround <span>(outside)</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

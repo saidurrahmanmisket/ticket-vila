@@ -8,7 +8,6 @@ use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CMS;
-use App\Models\FAQ;
 use App\Models\Gift;
 use App\Models\Team;
 use App\Models\TheProcess;
@@ -17,31 +16,42 @@ class PageController extends Controller
 {
     public function index()
     {
-        $hero_section = CMS::where('page',Page::HOME)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        $theProcess = TheProcess::orderBy('sort_id','asc')->where('status',Status::ACTIVE)->get();
+        $hero_section = CMS::where('page', Page::HOME)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+        $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
-        if ($campaign){
+        if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
-        }else{
+
+            if ($gift) {
+                $giftRandomImages = $gift->giftGallary()
+                    ->where(function ($query) {
+                        $query->where('gift_image_type', 'inside')
+                            ->orWhere('gift_image_type', 'outside');
+                    })
+                    ->inRandomOrder()
+                    ->limit(20)
+                    ->get();
+            }
+        } else {
             $gift = null;
+
         }
 
-
-        return view('frontend.layouts.index',compact('hero_section','theProcess', 'gift'));
+        return view('frontend.layouts.index', compact('hero_section', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
     public function about()
     {
         $teams = Team::where('status', 'active')->get();
-        $hero_section = CMS::where('page',Page::ABOUT_US)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        return view('frontend.layouts.about', compact('teams','hero_section'));
+        $hero_section = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+        return view('frontend.layouts.about', compact('teams', 'hero_section'));
     }
 
     public function contact()
     {
-        $hero_section = CMS::where('page',Page::CONTACT)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
-        return view('frontend.layouts.contact',compact('hero_section'));
+        $hero_section = CMS::where('page', Page::CONTACT)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+        return view('frontend.layouts.contact', compact('hero_section'));
     }
 
     public function imprint()
@@ -81,18 +91,18 @@ class PageController extends Controller
 
     public function theHouse()
     {
-        $hero_section = CMS::where('page',Page::THE_HOUSE())->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        $hero_section = CMS::where('page', Page::THE_HOUSE())->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         $campaign = Campaign::latest()->where('status', 'published')->first();
-        if ($campaign){
-        $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
+        if ($campaign) {
+            $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
             $giftImages = [
-                'insideImage' => $gift->giftGallary->where('gift_image_type' , 'inside'),
-                'outsideImage' => $gift->giftGallary->where('gift_image_type' , 'outside'),
-                'planImage' => $gift->giftGallary->where('gift_image_type' , 'plan'),
+                'insideImage' => $gift->giftGallary->where('gift_image_type', 'inside'),
+                'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
+                'planImage' => $gift->giftGallary->where('gift_image_type', 'plan'),
             ];
-        }else{
+        } else {
             $gift = null;
-            $giftImages = null ;
+            $giftImages = null;
         }
 
         return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages'));
@@ -105,7 +115,7 @@ class PageController extends Controller
 
     public function howItWorks()
     {
-        $hero_section = CMS::where('page',Page::HOW_IT_WORKS)->where('section_name',Section::HERO)->where('status',Status::ACTIVE)->first();
+        $hero_section = CMS::where('page', Page::HOW_IT_WORKS)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         return view('frontend.layouts.how-it-works', compact('hero_section'));
     }
 }
