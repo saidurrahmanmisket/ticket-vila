@@ -67,10 +67,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Target Type</th>
                         <th>Limit</th>
                         <th>Unique Text</th>
-                        <th>Purchase Limit</th>
                         <th>Price</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -80,11 +78,9 @@
                     @forelse($campaigns as $campaign)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $campaign->name }}</td>
-                            <td>{{ $campaign->target_type == '2' ? 'Date' : 'Limit' }}</td>
+                            <td>{{ $campaign->name_en }}</td>
                             <td>{{ $campaign->limit }}</td>
                             <td>{{ $campaign->unique_text }}</td>
-                            <td>{{ $campaign->purchase_limit }}</td>
                             <td>{{ number_format($campaign->price,2) }}</td>
                             <td>{{ $campaign->status }}</td>
                             <td>

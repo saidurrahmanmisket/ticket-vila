@@ -4,10 +4,6 @@
     CMS
 @endsection;
 
-{{-- Push Style --}}
-@push('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
-@endpush;
 @section('content')
     <section class="app--content--main statistics">
     <!-- profile area  -->
@@ -117,7 +113,6 @@
 {{-- Push Script --}}
 @push('script')
     {{-- Dropify --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.dropify').dropify();
