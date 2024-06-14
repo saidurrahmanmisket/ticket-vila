@@ -183,6 +183,18 @@
                                     The Process
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.cms.three-d-map-or-video') }}"
+                                   class="sub--menu--title {{ Route::is('admin.cms.three-d-map-or-video') ? 'sub--active' : '' }}">
+                                    3D House Section
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.cms.home-page.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.cms.home-page.*') ? 'sub--active' : '' }}">
+                                    Home Page
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

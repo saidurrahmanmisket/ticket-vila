@@ -71,7 +71,7 @@
                         <th>Title</th>
                         <th>Button Type</th>
                         <th>Position</th>
-                        <th>Image/vide</th>
+                        <th>Image/video</th>
                         <th>Icon</th>
                         <th>Status</th>
                         <th class="text-center">Action</th>
