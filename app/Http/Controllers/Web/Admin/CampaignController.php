@@ -19,6 +19,7 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::paginate(20);
+
         return view('admin.layouts.campaign.index', compact('campaigns'));
     }
 
@@ -27,7 +28,8 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        $gifts = Gift::where('status','active')->get();
+        $gifts = Gift::where('status', 'active')->get();
+
         return view('admin.layouts.campaign.create', compact('gifts'));
     }
 
@@ -37,30 +39,30 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'name_en' => 'required|string',
-           'name_de' => 'required|string',
-           'name_hu' => 'required|string',
-           'gift_id'=>'required|integer|exists:gifts,id',
-//           'campaign_type'=>'required|in:2,3',
-           'unique_text'=> 'required|string|unique:campaigns,unique_text',
-//           'purchase_limit'=>'integer|required',
-//           'end_date' => 'required_if:campaign_type,2',
-           'price'   => 'required|numeric',
-           'limit'=>'required|integer',
-           'ebook_files'=>'array|required',
-           'ebook_files.*'=>'file|required',
-           'thumbnail'=>'required|image|mimes:jpeg,jpg,png|max:2048',
+            'name_en' => 'required|string',
+            'name_de' => 'required|string',
+            'name_hu' => 'required|string',
+            'gift_id' => 'required|integer|exists:gifts,id',
+            //           'campaign_type'=>'required|in:2,3',
+            'unique_text' => 'required|string|unique:campaigns,unique_text',
+            //           'purchase_limit'=>'integer|required',
+            //           'end_date' => 'required_if:campaign_type,2',
+            'price' => 'required|numeric',
+            'limit' => 'required|integer',
+            'ebook_files' => 'array|required',
+            'ebook_files.*' => 'file|required',
+            'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [
-                'thumbnail.max'=> 'Thumbnail max size 2 MB',
+                'thumbnail.max' => 'Thumbnail max size 2 MB',
             ]
         );
 
         try {
             $thumbnail = $request->file('thumbnail');
             if ($request->file('thumbnail') && $request->file('thumbnail')->isValid()) {
-                $thumbnail_path = Helper::fileUpload($thumbnail,'campaign/',time().'_'.pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME));
-            }else{
+                $thumbnail_path = Helper::fileUpload($thumbnail, 'campaign/', time().'_'.pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME));
+            } else {
                 $thumbnail_path = null;
             }
 
@@ -82,9 +84,11 @@ class CampaignController extends Controller
                 ]);
             }
             flash()->addSuccess('Campaign created successfully.');
+
             return redirect()->route('admin.campaign.index');
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             flash()->addError($exception->getMessage());
+
             return redirect()->back();
         }
 
@@ -94,15 +98,15 @@ class CampaignController extends Controller
      * Display the specified resource.
      */
 
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
         $campaign = Campaign::with(['ebooks'])->findOrFail($id);
-        $gifts = Gift::where('status','active')->get();
-        return view('admin.layouts.campaign.edit', compact('campaign','gifts'));
+        $gifts = Gift::where('status', 'active')->get();
+
+        return view('admin.layouts.campaign.edit', compact('campaign', 'gifts'));
     }
 
     /**
@@ -114,30 +118,29 @@ class CampaignController extends Controller
             'name_en' => 'required|string',
             'name_de' => 'required|string',
             'name_hu' => 'required|string',
-            'gift_id'=>'required|integer|exists:gifts,id',
-//           'campaign_type'=>'required|in:2,3',
-            'unique_text'=> 'required|string|unique:campaigns,unique_text,'.$id,
-//           'purchase_limit'=>'integer|required',
-//           'end_date' => 'required_if:campaign_type,2',
-            'price'   => 'required|numeric',
-            'limit'=>'required|integer',
-            'ebook_files'=>'array|nullable',
-            'ebook_files.*'=>'file|required',
-            'thumbnail'=>'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'gift_id' => 'required|integer|exists:gifts,id',
+            //           'campaign_type'=>'required|in:2,3',
+            'unique_text' => 'required|string|unique:campaigns,unique_text,'.$id,
+            //           'purchase_limit'=>'integer|required',
+            //           'end_date' => 'required_if:campaign_type,2',
+            'price' => 'required|numeric',
+            'limit' => 'required|integer',
+            'ebook_files' => 'array|nullable',
+            'ebook_files.*' => 'file|required',
+            'thumbnail' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [
-                'thumbnail.max'=> 'Thumbnail max size 2 MB',
+                'thumbnail.max' => 'Thumbnail max size 2 MB',
             ]
         );
-
 
         try {
             $thumbnail = $request->file('thumbnail');
             $campaign = Campaign::findOrFail($id);
             if ($request->file('thumbnail') && $request->file('thumbnail')->isValid()) {
-                $thumbnail_path = Helper::fileUpload($thumbnail,'/campaign/',time().'_'.pathinfo($thumbnail->getClientOriginalName(),PATHINFO_FILENAME));
+                $thumbnail_path = Helper::fileUpload($thumbnail, '/campaign/', time().'_'.pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME));
                 Helper::deleteFile(public_path($campaign->thumbnail));
-            }else{
+            } else {
                 $thumbnail_path = $campaign->thumbnail;
             }
 
@@ -162,9 +165,11 @@ class CampaignController extends Controller
                 }
             }
             flash()->addSuccess('Campaign updated successfully.');
+
             return redirect()->route('admin.campaign.index');
-        }catch (Exception $e){
+        } catch (Exception $e) {
             flash()->addError($e->getMessage());
+
             return redirect()->back();
         }
     }
@@ -178,21 +183,23 @@ class CampaignController extends Controller
             $campaign = Campaign::with(['ebooks'])->findOrFail($id);
 
             foreach ($campaign->ebooks as $ebook) {
-                if (!empty($ebook) && Storage::exists($ebook->file)) {
+                if (! empty($ebook) && Storage::exists($ebook->file)) {
                     Storage::delete($ebook->file);
                 }
                 $ebook->delete();
             }
 
-            if ($campaign->thumbnail){
+            if ($campaign->thumbnail) {
                 Helper::deleteFile(public_path($campaign->thumbnail));
             }
 
             $campaign->delete();
             flash()->addSuccess('Campaign deleted successfully.');
+
             return redirect()->route('admin.campaign.index');
-        }catch (Exception $e){
+        } catch (Exception $e) {
             flash()->addError($e->getMessage());
+
             return redirect()->back();
         }
     }
@@ -202,19 +209,20 @@ class CampaignController extends Controller
 
         $ebook = Ebook::findOrFail($id);
         $campaign = Campaign::withCount(['ebooks'])->findOrFail($ebook->campaign_id);
-        if ($campaign->ebooks_count <= 1){
+        if ($campaign->ebooks_count <= 1) {
             return response()->json([
                 'success' => false,
-                'message' => "This is the last item; you can't delete this item."
+                'message' => "This is the last item; you can't delete this item.",
             ]);
         }
-        if (!empty($ebook) && Storage::exists($ebook->file)) {
+        if (! empty($ebook) && Storage::exists($ebook->file)) {
             Storage::delete($ebook->file);
         }
         $ebook->delete();
+
         return response()->json([
             'success' => true,
-            'message' => 'Ebook deleted successfully.'
+            'message' => 'Ebook deleted successfully.',
         ]);
     }
 }

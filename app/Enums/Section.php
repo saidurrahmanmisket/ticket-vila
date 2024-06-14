@@ -12,4 +12,14 @@ use Rexlabs\Enum\Enum;
 class Section extends Enum
 {
     const HERO = 'hero';
+
+    const TICKET_CHANCE = 'ticket_chance';
+
+    const WIN_SPIN = 'win_spin';
+
+    const TICKET_INFO = 'ticket_info';
+
+    const TREE_D_HOUSE_TOUR = 'three_d_house_tour';
+
+    const TREE_D_PROPERTY_VIEW = 'three_d_property_view';
 }

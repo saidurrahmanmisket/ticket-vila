@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('c_m_s', function (Blueprint $table) {
             $table->id();
-            $table->string('page');
+            $table->string('page')->nullable();
             $table->string('section_name')->nullable();
             $table->string('title_en')->nullable();
             $table->string('title_de')->nullable();
@@ -24,6 +24,10 @@ return new class extends Migration
             $table->longText('description_en')->nullable();
             $table->longText('description_de')->nullable();
             $table->longText('description_hu')->nullable();
+            $table->text('link')->nullable();
+            $table->text('link_en')->nullable();
+            $table->text('link_de')->nullable();
+            $table->text('link_hu')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
