@@ -3,7 +3,7 @@
 @section('title', 'Settings')
 
 @section('header_title')
-Settings
+    Settings
 @endsection;
 
 @section('content')
@@ -23,7 +23,7 @@ Settings
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill"
+                        <button class="nav-link {{ isset($tabIsActive)  ? 'active' : '' }}" id="pills-security-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-security" type="button" role="tab" aria-controls="pills-security"
                             aria-selected="false">
                             Security
@@ -42,93 +42,154 @@ Settings
                         aria-labelledby="pills-personal-info-tab" tabindex="0">
                         <!-- personal--info  -->
                         <div class="personal--info common--inputs mt_55">
-                            <h4>
-                                Personal Info <span>(Name, Surname, Email address)</span>
-                            </h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input--group">
-                                        <label for="fname">First Name</label>
-                                        <input id="fname" type="text" value="Max " />
+
+                            <form action="{{ route('user.settings.personal-info.update') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('patch')
+                                <!-- profile  -->
+                                <div class="">
+                                    <div class="profile mb-5" style="width: 220px;">
+                                        <div class="upload--wrapper">
+                                            <div class="preview--img">
+                                                <img id="image-preview"
+                                                    src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('admin/images/user.png') }}"
+                                                    alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" />
+                                                @error('avatar')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <label for="upload">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                    viewBox="0 0 18 18" fill="none">
+                                                    <path
+                                                        d="M15.75 16.5H2.25C1.9425 16.5 1.6875 16.245 1.6875 15.9375C1.6875 15.63 1.9425 15.375 2.25 15.375H15.75C16.0575 15.375 16.3125 15.63 16.3125 15.9375C16.3125 16.245 16.0575 16.5 15.75 16.5Z"
+                                                        fill="white"></path>
+                                                    <path
+                                                        d="M14.2649 2.61C12.8099 1.155 11.3849 1.1175 9.89243 2.61L8.98493 3.5175C8.90993 3.5925 8.87993 3.7125 8.90993 3.8175C9.47993 5.805 11.0699 7.395 13.0574 7.965C13.0874 7.9725 13.1174 7.98 13.1474 7.98C13.2299 7.98 13.3049 7.95 13.3649 7.89L14.2649 6.9825C15.0074 6.2475 15.3674 5.535 15.3674 4.815C15.3749 4.0725 15.0149 3.3525 14.2649 2.61Z"
+                                                        fill="white"></path>
+                                                    <path
+                                                        d="M11.7043 8.6476C11.4868 8.5426 11.2768 8.4376 11.0743 8.3176C10.9093 8.2201 10.7518 8.1151 10.5943 8.0026C10.4668 7.9201 10.3168 7.8001 10.1743 7.6801C10.1593 7.6726 10.1068 7.6276 10.0468 7.5676C9.79932 7.3576 9.52182 7.0876 9.27432 6.7876C9.25182 6.7726 9.21432 6.7201 9.16182 6.6526C9.08682 6.5626 8.95932 6.4126 8.84682 6.2401C8.75682 6.1276 8.65182 5.9626 8.55432 5.7976C8.43432 5.5951 8.32932 5.3926 8.22432 5.1826C8.19277 5.11499 8.16325 5.04807 8.13536 4.98202C8.0486 4.77659 7.7821 4.71731 7.62442 4.875L3.25182 9.2476C3.15432 9.3451 3.06432 9.5326 3.04182 9.6601L2.63682 12.5326C2.56182 13.0426 2.70432 13.5226 3.01932 13.8451C3.28932 14.1076 3.66432 14.2501 4.06932 14.2501C4.15932 14.2501 4.24932 14.2426 4.33932 14.2276L7.21932 13.8226C7.35432 13.8001 7.54182 13.7101 7.63182 13.6126L12 9.24437C12.1588 9.08559 12.0987 8.81377 11.8915 8.72729C11.8304 8.70182 11.7683 8.67532 11.7043 8.6476Z"
+                                                        fill="white"></path>
+                                                </svg>
+                                            </label>
+                                            <input type="file" class="d-none" name="avatar" id="upload" />
+
+                                        </div>
+                                        <!-- profile name  -->
+                                        <div class="profile--name">
+                                            <h1 class="mt-5">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                            </h1>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="input--group">
-                                        <label for="zip">Zip</label>
-                                        <input id="zip" type="number" value="344497" />
+                                <h4>
+                                    Personal Info <span>(Name, Surname, Email address)</span>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input--group">
+                                            <label for="fname">First Name</label>
+                                            <input id="fname" name="first_name" type="text"
+                                                value="{{ Auth::user()->first_name ?? '' }}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input--group">
+                                            <label for="zip">Zip</label>
+                                            <input name="zip_code" id="zip" type="text"
+                                                value="{{ Auth::user()->zip_code ?? '' }}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input--group">
+                                            <label for="gender">Gender</label>
+                                            <select id="gender" name="gender">
+                                                <option value="1" {{ Auth::user()->gender == 1 ? 'selected' : '' }}>
+                                                    Male</option>
+                                                <option value="2" {{ Auth::user()->gender == 2 ? 'selected' : '' }}>
+                                                    Female</option>
+                                                <option value="3" {{ Auth::user()->gender == 3 ? 'selected' : '' }}>
+                                                    Others</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input--group">
+                                            <label for="lname">Last Name</label>
+                                            <input name="last_name" id="lname" type="text"
+                                                value="{{ Auth::user()->last_name ?? '' }}" />
+                                        </div>
+                                        <div class="input--group">
+                                            <label for="email">Email Address</label>
+                                            <input name="email" id="email" type="email"
+                                                value="{{ Auth::user()->email ?? '' }}" />
+                                        </div>
+                                        <div class="input--group">
+                                            <label for="address">Address</label>
+                                            <input name="address_1" id="address" type="text"
+                                                value="{{ Auth::user()->address_1 ?? '' }}" />
+                                        </div>
+                                        <div class="input--group">
+                                            <label for="city">City</label>
+                                            <input name="city" id="city" type="text"
+                                                value="{{ Auth::user()->city ?? '' }}" />
+                                        </div>
+                                        <div class="input--group">
+                                            <label for="state">State</label>
+                                            <input name="state" id="state" type="text"
+                                                value="{{ Auth::user()->state ?? '' }}" />
+                                        </div>
+                                        <div class="buttons mt_55">
+                                            <button type="submit" class="user--common--btn">
+                                                Save Changes
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="input--group">
-                                        <label for="gender">Gender</label>
-                                        <select id="gender">
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                            <option value="3">Others</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input--group">
-                                        <label for="lname">Last Name</label>
-                                        <input id="lname" type="text" value="Musternann" />
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="email">Email Address</label>
-                                        <input id="email" type="email" value="mustermann@gmail.com" />
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="address">Address</label>
-                                        <input id="address" type="text" value="greaderweg 3" />
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="city">City</label>
-                                        <input id="city" type="text" value="Korbach" />
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="state">State</label>
-                                        <input id="state" type="text" value="Musterstrabe Berline" />
-                                    </div>
-                                    <div class="buttons mt_55">
-                                        <button type="button" class="user--common--btn">
-                                            Save Changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
+
+
                     </div>
                     <div class="tab-pane fade" id="pills-security" role="tabpanel" aria-labelledby="pills-security-tab"
                         tabindex="0">
+                        <form action="{{ route('user.settings.password.update') }}" method="post">
+                            @method('patch')
+                            @csrf
                         <!-- security  -->
                         <div class="security common--inputs mt_50">
                             <h3>
                                 Security
-                                <span>(Your email address is dmataraci@gmail.com)</span>
+                                <span>(Your email address is {{ Auth::user()->email ?? '' }})</span>
                             </h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input--group">
                                         <label for="current-password">Current password</label>
-                                        <input id="current-password" type="password" placeholder="6632645fsdg12105" />
+                                        <input name="current_password" id="current-password"  type="password" placeholder="***********" />
                                     </div>
                                     <div class="input--group">
                                         <label for="new--password">New password</label>
-                                        <input id="new--password" type="password"
+                                        <input name="password" id="new--password" type="password"
                                             placeholder="Enter your new password" />
                                     </div>
                                     <div class="input--group">
                                         <label for="confirm--password">Confirm password</label>
-                                        <input id="confirm--password" type="password" placeholder="Confirm password" />
+                                        <input name="password_confirmation" id="confirm--password" type="password" placeholder="Confirm password" />
                                     </div>
                                     <div class="buttons mt_55">
-                                        <button type="button" class="user--common--btn">
+                                        <button type="submit" class="user--common--btn">
                                             Save Changes
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="pills-billing" role="tabpanel" aria-labelledby="pills-billing-tab"
                         tabindex="0">
@@ -257,11 +318,6 @@ Settings
                                                     </svg>
                                                 </a>
                                             </div>
-                                        </div>
-                                        <div class="buttons mt_55">
-                                            <button class="user--common--btn">
-                                                Save Changes
-                                            </button>
                                         </div>
                                     </div>
                                 </div>

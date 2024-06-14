@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\Web\Frontend\DynamicPageController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
+use App\Http\Controllers\Web\User\ProfileController;
+use App\Http\Controllers\Web\User\SettingsController;
 use App\Http\Controllers\Web\User\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +27,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/the-house', 'theHouse')->name('the-house');
     Route::get('/verify-email', 'verifyEmail')->name('verify-email');
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
+    Route::get('page/{page_slug}',  'dynamicPage')->name('custom.page');
 
 });
 
@@ -37,6 +41,7 @@ Route::controller(OTPVerificationController::class)->group(function () {
 
 });
 
+
 //-----user dashboard route start from here =====================================------by: saidur
 Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
 
@@ -45,16 +50,25 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
+    //static page views 
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::view('/user/house', 'user.layouts.house')->name('house');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
-    Route::view('/user/settings', 'user.layouts.settings')->name('settings');
-
+    
     //work on payment
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
     Route::get('/stripe/payment/success/{reference}', [StripeController::class, 'success'])->name('stripe.success');
+    
+    
+    //Profile routes
+    Route::controller(SettingsController::class)->group(function () {
+        Route::get('/user/settings', 'index')->name('settings');
+        Route::patch('user/settings/personal-info/update', 'infoUpdate')->name('settings.personal-info.update');
+        Route::patch('user/settings/password/update', 'passwordUpdate')->name('settings.password.update');
+        // Route::patch('/user/change','updatePassword')->name('user.profile.change');
+    });
 });
 
 //-----user dashboard route end  here ===========================================------by: saidur

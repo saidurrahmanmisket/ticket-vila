@@ -38,15 +38,23 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => 'required|string',
-            'answer' => 'required|string',
+            'question_en' => 'required|string',
+            'question_de' => 'required|string',
+            'question_hu' => 'required|string',
+            'answer_en' => 'required|string',
+            'answer_de' => 'required|string',
+            'answer_hu' => 'required|string',
         ]);
 
         try {
 
             FAQ::create([
-                'question' => $request->question,
-                'answer' => $request->answer,
+                'question_en' => $request->question_en,
+                'question_de' => $request->question_de,
+                'question_hu' => $request->question_hu,
+                'answer_en' => $request->answer_en,
+                'answer_de' => $request->answer_de,
+                'answer_hu' => $request->answer_hu,
             ]);
             flash()->addSuccess('faq Created Successfully.');
             return redirect()->route('admin.faq.index');
@@ -82,17 +90,23 @@ class FaqController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'question' => 'required|string',
-            'answer' => 'required|string',
+            'question_en' => 'required|string',
+            'question_de' => 'required|string',
+            'question_hu' => 'required|string',
+            'answer_en' => 'required|string',
+            'answer_de' => 'required|string',
+            'answer_hu' => 'required|string',
         ]);
-
 
         $faq = FAQ::findOrFail($id);
 
-
         $faq->update([
-            'question' => $request->question,
-            'answer' => $request->answer,
+            'question_en' => $request->question_en,
+            'question_de' => $request->question_de,
+            'question_hu' => $request->question_hu,
+            'answer_en' => $request->answer_en,
+            'answer_de' => $request->answer_de,
+            'answer_hu' => $request->answer_hu,
         ]);
 
         flash()->addSuccess("Updated Successfully.");
@@ -108,7 +122,6 @@ class FaqController extends Controller
         $faq = FAQ::findOrFail($id);
         Helper::deleteFile(public_path($faq->image));
         $faq->delete();
-
 
         flash()->addSuccess("Deleted Successfully.");
         return redirect()->route('admin.faq.index');

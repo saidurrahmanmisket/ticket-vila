@@ -63,7 +63,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     //Settings Routes
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-    Route::get('/settings/help', [SettingController::class, 'help'])->name('settings.help');
+    Route::get('/settings',[SettingController::class,'index'])->name('settings.index');
+    Route::get('/settings/help',[SettingController::class,'help'])->name('help');
 
 });

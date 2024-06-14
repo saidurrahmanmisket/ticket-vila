@@ -1,7 +1,7 @@
 @extends('admin.app')
-@section('title', 'Socail Media list')
+@section('title', 'Dynamic-page list')
 @section('header_title')
-    Socail Media
+    Dynamic-page
 @endsection;
 @section('content')
     <section class="app--content--main">
@@ -35,45 +35,40 @@
                     </div>
                 </form>
                 <div class="">
-                    <a href="{{ route('admin.settings.social-media.create') }}" class="btn btn-success">
+                    <a href="{{ route('admin.dynamic-page.create') }}" class="btn btn-success">
                         Add new
                     </a>
                 </div>
             </div>
             <!-- users table  -->
             <div class="users--table--wrapper default--scrollbar">
-                <h4 class="common--title">Socail Media List</h4>
+                <h4 class="common--title">Dynamic-page List</h4>
                 <div class="users--table">
                     <table>
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Image</th>
+                                <th>Title</th>
+                                <th>image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($socials as $social)
+                            @forelse($allPages as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $social->name }}</td>
-                                    <td>
-                                        <div class="user--tickets">
-                                            <img src="{{ asset($social->icon) }}" alt="" />
-                                        </div>
-                                    </td>
+                                    <td>{{ $item->title_en }}</td>
+                                <td class="user--tickets"><img class="" src="{{ asset($item->image) }}" alt="" class="src"></td>
                                     <td>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" @if ($social->status == 'active') checked @endif
+                                            <input class="form-check-input" @if ($item->status == 'active') checked @endif
                                                 type="checkbox" id="flexSwitchCheckDisabled">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2 align-items-center">
-                                            <a href="{{ route('admin.settings.social-media.edit', $social->id) }}"
-                                                style="color: #4b5563">
+                                            <a href="{{ route('admin.dynamic-page.edit', $item->id) }}" style="color: #4b5563">
                                                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                                     height="24" fill="currentColor" viewBox="0 0 24 24">
                                                     <path fill-rule="evenodd"
@@ -84,9 +79,8 @@
                                                         clip-rule="evenodd" />
                                                 </svg>
                                             </a>
-                                            <form action="{{ route('admin.settings.social-media.destroy', $social->id) }}"
-                                                method="POST">
-                                                @csrf @method('DELETE')
+                                            <form action="{{ route('admin.dynamic-page.destroy', $item->id) }}" method="POST"> @csrf
+                                                @method('DELETE')
                                                 <button type="submit" style="color: #dc2626"
                                                     onclick="return confirm('Are you sure you want to delete?')">
                                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -103,13 +97,13 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4">No social media found!</td>
+                                    <td colspan="4">No dynamic-page found!</td>
                                 </tr>
                             @endforelse
 
                         </tbody>
                     </table>
-                    {{ $socials->links() }}
+                    {{ $allPages->links() }}
                 </div>
             </div>
         </div>
