@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Admin\CampaignController;
+use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
 use App\Http\Controllers\Web\Admin\CMS\HomePageController;
 use App\Http\Controllers\Web\Admin\CMS\TheProcessController;
@@ -54,6 +55,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::post('/home/update_or_create/ticket_chance', [HomePageController::class, 'updateOrCreateChance'])->name('home-page.update-or-create-chance');
         Route::post('/home/update_or_create/win_spin', [HomePageController::class, 'updateOrCreateWinSpin'])->name('home-page.update-or-create-win-spin');
 
+        Route::get('/about', [AboutPageController::class, 'index'])->name('about.index');
+        Route::post('/about/the_mission', [AboutPageController::class, 'theMission'])->name('about.the-mission');
+        Route::post('/about/the_transparency', [AboutPageController::class, 'theTransparency'])->name('about.the-transparency');
+
         //ThreeD view routes
         Route::get('/3d_map_or_video_section', [ThreeDViewController::class, 'mapOrVideo'])->name('three-d-map-or-video');
         Route::post('/3d_map_or_video_section/house_tour', [ThreeDViewController::class, 'updateOrCreateHoursTour'])->name('three-d-map-or-video.house-tour');
@@ -63,7 +68,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     //Settings Routes
-    Route::get('/settings',[SettingController::class,'index'])->name('settings.index');
-    Route::get('/settings/help',[SettingController::class,'help'])->name('help');
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::get('/settings/help', [SettingController::class, 'help'])->name('help');
 
 });

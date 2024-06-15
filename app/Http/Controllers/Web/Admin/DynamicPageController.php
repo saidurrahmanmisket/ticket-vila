@@ -16,6 +16,7 @@ class DynamicPageController extends Controller
     public function index()
     {
         $allPages = DynamicPage::where('status', 'active')->paginate();
+
         return view('admin.layouts.dynamic-page.index', compact('allPages'));
     }
 
@@ -49,7 +50,7 @@ class DynamicPageController extends Controller
         // Handle the file upload if there is one
         if ($request->hasFile('gift_image')) {
             $file = $request->file('gift_image');
-            $imagePath = Helper::fileUpload($file, 'dynamic-page', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            $imagePath = Helper::fileUpload($file, 'dynamic-page', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
         } else {
             $imagePath = null;
         }
@@ -84,9 +85,10 @@ class DynamicPageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string  $id)
+    public function edit(string $id)
     {
         $dynamicPage = DynamicPage::findOrFail($id);
+
         return view('admin.layouts.dynamic-page.edit', compact('dynamicPage'));
     }
 
@@ -117,7 +119,7 @@ class DynamicPageController extends Controller
             }
             // Store the new image
             $file = $request->file('image');
-            $imagePath =  Helper::fileUpload($file, 'dynamic-page', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            $imagePath = Helper::fileUpload($file, 'dynamic-page', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
         } else {
             $imagePath = $dynamicPage->image;
         }
@@ -149,8 +151,8 @@ class DynamicPageController extends Controller
         Helper::deleteFile(public_path($dynamicPage->image));
         $dynamicPage->delete();
 
+        flash()->addSuccess('Deleted Successfully.');
 
-        flash()->addSuccess("Deleted Successfully.");
         return redirect()->route('admin.dynamic-page.index');
     }
 }

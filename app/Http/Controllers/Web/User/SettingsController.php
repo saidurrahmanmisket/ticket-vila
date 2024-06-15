@@ -22,7 +22,7 @@ class SettingsController extends Controller
             $input = $request->validate([
                 'first_name' => 'required|string|max:100',
                 'last_name' => 'required|string|max:100',
-                'email' => 'required|string|email|max:100|unique:users,email,' . Auth::user()->id,
+                'email' => 'required|string|email|max:100|unique:users,email,'.Auth::user()->id,
                 'zip_code' => 'nullable|string|max:20',
                 'gender' => 'required|in:1,2,3',
                 'address_1' => 'nullable|string|max:255',
@@ -36,8 +36,8 @@ class SettingsController extends Controller
 
             $file = $request->file('avatar');
             if ($file) {
-                $avatar = Helper::fileUpload($file, '/avatar/', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-                if (!empty(Auth::user()->avatar)) {
+                $avatar = Helper::fileUpload($file, '/avatar/', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                if (! empty(Auth::user()->avatar)) {
                     Helper::deleteFile(public_path(Auth::user()->avatar));
                 }
             } else {
@@ -59,10 +59,12 @@ class SettingsController extends Controller
 
             //Success message
             flash()->addSuccess('Your profile successfully updated.');
+
             return redirect()->route('user.settings');
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return redirect()->route('user.settings')->with('error', $e->getMessage());
         }
     }
@@ -78,8 +80,9 @@ class SettingsController extends Controller
             ]);
             $user = Auth::user();
 
-            if (!Hash::check($request->current_password, $user->password)) {
+            if (! Hash::check($request->current_password, $user->password)) {
                 flash()->addError('Your current password is incorrect');
+
                 return redirect()->route('user.settings');
             }
             $user->update([
@@ -87,10 +90,12 @@ class SettingsController extends Controller
             ]);
 
             flash()->addSuccess('Your password successfully updated.');
+
             return redirect()->route('admin.profile.index');
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return redirect()->route('user.settings')->with('error', $e->getMessage());
         }
     }

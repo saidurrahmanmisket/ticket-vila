@@ -19,10 +19,10 @@
 
                     <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper">
                         <a href="#" class="btn--fill">
-                            <span>{{ __('common.buy_now') }}</span>
+                            <span>{{ __('Buy Now') }}</span>
                         </a>
                         <a href="#" class="btn--normal">
-                            <span>{{ __('common.how_does_this_work') }}</span>
+                            <span>{{ __('How does this work?') }}</span>
                         </a>
                     </div>
                 </div>
@@ -47,20 +47,18 @@
 
                 <!-- live statistics wrapper -->
                 <div data-aos="fade-up" data-aos-duration="800" class="live--statistics--wrapper">
-                    <p class="intro">{{ __('common.live_statistics') }}</p>
+                    <p class="intro">{{ __('Live Statistics') }}</p>
                     <x-user.live-ticket-statistics />
                 </div>
             </div>
         </div>
     </section>
-    <!-- home banner area ends -->
-
     <!-- some facts area starts -->
     <section class="some--facts--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="some--facts--area--content">
                 <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                    Here are some facts.
+                    {{ __('Here are some facts.') }}
                 </h3>
 
                 <div class="facts--wrapper">
@@ -114,7 +112,7 @@
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">
                         <a href="#" class="btn--fill">
-                            <span>Learn More</span>
+                            <span>{{ __('Learn More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="transparent">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
@@ -125,7 +123,7 @@
                             </svg>
                         </a>
                         <a href="#" class="btn--fill blue--btn">
-                            <span>Sign Up</span>
+                            <span>{{ __('Sign Up') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
@@ -181,9 +179,15 @@
             <div class="ticket--chance--area--content">
                 <div class="ticket--img--holder">
                     <div class="img--box">
-                        <img class="ticket1" src="{{ asset('frontend/images/ticket-main.png') }}" alt="" />
-                        <img class="ticket2" src="{{ asset('frontend/images/ticket-main.png') }}" alt="" />
-                        <img class="ticket3" src="{{ asset('frontend/images/ticket-main.png') }}" alt="" />
+                        <img class="ticket1"
+                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                             alt=""/>
+                        <img class="ticket2"
+                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                             alt=""/>
+                        <img class="ticket3"
+                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                             alt=""/>
                     </div>
 
                     <div class="base--holder">
@@ -192,19 +196,17 @@
                 </div>
 
                 <div data-aos="fade-left" data-aos-duration="700" class="text--holder">
-                    <h3 class="common--heading--title">This is your Chance</h3>
+                    <h3 class="common--heading--title">{{ !empty($ticket_chance) ? $ticket_chance['title_'.locale()] ?? '' : __('This is your Chance') }}</h3>
                     <p class="subtext">
-                        This could be the opportunity of a lifetime. It seems too too
-                        good to be true, but it is, and that is the beauty of the House
-                        Raffle. Buy an eBook for just £99 and get a ticket with a real,
-                        proven, fair and legitimate to win the home of your dreams.
+                        {{ !empty($ticket_chance) ? $ticket_chance['description_'.locale()] ?? '' : __('This could be the opportunity of a lifetime. It seems too too good to be true, but it is, and that is the beauty of the House Raffle. Buy an eBook for just £99 and get a ticket with a real, proven, fair and legitimate to win the home of your dreams.') }}
                     </p>
 
-                    <a href="#" class="gold--link">This ticket can change your life.</a>
+                    <a href="#"
+                       class="gold--link">{{ !empty($ticket_chance) ? $ticket_chance['sub_title_'.locale()] ?? '' : __('This ticket can change your life.') }}</a>
 
                     <div class="btn--wrapper">
                         <a href="#" class="btn--fill blue--btn">
-                            <span>Buy Now</span>
+                            <span>{{ __('Buy Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
                                 <path d="M15.75 7.72559L0.75 7.72559" stroke="white" stroke-width="1.5"
@@ -214,7 +216,7 @@
                             </svg>
                         </a>
                         <a href="#" class="btn--normal border blank">
-                            <span>See More</span>
+                            <span>{{ __('See More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
                                 <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
@@ -234,11 +236,11 @@
     <section data-aos="fade-up" data-aos-duration="600" class="spin--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="spin--area--content">
-                <h3 class="main">Win yours</h3>
-                <h3 class="main gold--text">Dream Home</h3>
+                <h3 class="main">{{ !empty($wit_spin) ? $wit_spin['title_'.locale()] ?? '' : __('Win yours') }}</h3>
+                <h3 class="main gold--text">{{ !empty($wit_spin) ? $wit_spin['sub_title_'.locale()] ?? '' : __("Dream Home") }}</h3>
 
                 <a href="#" class="btn--fill blue--btn">
-                    <span>Buy Now</span>
+                    <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
         </div>
@@ -265,8 +267,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">To Register</p>
-                        <p class="sub">Create an account for free.</p>
+                        <p class="main">{{ __('To Register') }}</p>
+                        <p class="sub">{{ __('Create an account for free.') }}</p>
                     </div>
 
                     <!-- id -->
@@ -280,8 +282,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">To buy a ticket</p>
-                        <p class="sub">Buy any number of tickets.</p>
+                        <p class="main">{{ __('To buy a ticket') }}</p>
+                        <p class="sub">{{ __('Buy any number of tickets.') }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/02.svg') }}" alt="" /></div>
@@ -292,8 +294,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">Live Raffle</p>
-                        <p class="sub">Follow the status and the draw live.</p>
+                        <p class="main">{{ __("Live Raffle") }}</p>
+                        <p class="sub">{{ __('Follow the status and the draw live.') }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/03.svg') }}" alt="" /></div>
@@ -304,8 +306,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">Win House</p>
-                        <p class="sub">Enjoy your turnkey dream home.</p>
+                        <p class="main">{{ __("Win House") }}</p>
+                        <p class="sub">{{ __("Enjoy your turnkey dream home.") }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/04.svg') }}" alt="" /></div>
@@ -351,20 +353,40 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">3D house tour</h3>
+                <h3 class="title">{{ __("3D house tour") }}</h3>
 
                 <div class="area--wrapper">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                    @if(!empty($houseTour) && !empty($houseTour->link))
+                        <iframe
+                                src="{{$houseTour->link}}"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($houseTour))
+                        <iframe
+                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe
+                                width="560"
+                                height="315"
+                                src="{{ $houseTour['link_'.locale()] ?? '' }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+
+                        ></iframe>
+                    @endif
+
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
                             </div>
-                            <p>Click to start</p>
+                            <p>{{ __("Click to start") }}</p>
                         </div>
                     </div>
                 </div>
@@ -377,9 +399,9 @@
     <div data-aos="fade-up" data-aos-duration="600" class="get--your--tickets--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="get--your--tickets--area--content">
-                <h3 class="main">Get your Ticket</h3>
+                <h3 class="main">{{ __("Get your Ticket") }}</h3>
                 <a href="#" class="btn--fill blue--btn">
-                    <span>Buy Now</span>
+                    <span>{{ __("Buy Now") }}</span>
                 </a>
             </div>
         </div>
@@ -394,31 +416,31 @@
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                     </div>
-                    <p class="title">Secure</p>
+                    <p class="title">{{ __("Secure") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                     </div>
-                    <p class="title">Legal</p>
+                    <p class="title">{{ __("Legal") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1100" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                     </div>
-                    <p class="title">Fair</p>
+                    <p class="title">{{ __("Fair") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1300" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                     </div>
-                    <p class="title">Real opportunity</p>
+                    <p class="title">{{ __("Real opportunity") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                     </div>
-                    <p class="title">Cheap</p>
+                    <p class="title">{{ __("Cheap") }}</p>
                 </div>
             </div>
         </div>

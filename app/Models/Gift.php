@@ -11,16 +11,13 @@ class Gift extends Model
 
     protected $guarded = [];
 
-
-    public function giftGallary() {
-        return $this->hasMany( GiftGallary::class, 'gift_id');
+    public function giftGallary()
+    {
+        return $this->hasMany(GiftGallary::class, 'gift_id');
     }
 
-    public function giftFeaturedItem() {
-        return $this->hasMany( GiftFeaturedItem::class, 'gift_id');
+    public function giftFeaturedItem()
+    {
+        return $this->hasMany(GiftFeaturedItem::class, 'gift_id');
     }
-
-
-
-
 }

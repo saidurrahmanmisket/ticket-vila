@@ -63,7 +63,7 @@
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
                         <a href="#" class="btn--normal border blank">
-                            <span>Sign Up</span>
+                            <span>{{ __("Sign Up") }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
@@ -102,7 +102,7 @@
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
                         <a href="#" class="btn--normal border blank">
-                            <span>Join Now</span>
+                            <span>{{ __("Join Now") }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
@@ -138,7 +138,7 @@
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
                         <a href="#" class="btn--normal border blank">
-                            <span>Join Now</span>
+                            <span>{{ __("Join Now") }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">
                                 <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
@@ -176,17 +176,37 @@
                 <h3 class="title">{{ __('3D House Tour') }}</h3>
 
                 <div class="area--wrapper">
-                    <iframe
-                        src="{{ $gift->video_link_outside ?? 'https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469' }}"
-                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @if(!empty($houseTour) && !empty($houseTour->link))
+                        <iframe
+                                src="{{$houseTour->link}}"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($houseTour))
+                        <iframe
+                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe
+                                width="560"
+                                height="315"
+                                src="{{ $houseTour['link_'.locale()] ?? '' }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+
+                        ></iframe>
+                    @endif
+
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
-                            <p>{{ __('Click To Start') }}</p>
+                            <p>{{ __("Click to start") }}</p>
                         </div>
                     </div>
                 </div>
@@ -202,7 +222,7 @@
                 <div class="top--part">
                     <h3 class="title">{{ __('3D Property View') }}</h3>
                     <a href="#" class="btn--normal blank border">
-                        <span>Join Now</span>
+                        <span>{{ __('Join Now') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                              fill="none">
                             <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
@@ -215,17 +235,37 @@
                 </div>
 
                 <div class="area--wrapper">
-                    <iframe
-                        src="{{ $gift->video_link_outside ?? 'https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469' }}"
-                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @if(!empty($propertyView) && !empty($propertyView->link))
+                        <iframe
+                                src="{{$propertyView->link}}"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($propertyView))
+                        <iframe
+                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe
+                                width="560"
+                                height="315"
+                                src="{{ $propertyView['link_'.locale()] ?? '' }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+
+                        ></iframe>
+                    @endif
+
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
-                            <p>{{ __('Click To Start') }}</p>
+                            <p>{{ __("Click to start") }}</p>
                         </div>
                     </div>
                 </div>
@@ -266,7 +306,7 @@
                 </div>
                 <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
                     <a href="#" class="btn--fill">
-                        <span>Join Now</span>
+                        <span>{{ __("Join Now") }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                              fill="none">
                             <path d="M15.75 7.72571L0.75 7.72571" stroke="white" stroke-width="1.5"

@@ -16,6 +16,7 @@ class SocialMediaController extends Controller
     public function index()
     {
         $socials = SocialMedia::paginate(10);
+
         return view('admin.layouts.social.index', compact('socials'));
     }
 
@@ -44,7 +45,7 @@ class SocialMediaController extends Controller
 
         $file = $request->file('icon');
         if ($file) {
-            $image_path = Helper::fileUpload($file, '/socials/', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+            $image_path = Helper::fileUpload($file, '/socials/', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
         } else {
             $image_path = null;
         }
@@ -55,7 +56,7 @@ class SocialMediaController extends Controller
             'icon' => $image_path,
         ]);
 
-        flash()->addSuccess("  Created Successfully.");
+        flash()->addSuccess('  Created Successfully.');
 
         return redirect()->route('admin.settings.social-media.index');
     }
@@ -97,7 +98,7 @@ class SocialMediaController extends Controller
             $social = SocialMedia::findOrFail($id);
             $file = $request->file('icon');
             if ($file) {
-                $image_path = Helper::fileUpload($file, '/socials/', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $image_path = Helper::fileUpload($file, '/socials/', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 Helper::deleteFile(public_path($social->icon));
             } else {
                 $image_path = $social->icon;
@@ -109,12 +110,13 @@ class SocialMediaController extends Controller
                 'icon' => $image_path,
             ]);
 
-            flash()->addSuccess("  Updated Successfully.");
+            flash()->addSuccess('  Updated Successfully.');
 
             return redirect()->route('admin.settings.social-media.index');
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return redirect()->route('admin.settings.social-media.index')->with('error', $e->getMessage());
         }
     }
@@ -128,7 +130,8 @@ class SocialMediaController extends Controller
         Helper::deleteFile(public_path($social->icon));
         $social->delete();
 
-        flash()->addSuccess("  Deleted Successfully.");
+        flash()->addSuccess('  Deleted Successfully.');
+
         return redirect()->route('admin.settings.social-media.index');
     }
 }

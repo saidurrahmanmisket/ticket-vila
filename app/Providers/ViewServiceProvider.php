@@ -25,13 +25,13 @@ class ViewServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        View::composer('admin.partials.sidebar',function ($view){
+        View::composer('admin.partials.sidebar', function ($view) {
             $systemSetting = SystemSetting::first();
-            $view->with('systemSetting',$systemSetting);
+            $view->with('systemSetting', $systemSetting);
         });
 
         // for user dashboard ticket statistics component
-        View::composer('components.user.live-ticket-statistics',function ($view){
+        View::composer('components.user.live-ticket-statistics', function ($view) {
             // Fetch campaign and related data
             $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
             $totalTicketSold = $campaign->tickets_count ?? 0;
@@ -44,10 +44,8 @@ class ViewServiceProvider extends ServiceProvider
                 'soldPercentage' => $soldPercentage,
                 // Add any other data needed
             ];
-            $view->with('data',$data);
+            $view->with('data', $data);
         });
-
-
 
     }
 }

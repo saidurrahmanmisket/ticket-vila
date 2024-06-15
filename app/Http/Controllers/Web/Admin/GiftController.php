@@ -19,6 +19,7 @@ class GiftController extends Controller
     public function index()
     {
         $gifts = Gift::paginate(20);
+
         return view('admin.layouts.gift.index', compact('gifts'));
     }
 
@@ -62,13 +63,13 @@ class GiftController extends Controller
             // Store data in the 'gifts' table
             if ($request->has('gift_image')) {
                 $file = $request->file('gift_image');
-                $gift_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift_image_path = Helper::fileUpload($file, 'gifts', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
             } else {
                 $gift_image_path = null;
             }
             if ($request->hasFile('gift_thum_image')) {
                 $file = $request->file('gift_thum_image');
-                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
             } else {
                 $gift_thum_image_path = null;
             }
@@ -85,7 +86,7 @@ class GiftController extends Controller
             // Store gallery images in the 'gift_galleries' table
             if ($request->hasFile('inside_image')) {
                 foreach ($request->file('inside_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/inside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/inside-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'inside';
                     $gallery->image = $image_path;
@@ -97,7 +98,7 @@ class GiftController extends Controller
             // Store gallery images in the 'gift_galleries' table
             if ($request->hasFile('outside_image')) {
                 foreach ($request->file('outside_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/outside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/outside-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'outside';
                     $gallery->image = $image_path;
@@ -108,7 +109,7 @@ class GiftController extends Controller
             // Store gallery images in the 'gift_galleries' table
             if ($request->hasFile('plan_image')) {
                 foreach ($request->file('plan_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/plan-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/plan-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'plan';
                     $gallery->image = $image_path;
@@ -124,32 +125,34 @@ class GiftController extends Controller
 
                     if ($request->hasFile('feature_image') && isset($request->file('feature_image')[$key])) {
                         $file = $request->file('feature_image')[$key];
-                        $image_path = Helper::fileUpload($file, 'gifts/feature-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                        $image_path = Helper::fileUpload($file, 'gifts/feature-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     }
 
                     $featuredItem = new GiftFeaturedItem();
-                    $featuredItem->title_en = $request->input('feature_title_en.' . $key);
-                    $featuredItem->title_de = $request->input('feature_title_de.' . $key);
-                    $featuredItem->title_hu = $request->input('feature_title_hu.' . $key);
-                    $featuredItem->sub_title_en = $request->input('feature_sub_title_en.' . $key);
-                    $featuredItem->sub_title_de = $request->input('feature_sub_title_de.' . $key);
-                    $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu.' . $key);
+                    $featuredItem->title_en = $request->input('feature_title_en.'.$key);
+                    $featuredItem->title_de = $request->input('feature_title_de.'.$key);
+                    $featuredItem->title_hu = $request->input('feature_title_hu.'.$key);
+                    $featuredItem->sub_title_en = $request->input('feature_sub_title_en.'.$key);
+                    $featuredItem->sub_title_de = $request->input('feature_sub_title_de.'.$key);
+                    $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu.'.$key);
                     $featuredItem->image = $image_path;
                     $featuredItem->gift_id = $gift->id;
                     $featuredItem->save();
                 }
             }
 
-            flash()->addSuccess("Gift Created Successfully.");
+            flash()->addSuccess('Gift Created Successfully.');
 
             DB::commit();
+
             return redirect()->route('admin.gift.index');
 
         } catch (\Exception $e) {
             // Handle the exception
             DB::rollBack();
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Something went wrong' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Something went wrong'.$e->getMessage());
         }
     }
 
@@ -203,7 +206,7 @@ class GiftController extends Controller
             if ($request->hasFile('gift_image')) {
                 Helper::deleteFile($gift->image);
                 $file = $request->file('gift_image');
-                $gift_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift_image_path = Helper::fileUpload($file, 'gifts', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 $gift->image = $gift_image_path;
             }
 
@@ -211,7 +214,7 @@ class GiftController extends Controller
             if ($request->hasFile('gift_thum_image')) {
                 Helper::deleteFile($gift->thumbnail_image);
                 $file = $request->file('gift_thum_image');
-                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $gift_thum_image_path = Helper::fileUpload($file, 'gifts', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 $gift->thumbnail_image = $gift_thum_image_path;
             }
 
@@ -226,7 +229,7 @@ class GiftController extends Controller
             // Handle inside images
             if ($request->hasFile('inside_image')) {
                 foreach ($request->file('inside_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/inside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/inside-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'inside';
                     $gallery->image = $image_path;
@@ -238,7 +241,7 @@ class GiftController extends Controller
             // Handle outside images
             if ($request->hasFile('outside_image')) {
                 foreach ($request->file('outside_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/outside-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/outside-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'outside';
                     $gallery->image = $image_path;
@@ -250,7 +253,7 @@ class GiftController extends Controller
             // Handle plan images
             if ($request->hasFile('plan_image')) {
                 foreach ($request->file('plan_image') as $file) {
-                    $image_path = Helper::fileUpload($file, 'gifts/plan-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $image_path = Helper::fileUpload($file, 'gifts/plan-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $gallery = new GiftGallary();
                     $gallery->gift_image_type = 'plan';
                     $gallery->image = $image_path;
@@ -264,12 +267,12 @@ class GiftController extends Controller
                     $featuredItem = GiftFeaturedItem::find($featuredId);
                     if ($featuredItem) {
                         // Update fields
-                        $featuredItem->title_en = $request->input('feature_title_en_old.' . $key);
-                        $featuredItem->title_de = $request->input('feature_title_de_old.' . $key);
-                        $featuredItem->title_hu = $request->input('feature_title_hu_old.' . $key);
-                        $featuredItem->sub_title_en = $request->input('feature_sub_title_en_old.' . $key);
-                        $featuredItem->sub_title_de = $request->input('feature_sub_title_de_old.' . $key);
-                        $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu_old.' . $key);
+                        $featuredItem->title_en = $request->input('feature_title_en_old.'.$key);
+                        $featuredItem->title_de = $request->input('feature_title_de_old.'.$key);
+                        $featuredItem->title_hu = $request->input('feature_title_hu_old.'.$key);
+                        $featuredItem->sub_title_en = $request->input('feature_sub_title_en_old.'.$key);
+                        $featuredItem->sub_title_de = $request->input('feature_sub_title_de_old.'.$key);
+                        $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu_old.'.$key);
                         $featuredItem->save();
                     }
                 }
@@ -281,7 +284,7 @@ class GiftController extends Controller
                     if ($request->hasFile('feature_image')) {
                         $file = $request->file('feature_image')[$key] ?? null;
                         if ($file) {
-                            $image_path = Helper::fileUpload($file, 'gifts/feature-image', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                            $image_path = Helper::fileUpload($file, 'gifts/feature-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
 
                         } else {
                             $image_path = null;
@@ -290,28 +293,30 @@ class GiftController extends Controller
                         $image_path = null;
                     }
                     $featuredItem = new GiftFeaturedItem();
-                    $featuredItem->title_en = $request->input('feature_title_en.' . $key);
-                    $featuredItem->title_de = $request->input('feature_title_de.' . $key);
-                    $featuredItem->title_hu = $request->input('feature_title_hu.' . $key);
-                    $featuredItem->sub_title_en = $request->input('feature_sub_title_en.' . $key);
-                    $featuredItem->sub_title_de = $request->input('feature_sub_title_de.' . $key);
-                    $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu.' . $key);
+                    $featuredItem->title_en = $request->input('feature_title_en.'.$key);
+                    $featuredItem->title_de = $request->input('feature_title_de.'.$key);
+                    $featuredItem->title_hu = $request->input('feature_title_hu.'.$key);
+                    $featuredItem->sub_title_en = $request->input('feature_sub_title_en.'.$key);
+                    $featuredItem->sub_title_de = $request->input('feature_sub_title_de.'.$key);
+                    $featuredItem->sub_title_hu = $request->input('feature_sub_title_hu.'.$key);
                     $featuredItem->image = $image_path;
                     $featuredItem->gift_id = $gift->id;
                     $featuredItem->save();
                 }
             }
 
-            flash()->addSuccess("Gift Updated Successfully.");
+            flash()->addSuccess('Gift Updated Successfully.');
 
             DB::commit();
+
             return redirect()->route('admin.gift.index');
 
         } catch (\Exception $e) {
             // Handle the exception
             DB::rollBack();
             Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Something went wrong: '.$e->getMessage());
         }
     }
 
@@ -324,7 +329,8 @@ class GiftController extends Controller
         Helper::deleteFile(public_path($gift->image));
         $gift->delete();
 
-        flash()->addSuccess("Gift Deleted Successfully.");
+        flash()->addSuccess('Gift Deleted Successfully.');
+
         return redirect()->route('admin.gift.index');
     }
 
@@ -352,12 +358,14 @@ class GiftController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'error' => $e->getMessage(),
             ]);
         }
     }
+
     public function deleteGifFeatureItem(Request $request)
     {
 
@@ -380,6 +388,7 @@ class GiftController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'error' => $e->getMessage(),
