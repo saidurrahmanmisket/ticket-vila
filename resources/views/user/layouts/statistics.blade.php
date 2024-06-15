@@ -165,7 +165,7 @@ Statistics
                                 </svg>
                             </div>
                             <div>
-                                <p>Your Tickets</p>
+                                <p>{{ __("Your Ticket") }}s</p>
                                 <h3>05</h3>
                             </div>
                         </div>
@@ -210,7 +210,7 @@ Statistics
                     <!-- tickets box  -->
                     <div class="tickets--box w-100 position-relative">
                         <img src="{{ asset('user/images/tickets.png') }}" alt="" />
-                        <h3>178 Tickets</h3>
+                        <h3>178 {{ __("Tickets") }}</h3>
                         <p>Sold Today</p>
                         <p class="last-week">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14"
@@ -263,7 +263,7 @@ Statistics
                         </div>
                         <ul>
                             <li>
-                                <p>Tickets :</p>
+                                <p>{{ __("Tickets") }} :</p>
                                 <p>4506</p>
                             </li>
                             <li>
