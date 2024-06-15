@@ -1,5 +1,5 @@
 {
-    "Home": "itthon",
+    "Home": "Itthon",
     "About Us": "Rólunk",
     "How it Works": "Hogyan működik",
     "Contact": "Kapcsolatba lépni",
@@ -15,7 +15,17 @@
     "Profile": "Profil",
     "Login": "Bejelentkezés",
     "Contact us": "Lépjen kapcsolatba velünk",
-
+    "House Raffle": "Házsorsolás",
+    "Buy ticket": "Jegyet venni",
+    "How to Win?": "Hogyan nyerhet?",
+    "Is This Legit?": "Ez valódi?",
+    "Information": "Információ",
+    "FAQ": "GYIK",
+    "Green Policy": "Környezeti politika",
+    "Blog": "Blog",
+    "Subscribe to Newsletter": "Iratkozzon fel a hírlevélre",
+    "Enter email address": "Adja meg az e-mail címét",
+    "Subscribe": "Feliratkozás",
 
     "Dream house Raffle": "Álomház Tombola",
     "Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook": "Legyen egy álomotthon szerencsés tulajdonosa, nyerjen 850 000,00 eurót egy 99,00 eurós e-könyv megvásárlásával",
@@ -118,5 +128,12 @@
     "3D house tour": "3D házitúra",
     "Click to start": "Kattintson a indításhoz",
     "Frequently Asked Questions": "Gyakran Ismételt Kérdések",
-    "FAQs and answers on a particular topic you product on Residence": "GYIK és válaszok egy adott témában a Residence termékével kapcsolatban"
+    "FAQs and answers on a particular topic you product on Residence": "GYIK és válaszok egy adott témában a Residence termékével kapcsolatban",
+    "dream home": ":number Álomotthon",
+    "no hidden additional costs!": "nincsenek rejtett további költségek!",
+    "Legally secure": "Jogilag biztonságos",
+    "Done notarized": "Notárius által hitelesített",
+    "Absolutely serid and binding.": "Abszolút szigorú és kötelező érvényű.",
+    "Only": "Csak :number",
+    "Per ticket, the winner gets the house.": "Jegyenként a nyertes kapja meg a házat."
 }

@@ -16,12 +16,8 @@
                             ? $hero_section['description_' . locale()] ?? ''
                             : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') }}
                     </p>
-
-                    <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper">
+                    <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper aos-init aos-animate">
                         <a href="#" class="btn--fill">
-                            <span>{{ __('Buy Now') }}</span>
-                        </a>
-                        <a href="#" class="btn--normal">
                             <span>{{ __('How does this work?') }}</span>
                         </a>
                     </div>
@@ -322,26 +318,26 @@
         <div class="container">
             <div class="home--special--feature--content">
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature">
-                    <h3 class="big--text">€850,000 Dream Home</h3>
-                    <p class="big--para">no hidden additional costs!</p>
+                    <h3 class="big--text">€{{ __('dream home',['number' => "850,000"]) }}</h3>
+                    <p class="big--para">{{ __("no hidden additional costs!") }}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature">
                     <p class="gold--text">100%</p>
-                    <p class="gold--para">Legally secure</p>
+                    <p class="gold--para">{{ __("Legally secure") }}</p>
                 </div>
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature common">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/feature--book.svg') }}" alt="" />
                     </div>
                     <div>
-                        <p class="title">Done notarized</p>
-                        <p class="sub--title">Absolutely serid and binding.</p>
+                        <p class="title">{{ __("Done notarized") }}</p>
+                        <p class="sub--title">{{ __("Absolutely serid and binding.") }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature common">
                     <div>
-                        <p class="title">Only 99€</p>
-                        <p class="sub--title">Per ticket, the winner gets the house.</p>
+                        <p class="title">{{ __("Only",["number"=>"99"]) }}€</p>
+                        <p class="sub--title">{{ __("Per ticket, the winner gets the house.") }}</p>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
 
             <div class="the--process--area--content">
                 @forelse($theProcess as $process)
-                    <div class="single--process {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}} {{ (strlen($process->description) < 160 && strlen($process->title) < 35 ) ? 'less--content' : '' }} {{ (strlen($process->description)  > 250 && strlen($process->title) > 50) ? 'extra--content' : '' }} {{ (strlen($process->title) > 45 && strlen($process->description) > 280) ? 'over--text' : '' }}">
+                    <div class="single--process {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}} {{ (strlen($process['description_'.locale()] ?? '') < 160 && strlen( $process['title_'.locale()] ?? '') < 35 ) ? 'less--content' : '' }} {{ (strlen($process['description_'.locale()] ?? '')  > 250 && strlen( $process['title_'.locale()] ?? '') > 50) ? 'extra--content' : '' }} {{ (strlen( $process['title_'.locale()] ?? '') > 45 && strlen($process['description_'.locale()] ?? '') > 280) ? 'over--text' : '' }}">
                         <div class="img--container">
                             <img src="{{ asset(!empty($process->image) ? $process->image :'frontend/images/single-process.png') }}" alt="" />
                         </div>

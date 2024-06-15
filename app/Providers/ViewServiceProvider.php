@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Campaign;
+use App\Models\DynamicPage;
+use App\Models\SocialMedia;
 use App\Models\SystemSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -47,5 +49,13 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('data', $data);
         });
 
+        //Footer data
+        View::composer('frontend.partials.footer', function ($view) {
+            $socialMedia = SocialMedia::where('status', 'active')->get();
+
+            $pageData = DynamicPage::where('status', 'active')->get();
+
+            $view->with(['socialMedia' => $socialMedia, 'pageData' => $pageData]);
+        });
     }
 }
