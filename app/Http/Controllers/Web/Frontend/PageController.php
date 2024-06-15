@@ -19,12 +19,15 @@ class PageController extends Controller
     {
         $hero_section = CMS::where('page', Page::HOME)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
+        $ticket_chance = CMS::where('page', Page::HOME)->where('section_name', Section::TICKET_CHANCE)->first();
+        $wit_spin = CMS::where('page', Page::HOME)->where('section_name', Section::WIN_SPIN)->first();
+        $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
 
-            if ($gift && !empty($gift)) {
+            if ($gift && ! empty($gift)) {
                 $giftRandomImages = $gift->giftGallary()
                     ->where(function ($query) {
                         $query->where('gift_image_type', 'inside')
@@ -37,20 +40,28 @@ class PageController extends Controller
                 $gift = null;
                 $giftRandomImages = null;
             }
+        } else {
+            $gift = null;
+            $giftRandomImages = null;
         }
-        return view('frontend.layouts.index', compact('hero_section', 'theProcess', 'gift', 'giftRandomImages'));
+
+        return view('frontend.layouts.index', compact('hero_section', 'houseTour', 'wit_spin', 'ticket_chance', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
     public function about()
     {
         $teams = Team::where('status', 'active')->get();
+        $the_mission = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_MISSION)->first();
         $hero_section = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
-        return view('frontend.layouts.about', compact('teams', 'hero_section'));
+        $the_transparency = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_TRANSPARENCY)->where('status', Status::ACTIVE)->first();
+
+        return view('frontend.layouts.about', compact('teams', 'hero_section', 'the_mission', 'the_transparency'));
     }
 
     public function contact()
     {
         $hero_section = CMS::where('page', Page::CONTACT)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+
         return view('frontend.layouts.contact', compact('hero_section'));
     }
 
@@ -95,7 +106,7 @@ class PageController extends Controller
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
-            if ($gift && !empty($gift)) {
+            if ($gift && ! empty($gift)) {
                 $giftImages = [
                     'insideImage' => $gift->giftGallary->where('gift_image_type', 'inside'),
                     'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
@@ -105,9 +116,15 @@ class PageController extends Controller
                 $gift = null;
                 $giftImages = null;
             }
+        } else {
+            $gift = null;
+            $giftImages = null;
         }
 
-        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages'));
+        $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
+        $propertyView = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
+
+        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView'));
     }
 
     public function verifyEmail()
@@ -118,7 +135,9 @@ class PageController extends Controller
     public function howItWorks()
     {
         $hero_section = CMS::where('page', Page::HOW_IT_WORKS)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
-        return view('frontend.layouts.how-it-works', compact('hero_section'));
+        $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
+
+        return view('frontend.layouts.how-it-works', compact('hero_section', 'theProcess'));
     }
 
     public function dynamicPage(string $page_slug)
@@ -126,8 +145,8 @@ class PageController extends Controller
         $pageData = DynamicPage::where('status', 'active')
             ->where('page_slug', $page_slug)
             ->first();
-            
-        if (!$pageData) {
+
+        if (! $pageData) {
             abort(404);
         }
 

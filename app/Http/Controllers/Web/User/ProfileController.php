@@ -16,25 +16,25 @@ class ProfileController extends Controller
         return view('user.layouts.settings');
     }
 
-
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         try {
             $request->validate([
                 'first_name' => 'required|string|max:100',
                 'last_name' => 'required|string|max:100',
-                'avatar'=>'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
                 'email' => 'required|string|email|max:100|unique:users,email,'.Auth::user()->id,
             ],
-            [
-                'avatar.max' => 'Max file size 2 MB',
-            ]);
+                [
+                    'avatar.max' => 'Max file size 2 MB',
+                ]);
             $file = $request->file('avatar');
-            if ($file){
-                $avatar = Helper::fileUpload($file,'/avatar/',time().'_'.pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME));
-                if (!empty(Auth::user()->avatar)){
+            if ($file) {
+                $avatar = Helper::fileUpload($file, '/avatar/', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                if (! empty(Auth::user()->avatar)) {
                     Helper::deleteFile(public_path(Auth::user()->avatar));
                 }
-            }else{
+            } else {
                 $avatar = Auth::user()->avatar;
             }
             //update profile
@@ -44,22 +44,23 @@ class ProfileController extends Controller
                 'avatar' => $avatar,
                 'email' => $request->email,
             ]);
-    
-    
+
             //Success message
             flash()->addSuccess('Your profile successfully updated.');
+
             return redirect()->route('admin.profile.index');
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return redirect()->route('user.settings')->with('error', $e->getMessage());
         }
     }
 
-
     //PASSWORD CHANGE
-    public function updatePassword(Request $request){
-        
+    public function updatePassword(Request $request)
+    {
+
         $request->validate([
             'current_password' => 'required|string|min:6',
             'password' => 'required|string|min:6|confirmed',
@@ -67,7 +68,7 @@ class ProfileController extends Controller
         ]);
         $user = Auth::user();
 
-        if (!Hash::check($request->current_password, $user->password)) {
+        if (! Hash::check($request->current_password, $user->password)) {
             return redirect()->route('admin.profile.index')
                 ->withErrors(['current_password' => 'The current password is incorrect.'])
                 ->withInput();
@@ -77,6 +78,7 @@ class ProfileController extends Controller
         ]);
 
         flash()->addSuccess('Your password successfully updated.');
+
         return redirect()->route('admin.profile.index');
     }
 }

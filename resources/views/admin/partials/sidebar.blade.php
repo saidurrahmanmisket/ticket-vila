@@ -195,6 +195,12 @@
                                     Home Page
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.cms.about.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.cms.about.*') ? 'sub--active' : '' }}">
+                                    About Page
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

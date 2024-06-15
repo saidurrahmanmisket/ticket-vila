@@ -17,10 +17,12 @@ class FaqController extends Controller
     {
         try {
             $faqs = FAQ::paginate(20);
+
             return view('admin.layouts.faq.index', compact('faqs'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'An error occurred' . $e->getMessage()]);
+
+            return redirect()->back()->withErrors(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -57,10 +59,12 @@ class FaqController extends Controller
                 'answer_hu' => $request->answer_hu,
             ]);
             flash()->addSuccess('faq Created Successfully.');
+
             return redirect()->route('admin.faq.index');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+
+            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -109,7 +113,7 @@ class FaqController extends Controller
             'answer_hu' => $request->answer_hu,
         ]);
 
-        flash()->addSuccess("Updated Successfully.");
+        flash()->addSuccess('Updated Successfully.');
 
         return redirect()->route('admin.faq.index');
     }
@@ -123,7 +127,8 @@ class FaqController extends Controller
         Helper::deleteFile(public_path($faq->image));
         $faq->delete();
 
-        flash()->addSuccess("Deleted Successfully.");
+        flash()->addSuccess('Deleted Successfully.');
+
         return redirect()->route('admin.faq.index');
     }
 }

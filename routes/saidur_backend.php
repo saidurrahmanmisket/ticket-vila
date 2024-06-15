@@ -24,5 +24,5 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
 
     Route::resource('/dynamic-page', DynamicPageController::class);
-    
+
 });

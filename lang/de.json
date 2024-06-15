@@ -11,6 +11,10 @@
     "Live Statistics": "Live Statistiken",
     "Registration": "Anmeldung",
     "Learn More": "Erfahren Sie mehr",
+    "Sign Up": "Anmelden",
+    "Profile": "Profil",
+    "Login": "Anmelden",
+    "Contact us": "Kontaktieren Sie uns",
 
     "Dream house Raffle": "Traumhaus-Verlosung",
     "Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook": "Seien Sie der glückliche Besitzer eines Traumhauses und gewinnen Sie 850.000,00 € für den Kauf eines eBooks im Wert von 99,00 €",
@@ -22,15 +26,12 @@
     "Our Mission & Values": "Unsere Mission und Werte",
     "At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.": "Bei Ticket Villa ist es uns ein Anliegen, jedem die Möglichkeit zu bieten, sein Traumhaus zu gewinnen. Mit unserem innovativen Gewinnspielsystem machen wir Wohneigentum zugänglich und spannend.",
     "Discover the Process": "Entdecken Sie den Prozess",
-    "Learn how you can win your dream house with just one ticket!": "Erfahren Sie, wie Sie mit nur einem Los Ihr Traumhaus gewinnen können!",
 
     "The House": "Das Haus",
     "Welcome to i he House, where dreams come true. This stunning property offers the perfect blend of luxury, modern design, and spacious living. Enter our raffle for a chance to win this incredible home and make it your own.": "Willkommen im Haus, wo Träume wahr werden. Dieses atemberaubende Anwesen bietet die perfekte Mischung aus Luxus, modernem Design und großzügigem Wohnraum. Nehmen Sie an unserer Verlosung teil und haben Sie die Chance, dieses unglaubliche Haus zu gewinnen und es zu Ihrem eigenen zu machen.",
     "Learn how you can win your dream house with just one ticket!": "Erfahren Sie, wie Sie mit nur einem Los Ihr Traumhaus gewinnen können!",
-
-
-    
-    "comment : for contact page and the house page and about us page" : "From here contact page and the house page and about us page start ", 
+    "Here are some facts.": "Hier sind einige Fakten.",
+    "comment : for contact page and the house page and about us page" : "From here contact page and the house page and about us page start ",
 
     "The Mission": "Unsere Mission",
     "Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.": "Träume vom Eigenheim mit nur einem €99 Ticket in die Realität umwandeln. Unsere Hausverlosung ist mehr als nur eine Gewinnchance; es ist ein Schritt, um den Besitz eines Eigenheims für jeden zugänglich zu machen. Mach mit bei der Bewegung. Erfülle deinen Traum.",
@@ -68,7 +69,6 @@
     "Send A Message": "Nachricht senden",
     "Submit": "Absenden",
     "Inside The House": "Im Haus",
-    "Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!": "Erleben Sie den Nervenkitzel, ein Haus durch unsere Verlosung mit nur einem 99€-Ticket zu gewinnen. Verpassen Sie nicht diese unglaubliche Gelegenheit!",
     "Outside The House": "Außerhalb des Hauses",
     "The Floor Plan": "Der Grundriss",
     "3D House Tour": "3D-Hausführung",
@@ -98,6 +98,23 @@
     "Proven fair, legally secure": "Nachweislich fair, rechtlich sicher",
     "Experience peace of mind with our raffle: proven fair and legally secure. Enter for a chance to win your dream home!": "Erleben Sie Ruhe und Gelassenheit bei unserer Verlosung: bewährt fair und rechtlich sicher. Nehmen Sie teil und haben Sie die Chance, Ihr Traumhaus zu gewinnen!",
     "Your Chance For A Dream Home.": "Ihre Chance auf ein Traumhaus.",
-    "Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!": "Erleben Sie den Nervenkitzel, ein Haus durch unsere Verlosung mit nur einem 99€-Ticket zu gewinnen. Verpassen Sie nicht diese unglaubliche Gelegenheit!"
-
+    "Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!": "Erleben Sie den Nervenkitzel, ein Haus durch unsere Verlosung mit nur einem 99€-Ticket zu gewinnen. Verpassen Sie nicht diese unglaubliche Gelegenheit!",
+    "This is your Chance": "Das ist Ihre Chance",
+    "This could be the opportunity of a lifetime. It seems too too good to be true, but it is, and that is the beauty of the House Raffle. Buy an eBook for just £99 and get a ticket with a real, proven, fair and legitimate to win the home of your dreams.": "Dies könnte die Chance Ihres Lebens sein. Es scheint zu gut, um wahr zu sein, aber es ist wahr, und das ist die Schönheit der Hausverlosung. Kaufen Sie ein eBook für nur £99 und erhalten Sie ein Ticket mit einer echten, bewährten, fairen und legitimen Chance, das Haus Ihrer Träume zu gewinnen.",
+    "This ticket can change your life.": "Dieses Ticket kann Ihr Leben verändern.",
+    "Win yours": "Gewinnen Sie Ihres",
+    "Dream Home": "Traumhaus",
+    "To Register": "Registrieren",
+    "Create an account for free.": "Erstellen Sie ein kostenloses Konto.",
+    "To buy a ticket": "Um ein Ticket zu kaufen",
+    "Buy any number of tickets.": "Kaufen Sie beliebig viele Tickets.",
+    "Live Raffle": "Live-Verlosung",
+    "Follow the status and the draw live.": "Verfolgen Sie den Status und die Ziehung live.",
+    "Win House": "Haus gewinnen",
+    "Enjoy your turnkey dream home.": "Genießen Sie Ihr schlüsselfertiges Traumhaus.",
+    "Get your Ticket": "Holen Sie sich Ihr Ticket",
+    "3D house tour": "3D Hausführung",
+    "Click to start": "Klicken Sie, um zu starten",
+    "Frequently Asked Questions": "Häufig gestellte Fragen",
+    "FAQs and answers on a particular topic you product on Residence": "FAQs und Antworten zu einem bestimmten Thema Ihres Produkts auf Residence"
 }

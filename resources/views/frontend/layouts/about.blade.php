@@ -28,12 +28,13 @@
             <div class="container">
                 <div class="about--mission--area--content">
                     <div class="left">
-                        <img src="{{ asset('frontend/images/about-mission-bg.png') }}" alt="" />
+                        <img src="{{ asset((!empty($the_mission) && !empty($the_mission->image)) ? $the_mission->image : 'frontend/images/about-mission-bg.png') }}"
+                             alt=""/>
                     </div>
                     <div class="right">
-                        <h3 class="common--heading--title"> {{ __('The Mission') }}</h3>
+                        <h3 class="common--heading--title"> {{ !empty($the_mission) ? $the_mission['title_'.locale()] ?? '' : __('The Mission') }}</h3>
                         <p class="subtext">
-                            {{ __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
+                            {{!empty($the_mission) ? $the_mission['description_'.locale()] ?? '' : __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
                         </p>
                     </div>
                 </div>
@@ -86,15 +87,15 @@
             <div class="container">
                 <div class="our--commitment--area--content">
                     <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                        {{ __("Our Commitment To Transparency, Security, And Fairness In The Raffle Process") }}
+                        {{ !empty($the_transparency) ? $the_transparency['title_'.locale()] ?? '' : __("Our Commitment To Transparency, Security, And Fairness In The Raffle Process") }}
                     </h3>
 
                     <p data-aos="fade-up" data-aos-duration="700" class="sub--text">
-                        {{ __('At House Villa, we prioritize transparency, security, and fairness throughout the entire raffle process. We believe in providing our participants with a trustworthy and reliable experience, ensuring that every ticket purchased has an equal chance of winning the house.') }}
+                        {{ !empty($the_transparency) ? $the_transparency['description_'.locale()] ?? '' : __('At House Villa, we prioritize transparency, security, and fairness throughout the entire raffle process. We believe in providing our participants with a trustworthy and reliable experience, ensuring that every ticket purchased has an equal chance of winning the house.') }}
                     </p>
 
                     <a href="#" class="btn--fill">
-                        <span>Join now</span>
+                        <span>{{ __('Join Now') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
                             <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -147,7 +148,7 @@
 
                     <div data-aos="fade-up" data-aos-duration="700" class="btn--area">
                         <a href="#" class="btn--fill">
-                            <span>Contact us</span>
+                            <span>{{ __('Contact us') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15"
                                 fill="none">
                                 <path d="M17.3959 7.70296L1.14587 7.70296" stroke="#fff" stroke-width="1.5"

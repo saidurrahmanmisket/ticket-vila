@@ -17,10 +17,12 @@ class SystemSettingController extends Controller
     {
         try {
             $system = SystemSetting::first();
+
             return view('admin.layouts.settings.system-setting', compact('system'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+
+            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -81,7 +83,7 @@ class SystemSettingController extends Controller
         // for logo
         $logo = $request->file('logo');
         if ($logo) {
-            $logo_path = Helper::fileUpload($logo, '/system/', time() . '_' . pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
+            $logo_path = Helper::fileUpload($logo, '/system/', time().'_'.pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
             if (isset($system->logo)) {
                 Helper::deleteFile(public_path($system->logo));
             }
@@ -92,7 +94,7 @@ class SystemSettingController extends Controller
         // for favicon
         $favicon = $request->file('favicon');
         if ($favicon) {
-            $favicon_path = Helper::fileUpload($favicon, '/system/', time() . '_' . pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
+            $favicon_path = Helper::fileUpload($favicon, '/system/', time().'_'.pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
             if (isset($system->favicon)) {
                 Helper::deleteFile(public_path($system->favicon));
             }
@@ -126,7 +128,7 @@ class SystemSettingController extends Controller
             ]);
         }
 
-        flash()->addSuccess("Updated Successfully.");
+        flash()->addSuccess('Updated Successfully.');
 
         return redirect()->route('admin.settings.system-setting.index');
 
