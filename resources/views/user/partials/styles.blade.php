@@ -47,4 +47,9 @@
     height: 220px;
     border-radius: 50%;
     }
+
+    /* fix header dropdown issue  */
+    .notification--and--profile .form-select {
+        --bs-form-select-bg-img : url('') !important;
+    }
 </style>
