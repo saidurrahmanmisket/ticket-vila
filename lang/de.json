@@ -15,6 +15,17 @@
     "Profile": "Profil",
     "Login": "Anmelden",
     "Contact us": "Kontaktieren Sie uns",
+    "House Raffle": "Hausverlosung",
+    "Buy ticket": "Ticket kaufen",
+    "How to Win?": "Wie gewinnt man?",
+    "Is This Legit?": "Ist das legitim?",
+    "Information": "Informationen",
+    "FAQ": "FAQ",
+    "Green Policy": "Umweltpolitik",
+    "Blog": "Blog",
+    "Subscribe to Newsletter": "Abonnieren Sie den Newsletter",
+    "Enter email address": "E-Mail-Adresse eingeben",
+    "Subscribe": "Abonnieren",
 
     "Dream house Raffle": "Traumhaus-Verlosung",
     "Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook": "Seien Sie der glückliche Besitzer eines Traumhauses und gewinnen Sie 850.000,00 € für den Kauf eines eBooks im Wert von 99,00 €",
@@ -116,5 +127,12 @@
     "3D house tour": "3D Hausführung",
     "Click to start": "Klicken Sie, um zu starten",
     "Frequently Asked Questions": "Häufig gestellte Fragen",
-    "FAQs and answers on a particular topic you product on Residence": "FAQs und Antworten zu einem bestimmten Thema Ihres Produkts auf Residence"
+    "FAQs and answers on a particular topic you product on Residence": "FAQs und Antworten zu einem bestimmten Thema Ihres Produkts auf Residence",
+    "dream home": ":number Traumhaus",
+    "no hidden additional costs!": "keine versteckten zusätzlichen Kosten!",
+    "Legally secure": "Rechtlich sicher",
+    "Done notarized": "Notariell beglaubigt",
+    "Absolutely serid and binding.": "Absolut seriös und bindend.",
+    "Only": "Nur :number",
+    "Per ticket, the winner gets the house.": "Pro Ticket bekommt der Gewinner das Haus."
 }
