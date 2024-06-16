@@ -1,11 +1,3 @@
-@php
-    use App\Models\SocialMedia;
-    use App\Models\DynamicPage;
-
-    $socialMedia = SocialMedia::where('status', 'active')->get();
-
-    $pageData = DynamicPage::where('status', 'active')->get();
-@endphp
 <!-- footer area starts -->
 <footer>
     <div class="container">
@@ -31,7 +23,7 @@
             </div>
             <div class="right">
                 <div data-aos="fade-up" data-aos-duration="700" class="site--links">
-                    <p>Legal</p>
+                    <p>{{ __("Legal") }}</p>
                     {{-- <a href="{{ route('frontend.imprint') }}">imprint</a>
                     <a href="{{ route('frontend.terms') }}">Terms of services</a>
                     <a href="{{ route('frontend.privacy') }}">Privacy Policy</a>
@@ -44,26 +36,26 @@
                     @endforeach
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="site--links">
-                    <p>House Raffle</p>
-                    <a href="#">Buy ticket</a>
-                    <a href="#">How to Win?</a>
-                    <a href="#">Is This Lefit?</a>
-                    <a href="{{ route('frontend.the-house') }}">The House</a>
+                    <p>{{ __("House Raffle") }}</p>
+                    <a href="#">{{ __("Buy ticket") }}</a>
+                    <a href="#">{{ __("How to Win?") }}</a>
+                    <a href="#">{{ __("Is This Lefit?") }}</a>
+                    <a href="{{ route('frontend.the-house') }}">{{ __("The House") }}</a>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="900" class="site--links">
-                    <p>Information</p>
-                    <a href="#">FAQ</a>
-                    <a href="#">Green Policy</a>
-                    <a href="{{ route('frontend.about') }}">About Us</a>
-                    <a href="#">Blog</a>
+                    <p>{{ __("Information") }}</p>
+                    <a href="#">{{ __("FAQ") }}</a>
+                    <a href="#">{{ __("Green Policy") }}</a>
+                    <a href="{{ route('frontend.about') }}">{{ __("About Us") }}</a>
+                    <a href="#">{{ __("Blog") }}</a>
                 </div>
 
                 <div data-aos="fade-up" data-aos-duration="1000" class="subscribe">
-                    <p>Subscribe to Newsletter</p>
+                    <p>{{ __("Subscribe to Newsletter") }}</p>
 
                     <form class="input--wrapper">
-                        <input type="email" placeholder="Enter email address" />
-                        <button>Subscribe</button>
+                        <input type="email" placeholder="{{ __("Enter email address") }}"/>
+                        <button>{{ __("Subscribe") }}</button>
                     </form>
                 </div>
             </div>
