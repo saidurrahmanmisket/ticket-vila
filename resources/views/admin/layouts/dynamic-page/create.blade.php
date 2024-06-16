@@ -129,15 +129,14 @@
 
 @push('script')
     {{-- ckeditor cdn  --}}
-    {{--    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>--}}
-    {{--        <script>--}}
-    {{--            CKEDITOR.replace('description_en');--}}
-    {{--            CKEDITOR.replace('description_de');--}}
-    {{--            CKEDITOR.replace('description_hu');--}}
-    {{--            CKEDITOR.replace('sub_title_en');--}}
-    {{--            CKEDITOR.replace('sub_title_de');--}}
-    {{--            CKEDITOR.replace('sub_title_hu');--}}
-    {{--        </script>--}}
+    {{--    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> --}}
+    <script>
+        CKEDITOR.replace('description_en');
+        CKEDITOR.replace('description_de');
+        CKEDITOR.replace('description_hu');
+        CKEDITOR.replace('sub_title_en');
+        CKEDITOR.replace('sub_title_de');
+        CKEDITOR.replace('sub_title_hu');
+    </script>
     <!-- Place the first <script> tag in your HTML's <head> -->
-
 @endpush

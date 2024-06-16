@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-Checkout
+    Checkout
 @endsection;
 
 @section('content')
@@ -16,7 +16,7 @@ Checkout
                     @csrf
 
                     <input type="hidden" name="productId" value="{{ $campaign->id ?? '' }}">
-                    <input type="hidden" name="productName" value="{{ $campaign->name ?? '' }}">
+                    <input type="hidden" name="productName" value="{{ $campaign['name_' . locale()] ?? '' }}">
                     <input type="hidden" name="perPrice" value="{{ $campaign->price ?? '' }}">
                     <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? '' }}">
                     <input type="hidden" name="quantity" value="{{ $quantity ?? '' }}">
@@ -29,7 +29,7 @@ Checkout
                             <ul>
                                 <li>
                                     <div class="options">
-                                        <p>{{ $campaign->name ?? '' }}</p>
+                                        <p>{{ $campaign['name_' . locale()] ?? '' }}</p>
                                         <p>{{ $campaign->price ?? '' }}€</p>
                                     </div>
                                 </li>
@@ -164,8 +164,8 @@ Checkout
                                         viewBox="0 0 18 15" fill="none">
                                         <path d="M16.25 7.72559L1.25 7.72559" stroke="white" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="white"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </button>
 

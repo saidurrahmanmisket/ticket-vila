@@ -18,7 +18,7 @@
                             <img src="{{ asset($campaign->thumbnail ?? 'user/images/ticket.png') }}" alt="" />
                         </div>
                         <div class="details">
-                            <h3>{{ $campaign->name ?? 'No Ticket Found' }}</h3>
+                            <h3>{{ $campaign['name_'.locale()]?? 'No Ticket Found' }}</h3>
                             <p class="id">Ticket ID: #{{ $campaign->unique_text ?? 'Not Found' }}</p>
                             <p class="price">Price: <span id="totalPrice"> {{ $campaign->price ?? 'Not Found' }}</span>€
                             </p>
