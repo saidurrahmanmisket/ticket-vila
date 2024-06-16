@@ -22,7 +22,7 @@ class TicketController extends Controller
                 ->where('user_id', '=', $user->id)
                 ->get();
 
-            $userOrder = Order::with('campaign:id,name,thumbnail,price,ebook')->where('campaign_id', $campaign->id)
+            $userOrder = Order::with('campaign:id,name_en,thumbnail,price')->where('campaign_id', $campaign->id)
                 ->where('user_id', $user->id)
                 ->where('payment_status', 'completed')
                 ->get();

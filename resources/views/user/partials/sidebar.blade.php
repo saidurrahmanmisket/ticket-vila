@@ -33,7 +33,7 @@ $systemSetting = SystemSetting::first();
                             d="M17.7119 22.4999C20.0812 22.4999 22.0019 20.5792 22.0019 18.2099C22.0019 15.8406 20.0812 13.9199 17.7119 13.9199C15.3426 13.9199 13.4219 15.8406 13.4219 18.2099C13.4219 20.5792 15.3426 22.4999 17.7119 22.4999Z"
                             fill="white" />
                     </svg>
-                    Dashboard
+                    {{ __('Dashboard') }}
                 </a>
             </li>
             <li>
@@ -49,6 +49,7 @@ $systemSetting = SystemSetting::first();
                             stroke-linejoin="round" />
                     </svg>
                     Tickets
+                    {{ __('Tickets') }}
                 </a>
             </li>
             <li>
@@ -66,7 +67,8 @@ $systemSetting = SystemSetting::first();
                             d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
                             stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    Expose
+                    
+                    {{ __("Expose") }}
                 </a>
             </li>
             <li>
@@ -87,6 +89,7 @@ $systemSetting = SystemSetting::first();
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     The House
+                    {{ __("The House") }}
                 </a>
             </li>
             <li>
@@ -106,14 +109,14 @@ $systemSetting = SystemSetting::first();
                             d="M19.9984 2.5H18.3984C17.8484 2.5 17.3984 2.95 17.3984 3.5V18.5C17.3984 19.05 17.8484 19.5 18.3984 19.5H19.9984C20.5484 19.5 20.9984 19.05 20.9984 18.5V3.5C20.9984 2.95 20.5484 2.5 19.9984 2.5Z"
                             stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    Statistics
+                    {{ __("Statistics") }}
                 </a>
             </li>
         </ul>
     </div>
     <!-- help and support  -->
     <div class="help---support">
-        <h4>HELP & SUPPORT</h4>
+        <h4>{{ __("HELP & SUPPORT") }}</h4>
         <ul class="menu">
             <li>
                 <a href="{{ route('user.help-center') }}"
@@ -128,7 +131,8 @@ $systemSetting = SystemSetting::first();
                         <path d="M11.9961 16.5H12.0051" stroke="#868A9B" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    Help & Center
+                    
+                    {{ __("Help & Center") }}
                 </a>
             </li>
             <li>
@@ -144,7 +148,7 @@ $systemSetting = SystemSetting::first();
                             stroke="#868A9B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    Settings
+                    {{ __("Settings") }}
                 </a>
             </li>
         </ul>
@@ -161,7 +165,7 @@ $systemSetting = SystemSetting::first();
             <path d="M5.85 9.15039L2.5 12.5004L5.85 15.8504" stroke="#868A9B" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        Log Out
+        {{ __("Log Out") }}
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

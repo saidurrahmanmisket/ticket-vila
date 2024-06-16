@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 @section('header_title')
-Dashboard
+{{ __("Dashboard") }}
 @endsection;
 
 @section('content')
@@ -17,8 +17,8 @@ Dashboard
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
-                        <h4 class="common--title">Your Ticket</h4>
-                        <p class="total--tickets">Total Ticket : {{ $data['userTickets']->count() ?? 0 }}</p>
+                        <h4 class="common--title">{{ __("Your Ticket") }}</h4>
+                        <p class="total--tickets">{{ __("Total Ticket") }} : {{ $data['userTickets']->count() ?? 0 }}</p>
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
                             @foreach ($data['userTickets'] as $ticket)
@@ -82,14 +82,14 @@ Dashboard
                                         </div>
                                         <!-- no ticket  -->
                                         <div class="no--ticket d-none text-center">
-                                            <p>Currently, you don’t own a ticket.</p>
-                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
+                                            <p>{{ __("Currently, you don’t own a ticket.") }}</p>
+                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">{{ __("Buy Now") }}</a>
                                         </div>
                                         <div class="button--area text-center">
-                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">Buy
+                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">{{ __("Buy
                                                 more
                                                 E-Book to get more
-                                                Ticket</a>
+                                                Ticket") }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -101,8 +101,8 @@ Dashboard
                     <div class="news--wrapper ">
                         <!-- top title  -->
                         <div class="top--title mb_25">
-                            <h3 class="common--title">News</h3>
-                            <a href="#" class="button">See All</a>
+                            <h3 class="common--title">{{ __("News") }}</h3>
+                            <a href="#" class="button">{{ __("See All") }}</a>
                         </div>
                         <div class="all--news default--scrollbar">
                             <!-- single card  -->
@@ -286,9 +286,9 @@ Dashboard
 
                 <div class="col-md-3 pl_17 mt_35">
                     <div class="affiliate--box h-100 text-center">
-                        <h3>Join Affiliate Program</h3>
-                        <p>Become an affiliates partner and earn extra money.</p>
-                        <a href="#" class="user--common--btn">Join Now</a>
+                        <h3>{{ __("Join Affiliate Program") }}</h3>
+                        <p>{{ __("Become an affiliates partner and earn extra money.") }}</p>
+                        <a href="#" class="user--common--btn">{{ __("Join Now") }}</a>
                     </div>
                 </div>
             </div>
@@ -300,7 +300,7 @@ Dashboard
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
-                        <h4 class="common--title">Your Ticket</h4>
+                        <h4 class="common--title">{{ __("Your Ticket") }}</h4>
                         {{-- <p class="total--tickets">Total Ticket : 08</p> --}}
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
@@ -310,14 +310,14 @@ Dashboard
                                         <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
                                             alt="" />
                                     </div>
-                                    <p class="ticket--id">Ticket ID: XXXXXX</p>
+                                    <p class="ticket--id">{{ __("Ticket ID") }}: XXXXXX</p>
 
                                     <!-- ticket--details  -->
                                     <div class="ticket--details">
                                         <!-- user--profile  -->
                                         <div class="details user--profile">
                                             <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                            <p>Max Musternann</p>
+                                            <p>{{ __("Max Musternann") }}</p>
                                         </div>
                                         <div class="details">
                                             <div class="icon">
@@ -348,7 +348,7 @@ Dashboard
                                                         fill="#E8880F" />
                                                 </svg>
                                             </div>
-                                            <p>Credit Card</p>
+                                            <p>{{ __("Credit Card") }}</p>
                                         </div>
                                         <div class="details">
                                             <div class="icon">
@@ -364,12 +364,12 @@ Dashboard
                                     </div>
                                     <!-- no ticket  -->
                                     <div class="no--ticket d-none text-center">
-                                        <p>Currently, you don’t own a ticket.</p>
-                                        <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
+                                        <p>{{ __("Currently, you don’t own a ticket.") }}</p>
+                                        <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">{{ __("Buy Now") }}</a>
                                     </div>
                                     <div class="button--area text-center">
-                                        <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
-                                            Ticket</a>
+                                        <a href="#" class="user--common--btn mt_45">{{ __("Buy more E-Book to get more
+                                            Ticket") }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -561,7 +561,7 @@ Dashboard
                 </div>
                 <div class="col-md-9 mt_35 pr_17">
                     <div class="cool--facts box--common h-100 position-relative">
-                        <h4 class="common--title">Some cool facts 😎</h4>
+                        <h4 class="common--title">{{ __("Some cool facts") }} 😎</h4>
                         <div class="row">
                             <div class="col-md-4 mt_20 pr_10">
                                 <div class="facts--card">
@@ -593,11 +593,11 @@ Dashboard
                                             </svg>
                                         </div>
                                         <div>
-                                            <p>Winning Chance</p>
+                                            <p>{{ __("Winning Chance") }}</p>
                                             <h3>0,023 %</h3>
                                         </div>
                                     </div>
-                                    <p class="mt_40">Based on the amount of your current tickets.</p>
+                                    <p class="mt_40">{{ __("Based on the amount of your current tickets.") }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 mt_20 pr_10 pl_10">
@@ -648,11 +648,11 @@ Dashboard
                                             </svg>
                                         </div>
                                         <div>
-                                            <p>your Current Rank</p>
+                                            <p>{{ __("your Current Rank") }}</p>
                                             <h3>#456</h3>
                                         </div>
                                     </div>
-                                    <p class="mt_40">Your amount of tickets compared to other Users.</p>
+                                    <p class="mt_40">{{ __("Your amount of tickets compared to other Users.") }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 mt_20 pl_10">
@@ -676,25 +676,25 @@ Dashboard
                                             </svg>
                                         </div>
                                         <div>
-                                            <p>Total Users</p>
+                                            <p>{{ __("Total Users") }}</p>
                                             <h3>7.471 + You</h3>
                                         </div>
                                     </div>
-                                    <p class="mt_40">Based on the amount of your current tickets.</p>
+                                    <p class="mt_40">{{ __("Based on the amount of your current tickets.") }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="blur--box">
-                            <p>You can't see this section, buy a ticket to get full data access</p>
-                            <a href="#" class="user--common--btn">Buy a E-Book</a>
+                            <p>{{ __("You can't see this section, buy a ticket to get full data access") }}</p>
+                            <a href="#" class="user--common--btn">{{ __("Buy a E-Book") }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 pl_17 mt_35">
                     <div class="affiliate--box h-100 text-center">
-                        <h3>Join Affiliate Program</h3>
-                        <p>Become an affiliates partner and earn extra money.</p>
-                        <a href="#" class="user--common--btn">Join Now</a>
+                        <h3>{{ __("Join Affiliate Program") }}</h3>
+                        <p>{{ __("Become an affiliates partner and earn extra money.") }}</p>
+                        <a href="#" class="user--common--btn">{{ __("Join Now") }}</a>
                     </div>
                 </div>
             </div>
