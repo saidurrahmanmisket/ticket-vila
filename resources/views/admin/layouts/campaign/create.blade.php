@@ -80,7 +80,7 @@
                                     <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
                                         <option selected>Select gift</option>
                                         @foreach($gifts as $gift)
-                                            <option @if(old('gift_id') == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
+                                            <option @if(old('gift_id') == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name_en }}</option>
                                         @endforeach
                                     </select>
                                     @error('gift_id')

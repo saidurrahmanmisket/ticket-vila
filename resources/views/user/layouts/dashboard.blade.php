@@ -119,7 +119,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -162,7 +162,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -205,7 +205,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -248,7 +248,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -398,7 +398,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -441,7 +441,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -484,7 +484,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">
@@ -527,7 +527,7 @@ Dashboard
                                                     fill="#FEC054" />
                                             </svg>
                                         </div>
-                                        <p>12.500 Tickets Sold</p>
+                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
                                     <!-- date and actions  -->
                                     <div class="date--and--actions">

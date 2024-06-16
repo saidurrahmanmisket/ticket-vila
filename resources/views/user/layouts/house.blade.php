@@ -39,15 +39,18 @@
                     <!-- photo--slider   -->
                     <div class="photo--slider--wrap position-relative">
                         <div class="owl-carousel photo--slider mt_20">
-                            <div class="item">
-                                <img src="{{ asset('user/images/house1.png') }}" alt="" />
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('user/images/house1.png') }}" alt="" />
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('user/images/house1.png') }}" alt="" />
-                            </div>
+                            @if (isset($giftRandomImages) && $giftRandomImages)
+                                @foreach ($giftRandomImages as $item)
+                                    <div class="item">
+                                        <img src="{{ $item->image ? asset($item->image) : asset('user/images/house1.png') }}"
+                                            alt="" />
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="item">
+                                    <img src="{{ asset('user/images/house1.png') }}" alt="" />
+                                </div>
+                            @endif
                         </div>
                         <!-- blur box  -->
                         <div class="blur--box">

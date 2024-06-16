@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
 use App\Http\Controllers\Web\User\SettingsController;
+use App\Http\Controllers\Web\User\TheHouseController;
 use App\Http\Controllers\Web\User\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +51,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     //static page views
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
-    Route::view('/user/house', 'user.layouts.house')->name('house');
+    Route::get('/user/house',[TheHouseController::class, 'index'])->name('house');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 

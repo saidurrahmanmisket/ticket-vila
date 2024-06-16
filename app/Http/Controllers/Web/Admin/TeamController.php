@@ -106,6 +106,7 @@ class TeamController extends Controller
 
         $team->update([
             'name' => $request->name,
+            'position' => $request->position,
             'image' => $image_path,
         ]);
 

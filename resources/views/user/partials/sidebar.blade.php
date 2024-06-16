@@ -9,7 +9,7 @@ $systemSetting = SystemSetting::first();
 <div class="sidebar">
     <!-- logo -->
     <a href="/" class="sidebar--logo">
-        <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('/user/images/') }}" alt=""/>
+        <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('user/images/logo.svg') }}" alt=""/>
     </a>
     <!-- mainmenu  -->
     <div class="main--menu">
