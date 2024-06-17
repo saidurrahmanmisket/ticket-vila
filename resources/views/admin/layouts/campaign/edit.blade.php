@@ -18,37 +18,69 @@
                 <div class="col-12">
                     <div>
                         <div class="row">
+                            <div class="col-12 mb-4">
+                                <h6 class="mb-2">Name</h6>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="name_en" class="form-label required">En</label>
+                                        <input type="text" class="form-control" id="name_en"
+                                               value="{{$campaign->name_en}}"
+                                               name="name_en">
+                                        @error('name_en')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="name_de" class="form-label required">De</label>
+                                        <input type="text" class="form-control" id="name_de"
+                                               value="{{$campaign->name_de}}"
+                                               name="name_de">
+                                        @error('name_de')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="name_hu" class="form-label required">Hu</label>
+                                        <input type="text" class="form-control" id="name" value="{{$campaign->name_hu}}"
+                                               name="name_hu">
+                                        @error('name_hu')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="name_en" class="form-label">Name(En)</label>
-                                    <input type="text" class="form-control" id="name_en" value="{{$campaign->name_en}}" name="name_en">
-                                    @error('name_en')
+                                    <label for="price" class="form-label required h6">Price</label>
+                                    <input type="text" class="form-control" id="price" value="{{ $campaign->price  }}"
+                                           name="price">
+                                    @error('price')
                                     <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
+                                      <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="name_de" class="form-label">Name(De)</label>
-                                    <input type="text" class="form-control" id="name_de" value="{{$campaign->name_de}}" name="name_de">
-                                    @error('name_de')
+                                    <label for="limit" class="form-label required h6">Ticket Limit</label>
+                                    <input type="number" class="form-control" id="limit" value="{{ $campaign->limit }}"
+                                           name="limit">
+                                    @error('limit')
                                     <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
+                                      <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="name_hu" class="form-label">Name(Hu)</label>
-                                    <input type="text" class="form-control" id="name" value="{{$campaign->name_hu}}" name="name_hu">
-                                    @error('name_hu')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="thumbnail" class="form-label">Thumbnail</label>
-                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail" accept="image/png,image/gif,image/jpeg,image/jpg,image/svg" data-default-file="{{asset($campaign->thumbnail)}}">
+                                    <label for="thumbnail" class="form-label h6">Thumbnail</label>
+                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
+                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                           data-default-file="{{asset($campaign->thumbnail)}}">
                                     @error('thumbnail')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -57,30 +89,13 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">Price</label>
-                                    <input type="text" class="form-control" id="price" value="{{ $campaign->price }}" name="price">
-                                    @error('price')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="limit" class="form-label">Ticket Limit</label>
-                                    <input type="number" class="form-control" id="limit" value="{{$campaign->limit}}" name="limit">
-                                    @error('limit')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
                                 <div class="mb-3 d-flex flex-column">
-                                    <label for="gift_id" class="form-label">Gift</label>
+                                    <label for="gift_id" class="form-label required h6">Gift</label>
                                     <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
-                                        <option selected value="">Select gift</option>
+                                        <option selected>Select gift</option>
                                         @foreach($gifts as $gift)
-                                            <option @if($campaign->gift_id == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
+                                            <option @if($campaign->gift_id == $gift->id) selected
+                                                    @endif value="{{ $gift->id }}">{{ $gift->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('gift_id')
@@ -90,8 +105,9 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="unique_text" class="form-label">Unique Text</label>
-                                    <input type="text" class="form-control" id="unique_text" value="{{ $campaign->unique_text }}" name="unique_text">
+                                    <label for="unique_text" class="form-label required h6">Unique Text</label>
+                                    <input type="text" class="form-control" id="unique_text"
+                                           value="{{ $campaign->unique_text }}" name="unique_text">
                                     @error('unique_text')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -100,28 +116,34 @@
                                 </div>
                                 <div id="ebook_files_list">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button" onclick="addNewEbook()" class="btn btn-success btn-sm">Add New</button>
+                                        <button type="button" onclick="addNewEbook()" class="btn btn-success btn-sm">Add
+                                            New
+                                        </button>
                                     </div>
 
                                     @foreach($campaign->ebooks as $index => $ebook)
                                         <div class="my-3" id="ebook_{{$ebook->id}}">
                                             <div class="d-flex justify-content-between align-items-center mb-4">
                                                 <p>{{$ebook->file}}</p>
-                                                <span class="text-danger" onclick="ebookDelete({{$ebook->id}})" style="cursor: pointer">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                       <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                <span class="text-danger" onclick="ebookDelete({{$ebook->id}})"
+                                                      style="cursor: pointer">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                         stroke="currentColor">
+                                                       <path stroke-linecap="round" stroke-linejoin="round"
+                                                             d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                                     </svg>
                                                 </span>
                                             </div>
                                         </div>
                                     @endforeach
                                     @error('ebook_files')
-                                           <span class="invalid-feedback d-block" role="alert">
+                                    <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                     @enderror
                                     @error('ebook_files.*')
-                                           <span class="invalid-feedback d-block" role="alert">
+                                    <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                     @enderror

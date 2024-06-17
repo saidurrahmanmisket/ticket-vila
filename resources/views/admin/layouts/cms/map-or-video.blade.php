@@ -21,62 +21,9 @@
 							<form method="POST" action="{{ route('admin.cms.three-d-map-or-video.house-tour') }}"
 							      enctype="multipart/form-data">@csrf
 								<div class="row">
-									<div class="col-lg-6 mb-3">
-										{{--map link--}}
-										<div id="map_input">
-											<label for="map_link" class="form-label required">Map Embed</label>
-											<input type="url" class="form-control" id="map_link"
-											       value="{{!empty($house_tour) ? $house_tour->link  : old('map_link') }}"
-											       name="map_link">
-											@error('map_link')
-											<span class="invalid-feedback d-block" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                             </span>
-											@enderror
-										</div>
-										{{--Video Link--}}
-										<div id="video_link">
-											<div>
-												<label for="video_url_en" class="form-label required">Youtube
-													Embed(En)</label>
-												<input type="url" class="form-control" id="video_url_en"
-												       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_en') }}"
-												       name="video_url_en">
-												@error('video_url_en')
-												<span class="invalid-feedback d-block" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                             </span>
-												@enderror
-											</div>
-											<div class="mt-3">
-												<label for="video_url_de" class="form-label required">Youtube
-													Embed(De)</label>
-												<input type="url" class="form-control" id="video_url_de"
-												       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_de') }}"
-												       name="video_url_de">
-												@error('video_url_de')
-												<span class="invalid-feedback d-block" role="alert">
-                                               <strong>{{ $message }}</strong>
-                                           </span>
-												@enderror
-											</div>
-											<div class="mt-3">
-												<label for="video_url_hu" class="form-label required">Youtube
-													Embed(Hu)</label>
-												<input type="url" class="form-control" id="video_url_hu"
-												       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_hu') }}"
-												       name="video_url_hu">
-												@error('video_url_hu')
-												<span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                             </span>
-												@enderror
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6 mb-3">
+									<div class="col-12">
 										<div class="d-flex flex-column">
-											<label for="link_type" class="form-label required">3D link Type</label>
+											<label for="link_type" class="form-label required h6">3D link Type</label>
 											<select class="form-select form-select-lg mb-3" id="link_type"
 											        name="link_type">
 												<option {{!empty($house_tour) ? (!empty($house_tour->link) ? '' : 'selected') : (old('link_type') == 'youtube_link' ? 'selected' : '')}} value="youtube_link">
@@ -92,6 +39,56 @@
                                            </span>
 											@enderror
 										</div>
+										<div class="mt-4" id="video_link">
+											<h6 class="mb-2">Youtube
+												Embed</h6>
+											<div class="row">
+												<div class="col-lg-4">
+													<label for="video_url_en" class="form-label required">En</label>
+													<input type="url" class="form-control" id="video_url_en"
+													       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_en') }}"
+													       name="video_url_en">
+													@error('video_url_en')
+													<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="video_url_de" class="form-label required">De</label>
+													<input type="url" class="form-control" id="video_url_de"
+													       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_de') }}"
+													       name="video_url_de">
+													@error('video_url_de')
+													<span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="video_url_hu" class="form-label required">Hu</label>
+													<input type="url" class="form-control" id="video_url_hu"
+													       value="{{!empty($house_tour) ? $house_tour->link_en  : old('video_url_hu') }}"
+													       name="video_url_hu">
+													@error('video_url_hu')
+													<span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+											</div>
+										</div>
+										<div id="map_input" class="mt-4">
+											<label for="map_link" class="form-label required h6">Map Embed</label>
+											<input type="url" class="form-control" id="map_link"
+											       value="{{!empty($house_tour) ? $house_tour->link  : old('map_link') }}"
+											       name="map_link">
+											@error('map_link')
+											<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+											@enderror
+										</div>
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary mt-3">Submit</button>
@@ -102,62 +99,9 @@
 							<form method="POST"
 							      action="{{ route('admin.cms.three-d-map-or-video.property-view') }}">@csrf
 								<div class="row">
-									<div class="col-lg-6 mb-3">
-										{{--map link--}}
-										<div id="p_map_input">
-											<label for="p_map_link" class="form-label required">Map Embed</label>
-											<input type="url" class="form-control" id="p_map_link"
-											       value="{{!empty($property_view) ? $property_view->link : old('p_map_link')}}"
-											       name="p_map_link">
-											@error('p_map_link')
-											<span class="invalid-feedback d-block" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                             </span>
-											@enderror
-										</div>
-										{{--Video Link--}}
-										<div id="p_video_link">
-											<div>
-												<label for="p_video_url_en" class="form-label required">Youtube
-													Embed(En)</label>
-												<input type="url" class="form-control" id="title_en"
-												       value="{{!empty($property_view) ? $property_view->link_en : old('p_video_url_en')}}"
-												       name="p_video_url_en">
-												@error('p_video_url_en')
-												<span class="invalid-feedback d-block" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                             </span>
-												@enderror
-											</div>
-											<div class="mt-3">
-												<label for="p_video_url_de" class="form-label required">Youtube
-													Embed(De)</label>
-												<input type="url" class="form-control" id="p_video_url_de"
-												       value="{{!empty($property_view) ? $property_view->link_de : old('p_video_url_de')}}"
-												       name="p_video_url_de">
-												@error('p_video_url_de')
-												<span class="invalid-feedback d-block" role="alert">
-                                               <strong>{{ $message }}</strong>
-                                           </span>
-												@enderror
-											</div>
-											<div class="mt-3">
-												<label for="p_video_url_hu" class="form-label required">Youtube
-													Embed(Hu)</label>
-												<input type="url" class="form-control" id="p_video_url_hu"
-												       value="{{!empty($property_view) ? $property_view->link_hu : old('p_video_url_hu')}}"
-												       name="p_video_url_hu">
-												@error('p_video_url_hu')
-												<span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                             </span>
-												@enderror
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6 mb-3">
+									<div class="col-lg-12 mb-4">
 										<div class="d-flex flex-column">
-											<label for="p_link_type" class="form-label required">3D link Type</label>
+											<label for="p_link_type" class="form-label required h6">3D link Type</label>
 											<select class="form-select form-select-lg mb-3" id="p_link_type"
 											        name="p_link_type">
 												<option {{!empty($property_view) ? (!empty($property_view->link) ? '' : 'selected') : (old('p_link_type') == 'youtube_link' ? 'selected' : '')}} value="youtube_link">
@@ -172,6 +116,59 @@
                                                <strong>{{ $message }}</strong>
                                            </span>
 											@enderror
+										</div>
+									</div>
+									<div class="col-12 mb-3">
+										{{--map link--}}
+										<div id="p_map_input">
+											<label for="p_map_link" class="form-label required h6">Map Embed</label>
+											<input type="url" class="form-control" id="p_map_link"
+											       value="{{!empty($property_view) ? $property_view->link : old('p_map_link')}}"
+											       name="p_map_link">
+											@error('p_map_link')
+											<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+											@enderror
+										</div>
+										{{--Video Link--}}
+										<div id="p_video_link">
+											<h6 class="mb-2">Youtube Embed</h6>
+											<div class="row">
+												<div class="col-lg-4">
+													<label for="p_video_url_en" class="form-label required">En</label>
+													<input type="url" class="form-control" id="title_en"
+													       value="{{!empty($property_view) ? $property_view->link_en : old('p_video_url_en')}}"
+													       name="p_video_url_en">
+													@error('p_video_url_en')
+													<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="p_video_url_de" class="form-label required">De</label>
+													<input type="url" class="form-control" id="p_video_url_de"
+													       value="{{!empty($property_view) ? $property_view->link_de : old('p_video_url_de')}}"
+													       name="p_video_url_de">
+													@error('p_video_url_de')
+													<span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="p_video_url_hu" class="form-label required">Hu</label>
+													<input type="url" class="form-control" id="p_video_url_hu"
+													       value="{{!empty($property_view) ? $property_view->link_hu : old('p_video_url_hu')}}"
+													       name="p_video_url_hu">
+													@error('p_video_url_hu')
+													<span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
