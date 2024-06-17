@@ -28,7 +28,7 @@
                                             <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
                                                 alt="" />
                                         </div>
-                                        <p class="ticket--id">Ticket ID: {{ $ticket->ticket_number }}</p>
+                                        <p class="ticket--id">{{ __("Ticket ID") }}: {{ $ticket->ticket_number }}</p>
 
                                         <!-- ticket--details  -->
                                         <div class="ticket--details">
@@ -86,10 +86,7 @@
                                             <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">{{ __("Buy Now") }}</a>
                                         </div>
                                         <div class="button--area text-center">
-                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">{{ __("Buy
-                                                more
-                                                E-Book to get more
-                                                Ticket") }}</a>
+                                            <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">{{ __("Buy more E-Book to get more Ticket") }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -368,8 +365,7 @@
                                         <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">{{ __("Buy Now") }}</a>
                                     </div>
                                     <div class="button--area text-center">
-                                        <a href="#" class="user--common--btn mt_45">{{ __("Buy more E-Book to get more
-                                            Ticket") }}</a>
+                                        <a href="#" class="user--common--btn mt_45">{{ __("Buy more E-Book to get more Ticket") }}</a>
                                     </div>
                                 </div>
                             </div>

@@ -10,52 +10,64 @@
     <!-- profile area  -->
     <div class="app--content--main">
         <div class="row ">
-            <div class="col-md-8 mx-auto">
+            <div class="col mx-auto">
 
                 <form method="POST" action="{{ route('admin.gift.store') }}" enctype="multipart/form-data">@csrf
                     <div class="personal--info profile--info--box">
                         <h3>Gift Create</h3>
                         <div class="card">
                             <div class="card-body">
-                                <div class="input--group">
-                                    <label for="name_en">
-                                        Gift Name_en <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_en') is-invalid @enderror" id="name_en"
-                                        name="name_en" type="text" value="{{ old('name_en') }}"
-                                        placeholder="Gift name_en...">
-                                    @error('name_en')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <h5>Gift Name</h5>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="input--group">
+                                            <label for="name_en">
+                                                EN <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                                                name="name_en" type="text" value="{{ old('name_en') }}"
+                                                placeholder="Gift name en...">
+                                            @error('name_en')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input--group">
+                                            <label for="name_de">
+                                                DE <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_de') is-invalid @enderror" id="name_de"
+                                                name="name_de" type="text" value="{{ old('name_de') }}"
+                                                placeholder="Gift name de...">
+                                            @error('name_de')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input--group">
+                                            <label for="name_hu">
+                                                HU <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_hu') is-invalid @enderror" id="name_hu"
+                                                name="name_hu" type="text" value="{{ old('name_hu') }}"
+                                                placeholder="Gift name hu...">
+                                            @error('name_hu')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="input--group">
-                                    <label for="name_de">
-                                        Gift Name_de <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_de') is-invalid @enderror" id="name_de"
-                                        name="name_de" type="text" value="{{ old('name_de') }}"
-                                        placeholder="Gift name_de...">
-                                    @error('name_de')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="input--group">
-                                    <label for="name_hu">
-                                        Gift Name_hu <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_hu') is-invalid @enderror" id="name_hu"
-                                        name="name_hu" type="text" value="{{ old('name_hu') }}"
-                                        placeholder="Gift name_hu...">
-                                    @error('name_hu')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                
+                                
+                                
                                 <div class="mt-5">
                                     <label for="gift_image">Gift Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
@@ -75,16 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="mt-3">
-                            <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                name="image[]" id="image" data-show-remove="true" accept="image/*"
-                                value="{{ old('image', '') }}" data-default-file="">
-                            @error('image')
-                                <span class="text-danger" role="alert">
-                                    <strong>Image is Required and size should not exceed 4MB.</strong>
-                                </span>
-                            @enderror
-                        </div> --}}
+                        
                         <div class="card my-4 p-2">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between gap-2 mb-4">
@@ -210,68 +213,90 @@
                                         <h4 class="">Feature <strong class="feature-no">1</strong>
                                         </h4>
 
-                                        <div class="input--group">
-                                            <label for="feature_title_en">Feature Title (en)<span
-                                                    class="text-danger">*</span></label>
-                                            <input id="feature_title_en" name="feature_title_en[]" type="text"
-                                                placeholder="Feature Title..">
-                                            @error('feature_title_en')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                        <div class="row">
+                                            <h5 class="mt-5">Feature Title</h5>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_title_en">EN<span
+                                                            class="text-danger">*</span></label>
+                                                    <input id="feature_title_en" name="feature_title_en[]" type="text"
+                                                        placeholder="Feature Title..">
+                                                    @error('feature_title_en')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_title_de">DE<span
+                                                            class="text-danger">*</span></label>
+                                                    <input id="feature_title_de" name="feature_title_de[]" type="text"
+                                                        placeholder="Feature Title..">
+                                                    @error('feature_title_de')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_title_hu">HU <span
+                                                            class="text-danger">*</span></label>
+                                                    <input id="feature_title_hu" name="feature_title_hu[]" type="text"
+                                                        placeholder="Feature Title..">
+                                                    @error('feature_title_hu')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="input--group">
-                                            <label for="feature_title_de">Feature Title (de) <span
-                                                    class="text-danger">*</span></label>
-                                            <input id="feature_title_de" name="feature_title_de[]" type="text"
-                                                placeholder="Feature Title..">
-                                            @error('feature_title_de')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="feature_title_hu">Feature Title (hu) <span
-                                                    class="text-danger">*</span></label>
-                                            <input id="feature_title_hu" name="feature_title_hu[]" type="text"
-                                                placeholder="Feature Title..">
-                                            @error('feature_title_hu')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="feature_sub_title_en">Feature Sub Title (en) </label>
-                                            <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text"
-                                                placeholder="Feature Sub Title..">
-                                            @error('feature_sub_title_en')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="feature_sub_title_de">Feature Sub Title (de) </label>
-                                            <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text"
-                                                placeholder="Feature Sub Title..">
-                                            @error('feature_sub_title_de')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="feature_sub_title_hu">Feature Sub Title (hu) </label>
-                                            <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text"
-                                                placeholder="Feature Sub Title..">
-                                            @error('feature_sub_title_hu')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                        <div class="row">
+                                            <h5 class="mt-5">Feature Sub Title</h5>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_sub_title_en">EN </label>
+                                                    <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text"
+                                                        placeholder="Feature Sub Title..">
+                                                    @error('feature_sub_title_en')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_sub_title_de">DE </label>
+                                                    <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text"
+                                                        placeholder="Feature Sub Title..">
+                                                    @error('feature_sub_title_de')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="input--group">
+                                                    <label for="feature_sub_title_hu">HU </label>
+                                                    <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text"
+                                                        placeholder="Feature Sub Title..">
+                                                    @error('feature_sub_title_hu')
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group row mt-4" id="imageUploadContainerPlan">
                                             <div class="col">
@@ -291,53 +316,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- gift feature section  --}}
-                        {{-- <div class="card my-4 p-2 ">
-                            <div class="card-body" id="feature-content">
-                                <h2 class="text-center card-title">Gift Features </h2>
-                                <div class="d-flex justify-content-end gap-2 mb-4">
-                                    <a type="button" id="addFeature" class="btn btn-primary">Add Another
-                                        Feature</a>
-                                </div>
-                                <div class="feature-item">
-                                    <h4 class="">Feature <strong class="feature-no">1</strong></h4>
-
-                                    <div class="input--group">
-                                        <label for="name">Feature Title</label>
-                                        <input id="name" name="name[]" type="text" value="{{ old('name') }}"
-                                            placeholder="Feature Title..">
-                                        @error('name')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="input--group">
-                                        <label for="name">Feature Sub Title</label>
-                                        <input id="name" name="name[]" type="text" value="{{ old('name') }}"
-                                            placeholder="Feature Sub Title..">
-                                        @error('name')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row input--group" id="imageUploadContainerPlan">
-                                        <div class="col">
-                                            <input type="file"
-                                            class="form-control form-control-lg mt-2 border-left-0 dropify" name="image[]"
-                                            id="image" data-show-remove="true" accept="image/*"
-                                            value="{{ old('image', '') }}" data-default-file="">
-                                            @error('image')
-                                                <span class="text-danger" role="alert">
-                                                    <strong>Image is Required and size should not exceed 4MB.</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
 
 
 
@@ -441,30 +419,49 @@
                                 <a type="button" data-id=""  class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
                             </div>
                             <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
-
-                            <div class="input--group">
-                                <label for="feature_title_en">Feature Title (en) <span class="text-danger">*</span></label>
-                                <input id="feature_title_en" name="feature_title_en[]" type="text" value="" placeholder="Feature Title.. (en)">
+                            <div class="row">
+                                <h5 class="mt-5">Feature Title</h5>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                    <label for="feature_title_en">EN <span class="text-danger">*</span></label>
+                                    <input id="feature_title_en" name="feature_title_en[]" type="text" value="" placeholder="Feature Title.. (en)">
+                                </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                        <label for="feature_title_de">DE <span class="text-danger">*</span></label>
+                                        <input id="feature_title_de" name="feature_title_de[]" type="text" value="" placeholder="Feature Title.. (de)">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                        <label for="feature_title_hu">HU<span class="text-danger">*</span></label>
+                                        <input id="feature_title_hu" name="feature_title_hu[]" type="text" value="" placeholder="Feature Title.. (hu)">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input--group">
-                                <label for="feature_title_de">Feature Title (de) <span class="text-danger">*</span></label>
-                                <input id="feature_title_de" name="feature_title_de[]" type="text" value="" placeholder="Feature Title.. (de)">
-                            </div>
-                            <div class="input--group">
-                                <label for="feature_title_hu">Feature Title (hu) <span class="text-danger">*</span></label>
-                                <input id="feature_title_hu" name="feature_title_hu[]" type="text" value="" placeholder="Feature Title.. (hu)">
-                            </div>
-                            <div class="input--group">
-                                <label for="feature_sub_title_en">Feature Sub Title (en)</label>
-                                <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text" value="" placeholder="Feature Sub Title.. (en)">
-                            </div>
-                            <div class="input--group">
-                                <label for="feature_sub_title_de">Feature Sub Title (de)</label>
-                                <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text" value="" placeholder="Feature Sub Title.. (de)">
-                            </div>
-                            <div class="input--group">
-                                <label for="feature_sub_title_hu">Feature Sub Title (hu)</label>
-                                <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text" value="" placeholder="Feature Sub Title.. (hu)">
+                            
+                            
+                            <div class="row">
+                                <h5 class="mt-5">Feature Sub Title</h5>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                        <label for="feature_sub_title_en">EN</label>
+                                        <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text" value="" placeholder="Feature Sub Title.. (en)">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                        <label for="feature_sub_title_de">DE</label>
+                                        <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text" value="" placeholder="Feature Sub Title.. (de)">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input--group">
+                                        <label for="feature_sub_title_hu">HU</label>
+                                        <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text" value="" placeholder="Feature Sub Title.. (hu)">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group row mt-4" id="imageUploadContainerPlan">
