@@ -8,7 +8,7 @@
     <!-- profile area  -->
     <div class="app--content--main">
         <div class="row ">
-            <div class="col-md-8 mx-auto">
+            <div class="col mx-auto">
 
                 <form method="POST" action="{{ route('admin.gift.update', $gift) }}" enctype="multipart/form-data">
                     @csrf
@@ -17,44 +17,54 @@
                         <h3>Gift Edit</h3>
                         <div class="card">
                             <div class="card-body">
-                                <div class="input--group">
-                                    <label for="name_en">
-                                         Gift Name_en <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_en') is-invalid @enderror" id="name_en"
-                                        name="name_en" type="text" value="{{ $gift->name_en }}"
-                                        placeholder="Gift name_en...">
-                                    @error('name_en')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="input--group">
-                                    <label for="name_de">
-                                         Gift Name_de <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_de') is-invalid @enderror" id="name_de"
-                                        name="name_de" type="text" value="{{ $gift->name_de }}"
-                                        placeholder="Gift name_de...">
-                                    @error('name_de')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="input--group">
-                                    <label for="name_hu">
-                                         Gift Name_hu <span class="text-danger">*</span>
-                                    </label>
-                                    <input class="form-control @error('name_hu') is-invalid @enderror" id="name_hu"
-                                        name="name_hu" type="text" value="{{ $gift->name_hu }}"
-                                        placeholder="Gift name_hu...">
-                                    @error('name_hu')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="row">
+                                    <h5 class="mt-4">Gift Name</h5>
+                                    <div class="col-lg-4">
+
+                                        <div class="input--group">
+                                            <label for="name_en">
+                                                EN <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_en') is-invalid @enderror"
+                                                id="name_en" name="name_en" type="text" value="{{ $gift->name_en }}"
+                                                placeholder="Gift name_en...">
+                                            @error('name_en')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input--group">
+                                            <label for="name_de">
+                                                DE<span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_de') is-invalid @enderror"
+                                                id="name_de" name="name_de" type="text" value="{{ $gift->name_de }}"
+                                                placeholder="Gift name_de...">
+                                            @error('name_de')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input--group">
+                                            <label for="name_hu">
+                                                HU <span class="text-danger">*</span>
+                                            </label>
+                                            <input class="form-control @error('name_hu') is-invalid @enderror"
+                                                id="name_hu" name="name_hu" type="text" value="{{ $gift->name_hu }}"
+                                                placeholder="Gift name_hu...">
+                                            @error('name_hu')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mt-5">
                                     <label for="gift_image">Gift Image</label>
@@ -76,16 +86,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="mt-3">
-                            <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                name="image[]" id="image" data-show-remove="true" accept="image/*"
-                                value="{{ old('image', '') }}" data-default-file="">
-                            @error('image')
-                                <span class="text-danger" role="alert">
-                                    <strong>Image is Required and size should not exceed 4MB.</strong>
-                                </span>
-                            @enderror
-                        </div> --}}
                         <div class="card my-4 p-2">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between gap-2 mb-4">
@@ -99,11 +99,11 @@
                                         @if ($insideImageItem->gift_image_type == 'inside')
                                             <div class="col-12 col-md-6 col-lg-4 mb-2">
                                                 <input type="file"
-                                                class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
-                                                name="inside_image[]"
-                                                data-show-remove="false" accept="image/*"
-                                                data-default-file="{{ asset($insideImageItem->image) }}">
-                                                <a type="button" data-id="{{ $insideImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
+                                                    class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                    name="inside_image[]" data-show-remove="false" accept="image/*"
+                                                    data-default-file="{{ asset($insideImageItem->image) }}">
+                                                <a type="button" data-id="{{ $insideImageItem->id }}"
+                                                    class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -144,9 +144,11 @@
                                             <div class="col-12 col-md-6 col-lg-4 mb-2">
                                                 <input type="file"
                                                     class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
-                                                    data-show-remove="false" accept="image/*" value="{{ old('outside') }}"
+                                                    data-show-remove="false" accept="image/*"
+                                                    value="{{ old('outside') }}"
                                                     data-default-file="{{ asset($outsideImageItem->image) }}">
-                                                <a type="button" data-id="{{ $outsideImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
+                                                <a type="button" data-id="{{ $outsideImageItem->id }}"
+                                                    class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -187,7 +189,8 @@
                                                     class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
                                                     data-show-remove="false" accept="image/*"
                                                     data-default-file="{{ asset($planImageItem->image) }}">
-                                                <a type="button" data-id="{{ $planImageItem->id }}" class="btn btn-danger btn-sm remove-image">X</a>
+                                                <a type="button" data-id="{{ $planImageItem->id }}"
+                                                    class="btn btn-danger btn-sm remove-image">X</a>
 
                                             </div>
                                         @endif
@@ -247,144 +250,134 @@
                                         image</a>
                                 </div>
 
+
                                 @if ($gift->giftFeaturedItem && $gift->giftFeaturedItem != null)
                                     @foreach ($gift->giftFeaturedItem as $key => $featureItem)
                                         <div class="card mb-4 border border-primary">
                                             <div class="card-body">
                                                 <div class="d-flex flex-row-reverse">
-                                                    <input type="hidden" name="featureId[]" value="{{ $featureItem->id }}">
-                                                    <a type="button" data-id="{{ $featureItem->id }}"  class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                                                    <input type="hidden" name="featureId[]"
+                                                        value="{{ $featureItem->id }}">
+                                                    {{-- <a type="button" data-id="{{ $featureItem->id }}"
+                                                        class="justify-end btn btn-danger btn-sm remove-feature">X</a> --}}
                                                 </div>
-                                            <h4 class="">Feature 
-                                                <strong class="feature-no">{{ $key + 1 }}</strong>
-                                            </h4>
+                                                <h4 class="">Feature
+                                                    <strong class="feature-no">{{ $key + 1 }}</strong>
+                                                </h4>
+                                                <h5 class="mt-4">Feature Title</h5>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_title_en">EN<span
+                                                                    class="text-danger">*</span></label>
+                                                            <input id="feature_title_en" type="text"
+                                                                name="feature_title_en_old[]"
+                                                                value="{{ $featureItem->title_en }}"
+                                                                placeholder="Feature Title..">
+                                                            @error('feature_title_en')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_title_de">DE <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input id="feature_title_de" type="text"
+                                                                name="feature_title_de_old[]"
+                                                                value="{{ $featureItem->title_de }}"
+                                                                placeholder="Feature Title..">
+                                                            @error('feature_title_de')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_title_hu">HU<span
+                                                                    class="text-danger">*</span></label>
+                                                            <input id="feature_title_hu" type="text"
+                                                                name="feature_title_hu_old[]"
+                                                                value="{{ $featureItem->title_hu }}"
+                                                                placeholder="Feature Title..">
+                                                            @error('feature_title_hu')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                            <div class="input--group">
-                                                <label for="feature_title_en">Feature Title <span class="text-danger">*</span></label>
-                                                <input id="feature_title_en" type="text"
-                                                name="feature_title_en_old[]" 
-                                                    value="{{ $featureItem->title_en }}" placeholder="Feature Title..">
-                                                @error('feature_title_en')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="input--group">
-                                                <label for="feature_title_de">Feature Title <span class="text-danger">*</span></label>
-                                                <input id="feature_title_de" type="text"
-                                                name="feature_title_de_old[]" 
-                                                    value="{{ $featureItem->title_de }}" placeholder="Feature Title..">
-                                                @error('feature_title_de')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="input--group">
-                                                <label for="feature_title_hu">Feature Title <span class="text-danger">*</span></label>
-                                                <input id="feature_title_hu" type="text"
-                                                name="feature_title_hu_old[]" 
-                                                    value="{{ $featureItem->title_hu }}" placeholder="Feature Title..">
-                                                @error('feature_title_hu')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="input--group">
-                                                <label for="feature_sub_title_en">Feature Sub Title (en)</label>
-                                                <input id="feature_sub_title_en" type="text"
-                                                    value="{{ $featureItem->sub_title_en }}"
-                                                    name="feature_sub_title_en_old[]"
-                                                    placeholder="Feature Sub Title..">
-                                                @error('feature_sub_title_en')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="input--group">
-                                                <label for="feature_sub_title_de">Feature Sub Title (de)</label>
-                                                <input id="feature_sub_title_de" type="text"
-                                                    value="{{ $featureItem->sub_title_de }}"
-                                                    name="feature_sub_title_de_old[]"
-                                                    placeholder="Feature Sub Title..">
-                                                @error('feature_sub_title_de')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="input--group">
-                                                <label for="feature_sub_title_hu">Feature Sub Title (hu)</label>
-                                                <input id="feature_sub_title_hu" type="text"
-                                                    value="{{ $featureItem->sub_title_en }}"
-                                                    name="feature_sub_title_hu_old[]"
-                                                    placeholder="Feature Sub Title..">
-                                                @error('feature_sub_title_hu')
-                                                    <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group row mt-4" id="imageUploadContainerPlan">
-                                                <div class="col">
-                                                    {{-- <label for="image">Gallery Image:</label> --}}
-                                                    <input type="file"
-                                                        class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
-                                                        data-show-remove="true" accept="image/*"
-                                                        data-default-file="{{ asset($featureItem->image) }}">
-                                                    @error('feature_image')
-                                                        <span class="text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                <div class="row">
+                                                    <h5 class="mt-4">Feature Sub Title</h5>
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_sub_title_en">EN</label>
+                                                            <input id="feature_sub_title_en" type="text"
+                                                                value="{{ $featureItem->sub_title_en }}"
+                                                                name="feature_sub_title_en_old[]"
+                                                                placeholder="Feature Sub Title..">
+                                                            @error('feature_sub_title_en')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_sub_title_de">DE</label>
+                                                            <input id="feature_sub_title_de" type="text"
+                                                                value="{{ $featureItem->sub_title_de }}"
+                                                                name="feature_sub_title_de_old[]"
+                                                                placeholder="Feature Sub Title..">
+                                                            @error('feature_sub_title_de')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input--group">
+                                                            <label for="feature_sub_title_hu">HU</label>
+                                                            <input id="feature_sub_title_hu" type="text"
+                                                                value="{{ $featureItem->sub_title_en }}"
+                                                                name="feature_sub_title_hu_old[]"
+                                                                placeholder="Feature Sub Title..">
+                                                            @error('feature_sub_title_hu')
+                                                                <span class="invalid-feedback d-block" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group row mt-4" id="imageUploadContainerPlan">
+                                                            <div class="col">
+                                                                {{-- <label for="image">Gallery Image:</label> --}}
+                                                                <input type="file"
+                                                                    class="form-control form-control-lg mt-2 border-left-0 dropify dropify-disabled"
+                                                                    data-show-remove="true" accept="image/*"
+                                                                    data-default-file="{{ asset($featureItem->image) }}">
+                                                                @error('feature_image')
+                                                                    <span class="text-danger" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                        </div>
                                         </div>
                                     @endforeach
-                                @else
-                                    <div class="" id="featureItemSection">
-                                        <h4 class="">Feature <strong class="feature-no">1</strong>
-                                        </h4>
-
-                                        <div class="input--group">
-                                            <label for="feature_title">Feature Title <span class="text-danger">*</span></label>
-                                            <input id="feature_title" name="feature_title[]" type="text"
-                                                placeholder="Feature Title..">
-                                            @error('feature_title')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="feature_sub_title">Feature Sub Title</label>
-                                            <input id="feature_sub_title" name="feature_sub_title[]" type="text"
-                                                placeholder="Feature Sub Title..">
-                                            @error('feature_sub_title')
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group row mt-4" id="imageUploadContainerPlan">
-                                            <div class="col">
-                                                {{-- <label for="image">Gallery Image:</label> --}}
-                                                <input type="file"
-                                                    class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                                    name="feature_image[]" data-show-remove="true" accept="image/*"
-                                                    value="{{ old('feature_image', '') }}" data-default-file="">
-                                                @error('feature_image')
-                                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endif
 
                             </div>
@@ -398,6 +391,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @push('script')
     <script>
@@ -428,7 +422,7 @@
         $('#imageUploadContainer').on('click', '.remove-image', function() {
             $(this).parent().remove();
             $.ajax({
-                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
+                url: "{{ route('admin.deleteGiftGallaryImage') }}",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -437,15 +431,15 @@
                     gift_image_type: 'inside'
                 },
                 success: function(response) {
-                console.log(response);
-                
+                    console.log(response);
+
                 },
                 error: function(xhr, status, error) {
-                console.error(xhr, status, error);
-                
+                    console.error(xhr, status, error);
+
                 },
             });
-            
+
         });
 
         //for outside image
@@ -466,7 +460,7 @@
         $('#imageUploadContainerOutside').on('click', '.remove-image', function() {
             $(this).parent().remove();
             $.ajax({
-                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
+                url: "{{ route('admin.deleteGiftGallaryImage') }}",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -475,12 +469,12 @@
                     gift_image_type: 'outside',
                 },
                 success: function(response) {
-                console.log(response);
-                
+                    console.log(response);
+
                 },
                 error: function(xhr, status, error) {
-                console.error(xhr, status, error);
-                
+                    console.error(xhr, status, error);
+
                 },
             });
         });
@@ -505,7 +499,7 @@
         $('#imageUploadContainerPlan').on('click', '.remove-image', function() {
             $(this).parent().remove();
             $.ajax({
-                url:  "{{ route('admin.deleteGiftGallaryImage') }}",
+                url: "{{ route('admin.deleteGiftGallaryImage') }}",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -514,12 +508,12 @@
                     gift_image_type: 'plan'
                 },
                 success: function(response) {
-                console.log(response);
-                
+                    console.log(response);
+
                 },
                 error: function(xhr, status, error) {
-                console.error(xhr, status, error);
-                
+                    console.error(xhr, status, error);
+
                 },
             });
         });
@@ -541,42 +535,65 @@
                 <div class="card border border-primary">
                     <div class="card-body">
                         <div class="d-flex flex-row-reverse">
-                            <a type="button" class="justify-end btn btn-danger btn-sm remove-feature" >X</a>
+                            <a type="button" class="justify-end btn btn-danger btn-sm remove-feature">X</a>
                         </div>
                         <h4 class="mt-4">Feature <strong class="feature-no">${featureCount}</strong></h4>
 
-                        <div class="input--group">
-                            <label for="feature_title_en">Feature Title (en) <span class="text-danger">*</span></label>
-                            <input id="feature_title_en" name="feature_title_en[]" type="text" value="" placeholder="Feature Title (en)..">
+                        <div class="row">
+                            <h5 class="mt-5">Feature Title</h5>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_title_en">EN<span class="text-danger">*</span></label>
+                                    <input id="feature_title_en" name="feature_title_en[]" type="text" value=""
+                                        placeholder="Feature Title (en)..">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_title_de">DE<span class="text-danger">*</span></label>
+                                    <input id="feature_title_de" name="feature_title_de[]" type="text" value=""
+                                        placeholder="Feature Title (de)..">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_title_de">HU <span class="text-danger">*</span></label>
+                                    <input id="feature_title_de" name="feature_title_hu[]" type="text" value=""
+                                        placeholder="Feature Title (hu)..">
+                                </div>
+                            </div>
                         </div>
-                        <div class="input--group">
-                            <label for="feature_title_de">Feature Title (de) <span class="text-danger">*</span></label>
-                            <input id="feature_title_de" name="feature_title_de[]" type="text" value="" placeholder="Feature Title (de)..">
-                        </div>
-                        <div class="input--group">
-                            <label for="feature_title_de">Feature Title (hu) <span class="text-danger">*</span></label>
-                            <input id="feature_title_de" name="feature_title_hu[]" type="text" value="" placeholder="Feature Title (hu)..">
-                        </div>
-                        <div class="input--group">
-                            <label for="feature_sub_title_en">Feature Sub Title (en)</label>
-                            <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text" value="" placeholder="Feature Sub Title (hu)..">
-                        </div>
-                        <div class="input--group">
-                            <label for="feature_sub_title_de">Feature Sub Title (de)</label>
-                            <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text" value="" placeholder="Feature Sub Title (de)..">
-                        </div>
-                        <div class="input--group">
-                            <label for="feature_sub_title_hu">Feature Sub Title (hu)</label>
-                            <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text" value="" placeholder="Feature Sub Title (hu)..">
+                        <div class="row">
+                            <h5 class="mt-5">Feature Sub Title</h5>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_sub_title_en">EN</label>
+                                    <input id="feature_sub_title_en" name="feature_sub_title_en[]" type="text" value=""
+                                        placeholder="Feature Sub Title (hu)..">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_sub_title_de">DE</label>
+                                    <input id="feature_sub_title_de" name="feature_sub_title_de[]" type="text" value=""
+                                        placeholder="Feature Sub Title (de)..">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="input--group">
+                                    <label for="feature_sub_title_hu">HU</label>
+                                    <input id="feature_sub_title_hu" name="feature_sub_title_hu[]" type="text" value=""
+                                        placeholder="Feature Sub Title (hu)..">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group row mt-4" id="imageUploadContainerPlan">
                             <div class="col">
                                 {{-- <label for="image">Gallery Image:</label> --}}
-                        <input type="file"
-                            class="form-control form-control-lg mt-2 border-left-0 dropify"
-                            name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
-                                    data-default-file="">
+                                <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
+                                    name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true"
+                                    accept="image/*" data-default-file="">
                             </div>
                         </div>
                     </div>
@@ -595,12 +612,12 @@
         $(document).ready(function() {
 
             $('.dropify-disabled').on('click', function(event, element) {
-                
+
                 // Prevent the input from being clicked
                 event.preventDefault();
                 event.stopPropagation();
 
-                
+
                 return false;
             })
         });
@@ -610,7 +627,7 @@
             console.log('ok');
             $(this).parent().parent().parent().remove();
             $.ajax({
-                url:  "{{ route('admin.deleteGifFeatureItem') }}",
+                url: "{{ route('admin.deleteGifFeatureItem') }}",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -618,12 +635,12 @@
                     gift_id: '{{ $gift->id }}',
                 },
                 success: function(response) {
-                console.log(response);
-                
+                    console.log(response);
+
                 },
                 error: function(xhr, status, error) {
-                console.error(xhr, status, error);
-                
+                    console.error(xhr, status, error);
+
                 },
             });
         });
