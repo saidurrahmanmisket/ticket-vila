@@ -349,7 +349,7 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __("3D house tour") }}</h3>
+                <h3 class="title">{{ __("Visit Your new Home") }}</h3>
 
                 <div class="area--wrapper">
                     @if(!empty($houseTour) && !empty($houseTour->link))
@@ -359,7 +359,7 @@
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
                         <iframe
-                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
