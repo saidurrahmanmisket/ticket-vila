@@ -18,65 +18,76 @@
                 <div class="col-12">
                     <div>
                         <div class="row">
-                           <div class="col-lg-6">
-                               <div class="mb-3">
-                                   <label for="name_en" class="form-label">Name(En)</label>
-                                   <input type="text" class="form-control" id="name_en" value="{{old('name_en')}}" name="name_en">
-                                   @error('name_en')
-                                   <span class="invalid-feedback d-block" role="alert">
+                            <div class="col-12 mb-4">
+                                <h6 class="mb-2">Name</h6>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="name_en" class="form-label required">En</label>
+                                        <input type="text" class="form-control" id="name_en" value="{{old('name_en')}}"
+                                               name="name_en">
+                                        @error('name_en')
+                                        <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
-                                   @enderror
-                               </div>
-                               <div class="mb-3">
-                                   <label for="name_de" class="form-label">Name(De)</label>
-                                   <input type="text" class="form-control" id="name_de" value="{{old('name_de')}}" name="name_de">
-                                   @error('name_de')
-                                   <span class="invalid-feedback d-block" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="name_de" class="form-label required">De</label>
+                                        <input type="text" class="form-control" id="name_de" value="{{old('name_de')}}"
+                                               name="name_de">
+                                        @error('name_de')
+                                        <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
-                                   @enderror
-                               </div>
-                               <div class="mb-3">
-                                   <label for="name_hu" class="form-label">Name(Hu)</label>
-                                   <input type="text" class="form-control" id="name" value="{{old('name_hu')}}" name="name_hu">
-                                   @error('name_hu')
-                                   <span class="invalid-feedback d-block" role="alert">
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="name_hu" class="form-label required">Hu</label>
+                                        <input type="text" class="form-control" id="name" value="{{old('name_hu')}}"
+                                               name="name_hu">
+                                        @error('name_hu')
+                                        <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
-                                   @enderror
-                               </div>
-                               <div class="mb-3">
-                                   <label for="thumbnail" class="form-label">Thumbnail</label>
-                                   <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail" accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
-                                   @error('thumbnail')
-                                   <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                   @enderror
-                               </div>
-                           </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">Price</label>
-                                    <input type="text" class="form-control" id="price" value="{{ old('price') }}" name="price">
-                                    @error('price')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                               <div class="mb-3">
+                                   <label for="price" class="form-label required h6">Price</label>
+                                   <input type="text" class="form-control" id="price" value="{{ old('price') }}"
+                                          name="price">
+                                   @error('price')
+                                   <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                   @enderror
+                               </div>
                                 <div class="mb-3">
-                                    <label for="limit" class="form-label">Ticket Limit</label>
-                                    <input type="number" class="form-control" id="limit" value="{{old('limit')}}" name="limit">
+                                    <label for="limit" class="form-label required h6">Ticket Limit</label>
+                                    <input type="number" class="form-control" id="limit" value="{{old('limit')}}"
+                                           name="limit">
                                     @error('limit')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                    <label for="thumbnail" class="form-label required h6">Thumbnail</label>
+                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
+                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
+                                    @error('thumbnail')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="mb-3 d-flex flex-column">
-                                    <label for="gift_id" class="form-label">Gift</label>
+                                    <label for="gift_id" class="form-label required h6">Gift</label>
                                     <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
                                         <option selected>Select gift</option>
                                         @foreach($gifts as $gift)
@@ -90,7 +101,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="unique_text" class="form-label">Unique Text</label>
+                                    <label for="unique_text" class="form-label required h6">Unique Text</label>
                                     <input type="text" class="form-control" id="unique_text" value="{{ old('unique_text') }}" name="unique_text">
                                     @error('unique_text')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -103,7 +114,7 @@
                                         <button type="button" onclick="addNewEbook()" class="btn btn-success btn-sm">Add New</button>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="ebook_files_0" class="form-label">Ebook File</label>
+                                        <label for="ebook_files_0" class="form-label required h6">Ebook File</label>
                                         <input type="file" class="form-control" id="ebook_files_0" name="ebook_files[]">
                                         @error('ebook_files')
                                           <span class="invalid-feedback d-block" role="alert">
