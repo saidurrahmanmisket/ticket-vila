@@ -22,7 +22,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back()->withErrors(['error' => 'An error occurred'.$e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred' . $e->getMessage()]);
         }
     }
 
@@ -64,7 +64,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
+            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
         }
     }
 
@@ -93,29 +93,36 @@ class FaqController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'question_en' => 'required|string',
-            'question_de' => 'required|string',
-            'question_hu' => 'required|string',
-            'answer_en' => 'required|string',
-            'answer_de' => 'required|string',
-            'answer_hu' => 'required|string',
-        ]);
+        try {
+            $request->validate([
+                'question_en' => 'required|string',
+                'question_de' => 'required|string',
+                'question_hu' => 'required|string',
+                'answer_en' => 'required|string',
+                'answer_de' => 'required|string',
+                'answer_hu' => 'required|string',
+            ]);
 
-        $faq = FAQ::findOrFail($id);
+            $faq = FAQ::findOrFail($id);
 
-        $faq->update([
-            'question_en' => $request->question_en,
-            'question_de' => $request->question_de,
-            'question_hu' => $request->question_hu,
-            'answer_en' => $request->answer_en,
-            'answer_de' => $request->answer_de,
-            'answer_hu' => $request->answer_hu,
-        ]);
+            $faq->update([
+                'question_en' => $request->question_en,
+                'question_de' => $request->question_de,
+                'question_hu' => $request->question_hu,
+                'answer_en' => $request->answer_en,
+                'answer_de' => $request->answer_de,
+                'answer_hu' => $request->answer_hu,
+            ]);
 
-        flash()->addSuccess('Updated Successfully.');
+            flash()->addSuccess('Updated Successfully.');
 
-        return redirect()->route('admin.faq.index');
+            return redirect()->route('admin.faq.index');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+
+        }
     }
 
     /**
