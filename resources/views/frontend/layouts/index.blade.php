@@ -99,11 +99,11 @@
                 <div class="top--area">
                     <div data-aos="fade-up" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">
-                            {{ __('Your Chance For A Dream Home.') }}
+                            {{ __('Experience Your new home') }}
                         </h3>
 
                         <p class="sub--text">
-                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
+                            {{ __("Your dream home is just a click away! Purchase our e-book and you'll automatically be entered into the raffle to win a house worth €850,000 in Söchau. Don't hesitate, discover the house and secure your ticket to the wonderful world of Styria by purchasing our e-book.") }}
                         </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">
@@ -192,9 +192,9 @@
                 </div>
 
                 <div data-aos="fade-left" data-aos-duration="700" class="text--holder">
-                    <h3 class="common--heading--title">{{ !empty($ticket_chance) ? $ticket_chance['title_'.locale()] ?? '' : __('This is your Chance') }}</h3>
+                    <h3 class="common--heading--title">{{ !empty($ticket_chance) ? $ticket_chance['title_'.locale()] ?? '' : __('Don’t miss out!') }}</h3>
                     <p class="subtext">
-                        {{ !empty($ticket_chance) ? $ticket_chance['description_'.locale()] ?? '' : __('This could be the opportunity of a lifetime. It seems too too good to be true, but it is, and that is the beauty of the House Raffle. Buy an eBook for just £99 and get a ticket with a real, proven, fair and legitimate to win the home of your dreams.') }}
+                        {{ !empty($ticket_chance) ? $ticket_chance['description_'.locale()] ?? '' : __("Don't miss your chance to win your dream home! With just one e-book purchase, you can participate in the house raffle and pave your way to homeownership. Our raffles are transparent, fair, and offer everyone an equal chance. Take advantage of this opportunity and join today!") }}
                     </p>
 
                     <a href="#"
@@ -263,8 +263,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __('To Register') }}</p>
-                        <p class="sub">{{ __('Create an account for free.') }}</p>
+                        <p class="main">{{ __('Buy e-books') }}</p>
+                        <p class="sub">{{ __('You automatically enter the raffle') }}</p>
                     </div>
 
                     <!-- id -->
@@ -278,8 +278,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __('To buy a ticket') }}</p>
-                        <p class="sub">{{ __('Buy any number of tickets.') }}</p>
+                        <p class="main">{{ __('Get tickets') }}</p>
+                        <p class="sub">{{ __('You’ll get one ticket per e-book') }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/02.svg') }}" alt="" /></div>
@@ -290,8 +290,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __("Live Raffle") }}</p>
-                        <p class="sub">{{ __('Follow the status and the draw live.') }}</p>
+                        <p class="main">{{ __("Live draw") }}</p>
+                        <p class="sub">{{ __('Follow the draw live') }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/03.svg') }}" alt="" /></div>
@@ -302,8 +302,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __("Win House") }}</p>
-                        <p class="sub">{{ __("Enjoy your turnkey dream home.") }}</p>
+                        <p class="main">{{ __("Take the keys") }}</p>
+                        <p class="sub">{{ __("The costs are covered - sign and live!") }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/04.svg') }}" alt="" /></div>
@@ -318,26 +318,26 @@
         <div class="container">
             <div class="home--special--feature--content">
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature">
-                    <h3 class="big--text">€{{ __('dream home',['number' => "850,000"]) }}</h3>
+                    <h3 class="big--text">€{{ __('850.000€ dream home for just 99€!') }} </h3>
                     <p class="big--para">{{ __("no hidden additional costs!") }}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature">
                     <p class="gold--text">100%</p>
-                    <p class="gold--para">{{ __("Legally secure") }}</p>
+                    <p class="gold--para">{{ __("Real!") }}</p>
                 </div>
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature common">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/feature--book.svg') }}" alt="" />
                     </div>
                     <div>
-                        <p class="title">{{ __("Done notarized") }}</p>
-                        <p class="sub--title">{{ __("Absolutely serid and binding.") }}</p>
+                        <p class="title">{{ __("Notarized") }}</p>
+                        <p class="sub--title">{{ __("The costs are covered - sign and move in!") }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature common">
                     <div>
-                        <p class="title">{{ __("Only",["number"=>"99"]) }}€</p>
-                        <p class="sub--title">{{ __("Per ticket, the winner gets the house.") }}</p>
+                        <p class="title">{{ __("Just 99€") }}€</p>
+                        <p class="sub--title">{{ __("Per Ticket, the winner gets the house") }}</p>
                     </div>
                 </div>
             </div>
@@ -349,7 +349,7 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __("3D house tour") }}</h3>
+                <h3 class="title">{{ __("Visit Your new Home") }}</h3>
 
                 <div class="area--wrapper">
                     @if(!empty($houseTour) && !empty($houseTour->link))
@@ -359,7 +359,7 @@
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
                         <iframe
-                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
@@ -395,7 +395,7 @@
     <div data-aos="fade-up" data-aos-duration="600" class="get--your--tickets--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="get--your--tickets--area--content">
-                <h3 class="main">{{ __("Get your Ticket") }}</h3>
+                <h3 class="main">{{ __("Buy the e-book now!") }}</h3>
                 <a href="#" class="btn--fill blue--btn">
                     <span>{{ __("Buy Now") }}</span>
                 </a>
@@ -412,7 +412,7 @@
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Secure") }}</p>
+                    <p class="title">{{ __("Safe") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                     <div class="icon">
@@ -430,7 +430,7 @@
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Real opportunity") }}</p>
+                    <p class="title">{{ __("Simple") }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                     <div class="icon">

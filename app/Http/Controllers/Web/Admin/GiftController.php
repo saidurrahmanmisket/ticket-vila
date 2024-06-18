@@ -42,8 +42,6 @@ class GiftController extends Controller
             'name_en' => 'required|string',
             'name_de' => 'required|string',
             'name_hu' => 'required|string',
-            'video_inside' => 'nullable|string',
-            'video_outside' => 'nullable|string',
             'feature_title_en.*' => 'required',
             'feature_title_de.*' => 'required',
             'feature_title_hu.*' => 'required',
@@ -77,8 +75,6 @@ class GiftController extends Controller
             $gift->name_en = $request->name_en;
             $gift->name_de = $request->name_de;
             $gift->name_hu = $request->name_hu;
-            $gift->video_link_inside = $request->video_inside;
-            $gift->video_link_outside = $request->video_outside;
             $gift->image = $gift_image_path;
             $gift->thumbnail_image = $gift_thum_image_path;
             $gift->save();
@@ -183,8 +179,6 @@ class GiftController extends Controller
             'name_en' => 'required|string',
             'name_de' => 'required|string',
             'name_hu' => 'required|string',
-            'video_inside' => 'nullable|string',
-            'video_outside' => 'nullable|string',
             'feature_title_en.*' => 'required',
             'feature_title_de.*' => 'required',
             'feature_title_hu.*' => 'required',
@@ -222,8 +216,6 @@ class GiftController extends Controller
             $gift->name_en = $request->name_en;
             $gift->name_de = $request->name_de;
             $gift->name_hu = $request->name_hu;
-            $gift->video_link_inside = $request->video_inside;
-            $gift->video_link_outside = $request->video_outside;
             $gift->save();
 
             // Handle inside images

@@ -9,14 +9,15 @@
                 <div class="about--us--banner--content">
                     <div class="left">
                         <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                            {{!empty($hero_section) ? $hero_section["title_".locale()] ?? '' : __('Our Mission & Values')}}
+                            {{ !empty($hero_section) ? $hero_section['title_' . locale()] ?? '' : __('Our Mission & Values') }}
                         </h3>
                         <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                            {{!empty($hero_section) ? $hero_section["description_".locale()] ?? '' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.')}}
+                            {{ !empty($hero_section) ? $hero_section['description_' . locale()] ?? '' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.') }}
                         </p>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" class="right">
-                        <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/about-banner-bg.png') }}" alt="" />
+                        <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/about-banner-bg.png') }}"
+                            alt="" />
                     </div>
                 </div>
             </div>
@@ -28,13 +29,14 @@
             <div class="container">
                 <div class="about--mission--area--content">
                     <div class="left">
-                        <img src="{{ asset((!empty($the_mission) && !empty($the_mission->image)) ? $the_mission->image : 'frontend/images/about-mission-bg.png') }}"
-                             alt=""/>
+                        <img src="{{ asset(!empty($the_mission) && !empty($the_mission->image) ? $the_mission->image : 'frontend/images/about-mission-bg.png') }}"
+                            alt="" />
                     </div>
                     <div class="right">
-                        <h3 class="common--heading--title"> {{ !empty($the_mission) ? $the_mission['title_'.locale()] ?? '' : __('The Mission') }}</h3>
+                        <h3 class="common--heading--title">
+                            {{ !empty($the_mission) ? $the_mission['title_' . locale()] ?? '' : __('The Mission') }}</h3>
                         <p class="subtext">
-                            {{!empty($the_mission) ? $the_mission['description_'.locale()] ?? '' : __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
+                            {{ !empty($the_mission) ? $the_mission['description_' . locale()] ?? '' : __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
                         </p>
                     </div>
                 </div>
@@ -51,31 +53,46 @@
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('Secure') }}</p>
+                        <p class="title">{{ __('Fairness') }}</p>
+                        <p class="sub">
+                            {{ __('We guarantee fair conditions for all participants and ensure that every draw and sales campaign is transparent and fair.') }}
+                        </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('Legal') }}</p>
+                        <p class="title">{{ __('Integrity') }}</p>
+                        <p class="sub">
+                            {{ __('We always act honestly, ethically, and responsibly and are committed to the highest standards in our draws.') }}
+                        </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1100" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('Fair') }}</p>
+                        <p class="title">{{ __('Customer Satisfaction') }}</p>
+                        <p class="sub">
+                            {{ __('Customer satisfaction is our top priority. We strive to exceed their expectations and provide an outstanding customer experience.') }}
+                        </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1300" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('Real Opportunity') }}</p>
+                        <p class="title">{{ __('Innovation') }}</p>
+                        <p class="sub">
+                            {{ __('We strive to offer innovative solutions and continuously improve our draws to provide the best to our customers.') }}
+                        </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                         <div class="icon">
                             <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                         </div>
-                        <p class="title">{{ __('Cheap') }}</p>
+                        <p class="title">{{ __('Community') }}</p>
+                        <p class="sub">
+                            {{ __('Together, we explore the wonderful Styria-Thermal Region with the help of the e-book and create a vibrant community. Plus, you have the chance to win your dream home!') }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -87,15 +104,15 @@
             <div class="container">
                 <div class="our--commitment--area--content">
                     <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
-                        {{ !empty($the_transparency) ? $the_transparency['title_'.locale()] ?? '' : __("Our Commitment To Transparency, Security, And Fairness In The Raffle Process") }}
+                        {{ !empty($the_transparency) ? $the_transparency['title_' . locale()] ?? '' : __('Our Commitment To Transparency, Security, And Fairness In The Raffle Process') }}
                     </h3>
 
                     <p data-aos="fade-up" data-aos-duration="700" class="sub--text">
-                        {{ !empty($the_transparency) ? $the_transparency['description_'.locale()] ?? '' : __('At House Villa, we prioritize transparency, security, and fairness throughout the entire raffle process. We believe in providing our participants with a trustworthy and reliable experience, ensuring that every ticket purchased has an equal chance of winning the house.') }}
+                        {{ !empty($the_transparency) ? $the_transparency['description_' . locale()] ?? '' : __('At TicketVilla, we value transparency, security, and fairness. We ensure that every participant has the same chances of winning, and all draws are conducted according to the established rules and standards. Our transparent procedures and security measures provide a trustworthy and fair gaming experience for all.') }}
                     </p>
 
-                    <a href="#" class="btn--fill">
-                        <span>{{ __('Join Now') }}</span>
+                    <a href="#" class="btn--fill blue--btn">
+                        <span>{{ __('Buy Now') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
                             <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5" stroke-linecap="round"

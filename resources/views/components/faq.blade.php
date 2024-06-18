@@ -1,6 +1,6 @@
 @php
     use App\Models\FAQ;
-    $faqs = FAQ::where('status', 'active')->get();
+    $faqs = FAQ::where('status', 'active')->limit(7)->get();
 @endphp
 
 
@@ -29,5 +29,8 @@
                 @endforeach
             @endif
         </div>
+        <a href="{{ route('frontend.faqs') }}" class="btn--fill mt-5 mx-auto">
+            See More
+        </a>
     </div>
 @endif
