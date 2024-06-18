@@ -17,10 +17,12 @@ class TeamController extends Controller
     {
         try {
             $teams = Team::paginate(20);
+
             return view('admin.layouts.team.index', compact('teams'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+
+            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -48,7 +50,7 @@ class TeamController extends Controller
         );
 
         $file = $request->file('image');
-        $image_path = Helper::fileUpload($file, 'teams', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+        $image_path = Helper::fileUpload($file, 'teams', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
 
         Team::create([
             'name' => $request->name,
@@ -56,7 +58,7 @@ class TeamController extends Controller
             'image' => $image_path,
         ]);
 
-        flash()->addSuccess("Created Successfully.");
+        flash()->addSuccess('Created Successfully.');
 
         return redirect()->route('admin.team.index');
     }
@@ -90,19 +92,18 @@ class TeamController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],
             [
-                'image.max'=>'Maximum upload file size 2MB',
+                'image.max' => 'Maximum upload file size 2MB',
             ]
         );
 
         $team = Team::findOrFail($id);
         $file = $request->file('image');
         if ($file) {
-            $image_path = Helper::fileUpload($file,'/gifts/',time().'_'.pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME));
+            $image_path = Helper::fileUpload($file, '/gifts/', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
             Helper::deleteFile(public_path($team->image));
-        }else{
+        } else {
             $image_path = $team->image;
         }
-
 
         $team->update([
             'name' => $request->name,
@@ -110,7 +111,7 @@ class TeamController extends Controller
             'image' => $image_path,
         ]);
 
-        flash()->addSuccess("Updated Successfully.");
+        flash()->addSuccess('Updated Successfully.');
 
         return redirect()->route('admin.team.index');
     }
@@ -124,8 +125,8 @@ class TeamController extends Controller
         Helper::deleteFile(public_path($team->image));
         $team->delete();
 
+        flash()->addSuccess('Deleted Successfully.');
 
-        flash()->addSuccess("Deleted Successfully.");
         return redirect()->route('admin.team.index');
     }
 }
