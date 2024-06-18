@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\DynamicPage;
+use App\Models\FAQ;
 use App\Models\Gift;
 use App\Models\Team;
 use App\Models\TheProcess;
@@ -151,5 +152,13 @@ class PageController extends Controller
         }
 
         return view('frontend.layouts.dynamic-page', compact('pageData'));
+    }
+
+    public function faq(){
+
+        $faqs = FAQ::where('status', 'active')->paginate(20);
+
+        return view('frontend.layouts.faqs', compact('faqs'));
+
     }
 }

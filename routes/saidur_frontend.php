@@ -27,6 +27,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/verify-email', 'verifyEmail')->name('verify-email');
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
     Route::get('page/{page_slug}', 'dynamicPage')->name('custom.page');
+    Route::get('/faqs', 'faq')->name('faqs');
 
 });
 
