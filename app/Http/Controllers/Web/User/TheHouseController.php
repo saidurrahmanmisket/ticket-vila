@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Web\User;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Gift;
-use Illuminate\Http\Request;
 
 class TheHouseController extends Controller
 {
-    public function index (){
+    public function index()
+    {
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
@@ -33,8 +33,6 @@ class TheHouseController extends Controller
             $giftRandomImages = null;
         }
 
-
         return view('user.layouts.house', compact('giftRandomImages'));
     }
-
 }

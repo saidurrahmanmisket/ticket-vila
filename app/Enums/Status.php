@@ -14,6 +14,10 @@ use Rexlabs\Enum\Enum;
 class Status extends Enum
 {
     const ACTIVE = 'active';
+
     const INACTIVE = 'inactive';
+
     const PUBLISHED = 'published';
+
+    const COMPLETED = 'completed';
 }

@@ -22,7 +22,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back()->withErrors(['error' => 'An error occurred' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -64,7 +64,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
         }
     }
 
@@ -120,7 +120,7 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back()->with(['error' => 'An error occurred' . $e->getMessage()]);
+            return redirect()->back()->with(['error' => 'An error occurred'.$e->getMessage()]);
 
         }
     }
