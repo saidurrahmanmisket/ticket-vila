@@ -347,7 +347,7 @@
                                                         <div class="input--group">
                                                             <label for="feature_sub_title_hu">HU</label>
                                                             <input id="feature_sub_title_hu" type="text"
-                                                                value="{{ $featureItem->sub_title_en }}"
+                                                                value="{{ $featureItem->sub_title_hu }}"
                                                                 name="feature_sub_title_hu_old[]"
                                                                 placeholder="Feature Sub Title..">
                                                             @error('feature_sub_title_hu')
