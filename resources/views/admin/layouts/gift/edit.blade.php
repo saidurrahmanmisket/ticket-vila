@@ -211,36 +211,6 @@
                             </div>
                         </div>
 
-
-                        {{-- gift property link --}}
-                        <div class="card my-4 p-2">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between gap-2 mb-4">
-                                    <h4 class="">Property Link</h4>
-                                </div>
-                                <div class="input--group">
-                                    <label for="video_inside">Property Inside Link</label>
-                                    <input name="video_inside" type="url" value="{{ $gift->video_link_inside }}"
-                                        placeholder="Video Link...">
-                                    @error('video_inside')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="input--group">
-                                    <label for="video_outside">Property View Link</label>
-                                    <input id="video_outside" name="video_outside" type="url"
-                                        value="{{ $gift->video_link_outside }}" placeholder="Video Link...">
-                                    @error('video_outside')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
                         {{-- gift feature section  --}}
                         <div class="card my-4 p-2">
                             <div class="card-body" id="feature-content">
