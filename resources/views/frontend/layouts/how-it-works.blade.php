@@ -29,6 +29,46 @@
 
     <!-- faq area starts -->
     <section data-aos="fade-up" data-aos-duration="800" class="faq--area--wrapper section--bottom--gap">
+        <div class="container mb-5">
+            <div class="house--tour--area--content">
+
+                <div class="area--wrapper">
+                    @if(!empty($houseTour) && !empty($houseTour->link))
+                        <iframe
+                                src="{{$houseTour->link}}"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($houseTour))
+                        <iframe
+                                src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh"
+                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe
+                                width="560"
+                                height="315"
+                                src="{{ $houseTour['link_'.locale()] ?? '' }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+
+                        ></iframe>
+                    @endif
+
+
+                    <div class="overlay">
+                        <div class="instruction--text">
+                            <div class="icon">
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                            </div>
+                            <p>{{ __("Click to start") }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="text--area">
                 <h3 data-aos="fade-up" data-aos-duration="600" class="common--heading--title">
