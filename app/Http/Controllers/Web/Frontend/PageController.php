@@ -154,7 +154,8 @@ class PageController extends Controller
         return view('frontend.layouts.dynamic-page', compact('pageData'));
     }
 
-    public function faq(){
+    public function faq()
+    {
 
         $faqs = FAQ::where('status', 'active')->paginate(20);
 
