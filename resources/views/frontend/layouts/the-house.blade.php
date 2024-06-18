@@ -155,9 +155,6 @@
                     </div>
                 </div>
                 <div class="the--floor--plan--content">
-                    <div data-aos="fade-up" data-aos-duration="400" class="single--floor">
-                        <img src="{{ asset('frontend/images/floor-plan1.png') }}" alt="" />
-                    </div>
                     @if ($gift != null)
                         @if ($giftImages['planImage'] && $giftImages['planImage']->isNotEmpty())
                             @foreach ($giftImages['planImage'] as $item)
