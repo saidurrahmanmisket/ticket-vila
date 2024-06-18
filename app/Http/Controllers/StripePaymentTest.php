@@ -3,32 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Stripe\Charge;
-use Stripe\Stripe;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class StripePaymentTest extends Controller
 {
     public function processPayment(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SK'));
 
-        try {
-            $charge = Charge::create([
-                'amount' => $request->amount * 100, // amount in cents
-                'currency' => 'usd',
-                'source' => $request->stripeToken,
-                'description' => 'Example charge',
-                'quantity' => 1,
-            ]);
+    }
 
-            // Handle successful payment (e.g., update database, send confirmation email)
+    public function success(Request $request)
+    {
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
 
-            return $charge->id;
-        } catch (\Exception $e) {
-            // Handle Stripe exceptions (e.g., card declined, insufficient funds)
-            dd($e);
+        dd($response);
+    }
 
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+    public function cancel()
+    {
+
     }
 }

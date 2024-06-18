@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\OTPVerificationController;
+use App\Http\Controllers\Payment\PaypalController;
 use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\CheckoutController;
@@ -55,9 +56,14 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 
-    //work on payment
+    //stripe payment routes
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
     Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
+
+    //Paypal payment routes
+    Route::post('/paypal/payment', [PaypalController::class, 'checkout'])->name('paypal.payment');
+    Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
+    Route::get('/paypal/payment/cancel', [PaypalController::class, 'success'])->name('paypal.cancel');
 
     //Profile routes
     Route::controller(SettingsController::class)->group(function () {

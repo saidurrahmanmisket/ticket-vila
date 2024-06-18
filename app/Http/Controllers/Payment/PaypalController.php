@@ -9,15 +9,13 @@ use App\Models\Campaign;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Validator;
-use Stripe\Checkout\Session as StripeSession;
-use Stripe\Stripe;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
-class StripeController extends Controller
+class PaypalController extends Controller
 {
     public function checkout(Request $request)
     {
@@ -53,7 +51,6 @@ class StripeController extends Controller
             $productPrice = $request->perPrice;
             $quantity = $request->quantity;
             $totalPrice = $productPrice * (int) $quantity;
-            $productPriceInCents = $productPrice * 100;
 
             // Generate a unique ID and store data in session
             LaravelSession::put([
@@ -64,32 +61,44 @@ class StripeController extends Controller
                 'quantity' => $quantity,
             ]);
 
-            // Set the Stripe API key
-            Stripe::setApiKey(config('stripe.sk'));
+            $provider = new PayPalClient;
+            $provider->setApiCredentials(config('paypal'));
+            $provider->getAccessToken();
 
-            // Create the Stripe checkout session
-            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}';
-            $session = StripeSession::create([
-                'payment_method_types' => ['card'],
-                'line_items' => [[
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => $productName,
+            $response = $provider->createOrder([
+                'intent' => 'CAPTURE',
+                'application_context' => [
+                    'return_url' => route('user.paypal.success'),
+                    'cancel_url' => route('user.paypal.cancel'),
+                ],
+                'purchase_units' => [
+                    0 => [
+                        'amount' => [
+                            'currency_code' => 'EUR',
+                            'value' => $totalPrice,
                         ],
-                        'unit_amount' => $productPriceInCents,
                     ],
-                    'quantity' => $quantity,
-                ]],
-                'mode' => 'payment',
-                'success_url' => $redirectUrl,
-                'cancel_url' => route('user.checkout'),
+                ],
             ]);
+            if (isset($response['id']) && $response['id'] != null) {
 
-            // Redirect the user to the Stripe checkout page
-            //            dd($session);
+                // redirect to approve href
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        return redirect()->away($links['href']);
+                    }
+                }
+                flash()->addError('Something went wrong.');
 
-            return redirect()->away($session->url);
+                return redirect()
+                    ->route('user.buy-tickets');
+
+            } else {
+                flash()->addError('Something went wrong.');
+
+                return redirect()
+                    ->route('user.buy-tickets');
+            }
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
@@ -102,9 +111,11 @@ class StripeController extends Controller
     public function success(Request $request, PaymentService $paymentService)
     {
         try {
-            $stripe = new \Stripe\StripeClient(Config::get('stripe.sk'));
-            $session = $stripe->checkout->sessions->retrieve($request->session_id);
-            if (! empty($session) && $session->payment_status == 'paid') {
+            $provider = new PayPalClient;
+            $provider->setApiCredentials(config('paypal'));
+            $provider->getAccessToken();
+            $response = $provider->capturePaymentOrder($request['token']);
+            if (isset($response['status']) && $response['status'] == 'COMPLETED') {
                 DB::beginTransaction(); // Start transaction to ensure data integrity
                 // Retrieve session data
                 $campaign = Campaign::latest()->where('status', 'published')->first();
@@ -112,13 +123,14 @@ class StripeController extends Controller
                 $discountQuantity = $quantity == 9 ? 1 : 0;
                 $paymentInfo = [
                     'user_id' => Auth::id(),
-                    'transaction_id' => $session->payment_intent,
+                    'transaction_id' => $response['purchase_units'][0]['payments']['captures'][0]['id'] ?? '',
                     'quantity' => LaravelSession::get('quantity'),
                     'discount_quantity' => $discountQuantity,
                     'total_price' => LaravelSession::get('totalPrice'),
-                    'payment_method' => PaymentMethod::STRIPE,
+                    'payment_method' => PaymentMethod::PAYPAL,
                     'campaign_id' => $campaign->id,
                     'payment_status' => Status::COMPLETED,
+                    'invoice_no' => $response['id'] ?? null,
                 ];
                 // Store order in the database
                 $order = $paymentService->orderCreate($paymentInfo);
@@ -130,7 +142,7 @@ class StripeController extends Controller
                 //                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers));
 
                 // Clear session
-                LaravelSession::forget(['unique_id', 'productId', 'productName', 'perPrice', 'totalPrice', 'quantity', 'paymentMethod']);
+                LaravelSession::forget(['productId', 'productName', 'perPrice', 'totalPrice', 'quantity']);
 
                 flash()->addSuccess('Payment Success');
 

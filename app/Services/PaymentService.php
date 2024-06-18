@@ -19,6 +19,7 @@ class PaymentService
             'payment_method' => $orderInfo['payment_method'],
             'campaign_id' => $orderInfo['campaign_id'],
             'payment_status' => $orderInfo['payment_status'],
+            'invoice_no' => $orderInfo['invoice_no'] ?? null,
         ]);
     }
 

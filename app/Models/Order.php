@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $guarded = [];
 
-    public function tickets(){
+    protected $guarded = ['id'];
+
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class);
     }
-    public function campaign(){
+
+    public function campaign()
+    {
         return $this->belongsTo(Campaign::class);
     }
 }
