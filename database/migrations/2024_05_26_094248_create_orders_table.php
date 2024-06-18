@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('order_number');
+            $table->string('transaction_id');
             $table->integer('quantity')->default(0);
             $table->integer('discount_quantity')->default(0);
             $table->double('total_price')->default(0);

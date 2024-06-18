@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Enums\PaymentMethod;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
-use App\Mail\TicketMail;
 use App\Models\Campaign;
-use App\Models\Order;
-use App\Models\Ticket;
+use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Stripe;
 
@@ -61,9 +59,7 @@ class StripeController extends Controller
             $paymentMethod = $request->paymentMethod;
 
             // Generate a unique ID and store data in session
-            $unique_id = (string) Str::uuid();
             LaravelSession::put([
-                'unique_id' => $unique_id,
                 'productId' => $productId,
                 'productName' => $productName,
                 'perPrice' => $productPrice,
@@ -76,6 +72,7 @@ class StripeController extends Controller
             Stripe::setApiKey(config('stripe.sk'));
 
             // Create the Stripe checkout session
+            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}';
             $session = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -89,83 +86,58 @@ class StripeController extends Controller
                     'quantity' => $quantity,
                 ]],
                 'mode' => 'payment',
-                'success_url' => route('user.stripe.success', ['reference' => $unique_id]),
+                'success_url' => $redirectUrl,
                 'cancel_url' => route('user.checkout'),
             ]);
+
             // Redirect the user to the Stripe checkout page
+            //            dd($session);
+
             return redirect()->away($session->url);
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
+
             return redirect()->route('user.buy-tickets')->with($e->getMessage());
         }
     }
-    public function success($reference)
+
+    public function success(Request $request, PaymentService $paymentService)
     {
         try {
-            $unique_id = $reference;
-
-            if (LaravelSession::get('unique_id') == $unique_id) {
+            $stripe = new \Stripe\StripeClient(Config::get('stripe.sk'));
+            $session = $stripe->checkout->sessions->retrieve($request->session_id);
+            if (! empty($session) && $session->payment_status == 'paid') {
                 DB::beginTransaction(); // Start transaction to ensure data integrity
-
                 // Retrieve session data
-                $userId = Auth::id();
                 $campaign = Campaign::latest()->where('status', 'published')->first();
-                $orderNumber = $unique_id;
                 $quantity = LaravelSession::get('quantity');
                 $discountQuantity = $quantity == 9 ? 1 : 0;
-                $totalPrice = LaravelSession::get('totalPrice');
-                $paymentMethod = LaravelSession::get('paymentMethod');
-                $campaignId = $campaign->id;
-                $paymentStatus = 'completed';
-
-                // Store order in the database
-                $order = Order::create([
-                    'user_id' => $userId,
-                    'order_number' => $orderNumber,
-                    'quantity' => $quantity,
+                $paymentInfo = [
+                    'user_id' => Auth::id(),
+                    'transaction_id' => $session->payment_intent,
+                    'quantity' => LaravelSession::get('quantity'),
                     'discount_quantity' => $discountQuantity,
-                    'total_price' => $totalPrice,
-                    'payment_method' => $paymentMethod,
-                    'campaign_id' => $campaignId,
-                    'payment_status' => $paymentStatus,
-                ]);
-
+                    'total_price' => LaravelSession::get('totalPrice'),
+                    'payment_method' => PaymentMethod::STRIPE,
+                    'campaign_id' => $campaign->id,
+                    'payment_status' => Status::COMPLETED,
+                ];
+                // Store order in the database
+                $order = $paymentService->orderCreate($paymentInfo);
                 // Generate the ticket numbers and create ticket entries
-                $prefix = $campaign->unique_text;
-                $lastTicket = Ticket::where('user_id', $userId)
-                    ->where('campaign_id', $campaignId)
-                    ->where('ticket_number', 'like', $prefix . '%')
-                    ->orderBy('id', 'desc')
-                    ->first();
-
-                $last_sequence = $lastTicket ? $lastTicket->ticket_number : $prefix . '-000000';
-                $ticketNumbers = [];
-
-                for ($i = 0; $i < $quantity + $discountQuantity; $i++) {
-                    $newTicketNumber = unique_ticket_number($prefix, $last_sequence);
-
-                    Ticket::create([
-                        'ticket_number' => $newTicketNumber,
-                        'user_id' => $userId,
-                        'order_id' => $order->id,
-                        'campaign_id' => $campaignId,
-                    ]);
-
-                    $last_sequence = $newTicketNumber; // Update last sequence for next iteration
-                    $ticketNumbers[] = $newTicketNumber;
-                }
-
+                $ticketNumbers = $paymentService->ticketCreate($order->id, $quantity, $campaign->id, $discountQuantity, $campaign->unique_text);
                 DB::commit(); // Commit transaction
 
                 // Send the email with tickets and ebook
-                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers));
+                //                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers));
 
                 // Clear session
                 LaravelSession::forget(['unique_id', 'productId', 'productName', 'perPrice', 'totalPrice', 'quantity', 'paymentMethod']);
 
                 flash()->addSuccess('Payment Success');
+
                 return view('user.layouts.stripe_success');
             } else {
                 return redirect()->route('user.buy-tickets')->with('error', 'Something went wrong');
@@ -173,6 +145,7 @@ class StripeController extends Controller
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback transaction in case of error
             Log::error($e->getMessage());
+
             return redirect()->route('user.buy-tickets')->with('error', $e->getMessage());
         }
     }

@@ -51,13 +51,13 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     //static page views
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
-    Route::get('/user/house',[TheHouseController::class, 'index'])->name('house');
+    Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 
     //work on payment
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
-    Route::get('/stripe/payment/success/{reference}', [StripeController::class, 'success'])->name('stripe.success');
+    Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
 
     //Profile routes
     Route::controller(SettingsController::class)->group(function () {
