@@ -12,7 +12,7 @@
         <div class="checkout--area">
             <!-- checkout popup  -->
             <div class="checkout--popup default--scrollbar" id="checkout--popup">
-                <form method="POST" action="{{ route('user.stripe.payment') }}">
+                <form method="POST" action="{{ route('user.stripe.payment') }}" id="payment--form">
                     @csrf
 
                     <input type="hidden" name="productId" value="{{ $campaign->id ?? '' }}">
@@ -134,7 +134,7 @@
                                     </div> --}}
                                     <!-- radio group  -->
                                     <div class="radio--group">
-                                        <input id="stripe" type="radio" name="radio--group" />
+                                        <input id="stripe" type="radio" checked value="stripe" name="radio--group"/>
                                         <label for="stripe">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="43" height="18"
                                                 viewBox="0 0 43 18" fill="none">
@@ -145,7 +145,7 @@
                                         </label>
                                     </div>
                                     <div class="radio--group">
-                                        <input id="paypal" type="radio" name="radio--group">
+                                        <input id="paypal" type="radio" value="paypal" name="radio--group">
                                         <label for="paypal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26"
                                                  viewBox="0 0 22 26" fill="none">
@@ -267,3 +267,18 @@
     </section>
     <!-- end app content area  -->
 @endsection
+
+@push('script')
+    <script>
+        let form = $('#payment--form')
+        $("input[name='radio--group']").each((el) => {
+            $(this).on('change', function () {
+                if ($(this).checked && $(this).val === 'stripe') {
+                    form.attr('action', "{{route('user.stripe.payment')}}")
+                } else {
+                    form.attr('action', "{{route('user.paypal.payment')}}")
+                }
+            })
+        })
+    </script>
+@endpush
