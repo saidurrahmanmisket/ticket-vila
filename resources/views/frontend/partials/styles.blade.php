@@ -17,6 +17,9 @@
 {{-- custom css --}}
 <style>
     /* expose  styles  */
+    :root{
+        --orange: #fc9719;
+    }
     .expose--box ul {
         display: -webkit-box;
         display: -ms-flexbox;
