@@ -20,4 +20,10 @@ class Status extends Enum
     const PUBLISHED = 'published';
 
     const COMPLETED = 'completed';
+
+    const PROCESSING = 'processing';
+
+    const PENDING = 'pending';
+
+    const REFUND = 'refund';
 }

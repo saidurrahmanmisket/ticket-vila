@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\Admin\CMS\ThreeDViewController;
 use App\Http\Controllers\Web\Admin\DashboardController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
+use App\Http\Controllers\Web\Admin\PaymentController;
 use App\Http\Controllers\Web\Admin\ProfileController;
 use App\Http\Controllers\Web\Admin\SettingController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
@@ -71,4 +72,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::get('/settings/help', [SettingController::class, 'help'])->name('help');
 
+    //User payment refund
+    Route::post('/user/payment/refund/{id}', [PaymentController::class, 'refund'])->name('payment.refund');
 });
