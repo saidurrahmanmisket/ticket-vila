@@ -78,7 +78,7 @@
                         <div class="">
                             <label for="logo ">Logo<span class="text-danger">*</span></label>
                             <input class="form-control form-control-lg mt-3 mb-3 dropify" id="logo" name="logo"
-                                type="file" value="{{ $system->logo ?? '' }}">
+                                type="file" data-default-file="{{ $system && $system->logo ? asset($system->logo) : asset('admin/images/placeholder.png') }}" >
                             @error('logo')
                                 <span class="invalid-feedback
                             d-block" role="alert">
@@ -89,7 +89,7 @@
                         <div class="">
                             <label for="favicon ">Favicon</label>
                             <input class="form-control  form-control-lg mt-3 mb-3 dropify" id="favicon" type="file"
-                                name="favicon" value="{{ $system->favicon ?? '' }}">
+                                name="favicon" data-default-file="{{ $system && $system->favicon ? asset($system->favicon) : asset('admin/images/placeholder.png') }}">
                             @error('favicon')
                                 <span class="invalid-feedback
                         d-block" role="alert">
