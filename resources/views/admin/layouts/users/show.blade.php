@@ -168,7 +168,7 @@
                             </p>
                             <p class="common--pair--text">
                                 Payment Status :
-                                <span>{{ ucfirst($order->payment_status) }}</span>
+                                <span style="{{$order->payment_status === \App\Enums\Status::COMPLETED ? 'color:green' : 'color:red'}}">{{ ucfirst($order->payment_status) }}</span>
                             </p>
                             <p class="common--pair--text">
                                 Payment Date :

@@ -264,6 +264,47 @@
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
+
+    .ticket--single .payment--and--actions {
+        gap: 166px;
+        position: relative;
+    }
+
+    .payment--informations {
+        min-width: 380px;
+    }
+
+    .common--pair--text {
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        color: var(--para-color);
+    }
+
+    .common--pair--text span {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .action--btns {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 13px;
+        border: 2px solid #f2f2f2;
+        border-radius: 60px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        color: var(--heading-color);
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
 </style>
 @stack('style')
 

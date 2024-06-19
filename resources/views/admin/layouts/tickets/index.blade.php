@@ -96,7 +96,7 @@
                         </div>
                         <!-- ticket actions  -->
                         <div class="ticket--actions">
-                            <a href="{{ route('admin.ticket.download', $ticket->id) }}" class="action--btn">
+                            <a href="{{ route('admin.ticket.download', $ticket->id) }}" class="action--btns">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
                                     <path
@@ -111,7 +111,7 @@
                                 Download
                             </a>
                             <a href="{{ route('admin.user.show', $ticket->user_id) }}"
-                                class="action--btn action--btnv2 mt_20">
+                               class="action--btns action--btnv2 mt_20">
                                 View User
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                     fill="none">
