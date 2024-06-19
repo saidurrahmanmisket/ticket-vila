@@ -1,17 +1,19 @@
 {{-- dropify cdn --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"/>
 
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css"
-    href="https://ticketvilla-admin.netlify.app/assets/icon/boxicons/css/boxicons.min.css" />
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/owl.carousel.min.css" />
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/nice-select.min.css" />
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/apexcharts.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      href="https://ticketvilla-admin.netlify.app/assets/icon/boxicons/css/boxicons.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/owl.carousel.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/nice-select.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/apexcharts.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+      integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/helper.css" />
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css" />
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/helper.css"/>
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css"/>
 
 
 <style>
@@ -67,10 +69,12 @@
         margin-left: -17px !important;
         padding-left: 93px !important;
     }
+
     span.current {
         display: block;
         padding-top: 7px;
     }
+
     .required:after {
         content: "*";
         position: relative;
@@ -79,38 +83,48 @@
         padding-left: 0.15rem;
         font-weight: 600;
     }
+
     .accordion-button:not(.collapsed) {
         background-color: transparent !important;
     }
+
     .accordion-button .bi-chevron-down {
         transform: rotate(-90deg);
         transition: transform 0.3s;
     }
+
     .accordion-button.collapsed .bi-chevron-down {
         transform: rotate(0deg);
     }
-    li .sub--menu--title{
+
+    li .sub--menu--title {
         font-size: 15px !important;
     }
-    .accordion-body ul{
+
+    .accordion-body ul {
         margin: 10px 0 10px 0;
         padding-left: 37px;
     }
-    .sidebar ul li .accordion-body ul li a{
+
+    .sidebar ul li .accordion-body ul li a {
         padding: 10px 52px;
     }
+
     .sidebar--logo {
         z-index: 999 !important;
     }
-    .accordion-header .accordion--header-text{
+
+    .accordion-header .accordion--header-text {
         flex-grow: 1;
         font-size: 18px;
         font-weight: 500;
     }
-    .accordion-header .accordion-button.active .accordion--header-text{
+
+    .accordion-header .accordion-button.active .accordion--header-text {
         color: #ffffff;
     }
-    .sidebar ul li .accordion-body ul li a:hover,.sidebar ul li .accordion-body ul li a.sub--active{
+
+    .sidebar ul li .accordion-body ul li a:hover, .sidebar ul li .accordion-body ul li a.sub--active {
         color: #ffffff;
     }
 
@@ -192,19 +206,19 @@
         font-weight: 500;
     }
 
-    #toast-container>.toast-success {
+    #toast-container > .toast-success {
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKLSURBVHgBzZZNbtpAFMffjMFRQY28hFKpzg1gGZFKWGkqdZX2BHVOUHIC4AQ0J6g5QZVVpDTUqC10V3GDelGqSF3UG1cqgZm+GYIVbPAHoCp/CWY89sxP78289wbgP4tAShW+XugwyeiiP6Xc/VV9PkwzPxao2e+1fHbXBEqOgfEyztDCq5AecN4ZVQ+tuPUigY8H9hvOWHMpZLkc/LWiwEuBwqqcqrUJMBPWk+WN6alrGG4sULpQfWjjqzJsJDL0xsQIQmnws7y6294cJsTLeZW1g6MLwFK/a2JjwvZkFgfd+kogqgFbFuXQ0GxbCwFvrdNhHXHew3+Lz05pUNqD7MQMAYGT17AebTg6eGZMx+PWqhijVDme9zP+KOE1SItCixhVXom+oqp4sld4iHP/EEoLS/3LcsSqrnQVtsFXaFHret9wHvXtBkRvh1b81n3iA6eMrM4kBNw/Y1qZKrSyuEf8TGSUwucPNUwQTYiR4rE9HxgjPb/DGsISytiJRCHYyynNgn2hK5S+gxSaATMZJ/IrDvXip6uXP54e9QjjZ4xSw60YLu5bnCt9/cXKIlr/YGFY/MYmKkm7eBIr18YLRzzIxM7ZW0godL9k3Q2LuLqmKTs70n3ClbKKJBWRcQqLQJiex07kvFYafLRlCCQvWcKYjs+ed3RMPzcq+w6QYqEkLDxgP6uHe/Nn30JHlBEOLdiyRKwGnhdV+nJl4ZVhzTQXkoWH5eTuQCgOszdKXRRP2Fh86OXoaXA0BBSuzWKlFpciWJvFO5gYZKwGX0VeokTJwk1vkKRlS+Zb1hodHK2Mz0T3UlkrRflaVlEkhOMWkHMvT61lVqUGLsIvy+Q22WcyE8fZn2Wee6t/lXrvcWjggekAAAAASUVORK5CYII=') !important;
     }
 
-    #toast-container>.toast-info {
+    #toast-container > .toast-info {
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJaSURBVHgBvVZNbtNQEJ55idd4hSphKnOCkhM0PQHpCUhuADsWLTgkQuwQJyCcoOEEpSfAnKBW6cK0m6wb+U1nXu04bdLkTRT1kxLnOR5/b/7eNwge2Dn61ybEN4agbRFiBAjlPgFM+HfK1xSJfuXDl7/XvQtXEh1fdvnyiT8xeAEzgKKfD3ZHjz6xlOjDeYzN4IQQXsNGYOLpzUH+9VX28B+zQPbx8i0FwZ/NyQQUI7/j+dFFZ2Er8wt5wKA5gW0CoZt/jn7WyxISRvGsKojt8cGEptNWFd46pEFw6kfG+SE6KBrQ4kW27mmu4FDqoVo7wrIaY/AB2Z6U/3USpZbsey8Troed44vujBDuSt8LSDgrJs63IvwNx4HS1IB46msmObEAfUR8RkTvVDnnVDTZoEPgD5cTgG9svPrUWG7babLZntJowl8Ze5hKv/Gttr817htdg+MIucT/D6NWPnjR4/PzLyhg+Bw2ur6jLrfPj9lKH53QgBI07xVqwnkH43KiACKlcnXVrYRUuOHvTGNUFMYRsj6qD3fRTWMsnfkayA6vv0RpudoHJSQdEtKxtwHvsGZ3LaECb3hsyrEg8zGoCiZMzkMkrV5iJlxVlfa9TCym9W5xLB/wRuE4HGE+iEZ8AKRrbRpl3ibirf1OQJ5esnflnFMLcMICXGxfgN1k12ABTh4IsNxA8NM3FaHoZ1IPU/dOGnGbRfVQexgsJXLvsL2r4e69PC8fEzm8UASikTFsAK7glJrTw3nPVhLOiJ9qEF4gllGfxZPbYE/kbH7UF23kX2fS1D6j/i3BTfaqkKQ1ngAAAABJRU5ErkJggg==') !important;
     }
 
-    #toast-container>.toast-warning {
+    #toast-container > .toast-warning {
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHbSURBVHgBxZZPTsJAFMa/NxDEjYJE1/UGcgOP4BEwARNXeAP0BMSVCzWNJxBPIDfQG8COhSSwJBH7fFNbaKV/ZsA/vwVppzPz5Zt58zHAH0OwZOCisjNHgxWmBYVe9RRTm/FWgiMXzpZHz/LoBE1DUly3EVWwoOSpTkRM43hzXMACY4eBu0HCp6m4PDR1aeywzOSmfKrYuDQSHN9LkTCOFw3Mr/I7DF9JUXt0E1vqzQQVqBN5ne41UdfFop+DtkqppDpmc+Wg3SFeKL5IsGeLfSNw4+02sgrrCn5zl0mhkN83U3DiqjZgtjc+ss95LlMF9TFgj63OmCbPZapgGZbuQsRlsO/mguu6W05KnYlkbvK3BIII24TUyFsR1O50iWNDdBgkuVwR/AF3IYmRFwtvXdIF5f/9ZOGH9UwmlDB/0RPn9Y0Ge8yhiLnIp8IiZCDm9/U81Y02LBzqUpbqMhG0Zv7B9YMz6MBfOrSJMDkyV8z8YNq/WKTuUgeJAZ2hxk+1Fi5rTTSIuWc2Zhl5Sh8DG3dQtLuYh+jIdFgYeTS+w4kieoQdQ3wVTF7RxNhmdopSNlaDAhyswexd8kDfLRG5LvwWUmTX1XO5VoYNemmJYbwnNnhAf7+FPv6DT2e/n0VFnPgUAAAAAElFTkSuQmCC') !important;
     }
 
-    #toast-container>.toast-error {
+    #toast-container > .toast-error {
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAIlSURBVHgB3VbBbtNAEH2zTugFFIPgwAlzA4mK8AdrvgC+APiSKl/S9AvoH8SfEEQP3PCNAwjcA6IQeYcdYxtvbK/jNr30SVG86519npk3swvcdNCuC7880dF0Ck1QzxVMKHMGKmOYD5sNkoefknSXfQYJvz7TekJ0xIAe2CjJwSf3PybLgXXd+BzpcHZHHQP8CiPAoOWfjVn0edxJKOE7mNLKPka4HNLfG467SOkayGpSCvjF3XWSNSfV9qpbU3W0BzJBxLmkxIXj4bdD/VaBjrFH5Mzxg7MkqcaOhwHwBuOR+V4GVuHNcU0oubMK032GNh+P5Wdjsq4nGet6vh/619OXj1qEUtQeI/EiswJISXFckArZhGMRxcUFvPhJJm4REmPusQnZ0OrHXIdCIKQVmdTrwYTee2xBStV7T/7PIvQZWY/mJWlcSb1oDrdtCZH3Y6HIzOpnjIFxh2E4eofGcvarrZkz8awZXkdIXd/J6rxFyH6jzJK9rsgkjNs5hac8mMy6RRgESDyEECU6OStzKuVk30lwezXQ3NvpNN8Pte2h/bVYeuEX1zYYyb2zVbssBDljMWA+jszCEJ80xw7hv57Hp9gTCLzcPpBboqYA7+xfiqsjtc25FbEWYaG6oFBdiiuQyR7SCgcJS9LCgOHGfxfYMJ6WB2/a/X4AxRnJ9tgir3oLNdpL1KJ59l2KsIIt8ijP7TWRixqcldbn0jDGXBNvPv4C3QjuTqveJGAAAAAASUVORK5CYII=') !important;
     }
 
@@ -220,6 +234,35 @@
     .references a {
         text-decoration: none;
         text-align: left;
+    }
+</style>
+
+{{--Customize Style CSS--}}
+<style>
+    .ticket--single .ticket--and--name {
+        gap: 32px;
+        position: relative;
+        min-width: 520px;
+    }
+
+    .action--btn {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 26px;
+        border: 2px solid #f2f2f2;
+        border-radius: 60px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        color: var(--heading-color);
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 </style>
 @stack('style')

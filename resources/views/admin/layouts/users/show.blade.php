@@ -3,6 +3,29 @@
 @section('header_title')
     User
 @endsection;
+@push('style')
+    <style>
+        .action--btn-modified {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 26px;
+            border: 2px solid #f2f2f2;
+            border-radius: 60px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            color: var(--heading-color);
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main">
     <div class="user--area tickets--area">
@@ -188,68 +211,73 @@
                             {{--                                </svg>--}}
                             {{--                                Download--}}
                             {{--                            </a>--}}
-                            <a href="#" class="action--btn action--btnv2 mt_20">
-                                Refund
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M2 8.5H14.5"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-miterlimit="10"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M6 16.5H8"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-miterlimit="10"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M10.5 16.5H14.5"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-miterlimit="10"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M20 9.5V3.5L22 5.5"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M20 3.5L18 5.5"
-                                        stroke="#FF5630"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </a>
+                            <form action="{{route('admin.payment.refund',$order->id)}}" method="POST">@csrf
+                                <button type="submit" class="action--btn-modified action--btnv2 mt_20">
+                                    Refund
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                    >
+                                        <path
+                                                d="M2 8.5H14.5"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-miterlimit="10"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M6 16.5H8"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-miterlimit="10"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M10.5 16.5H14.5"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-miterlimit="10"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M22 14.03V16.11C22 19.62 21.11 20.5 17.56 20.5H6.44C2.89 20.5 2 19.62 2 16.11V7.89C2 4.38 2.89 3.5 6.44 3.5H14.5"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M20 9.5V3.5L22 5.5"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M20 3.5L18 5.5"
+                                                stroke="#FF5630"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             @empty
                 <div class="mx-auto">Ticket not found!</div>
             @endforelse
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+            {{$orders->links()}}
         </div>
     </div>
     </section>
@@ -278,29 +306,33 @@
         </div>
     </div>
     <!-- warning popup  -->
-    <div class="warning--popup" id="refund--popup">
-        <img src="{{asset('admin/images/refund.png')}}" alt="" />
-        <h3>Are you Sure!!</h3>
-        <p>Do you want to Refund this Payments?</p>
-        <div class="buttons">
-            <a href="#" class="popup-close">Yes</a>
-            <a href="#" class="danger popup-close">No</a>
-        </div>
-        <div class="pop--close popup-close">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="37"
-                height="37"
-                viewBox="0 0 37 37"
-                fill="none"
-            >
-                <path
-                    d="M18.4986 16.3204L26.1295 8.68945L28.3098 10.8697L20.6788 18.5006L28.3098 26.1314L26.1295 28.3116L18.4986 20.6808L10.8678 28.3116L8.6875 26.1314L16.3184 18.5006L8.6875 10.8697L10.8678 8.68945L18.4986 16.3204Z"
-                    fill="#141414"
-                />
-            </svg>
-        </div>
-    </div>
+    {{--    <div class="warning--popup" id="refund--popup">--}}
+    {{--        <img src="{{asset('admin/images/refund.png')}}" alt="" />--}}
+    {{--        <h3>Are you Sure!!</h3>--}}
+    {{--        <p>Do you want to Refund this Payments?</p>--}}
+    {{--        <div class="buttons">--}}
+    {{--            <a href="{{}}" class="">Yes</a>--}}
+    {{--            <a href="#" class="danger popup-close">No</a>--}}
+    {{--        </div>--}}
+    {{--        <div class="pop--close popup-close">--}}
+    {{--            <svg--}}
+    {{--                xmlns="http://www.w3.org/2000/svg"--}}
+    {{--                width="37"--}}
+    {{--                height="37"--}}
+    {{--                viewBox="0 0 37 37"--}}
+    {{--                fill="none"--}}
+    {{--            >--}}
+    {{--                <path--}}
+    {{--                    d="M18.4986 16.3204L26.1295 8.68945L28.3098 10.8697L20.6788 18.5006L28.3098 26.1314L26.1295 28.3116L18.4986 20.6808L10.8678 28.3116L8.6875 26.1314L16.3184 18.5006L8.6875 10.8697L10.8678 8.68945L18.4986 16.3204Z"--}}
+    {{--                    fill="#141414"--}}
+    {{--                />--}}
+    {{--            </svg>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!-- overlay  -->
     <div class="overlay"></div>
 @endsection
+
+
+
+
