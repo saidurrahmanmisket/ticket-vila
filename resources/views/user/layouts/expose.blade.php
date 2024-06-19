@@ -19,7 +19,7 @@ Expose
                 <h3>Need A Helping Hand? We are Here.</h3>
                 <ul>
                     <li>
-                        <a href="user--helpcenter.html" class="user--common--btn">FAQ</a>
+                        <a href="{{ route('frontend.faqs') }}" class="user--common--btn">FAQ</a>
                     </li>
                     <li>
                         <a href="#" class="user--common--btn">Live Chat</a>
