@@ -51,9 +51,9 @@
                         <p class="common--pair--text">
                             Email Address : <span>{{$user->email}}</span>
                         </p>
-                        <p class="common--pair--text">Tickets : <span>{{count($tickets)}}</span></p>
+                        <p class="common--pair--text">Tickets : <span>{{$user->tickets_count}}</span></p>
                         <p class="common--pair--text">
-                            Total spend : <span class="text--green">{{$totalSpent}}€</span>
+                            Total spend : <span class="text--green">{{number_format($totalSpent,2)}} €</span>
                         </p>
                         <p class="common--pair--text">Role : <span>{{$user->role}}</span></p>
                     </div>
@@ -109,25 +109,25 @@
         </div>
         <!-- tickets  -->
         <div class="tickets default--scrollbar mt_35">
-            @forelse($tickets as $ticket)
+            @forelse($orders as $order)
                 <!-- ticket--single  -->
                 <div class="ticket--single">
                     <!-- ticket & name  -->
                     <div class="ticket--and--name">
                         <!-- ticket box  -->
                         <div class="ticket--box">
-                            <img src="{{ $ticket->campaign->thumbnail ? asset($ticket->campaign->thumbnail) : asset('admin/images/ticket.png')}}" alt="" />
-                            <p>Ticket ID: #{{$ticket->ticket_number}}</p>
+                            <img src="{{ $order->campaign->thumbnail ? asset($order->campaign->thumbnail) : asset('admin/images/ticket.png')}}"
+                                 alt=""/>
                             <span>#{{$loop->iteration}}</span>
                         </div>
                         <div>
                             <p class="common--pair--text">
                                 Name :
-                                <span>{{$ticket->user->first_name}} {{$ticket->user->last_name}}</span>
+                                <span>{{$order->user->first_name}} {{$order->user->last_name}}</span>
                             </p>
                             <p class="common--pair--text">
                                 Email :
-                                <span>{{$ticket->user->email}}</span>
+                                <span>{{$order->user->email}}</span>
                             </p>
                             <p class="common--pair--text">
                                 Gift :
@@ -141,50 +141,53 @@
                         <div class="payment--informations">
                             <p class="common--pair--text">
                                 Payment Method :
-                                <span>{{ ucfirst($ticket->order->payment_method) }}</span>
+                                <span>{{ ucfirst($order->payment_method) }}</span>
+                            </p>
+                            <p class="common--pair--text">
+                                Payment Status :
+                                <span>{{ ucfirst($order->payment_status) }}</span>
                             </p>
                             <p class="common--pair--text">
                                 Payment Date :
-                                <span>{{date('d.m.Y - H:i:s',strtotime($ticket->order->created_at))}}</span>
+                                <span>{{date('d.m.Y - H:i:s',strtotime($order->created_at))}}</span>
                             </p>
                             <p class="common--pair--text">
                                 Amount :
-                                <span class="text-green">{{$ticket->campaign->price}} €</span>
+                                <span class="text-green">{{number_format($order->total_price,2)}} €</span>
                             </p>
                             <p class="common--pair--text">
-                                Payment ID :
-                                <span>#{{substr($ticket->order->order_number,0,14)}}...</span>
+                                Payment ID : <span>{{$order->transaction_id}}</span>
                             </p>
                         </div>
                         <!-- ticket actions  -->
                         <div class="ticket--actions">
-                            <a href="{{route('admin.ticket.download',$ticket->id)}}" class="action--btn download">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
-                                        stroke="#141414"
-                                        stroke-width="1.5"
-                                        stroke-miterlimit="10"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
-                                        stroke="#141414"
-                                        stroke-width="1.5"
-                                        stroke-miterlimit="10"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                                Download
-                            </a>
+                            {{--                            <a href="{{route('admin.ticket.download',$ticket->id)}}" class="action--btn download">--}}
+                            {{--                                <svg--}}
+                            {{--                                    xmlns="http://www.w3.org/2000/svg"--}}
+                            {{--                                    width="24"--}}
+                            {{--                                    height="24"--}}
+                            {{--                                    viewBox="0 0 24 24"--}}
+                            {{--                                    fill="none"--}}
+                            {{--                                >--}}
+                            {{--                                    <path--}}
+                            {{--                                        d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"--}}
+                            {{--                                        stroke="#141414"--}}
+                            {{--                                        stroke-width="1.5"--}}
+                            {{--                                        stroke-miterlimit="10"--}}
+                            {{--                                        stroke-linecap="round"--}}
+                            {{--                                        stroke-linejoin="round"--}}
+                            {{--                                    />--}}
+                            {{--                                    <path--}}
+                            {{--                                        d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"--}}
+                            {{--                                        stroke="#141414"--}}
+                            {{--                                        stroke-width="1.5"--}}
+                            {{--                                        stroke-miterlimit="10"--}}
+                            {{--                                        stroke-linecap="round"--}}
+                            {{--                                        stroke-linejoin="round"--}}
+                            {{--                                    />--}}
+                            {{--                                </svg>--}}
+                            {{--                                Download--}}
+                            {{--                            </a>--}}
                             <a href="#" class="action--btn action--btnv2 mt_20">
                                 Refund
                                 <svg

@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Payment;
 use App\Enums\PaymentMethod;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Mail\TicketMail;
 use App\Models\Campaign;
+use App\Models\Order;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Checkout\Session as StripeSession;
@@ -104,12 +107,13 @@ class StripeController extends Controller
         try {
             $stripe = new \Stripe\StripeClient(Config::get('stripe.sk'));
             $session = $stripe->checkout->sessions->retrieve($request->session_id);
-            if (! empty($session) && $session->payment_status == 'paid') {
+            $order = Order::where('transaction_id', $session->payment_intent)->first();
+            if (! empty($session) && $session->payment_status == 'paid' && empty($order)) {
                 DB::beginTransaction(); // Start transaction to ensure data integrity
                 // Retrieve session data
-                $campaign = Campaign::latest()->where('status', 'published')->first();
+                $campaign = Campaign::latest()->with(['ebooks'])->where('status', 'published')->first();
                 $quantity = LaravelSession::get('quantity');
-                $discountQuantity = $quantity == 9 ? 1 : 0;
+                $discountQuantity = (int) $quantity == 9 ? 1 : 0;
                 $paymentInfo = [
                     'user_id' => Auth::id(),
                     'transaction_id' => $session->payment_intent,
@@ -120,6 +124,7 @@ class StripeController extends Controller
                     'campaign_id' => $campaign->id,
                     'payment_status' => Status::COMPLETED,
                 ];
+                //                dd('okk');
                 // Store order in the database
                 $order = $paymentService->orderCreate($paymentInfo);
                 // Generate the ticket numbers and create ticket entries
@@ -127,22 +132,32 @@ class StripeController extends Controller
                 DB::commit(); // Commit transaction
 
                 // Send the email with tickets and ebook
-                //                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers));
+                Mail::to(Auth::user()->email)->send(new TicketMail($order, $ticketNumbers, $campaign->ebooks->pluck('file')->toArray()));
 
                 // Clear session
-                LaravelSession::forget(['unique_id', 'productId', 'productName', 'perPrice', 'totalPrice', 'quantity', 'paymentMethod']);
+                LaravelSession::forget(['productId', 'productName', 'perPrice', 'totalPrice', 'quantity']);
 
                 flash()->addSuccess('Payment Success');
 
-                return view('user.layouts.stripe_success');
+                return redirect()->route('user.payment.success.message')->with('payment_success', 'Payment success');
             } else {
-                return redirect()->route('user.buy-tickets')->with('error', 'Something went wrong');
+                flash()->addError('Something went wrong');
+
+                return redirect()->route('user.buy-tickets');
             }
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback transaction in case of error
             Log::error($e->getMessage());
+            flash()->addError($e->getMessage());
 
-            return redirect()->route('user.buy-tickets')->with('error', $e->getMessage());
+            return redirect()->route('user.buy-tickets');
         }
+    }
+
+    public function cancel()
+    {
+        flash()->addError('Something went wrong');
+        redirect()->route('user.buy-tickets');
+
     }
 }

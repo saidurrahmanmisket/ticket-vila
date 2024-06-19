@@ -19,9 +19,11 @@ return new class extends Migration
             $table->integer('discount_quantity')->default(0);
             $table->double('total_price')->default(0);
             $table->string('payment_method')->nullable();
+            $table->string('invoice_no')->nullable();
             $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->nullOnDelete();
-            $table->enum('payment_status', ['pending', 'processing', 'completed'])->default('pending');
+            $table->enum('payment_status', ['pending', 'processing', 'completed', 'refund'])->default('pending');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
