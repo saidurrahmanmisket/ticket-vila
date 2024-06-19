@@ -271,9 +271,9 @@
 @push('script')
     <script>
         let form = $('#payment--form')
-        $("input[name='radio--group']").each((el) => {
+        $("input[name='radio--group']").each(function (el) {
             $(this).on('change', function () {
-                if ($(this).checked && $(this).val === 'stripe') {
+                if ($(this).is(':checked') && $(this).val() === 'stripe') {
                     form.attr('action', "{{route('user.stripe.payment')}}")
                 } else {
                     form.attr('action', "{{route('user.paypal.payment')}}")

@@ -88,11 +88,10 @@
                             </p>
                             <p class="common--pair--text">
                                 Amount :
-                                <span class="text-green">{{ isset($ticket->campaign->price )}} €</span>
+                                <span class="text-green">{{ $ticket->campaign->price ?? ''}} €</span>
                             </p>
                             <p class="common--pair--text">
-                                Payment ID :
-                                <span>#{{ substr($ticket->order->order_number, 0, 14) }}...</span>
+                                Payment ID : <span>{{ $ticket->order->transaction_id }}</span>
                             </p>
                         </div>
                         <!-- ticket actions  -->
@@ -129,7 +128,7 @@
                 <div class="mx-auto">Ticket not found!</div>
             @endforelse
         </div>
-        <div>
+        <div class="d-flex justify-content-center pt-2">
             {{ $tickets->links() }}
         </div>
     </div>

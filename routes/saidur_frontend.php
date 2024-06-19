@@ -60,11 +60,21 @@ Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
     //stripe payment routes
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
     Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
+    Route::get('/stripe/payment/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
 
     //Paypal payment routes
     Route::post('/paypal/payment', [PaypalController::class, 'checkout'])->name('paypal.payment');
     Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/payment/cancel', [PaypalController::class, 'success'])->name('paypal.cancel');
+
+    //success message
+    Route::get('/payment/success/message', function () {
+        if (! session()->has('payment_success')) {
+            abort(404);
+        }
+
+        return view('user.layouts.stripe_success');
+    })->name('payment.success.message');
 
     //Profile routes
     Route::controller(SettingsController::class)->group(function () {
