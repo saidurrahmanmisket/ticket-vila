@@ -140,17 +140,6 @@ Tickets
                                             </svg>
                                             Download
                                         </a>
-                                        <a href="user.html" class="action--btn action--btnv2 mt_20">
-                                            View User
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
-                                                viewBox="0 0 17 15" fill="none">
-                                                <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M10.1992 1.701L16.2492 7.725L10.1992 13.75" stroke="#04BAFF"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                            </svg>
-                                        </a>
                                     </div>
                                 </div>
                             @endforeach

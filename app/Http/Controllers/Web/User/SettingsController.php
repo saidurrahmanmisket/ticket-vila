@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web\User;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +15,19 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        return view('user.layouts.settings');
+        
+        $user = Auth::user();
+        $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
+        $userOrder = Order::with('campaign:id,name_en,thumbnail,price')->where('campaign_id', $campaign->id)
+                ->where('user_id', $user->id)
+                ->where('payment_status', 'completed')
+                ->get();
+                
+        if(!$userOrder){
+            $userOrder = null;
+        }
+                
+        return view('user.layouts.settings', compact('userOrder'));
     }
 
     public function infoUpdate(Request $request)
