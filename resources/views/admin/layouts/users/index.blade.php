@@ -80,7 +80,7 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 <div class="user--tickets">
-                                    <p>0{{$user->tickets_count}}</p>
+                                    <p>{{$user->tickets_count}}</p>
                                     <img src="{{asset('admin/images/user-ticket.png')}}" alt="" />
                                 </div>
                             </td>

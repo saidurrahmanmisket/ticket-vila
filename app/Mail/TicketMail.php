@@ -3,25 +3,28 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TicketMail extends Mailable
+class TicketMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public $order;
+
     public $ticketNumbers;
+
+    public $files;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($order, array $ticketNumbers)
+    public function __construct($order, array $ticketNumbers, array $files)
     {
         $this->order = $order;
         $this->ticketNumbers = $ticketNumbers;
+        $this->files = $files;
     }
 
     /**
@@ -47,7 +50,7 @@ class TicketMail extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return TicketMail
      */
     // public function attachments(): array
     // {
@@ -62,14 +65,15 @@ class TicketMail extends Mailable
                 'ticketNumbers' => $this->ticketNumbers,
             ]);
 
-        // Path of the ebook file
-        $ebookPath = public_path('uploads/gifts/ebook.pdf');
-
         // Attach an ebook for each ticket number
         foreach ($this->ticketNumbers as $ticketNumber) {
-            $email->attachData(file_get_contents($ebookPath), 'ebook-' . $ticketNumber . '.pdf', [
-                'mime' => 'application/pdf',
-            ]);
+            foreach ($this->files as $file) {
+                $file = storage_path('app/'.$file);
+                $fileInfo = pathinfo($file);
+                $email->attachData(file_get_contents($file), $fileInfo['filename'].'('.$ticketNumber.').'.$fileInfo['extension'], [
+                    'mime' => mime_content_type($file),
+                ]);
+            }
         }
 
         return $email;
