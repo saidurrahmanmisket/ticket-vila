@@ -23,7 +23,6 @@
             ->groupBy('user_id')
             ->orderBy('ticket_count', 'desc')
             ->get();
-
         $ticketCountsArray = $ticketCounts->toArray();
         $userCurrentRank = null;
 
@@ -49,22 +48,24 @@
         'totalUserPurchasing' => $totalUserPurchasing,
         'userCurrentRank' => $userCurrentRank,
         'userWiningChance' => $userWiningChance,
-        ];
-    }else {
-        $data = [
+        'userTicketsCount' => $userTicketsCount,
+    ];
+} else {
+    $data = [
         'totalUserPurchasing' => null,
         'userCurrentRank' => null,
         'userWiningChance' => null,
+        'userTicketsCount' => null,
         ];
     }
 @endphp
 
 @if ($campaign && !empty($campaign))
-    <div class="col-md-9 mt_35 pr_17">
-        <div class="cool--facts box--common h-100 position-relative">
+    <div class="@if (isset($withTickets)) row @else col-md-9 @endif  mt_35 pr_17">
+        <div class="cool--facts box--common @if (!isset($withTickets)) h-100 @endif position-relative">
             <h4 class="common--title">Some cool facts 😎</h4>
             <div class="row">
-                <div class="col-md-4 mt_20 pr_10">
+                <div class="@if (isset($withTickets)) col-md-3 @else col-md-4 @endif mt_20 pr_10">
                     <div class="facts--card">
                         <div class="details--card">
                             <!-- icon  -->
@@ -99,7 +100,7 @@
                         <p class="mt_40">Based on the amount of your current tickets.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mt_20 pr_10 pl_10">
+                <div class="@if (isset($withTickets)) col-md-3 @else col-md-4 @endif mt_20 pr_10 pl_10">
                     <div class="facts--card">
                         <div class="details--card">
                             <!-- icon  -->
@@ -150,7 +151,7 @@
                         <p class="mt_40">Your amount of tickets compared to other Users.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mt_20 pl_10">
+                <div class="@if (isset($withTickets)) col-md-3 @else col-md-4 @endif mt_20 pl_10">
                     <div class="facts--card">
                         <div class="details--card">
                             <!-- icon  -->
@@ -177,6 +178,42 @@
                         <p class="mt_40">Based on the amount of your current tickets.</p>
                     </div>
                 </div>
+                @if (isset($withTickets))
+                    <div class="col-md-3 mt_20 pl_10">
+                        <div class="facts--card">
+                            <div class="details--card">
+                                <!-- icon  -->
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                        viewBox="0 0 28 29" fill="none">
+                                        <g clip-path="url(#clip0_15302_3569)">
+                                            <path
+                                                d="M17.6626 10.669C26.7722 10.669 26.0992 10.6671 26.2395 10.6726C26.1547 10.3477 25.9848 10.0513 25.7472 9.81411L23.2496 7.31656C22.7099 6.77682 21.8813 6.61991 21.1876 6.92632C20.8151 7.09091 20.3712 7.00785 20.0831 6.71972C19.795 6.43165 19.7119 5.98777 19.8764 5.61526C20.1828 4.92168 20.026 4.09299 19.4862 3.5532L16.9887 1.05565C16.2484 0.315462 15.044 0.315407 14.3037 1.05565L11.179 4.18034L17.6626 10.669ZM10.0143 5.34503L4.69033 10.669H15.3333C15.314 10.6497 14.9067 10.242 10.0143 5.34503ZM26.8179 19.4807C27.5249 19.207 28 18.5101 28 17.7467V14.2147C28 13.1678 27.1483 12.3161 26.1014 12.3161H22.2353V28.4996H26.1014C27.1483 28.4996 28 27.6479 28 26.601V23.069C28 22.3057 27.525 21.6088 26.8179 21.335C26.4381 21.1878 26.1829 20.8153 26.1829 20.4078C26.1829 20.0004 26.4381 19.6278 26.8179 19.4807ZM0 14.2147V17.7467C0 18.5101 0.475067 19.207 1.18209 19.4807C1.56191 19.6278 1.81704 20.0004 1.81704 20.4078C1.81704 20.8153 1.56185 21.1878 1.18204 21.335C0.475012 21.6088 0 22.3056 0 23.069V26.601C0 27.6479 0.851749 28.4996 1.89862 28.4996H20.5882V12.3161H1.89862C0.851749 12.3161 0 13.1678 0 14.2147ZM5.76471 16.1467H18.1176V17.7937H5.76471V16.1467ZM5.76471 19.4408H18.1176V21.0878H5.76471V19.4408ZM5.76471 22.7349H18.1176V24.382H5.76471V22.7349Z"
+                                                fill="url(#paint0_linear_15302_3569)" />
+                                        </g>
+                                        <defs>
+                                            <linearGradient id="paint0_linear_15302_3569" x1="0"
+                                                y1="14.5" x2="28" y2="14.5"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#E8880F" />
+                                                <stop offset="1" stop-color="#FFCF7E" />
+                                            </linearGradient>
+                                            <clipPath id="clip0_15302_3569">
+                                                <rect width="28" height="28" fill="white"
+                                                    transform="translate(0 0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p>{{ __('Your Ticket') }}s</p>
+                                    <h3>{{ $data['userTicketsCount'] ?? 0 }}</h3>
+                                </div>
+                            </div>
+                            <p class="mt_40">Based on the amount of your current tickets.</p>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="blur--box">
                 <p>You can't see this section, buy a ticket to get full data access</p>
