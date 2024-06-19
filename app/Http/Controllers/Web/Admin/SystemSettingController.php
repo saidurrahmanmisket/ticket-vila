@@ -63,6 +63,7 @@ class SystemSettingController extends Controller
      */
     public function update(Request $request)
     {
+        // Validate the request inputs
         $request->validate([
             'system_name' => 'required|string',
             'copy_rights_text' => 'required|string',
@@ -70,40 +71,40 @@ class SystemSettingController extends Controller
             'contact_number' => 'required|string',
             'address' => 'required|string',
             'company_open_hour' => 'required|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-        ],
-            [
-                'logo.max' => 'Maximum upload file size 2MB',
-                'favicon.max' => 'Maximum upload file size 1MB',
-            ]
-        );
-
+        ], [
+            'logo.max' => 'Maximum upload file size 2MB',
+            'favicon.max' => 'Maximum upload file size 1MB',
+        ]);
+    
+        // Check if a system setting exists
         $system = SystemSetting::first();
-        // for logo
+    
+        // Handle logo upload
         $logo = $request->file('logo');
         if ($logo) {
-            $logo_path = Helper::fileUpload($logo, '/system/', time().'_'.pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
-            if (isset($system->logo)) {
+            $logo_path = Helper::fileUpload($logo, '/system/', time() . '_' . pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
+            if ($system && isset($system->logo)) {
                 Helper::deleteFile(public_path($system->logo));
             }
         } else {
-            $logo_path = $system->logo;
+            $logo_path = $system ? $system->logo : null;
         }
-
-        // for favicon
+    
+        // Handle favicon upload
         $favicon = $request->file('favicon');
         if ($favicon) {
-            $favicon_path = Helper::fileUpload($favicon, '/system/', time().'_'.pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
-            if (isset($system->favicon)) {
+            $favicon_path = Helper::fileUpload($favicon, '/system/', time() . '_' . pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
+            if ($system && isset($system->favicon)) {
                 Helper::deleteFile(public_path($system->favicon));
             }
         } else {
-            $favicon_path = $system->favicon;
+            $favicon_path = $system ? $system->favicon : null;
         }
-
+    
+        // Update existing system setting or create a new one
         if ($system) {
-            // Update existing system setting
             $system->update([
                 'system_name' => $request->system_name,
                 'copy_rights_text' => $request->copy_rights_text,
@@ -115,7 +116,6 @@ class SystemSettingController extends Controller
                 'favicon' => $favicon_path,
             ]);
         } else {
-            // Create new system setting
             SystemSetting::create([
                 'system_name' => $request->system_name,
                 'copy_rights_text' => $request->copy_rights_text,
@@ -127,12 +127,13 @@ class SystemSettingController extends Controller
                 'favicon' => $favicon_path,
             ]);
         }
-
+    
+        // Flash success message and redirect
         flash()->addSuccess('Updated Successfully.');
-
+    
         return redirect()->route('admin.settings.system-setting.index');
-
     }
+    
 
     /**
      * Remove the specified resource from storage.
