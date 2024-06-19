@@ -29,8 +29,10 @@
                 @endforeach
             @endif
         </div>
-        <a href="{{ route('frontend.faqs') }}" class="btn--fill mt-5 mx-auto">
-            See More
-        </a>
+        <div class="w-100 d-flex justify-content-center">
+            <a href="{{ route('frontend.faqs') }}" class="btn--fill mt-5 mx-auto user--common--btn">
+                See More
+            </a>
+        </div>
     </div>
 @endif
