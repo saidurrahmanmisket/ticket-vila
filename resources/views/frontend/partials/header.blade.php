@@ -64,9 +64,6 @@
                     <a href="{{ route('login') }}" class="link">
                         <span>{{ __("Login") }}</span>
                     </a>
-                    <a href="{{ route('register') }}" class="btn--fill">
-                        <span>{{ __('Registration') }}</span>
-                    </a>
                 @endif
 
                 <a href="#" class="btn--fill blue--btn">

@@ -35,7 +35,7 @@
                                             <!-- user--profile  -->
                                             <div class="details user--profile">
                                                 <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                                <p>{{ $ticket->user->first_name }}</p>
+                                                <p>{{ $ticket->user->first_name }} {{ $ticket->user->last_name }}</p>
                                             </div>
                                             <div class="details">
                                                 <div class="icon">

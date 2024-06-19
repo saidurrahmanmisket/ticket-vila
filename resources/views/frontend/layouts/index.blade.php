@@ -405,7 +405,7 @@
     <!-- get your ticket area ends -->
 
     <!-- business feature area starts -->
-    <section class="business--feature--area--wrapper section--bottom--gap">
+    <section class="business--feature--area--wrapper section--bottom--gap home--area">
         <div class="container">
             <div class="business--feature--area--content">
                 <div data-aos="fade-up" data-aos-duration="500" class="single--feature">

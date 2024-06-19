@@ -43,6 +43,7 @@
     $totalTicketSold = $campaign->tickets_count ?? 0;
     $userTicketsCount = $userTickets->count() ?? 0;
     $userWiningChance = $totalTicketSold > 0 ? ($userTicketsCount / $totalTicketSold) * 100 : 0;
+    $userWiningChance = number_format($userWiningChance);
 
     $data = [
         'totalUserPurchasing' => $totalUserPurchasing,

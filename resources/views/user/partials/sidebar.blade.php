@@ -48,7 +48,7 @@ $systemSetting = SystemSetting::first();
                         <path d="M8 14.25H14" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-
+                    {{ __('Tickets') }}
                 </a>
             </li>
             <li>
