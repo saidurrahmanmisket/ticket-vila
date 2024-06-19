@@ -104,7 +104,7 @@ Tickets
                     <div class="ticket--history--box position-relative">
                         <div class="top--title">
                             <h3 class="common--title">History</h3>
-                            <a href="#" class="button mb_25">See All</a>
+                            {{-- <a href="#" class="button mb_25">See All</a> --}}
                         </div>
                         <div class="all--purchase--tickets default--scrollbar">
                             @foreach ($data['userOrder'] as $order)
@@ -122,7 +122,7 @@ Tickets
                                                 {{ $order->discount_quantity ? '+ ' . $order->discount_quantity : '' }} X
                                                 {{ $order->campaign->name ?? '' }}</p>
                                             <p class="text-green">{{ $order->total_price }}€</p>
-                                            <p>11.052024 - 11:01:25</p>
+                                            <p>{{ $order->created_at }}</p>
                                         </div>
                                     </div>
                                     <div class="ticket--actions">
