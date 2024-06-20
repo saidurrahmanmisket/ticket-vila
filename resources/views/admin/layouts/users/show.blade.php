@@ -168,7 +168,7 @@
                             </p>
                             <p class="common--pair--text">
                                 Payment Status :
-                                <span style="{{$order->payment_status === \App\Enums\Status::COMPLETED ? 'color:green' : 'color:red'}}">{{ ucfirst($order->payment_status) }}</span>
+                                <span style="{{$order->payment_status === \App\Enums\Status::COMPLETED ? 'color:green' : ($order->payment_status === \App\Enums\Status::REFUND ? 'color:red' : '')}}">{{ ucfirst($order->payment_status) }}</span>
                             </p>
                             <p class="common--pair--text">
                                 Payment Date :
@@ -212,7 +212,8 @@
                             {{--                                Download--}}
                             {{--                            </a>--}}
                             <form action="{{route('admin.payment.refund',$order->id)}}" method="POST">@csrf
-                                <button type="submit" class="action--btn-modified action--btnv2 mt_20">
+                                <button type="submit" disabled
+                                        class="action--btn-modified action--btnv2 mt_20 disabled">
                                     Refund
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
