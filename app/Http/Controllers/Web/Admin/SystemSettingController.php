@@ -77,32 +77,32 @@ class SystemSettingController extends Controller
             'logo.max' => 'Maximum upload file size 2MB',
             'favicon.max' => 'Maximum upload file size 1MB',
         ]);
-    
+
         // Check if a system setting exists
         $system = SystemSetting::first();
-    
+
         // Handle logo upload
         $logo = $request->file('logo');
         if ($logo) {
-            $logo_path = Helper::fileUpload($logo, '/system/', time() . '_' . pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
+            $logo_path = Helper::fileUpload($logo, '/system/', time().'_'.pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME));
             if ($system && isset($system->logo)) {
                 Helper::deleteFile(public_path($system->logo));
             }
         } else {
             $logo_path = $system ? $system->logo : null;
         }
-    
+
         // Handle favicon upload
         $favicon = $request->file('favicon');
         if ($favicon) {
-            $favicon_path = Helper::fileUpload($favicon, '/system/', time() . '_' . pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
+            $favicon_path = Helper::fileUpload($favicon, '/system/', time().'_'.pathinfo($favicon->getClientOriginalName(), PATHINFO_FILENAME));
             if ($system && isset($system->favicon)) {
                 Helper::deleteFile(public_path($system->favicon));
             }
         } else {
             $favicon_path = $system ? $system->favicon : null;
         }
-    
+
         // Update existing system setting or create a new one
         if ($system) {
             $system->update([
@@ -127,13 +127,12 @@ class SystemSettingController extends Controller
                 'favicon' => $favicon_path,
             ]);
         }
-    
+
         // Flash success message and redirect
         flash()->addSuccess('Updated Successfully.');
-    
+
         return redirect()->route('admin.settings.system-setting.index');
     }
-    
 
     /**
      * Remove the specified resource from storage.
