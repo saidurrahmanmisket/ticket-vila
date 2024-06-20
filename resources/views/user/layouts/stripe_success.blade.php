@@ -18,14 +18,10 @@ Payment Sussess
                         <div class="img--area text-center">
                             <img src="{{ asset('user/images/congra.png') }}" alt="" />
                         </div>
-                        <h4>Congratulation!!!</h4>
-                        <p>
-                            You have bought 1x eBook and got 1x free house ticket at
-                            TicketVilla on 21 May 2024 at 08:00 PM
-                        </p>
+                        <h4 class="mb-5">Congratulation!!!</h4>
                         <div class="buttons">
-                            <a href="user-dashboard.html" class="user--common--btn">Back to Dashboard</a>
-                            <a href="user-ticket-purchase.html" class="user--common--btn">
+                            <a href="{{ route('user.dashboard') }}" class="user--common--btn">Back to Dashboard</a>
+                            <a href="{{ route('user.tickets') }}" class="user--common--btn">
                                 View Ticket
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                     fill="none">
