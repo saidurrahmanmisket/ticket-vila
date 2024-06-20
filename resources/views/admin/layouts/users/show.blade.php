@@ -212,8 +212,8 @@
                             {{--                                Download--}}
                             {{--                            </a>--}}
                             <form action="{{route('admin.payment.refund',$order->id)}}" method="POST">@csrf
-                                <button type="submit" disabled
-                                        class="action--btn-modified action--btnv2 mt_20 disabled">
+                                <button @if($order->payment_status === \App\Enums\Status::REFUND) disabled
+                                        @endif type="submit" class="action--btn-modified action--btnv2 mt_20">
                                     Refund
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
