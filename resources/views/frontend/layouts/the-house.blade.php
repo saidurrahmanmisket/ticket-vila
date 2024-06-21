@@ -20,10 +20,12 @@
                     </p>
 
                     <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
-                        <a href="#" class="btn--fill">
-                            <span>{{ __('Join Now') }}</span>
-                        </a>
-                        <a href="#" class="btn--normal">
+                        @if(empty(Auth::user()))
+                            <a href="{{route('register')}}" class="btn--fill">
+                                <span>{{ __('Join Now') }}</span>
+                            </a>
+                        @endif
+                        <a href="{{route('frontend.how-it-works')}}" class="btn--normal">
                             <span>{{ __('How does this work?') }}</span>
                         </a>
                     </div>
@@ -66,18 +68,20 @@
                             {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
-                    <div data-aos="fade-left" data-aos-duration="700" class="right">
-                        <a href="#" class="btn--normal border blank">
-                            <span>{{ __('Sign Up') }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                    @if(empty(Auth::user()))
+                        <div data-aos="fade-left" data-aos-duration="700" class="right">
+                            <a href="{{route('register')}}" class="btn--normal border blank">
+                                <span>{{ __('Sign Up') }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                     fill="none">
+                                    <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
+                                          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="image--grid">
@@ -105,18 +109,20 @@
                             {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
-                    <div data-aos="fade-left" data-aos-duration="700" class="right">
-                        <a href="#" class="btn--normal border blank">
-                            <span>{{ __('Join Now') }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                    @if(empty(Auth::user()))
+                        <div data-aos="fade-left" data-aos-duration="700" class="right">
+                            <a href="{{ route('register') }}" class="btn--normal border blank">
+                                <span>{{ __('Join Now') }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                     fill="none">
+                                    <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
+                                          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="image--grid">
@@ -141,18 +147,20 @@
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">{{ __('The Floor Plan') }}</h3>
                     </div>
-                    <div data-aos="fade-left" data-aos-duration="700" class="right">
-                        <a href="#" class="btn--normal border blank">
-                            <span>{{ __('Join Now') }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                    @if(empty(Auth::user()))
+                        <div data-aos="fade-left" data-aos-duration="700" class="right">
+                            <a href="{{route('register')}}" class="btn--normal border blank">
+                                <span>{{ __('Join Now') }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                     fill="none">
+                                    <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.70117 1.70149L15.7512 7.72549L9.70117 13.7505" stroke="#010C0F"
+                                          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    @endif
                 </div>
                 <div class="the--floor--plan--content">
                     @if ($gift != null)
@@ -214,16 +222,19 @@
             <div class="house--tour--area--content">
                 <div class="top--part">
                     <h3 class="title">{{ __('3D Property View') }}</h3>
-                    <a href="#" class="btn--normal blank border">
-                        <span>{{ __('Join Now') }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                            fill="none">
-                            <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.70117 1.70124L15.7512 7.72524L9.70117 13.7502" stroke="#010C0F" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </a>
+                    @if(empty(Auth::user()))
+                        <a href="{{route('register')}}" class="btn--normal blank border">
+                            <span>{{ __('Join Now') }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                 fill="none">
+                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.70117 1.70124L15.7512 7.72524L9.70117 13.7502" stroke="#010C0F"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    @endif
                 </div>
 
                 <div class="area--wrapper">
@@ -287,18 +298,21 @@
                     @endif
 
                 </div>
-                <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
-                    <a href="#" class="btn--fill">
-                        <span>{{ __('Join Now') }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                            fill="none">
-                            <path d="M15.75 7.72571L0.75 7.72571" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.7002 1.70131L15.7502 7.72531L9.7002 13.7503" stroke="white" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </a>
-                </div>
+                @if(empty(Auth::user()))
+                    <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
+                        <a href="{{route('register')}}" class="btn--fill">
+                            <span>{{ __('Join Now') }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                 fill="none">
+                                <path d="M15.75 7.72571L0.75 7.72571" stroke="white" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.7002 1.70131L15.7502 7.72531L9.7002 13.7503" stroke="white"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                @endif
             </div>
         </section>
     </section>

@@ -10,11 +10,11 @@
             <!-- content area   -->
             <div class="content--area">
                 <!-- logo -->
-                <div class="logo">
+                <a href="/" class="logo">
                     <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('frontend/images/logo.svg') }}"
                         alt="" />
                     <p>{{ $systemSetting->system_name ?? 'TicketVilla' }}</p>
-                </div>
+                </a>
 
                 <!-- menu links -->
                 <div class="menu--links">
@@ -66,7 +66,7 @@
                     </a>
                 @endif
 
-                <a href="#" class="btn--fill blue--btn">
+                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>

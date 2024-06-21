@@ -17,7 +17,7 @@
                             : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') }}
                     </p>
                     <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper aos-init aos-animate">
-                        <a href="#" class="btn--fill">
+                        <a href="{{ route('frontend.how-it-works') }}" class="btn--fill">
                             <span>{{ __('How does this work?') }}</span>
                         </a>
                     </div>
@@ -107,7 +107,7 @@
                         </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">
-                        <a href="#" class="btn--fill">
+                        <a href="{{route('frontend.the-house')}}" class="btn--fill">
                             <span>{{ __('Learn More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="transparent">
@@ -118,16 +118,19 @@
                                     stroke-linecap="round" stroke-linejoin="round" fill="transparent" />
                             </svg>
                         </a>
-                        <a href="#" class="btn--fill blue--btn">
-                            <span>{{ __('Sign Up') }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.7002 1.70149L15.7502 7.72549L9.7002 13.7505" stroke="white" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
+                        @if(empty(Auth::user()))
+                            <a href="{{ route('register') }}" class="btn--fill blue--btn">
+                                <span>{{ __('Sign Up') }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                     fill="none">
+                                    <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.7002 1.70149L15.7502 7.72549L9.7002 13.7505" stroke="white"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        @endif
                     </div>
                 </div>
 
@@ -197,11 +200,11 @@
                         {{ !empty($ticket_chance) ? $ticket_chance['description_'.locale()] ?? '' : __("Don't miss your chance to win your dream home! With just one e-book purchase, you can participate in the house raffle and pave your way to homeownership. Our raffles are transparent, fair, and offer everyone an equal chance. Take advantage of this opportunity and join today!") }}
                     </p>
 
-                    <a href="#"
+                    <a href="{{route('frontend.rules')}}"
                        class="gold--link">{{ !empty($ticket_chance) ? $ticket_chance['sub_title_'.locale()] ?? '' : __('This ticket can change your life.') }}</a>
 
                     <div class="btn--wrapper">
-                        <a href="#" class="btn--fill blue--btn">
+                        <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                             <span>{{ __('Buy Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
@@ -235,7 +238,7 @@
                 <h3 class="main">{{ !empty($wit_spin) ? $wit_spin['title_'.locale()] ?? '' : __('Win yours') }}</h3>
                 <h3 class="main gold--text">{{ !empty($wit_spin) ? $wit_spin['sub_title_'.locale()] ?? '' : __("Dream Home") }}</h3>
 
-                <a href="#" class="btn--fill blue--btn">
+                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
@@ -396,7 +399,7 @@
         <div class="container">
             <div class="get--your--tickets--area--content">
                 <h3 class="main">{{ __("Buy the e-book now!") }}</h3>
-                <a href="#" class="btn--fill blue--btn">
+                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                     <span>{{ __("Buy Now") }}</span>
                 </a>
             </div>

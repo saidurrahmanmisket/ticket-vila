@@ -24,7 +24,7 @@
                             </p>
 
                             @if($process->button_type == \App\Enums\ButtonType::BUY_NOW)
-                                <a href="#" class="btn--fill blue--btn">
+                                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                                     <span>{{ __('Buy Now') }}</span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@
                                     </svg>
                                 </a>
                             @elseif($process->button_type == \App\Enums\ButtonType::LEARN_MORE)
-                                <a href="#" class="btn--normal border blank">
+                                <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
                                     <span>{{ __('Learn More') }}</span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,8 @@
                                 </a>
                             @elseif($process->button_type == \App\Enums\ButtonType::BOTH)
                                 <div class="btn--wrapper">
-                                    <a href="#" style="margin-top: 0" class="btn--fill blue--btn">
+                                    <a href="{{route('user.buy-tickets')}}" style="margin-top: 0"
+                                       class="btn--fill blue--btn">
                                         <span>{{ __('Buy Now') }}</span>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +103,7 @@
                                             />
                                         </svg>
                                     </a>
-                                    <a href="#" class="btn--normal border blank">
+                                    <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
                                         <span>{{ __('Learn More') }}</span>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -273,7 +274,7 @@
                                 {{ __('Experience peace of mind with our raffle: proven fair and legally secure. Enter for a chance to win your dream home!') }}
                             </p>
 
-                            <a href="#" class="btn--normal border blank">
+                            <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
                                 <span>{{ __('Learn More') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                     <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>

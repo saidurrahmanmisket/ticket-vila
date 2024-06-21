@@ -83,7 +83,9 @@ class PageController extends Controller
 
     public function rules()
     {
-        return view('frontend.layouts.raffle-rules');
+        $hero_section = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+
+        return view('frontend.layouts.raffle-rules', compact('hero_section'));
     }
 
     public function signUp()
@@ -103,7 +105,7 @@ class PageController extends Controller
 
     public function theHouse()
     {
-        $hero_section = CMS::where('page', Page::THE_HOUSE())->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+        $hero_section = CMS::where('page', Page::THE_HOUSE)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
