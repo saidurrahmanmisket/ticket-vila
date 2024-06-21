@@ -14,19 +14,19 @@
                 data-aos-duration="600"
                 class="banner--main--text"
               >
-                Raffle Rules
+                {{ (!empty($hero_section) && !empty($hero_section['title_'.locale()])) ? $hero_section['title_'.locale()] : __('Raffle Rules') }}
               </h3>
               <p
                 data-aos="fade-up"
                 data-aos-duration="800"
                 class="banner--para"
               >
-                Step into Your Future Home: Dive Deep into the Details with Our
-                Comprehensive Guide to the Raffle Rules and Regulations.
+                {{(!empty($hero_section) && !empty($hero_section['description_'.locale()])) ? $hero_section['description_'.locale()] : __('Step into Your Future Home: Dive Deep into the Details with Our Comprehensive Guide to the Raffle Rules and Regulations.')}}
               </p>
             </div>
             <div data-aos="fade-left" data-aos-duration="600" class="right">
-              <img src="{{ asset('frontend/images/raffle-rules-bg.png') }}" alt="" />
+              <img src="{{ asset((!empty($hero_section) && !empty($hero_section['image'])) ? $hero_section['image'] : 'frontend/images/raffle-rules-bg.png' ) }}"
+                   alt=""/>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
                 </p>
 
                 <div class="btn--wrapper">
-                  <a href="#" class="btn--fill blue--btn">
+                  <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
                     <span>Buy Now</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -146,31 +146,33 @@
               house.
             </p>
 
-            <a href="#" class="btn--fill">
-              <span>Join now</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                height="15"
-                viewBox="0 0 17 15"
-                fill="none"
-              >
-                <path
-                  d="M15.75 7.72607L0.75 7.72607"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9.7002 1.70149L15.7502 7.72549L9.7002 13.7505"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </a>
+            @if(empty(Auth::user()))
+              <a href="{{ route('register') }}" class="btn--fill">
+                <span>Join now</span>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="17"
+                        height="15"
+                        viewBox="0 0 17 15"
+                        fill="none"
+                >
+                  <path
+                          d="M15.75 7.72607L0.75 7.72607"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                  />
+                  <path
+                          d="M9.7002 1.70149L15.7502 7.72549L9.7002 13.7505"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            @endif
           </div>
         </div>
       </section>

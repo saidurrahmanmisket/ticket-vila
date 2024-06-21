@@ -94,7 +94,7 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="btn--normal blank border">
+                    <a href="{{route('frontend.contact')}}" class="btn--normal blank border">
                         <span>Contact Us</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
