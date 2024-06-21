@@ -38,14 +38,14 @@
                 <div data-aos="fade-up" data-aos-duration="800" class="site--links">
                     <p>{{ __("House Raffle") }}</p>
                     <a href="{{ route('user.buy-tickets') }}">{{ __("Buy ticket") }}</a>
-                    <a href="{{ route('frontend.rules') }}">{{ __("How to Win?") }}</a>
-                    <a href="#">{{ __("Is This Lefit?") }}</a>
+                    <a href="{{ route('frontend.rules') }}">{{ __('Raffle Rules') }}</a>
+                    {{--                    <a href="#">{{ __("Is This Lefit?") }}</a>--}}
                     <a href="{{ route('frontend.the-house') }}">{{ __("The House") }}</a>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="900" class="site--links">
                     <p>{{ __("Information") }}</p>
                     <a href="{{ route("frontend.faqs") }}">{{ __("FAQ") }}</a>
-                    <a href="#">{{ __("Green Policy") }}</a>
+                    {{--                    <a href="#">{{ __("Green Policy") }}</a>--}}
                     <a href="{{ route('frontend.about') }}">{{ __("About Us") }}</a>
                     <a href="{{ route('frontend.support') }}">{{ __("Get Support") }}</a>
                 </div>

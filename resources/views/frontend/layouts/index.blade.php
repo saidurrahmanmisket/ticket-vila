@@ -214,7 +214,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
-                        <a href="#" class="btn--normal border blank">
+                        <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
                             <span>{{ __('See More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
