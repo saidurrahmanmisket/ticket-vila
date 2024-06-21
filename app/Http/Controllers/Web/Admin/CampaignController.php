@@ -50,7 +50,7 @@ class CampaignController extends Controller
             'price' => 'required|numeric',
             'limit' => 'required|integer',
             'ebook_files' => 'array|required',
-            'ebook_files.*' => 'file|required',
+            'ebook_files.*' => 'file|required|max:4096',
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [
@@ -126,7 +126,7 @@ class CampaignController extends Controller
             'price' => 'required|numeric',
             'limit' => 'required|integer',
             'ebook_files' => 'array|nullable',
-            'ebook_files.*' => 'file|required',
+            'ebook_files.*' => 'file|required|max:4096',
             'thumbnail' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [

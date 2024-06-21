@@ -271,7 +271,7 @@
     }
 
     .payment--informations {
-        min-width: 380px;
+        min-width: 365px;
     }
 
     .common--pair--text {
@@ -304,6 +304,13 @@
         -webkit-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
+    }
+
+    @media only screen and (min-width: 1440px) and (max-width: 1599px) {
+        .ticket--single .payment--and--actions {
+            gap: 50px;
+            position: relative;
+        }
     }
 </style>
 @stack('style')
