@@ -76,7 +76,7 @@
                 <div class="col-md-6 mt_30">
                     <div class="security--info profile--info--box mt-5">
                         <div class="">
-                            <label for="logo ">Logo<span class="text-danger">*</span></label>
+                            <label for="logo ">Logo</label>
                             <input class="form-control form-control-lg mt-3 mb-3 dropify" id="logo" name="logo"
                                 type="file" data-default-file="{{ $system && $system->logo ? asset($system->logo) : asset('admin/images/placeholder.png') }}" >
                             @error('logo')

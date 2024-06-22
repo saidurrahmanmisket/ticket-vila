@@ -214,16 +214,16 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
-                        <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
-                            <span>{{ __('See More') }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                fill="none">
-                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="#010C0F"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
+                        {{--                        <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">--}}
+                        {{--                            <span>{{ __('See More') }}</span>--}}
+                        {{--                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"--}}
+                        {{--                                fill="none">--}}
+                        {{--                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"--}}
+                        {{--                                    stroke-linecap="round" stroke-linejoin="round" />--}}
+                        {{--                                <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="#010C0F"--}}
+                        {{--                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />--}}
+                        {{--                            </svg>--}}
+                        {{--                        </a>--}}
                     </div>
                 </div>
             </div>
