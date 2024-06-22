@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(TheProcessesTableSeeder::class);
 
+        $this->call(RaffleRulesTableSeeder::class);
     }
 }
