@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\PaymentController;
 use App\Http\Controllers\Web\Admin\ProfileController;
+use App\Http\Controllers\Web\Admin\RaffleRulesController;
 use App\Http\Controllers\Web\Admin\SettingController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
@@ -50,6 +51,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::resource('/the-process', TheProcessController::class)->except('show');
         Route::post('/the-process/status/{id}', [TheProcessController::class, 'status'])->name('the-process.status');
         Route::post('/the-process/order-update', [TheProcessController::class, 'orderUpdate'])->name('the-process.order-update');
+        //CMS Raffle Rules
+        Route::resource('/raffle-rules', RaffleRulesController::class)->except('show');
+        Route::post('/raffle-rules/status/{id}', [RaffleRulesController::class, 'status'])->name('raffle-rules.status');
+        Route::post('/raffle-rules/order-update', [RaffleRulesController::class, 'orderUpdate'])->name('raffle-rules.order-update');
 
         //Pages
         Route::get('/home', [HomePageController::class, 'index'])->name('home-page.index');

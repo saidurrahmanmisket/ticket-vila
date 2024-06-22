@@ -201,6 +201,12 @@
                                     About Page
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.cms.raffle-rules.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.cms.raffle-rules.*') ? 'sub--active' : '' }}">
+                                    Raffle Rules Page
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
