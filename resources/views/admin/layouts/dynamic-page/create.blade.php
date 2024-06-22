@@ -114,9 +114,9 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <label for="gift_image">Gift Image</label>
+                            <label for="image">Image</label>
                             <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
-                                name="gift_image" id="gift_image" data-show-remove="true" accept="gift_image/*"
+                                name="image" id="image" data-show-remove="true" accept="image/*"
                                 data-default-file="{{ asset('admin/images/placeholder.png') }}">
                         </div>
                         <button type="submit">Create</button>
@@ -138,5 +138,4 @@
         CKEDITOR.replace('sub_title_de');
         CKEDITOR.replace('sub_title_hu');
     </script>
-    <!-- Place the first <script> tag in your HTML's <head> -->
 @endpush
