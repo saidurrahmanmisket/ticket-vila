@@ -122,6 +122,9 @@
         background-color: transparent;
         color: var(--sidebar-color);
     }
+    .cursor--pointer{
+            cursor: pointer;
+        }
 
     /* expose  styles end */
 </style>
