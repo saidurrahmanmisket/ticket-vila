@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Web\Admin\CMS;
 
+use App\Enums\Page;
+use App\Enums\Section;
 use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\CMS;
 use App\Models\RaffleRules;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,8 +21,9 @@ class RaffleRulesController extends Controller
     public function index()
     {
         $raffleRules = RaffleRules::orderBy('sort_id', 'asc')->paginate(20);
+        $the_transparency = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::THE_TRANSPARENCY)->where('status', Status::ACTIVE)->first();
 
-        return view('admin.layouts.cms.pages.raffle-rules.index', compact('raffleRules'));
+        return view('admin.layouts.cms.pages.raffle-rules.index', compact('raffleRules', 'the_transparency'));
     }
 
     /**
@@ -159,6 +164,37 @@ class RaffleRulesController extends Controller
             $raffleRules = RaffleRules::orderBy('sort_id', 'asc')->paginate(20);
 
             return view('admin.layouts.cms.pages.raffle-rules.list', compact('raffleRules'));
+        }
+    }
+
+    public function theTransparency(Request $request)
+    {
+        $request->validate([
+            't_title_en' => 'required|string',
+            't_title_de' => 'required|string',
+            't_title_hu' => 'required|string',
+            't_description_en' => 'required|string',
+            't_description_de' => 'required|string',
+            't_description_hu' => 'required|string',
+        ]);
+        try {
+            CMS::updateOrCreate(['page' => Page::Raffle_Rules, 'section_name' => Section::THE_TRANSPARENCY], [
+                'page' => Page::Raffle_Rules,
+                'section_name' => Section::THE_TRANSPARENCY,
+                'title_en' => $request->t_title_en,
+                'title_de' => $request->t_title_de,
+                'title_hu' => $request->t_title_hu,
+                'description_en' => $request->t_description_en,
+                'description_de' => $request->t_description_de,
+                'description_hu' => $request->t_description_hu,
+            ]);
+            flash()->addSuccess('Successfully updated.');
+
+            return redirect()->back();
+        } catch (Exception $exception) {
+            flash()->addError($exception->getMessage());
+
+            return redirect()->back();
         }
     }
 }

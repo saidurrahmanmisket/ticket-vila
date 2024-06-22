@@ -11,6 +11,7 @@ use App\Models\CMS;
 use App\Models\DynamicPage;
 use App\Models\FAQ;
 use App\Models\Gift;
+use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
 
@@ -84,8 +85,10 @@ class PageController extends Controller
     public function rules()
     {
         $hero_section = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
+        $raffleRules = RaffleRules::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
+        $the_transparency = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::THE_TRANSPARENCY)->where('status', Status::ACTIVE)->first();
 
-        return view('frontend.layouts.raffle-rules', compact('hero_section'));
+        return view('frontend.layouts.raffle-rules', compact('hero_section', 'raffleRules', 'the_transparency'));
     }
 
     public function signUp()

@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
 use App\Http\Controllers\Web\Admin\CMS\HomePageController;
+use App\Http\Controllers\Web\Admin\CMS\RaffleRulesController;
 use App\Http\Controllers\Web\Admin\CMS\TheProcessController;
 use App\Http\Controllers\Web\Admin\CMS\ThreeDViewController;
 use App\Http\Controllers\Web\Admin\DashboardController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\PaymentController;
 use App\Http\Controllers\Web\Admin\ProfileController;
-use App\Http\Controllers\Web\Admin\RaffleRulesController;
 use App\Http\Controllers\Web\Admin\SettingController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::resource('/raffle-rules', RaffleRulesController::class)->except('show');
         Route::post('/raffle-rules/status/{id}', [RaffleRulesController::class, 'status'])->name('raffle-rules.status');
         Route::post('/raffle-rules/order-update', [RaffleRulesController::class, 'orderUpdate'])->name('raffle-rules.order-update');
+        Route::post('/raffle-rules/the_transparency', [RaffleRulesController::class, 'theTransparency'])->name('raffle-rules.the-transparency');
 
         //Pages
         Route::get('/home', [HomePageController::class, 'index'])->name('home-page.index');
