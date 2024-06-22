@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('raffle_rules', function (Blueprint $table) {
             $table->id();
             $table->string('title_en')->nullable();
             $table->string('title_de')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('raffle_rules');
     }
 };

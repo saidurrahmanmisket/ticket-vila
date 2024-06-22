@@ -14,8 +14,11 @@ use Rexlabs\Enum\Enum;
 class ButtonType extends Enum
 {
     const BUY_NOW = 'buy_now';
+
     const LEARN_MORE = 'learn_more';
+
     const BOTH = 'both';
+
     const NONE = 'none';
 
     public static function map(): array
@@ -24,6 +27,14 @@ class ButtonType extends Enum
             self::BUY_NOW => 'Buy Now',
             self::LEARN_MORE => 'Learn More',
             self::BOTH => 'Both',
+            self::NONE => 'None',
+        ];
+    }
+
+    public static function raffleRulesMap(): array
+    {
+        return [
+            self::BUY_NOW => 'Buy Now',
             self::NONE => 'None',
         ];
     }
