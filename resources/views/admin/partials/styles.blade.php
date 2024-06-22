@@ -57,12 +57,35 @@
         position: static;
     }
 
+  
+
+
+    .sidebar-logo-container {
+    position: sticky;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #010c0f;
+    padding: 10px 0px;
+    z-index: 50;
+}
     .sidebar--logo {
-        padding: 40px 67px !important;
-        position: fixed !important;
-        top: 0 !important;
-        margin-bottom: 79px !important;
         background-color: var(--sidebar-color) !important;
+        display:block;
+    }
+
+    .sidebar .sidebar--logo {
+    padding-left: 0px;
+}
+
+    .sidebar--logo img{
+        width: 120px;
+        height: 70px;
+        object-fit: contain;
     }
 
     .sub-item {
