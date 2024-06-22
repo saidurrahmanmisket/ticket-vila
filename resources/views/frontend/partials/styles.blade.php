@@ -14,6 +14,52 @@
 <link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/responsive.css" />
 
+
+
+<!-- Hotjar Tracking Code for Site 4998564 (name missing) -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:4998564,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16582040443">
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16582040443');
+</script>
+
+<!-- intercom -->
+<script>
+    window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "dkremsz8",
+        user_id: user.id, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+        name: user.name, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+        email: user.email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+        created_at: user.createdAt, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+</script>
+
+
+<script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/dkremsz8'
+    (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/dkremsz8';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+
+
+
+
 {{-- custom css --}}
 <style>
     /* expose  styles  */
