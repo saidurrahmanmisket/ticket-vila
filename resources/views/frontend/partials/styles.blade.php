@@ -173,4 +173,11 @@
         }
 
     /* expose  styles end */
+
+
+    /* faq numbering  styles start */
+    .faq--area--content .accordion .accordion-button::before{
+        display: none
+    }
+    /* expose  styles end */
 </style>

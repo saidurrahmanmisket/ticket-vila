@@ -31,7 +31,12 @@
                     </div>
                 </div>
                 <div class="right image--holder">
-                    <div class="single--row">
+                    <div >
+
+                        <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/home-hero-banner.png') }}"
+                    alt="" />
+                    </div>
+                    {{-- <div class="single--row">
                         <div data-aos="fade-down" data-aos-duration="400" class="image">
                             <img src="{{ asset('frontend/images/the-house-banner1.png') }}" alt="" />
                         </div>
@@ -46,7 +51,7 @@
                         <div data-aos="fade-up" data-aos-duration="700" class="image">
                             <img src="{{ asset('frontend/images/the-house-banner4.png') }}" alt="" />
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
