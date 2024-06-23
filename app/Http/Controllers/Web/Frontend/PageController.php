@@ -129,8 +129,9 @@ class PageController extends Controller
 
         $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
         $propertyView = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
+        $streetView = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
 
-        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView'));
+        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView'));
     }
 
     public function verifyEmail()
