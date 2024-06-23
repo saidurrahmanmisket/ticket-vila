@@ -27,18 +27,18 @@
                         alt="" />
                     <!-- <video autoplay loop src="./assets/videos/ticketvilla EN.mp4"></video> -->
                     <!-- <iframe
-                                      src="https://player.vimeo.com/video/950150289?h=a62df445a8"
-                                      width="640"
-                                      height="360"
-                                      frameborder="0"
-                                      allow="autoplay; fullscreen; picture-in-picture"
-                                      allowfullscreen
-                                    ></iframe>
-                                    <p>
-                                      <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
-                                      <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
-                                      on <a href="https://vimeo.com">Vimeo</a>.
-                                    </p> -->
+                                              src="https://player.vimeo.com/video/950150289?h=a62df445a8"
+                                              width="640"
+                                              height="360"
+                                              frameborder="0"
+                                              allow="autoplay; fullscreen; picture-in-picture"
+                                              allowfullscreen
+                                            ></iframe>
+                                            <p>
+                                              <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
+                                              <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
+                                              on <a href="https://vimeo.com">Vimeo</a>.
+                                            </p> -->
                 </div>
 
                 <!-- live statistics wrapper -->
@@ -107,7 +107,7 @@
                         </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">
-                        <a href="{{route('frontend.the-house')}}" class="btn--fill">
+                        <a href="{{ route('frontend.the-house') }}" class="btn--fill">
                             <span>{{ __('Learn More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="transparent">
@@ -118,16 +118,15 @@
                                     stroke-linecap="round" stroke-linejoin="round" fill="transparent" />
                             </svg>
                         </a>
-                        @if(empty(Auth::user()))
+                        @if (empty(Auth::user()))
                             <a href="{{ route('register') }}" class="btn--fill blue--btn">
                                 <span>{{ __('Sign Up') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
-                                     fill="none">
+                                    fill="none">
                                     <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
-                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M9.7002 1.70149L15.7502 7.72549L9.7002 13.7505" stroke="white"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </a>
                         @endif
@@ -142,7 +141,8 @@
                             @foreach ($giftRandomImages as $item)
                                 <div class="item">
                                     <div class="single--card">
-                                        <img class="cover--img" src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}"
+                                        <img class="cover--img"
+                                            src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}"
                                             {{-- facts1.svg') }} --}} alt="" />
 
                                         {{-- <div class="overlay"></div> --}}
@@ -179,14 +179,14 @@
                 <div class="ticket--img--holder">
                     <div class="img--box">
                         <img class="ticket1"
-                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
-                             alt=""/>
+                            src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                            alt="" />
                         <img class="ticket2"
-                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
-                             alt=""/>
+                            src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                            alt="" />
                         <img class="ticket3"
-                             src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
-                             alt=""/>
+                            src="{{ asset(!empty($ticket_chance) ? $ticket_chance->image : 'frontend/images/ticket-main.png') }}"
+                            alt="" />
                     </div>
 
                     <div class="base--holder">
@@ -195,16 +195,18 @@
                 </div>
 
                 <div data-aos="fade-left" data-aos-duration="700" class="text--holder">
-                    <h3 class="common--heading--title">{{ !empty($ticket_chance) ? $ticket_chance['title_'.locale()] ?? '' : __('Don’t miss out!') }}</h3>
+                    <h3 class="common--heading--title">
+                        {{ !empty($ticket_chance) ? $ticket_chance['title_' . locale()] ?? '' : __('Don’t miss out!') }}
+                    </h3>
                     <p class="subtext">
-                        {{ !empty($ticket_chance) ? $ticket_chance['description_'.locale()] ?? '' : __("Don't miss your chance to win your dream home! With just one e-book purchase, you can participate in the house raffle and pave your way to homeownership. Our raffles are transparent, fair, and offer everyone an equal chance. Take advantage of this opportunity and join today!") }}
+                        {{ !empty($ticket_chance) ? $ticket_chance['description_' . locale()] ?? '' : __("Don't miss your chance to win your dream home! With just one e-book purchase, you can participate in the house raffle and pave your way to homeownership. Our raffles are transparent, fair, and offer everyone an equal chance. Take advantage of this opportunity and join today!") }}
                     </p>
 
-                    <a href="{{route('frontend.rules')}}"
-                       class="gold--link">{{ !empty($ticket_chance) ? $ticket_chance['sub_title_'.locale()] ?? '' : __('This ticket can change your life.') }}</a>
+                    <a href="{{ route('frontend.rules') }}"
+                        class="gold--link">{{ !empty($ticket_chance) ? $ticket_chance['sub_title_' . locale()] ?? '' : __('This ticket can change your life.') }}</a>
 
                     <div class="btn--wrapper">
-                        <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
+                        <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
                             <span>{{ __('Buy Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
@@ -214,16 +216,16 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
-                        {{--                        <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">--}}
-                        {{--                            <span>{{ __('See More') }}</span>--}}
-                        {{--                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"--}}
-                        {{--                                fill="none">--}}
-                        {{--                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"--}}
-                        {{--                                    stroke-linecap="round" stroke-linejoin="round" />--}}
-                        {{--                                <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="#010C0F"--}}
-                        {{--                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />--}}
-                        {{--                            </svg>--}}
-                        {{--                        </a>--}}
+                        {{--                        <a href="{{route('frontend.the-house')}}" class="btn--normal border blank"> --}}
+                        {{--                            <span>{{ __('See More') }}</span> --}}
+                        {{--                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" --}}
+                        {{--                                fill="none"> --}}
+                        {{--                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" --}}
+                        {{--                                    stroke-linecap="round" stroke-linejoin="round" /> --}}
+                        {{--                                <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="#010C0F" --}}
+                        {{--                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /> --}}
+                        {{--                            </svg> --}}
+                        {{--                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -235,10 +237,11 @@
     <section data-aos="fade-up" data-aos-duration="600" class="spin--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="spin--area--content">
-                <h3 class="main">{{ !empty($wit_spin) ? $wit_spin['title_'.locale()] ?? '' : __('Win yours') }}</h3>
-                <h3 class="main gold--text">{{ !empty($wit_spin) ? $wit_spin['sub_title_'.locale()] ?? '' : __("Dream Home") }}</h3>
+                <h3 class="main">{{ !empty($wit_spin) ? $wit_spin['title_' . locale()] ?? '' : __('Win yours') }}</h3>
+                <h3 class="main gold--text">
+                    {{ !empty($wit_spin) ? $wit_spin['sub_title_' . locale()] ?? '' : __('Dream Home') }}</h3>
 
-                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
+                <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
@@ -293,7 +296,7 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __("Live draw") }}</p>
+                        <p class="main">{{ __('Live draw') }}</p>
                         <p class="sub">{{ __('Follow the draw live') }}</p>
                     </div>
                     <!-- id -->
@@ -305,8 +308,8 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">{{ __("Take the keys") }}</p>
-                        <p class="sub">{{ __("The costs are covered - sign and live!") }}</p>
+                        <p class="main">{{ __('Take the keys') }}</p>
+                        <p class="sub">{{ __('The costs are covered - sign and live!') }}</p>
                     </div>
                     <!-- id -->
                     <div class="id"><img src="{{ asset('frontend/images/04.svg') }}" alt="" /></div>
@@ -322,25 +325,25 @@
             <div class="home--special--feature--content">
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature">
                     <h3 class="big--text">€{{ __('850.000€ dream home for just 99€!') }} </h3>
-                    <p class="big--para">{{ __("no hidden additional costs!") }}</p>
+                    <p class="big--para">{{ __('no hidden additional costs!') }}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature">
                     <p class="gold--text">100%</p>
-                    <p class="gold--para">{{ __("Real!") }}</p>
+                    <p class="gold--para">{{ __('Real!') }}</p>
                 </div>
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature common">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/feature--book.svg') }}" alt="" />
                     </div>
                     <div>
-                        <p class="title">{{ __("Notarized") }}</p>
-                        <p class="sub--title">{{ __("The costs are covered - sign and move in!") }}</p>
+                        <p class="title">{{ __('Notarized') }}</p>
+                        <p class="sub--title">{{ __('The costs are covered - sign and move in!') }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature common">
                     <div>
-                        <p class="title">{{ __("Just 99€") }}€</p>
-                        <p class="sub--title">{{ __("Per Ticket, the winner gets the house") }}</p>
+                        <p class="title">{{ __('Just 99€') }}€</p>
+                        <p class="sub--title">{{ __('Per Ticket, the winner gets the house') }}</p>
                     </div>
                 </div>
             </div>
@@ -352,31 +355,21 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __("Visit Your new Home") }}</h3>
+                <h3 class="title">{{ __('Visit Your new Home') }}</h3>
 
                 <div class="area--wrapper">
-                    @if(!empty($houseTour) && !empty($houseTour->link))
-                        <iframe
-                                src="{{$houseTour->link}}"
-                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @if (!empty($houseTour) && !empty($houseTour->link))
+                        <iframe src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
+                            allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
-                        <iframe
-                                src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh"
-                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.youtube.com/embed/3-Jfwzug2Qk?si=B0n-GAlYjKBavurt" width="600"
+                            height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
-                        <iframe
-                                width="560"
-                                height="315"
-                                src="{{ $houseTour['link_'.locale()] ?? '' }}"
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-
-                        ></iframe>
+                        <iframe width="560" height="315" src="{{ $houseTour['link_' . locale()] ?? '' }}"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     @endif
 
 
@@ -385,8 +378,25 @@
                             <div class="icon">
                                 <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
                             </div>
-                            <p>{{ __("Click to start") }}</p>
+                            <p>{{ __('Click to start') }}</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="" id="modalImage" class="img-fluid" alt="Image">
                     </div>
                 </div>
             </div>
@@ -398,9 +408,9 @@
     <div data-aos="fade-up" data-aos-duration="600" class="get--your--tickets--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="get--your--tickets--area--content">
-                <h3 class="main">{{ __("Buy the e-book now!") }}</h3>
-                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
-                    <span>{{ __("Buy Now") }}</span>
+                <h3 class="main">{{ __('Buy the e-book now!') }}</h3>
+                <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
+                    <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
         </div>
@@ -415,34 +425,55 @@
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature1.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Safe") }}</p>
+                    <p class="title">{{ __('Safe') }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature2.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Legal") }}</p>
+                    <p class="title">{{ __('Legal') }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1100" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature3.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Fair") }}</p>
+                    <p class="title">{{ __('Fair') }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1300" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature4.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Simple") }}</p>
+                    <p class="title">{{ __('Simple') }}</p>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1500" class="single--feature">
                     <div class="icon">
                         <img src="{{ asset('frontend/images/business-feature5.png') }}" alt="" />
                     </div>
-                    <p class="title">{{ __("Cheap") }}</p>
+                    <p class="title">{{ __('Cheap') }}</p>
                 </div>
             </div>
         </div>
     </section>
     <!-- business feature area ends -->
 @endsection
+
+
+@push('scripts')
+    <script>
+
+        $(document).ready(function() {
+            // make image big on click 
+            $('.home--chance--slider .single--card img').on('click', function(e) {
+                e.preventDefault();
+                var imgSrc = $(this).attr('src');
+                $('#modalImage').attr('src', imgSrc);
+                $('#imageModal').modal('show');
+            });
+
+            // Handle modal close button click event
+        $('.close').on('click', function() {
+            $('#imageModal').modal('hide');
+        });
+        });
+    </script>
+@endpush
