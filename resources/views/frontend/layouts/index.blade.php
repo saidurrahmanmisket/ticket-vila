@@ -362,7 +362,7 @@
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
                         <iframe
-                                src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh"
+                                src="https://www.youtube.com/embed/3-Jfwzug2Qk?si=B0n-GAlYjKBavurt"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
