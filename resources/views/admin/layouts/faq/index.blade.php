@@ -56,7 +56,7 @@
                     <tbody>
                         @forelse($faqs as $faq)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $faqs->firstItem() - 1 . "." }}</td>
                                 <td>{{ $faq->question_en }}</td>
                                 <td>
                                     <div class="form-check form-switch">
