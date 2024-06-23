@@ -94,7 +94,11 @@
                      
 
                     <iframe
-                        src="https://www.youtube.com/embed/mHQH014k0Y8?si=5OSHtZdGPQLRNFGY"
+                        src="{{ locale() == 'hu'
+                            ? 'https://www.youtube.com/embed/iG-1us9DFj0?si=0dpd3nuIm3ApU-RQ'
+                            : (locale() == 'de'
+                                ? 'https://www.youtube.com/embed/Gv-Lp0jH1X4?si=fGDRYkYHvKcO7zHf'
+                                : 'https://www.youtube.com/embed/Re2zKrIAM-k?si=dBE8s3fGejNaPqz2') }}"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
