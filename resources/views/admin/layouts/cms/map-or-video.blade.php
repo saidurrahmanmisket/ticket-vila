@@ -175,6 +175,89 @@
 								<button type="submit" class="btn btn-primary mt-3">Submit</button>
 							</form>
 						</div>
+						<div class="border p-4 rounded mt-5">
+							<h5 class="mb-4">3D Street View Section</h5>
+							<form method="POST"
+							      action="{{ route('admin.cms.three-d-map-or-video.street-view') }}">@csrf
+								<div class="row">
+									<div class="col-lg-12 mb-4">
+										<div class="d-flex flex-column">
+											<label for="s_link_type" class="form-label required h6">3D link Type</label>
+											<select class="form-select form-select-lg mb-3" id="s_link_type"
+											        name="s_link_type">
+													<option {{!empty($street_view) ? (!empty($street_view->link) ? 'selected' : '') : (old('s_link_type') == 'map_link' ? 'selected' : '')}} value="map_link">
+														Google Map
+													</option>
+													
+													<option {{!empty($street_view) ? (!empty($street_view->link) ? '' : 'selected') : (old('s_link_type') == 'youtube_link' ? 'selected' : '')}} value="youtube_link">
+													Youtube Video
+												</option>
+												
+											</select>
+											@error('s_link_type')
+											<span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+											@enderror
+										</div>
+									</div>
+									<div class="col-12 mb-3">
+										{{--map link--}}
+										<div id="s_map_input">
+											<label for="s_map_link" class="form-label required h6">Map Embed</label>
+											<input type="url" class="form-control" id="s_map_link"
+											       value="{{!empty($street_view) ? $street_view->link : old('s_map_link')}}"
+											       name="s_map_link">
+											@error('s_map_link')
+											<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+											@enderror
+										</div>
+										{{--Video Link--}}
+										<div id="s_video_link">
+											<h6 class="mb-2">Youtube Embed</h6>
+											<div class="row">
+												<div class="col-lg-4">
+													<label for="s_video_url_en" class="form-label required">En</label>
+													<input type="url" class="form-control" id="title_en"
+													       value="{{!empty($street_view) ? $street_view->link_en : old('s_video_url_en')}}"
+													       name="s_video_url_en">
+													@error('s_video_url_en')
+													<span class="invalid-feedback d-block" role="alert">
+                                                 <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="s_video_url_de" class="form-label required">De</label>
+													<input type="url" class="form-control" id="s_video_url_de"
+													       value="{{!empty($street_view) ? $street_view->link_de : old('s_video_url_de')}}"
+													       name="s_video_url_de">
+													@error('s_video_url_de')
+													<span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                           </span>
+													@enderror
+												</div>
+												<div class="col-lg-4">
+													<label for="s_video_url_hu" class="form-label required">Hu</label>
+													<input type="url" class="form-control" id="s_video_url_hu"
+													       value="{{!empty($street_view) ? $street_view->link_hu : old('s_video_url_hu')}}"
+													       name="s_video_url_hu">
+													@error('s_video_url_hu')
+													<span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                             </span>
+													@enderror
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary mt-3">Submit</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -223,6 +306,24 @@
             } else {
                 $("#p_video_link").show()
                 $("#p_map_input").hide()
+            }
+        });
+        const s_link_type = $("#s_link_type");
+        if (s_link_type.val() === 'map_link') {
+            $("#s_video_link").hide()
+            $("#s_map_input").show()
+        } else {
+            $("#s_video_link").show()
+            $("#s_map_input").hide()
+        }
+
+        s_link_type.on('change', function () {
+            if (s_link_type.val() === 'map_link') {
+                $("#s_video_link").hide()
+                $("#s_map_input").show()
+            } else {
+                $("#s_video_link").show()
+                $("#s_map_input").hide()
             }
         });
 	</script>
