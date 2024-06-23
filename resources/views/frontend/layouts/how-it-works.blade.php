@@ -32,7 +32,7 @@
     <section data-aos="fade-up" data-aos-duration="800" class="faq--area--wrapper section--bottom--gap">
         <div class="container mb-5">
             <div class="house--tour--area--content">
-
+                <h3 class="title">{{ __('3D Street View') }}</h3>
                 <div class="area--wrapper">
                     @if (!empty($houseTour) && !empty($houseTour->link))
                         <iframe src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
@@ -62,7 +62,7 @@
         </div>
         <div class="container mb-5">
             <div class="house--tour--area--content">
-
+                <h3 class="title">{{ __('3D House Tour') }}</h3>
                 <div class="area--wrapper">
 
                     <iframe
@@ -90,7 +90,6 @@
         </div>
         <div class="container mb-5">
             <div class="house--tour--area--content">
-
                 <div class="area--wrapper">
                      
 
