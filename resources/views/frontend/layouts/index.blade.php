@@ -395,7 +395,7 @@
                     <div class="modal-body text-center">
                         <div class="d-flex justify-content-end">
 
-                            <button type="button" class="close btn btn-outline-dark" data-dismiss="modal"
+                            <button type="button" class="close btn btn-outline-dark text-light" data-dismiss="modal"
                                 aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
