@@ -13,9 +13,12 @@
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
                         {{ !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('Step into Your Future Home: Dive Deep into the Details with Our Comprehensive Guide to the Raffle Rules and Regulations.') }}
                     </p>
-                    @if (!empty($hero_section) && !empty($hero_section['description_' . locale()]) && strlen($hero_section['description_' . locale()]) > 300)
+                    @if (
+                        !empty($hero_section) &&
+                            !empty($hero_section['description_' . locale()]) &&
+                            strlen($hero_section['description_' . locale()]) > 300)
                         <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Read More</a>
+                            data-bs-target="#exampleModal">Read More</a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -27,7 +30,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      {{ $hero_section['description_' . locale()] }}
+                                        {{ $hero_section['description_' . locale()] }}
                                     </div>
                                 </div>
                             </div>
@@ -57,8 +60,14 @@
                         <div class="right">
                             <h3 class="main--text">{{ $rule['title_' . locale()] ?? '' }}</h3>
                             <p class="sub--text">
-                                {{ $rule['description_' . locale()] ?? '' }}
+                                {{ $rule['description_' . locale()] ? substr($rule['description_' . locale()], 0, 300) . '...' : '' }}
                             </p>
+                            @if (!empty($rule) && !empty($rule['description_' . locale()]) && strlen($rule['description_' . locale()]) > 300)
+                                <div class="btn--wrapper">
+                                    <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
+                                        data-bs-target="#ruleSection{{ $rule->id }}">Read More</a>
+                                </div>
+                            @endif
                             @if ($rule->button_type === \App\Enums\ButtonType::BUY_NOW)
                                 <div class="btn--wrapper">
                                     <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
@@ -73,6 +82,22 @@
                                     </a>
                                 </div>
                             @endif
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ruleSection{{ $rule->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ $rule['description_' . locale()] }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
