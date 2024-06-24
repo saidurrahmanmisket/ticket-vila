@@ -330,4 +330,16 @@
     }
 
     /* updated styles header */
+    
+    /* updated styles house image start*/
+    .house--tour--area--wrapper .modal-content {
+        background: transparent !important;
+        border: none
+    }
+    .house--tour--area--wrapper .modal-body img{
+        width: 100%;
+    }
+    /* updated styles house image end */
+
+
 </style>

@@ -27,18 +27,18 @@
                         alt="" />
                     <!-- <video autoplay loop src="./assets/videos/ticketvilla EN.mp4"></video> -->
                     <!-- <iframe
-                                              src="https://player.vimeo.com/video/950150289?h=a62df445a8"
-                                              width="640"
-                                              height="360"
-                                              frameborder="0"
-                                              allow="autoplay; fullscreen; picture-in-picture"
-                                              allowfullscreen
-                                            ></iframe>
-                                            <p>
-                                              <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
-                                              <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
-                                              on <a href="https://vimeo.com">Vimeo</a>.
-                                            </p> -->
+                                                  src="https://player.vimeo.com/video/950150289?h=a62df445a8"
+                                                  width="640"
+                                                  height="360"
+                                                  frameborder="0"
+                                                  allow="autoplay; fullscreen; picture-in-picture"
+                                                  allowfullscreen
+                                                ></iframe>
+                                                <p>
+                                                  <a href="https://vimeo.com/950150289">ticketvilla-en</a> from
+                                                  <a href="https://vimeo.com/user220176202">mashfikur rahman</a>
+                                                  on <a href="https://vimeo.com">Vimeo</a>.
+                                                </p> -->
                 </div>
 
                 <!-- live statistics wrapper -->
@@ -389,13 +389,17 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    {{-- <div class="modal-header"> --}}
+                    {{-- </div> --}}
+
                     <div class="modal-body text-center">
+                        <div class="d-flex justify-content-end">
+
+                            <button type="button" class="close btn btn-outline-dark" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         <img src="" id="modalImage" class="img-fluid" alt="Image">
                     </div>
                 </div>
@@ -460,7 +464,6 @@
 
 @push('scripts')
     <script>
-
         $(document).ready(function() {
             // make image big on click 
             $('.home--chance--slider .single--card img').on('click', function(e) {
@@ -471,9 +474,9 @@
             });
 
             // Handle modal close button click event
-        $('.close').on('click', function() {
-            $('#imageModal').modal('hide');
-        });
+            $('.close').on('click', function() {
+                $('#imageModal').modal('hide');
+            });
         });
     </script>
 @endpush
