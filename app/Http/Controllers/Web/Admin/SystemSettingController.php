@@ -71,7 +71,7 @@ class SystemSettingController extends Controller
             'contact_number' => 'required|string',
             'address' => 'required|string',
             'company_open_hour' => 'required|string',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ], [
             'logo.max' => 'Maximum upload file size 2MB',
@@ -89,7 +89,7 @@ class SystemSettingController extends Controller
                 Helper::deleteFile(public_path($system->logo));
             }
         } else {
-            $logo_path = $system ? $system->logo : null;
+            $logo_path = $system?->logo;
         }
 
         // Handle favicon upload
@@ -100,9 +100,8 @@ class SystemSettingController extends Controller
                 Helper::deleteFile(public_path($system->favicon));
             }
         } else {
-            $favicon_path = $system ? $system->favicon : null;
+            $favicon_path = $system?->favicon;
         }
-
         // Update existing system setting or create a new one
         if ($system) {
             $system->update([

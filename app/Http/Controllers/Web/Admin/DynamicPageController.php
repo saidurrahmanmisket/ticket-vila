@@ -44,12 +44,12 @@ class DynamicPageController extends Controller
             'description_en' => 'nullable|string',
             'description_de' => 'nullable|string',
             'description_hu' => 'nullable|string',
-            'gift_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Handle the file upload if there is one
-        if ($request->hasFile('gift_image')) {
-            $file = $request->file('gift_image');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
             $imagePath = Helper::fileUpload($file, 'dynamic-page', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
         } else {
             $imagePath = null;

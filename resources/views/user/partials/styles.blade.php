@@ -52,4 +52,8 @@
     .notification--and--profile .form-select {
         --bs-form-select-bg-img : url('') !important;
     }
+
+    .cursor--pointer{
+            cursor: pointer;
+        }
 </style>

@@ -44,17 +44,18 @@ class CampaignController extends Controller
             'name_hu' => 'required|string',
             'gift_id' => 'required|integer|exists:gifts,id',
             //           'campaign_type'=>'required|in:2,3',
-            'unique_text' => 'required|string|unique:campaigns,unique_text',
+            'unique_text' => 'required|string|regex:/^[a-zA-Z]+$/|unique:campaigns,unique_text',
             //           'purchase_limit'=>'integer|required',
             //           'end_date' => 'required_if:campaign_type,2',
             'price' => 'required|numeric',
             'limit' => 'required|integer',
             'ebook_files' => 'array|required',
-            'ebook_files.*' => 'file|required',
+            'ebook_files.*' => 'file|required|max:4096',
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [
                 'thumbnail.max' => 'Thumbnail max size 2 MB',
+                'unique_text.regex' => 'The unique text field must contain only alphabetic characters.',
             ]
         );
 
@@ -126,7 +127,7 @@ class CampaignController extends Controller
             'price' => 'required|numeric',
             'limit' => 'required|integer',
             'ebook_files' => 'array|nullable',
-            'ebook_files.*' => 'file|required',
+            'ebook_files.*' => 'file|required|max:4096',
             'thumbnail' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ],
             [

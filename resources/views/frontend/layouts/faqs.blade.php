@@ -17,6 +17,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne{{ $faq->id }}" aria-expanded="false"
                                         aria-controls="collapseOne">
+                                        {{ $loop->iteration + $faqs->firstItem() - 1 . "." }}
 
                                         {{ $faq['question_' . locale()] ?? '' }}
                                     </button>

@@ -2,9 +2,11 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\UserRoutes;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-class Kernel extends HttpKernel {
+class Kernel extends HttpKernel
+{
     /**
      * The application's global HTTP middleware stack.
      *
@@ -35,12 +37,12 @@ class Kernel extends HttpKernel {
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\LocaleMiddleware::class
+            \App\Http\Middleware\LocaleMiddleware::class,
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -53,17 +55,18 @@ class Kernel extends HttpKernel {
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-        'auth'               => \App\Http\Middleware\Authenticate::class,
-        'auth.basic'         => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session'       => \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'cache.headers'      => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can'                => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest'              => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm'   => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed'             => \App\Http\Middleware\ValidateSignature::class,
-        'throttle'           => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified'           => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         //Admin Middleware
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'user.route' => UserRoutes::class,
     ];
 }

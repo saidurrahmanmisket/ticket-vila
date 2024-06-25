@@ -57,12 +57,35 @@
         position: static;
     }
 
+  
+
+
+    .sidebar-logo-container {
+    position: sticky;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #010c0f;
+    padding: 10px 0px;
+    z-index: 50;
+}
     .sidebar--logo {
-        padding: 40px 67px !important;
-        position: fixed !important;
-        top: 0 !important;
-        margin-bottom: 79px !important;
         background-color: var(--sidebar-color) !important;
+        display:block;
+    }
+
+    .sidebar .sidebar--logo {
+    padding-left: 0px;
+}
+
+    .sidebar--logo img{
+        width: 120px;
+        height: 70px;
+        object-fit: contain;
     }
 
     .sub-item {
@@ -271,7 +294,7 @@
     }
 
     .payment--informations {
-        min-width: 380px;
+        min-width: 365px;
     }
 
     .common--pair--text {
@@ -304,6 +327,13 @@
         -webkit-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
+    }
+
+    @media only screen and (min-width: 1440px) and (max-width: 1599px) {
+        .ticket--single .payment--and--actions {
+            gap: 50px;
+            position: relative;
+        }
     }
 </style>
 @stack('style')

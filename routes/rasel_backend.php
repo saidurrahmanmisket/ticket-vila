@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
 use App\Http\Controllers\Web\Admin\CMS\HomePageController;
+use App\Http\Controllers\Web\Admin\CMS\RaffleRulesController;
 use App\Http\Controllers\Web\Admin\CMS\TheProcessController;
 use App\Http\Controllers\Web\Admin\CMS\ThreeDViewController;
 use App\Http\Controllers\Web\Admin\DashboardController;
@@ -50,6 +51,11 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::resource('/the-process', TheProcessController::class)->except('show');
         Route::post('/the-process/status/{id}', [TheProcessController::class, 'status'])->name('the-process.status');
         Route::post('/the-process/order-update', [TheProcessController::class, 'orderUpdate'])->name('the-process.order-update');
+        //CMS Raffle Rules
+        Route::resource('/raffle-rules', RaffleRulesController::class)->except('show');
+        Route::post('/raffle-rules/status/{id}', [RaffleRulesController::class, 'status'])->name('raffle-rules.status');
+        Route::post('/raffle-rules/order-update', [RaffleRulesController::class, 'orderUpdate'])->name('raffle-rules.order-update');
+        Route::post('/raffle-rules/the_transparency', [RaffleRulesController::class, 'theTransparency'])->name('raffle-rules.the-transparency');
 
         //Pages
         Route::get('/home', [HomePageController::class, 'index'])->name('home-page.index');
@@ -64,6 +70,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::get('/3d_map_or_video_section', [ThreeDViewController::class, 'mapOrVideo'])->name('three-d-map-or-video');
         Route::post('/3d_map_or_video_section/house_tour', [ThreeDViewController::class, 'updateOrCreateHoursTour'])->name('three-d-map-or-video.house-tour');
         Route::post('/3d_map_or_video_section/property_view', [ThreeDViewController::class, 'updateOrCreatePropertyView'])->name('three-d-map-or-video.property-view');
+        Route::post('/3d_map_or_video_section/street_view', [ThreeDViewController::class, 'updateOrCreateStreetView'])->name('three-d-map-or-video.street-view');
     });
 
     //Notification Routes

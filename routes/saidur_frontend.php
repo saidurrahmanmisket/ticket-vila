@@ -43,7 +43,7 @@ Route::controller(OTPVerificationController::class)->group(function () {
 });
 
 //-----user dashboard route start from here =====================================------by: saidur
-Route::middleware(['auth', 'verified'])->name('user.')->group(function () {
+Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
