@@ -138,38 +138,86 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('POST')
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="input--group">
-                                        <label for="STRIPE_PK">Stripe Public Key</label>
-                                        <input id="STRIPE_PK" name="STRIPE_PK" type="text"
-                                            value="{{ env('STRIPE_PK') }}" />
-                                        @error('STRIPE_PK')
+                            <div class="border p-4" style="border-radius: 5px">
+                                <h3>Stripe Payment Configuration</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="input--group">
+                                            <label for="STRIPE_PK">Stripe Public Key</label>
+                                            <input id="STRIPE_PK" name="STRIPE_PK" type="text"
+                                                   value="{{ env('STRIPE_PK') }}"/>
+                                            @error('STRIPE_PK')
                                             <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror
+                                            @enderror
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="input--group">
+                                            <label for="STRIPE_SK">Stripe Secret Key </label>
+                                            <input id="STRIPE_SK" name="STRIPE_SK" type="text"
+                                                   value="{{ env('STRIPE_SK') }}"/>
+                                            @error('STRIPE_SK')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div class="input--group">
-                                        <label for="STRIPE_SK">Stripe Secret Key </label>
-                                        <input id="STRIPE_SK" name="STRIPE_SK" type="text"
-                                            value="{{ env('STRIPE_SK') }}" />
-                                        @error('STRIPE_SK')
+                            <div class="border p-4 mt-5" style="border-radius: 5px">
+                                <h3>Paypal Payment Configuration</h3>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_mode" value="sandbox"
+                                           id="sandbox">
+                                    <label class="form-check-label" for="sandbox"> </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                           id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Default checked radio
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="input--group">
+                                            <label for="STRIPE_PK">Stripe Public Key</label>
+                                            <input id="STRIPE_PK" name="STRIPE_PK" type="text"
+                                                   value="{{ env('STRIPE_PK') }}"/>
+                                            @error('STRIPE_PK')
                                             <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="buttons mt_55">
-                                    <button type="submit" class="user--common--btn">
-                                        Save Changes
-                                    </button>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="input--group">
+                                            <label for="STRIPE_SK">Stripe Secret Key </label>
+                                            <input id="STRIPE_SK" name="STRIPE_SK" type="text"
+                                                   value="{{ env('STRIPE_SK') }}"/>
+                                            @error('STRIPE_SK')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
+                            </div>
+                            <div class="buttons mt_55">
+                                <button type="submit" class="user--common--btn">
+                                    Save Changes
+                                </button>
                             </div>
                         </form>
                     </div>

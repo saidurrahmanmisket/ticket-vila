@@ -95,7 +95,7 @@
 
                 @if (empty(Auth::user()))
                     <a href="{{ route('register') }}" class="btn--fill">
-                        <span>Join now</span>
+                        <span>{{ __("Join Now") }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
                             <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5" stroke-linecap="round"
