@@ -44,7 +44,7 @@ class CampaignController extends Controller
             'name_hu' => 'required|string',
             'gift_id' => 'required|integer|exists:gifts,id',
             //           'campaign_type'=>'required|in:2,3',
-            'unique_text' => 'required|string|unique:campaigns,unique_text',
+            'unique_text' => 'required|string|regex:/^[a-zA-Z]+$/|unique:campaigns,unique_text',
             //           'purchase_limit'=>'integer|required',
             //           'end_date' => 'required_if:campaign_type,2',
             'price' => 'required|numeric',
@@ -55,6 +55,7 @@ class CampaignController extends Controller
         ],
             [
                 'thumbnail.max' => 'Thumbnail max size 2 MB',
+                'unique_text.regex' => 'The unique text field must contain only alphabetic characters.',
             ]
         );
 
