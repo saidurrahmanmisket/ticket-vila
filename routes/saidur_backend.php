@@ -8,6 +8,8 @@ use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\Admin\KeyFeatureController;
+
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
@@ -24,5 +26,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
 
     Route::resource('/dynamic-page', DynamicPageController::class);
+    Route::resource('/key-feature', KeyFeatureController::class);
 
 });
