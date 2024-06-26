@@ -150,7 +150,7 @@ class CampaignController extends Controller
                 'name_de' => $request->name_de,
                 'name_hu' => $request->name_hu,
                 'gift_id' => $request->gift_id,
-                'unique_text' => $request->unique_text,
+//                'unique_text' => $request->unique_text, //(should not be updated)
                 'thumbnail' => $thumbnail_path,
                 'price' => $request->price,
                 'limit' => $request->limit,

@@ -106,7 +106,7 @@
                                 <div class="mb-3">
                                     <label for="unique_text" class="form-label required h6">Unique Text</label>
                                     <input type="text" class="form-control" id="unique_text"
-                                           value="{{ $campaign->unique_text }}" name="unique_text">
+                                           value="{{ $campaign->unique_text }}" name="unique_text" readonly disabled>
                                     @error('unique_text')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
