@@ -22,6 +22,7 @@
                             <a href="#" class="button btn " id="btn3dOutside">Outside</a>
                         </div>
                     </div>
+{{--                    toggle section--}}
                     <a href="#" class="position-relative inside d-block">
                         @if (!empty($houseTour) && !empty($houseTour->link))
                             <iframe class="house--img w-100" src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
