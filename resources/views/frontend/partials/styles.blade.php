@@ -231,14 +231,14 @@
     }
 
     .header--content--wrapper .button--area {
-   
+
     gap: 12px;
 }
 
 .form-select {
-   
+
     padding: .375rem 0.25rem .375rem .75rem;
-    
+
 }
 
 
@@ -277,7 +277,7 @@
             z-index: 1050;
             position: relative;
             border: none;
-            padding: .375rem 2.25rem .375rem .75rem; 
+            padding: .375rem 2.25rem .375rem .75rem;
         }
 
 
@@ -311,7 +311,7 @@
     }
 
     /* updated styles header */
-    
+
     /* updated styles house image start*/
     .house--tour--area--wrapper .modal-content {
         background: transparent !important;
@@ -320,7 +320,14 @@
     .house--tour--area--wrapper .modal-body img{
         width: 100%;
     }
-    /* updated styles house image end */
 
+    .house--image--grid--wrapper .modal-content {
+        background: transparent !important;
+        border: none
+    }
+    .house--image--grid--wrapper .modal-body img{
+        width: 100%;
+    }
+    /* updated styles house image end */
 
 </style>
