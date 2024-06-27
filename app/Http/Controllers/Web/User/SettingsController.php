@@ -32,7 +32,6 @@ class SettingsController extends Controller
 
     public function infoUpdate(Request $request)
     {
-        try {
             $input = $request->validate([
                 'first_name' => 'required|string|max:100',
                 'last_name' => 'required|string|max:100',
@@ -41,12 +40,17 @@ class SettingsController extends Controller
                 'gender' => 'required|in:1,2,3',
                 'address_1' => 'nullable|string|max:255',
                 'city' => 'nullable|string|max:100',
+                'city_of_birthday' => 'nullable|string|max:100',
+                'country_of_birthday' => 'nullable|string|max:100',
                 'state' => 'nullable|string|max:100',
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+                'birthday' => 'nullable|date',
+                'phone' => 'nullable|max:25',
             ],
                 [
                     'avatar.max' => 'Max file size 2 MB',
                 ]);
+        try {
 
             $file = $request->file('avatar');
             if ($file) {
@@ -66,6 +70,10 @@ class SettingsController extends Controller
                 'zip_code' => $request->zip_code,
                 'gender' => $request->gender,
                 'address_1' => $request->address_1,
+                'city_of_birthday' => $request->city_of_birthday,
+                'country_of_birthday' => $request->country_of_birthday,
+                'birthday' => $request->birthday,
+                'phone' => $request->phone,
                 'city' => $request->city,
                 'state' => $request->state,
                 'avatar' => $avatar,
