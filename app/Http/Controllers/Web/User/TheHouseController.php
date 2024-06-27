@@ -25,7 +25,7 @@ class TheHouseController extends Controller
                     ->inRandomOrder()
                     ->limit(20)
                     ->get();
-                $keyFeatures = $gift->keyFeatures()->get();
+                $keyFeatures = $gift->keyFeatures()->where('status', 'active')->get();
             } else {
                 $gift = null;
                 $giftRandomImages = null;
