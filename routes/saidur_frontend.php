@@ -54,6 +54,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
     Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
+    Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 
@@ -83,6 +84,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
         Route::patch('user/settings/password/update', 'passwordUpdate')->name('settings.password.update');
         // Route::patch('/user/change','updatePassword')->name('user.profile.change');
     });
+
 });
 
 //-----user dashboard route end  here ===========================================------by: saidur
