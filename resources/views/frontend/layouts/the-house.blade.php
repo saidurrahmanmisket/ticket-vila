@@ -100,7 +100,27 @@
                         @endif
                     @endif
                 </div>
+            </div>
+            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            {{-- <div class="modal-header"> --}}
+                            {{-- </div> --}}
 
+                            <div class="modal-body text-center">
+                                <div class="d-flex justify-content-end">
+
+                                    <button type="button" class="close btn btn-outline-dark text-light" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <img src="" id="modalImage" class="img-fluid" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </section>
         <!-- inside the house area ends -->
 
@@ -375,3 +395,31 @@
     </section>
     <!-- inner padding area ends -->
 @endsection
+
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            // make image big on click
+            $('.house--image--grid--wrapper .image--grid .img--holder img').on('click', function(e) {
+                e.preventDefault();
+                var imgSrc = $(this).attr('src');
+                $('#modalImage').attr('src', imgSrc);
+                $('#imageModal').modal('show');
+            });
+
+            $('.house--image--grid--wrapper .the--floor--plan--content .single--floor img').on('click', function(e) {
+                e.preventDefault();
+                var imgSrc = $(this).attr('src');
+                $('#modalImage').attr('src', imgSrc);
+                $('#imageModal').modal('show');
+            });
+
+            // Handle modal close button click event
+            $('.close').on('click', function() {
+                $('#imageModal').modal('hide');
+            });
+        });
+    </script>
+@endpush

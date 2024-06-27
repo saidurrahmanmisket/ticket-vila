@@ -362,7 +362,7 @@
                         <iframe src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
                             allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
-                        <iframe src="https://www.youtube.com/embed/3-Jfwzug2Qk?si=B0n-GAlYjKBavurt" width="600"
+                        <iframe src="https://www.youtube.com/embed/HW-OMaFxWXs?si=Kc_s-MNKlctuwiIw" width="600"
                             height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
@@ -465,8 +465,8 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            // make image big on click 
-            $('.home--chance--slider .single--card img').on('click', function(e) {
+            // make image big on click
+            $('.home--chance--slider .single--card .cover--img').on('click', function(e) {
                 e.preventDefault();
                 var imgSrc = $(this).attr('src');
                 $('#modalImage').attr('src', imgSrc);
