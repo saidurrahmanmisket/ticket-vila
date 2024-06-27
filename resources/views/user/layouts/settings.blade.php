@@ -86,69 +86,135 @@
                                     </div>
                                 </div>
                                 <h4>
-                                    Personal Info <span>(Name, Surname, Email address)</span>
+                                    Personal Info
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input--group">
-                                            <label for="fname">First Name</label>
-                                            <input id="fname" name="first_name" type="text"
-                                                value="{{ Auth::user()->first_name ?? '' }}" />
+                                            <label for="fname">First Name <span class="text-danger">*</span> </label>
+                                            <input class="form-control @error('first_name') is-invalid @enderror" id="fname" name="first_name" type="text" value="{{ old('first_name', Auth::user()->first_name ?? '') }}" />
+                                            @error('first_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input--group">
-                                            <label for="zip">Zip</label>
-                                            <input name="zip_code" id="zip" type="text"
-                                                value="{{ Auth::user()->zip_code ?? '' }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input--group">
-                                            <label for="gender">Gender</label>
-                                            <select id="gender" name="gender">
-                                                <option value="1" {{ Auth::user()->gender == 1 ? 'selected' : '' }}>
-                                                    Male</option>
-                                                <option value="2" {{ Auth::user()->gender == 2 ? 'selected' : '' }}>
-                                                    Female</option>
-                                                <option value="3" {{ Auth::user()->gender == 3 ? 'selected' : '' }}>
-                                                    Others</option>
 
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="input--group">
-                                            <label for="lname">Last Name</label>
-                                            <input name="last_name" id="lname" type="text"
-                                                value="{{ Auth::user()->last_name ?? '' }}" />
+                                            <label for="lname">Last Name<span class="text-danger">*</span></label>
+                                            <input class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="lname" type="text" value="{{ old('last_name', Auth::user()->last_name ?? '') }}" />
+                                            @error('last_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
+
                                         <div class="input--group">
-                                            <label for="email">Email Address</label>
-                                            <input name="email" id="email" type="email"
-                                                value="{{ Auth::user()->email ?? '' }}" />
+                                            <label for="email">Email Address<span class="text-danger">*</span></label>
+                                            <input class="form-control @error('email') is-invalid @enderror" name="email" id="email" type="email" value="{{ old('email', Auth::user()->email ?? '') }}" />
+                                            @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
+
                                         <div class="input--group">
                                             <label for="address">Address</label>
-                                            <input name="address_1" id="address" type="text"
-                                                value="{{ Auth::user()->address_1 ?? '' }}" />
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="city">City</label>
-                                            <input name="city" id="city" type="text"
-                                                value="{{ Auth::user()->city ?? '' }}" />
-                                        </div>
-                                        <div class="input--group">
-                                            <label for="state">State</label>
-                                            <input name="state" id="state" type="text"
-                                                value="{{ Auth::user()->state ?? '' }}" />
-                                        </div>
-                                        <div class="buttons mt_55">
-                                            <button type="submit" class="user--common--btn">
-                                                Save Changes
-                                            </button>
+                                            <input class="form-control @error('address_1') is-invalid @enderror" name="address_1" id="address" type="text" value="{{ old('address_1', Auth::user()->address_1 ?? '') }}" />
+                                            @error('address_1')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="city">City</label>
+                                                    <input class="form-control @error('city') is-invalid @enderror" name="city" id="city" type="text" value="{{ old('city', Auth::user()->city ?? '') }}" />
+                                                    @error('city')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="state">State</label>
+                                                    <input class="form-control @error('state') is-invalid @enderror" name="state" id="state" type="text" value="{{ old('state', Auth::user()->state ?? '') }}" />
+                                                    @error('state')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="zip">Zip</label>
+                                                    <input class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" id="zip" type="text" value="{{ old('zip_code', Auth::user()->zip_code ?? '') }}" />
+                                                    @error('zip_code')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="gender">Gender</label>
+                                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
+                                                        <option value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>Male</option>
+                                                        <option value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>Female</option>
+                                                        <option value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>Others</option>
+                                                    </select>
+                                                    @error('gender')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="city_of_birthday">Birth City</label>
+                                                    <input class="form-control @error('city_of_birthday') is-invalid @enderror" name="city_of_birthday" id="city_of_birthday" type="text" value="{{ old('city_of_birthday', Auth::user()->city_of_birthday ?? '') }}" />
+                                                    @error('city_of_birthday')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="country_of_birthday">Birth Country</label>
+                                                    <input class="form-control @error('country_of_birthday') is-invalid @enderror" name="country_of_birthday" id="country_of_birthday" type="text" value="{{ old('country_of_birthday', Auth::user()->country_of_birthday ?? '') }}" />
+                                                    @error('country_of_birthday')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="birthday">Birth Date</label>
+                                                    <input class="form-control @error('birthday') is-invalid @enderror" name="birthday" id="birthday" type="date" value="{{ old('birthday', Auth::user()->birthday ?? '') }}" />
+                                                    @error('birthday')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="phone">Telephone</label>
+                                                    <input class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" type="text" value="{{ old('phone', Auth::user()->phone ?? '') }}" />
+                                                    @error('phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="buttons mt_55">
+                                    <button type="submit" class="user--common--btn">
+                                        Save Changes
+                                    </button>
                                 </div>
                             </form>
                         </div>
