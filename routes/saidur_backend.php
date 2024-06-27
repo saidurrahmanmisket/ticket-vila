@@ -14,7 +14,10 @@ use App\Http\Controllers\Web\Admin\KeyFeatureController;
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     Route::resource('/faq', FaqController::class);
+    Route::post('/faq/status/{id}', [FaqController::class, 'status'])->name('faq.status');
     Route::resource('/team', TeamController::class);
+    Route::post('/team/status/{id}', [TeamController::class, 'status'])->name('team.status');
+
     Route::resource('/social-media', SocialMediaController::class)->names('settings.social-media');
     Route::get('/system-setting', [SystemSettingController::class, 'index'])->name('settings.system-setting.index');
     Route::post('/system-setting', [SystemSettingController::class, 'update'])->name('settings.system-setting.update');
