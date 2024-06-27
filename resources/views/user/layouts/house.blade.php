@@ -253,6 +253,8 @@
 
 @push('script')
     <script>
+
+        //toggle house tour inside and outside buttons
         $(document).ready(function() {
             $('#btn3dInside').click(function(event) {
                 event.preventDefault();
