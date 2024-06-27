@@ -36,7 +36,7 @@ Statistics
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a ticket to get full data
+                                You can't see this section, buy a eBook to get full data
                                 access
                             </p>
                         </div>
@@ -61,7 +61,7 @@ Statistics
                         </p>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a ticket to get full data
+                                You can't see this section, buy a eBook to get full data
                                 access
                             </p>
                         </div>
@@ -113,7 +113,7 @@ Statistics
                         </ul>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a ticket to get full data
+                                You can't see this section, buy a eBook to get full data
                                 access
                             </p>
                         </div>
@@ -157,7 +157,7 @@ Statistics
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a ticket to get full data
+                                You can't see this section, buy a eBook to get full data
                                 access
                             </p>
                         </div>

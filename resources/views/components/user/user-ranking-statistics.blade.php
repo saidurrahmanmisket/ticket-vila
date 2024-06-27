@@ -216,7 +216,7 @@
                 @endif
             </div>
             <div class="blur--box">
-                <p>You can't see this section, buy a ticket to get full data access</p>
+                <p>You can't see this section, buy a eBook to get full data access</p>
                 <a href="#" class="user--common--btn">Buy a E-Book</a>
             </div>
         </div>

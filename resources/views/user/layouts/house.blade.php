@@ -55,7 +55,7 @@
                         <!-- blur box  -->
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a ticket to get full data
+                                You can't see this section, buy a eBook to get full data
                                 access
                             </p>
                             <a href="buy-ticket.html" class="user--common--btn">Buy a E-Book</a>
