@@ -93,6 +93,21 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="input--group">
+                                                                    <label for="link">link</label>
+                                                                    <input id="link" name="link" type="text"
+                                                                           value="{{$keyFeature->link}}"
+                                                                           placeholder="Feature link (if any)..">
+                                                                    @error('link')
+                                                                    <span class="invalid-feedback d-block" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group row mt-4" id="imageUploadContainerPlan">
                                                             <div class="col">
                                                                 <label for="image">Image:</label>

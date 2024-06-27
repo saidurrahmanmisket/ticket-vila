@@ -22,6 +22,7 @@
                             <a href="#" class="button btn " id="btn3dOutside">Outside</a>
                         </div>
                     </div>
+{{--                    toggle section--}}
                     <a href="#" class="position-relative inside d-block">
                         @if (!empty($houseTour) && !empty($houseTour->link))
                             <iframe class="house--img w-100" src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
@@ -234,9 +235,18 @@
                                         <p class="icon">
                                             <img class="w-100" src="{{$item->icon ? asset($item->icon) : ''}}" alt="">
                                         </p>
-                                        <p>
-                                            {{$item['title_'.locale()] }}
-                                        </p>
+                                        @if(isset($item) && $item)
+                                            @if($item->link)
+                                                <a href="{{$item->link ?? ''}}" target="_blank">
+                                                    {{$item['title_'.locale()] }}
+                                                </a>
+                                            @else
+                                                <p>
+                                                    {{$item['title_'.locale()] }}
+                                                </p>
+                                            @endif
+
+                                        @endif
                                     </li>
                                 @endforeach
                             @endif
@@ -253,6 +263,8 @@
 
 @push('script')
     <script>
+
+        //toggle house tour inside and outside buttons
         $(document).ready(function() {
             $('#btn3dInside').click(function(event) {
                 event.preventDefault();

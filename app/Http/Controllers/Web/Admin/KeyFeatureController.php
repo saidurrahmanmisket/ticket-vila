@@ -42,6 +42,7 @@ class KeyFeatureController extends Controller
             'title_de.*' => 'required|string|max:255',
             'title_hu.*' => 'required|string|max:255',
             'icon.*' => 'required|image|max:1024',
+            'link.*' => 'nullable|string|max:255',
             'gift_id' => 'required|integer',
         ], [
             'gift_id.required' => 'Please Select a gift',
@@ -55,6 +56,7 @@ class KeyFeatureController extends Controller
                     'title_en' => $validatedData['title_en'][$index],
                     'title_de' => $validatedData['title_de'][$index],
                     'title_hu' => $validatedData['title_hu'][$index],
+                    'link' => $validatedData['link'][$index],
                     'gift_id' => $validatedData['gift_id']
                 ];
 
@@ -109,6 +111,7 @@ class KeyFeatureController extends Controller
                 'title_de' => 'required|string|max:255',
                 'title_hu' => 'required|string|max:255',
                 'icon' => 'image|max:1024',
+                'link' => 'nullable|string|max:255',
                 'gift_id' => 'required|integer',
             ]);
 
