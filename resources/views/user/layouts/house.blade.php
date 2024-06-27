@@ -235,9 +235,18 @@
                                         <p class="icon">
                                             <img class="w-100" src="{{$item->icon ? asset($item->icon) : ''}}" alt="">
                                         </p>
-                                        <p>
-                                            {{$item['title_'.locale()] }}
-                                        </p>
+                                        @if(isset($item) && $item)
+                                            @if($item->link)
+                                                <a href="{{$item->link ?? ''}}" target="_blank">
+                                                    {{$item['title_'.locale()] }}
+                                                </a>
+                                            @else
+                                                <p>
+                                                    {{$item['title_'.locale()] }}
+                                                </p>
+                                            @endif
+
+                                        @endif
                                     </li>
                                 @endforeach
                             @endif
