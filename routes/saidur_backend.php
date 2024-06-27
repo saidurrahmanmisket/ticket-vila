@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/delete-gift-feature-item', [GiftController::class, 'deleteGifFeatureItem'])->name('deleteGifFeatureItem');
 
     Route::resource('/dynamic-page', DynamicPageController::class);
-    Route::resource('/key-feature', KeyFeatureController::class);
+    Route::resource('/key-feature', KeyFeatureController::class)->except('show');
+    Route::post('/key-feature/status/{id}', [KeyFeatureController::class, 'status'])->name('key-feature.status');
+
 
 });

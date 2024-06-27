@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Gift;
@@ -85,7 +86,7 @@ class KeyFeatureController extends Controller
      */
     public function show(KeyFeature $keyFeature)
     {
-        return view('admin.layouts.key-feature.show', compact('keyFeature'));
+//        return view('admin.layouts.key-feature.show', compact('keyFeature'));
     }
 
     /**
@@ -136,5 +137,21 @@ class KeyFeatureController extends Controller
         $keyFeature->delete();
 
         return redirect()->route('admin.key-feature.index')->with('success', 'Key Feature deleted successfully.');
+    }
+
+    public function status($id)
+    {
+        $keyFeature = KeyFeature::findOrFail($id);
+        if ($keyFeature->status == Status::ACTIVE) {
+            $keyFeature->status = Status::INACTIVE;
+        }else{
+            $keyFeature->status = Status::ACTIVE;
+        }
+        $keyFeature->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Status updated successfully',
+            'data' => $keyFeature,
+        ]);
     }
 }

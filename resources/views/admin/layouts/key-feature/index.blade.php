@@ -79,7 +79,7 @@
                             </td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" @if($item->status == 'active') checked @endif type="checkbox" id="flexSwitchCheckDisabled">
+                                    <input onclick="statusChange({{$item->id}},this)" class="form-check-input" @if($item->status == \App\Enums\Status::ACTIVE) checked @endif type="checkbox" id="flexSwitchCheckDisabled">
                                 </div>
                             </td>
                             <td>
@@ -115,3 +115,36 @@
     </section>
 @endsection
 
+@push('script')
+    <script>
+        function statusChange(id, element) {
+            var url = '{{ route('admin.key-feature.status', ':id') }}';
+            $.ajax({
+                type: "POST",
+                url: url.replace(':id', id),
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function(resp) {
+                    if (resp.success === true) {
+                        // show toast message
+                        toastr.success(resp.message);
+                        if (resp.data.status == "{{\App\Enums\Status::ACTIVE}}") {
+                            element.checked = true;
+                        } else {
+                            element.checked = false;
+                        }
+
+                    } else if (resp.errors) {
+                        toastr.error(resp.errors[0]);
+                    } else {
+                        toastr.error(resp.message);
+                    }
+                }, // success end
+                error: function(error) {
+                    console.log(error);
+                } // Error
+            })
+        }
+    </script>
+@endpush
