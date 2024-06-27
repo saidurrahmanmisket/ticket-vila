@@ -465,8 +465,8 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            // make image big on click 
-            $('.home--chance--slider .single--card img').on('click', function(e) {
+            // make image big on click
+            $('.home--chance--slider .single--card .cover--img').on('click', function(e) {
                 e.preventDefault();
                 var imgSrc = $(this).attr('src');
                 $('#modalImage').attr('src', imgSrc);
