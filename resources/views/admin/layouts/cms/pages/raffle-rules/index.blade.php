@@ -249,11 +249,11 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function (resp) {
-                    toastr.success('Raffle Rule Status Changed Successfully');
+                    flasher.success('Raffle Rule Status Changed Successfully');
                     $('#raffle--rules--list').html(resp)
                 }, // success end
                 error: function (error) {
-                    toastr.error('Something was wrong.');
+                    flasher.error('Something was wrong.');
                 } // Error
             })
         }
@@ -270,11 +270,11 @@
                     data: {ids: idString},
                     success: function (resp) {
                         console.log(resp)
-                        toastr.success('Order Sorted Successfully.');
+                        flasher.success('Order Sorted Successfully.');
                         $('#raffle--rules--list').html(resp)
                     },
                     error: function (error) {
-                        toastr.error('Something was wrong.');
+                        flasher.error('Something was wrong.');
                     }
                 })
             }

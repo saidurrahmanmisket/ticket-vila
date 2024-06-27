@@ -30,5 +30,3 @@ Route::get('/set-locale/{locale}', function ($locale) {
     }
 
 })->name('setLocale');
-
-Route::view('/test', 'welcome');
