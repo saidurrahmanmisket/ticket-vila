@@ -71,6 +71,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::post('/3d_map_or_video_section/house_tour', [ThreeDViewController::class, 'updateOrCreateHoursTour'])->name('three-d-map-or-video.house-tour');
         Route::post('/3d_map_or_video_section/property_view', [ThreeDViewController::class, 'updateOrCreatePropertyView'])->name('three-d-map-or-video.property-view');
         Route::post('/3d_map_or_video_section/street_view', [ThreeDViewController::class, 'updateOrCreateStreetView'])->name('three-d-map-or-video.street-view');
+        Route::post('/3d_map_or_video_section/visit_your_new_home', [ThreeDViewController::class, 'updateOrCreateVisitYourNewHome'])->name('three-d-map-or-video.visit-your-new-home');
     });
 
     //Notification Routes

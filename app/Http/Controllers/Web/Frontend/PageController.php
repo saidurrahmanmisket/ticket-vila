@@ -23,7 +23,7 @@ class PageController extends Controller
         $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
         $ticket_chance = CMS::where('page', Page::HOME)->where('section_name', Section::TICKET_CHANCE)->first();
         $wit_spin = CMS::where('page', Page::HOME)->where('section_name', Section::WIN_SPIN)->first();
-        $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
+        $houseTour = CMS::where('section_name', Section::VISIT_YOUR_NEW_HOME)->first();
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
         if ($campaign) {
