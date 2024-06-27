@@ -31,7 +31,12 @@
                     </div>
                 </div>
                 <div class="right image--holder">
-                    <div class="single--row">
+                    <div >
+
+                        <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/home-hero-banner.png') }}"
+                    alt="" />
+                    </div>
+                    {{-- <div class="single--row">
                         <div data-aos="fade-down" data-aos-duration="400" class="image">
                             <img src="{{ asset('frontend/images/the-house-banner1.png') }}" alt="" />
                         </div>
@@ -46,7 +51,7 @@
                         <div data-aos="fade-up" data-aos-duration="700" class="image">
                             <img src="{{ asset('frontend/images/the-house-banner4.png') }}" alt="" />
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -267,6 +272,58 @@
         </div>
     </section>
     <!-- property tour area ends -->
+
+    <!-- street tour area starts -->
+    <section class="house--tour--area--wrapper section--bottom--gap">
+        <div class="container">
+            <div class="house--tour--area--content">
+                <div class="top--part">
+                    <h3 class="title">{{ __('3D Street View') }}</h3>
+                    @if(empty(Auth::user()))
+                        <a href="{{route('register')}}" class="btn--normal blank border">
+                            <span>{{ __('Join Now') }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                                 fill="none">
+                                <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.70117 1.70124L15.7512 7.72524L9.70117 13.7502" stroke="#010C0F"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    @endif
+                </div>
+
+                <div class="area--wrapper">
+                    @if (!empty($streetView) && !empty($streetView->link))
+                        <iframe src="{{ $streetView->link }}" width="600" height="450" style="border: 0"
+                            allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($streetView))
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                            width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe width="560" height="315" src="{{ $streetView['link_' . locale()] ?? '' }}"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @endif
+
+
+                    <div class="overlay">
+                        <div class="instruction--text">
+                            <div class="icon">
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                            </div>
+                            <p>{{ __('Click to start') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- street tour area ends -->
 
     <!-- inner padding area starts -->
     <section class="section--inner--padding">

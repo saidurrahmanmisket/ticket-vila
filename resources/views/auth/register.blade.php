@@ -1,3 +1,9 @@
+@php
+    use App\Models\SystemSetting;
+
+    $systemSetting = SystemSetting::first();
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +18,22 @@
 <body>
     <main class="auth--main--area--wrapper sign--up">
         <div class="banner--area">
-            <img src="{{ asset('frontend/images/sign-up-banner.png') }}" alt="" />
+            <img src="{{ asset('frontend/images/updated-signupbanner.png') }}" alt="">
+            <div class="text--area">
+                <!-- logo  -->
+                <a href="{{ route('frontend./') }}">
+                    <div class="logo">
+                        <img src="{{ isset($systemSetting->logo) ? asset($systemSetting->logo) : asset('frontend/images/logo.svg') }}"
+                            alt="" />
+                    </div>
+                </a>
+
+                <!-- content -->
+                <div class="content">
+                    <h3 class="heading">{{ $systemSetting->system_name ?? 'TicketVilla' }}</h3>
+                    <p class="subtitle">The e-Book with a Ticket</p>
+                </div>
+            </div>
         </div>
         <div class="input--area">
             <div class="top--area">

@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="unique_text" class="form-label required h6">Unique Text</label>
-                                    <input type="text" class="form-control" id="unique_text" value="{{ old('unique_text') }}" name="unique_text">
+                                    <input type="text" class="form-control" id="unique_text" value="{{ old('unique_text') }}" name="unique_text" placeholder="Please Enter Alphabetic Characters (EX: AB)">
                                     @error('unique_text')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>

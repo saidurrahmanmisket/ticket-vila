@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ;
@@ -138,4 +139,29 @@ class FaqController extends Controller
 
         return redirect()->route('admin.faq.index');
     }
+
+    public function status($id)
+    {
+        try {
+            $faq = FAQ::findOrFail($id);
+            if ($faq->status == Status::ACTIVE) {
+                $faq->status = Status::INACTIVE;
+            }else{
+                $faq->status = Status::ACTIVE;
+            }
+            $faq->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status updated successfully',
+                'data' => $faq,
+            ]);
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
 }

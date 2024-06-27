@@ -129,8 +129,9 @@ class PageController extends Controller
 
         $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
         $propertyView = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
+        $streetView = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
 
-        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView'));
+        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView'));
     }
 
     public function verifyEmail()
@@ -142,8 +143,9 @@ class PageController extends Controller
     {
         $hero_section = CMS::where('page', Page::HOW_IT_WORKS)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
+        $houseTour = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
 
-        return view('frontend.layouts.how-it-works', compact('hero_section', 'theProcess'));
+        return view('frontend.layouts.how-it-works', compact('hero_section', 'theProcess', 'houseTour'));
     }
 
     public function dynamicPage(string $page_slug)

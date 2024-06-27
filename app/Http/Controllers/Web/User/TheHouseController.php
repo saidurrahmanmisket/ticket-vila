@@ -12,6 +12,7 @@ class TheHouseController extends Controller
     {
 
         $campaign = Campaign::latest()->where('status', 'published')->first();
+
         if ($campaign) {
             $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
 
@@ -24,15 +25,18 @@ class TheHouseController extends Controller
                     ->inRandomOrder()
                     ->limit(20)
                     ->get();
+                $keyFeatures = $gift->keyFeatures()->where('status', 'active')->get();
             } else {
                 $gift = null;
                 $giftRandomImages = null;
+                $keyFeatures = null;
             }
         } else {
             $gift = null;
             $giftRandomImages = null;
+            $keyFeatures = null;
         }
 
-        return view('user.layouts.house', compact('giftRandomImages'));
+        return view('user.layouts.house', compact('giftRandomImages', 'keyFeatures'));
     }
 }
