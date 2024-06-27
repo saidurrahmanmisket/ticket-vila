@@ -18,16 +18,43 @@
                     <div class="top">
                         <h4 class="common--title">3D house tour</h4>
                         <div class="buttons">
-                            <a href="#" class="button">Inside</a>
-                            <a href="#" class="button">Outside</a>
+                            <a href="#" class="button btn btn-primary text-light" id="btn3dInside">Inside</a>
+                            <a href="#" class="button btn " id="btn3dOutside">Outside</a>
                         </div>
                     </div>
-                    <a href="#" class="position-relative">
-                        <img class="house--img w-100" src="{{ asset('user/images/house-tour.png') }}" alt="" />
-                        <div class="click--to--start">
-                            <img src="{{ asset('user/images/360.png') }}" alt="" />
-                            <p>Click to start</p>
-                        </div>
+                    <a href="#" class="position-relative inside d-block">
+                        @if (!empty($houseTour) && !empty($houseTour->link))
+                            <iframe class="house--img w-100" src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
+                                    allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @elseif(empty($houseTour))
+                            <iframe class="house--img w-100"
+                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @else
+                            <iframe class="house--img w-100" width="560" height="315" src="{{ $houseTour['link_' . locale()] ?? '' }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        @endif
+
+                    </a>
+                    <a href="#" class="position-relative outSide d-none">
+                        @if (!empty($propertyView) && !empty($propertyView->link))
+                            <iframe class="house--img w-100" src="{{ $propertyView->link }}" width="600" height="450" style="border: 0"
+                                    allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @elseif(empty($propertyView))
+                            <iframe class="house--img w-100"
+                                src="https://www.google.com/maps/embed?pb=!4v1716460175150!6m8!1m7!1sNY2kCM9GwhDdxMztNku49Q!2m2!1d47.03569798506084!2d16.01661381905965!3f16.892984!4f0!5f0.7820865974627469"
+                                width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @else
+                            <iframe class="house--img w-100" width="560" height="315" src="{{ $propertyView['link_' . locale()] ?? '' }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        @endif
+
                     </a>
                 </div>
                 <!-- photo--and--gallery  -->
@@ -223,3 +250,31 @@
     <!-- end app content area  -->
 
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#btn3dInside').click(function(event) {
+                event.preventDefault();
+                toggleClass($(this), $('#btn3dOutside'));
+                toggleVisibility($('.inside'), $('.outside'));
+            });
+
+            $('#btn3dOutside').click(function(event) {
+                event.preventDefault();
+                toggleClass($(this), $('#btn3dInside'));
+                toggleVisibility($('.outside'), $('.inside'));
+            });
+
+            function toggleClass(activeBtn, inactiveBtn) {
+                activeBtn.addClass('btn-primary text-light');
+                inactiveBtn.removeClass('btn-primary text-light');
+            }
+
+            function toggleVisibility(showElement, hideElement) {
+                showElement.removeClass('d-none').addClass('d-block');
+                hideElement.removeClass('d-block').addClass('d-none');
+            }
+        });
+    </script>
+@endpush
