@@ -19,7 +19,7 @@ class KeyFeatureController extends Controller
     {
         $keyFeatures = KeyFeature::paginate();
 
-        return view('admin.layouts.key-feature.index', compact('keyFeatures', ));
+        return view('admin.layouts.key-feature.index', compact('keyFeatures'));
     }
 
     /**
@@ -28,6 +28,7 @@ class KeyFeatureController extends Controller
     public function create()
     {
         $gifts = Gift::all();
+
         return view('admin.layouts.key-feature.create', compact('gifts'));
     }
 
@@ -37,16 +38,16 @@ class KeyFeatureController extends Controller
     public function store(Request $request)
     {
         try {
-        $validatedData = $request->validate([
-            'title_en.*' => 'required|string|max:255',
-            'title_de.*' => 'required|string|max:255',
-            'title_hu.*' => 'required|string|max:255',
-            'icon.*' => 'required|image|max:1024',
-            'gift_id' => 'required|integer',
-        ], [
-            'gift_id.required' => 'Please Select a gift',
-            'gift_id.integer' => 'Please Select a valid gift',
-        ]);
+            $validatedData = $request->validate([
+                'title_en.*' => 'required|string|max:255',
+                'title_de.*' => 'required|string|max:255',
+                'title_hu.*' => 'required|string|max:255',
+                'icon.*' => 'required|image|max:1024',
+                'gift_id' => 'required|integer',
+            ], [
+                'gift_id.required' => 'Please Select a gift',
+                'gift_id.integer' => 'Please Select a valid gift',
+            ]);
 
             $features = [];
 
@@ -55,12 +56,12 @@ class KeyFeatureController extends Controller
                     'title_en' => $validatedData['title_en'][$index],
                     'title_de' => $validatedData['title_de'][$index],
                     'title_hu' => $validatedData['title_hu'][$index],
-                    'gift_id' => $validatedData['gift_id']
+                    'gift_id' => $validatedData['gift_id'],
                 ];
 
                 if (isset($validatedData['icon'][$index])) {
                     $file = $validatedData['icon'][$index];
-                    $icon_path = Helper::fileUpload($file, 'gifts/key-features', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                    $icon_path = Helper::fileUpload($file, 'gifts/key-features', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                     $feature['icon'] = $icon_path;
                 }
 
@@ -74,19 +75,17 @@ class KeyFeatureController extends Controller
             return redirect()->route('admin.key-feature.index')->with('success', 'Key Features created successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-
-
-
 
     /**
      * Display the specified resource.
      */
     public function show(KeyFeature $keyFeature)
     {
-//        return view('admin.layouts.key-feature.show', compact('keyFeature'));
+        //        return view('admin.layouts.key-feature.show', compact('keyFeature'));
     }
 
     /**
@@ -95,6 +94,7 @@ class KeyFeatureController extends Controller
     public function edit(KeyFeature $keyFeature)
     {
         $gifts = Gift::all();
+
         return view('admin.layouts.key-feature.edit', compact('keyFeature', 'gifts'));
     }
 
@@ -112,18 +112,18 @@ class KeyFeatureController extends Controller
                 'gift_id' => 'required|integer',
             ]);
 
-
             if (isset($validated['icon'])) {
                 $file = $validated['icon'];
-                $icon_path = Helper::fileUpload($file, 'gifts/key-features', time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+                $icon_path = Helper::fileUpload($file, 'gifts/key-features', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 $validated['icon'] = $icon_path;
             }
 
             $keyFeature->update($validated);
 
             return redirect()->route('admin.key-feature.index')->with('success', 'Key Feature updated successfully.');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
 
         }
@@ -144,10 +144,11 @@ class KeyFeatureController extends Controller
         $keyFeature = KeyFeature::findOrFail($id);
         if ($keyFeature->status == Status::ACTIVE) {
             $keyFeature->status = Status::INACTIVE;
-        }else{
+        } else {
             $keyFeature->status = Status::ACTIVE;
         }
         $keyFeature->save();
+
         return response()->json([
             'success' => true,
             'message' => 'Status updated successfully',

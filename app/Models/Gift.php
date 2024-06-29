@@ -20,6 +20,7 @@ class Gift extends Model
     {
         return $this->hasMany(GiftFeaturedItem::class, 'gift_id');
     }
+
     public function keyFeatures()
     {
         return $this->hasMany(KeyFeature::class);
