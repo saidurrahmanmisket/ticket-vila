@@ -681,7 +681,7 @@
                             </div>
                         </div>
                         <div class="blur--box">
-                            <p>{{ __("You can't see this section, buy a ticket to get full data access") }}</p>
+                            <p>{{ __("You can't see this section, buy a eBook to get full data access") }}</p>
                             <a href="#" class="user--common--btn">{{ __("Buy a E-Book") }}</a>
                         </div>
                     </div>

@@ -38,16 +38,17 @@ class KeyFeatureController extends Controller
     public function store(Request $request)
     {
         try {
-            $validatedData = $request->validate([
-                'title_en.*' => 'required|string|max:255',
-                'title_de.*' => 'required|string|max:255',
-                'title_hu.*' => 'required|string|max:255',
-                'icon.*' => 'required|image|max:1024',
-                'gift_id' => 'required|integer',
-            ], [
-                'gift_id.required' => 'Please Select a gift',
-                'gift_id.integer' => 'Please Select a valid gift',
-            ]);
+        $validatedData = $request->validate([
+            'title_en.*' => 'required|string|max:255',
+            'title_de.*' => 'required|string|max:255',
+            'title_hu.*' => 'required|string|max:255',
+            'icon.*' => 'required|image|max:1024',
+            'link.*' => 'nullable|string|max:255',
+            'gift_id' => 'required|integer',
+        ], [
+            'gift_id.required' => 'Please Select a gift',
+            'gift_id.integer' => 'Please Select a valid gift',
+        ]);
 
             $features = [];
 
@@ -56,7 +57,8 @@ class KeyFeatureController extends Controller
                     'title_en' => $validatedData['title_en'][$index],
                     'title_de' => $validatedData['title_de'][$index],
                     'title_hu' => $validatedData['title_hu'][$index],
-                    'gift_id' => $validatedData['gift_id'],
+                    'link' => $validatedData['link'][$index],
+                    'gift_id' => $validatedData['gift_id']
                 ];
 
                 if (isset($validatedData['icon'][$index])) {
@@ -109,6 +111,7 @@ class KeyFeatureController extends Controller
                 'title_de' => 'required|string|max:255',
                 'title_hu' => 'required|string|max:255',
                 'icon' => 'image|max:1024',
+                'link' => 'nullable|string|max:255',
                 'gift_id' => 'required|integer',
             ]);
 

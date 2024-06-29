@@ -15,8 +15,9 @@ class ThreeDViewController extends Controller
         $house_tour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
         $property_view = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
         $street_view = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
-
-        return view('admin.layouts.cms.map-or-video', compact('house_tour', 'property_view', 'street_view'));
+        $visit_your_new_home = CMS::where('section_name', Section::VISIT_YOUR_NEW_HOME)->first();
+      
+        return view('admin.layouts.cms.map-or-video', compact('house_tour', 'property_view' , 'street_view', 'visit_your_new_home'));
     }
 
     public function updateOrCreateHoursTour(Request $request)
@@ -88,25 +89,57 @@ class ThreeDViewController extends Controller
     public function updateOrCreateStreetView(Request $request)
     {
         $request->validate([
-            's_link_type' => 'required|in:youtube_link,map_link',
-            's_map_link' => 'required_if:s_link_type,map_link|url|nullable',
-            's_video_url_en' => 'required_if:s_link_type,youtube_link|url|nullable',
-            's_video_url_de' => 'required_if:s_link_type,youtube_link|url|nullable',
-            's_video_url_hu' => 'required_if:s_link_type,youtube_link|url|nullable',
+            'link_type' => 'required|in:youtube_link,map_link',
+            'map_link' => 'required_if:link_type,map_link|url|nullable',
+            'video_url_en' => 'required_if:s_link_type,youtube_link|url|nullable',
+            'video_url_de' => 'required_if:s_link_type,youtube_link|url|nullable',
+            'video_url_hu' => 'required_if:s_link_type,youtube_link|url|nullable',
         ]);
         try {
-            if ($request->s_link_type == 'map_link') {
-                $request->s_video_url_en = null;
-                $request->s_video_url_de = null;
-                $request->s_video_url_hu = null;
+            if ($request->link_type == 'map_link') {
+                $request->video_url_en = null;
+                $request->video_url_de = null;
+                $request->video_url_hu = null;
             } else {
-                $request->s_map_link = null;
+                $request->map_link = null;
             }
-            CMS::updateOrCreate(['section_name' => Section::TREE_D_STREET_VIEW], [
-                'link' => $request->s_map_link,
-                'link_en' => convertToEmbedUrl($request->s_video_url_en),
-                'link_de' => convertToEmbedUrl($request->s_video_url_de),
-                'link_hu' => convertToEmbedUrl($request->s_video_url_hu),
+            CMS::updateOrCreate(['section_name' => Section::VISIT_YOUR_NEW_HOME], [
+                'link' => $request->map_link,
+                'link_en' => convertToEmbedUrl($request->video_url_en),
+                'link_de' => convertToEmbedUrl($request->video_url_de),
+                'link_hu' => convertToEmbedUrl($request->video_url_hu),
+            ]);
+            flash()->addSuccess('Updated successfully.');
+
+            return redirect()->back();
+        } catch (Exception $exception) {
+            flash()->addError($exception->getMessage());
+
+            return redirect()->back();
+        }
+    }
+    public function updateOrCreateVisitYourNewHome(Request $request)
+    {
+        $request->validate([
+            'h_link_type' => 'required|in:youtube_link,map_link',
+            'h_map_link' => 'required_if:h_link_type,map_link|url|nullable',
+            'h_video_url_en' => 'required_if:h_link_type,youtube_link|url|nullable',
+            'h_video_url_de' => 'required_if:h_link_type,youtube_link|url|nullable',
+            'h_video_url_hu' => 'required_if:h_link_type,youtube_link|url|nullable',
+        ]);
+        try {
+            if ($request->h_link_type == 'map_link') {
+                $request->h_video_url_en = null;
+                $request->h_video_url_de = null;
+                $request->h_video_url_hu = null;
+            } else {
+                $request->h_map_link = null;
+            }
+            CMS::updateOrCreate(['section_name' => Section::VISIT_YOUR_NEW_HOME], [
+                'link' => $request->h_map_link,
+                'link_en' => convertToEmbedUrl($request->h_video_url_en),
+                'link_de' => convertToEmbedUrl($request->h_video_url_de),
+                'link_hu' => convertToEmbedUrl($request->h_video_url_hu),
             ]);
             flash()->addSuccess('Updated successfully.');
 
