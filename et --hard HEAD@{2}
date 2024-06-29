@@ -1,0 +1,93 @@
+[33ma989db7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrasel[m[33m)[m HEAD@{0}: reset: moving to a989db7180cae7b1edbbe07a6ba9f66b1fa200cf
+[33mb8c8728[m HEAD@{1}: commit: campaign update
+[33ma989db7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrasel[m[33m)[m HEAD@{2}: pull: updating HEAD
+[33ma989db7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrasel[m[33m)[m HEAD@{3}: pull origin dev: Merge made by the 'ort' strategy.
+[33mfc78006[m HEAD@{4}: commit: ,
+[33m6225536[m HEAD@{5}: pull origin dev: Fast-forward
+[33me822256[m HEAD@{6}: commit: raffle rules dynamic completed
+[33m0d6093d[m HEAD@{7}: commit: fixed configuration
+[33m360b610[m HEAD@{8}: pull origin dev: Fast-forward
+[33m5a32e9d[m HEAD@{9}: commit: settings update issue fixed
+[33m91978b0[m HEAD@{10}: commit: update issues
+[33m66ab391[m HEAD@{11}: commit: fixed issue
+[33mc30a147[m HEAD@{12}: pull origin dev: Fast-forward
+[33mdfd5f48[m HEAD@{13}: pull: Fast-forward
+[33m3351f26[m HEAD@{14}: commit: button click link added
+[33me23a58a[m HEAD@{15}: commit: update refund button css
+[33m0119291[m HEAD@{16}: commit: upload databse
+[33m12c7456[m HEAD@{17}: pull origin dev: Fast-forward
+[33m48c81b3[m HEAD@{18}: commit: update css issue
+[33m393b184[m HEAD@{19}: pull origin dev: Fast-forward
+[33mdba14d3[m HEAD@{20}: commit: payment refund system completed
+[33m3147192[m HEAD@{21}: pull: Merge made by the 'ort' strategy.
+[33mee89f33[m HEAD@{22}: commit: fixed admin dashboard issues
+[33m2d41694[m HEAD@{23}: commit: create conflict
+[33m62e0e8f[m HEAD@{24}: pull: Fast-forward
+[33m79b086a[m HEAD@{25}: commit: paypal payment intrigration completed
+[33m929732a[m HEAD@{26}: commit: checkout modifi
+[33m1076484[m HEAD@{27}: pull origin dev: Fast-forward
+[33meb31601[m HEAD@{28}: commit: update form layout and update the process content
+[33mac2b524[m HEAD@{29}: commit: the proccess add seed
+[33m0bc5e73[m HEAD@{30}: commit: about cms page completed
+[33mcfe1763[m HEAD@{31}: pull: Fast-forward
+[33ma94c0de[m HEAD@{32}: commit: home page cms crud completed
+[33ma940bd7[m HEAD@{33}: commit: .
+[33m31f0bdd[m HEAD@{34}: pull: Fast-forward
+[33meb77fbf[m HEAD@{35}: pull origin dev: Fast-forward
+[33m02259db[m HEAD@{36}: pull: Fast-forward
+[33m96c87ad[m HEAD@{37}: commit: the process translate completed
+[33meea5388[m HEAD@{38}: pull: Fast-forward
+[33mad0a08e[m HEAD@{39}: commit: hero and header section translate completed
+[33m6738307[m HEAD@{40}: commit: json translate language
+[33meb4307e[m HEAD@{41}: commit: hero section traslaing
+[33mc66f0aa[m HEAD@{42}: commit: adding language text
+[33ma7f4493[m HEAD@{43}: pull origin dev: Merge made by the 'ort' strategy.
+[33m3997490[m HEAD@{44}: commit: added localization
+[33meb272b9[m HEAD@{45}: commit: the process section dynamic compeleted
+[33m526941b[m HEAD@{46}: commit: The process section create completed
+[33m5c4bac3[m HEAD@{47}: commit: fixed mastaring issue
+[33m817ddc1[m HEAD@{48}: commit (merge): .
+[33mbb59606[m HEAD@{49}: pull origin rasel: Merge made by the 'ort' strategy.
+[33mafd2bad[m HEAD@{50}: pull origin dev: Merge made by the 'ort' strategy.
+[33mf78b535[m HEAD@{51}: commit: hero section cms completed
+[33me816898[m HEAD@{52}: commit (merge): Cms hero section crud complete
+[33me9104b7[m HEAD@{53}: commit: .
+[33m31bbb46[m HEAD@{54}: pull: Fast-forward
+[33maaf1335[m HEAD@{55}: commit: dashboard issue fixed
+[33m41b9046[m HEAD@{56}: commit: update
+[33m5b9eb48[m HEAD@{57}: pull origin dev: Merge made by the 'ort' strategy.
+[33mee49d36[m HEAD@{58}: commit: solved user profile issue
+[33mb88fd2f[m HEAD@{59}: commit: ticket dynamic
+[33m6462d07[m HEAD@{60}: pull origin dev: Merge made by the 'ort' strategy.
+[33m4ca0ece[m HEAD@{61}: commit: .
+[33m4b4e059[m HEAD@{62}: pull origin dev: updating HEAD
+[33m4b4e059[m HEAD@{63}: pull origin dev: updating HEAD
+[33m4b4e059[m HEAD@{64}: pull origin saidur: Merge made by the 'ort' strategy.
+[33m1dad7e0[m HEAD@{65}: pull origin dev: Fast-forward
+[33m798ee75[m HEAD@{66}: commit: update campaign
+[33mbada72f[m HEAD@{67}: commit: added ticket table
+[33mf4e746d[m HEAD@{68}: commit: puchase limit add on campaign
+[33m602e8e9[m HEAD@{69}: commit: notification,help-center,settings page mastering completed
+[33m9fbf7be[m HEAD@{70}: pull origin dev: Fast-forward
+[33m48ef417[m HEAD@{71}: commit: campaign create/edit/delete completed
+[33m08a3c30[m HEAD@{72}: commit: admin profile upate complete
+[33m3c17b03[m HEAD@{73}: pull origin dev: Fast-forward
+[33mfbe85c4[m HEAD@{74}: commit (merge): solve confilit
+[33m896ad4f[m HEAD@{75}: commit: admin profile page
+[33mce1a19f[m HEAD@{76}: pull origin dev: updating HEAD
+[33mce1a19f[m HEAD@{77}: pull: Fast-forward
+[33m76658a7[m HEAD@{78}: commit: 404 remove
+[33m439928c[m HEAD@{79}: commit: remove extra file
+[33m381e153[m HEAD@{80}: pull origin dev: Fast-forward
+[33meeeac32[m HEAD@{81}: pull origin dev: Fast-forward
+[33m4a863dc[m HEAD@{82}: commit: all table created & user laytets
+[33mf816f8d[m HEAD@{83}: commit: solve route issue
+[33m8e3e347[m HEAD@{84}: commit: update route issue
+[33m93c0dc5[m HEAD@{85}: pull origin dev: Fast-forward
+[33m0da7b48[m HEAD@{86}: commit: user,ticket,staticts page
+[33mf3211b7[m HEAD@{87}: checkout: moving from dev to rasel
+[33mb2f5bb4[m[33m ([m[1;32mdev[m[33m)[m HEAD@{88}: checkout: moving from rasel to dev
+[33mf3211b7[m HEAD@{89}: commit: admin masting.
+[33mb2f5bb4[m[33m ([m[1;32mdev[m[33m)[m HEAD@{90}: Branch: renamed refs/heads/dev to refs/heads/rasel
+[33mb2f5bb4[m[33m ([m[1;32mdev[m[33m)[m HEAD@{92}: Branch: renamed refs/heads/master to refs/heads/dev
+[33mb2f5bb4[m[33m ([m[1;32mdev[m[33m)[m HEAD@{94}: commit (initial): init

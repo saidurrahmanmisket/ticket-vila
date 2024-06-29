@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name_en');
             $table->string('name_de');
             $table->string('name_hu');
-            $table->enum('target_type',[2,3])->nullable()->comment('2=date,3=campaign limit');
+            $table->enum('target_type', [2, 3])->nullable()->comment('2=date,3=campaign limit');
             $table->integer('limit')->nullable()->default(0);
             $table->dateTime('end_time')->nullable()->default(null);
             $table->string('unique_text');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('purchase_limit')->nullable();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();
-            $table->enum('status',['draft','published','complete'])->default('published');
+            $table->enum('status', ['draft', 'published', 'complete'])->default('published');
             $table->timestamps();
         });
     }
