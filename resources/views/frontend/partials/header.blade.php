@@ -94,7 +94,7 @@
                     location.reload();
                 }, // success end
                 error: function (error) {
-                    toastr.error(error?.responseJson?.message);
+                    flasher.error(error?.responseJson?.message);
                 } // Error
             })
         })

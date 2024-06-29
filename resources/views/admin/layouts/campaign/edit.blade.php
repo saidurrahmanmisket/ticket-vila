@@ -231,16 +231,16 @@
                     success: function(resp) {
                         if (resp.success === true) {
                             // show toast message
-                            toastr.success(resp.message);
+                            flasher.success(resp.message);
                             $("#ebook_"+id).remove()
                         } else if (resp.errors) {
-                            toastr.error(resp.errors[0]);
+                            flasher.error(resp.errors[0]);
                         } else {
-                            toastr.error(resp.message);
+                            flasher.error(resp.message);
                         }
                     }, // success end
                     error: function(error) {
-                        toastr.error(error?.responseJSON.message)
+                        flasher.error(error?.responseJSON.message)
                     } // Error
                 })
             }
