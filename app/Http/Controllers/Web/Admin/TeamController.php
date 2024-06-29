@@ -137,20 +137,22 @@ class TeamController extends Controller
             $team = Team::findOrFail($id);
             if ($team->status == Status::ACTIVE) {
                 $team->status = Status::INACTIVE;
-            }else{
+            } else {
                 $team->status = Status::ACTIVE;
             }
             $team->save();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Status updated successfully',
                 'data' => $team,
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return response()->json([
-               'success' => false,
-               'message' => $e->getMessage(),
+                'success' => false,
+                'message' => $e->getMessage(),
             ]);
         }
     }

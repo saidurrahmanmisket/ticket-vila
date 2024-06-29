@@ -146,22 +146,23 @@ class FaqController extends Controller
             $faq = FAQ::findOrFail($id);
             if ($faq->status == Status::ACTIVE) {
                 $faq->status = Status::INACTIVE;
-            }else{
+            } else {
                 $faq->status = Status::ACTIVE;
             }
             $faq->save();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Status updated successfully',
                 'data' => $faq,
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
             ]);
         }
     }
-
 }
