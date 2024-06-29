@@ -48,21 +48,6 @@
     gtag('config', 'G-5QHWEZJLXC');
 </script>
 
-<!-- intercom -->
-<script>
-    window.intercomSettings = {
-        api_base: "https://api-iam.intercom.io",
-        app_id: "dkremsz8",
-        user_id: user.id, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-        name: user.name, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-        email: user
-            .email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
-        created_at: user
-            .createdAt, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
-    };
-</script>
-
-
 <script>
     // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/dkremsz8'
     (function() {
@@ -99,10 +84,6 @@
         }
     })();
 </script>
-
-
-
-
 {{-- custom css --}}
 <style>
     /* expose  styles  */

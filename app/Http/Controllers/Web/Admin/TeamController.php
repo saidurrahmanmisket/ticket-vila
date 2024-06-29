@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
@@ -128,5 +129,29 @@ class TeamController extends Controller
         flash()->addSuccess('Deleted Successfully.');
 
         return redirect()->route('admin.team.index');
+    }
+
+    public function status($id)
+    {
+        try {
+            $team = Team::findOrFail($id);
+            if ($team->status == Status::ACTIVE) {
+                $team->status = Status::INACTIVE;
+            }else{
+                $team->status = Status::ACTIVE;
+            }
+            $team->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status updated successfully',
+                'data' => $team,
+            ]);
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            return response()->json([
+               'success' => false,
+               'message' => $e->getMessage(),
+            ]);
+        }
     }
 }
