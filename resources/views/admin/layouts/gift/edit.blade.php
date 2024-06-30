@@ -216,8 +216,7 @@
                             <div class="card-body" id="feature-content">
                                 <h2 class="text-center card-title">Gift Features </h2>
                                 <div class="d-flex justify-content-end gap-2 mb-4">
-                                    <a type="button" id="addFeature" class="btn btn-primary ">Add Another
-                                        image</a>
+                                    <a type="button" id="addFeature" class="btn btn-primary ">Add Another</a>
                                 </div>
 
 
@@ -490,7 +489,7 @@
 
 
 
-        //add feature section 
+        //add feature section
 
         document.addEventListener('DOMContentLoaded', function() {
             let featureCount = $('.feature-no:last').text().toLowerCase();
@@ -578,7 +577,7 @@
         });
 
 
-        // disable image for upload 
+        // disable image for upload
         $(document).ready(function() {
 
             $('.dropify-disabled').on('click', function(event, element) {
@@ -592,7 +591,7 @@
             })
         });
 
-        //delete feature item 
+        //delete feature item
         $('#feature-content').on('click', '.remove-feature', function() {
             console.log('ok');
             $(this).parent().parent().parent().remove();
