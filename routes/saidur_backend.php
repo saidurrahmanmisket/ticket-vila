@@ -4,12 +4,11 @@ use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
+use App\Http\Controllers\Web\Admin\KeyFeatureController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\Admin\KeyFeatureController;
-
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
@@ -31,6 +30,5 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/dynamic-page', DynamicPageController::class);
     Route::resource('/key-feature', KeyFeatureController::class)->except('show');
     Route::post('/key-feature/status/{id}', [KeyFeatureController::class, 'status'])->name('key-feature.status');
-
 
 });

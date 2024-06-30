@@ -152,11 +152,11 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(resp) {
-                    toastr.success('The Process Status Changed Successfully');
+                    flasher.success('The Process Status Changed Successfully');
                     $('#the--process--list').html(resp)
                 }, // success end
                 error: function(error) {
-                    toastr.error('Something was wrong.');
+                    flasher.error('Something was wrong.');
                 } // Error
             })
         }
@@ -173,11 +173,11 @@
                     data:{ids:idString},
                     success:function(resp){
                         console.log(resp)
-                        toastr.success('Order Sorted Successfully.');
+                        flasher.success('Order Sorted Successfully.');
                         $('#the--process--list').html(resp)
                     },
                     error:function (error){
-                        toastr.error('Something was wrong.');
+                        flasher.error('Something was wrong.');
                     }
                 })
             }

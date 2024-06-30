@@ -47,11 +47,12 @@ class CampaignController extends Controller
             'unique_text' => 'required|string|regex:/^[a-zA-Z]+$/|unique:campaigns,unique_text',
             //           'purchase_limit'=>'integer|required',
             //           'end_date' => 'required_if:campaign_type,2',
-            'price' => 'required|numeric',
-            'limit' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'limit' => 'required|integer|min:0',
             'ebook_files' => 'array|required',
             'ebook_files.*' => 'file|required|max:4096',
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'how_many_buy' => 'nullable|numeric|',
         ],
             [
                 'thumbnail.max' => 'Thumbnail max size 2 MB',
@@ -150,7 +151,7 @@ class CampaignController extends Controller
                 'name_de' => $request->name_de,
                 'name_hu' => $request->name_hu,
                 'gift_id' => $request->gift_id,
-//                'unique_text' => $request->unique_text, //(should not be updated)
+                //                'unique_text' => $request->unique_text, //(should not be updated)
                 'thumbnail' => $thumbnail_path,
                 'price' => $request->price,
                 'limit' => $request->limit,
