@@ -65,9 +65,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="mt-5">
                                     <label for="gift_image">Gift Image</label>
                                     <input type="file" class="form-control form-control-lg mt-2 border-left-0 dropify"
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card my-4 p-2">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between gap-2 mb-4">
@@ -197,8 +197,8 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="input--group">
@@ -240,8 +240,8 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="input--group">
@@ -410,8 +410,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="row">
                                 <h5 class="mt-5">Feature Sub Title</h5>
                                 <div class="col-lg-4">
@@ -442,7 +442,7 @@
                                 name="feature_image[]" id="feature_image${featureCount}" data-show-remove="true" accept="image/*"
                                         data-default-file="">
                                 </div>
-                            </div> 
+                            </div>
                 </div>
             </div>
             `;
@@ -456,7 +456,7 @@
 
 
 
-        //delete feature item 
+        //delete feature item
         $('#feature-content').on('click', '.remove-feature', function() {
             $(this).parent().parent().parent().remove();
         });

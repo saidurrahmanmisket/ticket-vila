@@ -172,8 +172,8 @@ class GiftController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         try {
+        // dd($request->all());
         DB::beginTransaction();
 
         $validator = $request->validate([
@@ -183,9 +183,15 @@ class GiftController extends Controller
             'feature_title_en.*' => 'required',
             'feature_title_de.*' => 'required',
             'feature_title_hu.*' => 'required',
+            'feature_title_en_old.*' => 'required',
+            'feature_title_de_old.*' => 'required',
+            'feature_title_hu_old.*' => 'required',
             'feature_sub_title_en.*' => 'nullable|string',
             'feature_sub_title_de.*' => 'nullable|string',
             'feature_sub_title_hu.*' => 'nullable|string',
+            'feature_sub_title_en_old.*' => 'nullable|string',
+            'feature_sub_title_de_old.*' => 'nullable|string',
+            'feature_sub_title_hu_old.*' => 'nullable|string',
             'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
             'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
             'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
@@ -256,7 +262,7 @@ class GiftController extends Controller
             // Handle updating existing featured items
             if ($request->has('featureId')) {
                 foreach ($request->input('featureId') as $key => $featuredId) {
-                    $featuredItem = GiftFeaturedItem::find($featuredId);
+                    $featuredItem = GiftFeaturedItem::find($featuredId) ;
                     if ($featuredItem) {
                         // Update fields
                         $featuredItem->title_en = $request->input('feature_title_en_old.'.$key);
