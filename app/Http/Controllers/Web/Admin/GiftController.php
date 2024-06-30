@@ -36,6 +36,7 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
+        try {
         DB::beginTransaction();
 
         $validator = $request->validate([
@@ -56,7 +57,6 @@ class GiftController extends Controller
             'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
-        try {
 
             // Store data in the 'gifts' table
             if ($request->has('gift_image')) {
@@ -173,6 +173,7 @@ class GiftController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+        try {
         DB::beginTransaction();
 
         $validator = $request->validate([
@@ -193,7 +194,6 @@ class GiftController extends Controller
             'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
-        try {
             $gift = Gift::findOrFail($id);
 
             // Update gift image
