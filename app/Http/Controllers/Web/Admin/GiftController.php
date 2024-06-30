@@ -48,12 +48,12 @@ class GiftController extends Controller
             'feature_sub_title_en.*' => 'nullable|string',
             'feature_sub_title_de.*' => 'nullable|string',
             'feature_sub_title_hu.*' => 'nullable|string',
-            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         try {
@@ -185,12 +185,12 @@ class GiftController extends Controller
             'feature_sub_title_en.*' => 'nullable|string',
             'feature_sub_title_de.*' => 'nullable|string',
             'feature_sub_title_hu.*' => 'nullable|string',
-            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         try {
