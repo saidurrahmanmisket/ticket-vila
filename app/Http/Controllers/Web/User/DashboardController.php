@@ -21,7 +21,6 @@ class DashboardController extends Controller
                 ->where('user_id', '=', $user->id)
                 ->get();
 
-
             $data = [
                 'campaign' => $campaign,
                 'userTickets' => $userTickets,
@@ -45,5 +44,4 @@ class DashboardController extends Controller
 
         return view('user.layouts.buy-tickets', compact('campaign'));
     }
-
 }

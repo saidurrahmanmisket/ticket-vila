@@ -17,9 +17,9 @@
 
                     <input type="hidden" name="productId" value="{{ $campaign->id ?? '' }}">
                     <input type="hidden" name="productName" value="{{ $campaign['name_' . locale()] ?? '' }}">
-                    <input type="hidden" name="perPrice" value="{{ $campaign->price ?? '' }}">
-                    <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? '' }}">
-                    <input type="hidden" name="quantity" value="{{ $quantity ?? '' }}">
+                    <input type="hidden" name="perPrice" value="{{ $campaign->price ?? 0 }}">
+                    <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? 0 }}">
+                    <input type="hidden" name="quantity" value="{{ $quantity ?? 1 }}">
                     <input type="hidden" name="paymentMethod" value="stripe">
                     <!-- step  -->
                     <div class="">
@@ -36,9 +36,27 @@
                                 <li>
                                     <div class="options">
                                         <p>Quentity</p>
-                                        <p>{{ $quantity ?? '' }}</p>
+                                        <p>{{ $quantity ?? 1 }}</p>
                                     </div>
                                 </li>
+                                @if($campaign->how_many_buy && $campaign->how_many_free)
+                                    <li>
+                                        <div class="options">
+                                            <p>Free Tickets</p>
+                                            <p>{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
+                                        </div>
+                                    </li>
+                                @endif
+                                @if($campaign->discount_percent && Carbon\Carbon::parse($campaign->discount_expire_date)->greaterThan(now()))
+                                    <li>
+                                        <div class="options">
+                                            <p>Discount ({{$campaign->discount_percent}}%)</p>
+                                            <p>
+                                                -{{ $totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent) }}
+                                                €</p>
+                                        </div>
+                                    </li>
+                                @endif
                                 {{-- <li>
                                     <p class="extra">
                                         Of the 99C Price, 59C is directly allocated to the
@@ -54,7 +72,8 @@
                                 <li>
                                     <div class="options total">
                                         <p>Total</p>
-                                        <p class="text-green">{{ $totalPrice ?? '' }}€</p>
+                                        <p class="text-green">{{ $campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice }}
+                                            €</p>
                                     </div>
                                 </li>
                             </ul>

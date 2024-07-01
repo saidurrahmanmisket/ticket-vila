@@ -120,7 +120,7 @@
                 success: function(resp) {
                     if (resp.success === true) {
                         // show toast message
-                        toastr.success(resp.message);
+                        flasher.success(resp.message);
                         if (resp.data.status == "{{\App\Enums\Status::ACTIVE}}") {
                             element.checked = true;
                         } else {
@@ -128,9 +128,9 @@
                         }
 
                     } else if (resp.errors) {
-                        toastr.error(resp.errors[0]);
+                        flasher.error(resp.errors[0]);
                     } else {
-                        toastr.error(resp.message);
+                        flasher.error(resp.message);
                     }
                 }, // success end
                 error: function(error) {

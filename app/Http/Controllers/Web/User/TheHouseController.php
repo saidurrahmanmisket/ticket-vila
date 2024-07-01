@@ -12,6 +12,7 @@ use App\Models\HouseFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 class TheHouseController extends Controller
 {
     public function index()
