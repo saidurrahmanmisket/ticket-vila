@@ -169,4 +169,11 @@ class PageController extends Controller
         return view('frontend.layouts.faqs', compact('faqs'));
 
     }
+
+    public  function checkout(){
+        return view('frontend.layouts.checkout');
+    }
+    public  function buyEbook(){
+        return view('frontend.layouts.buy-ebook');
+    }
 }
