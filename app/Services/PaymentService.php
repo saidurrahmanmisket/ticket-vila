@@ -4,13 +4,19 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\Ticket;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentService
 {
     public function orderCreate($orderInfo)
     {
-        $discount_totalPrice = calculateDiscount($orderInfo['total_price'] ?? 0, $orderInfo['discount_percent'] ?? 0);
+
+        if (Carbon::parse($orderInfo['discount_expire_date'])->greaterThan(now())) {
+            $discount_totalPrice = calculateDiscount($orderInfo['total_price'] ?? 0, $orderInfo['discount_percent'] ?? 0);
+        } else {
+            $discount_totalPrice = $orderInfo['total_price'];
+        }
 
         return Order::create([
             'user_id' => $orderInfo['user_id'],
