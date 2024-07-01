@@ -48,7 +48,7 @@ class StripeController extends Controller
                 }
 
                 // Redirect back with input and errors
-                return redirect()->route('user.buy-tickets');
+                return redirect()->back();
             }
 
             $productName = $request->productName;
@@ -98,7 +98,7 @@ class StripeController extends Controller
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->route('user.buy-tickets')->with($e->getMessage());
+            return redirect()->back()->with($e->getMessage());
         }
     }
 
@@ -113,12 +113,13 @@ class StripeController extends Controller
                 // Retrieve session data
                 $campaign = Campaign::latest()->with(['ebooks'])->where('status', 'published')->first();
                 $quantity = LaravelSession::get('quantity');
-                $discountQuantity = (int) $quantity == 9 ? 1 : 0;
+                $discountQuantity = calculateFreeTicket($quantity, $campaign->how_many_buy, $campaign->how_many_free);
                 $paymentInfo = [
                     'user_id' => Auth::id(),
                     'transaction_id' => $session->payment_intent,
                     'quantity' => LaravelSession::get('quantity'),
                     'discount_quantity' => $discountQuantity,
+                    'discount_percent' => $campaign->discount_percent,
                     'total_price' => LaravelSession::get('totalPrice'),
                     'payment_method' => PaymentMethod::STRIPE,
                     'campaign_id' => $campaign->id,

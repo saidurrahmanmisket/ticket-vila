@@ -107,8 +107,8 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        @error('inside_image')
-                                            <span class="text-danger" role="alert">
+                                        @error('inside_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -135,8 +135,8 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        @error('outside_image')
-                                            <span class="text-danger" role="alert">
+                                        @error('outside_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -162,6 +162,11 @@
                                             value="{{ old('plan_image', '') }}" data-default-file="">
                                         @error('plan_image')
                                             <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        @error('plan_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -373,7 +378,7 @@
         //feature section
 
         document.addEventListener('DOMContentLoaded', function() {
-            let featureCount = 1;
+            let featureCount = 0;
 
             document.getElementById('addFeature').addEventListener('click', function() {
                 featureCount++;

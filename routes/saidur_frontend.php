@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
-    Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
     //static page views

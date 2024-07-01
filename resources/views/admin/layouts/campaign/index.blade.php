@@ -3,6 +3,13 @@
 @section('header_title')
     Campaign
 @endsection;
+@push('style')
+    <style>
+        .status .nice-select.form-select.select {
+            width: 160px;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main statistics">
     <div class="tickets--area users--area">
@@ -82,7 +89,15 @@
                             <td>{{ $campaign->limit }}</td>
                             <td>{{ $campaign->unique_text }}</td>
                             <td>{{ number_format($campaign->price,2) }}</td>
-                            <td>{{ $campaign->status }}</td>
+                            <td class="status">
+                                <select class="form-select select" id="change_status"
+                                        onchange="statusChange({{$campaign->id}},this)">
+                                    @foreach(\App\Enums\Status::campaignStatus() as $key => $val)
+                                        <option @if($campaign->status === $key) selected
+                                                @endif value="{{$key}}">{{$val}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
                             <td>
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="{{route('admin.campaign.edit',$campaign->id)}}" style="color: #4b5563">
@@ -115,4 +130,38 @@
     </div>
     </section>
 @endsection
+@push('script')
+    <script>
+        function statusChange(id, event) {
+            var url = '{{ route('admin.campaign.status', ':id') }}';
+            $.ajax({
+                type: "POST",
+                url: url.replace(':id', id),
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "status": $(event).val()
+                },
+                success: function (resp) {
+                    if (resp.success === true) {
+                        // show toast message
+                        flasher.success(resp.message);
+                    } else if (resp.success === false && resp.is_exist === true) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: resp.message,
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        flasher.error(resp.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    flasher.error(error?.responseJSON.message)
+                } // Error
+            })
+        }
+    </script>
+@endpush
 

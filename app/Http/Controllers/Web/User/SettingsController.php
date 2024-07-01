@@ -32,24 +32,24 @@ class SettingsController extends Controller
 
     public function infoUpdate(Request $request)
     {
-            $input = $request->validate([
-                'first_name' => 'required|string|max:100',
-                'last_name' => 'required|string|max:100',
-                'email' => 'required|string|email|max:100|unique:users,email,'.Auth::user()->id,
-                'zip_code' => 'nullable|string|max:20',
-                'gender' => 'required|in:1,2,3',
-                'address_1' => 'nullable|string|max:255',
-                'city' => 'nullable|string|max:100',
-                'city_of_birthday' => 'nullable|string|max:100',
-                'country_of_birthday' => 'nullable|string|max:100',
-                'state' => 'nullable|string|max:100',
-                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-                'birthday' => 'nullable|date',
-                'phone' => 'nullable|max:25',
-            ],
-                [
-                    'avatar.max' => 'Max file size 2 MB',
-                ]);
+        $input = $request->validate([
+            'first_name' => 'required|string|max:100',
+            'last_name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:100|unique:users,email,'.Auth::user()->id,
+            'zip_code' => 'nullable|string|max:20',
+            'gender' => 'required|in:1,2,3',
+            'address_1' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:100',
+            'city_of_birthday' => 'nullable|string|max:100',
+            'country_of_birthday' => 'nullable|string|max:100',
+            'state' => 'nullable|string|max:100',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'birthday' => 'nullable|date',
+            'phone' => 'nullable|max:25',
+        ],
+            [
+                'avatar.max' => 'Max file size 2 MB',
+            ]);
         try {
 
             $file = $request->file('avatar');
