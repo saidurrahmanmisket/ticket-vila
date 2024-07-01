@@ -84,6 +84,14 @@
         }
     })();
 </script>
+<!-- weglot API -->
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_76d0661293fa2792efc9f4f6542062d31'
+    });
+</script>
+
 {{-- custom css --}}
 <style>
     /* expose  styles  */

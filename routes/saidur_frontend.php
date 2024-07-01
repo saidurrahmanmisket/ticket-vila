@@ -29,6 +29,8 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
     Route::get('page/{page_slug}', 'dynamicPage')->name('custom.page');
     Route::get('/faqs', 'faq')->name('faqs');
+    Route::get('/checkout', 'checkout')->name('checkout');
+    Route::get('/buy-ebook', 'buyEbook')->name('buy-ebook');
 
 });
 
@@ -55,6 +57,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
+    Route::get('user/download/house-file/{id}', [TheHouseController::class, 'downloadHouseFile'])->name('download-house-file');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 

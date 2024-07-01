@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
+use App\Http\Controllers\Web\Admin\HouseFileController;
 use App\Http\Controllers\Web\Admin\KeyFeatureController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
@@ -30,5 +31,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/dynamic-page', DynamicPageController::class);
     Route::resource('/key-feature', KeyFeatureController::class)->except('show');
     Route::post('/key-feature/status/{id}', [KeyFeatureController::class, 'status'])->name('key-feature.status');
+    Route::resource('/house-files', HouseFileController::class)->except('show');
+    Route::post('/house-file/status/{id}', [HouseFileController::class, 'status'])->name('house-files.status');
 
 });

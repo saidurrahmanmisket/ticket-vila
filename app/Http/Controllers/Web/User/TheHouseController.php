@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Web\User;
 
 use App\Enums\Section;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\Gift;
+use App\Models\HouseFile;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class TheHouseController extends Controller
 {
@@ -29,7 +34,8 @@ class TheHouseController extends Controller
                     ->inRandomOrder()
                     ->limit(20)
                     ->get();
-                $keyFeatures = $gift->keyFeatures()->where('status', 'active')->get();
+                $keyFeatures = $gift->keyFeatures()->where('status', 'active')->where('gift_id', $gift->id)->get();
+                $houseFiles = HouseFile::where('status', Status::ACTIVE)->where('gift_id' , $gift->id)->get();
             } else {
                 $gift = null;
                 $giftRandomImages = null;
@@ -41,6 +47,16 @@ class TheHouseController extends Controller
             $keyFeatures = null;
         }
 
-        return view('user.layouts.house', compact('giftRandomImages', 'keyFeatures', 'houseTour', 'propertyView'));
+        return view('user.layouts.house', compact('giftRandomImages', 'keyFeatures', 'houseTour', 'propertyView', 'houseFiles'));
+    }
+
+    public function downloadHouseFile($id){
+        try {
+            $houseFile = HouseFile::findOrFail($id);
+            return response()->download($houseFile->file_path);
+        }catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('user.house')->with('error', 'Failed to download the file.');
+        }
     }
 }

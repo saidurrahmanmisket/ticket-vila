@@ -142,8 +142,7 @@
                                 <div class="item">
                                     <div class="single--card">
                                         <img class="cover--img"
-                                            src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}"
-                                            {{-- facts1.svg') }} --}} alt="" />
+                                            src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}" alt="" />
 
                                         {{-- <div class="overlay"></div> --}}
 
