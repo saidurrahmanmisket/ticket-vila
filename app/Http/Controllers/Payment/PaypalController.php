@@ -129,6 +129,7 @@ class PaypalController extends Controller
                     'quantity' => LaravelSession::get('quantity'),
                     'discount_quantity' => $discountQuantity,
                     'discount_percent' => $campaign->discount_percent,
+                    'discount_expire_date' => $campaign->discount_expire_date,
                     'total_price' => LaravelSession::get('totalPrice'),
                     'payment_method' => PaymentMethod::PAYPAL,
                     'campaign_id' => $campaign->id,
