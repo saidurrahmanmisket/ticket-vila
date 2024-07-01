@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
+    Route::get('user/download/house-file/{id}', [TheHouseController::class, 'downloadHouseFile'])->name('download-house-file');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
 
