@@ -15,6 +15,8 @@ class Status extends Enum
 {
     const ACTIVE = 'active';
 
+    const DRAFT = 'draft';
+
     const INACTIVE = 'inactive';
 
     const PUBLISHED = 'published';
@@ -26,4 +28,14 @@ class Status extends Enum
     const PENDING = 'pending';
 
     const REFUND = 'refund';
+
+    public static function campaignStatus(): array
+    {
+        return [
+            self::DRAFT => 'Draft',
+            self::COMPLETED => 'Completed',
+            self::PUBLISHED => 'Published',
+
+        ];
+    }
 }

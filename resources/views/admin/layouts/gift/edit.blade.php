@@ -122,8 +122,8 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        @error('inside_image')
-                                            <span class="text-danger" role="alert">
+                                        @error('inside_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -131,6 +131,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="card my-4 p-2">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between gap-2 mb-4">
@@ -163,8 +164,8 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        @error('outside_image')
-                                            <span class="text-danger" role="alert">
+                                        @error('outside_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -172,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        {{$errors}}
                         {{-- gift plan image --}}
                         <div class="card my-4 p-2">
                             <div class="card-body">
@@ -202,7 +203,12 @@
                                             name="plan_image[]" data-show-remove="true" accept="image/*"
                                             value="{{ old('plan_image', '') }}" data-default-file="">
                                         @error('plan_image')
-                                            <span class="text-danger" role="alert">
+                                        <span class="text-danger d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        @error('plan_image.*')
+                                        <span class="text-danger d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -335,7 +341,12 @@
                                                                     data-show-remove="true" accept="image/*"
                                                                     data-default-file="{{ asset($featureItem->image) }}">
                                                                 @error('feature_image')
-                                                                    <span class="text-danger" role="alert">
+                                                                <span class="text-danger d-block" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                                @error('feature_image.*')
+                                                                <span class="text-danger d-block" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror

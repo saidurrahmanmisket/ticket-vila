@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\Gift;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class TheHouseController extends Controller
 {

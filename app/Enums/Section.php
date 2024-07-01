@@ -24,6 +24,7 @@ class Section extends Enum
     const TREE_D_PROPERTY_VIEW = 'three_d_property_view';
 
     const TREE_D_STREET_VIEW = 'three_d_street_view';
+
     const VISIT_YOUR_NEW_HOME = 'visit_your_new_home';
 
     const THE_MISSION = 'the_mission';

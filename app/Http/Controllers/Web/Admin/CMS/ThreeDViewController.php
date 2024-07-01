@@ -16,8 +16,8 @@ class ThreeDViewController extends Controller
         $property_view = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
         $street_view = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
         $visit_your_new_home = CMS::where('section_name', Section::VISIT_YOUR_NEW_HOME)->first();
-      
-        return view('admin.layouts.cms.map-or-video', compact('house_tour', 'property_view' , 'street_view', 'visit_your_new_home'));
+
+        return view('admin.layouts.cms.map-or-video', compact('house_tour', 'property_view', 'street_view', 'visit_your_new_home'));
     }
 
     public function updateOrCreateHoursTour(Request $request)
@@ -118,6 +118,7 @@ class ThreeDViewController extends Controller
             return redirect()->back();
         }
     }
+
     public function updateOrCreateVisitYourNewHome(Request $request)
     {
         $request->validate([
