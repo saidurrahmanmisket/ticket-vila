@@ -57,3 +57,6 @@
             cursor: pointer;
         }
 </style>
+
+
+@stack('style')

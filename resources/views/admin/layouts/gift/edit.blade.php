@@ -173,7 +173,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{$errors}}
                         {{-- gift plan image --}}
                         <div class="card my-4 p-2">
                             <div class="card-body">

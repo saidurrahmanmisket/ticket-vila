@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
+use App\Http\Controllers\Web\Admin\HighlightImageController;
 use App\Http\Controllers\Web\Admin\HouseFileController;
 use App\Http\Controllers\Web\Admin\KeyFeatureController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
@@ -33,5 +34,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/key-feature/status/{id}', [KeyFeatureController::class, 'status'])->name('key-feature.status');
     Route::resource('/house-files', HouseFileController::class)->except('show');
     Route::post('/house-file/status/{id}', [HouseFileController::class, 'status'])->name('house-files.status');
+    Route::resource('/highlight-image', HighlightImageController::class)->except('show');
+    Route::post('/key-feature/status/{id}', [HighlightImageController::class, 'status'])->name('highlight-image.status');
 
 });
