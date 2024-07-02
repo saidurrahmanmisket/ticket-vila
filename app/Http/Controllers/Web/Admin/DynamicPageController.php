@@ -15,7 +15,7 @@ class DynamicPageController extends Controller
      */
     public function index()
     {
-        $allPages = DynamicPage::where('status', 'active')->paginate();
+        $allPages = DynamicPage::paginate();
 
         return view('admin.layouts.dynamic-page.index', compact('allPages'));
     }

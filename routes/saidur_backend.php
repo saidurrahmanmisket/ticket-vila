@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\HighlightImageController;
 use App\Http\Controllers\Web\Admin\HouseFileController;
 use App\Http\Controllers\Web\Admin\KeyFeatureController;
+use App\Http\Controllers\Web\Admin\NewsController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
@@ -35,6 +36,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/house-files', HouseFileController::class)->except('show');
     Route::post('/house-file/status/{id}', [HouseFileController::class, 'status'])->name('house-files.status');
     Route::resource('/highlight-image', HighlightImageController::class)->except('show');
-    Route::post('/key-feature/status/{id}', [HighlightImageController::class, 'status'])->name('highlight-image.status');
+    Route::post('/highlight-image/status/{id}', [HighlightImageController::class, 'status'])->name('highlight-image.status');
+    Route::resource('/news', NewsController::class)->except('show');
+    Route::post('/news/status/{id}', [NewsController::class, 'status'])->name('news.status');
+
 
 });
