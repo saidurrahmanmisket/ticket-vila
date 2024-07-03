@@ -77,7 +77,8 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<label for="description_en" class="form-label required">En</label>
-											<textarea type="text" class="form-control" rows="4" id="description"
+											<textarea type="text" class="form-control ck_editor" rows="4"
+											          id="description"
 											          name="description_en"
 											          placeholder="Write here....">{{old('description_en')}}</textarea>
 											@error('description_en')
@@ -88,7 +89,8 @@
 										</div>
 										<div class="col-lg-4">
 											<label for="description_de" class="form-label required">De</label>
-											<textarea type="text" class="form-control" rows="4" id="description"
+											<textarea type="text" class="form-control ck_editor" rows="4"
+											          id="description"
 											          name="description_de"
 											          placeholder="Write here....">{{old('description_de')}}</textarea>
 											@error('description_de')
@@ -99,7 +101,8 @@
 										</div>
 										<div class="col-lg-4">
 											<label for="description_hu" class="form-label required">Hu</label>
-											<textarea type="text" class="form-control" rows="4" id="description_hu"
+											<textarea type="text" class="form-control ck_editor" rows="4"
+											          id="description_hu"
 											          name="description_hu"
 											          placeholder="Write here....">{{old('description_hu')}}</textarea>
 											@error('description_hu')

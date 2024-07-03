@@ -221,7 +221,7 @@ class PageController extends Controller
             flash()->addSuccess('Your message has been sent successfully!');
         } catch (\Exception $e) {
             // Flash error message
-            flash()->addError('Something went wrong: ' . $e->getMessage());
+            flash()->addError('Something went wrong: '.$e->getMessage());
         }
 
         // Redirect

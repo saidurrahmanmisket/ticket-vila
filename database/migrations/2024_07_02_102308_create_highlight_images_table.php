@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('gift_id');
             $table->foreign('gift_id')->references('id')->on('gifts')->onDelete('cascade');
             $table->string('image');
-            $table->enum('status',['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
