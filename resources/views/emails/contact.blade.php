@@ -90,7 +90,7 @@
         <p><strong>City:</strong> {{ $contactData['city'] }}</p>
         <p><strong>State:</strong> {{ $contactData['state'] }}</p>
         <p><strong>Country:</strong> {{ $contactData['country'] }}</p>
-        <h2>Message</h2>
+        <h2>Message:</h2>
         <p>{{ $contactData['message'] }}</p>
     </div>
     <div class="footer">

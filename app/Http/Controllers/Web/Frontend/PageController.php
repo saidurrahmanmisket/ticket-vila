@@ -193,7 +193,7 @@ class PageController extends Controller
             'city' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'message' => 'nullable|string',
+            'message' => 'required|string',
         ]);
 
         try {
