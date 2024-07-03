@@ -14,7 +14,7 @@
                             <div class="input--group ">
                                 <label for="title_en">EN</label>
                                 <input class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" type="text" value="{{ old('title_en') }}"
-                                       placeholder="dynamic-page title_en...">
+                                       placeholder="News title en...">
                                 @error('title_en')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
                             <div class="input--group">
                                 <label for="title_de">DE</label>
                                 <input class="form-control @error('title_de') is-invalid @enderror" id="title_de" name="title_de" type="text" value="{{ old('title_de') }}"
-                                       placeholder="dynamic-page title_de...">
+                                       placeholder="News title de...">
                                 @error('title_de')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                             <div class="input--group">
                                 <label for="title_hu">HU</label>
                                 <input class="form-control @error('title_hu') is-invalid @enderror" id="title_hu" name="title_hu" type="text" value="{{ old('title_hu') }}"
-                                       placeholder="dynamic-page title_hu...">
+                                       placeholder="News title hu...">
                                 @error('title_hu')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
