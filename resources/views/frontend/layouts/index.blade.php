@@ -1,7 +1,6 @@
 @extends('frontend.app')
 
 @section('title', 'Home')
-
 @section('content')
     <!-- home banner area starts -->
     <section class="home--banner--area--wrapper section--bottom--gap">
@@ -49,6 +48,17 @@
             </div>
         </div>
     </section>
+
+    {{--    Promotional Banner Section  --}}
+    @if($campaign && $campaign->promotion_banner)
+        <div class="container">
+            <div class="promotion-banner">
+                <img src="{{$campaign->promotion_banner}}" class="w-100"
+                     alt="{{$campaign->name_en}}">
+            </div>
+        </div>
+    @endif
+    {{--    End Promotional Banner Section--}}
     <!-- some facts area starts -->
     <section class="some--facts--area--wrapper section--bottom--gap">
         <div class="container">

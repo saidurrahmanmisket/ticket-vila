@@ -151,6 +151,17 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="promotion_banner" class="form-label h6">Banner</label>
+                                        <input type="file" class="form-control dropify" id="promotion_banner"
+                                               name="promotion_banner"
+                                               accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
+                                        @error('promotion_banner')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">

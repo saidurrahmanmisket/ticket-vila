@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Rules\HasSpaceToAddComma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ConfigurationSettingController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('admin.layouts.configuration-setting.index');
     }
 
-    public function mailSettingUpdate(Request $request){
+    public function mailSettingUpdate(Request $request)
+    {
         $request->validate([
             'mail_mailer' => 'required|string',
             'mail_host' => 'required|string',
@@ -34,28 +37,36 @@ class ConfigurationSettingController extends Controller
                 '/MAIL_ENCRYPTION=(.*)\s/',
                 '/MAIL_FROM_ADDRESS=(.*)\s/',
             ], [
-                'MAIL_MAILER=' . $request->mail_mailer . $lineBreak,
-                'MAIL_HOST=' . $request->mail_host . $lineBreak,
-                'MAIL_PORT=' . $request->mail_port . $lineBreak,
-                'MAIL_USERNAME=' . $request->mail_username . $lineBreak,
-                'MAIL_PASSWORD=' . '"'.$request->mail_password.'"' . $lineBreak,
-                'MAIL_ENCRYPTION=' . $request->mail_encryption . $lineBreak,
-                'MAIL_FROM_ADDRESS=' . '"' . $request->mail_from_address . '"' . $lineBreak,
+                'MAIL_MAILER='.$request->mail_mailer.$lineBreak,
+                'MAIL_HOST='.$request->mail_host.$lineBreak,
+                'MAIL_PORT='.$request->mail_port.$lineBreak,
+                'MAIL_USERNAME='.$request->mail_username.$lineBreak,
+                'MAIL_PASSWORD='.'"'.$request->mail_password.'"'.$lineBreak,
+                'MAIL_ENCRYPTION='.$request->mail_encryption.$lineBreak,
+                'MAIL_FROM_ADDRESS='.'"'.$request->mail_from_address.'"'.$lineBreak,
             ], $envContent);
 
             if ($envContent !== null) {
                 File::put(base_path('.env'), $envContent);
             }
+
             return back()->with('success', 'Updated successfully');
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to update'.$e->getMessage());
         }
     }
 
-    public function paymentConfigurationUpdate(Request $request){
+    public function paymentConfigurationUpdate(Request $request)
+    {
         $request->validate([
-            'STRIPE_PK' => 'required|string',
-            'STRIPE_SK' => 'required|string',
+            'STRIPE_PK' => ['required', 'string', new HasSpaceToAddComma()],
+            'STRIPE_SK' => ['required', 'string', new HasSpaceToAddComma()],
+            'payment_mode' => ['required', 'in:sandbox,live', new HasSpaceToAddComma()],
+            'paypal_sandbox_client_id' => ['required_if:payment_mode,sandbox', 'string', 'nullable', new HasSpaceToAddComma()],
+            'paypal_sandbox_client_secret' => ['required_if:payment_mode,sandbox', 'nullable', 'string', new HasSpaceToAddComma()],
+            'paypal_live_app_id' => ['required_if:payment_mode,live', 'string', 'nullable', new HasSpaceToAddComma()],
+            'paypal_live_client_id' => ['required_if:payment_mode,live', 'string', 'nullable', new HasSpaceToAddComma()],
+            'paypal_live_client_secret' => ['required_if:payment_mode,live', 'string', 'nullable', new HasSpaceToAddComma()],
         ]);
         try {
             $envContent = File::get(base_path('.env'));
@@ -63,14 +74,27 @@ class ConfigurationSettingController extends Controller
             $envContent = preg_replace([
                 '/STRIPE_PK=(.*)\s/',
                 '/STRIPE_SK=(.*)\s/',
+                '/PAYPAL_MODE=(.*)\s/',
+                '/PAYPAL_SANDBOX_CLIENT_ID=(.*)\s/',
+                '/PAYPAL_SANDBOX_CLIENT_SECRET=(.*)\s/',
+                '/PAYPAL_LIVE_APP_ID=(.*)\s/',
+                '/PAYPAL_LIVE_CLIENT_ID=(.*)\s/',
+                '/PAYPAL_LIVE_CLIENT_SECRET=(.*)\s/',
             ], [
-                'STRIPE_PK=' . $request->STRIPE_PK . $lineBreak,
-                'STRIPE_SK=' . $request->STRIPE_SK . $lineBreak,
+                'STRIPE_PK='.$request->STRIPE_PK.$lineBreak,
+                'STRIPE_SK='.$request->STRIPE_SK.$lineBreak,
+                'PAYPAL_MODE='.$request->payment_mode.$lineBreak,
+                'PAYPAL_SANDBOX_CLIENT_ID='.$request->paypal_sandbox_client_id.$lineBreak,
+                'PAYPAL_SANDBOX_CLIENT_SECRET='.$request->paypal_sandbox_client_secret.$lineBreak,
+                'PAYPAL_LIVE_APP_ID='.$request->paypal_live_app_id.$lineBreak,
+                'PAYPAL_LIVE_CLIENT_ID='.$request->paypal_live_client_id.$lineBreak,
+                'PAYPAL_LIVE_CLIENT_SECRET='.$request->paypal_live_client_secret.$lineBreak,
             ], $envContent);
 
             if ($envContent !== null) {
                 File::put(base_path('.env'), $envContent);
             }
+
             return back()->with('success', 'Updated successfully');
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to update'.$e->getMessage());
