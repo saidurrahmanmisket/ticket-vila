@@ -1,6 +1,6 @@
 
 {{-- ckeditor cdn  --}}
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 
 <script src="https://ticketvilla-admin.netlify.app/assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://ticketvilla-admin.netlify.app/assets/js/plugins.js"></script>
@@ -18,6 +18,17 @@
                 'remove': 'Remove',
                 'error': 'Ooops, something wrong happended.'
             }
+        });
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.ck_editor').forEach((editor) => {
+            ClassicEditor
+                    .create(editor, {
+                        removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed']
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
         });
 </script>
 

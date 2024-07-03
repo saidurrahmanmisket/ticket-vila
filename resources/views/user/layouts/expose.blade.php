@@ -44,7 +44,7 @@ Expose
                         <a href="#" class="user--common--btn">Live Chat</a>
                     </li>
                     <li>
-                        <a href="mailto:info@gmail.com" class="user--common--btn">Email</a>
+                        <a href="mailto:{{env('mail_from_address')}}" class="user--common--btn">Email</a>
                     </li>
                 </ul>
             </div>

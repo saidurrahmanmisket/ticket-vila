@@ -46,7 +46,10 @@
                             <div class="mt-3">
                                 <div class="input--group">
                                     <label for="description_en">EN</label>
-                                    <textarea class="form-control @error('description_en') is-invalid @enderror" name="description_en" placeholder="Leave your description_en here" id="description_en"
+                                    <textarea
+                                            class="form-control ck_editor @error('description_en') is-invalid @enderror"
+                                            name="description_en" placeholder="Leave your description_en here"
+                                            id="description_en"
                                               style="height: 300px">{{ old('description_en') }}</textarea>
                                     @error('description_en')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -58,7 +61,10 @@
                             <div class="mt-3">
                                 <div class="input--group">
                                     <label for="description_de">DE</label>
-                                    <textarea class="form-control @error('description_de') is-invalid @enderror" name="description_de" placeholder="Leave your description_de here" id="description_de"
+                                    <textarea
+                                            class="form-control ck_editor @error('description_de') is-invalid @enderror"
+                                            name="description_de" placeholder="Leave your description_de here"
+                                            id="description_de"
                                               style="height: 300px">{{ old('description_de') }}</textarea>
                                     @error('description_de')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -70,7 +76,10 @@
                             <div class="mt-3">
                                 <div class="input--group">
                                     <label for="description_hu">HU</label>
-                                    <textarea class="form-control @error('description_hu') is-invalid @enderror" name="description_hu" placeholder="Leave your description_hu here" id="description_hu"
+                                    <textarea
+                                            class="form-control ck_editor @error('description_hu') is-invalid @enderror"
+                                            name="description_hu" placeholder="Leave your description_hu here"
+                                            id="description_hu"
                                               style="height: 300px">{{ old('description_hu') }}</textarea>
                                     @error('description_hu')
                                     <span class="invalid-feedback d-block" role="alert">

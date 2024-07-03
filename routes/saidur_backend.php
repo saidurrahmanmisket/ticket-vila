@@ -40,5 +40,4 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/news', NewsController::class)->except('show');
     Route::post('/news/status/{id}', [NewsController::class, 'status'])->name('news.status');
 
-
 });

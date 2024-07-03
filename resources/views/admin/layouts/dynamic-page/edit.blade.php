@@ -50,7 +50,9 @@ Dynamic Page
                         <!-- Sub Title EN -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_en">Sub Title (EN)</label>
-                            <textarea class="form-control" name="sub_title_en" placeholder="Leave your sub_title_en here" id="sub_title_en" style="height: 300px">{!! $dynamicPage->sub_title_en !!}</textarea>
+                            <textarea class="form-control ck_editor" name="sub_title_en"
+                                      placeholder="Leave your sub_title_en here" id="sub_title_en"
+                                      style="height: 300px">{!! $dynamicPage->sub_title_en !!}</textarea>
                             @error('sub_title_en')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,7 +63,9 @@ Dynamic Page
                         <!-- Sub Title DE -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_de">Sub Title (DE)</label>
-                            <textarea class="form-control" name="sub_title_de" placeholder="Leave your sub_title_de here" id="sub_title_de" style="height: 300px">{!! $dynamicPage->sub_title_de !!}</textarea>
+                            <textarea class="form-control ck_editor" name="sub_title_de"
+                                      placeholder="Leave your sub_title_de here" id="sub_title_de"
+                                      style="height: 300px">{!! $dynamicPage->sub_title_de !!}</textarea>
                             @error('sub_title_de')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -72,7 +76,9 @@ Dynamic Page
                         <!-- Sub Title HU -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_hu">Sub Title (HU)</label>
-                            <textarea class="form-control" name="sub_title_hu" placeholder="Leave your sub_title_hu here" id="sub_title_hu" style="height: 300px">{!! $dynamicPage->sub_title_hu !!}</textarea>
+                            <textarea class="form-control ck_editor" name="sub_title_hu"
+                                      placeholder="Leave your sub_title_hu here" id="sub_title_hu"
+                                      style="height: 300px">{!! $dynamicPage->sub_title_hu !!}</textarea>
                             @error('sub_title_hu')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -83,7 +89,9 @@ Dynamic Page
                         <!-- Description EN -->
                         <div class="mt-3 input--group">
                             <label for="description_en">Description (EN)</label>
-                            <textarea class="form-control" name="description_en" placeholder="Leave your description_en here" id="description_en" style="height: 300px">{!! $dynamicPage->description_en !!}</textarea>
+                            <textarea class="form-control ck_editor" name="description_en"
+                                      placeholder="Leave your description_en here" id="description_en"
+                                      style="height: 300px">{!! $dynamicPage->description_en !!}</textarea>
                             @error('description_en')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -94,7 +102,9 @@ Dynamic Page
                         <!-- Description DE -->
                         <div class="mt-3 input--group">
                             <label for="description_de">Description (DE)</label>
-                            <textarea class="form-control" name="description_de" placeholder="Leave your description_de here" id="description_de" style="height: 300px">{!! $dynamicPage->description_de !!}</textarea>
+                            <textarea class="form-control ck_editor" name="description_de"
+                                      placeholder="Leave your description_de here" id="description_de"
+                                      style="height: 300px">{!! $dynamicPage->description_de !!}</textarea>
                             @error('description_de')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -105,7 +115,9 @@ Dynamic Page
                         <!-- Description HU -->
                         <div class="mt-3 input--group">
                             <label for="description_hu">Description (HU)</label>
-                            <textarea class="form-control" name="description_hu" placeholder="Leave your description_hu here" id="description_hu" style="height: 300px">{!! $dynamicPage->description_hu !!}</textarea>
+                            <textarea class="form-control ck_editor" name="description_hu"
+                                      placeholder="Leave your description_hu here" id="description_hu"
+                                      style="height: 300px">{!! $dynamicPage->description_hu !!}</textarea>
                             @error('description_hu')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>

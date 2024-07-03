@@ -9,7 +9,6 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -70,7 +69,7 @@ class NewsController extends Controller
 
             // Redirect back with a success message
             return redirect()->route('admin.news.index')->with('success', 'News created successfully.');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
 
             return redirect()->back()->with('error', $e->getMessage());
@@ -135,7 +134,7 @@ class NewsController extends Controller
 
             // Redirect back with a success message
             return redirect()->route('admin.news.index')->with('success', 'News Update successfully.');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
 
             return redirect()->back()->with('error', $e->getMessage());

@@ -46,7 +46,7 @@ class HighlightImageController extends Controller
         ]);
 
         try {
-            if ($request->has('image')){
+            if ($request->has('image')) {
                 $file = $request->file('image');
                 $validatedData['file_path'] = Helper::fileUpload($file, 'highlight-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 HighlightImage::create([
@@ -58,6 +58,7 @@ class HighlightImageController extends Controller
             return redirect()->route('admin.highlight-image.index')->with('success', 'Highlight Image created successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -83,7 +84,7 @@ class HighlightImageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,HighlightImage $highlightImage)
+    public function update(Request $request, HighlightImage $highlightImage)
     {
         $validatedData = $request->validate([
             'image' => 'nullable|max:5120|mimes:jpg,png,svg,gif',
@@ -95,11 +96,11 @@ class HighlightImageController extends Controller
 
         try {
 
-            if ($request->has('image')){
+            if ($request->has('image')) {
                 $file = $request->file('image');
                 $validatedData['file_path'] = Helper::fileUpload($file, 'highlight-image', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 Helper::deleteFile(public_path($highlightImage->image));
-            }else{
+            } else {
                 $validatedData['file_path'] = $highlightImage->image;
             }
 
@@ -111,6 +112,7 @@ class HighlightImageController extends Controller
             return redirect()->route('admin.highlight-image.index')->with('success', 'Highlight Image updated successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
 
         }
@@ -128,11 +130,12 @@ class HighlightImageController extends Controller
             return redirect()->route('admin.highlight-image.index')->with('success', 'Highlight Image deleted successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
-    public  function status($id)
+    public function status($id)
     {
         try {
 
@@ -144,6 +147,7 @@ class HighlightImageController extends Controller
                 $highlightImage->status = Status::ACTIVE;
             }
             $highlightImage->save();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Status updated successfully',
@@ -151,6 +155,7 @@ class HighlightImageController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
