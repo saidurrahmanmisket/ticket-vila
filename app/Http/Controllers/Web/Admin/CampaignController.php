@@ -57,21 +57,30 @@ class CampaignController extends Controller
             'how_many_free' => 'required_with:how_many_buy|nullable|numeric|min:0',
             'discount_percent' => 'required_with:discount_expire_date|nullable|numeric|min:0',
             'discount_expire_date' => 'required_with:discount_percent|nullable|date_format:Y-m-d\TH:i',
+            'promotion_banner' => 'nullable|image|mimes:jpeg,jpg,png|max:5120',
         ],
             [
                 'thumbnail.max' => 'Thumbnail max size 5 MB',
+                'promotion_banner.max' => 'Banner max size 5 MB',
                 'unique_text.regex' => 'The unique text field must contain only alphabetic characters.',
             ]
         );
 
         try {
             $thumbnail = $request->file('thumbnail');
-            if ($request->file('thumbnail') && $request->file('thumbnail')->isValid()) {
+            if ($thumbnail && $thumbnail->isValid()) {
                 $thumbnail_path = Helper::fileUpload($thumbnail, 'campaign/', time().'_'.pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME));
             } else {
-                $thumbnail_path = null;
-            }
+                flash()->addError('Invalid thumbnail image file.');
 
+                return redirect()->back();
+            }
+            $banner = $request->file('promotion_banner');
+            if ($banner && $banner->isValid()) {
+                $banner_path = Helper::fileUpload($banner, 'campaign/banner', time().'_'.pathinfo($banner->getClientOriginalName(), PATHINFO_FILENAME));
+            } else {
+                $banner_path = null;
+            }
             $campaign = Campaign::create([
                 'name_en' => $request->name_en,
                 'name_de' => $request->name_de,
@@ -85,8 +94,10 @@ class CampaignController extends Controller
                 'how_many_free' => $request->how_many_free,
                 'discount_percent' => $request->discount_percent,
                 'discount_expire_date' => $request->discount_expire_date,
+                'promotion_banner' => $banner_path,
                 'status' => Status::DRAFT,
             ]);
+
             foreach ($request->ebook_files as $ebook_file) {
                 $file_path = $ebook_file->store('ebook');
                 Ebook::create([
@@ -143,9 +154,11 @@ class CampaignController extends Controller
             'how_many_free' => 'required_with:how_many_buy|nullable|numeric|min:0',
             'discount_percent' => 'required_with:discount_expire_date|nullable|numeric|min:0',
             'discount_expire_date' => 'required_with:discount_percent|nullable|date_format:Y-m-d\TH:i',
+            'promotion_banner' => 'nullable|image|mimes:jpeg,jpg,png|max:5120',
         ],
             [
                 'thumbnail.max' => 'Thumbnail max size 5 MB',
+                'promotion_banner.max' => 'Banner max size 5 MB',
             ]
         );
 
@@ -153,12 +166,18 @@ class CampaignController extends Controller
             $thumbnail = $request->file('thumbnail');
             $campaign = Campaign::findOrFail($id);
             if ($request->file('thumbnail') && $request->file('thumbnail')->isValid()) {
-                $thumbnail_path = Helper::fileUpload($thumbnail, '/campaign/', time().'_'.pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME));
+                $thumbnail_path = Helper::fileUpload($thumbnail, 'campaign/', time().'_'.pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME));
                 Helper::deleteFile(public_path($campaign->thumbnail));
             } else {
                 $thumbnail_path = $campaign->thumbnail;
             }
-
+            $banner = $request->file('promotion_banner');
+            if ($banner && $banner->isValid()) {
+                $banner_path = Helper::fileUpload($banner, 'campaign/banner', time().'_'.pathinfo($banner->getClientOriginalName(), PATHINFO_FILENAME));
+                Helper::deleteFile(public_path($campaign->promotion_banner));
+            } else {
+                $banner_path = $campaign->promotion_banner;
+            }
             $campaign->update([
                 'name_en' => $request->name_en,
                 'name_de' => $request->name_de,
@@ -172,6 +191,7 @@ class CampaignController extends Controller
                 'how_many_free' => $request->how_many_free,
                 'discount_percent' => $request->discount_percent,
                 'discount_expire_date' => $request->discount_expire_date,
+                'promotion_banner' => $banner_path,
             ]);
 
             if ($request->ebook_files && count($request->ebook_files) > 0) {

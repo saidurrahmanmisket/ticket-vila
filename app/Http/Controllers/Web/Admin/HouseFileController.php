@@ -38,19 +38,19 @@ class HouseFileController extends Controller
      */
     public function store(Request $request)
     {
-            $validatedData = $request->validate([
-                'file_name_en' => 'required|string|max:255',
-                'file_name_de' => 'required|string|max:255',
-                'file_name_hu' => 'required|string|max:255',
-                'file' => 'required|max:20480',
-                'gift_id' => 'required|integer',
-            ], [
-                'gift_id.required' => 'Please Select a gift',
-                'gift_id.integer' => 'Please Select a valid gift',
-            ]);
+        $validatedData = $request->validate([
+            'file_name_en' => 'required|string|max:255',
+            'file_name_de' => 'required|string|max:255',
+            'file_name_hu' => 'required|string|max:255',
+            'file' => 'required|max:20480',
+            'gift_id' => 'required|integer',
+        ], [
+            'gift_id.required' => 'Please Select a gift',
+            'gift_id.integer' => 'Please Select a valid gift',
+        ]);
 
         try {
-            if ($request->has('file')){
+            if ($request->has('file')) {
                 $file = $request->file('file');
                 $validatedData['file_path'] = Helper::fileUpload($file, 'house-file', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 HouseFile::create([
@@ -65,6 +65,7 @@ class HouseFileController extends Controller
             return redirect()->route('admin.house-files.index')->with('success', 'House File created successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -92,24 +93,24 @@ class HouseFileController extends Controller
      */
     public function update(Request $request, HouseFile $houseFile)
     {
-            $validatedData = $request->validate([
-                'file_name_en' => 'required|string|max:255',
-                'file_name_de' => 'required|string|max:255',
-                'file_name_hu' => 'required|string|max:255',
-                'file' => 'nullable|max:20480',
-                'gift_id' => 'required|integer',
-            ], [
-                'gift_id.required' => 'Please Select a gift',
-                'gift_id.integer' => 'Please Select a valid gift',
-            ]);
+        $validatedData = $request->validate([
+            'file_name_en' => 'required|string|max:255',
+            'file_name_de' => 'required|string|max:255',
+            'file_name_hu' => 'required|string|max:255',
+            'file' => 'nullable|max:20480',
+            'gift_id' => 'required|integer',
+        ], [
+            'gift_id.required' => 'Please Select a gift',
+            'gift_id.integer' => 'Please Select a valid gift',
+        ]);
 
         try {
 
-            if ($request->has('file')){
+            if ($request->has('file')) {
                 $file = $request->file('file');
                 $validatedData['file_path'] = Helper::fileUpload($file, 'house-file', time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
                 Helper::deleteFile(public_path($houseFile->file_path));
-            }else{
+            } else {
                 $validatedData['file_path'] = $houseFile->file_path;
             }
 
@@ -124,6 +125,7 @@ class HouseFileController extends Controller
             return redirect()->route('admin.house-files.index')->with('success', 'House File updated successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
 
         }
@@ -141,6 +143,7 @@ class HouseFileController extends Controller
             return redirect()->route('admin.house-files.index')->with('success', 'House file deleted successfully.');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -149,7 +152,7 @@ class HouseFileController extends Controller
     {
         try {
 
-                $houseFile = HouseFile::findOrFail($id);
+            $houseFile = HouseFile::findOrFail($id);
 
             if ($houseFile->status == Status::ACTIVE) {
                 $houseFile->status = Status::INACTIVE;
@@ -157,6 +160,7 @@ class HouseFileController extends Controller
                 $houseFile->status = Status::ACTIVE;
             }
             $houseFile->save();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Status updated successfully',
@@ -164,9 +168,10 @@ class HouseFileController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return response()->json([
                 'success' => false,
-               'message' => $e->getMessage(),
+                'message' => $e->getMessage(),
             ]);
 
         }

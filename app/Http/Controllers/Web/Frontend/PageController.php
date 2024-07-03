@@ -50,7 +50,7 @@ class PageController extends Controller
             $giftRandomImages = null;
         }
 
-        return view('frontend.layouts.index', compact('hero_section', 'houseTour', 'wit_spin', 'ticket_chance', 'theProcess', 'gift', 'giftRandomImages'));
+        return view('frontend.layouts.index', compact('hero_section', 'campaign', 'houseTour', 'wit_spin', 'ticket_chance', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
     public function about()
@@ -173,10 +173,13 @@ class PageController extends Controller
 
     }
 
-    public  function checkout(){
+    public function checkout()
+    {
         return view('frontend.layouts.checkout');
     }
-    public  function buyEbook(){
+
+    public function buyEbook()
+    {
         return view('frontend.layouts.buy-ebook');
     }
 
