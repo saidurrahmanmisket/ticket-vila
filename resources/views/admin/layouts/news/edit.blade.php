@@ -92,7 +92,7 @@
                                     </span>
                             @enderror
                         </div>
-                        <button type="submit">Create</button>
+                        <button type="submit">Update</button>
                     </div>
                 </form>
             </div>
