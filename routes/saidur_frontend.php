@@ -19,6 +19,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact', 'submitContact')->name('contact.submit');
     Route::get('/imprint', 'imprint')->name('imprint');
     Route::get('/privacy', 'privacy')->name('privacy');
     Route::get('/rules', 'rules')->name('rules');
