@@ -145,7 +145,7 @@
                                     var replyUserAvatar = reply.user.avatar;
 
                                     var replyHtml = '';
-                                    if (reply.user_id == 2) {
+                                    if (reply.user_id == 1) {
                                         replyHtml = `
                                 <div class="row user--chat--single mb-5">
                                     <div class="col-11">
@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                             `;
-                                    } else if (reply.user_id == 1) {
+                                    } else if (reply.user_id == 2) {
                                         replyHtml = `
                                 <div class="row admin--chat--single mb-5">
                                     <div class="col">
