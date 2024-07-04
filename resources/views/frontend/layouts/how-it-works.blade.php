@@ -12,8 +12,31 @@
                         {{ !empty($hero_section) ? $hero_section['title_' . locale()] : __('Discover the Process') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        {{ !empty($hero_section) ? $hero_section['description_' . locale()] : __('Learn how you can win your dream house with just one ticket!') }}
+                        {!! !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' :__('Learn how you can win your dream house with just one ticket!')  !!}
                     </p>
+                    @if (
+                    !empty($hero_section) &&
+                        !empty($hero_section['description_' . locale()]) &&
+                        strlen($hero_section['description_' . locale()]) > 300)
+                        <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal">Read More</a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {!! $hero_section['description_' . locale()] !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div data-aos="fade-left" data-aos-duration="600" class="right">
                     <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/how-it-work-banner.png') }}"
@@ -91,7 +114,7 @@
         <div class="container mb-5">
             <div class="house--tour--area--content">
                 <div class="area--wrapper">
-                     
+
 
                     <iframe
                         src="{{ locale() == 'hu'

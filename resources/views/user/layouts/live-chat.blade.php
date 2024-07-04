@@ -58,7 +58,7 @@ Help Center
                                                           @enderror
                                                       </div>
                                                       <input type="hidden" name="chat_id" id="replyInput">
-                                                      <input type="text" name="chat_status" id="chatStatus">
+                                                      <input type="hidden" name="chat_status" id="chatStatus">
 
                                               </div>
                                               <div class="modal-footer">
