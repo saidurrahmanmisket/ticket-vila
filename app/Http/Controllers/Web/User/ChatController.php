@@ -99,7 +99,7 @@ class ChatController extends Controller
     public  function chatDetails($randomChatId){
         try {
             $userId = auth()->user()->id;
-            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
+            $chatsDetails = Chat::with('user:id,avatar,role','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
             return response()->json([
                 'success' => true,
                 'data' => $chatsDetails,

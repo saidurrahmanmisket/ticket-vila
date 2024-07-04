@@ -116,6 +116,9 @@
                                 // User's initial message
                                 var singleChatHtml = `
                                     <div class="row user--chat--single mb-5">
+                                        <div class="col">
+                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${userAvatar}') }}" alt="">
+                                        </div>
                                         <div class="col-11">
                                             <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
                                                 <div class="d-flex justify-content-between">
@@ -127,9 +130,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${userAvatar}') }}" alt="">
-                                        </div>
+
                                     </div>
                                 `;
 
@@ -145,43 +146,48 @@
                                     var replyUserAvatar = reply.user.avatar;
 
                                     var replyHtml = '';
-                                    if (reply.user_id == 1) {
+                                    console.log(reply.user.role)
+                                    if (reply.user.role == 'admin') {
                                         replyHtml = `
-                                <div class="row user--chat--single mb-5">
-                                    <div class="col-11">
-                                        <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
-                                            <div class="d-flex justify-content-between">
-                                                <p>${replyUserName}</p>
-                                                <p>Date: ${replyDate}</p>
+
+                                        <div class="row user--chat--single mb-5">
+                                                <div class="col-11">
+                                                    <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p>${replyUserName}</p>
+                                                            <p>Date: ${replyDate}</p>
+                                                        </div>
+                                                        <div class="message--box mt-4">
+                                                            <p>${replyMessage}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                                </div>
                                             </div>
-                                            <div class="message--box mt-4">
-                                                <p>${replyMessage}</p>
+                                        `;
+                                    } else {
+                                        replyHtml = `
+
+
+                                    <div class="row admin--chat--single mb-5">
+                                        <div class="col">
+                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <p>${replyUserName}</p>
+                                                    <p>Date: ${replyDate}</p>
+                                                </div>
+                                                <div class="message--box mt-4">
+                                                    <p>${replyMessage}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
-                                    </div>
-                                </div>
-                            `;
-                                    } else if (reply.user_id == 2) {
-                                        replyHtml = `
-                                <div class="row admin--chat--single mb-5">
-                                    <div class="col">
-                                        <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
-                                    </div>
-                                    <div class="col-11">
-                                        <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
-                                            <div class="d-flex justify-content-between">
-                                                <p>${replyUserName}</p>
-                                                <p>Date: ${replyDate}</p>
-                                            </div>
-                                            <div class="message--box mt-4">
-                                                <p>${replyMessage}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             `;
                                     }
 

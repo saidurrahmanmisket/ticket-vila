@@ -49,7 +49,7 @@ Help Center
                                               <div class="modal-body">
                                                       <div class="form-group mb-3">
                                                           <label for="message">Reply Message</label>
-                                                          <textarea class="mt-3 form-control @error('reply_message') is-invalid @enderror"
+                                                          <textarea class="mt-3 border-5 border-info-subtle form-control @error('reply_message') is-invalid @enderror "
                                                                     id="reply_message" name="reply_message"
                                                                     placeholder="Enter your reply message"
                                                                     rows="6">{{ old('reply_message') ?? '' }}</textarea>
@@ -60,8 +60,8 @@ Help Center
                                                       <input type="hidden" name="chat_id" id="replyInput">
                                               </div>
                                               <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                                  <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
+                                                  <button type="submit" class="user--common--btn">Submit</button>
                                               </div>
                                           </form>
                                       </div>
@@ -85,7 +85,7 @@ Help Center
               <form action="{{ route('user.live-chat.store') }}" method="POST">
                   @csrf
               <div class="modal fade" id="chat-modal" tabindex="-1" aria-labelledby="chat-modalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered ">
+                  <div class="modal-dialog modal-lg modal-dialog-centered ">
                       <div class="modal-content">
                           <div class="modal-header">
                               <h1 class="modal-title fs-5" id="chat-modalLabel"></h1>
@@ -95,21 +95,21 @@ Help Center
                                   @csrf
                                   <div class="form-group mb-3">
                                       <label for="name">Name</label>
-                                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name">
+                                      <input type="text" class="form-control border-3 border-info-subtle @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name">
                                       @error('name')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="email">Email</label>
-                                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
+                                      <input type="email" class="form-control border-3 border-info-subtle @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
                                       @error('email')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="message">Message</label>
-                                      <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
+                                      <textarea class="form-control border-3 border-info-subtle @error('message') is-invalid @enderror" rows="6" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
                                       @error('message')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
@@ -117,8 +117,8 @@ Help Center
 
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="user--common--btn">Submit</button>
                           </div>
                       </div>
                   </div>
@@ -215,28 +215,10 @@ Help Center
                                     var replyUserAvatar = reply.user.avatar;
 
                                     var replyHtml = '';
-                                    if (reply.user_id == 2) {
+                                    if (reply.user.role == 'admin') {
                                         replyHtml = `
-                                <div class="row user--chat--single mb-5">
-                                    <div class="col-11">
-                                        <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
-                                            <div class="d-flex justify-content-between">
-                                                <p>${replyUserName}</p>
-                                                <p>Date: ${replyDate}</p>
-                                            </div>
-                                            <div class="message--box mt-4">
-                                                <p>${replyMessage}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
-                                    </div>
-                                </div>
-                            `;
-                                    } else if (reply.user_id == 1) {
-                                        replyHtml = `
-                                <div class="row admin--chat--single mb-5">
+
+                                        <div class="row admin--chat--single mb-5">
                                     <div class="col">
                                         <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
                                     </div>
@@ -252,7 +234,28 @@ Help Center
                                         </div>
                                     </div>
                                 </div>
-                            `;
+                                        `;
+                                    } else{
+                                        replyHtml = `
+
+
+                                            <div class="row user--chat--single mb-5">
+                                                <div class="col-11">
+                                                    <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p>${replyUserName}</p>
+                                                            <p>Date: ${replyDate}</p>
+                                                        </div>
+                                                        <div class="message--box mt-4">
+                                                            <p>${replyMessage}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                                </div>
+                                            </div>
+                                        `;
                                     }
 
                                     allChatReply.append(replyHtml);
