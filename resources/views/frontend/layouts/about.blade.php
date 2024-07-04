@@ -12,7 +12,7 @@
                             {{ !empty($hero_section) ? $hero_section['title_' . locale()] ?? '' : __('Our Mission & Values') }}
                         </h3>
                         <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                            {{ !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.') }}
+                            {!! !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.')  !!}
                         </p>
                         @if (
                         !empty($hero_section) &&
@@ -31,7 +31,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            {{ $hero_section['description_' . locale()] }}
+                                            {!! $hero_section['description_' . locale()] !!}
                                         </div>
                                     </div>
                                 </div>
