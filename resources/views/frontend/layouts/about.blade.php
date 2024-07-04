@@ -58,9 +58,35 @@
                     <div class="right">
                         <h3 class="common--heading--title">
                             {{ !empty($the_mission) ? $the_mission['title_' . locale()] ?? '' : __('The Mission') }}</h3>
+
+
                         <p class="subtext">
-                            {{ !empty($the_mission) ? $the_mission['description_' . locale()] ?? '' : __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.") }}
+                            {!! !empty($the_mission) && !empty($the_mission['description_' . locale()]) ? substr($the_mission['description_' . locale()], 0, 300) . '...' :  __("Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.")  !!}
                         </p>
+                        @if (
+                        !empty($the_mission) &&
+                            !empty($the_mission['description_' . locale()]) &&
+                            strlen($the_mission['description_' . locale()]) > 300)
+                            <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
+                               data-bs-target="#exampleModal">Read More</a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {!! $the_mission['description_' . locale()] !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
