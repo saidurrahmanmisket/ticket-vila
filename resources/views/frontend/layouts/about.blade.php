@@ -12,8 +12,31 @@
                             {{ !empty($hero_section) ? $hero_section['title_' . locale()] ?? '' : __('Our Mission & Values') }}
                         </h3>
                         <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                            {{ !empty($hero_section) ? $hero_section['description_' . locale()] ?? '' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.') }}
+                            {{ !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('At Ticket villa, we are dedicated to providing an opportunity for everyone to win their dream home. With our Innovative raffle system, we make homeownership accessible and exciting.') }}
                         </p>
+                        @if (
+                        !empty($hero_section) &&
+                            !empty($hero_section['description_' . locale()]) &&
+                            strlen($hero_section['description_' . locale()]) > 300)
+                            <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
+                               data-bs-target="#exampleModal">Read More</a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ $hero_section['description_' . locale()] }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" class="right">
                         <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/about-banner-bg.png') }}"
