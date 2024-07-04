@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\User;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\ChatReply;
@@ -80,6 +81,13 @@ class ChatController extends Controller
                     ->withInput();
             }
 
+            if ($request->chat_status !== Status::PENDING){
+                $chat = Chat::findOrFail($request->chat_id);
+                $chat->update([
+                    'status' => Status::PENDING
+                ]);
+            }
+
             // Create a new chat message
             $chat = ChatReply::create([
                 'content' => $request->reply_message,
@@ -99,7 +107,7 @@ class ChatController extends Controller
     public  function chatDetails($randomChatId){
         try {
             $userId = auth()->user()->id;
-            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
+            $chatsDetails = Chat::with('user:id,avatar,role','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
             return response()->json([
                 'success' => true,
                 'data' => $chatsDetails,

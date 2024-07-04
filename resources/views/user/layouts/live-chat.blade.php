@@ -49,7 +49,7 @@ Help Center
                                               <div class="modal-body">
                                                       <div class="form-group mb-3">
                                                           <label for="message">Reply Message</label>
-                                                          <textarea class="mt-3 form-control @error('reply_message') is-invalid @enderror"
+                                                          <textarea class="mt-3 border-5 border-info-subtle form-control @error('reply_message') is-invalid @enderror "
                                                                     id="reply_message" name="reply_message"
                                                                     placeholder="Enter your reply message"
                                                                     rows="6">{{ old('reply_message') ?? '' }}</textarea>
@@ -58,10 +58,12 @@ Help Center
                                                           @enderror
                                                       </div>
                                                       <input type="hidden" name="chat_id" id="replyInput">
+                                                      <input type="text" name="chat_status" id="chatStatus">
+
                                               </div>
                                               <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                                  <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
+                                                  <button type="submit" class="user--common--btn">Submit</button>
                                               </div>
                                           </form>
                                       </div>
@@ -85,7 +87,7 @@ Help Center
               <form action="{{ route('user.live-chat.store') }}" method="POST">
                   @csrf
               <div class="modal fade" id="chat-modal" tabindex="-1" aria-labelledby="chat-modalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered ">
+                  <div class="modal-dialog modal-lg modal-dialog-centered ">
                       <div class="modal-content">
                           <div class="modal-header">
                               <h1 class="modal-title fs-5" id="chat-modalLabel"></h1>
@@ -95,21 +97,21 @@ Help Center
                                   @csrf
                                   <div class="form-group mb-3">
                                       <label for="name">Name</label>
-                                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name">
+                                      <input type="text" class="form-control border-3 border-info-subtle @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name">
                                       @error('name')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="email">Email</label>
-                                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
+                                      <input type="email" class="form-control border-3 border-info-subtle @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
                                       @error('email')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="message">Message</label>
-                                      <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
+                                      <textarea class="form-control border-3 border-info-subtle @error('message') is-invalid @enderror" rows="6" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
                                       @error('message')
                                       <div class="invalid-feedback">{{ $message }}</div>
                                       @enderror
@@ -117,8 +119,8 @@ Help Center
 
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="user--common--btn">Submit</button>
                           </div>
                       </div>
                   </div>
@@ -129,7 +131,10 @@ Help Center
                     <h4 class="mb-3">All Chat</h4>
                   <div class="all--purchase--tickets default--scrollbar h-100">
                       @foreach($chats as $chat)
-                        <div class="single--chat border mb-3 border-3 border-info  rounded rounded-3 p-3 cursor--pointer" data-random-chat-id="{{$chat->random_chat_id}}" data-chat-id = "{{$chat->id}}">
+                        <div class="single--chat border mb-3 border-3 border-success  rounded rounded-3 p-3 cursor--pointer  {{$chat->status == \App\Enums\Status::PENDING ? ' border-dark' : '' }}  {{$chat->status == \App\Enums\Status::REJECTED ? 'border-0 bg-body-secondary' : '' }}"
+                             data-random-chat-id="{{$chat->random_chat_id}}"
+                             data-chat-status = "{{$chat->status}}"
+                             data-chat-id = "{{$chat->id}}">
                           <div class="d-flex justify-content-between">
                               <p>
                                   {{$chat->status ?? ''}}
@@ -164,27 +169,32 @@ Help Center
                 var randomChatId = $(this).data('random-chat-id');
                 allChatReply.attr('data-random-chat-id', randomChatId);
                 $('#replyInput').val($(this).data('chat-id'));
+                $('#chatStatus').val($(this).data('chat-status'));
                 allChatReply.empty();
 
                 let url = "{{ route('user.live-chat.reply.details', ['random_chat_id' => ':random_chat_id']) }}";
                 url = url.replace(':random_chat_id', randomChatId);
+                let chatStatus = $(this).data('chat-status');
+                console.log(chatStatus);
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(response) {
+                            if (response.success) {
+                                if(response.data.length > 0) {
+                                        $('#replyBtn').removeClass('d-none')
+                                    if(chatStatus == '{{\App\Enums\Status::REJECTED}}' ){
+                                        $('#replyBtn').addClass('d-none')
+                                    }
+                                    var chatData = response.data[0];
+                                    var userName = chatData.name;
+                                    var userMessage = chatData.message;
+                                    var userAvatar = chatData.user.avatar;
 
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(response) {
-                        if (response.success) {
-                            if(response.data.length > 0) {
-                                $('#replyBtn').removeClass('d-none')
-                                var chatData = response.data[0];
-                                var userName = chatData.name;
-                                var userMessage = chatData.message;
-                                var userAvatar = chatData.user.avatar;
+                                    var userDate = new Date(chatData.created_at).toLocaleDateString();
 
-                                var userDate = new Date(chatData.created_at).toLocaleDateString();
-
-                                // User's initial message
-                                var singleChatHtml = `
+                                    // User's initial message
+                                    var singleChatHtml = `
                                     <div class="row user--chat--single mb-5">
                                         <div class="col-11">
                                             <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
@@ -203,40 +213,22 @@ Help Center
                                     </div>
                                 `;
 
-                                // Append user's initial message
-                                allChatReply.append(singleChatHtml);
+                                    // Append user's initial message
+                                    allChatReply.append(singleChatHtml);
 
-                                // Append replies
-                                chatData.chat_reply.forEach(function(reply) {
+                                    // Append replies
+                                    chatData.chat_reply.forEach(function(reply) {
 
-                                    var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
-                                    var replyMessage = reply.content;
-                                    var replyDate = new Date(reply.created_at).toLocaleDateString();
-                                    var replyUserAvatar = reply.user.avatar;
+                                        var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
+                                        var replyMessage = reply.content;
+                                        var replyDate = new Date(reply.created_at).toLocaleDateString();
+                                        var replyUserAvatar = reply.user.avatar;
 
-                                    var replyHtml = '';
-                                    if (reply.user_id == 2) {
-                                        replyHtml = `
-                                <div class="row user--chat--single mb-5">
-                                    <div class="col-11">
-                                        <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
-                                            <div class="d-flex justify-content-between">
-                                                <p>${replyUserName}</p>
-                                                <p>Date: ${replyDate}</p>
-                                            </div>
-                                            <div class="message--box mt-4">
-                                                <p>${replyMessage}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
-                                    </div>
-                                </div>
-                            `;
-                                    } else if (reply.user_id == 1) {
-                                        replyHtml = `
-                                <div class="row admin--chat--single mb-5">
+                                        var replyHtml = '';
+                                        if (reply.user.role == 'admin') {
+                                            replyHtml = `
+
+                                        <div class="row admin--chat--single mb-5">
                                     <div class="col">
                                         <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
                                     </div>
@@ -252,28 +244,50 @@ Help Center
                                         </div>
                                     </div>
                                 </div>
-                            `;
-                                    }
+                                        `;
+                                        } else{
+                                            replyHtml = `
 
-                                    allChatReply.append(replyHtml);
-                                });
 
-                                // Scroll to the bottom of the div
-                                var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
-                                $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
-                            }else {
+                                            <div class="row user--chat--single mb-5">
+                                                <div class="col-11">
+                                                    <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p>${replyUserName}</p>
+                                                            <p>Date: ${replyDate}</p>
+                                                        </div>
+                                                        <div class="message--box mt-4">
+                                                            <p>${replyMessage}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                                </div>
+                                            </div>
+                                        `;
+                                        }
 
-                                noDataText = `<p class="text-center">No Chat Found</p>`;
-                                allChatReply.html(noDataText);
+                                        allChatReply.append(replyHtml);
+                                    });
+
+                                    // Scroll to the bottom of the div
+                                    var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
+                                    $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
+                                }else {
+
+                                    noDataText = `<p class="text-center">No Chat Found</p>`;
+                                    allChatReply.html(noDataText);
+                                }
                             }
-                        }
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching chat:', error);
-                        // Optionally, display an error message in the UI
-                    }
-                });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching chat:', error);
+                            // Optionally, display an error message in the UI
+                        }
+                    });
+
             });
             $('.single--chat').eq(0).click();
 
