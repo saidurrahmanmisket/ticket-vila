@@ -17,4 +17,9 @@ class SettingController extends Controller
         $users = User::latest()->withCount(['tickets'])->paginate(20);
         return view('admin.layouts.help-center.index', compact('users'));
     }
+
+    public function show()
+    {
+
+    }
 }

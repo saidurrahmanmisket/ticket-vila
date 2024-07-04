@@ -57,7 +57,7 @@ Help Center
                                                           <div class="invalid-feedback">{{ $message }}</div>
                                                           @enderror
                                                       </div>
-                                                      <input type="text" name="chat_id" id="replyInput">
+                                                      <input type="hidden" name="chat_id" id="replyInput">
                                               </div>
                                               <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -68,12 +68,6 @@ Help Center
                                   </div>
                               </div>
                           </div>
-                      </div>
-                      <div class="blur--box">
-                          <p>
-                              You can't see this section, buy a eBook to get full data
-                              access
-                          </p>
                       </div>
                   </div>
               </div>
@@ -191,23 +185,23 @@ Help Center
 
                                 // User's initial message
                                 var singleChatHtml = `
-                        <div class="row user--chat--single mb-5">
-                            <div class="col-11">
-                                <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
-                                    <div class="d-flex justify-content-between">
-                                        <p>${userName}</p>
-                                        <p>Date: ${userDate}</p>
+                                    <div class="row user--chat--single mb-5">
+                                        <div class="col-11">
+                                            <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <p>${userName}</p>
+                                                    <p>Date: ${userDate}</p>
+                                                </div>
+                                                <div class="message--box mt-4">
+                                                    <p>${userMessage}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${userAvatar}') }}" alt="">
+                                        </div>
                                     </div>
-                                    <div class="message--box mt-4">
-                                        <p>${userMessage}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${userAvatar}') }}" alt="">
-                            </div>
-                        </div>
-                    `;
+                                `;
 
                                 // Append user's initial message
                                 allChatReply.append(singleChatHtml);
@@ -263,6 +257,10 @@ Help Center
 
                                     allChatReply.append(replyHtml);
                                 });
+
+                                // Scroll to the bottom of the div
+                                var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
+                                $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
                             }else {
 
                                 noDataText = `<p class="text-center">No Chat Found</p>`;
@@ -277,6 +275,8 @@ Help Center
                     }
                 });
             });
+            $('.single--chat').eq(0).click();
+
         });
 
     </script>
