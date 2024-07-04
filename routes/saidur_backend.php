@@ -42,7 +42,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/news/status/{id}', [NewsController::class, 'status'])->name('news.status');
     Route::get('/settings/help', [ChatController::class, 'index'])->name('help');
     Route::get('/settings/help/show/{id}', [ChatController::class, 'show'])->name('help.show');
-    Route::get('/admin/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
-    Route::post('/admin/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
+    Route::get('/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
+    Route::post('/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
+    Route::post('/live-chat/status/{id}', [ChatController::class, 'status'])->name('chat.status');
 
 });

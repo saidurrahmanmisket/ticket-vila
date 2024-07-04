@@ -58,6 +58,8 @@ Help Center
                                                           @enderror
                                                       </div>
                                                       <input type="hidden" name="chat_id" id="replyInput">
+                                                      <input type="text" name="chat_status" id="chatStatus">
+
                                               </div>
                                               <div class="modal-footer">
                                                   <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
@@ -129,7 +131,10 @@ Help Center
                     <h4 class="mb-3">All Chat</h4>
                   <div class="all--purchase--tickets default--scrollbar h-100">
                       @foreach($chats as $chat)
-                        <div class="single--chat border mb-3 border-3 border-info  rounded rounded-3 p-3 cursor--pointer" data-random-chat-id="{{$chat->random_chat_id}}" data-chat-id = "{{$chat->id}}">
+                        <div class="single--chat border mb-3 border-3 border-success  rounded rounded-3 p-3 cursor--pointer  {{$chat->status == \App\Enums\Status::PENDING ? ' border-dark' : '' }}  {{$chat->status == \App\Enums\Status::REJECTED ? 'border-0 bg-body-secondary' : '' }}"
+                             data-random-chat-id="{{$chat->random_chat_id}}"
+                             data-chat-status = "{{$chat->status}}"
+                             data-chat-id = "{{$chat->id}}">
                           <div class="d-flex justify-content-between">
                               <p>
                                   {{$chat->status ?? ''}}
@@ -164,27 +169,32 @@ Help Center
                 var randomChatId = $(this).data('random-chat-id');
                 allChatReply.attr('data-random-chat-id', randomChatId);
                 $('#replyInput').val($(this).data('chat-id'));
+                $('#chatStatus').val($(this).data('chat-status'));
                 allChatReply.empty();
 
                 let url = "{{ route('user.live-chat.reply.details', ['random_chat_id' => ':random_chat_id']) }}";
                 url = url.replace(':random_chat_id', randomChatId);
+                let chatStatus = $(this).data('chat-status');
+                console.log(chatStatus);
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(response) {
+                            if (response.success) {
+                                if(response.data.length > 0) {
+                                        $('#replyBtn').removeClass('d-none')
+                                    if(chatStatus == '{{\App\Enums\Status::REJECTED}}' ){
+                                        $('#replyBtn').addClass('d-none')
+                                    }
+                                    var chatData = response.data[0];
+                                    var userName = chatData.name;
+                                    var userMessage = chatData.message;
+                                    var userAvatar = chatData.user.avatar;
 
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(response) {
-                        if (response.success) {
-                            if(response.data.length > 0) {
-                                $('#replyBtn').removeClass('d-none')
-                                var chatData = response.data[0];
-                                var userName = chatData.name;
-                                var userMessage = chatData.message;
-                                var userAvatar = chatData.user.avatar;
+                                    var userDate = new Date(chatData.created_at).toLocaleDateString();
 
-                                var userDate = new Date(chatData.created_at).toLocaleDateString();
-
-                                // User's initial message
-                                var singleChatHtml = `
+                                    // User's initial message
+                                    var singleChatHtml = `
                                     <div class="row user--chat--single mb-5">
                                         <div class="col-11">
                                             <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
@@ -203,20 +213,20 @@ Help Center
                                     </div>
                                 `;
 
-                                // Append user's initial message
-                                allChatReply.append(singleChatHtml);
+                                    // Append user's initial message
+                                    allChatReply.append(singleChatHtml);
 
-                                // Append replies
-                                chatData.chat_reply.forEach(function(reply) {
+                                    // Append replies
+                                    chatData.chat_reply.forEach(function(reply) {
 
-                                    var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
-                                    var replyMessage = reply.content;
-                                    var replyDate = new Date(reply.created_at).toLocaleDateString();
-                                    var replyUserAvatar = reply.user.avatar;
+                                        var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
+                                        var replyMessage = reply.content;
+                                        var replyDate = new Date(reply.created_at).toLocaleDateString();
+                                        var replyUserAvatar = reply.user.avatar;
 
-                                    var replyHtml = '';
-                                    if (reply.user.role == 'admin') {
-                                        replyHtml = `
+                                        var replyHtml = '';
+                                        if (reply.user.role == 'admin') {
+                                            replyHtml = `
 
                                         <div class="row admin--chat--single mb-5">
                                     <div class="col">
@@ -235,8 +245,8 @@ Help Center
                                     </div>
                                 </div>
                                         `;
-                                    } else{
-                                        replyHtml = `
+                                        } else{
+                                            replyHtml = `
 
 
                                             <div class="row user--chat--single mb-5">
@@ -256,27 +266,28 @@ Help Center
                                                 </div>
                                             </div>
                                         `;
-                                    }
+                                        }
 
-                                    allChatReply.append(replyHtml);
-                                });
+                                        allChatReply.append(replyHtml);
+                                    });
 
-                                // Scroll to the bottom of the div
-                                var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
-                                $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
-                            }else {
+                                    // Scroll to the bottom of the div
+                                    var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
+                                    $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
+                                }else {
 
-                                noDataText = `<p class="text-center">No Chat Found</p>`;
-                                allChatReply.html(noDataText);
+                                    noDataText = `<p class="text-center">No Chat Found</p>`;
+                                    allChatReply.html(noDataText);
+                                }
                             }
-                        }
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching chat:', error);
-                        // Optionally, display an error message in the UI
-                    }
-                });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching chat:', error);
+                            // Optionally, display an error message in the UI
+                        }
+                    });
+
             });
             $('.single--chat').eq(0).click();
 

@@ -29,6 +29,10 @@ class Status extends Enum
 
     const REFUND = 'refund';
 
+    const RESOLVED = 'resolved';
+
+    const REJECTED = 'rejected';
+
     public static function campaignStatus(): array
     {
         return [
@@ -36,6 +40,15 @@ class Status extends Enum
             self::COMPLETED => 'Completed',
             self::PUBLISHED => 'Published',
 
+        ];
+    }
+
+    public static function chatStatus(): array
+    {
+        return [
+            self::PENDING => 'Pending',
+            self::RESOLVED => 'Resolved',
+            self::REJECTED => 'Rejected',
         ];
     }
 }

@@ -62,7 +62,7 @@
                         <th>ID</th>
                         <th>Customers Name</th>
                         <th>Email</th>
-                        <th>Tickets</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -77,10 +77,14 @@
                                 </div>
                             </td>
                             <td>{{ $chat->user->email }}</td>
-                            <td>
-                                <div class="user--tickets">
-                                    <p>STATUS</p>
-                                </div>
+                            <td class="status">
+                                <select class="form-select select" id="change_status"
+                                        onchange="statusChange({{$chat->id}},this)">
+                                    @foreach(\App\Enums\Status::chatStatus() as $key => $val)
+                                        <option @if($chat->status === $key) selected
+                                                @endif value="{{$key}}">{{$val}}</option>
+                                    @endforeach
+                                </select>
                             </td>
                             <td>
                                 <a href="{{route('admin.help.show',$chat->id)}}" class="action--btn action--btnv2">
@@ -124,3 +128,39 @@
     </section>
 @endsection
 
+
+@push('script')
+    <script>
+        function statusChange(id, event) {
+            var url = '{{ route('admin.chat.status', ':id') }}';
+            $.ajax({
+                type: "POST",
+                url: url.replace(':id', id),
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "status": $(event).val()
+                },
+                success: function (resp) {
+                    if (resp.success === true) {
+
+                        // show toast message
+                        flasher.success(resp.message);
+                    } else if (resp.success === false && resp.is_exist === true) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: resp.message,
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        flasher.error(resp.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    flasher.error(error?.responseJSON.message)
+                } // Error
+            })
+        }
+    </script>
+@endpush

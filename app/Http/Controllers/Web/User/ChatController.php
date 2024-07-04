@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\User;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\ChatReply;
@@ -78,6 +79,13 @@ class ChatController extends Controller
                 return redirect()->route('user.live-chat')
                     ->withErrors($validate)
                     ->withInput();
+            }
+
+            if ($request->chat_status !== Status::PENDING){
+                $chat = Chat::findOrFail($request->chat_id);
+                $chat->update([
+                    'status' => Status::PENDING
+                ]);
             }
 
             // Create a new chat message

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\ChatReply;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -78,6 +80,25 @@ class ChatController extends Controller
         } catch (\Exception $e) {
             // Redirect with error message in case of an exception
             return redirect()->route('admin.help')->with('error', $e->getMessage());
+        }
+    }
+
+    public function status(Request $request, $id)
+    {
+        try {
+            Chat::findOrFail($id)->update([
+                'status' => $request->status,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Chat Status Changed Successfully.',
+            ]);
+        } catch (Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ]);
         }
     }
 }
