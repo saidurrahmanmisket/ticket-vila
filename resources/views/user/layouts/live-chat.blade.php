@@ -257,6 +257,10 @@ Help Center
 
                                     allChatReply.append(replyHtml);
                                 });
+
+                                // Scroll to the bottom of the div
+                                var $scrollableDiv = $('.ticket--history--box .default--scrollbar');
+                                $scrollableDiv.scrollTop($scrollableDiv[0].scrollHeight);
                             }else {
 
                                 noDataText = `<p class="text-center">No Chat Found</p>`;
@@ -271,6 +275,8 @@ Help Center
                     }
                 });
             });
+            $('.single--chat').eq(0).click();
+
         });
 
     </script>

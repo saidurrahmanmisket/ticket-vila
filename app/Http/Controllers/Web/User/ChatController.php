@@ -14,7 +14,7 @@ class ChatController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $chats = Chat::with('chatReply.user')->where('user_id', $userId)->get();
+        $chats = Chat::with('chatReply.user')->where('user_id', $userId)->orderBy('id', 'desc')->get();
         return view('user.layouts.live-chat', compact('chats'));
     }
 
