@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\Admin\ChatController;
 use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
@@ -39,6 +40,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/highlight-image/status/{id}', [HighlightImageController::class, 'status'])->name('highlight-image.status');
     Route::resource('/news', NewsController::class)->except('show');
     Route::post('/news/status/{id}', [NewsController::class, 'status'])->name('news.status');
+    Route::get('/settings/help', [ChatController::class, 'index'])->name('help');
+    Route::get('/settings/help/show/{id}', [ChatController::class, 'show'])->name('help.show');
+    Route::get('/admin/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
+    Route::post('/admin/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
 
 
 });

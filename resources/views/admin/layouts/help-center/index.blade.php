@@ -67,24 +67,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($users as $user)
+                    @forelse($chats as $chat)
                         <tr>
                             <td>1</td>
                             <td>
                                 <div class="profile">
-                                    <img src="{{!empty($user->avatar) ? asset($user->avatar) : asset('admin/images/user.png')}}" alt="" />
-                                    <p>{{$user->first_name}} {{$user->last_name}}</p>
+                                    <img src="{{!empty($chat->user->avatar) ? asset($chat->user->avatar) : asset('admin/images/user.png')}}" alt="" />
+                                    <p>{{$chat->user->first_name}} {{$chat->user->last_name}}</p>
                                 </div>
                             </td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $chat->user->email }}</td>
                             <td>
                                 <div class="user--tickets">
-                                    <p>{{$user->tickets_count}}</p>
-                                    <img src="{{asset('admin/images/user-ticket.png')}}" alt="" />
+                                    <p>STATUS</p>
                                 </div>
                             </td>
                             <td>
-                                <a href="{{route('admin.user.show',$user->id)}}" class="action--btn action--btnv2">
+                                <a href="{{route('admin.help.show',$chat->id)}}" class="action--btn action--btnv2">
                                     View
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +117,7 @@
                     @endforelse
                     </tbody>
                 </table>
-                {{$users->links()}}
+                {{$chats->links()}}
             </div>
         </div>
     </div>
