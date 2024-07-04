@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -13,6 +14,7 @@ class SettingController extends Controller
 
     public function help()
     {
-        return view('admin.layouts.help-center.index');
+        $users = User::latest()->withCount(['tickets'])->paginate(20);
+        return view('admin.layouts.help-center.index', compact('users'));
     }
 }

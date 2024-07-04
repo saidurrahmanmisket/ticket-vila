@@ -18,8 +18,8 @@ Help Center
 
             {{-- this is daynamic faq component --}}
             <x-faq></x-faq>
-          
-          
+
+
           </div>
         </div>
         <div class="col-md-4">
@@ -29,7 +29,7 @@ Help Center
               We are here to help, please do not hesitate to contact us!
             </h3>
             <p>24/7 Chat support with the help of all.</p>
-            <a href="#" class="user--common--btn">Start Chat</a>
+            <a href="{{route('user.live-chat')}}" class="user--common--btn">Chat</a>
           </div>
           <!-- affiliate--box  -->
           <div class="affiliate--box text-center mt_35">
