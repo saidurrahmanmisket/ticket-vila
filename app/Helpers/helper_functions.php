@@ -1,14 +1,16 @@
 <?php
+
 //Helper functions
 
-if (!function_exists('locale')){
+if (! function_exists('locale')) {
     function locale(): string
     {
         return app()->getLocale();
     }
 }
 
-function convertToEmbedUrl($url) {
+function convertToEmbedUrl($url)
+{
     // Parse the URL to get its components
     $parsed_url = parse_url($url);
 
@@ -22,7 +24,7 @@ function convertToEmbedUrl($url) {
             case 'youtu.be':
                 // Extract the video ID from the path for youtu.be
                 $video_id = ltrim($parsed_url['path'], '/');
-                $query_params = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+                $query_params = isset($parsed_url['query']) ? '?'.$parsed_url['query'] : '';
                 $embed_url = "https://www.youtube.com/embed/$video_id$query_params";
                 break;
 
@@ -41,6 +43,7 @@ function convertToEmbedUrl($url) {
             default:
                 return $url;
         }
+
         return $embed_url;
     }
 

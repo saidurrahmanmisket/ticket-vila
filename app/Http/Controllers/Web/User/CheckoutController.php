@@ -15,7 +15,7 @@ class CheckoutController extends Controller
         try {
             $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
 
-            if (!$campaign) {
+            if (! $campaign) {
                 return redirect()->back()->with('error', 'No campaign found');
             }
 
@@ -29,14 +29,16 @@ class CheckoutController extends Controller
                 if ($ticketRemain <= 0) {
                     $ticketRemain = '0';
                 }
-                flash()->addWarning('Only ' . $ticketRemain . ' Tickets Are Available');
+                flash()->addWarning('Only '.$ticketRemain.' Tickets Are Available');
+
                 return redirect()->route('user.buy-tickets');
             }
 
             $totalPrice = $campaign->price * $quantity;
 
-            if (!$quantity) {
+            if (! $quantity) {
                 flash()->addError('Quantity Required');
+
                 return redirect()->back();
             }
 
@@ -44,6 +46,7 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
+
             return redirect()->back()->with('error', 'Something went wrong ');
         }
     }

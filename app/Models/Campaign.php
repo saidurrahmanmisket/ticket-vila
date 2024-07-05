@@ -9,7 +9,7 @@ class Campaign extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_en','name_de','name_hu', 'target_type', 'thumbnail', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
+    protected $fillable = ['name_en', 'name_de', 'name_hu', 'target_type', 'thumbnail', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
 
     public function tickets()
     {
