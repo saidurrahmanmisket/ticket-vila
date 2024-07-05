@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 Route::get('/', function () {
     return view('frontend.layouts.index');
 });
-Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->name('buy-ebook');
+Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->prefix('web-shop')->name('frontend.web-shop.buy-ebook');
 Route::prefix('web-shop')->middleware('guest')->name('frontend.web-shop.')->group(function () {
     //web shop view
     Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
