@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
-use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\ChatReply;
@@ -12,28 +11,33 @@ use Illuminate\Support\Facades\Validator;
 
 class ChatController extends Controller
 {
-    public  function index()
+    public function index()
     {
         $chats = Chat::with('user:id,first_name,last_name,email,avatar')->paginate(20);
+
         return view('admin.layouts.help-center.index', compact('chats'));
     }
+
     public function show($id)
     {
         $chat = Chat::with('user:id,first_name,last_name,email,avatar')->findOrFail($id);
+
         return view('admin.layouts.help-center.show', compact('chat'));
     }
 
-    public  function chatDetails($randomChatId){
+    public function chatDetails($randomChatId)
+    {
         try {
             $userId = auth()->user()->id;
-//            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
+            //            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
 
-            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('random_chat_id', $randomChatId)->get();
+            $chatsDetails = Chat::with('user:id,avatar', 'chatReply.user')->where('random_chat_id', $randomChatId)->get();
+
             return response()->json([
                 'success' => true,
                 'data' => $chatsDetails,
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
@@ -48,7 +52,7 @@ class ChatController extends Controller
             $validate = Validator::make($request->all(), [
                 'chat_id' => 'required|integer',
                 'reply_message' => 'required|string|max:1000',
-            ],[
+            ], [
                 'chat_id.required' => 'Invalid chat ID',
                 'reply_message.required' => 'Reply message is required',
                 'reply_message.string' => 'Message should be text',
@@ -62,6 +66,7 @@ class ChatController extends Controller
                 foreach ($errors as $error) {
                     flash()->addError('error', $error);
                 }
+
                 return redirect()->route('user.live-chat')
                     ->withErrors($validate)
                     ->withInput();
@@ -71,7 +76,7 @@ class ChatController extends Controller
             $chat = ChatReply::create([
                 'content' => $request->reply_message,
                 'user_id' => auth()->user()->id,
-                'chat_id' => $request->chat_id
+                'chat_id' => $request->chat_id,
             ]);
 
             // Redirect with success message

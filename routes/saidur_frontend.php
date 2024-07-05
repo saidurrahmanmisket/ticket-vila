@@ -65,8 +65,6 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
     Route::post('/user/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
     Route::get('/user/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
 
-
-
     //stripe payment routes
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
     Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
