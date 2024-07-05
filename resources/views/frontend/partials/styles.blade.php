@@ -91,15 +91,18 @@
         api_key: 'wg_76d0661293fa2792efc9f4f6542062d31'
     });
 </script>
+<!-- Intercom -->
+@php
+    $user = Auth::user();
+@endphp
 <script>
-    let user = "{{Auth::user()}}"
     window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "dkremsz8",
-        user_id: user.id, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-        name: user.first_name + ' ' + user.last_name, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-        email: user.email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
-        created_at: user.create_at, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+        user_id: "{{ $user ? $user->id : '0' }}", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+        name: "{{ $user ? $user->first_name.' '.$user->last_name : 'Guest' }}", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+        email: "{{ $user ? $user->email : 'guest@gmail.com' }}", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+        created_at: "{{ $user ? $user->created_at : '' }}", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
     };
 </script>
 {{-- custom css --}}
