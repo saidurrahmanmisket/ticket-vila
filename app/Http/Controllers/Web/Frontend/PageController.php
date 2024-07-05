@@ -173,14 +173,37 @@ class PageController extends Controller
 
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-        return view('frontend.layouts.checkout');
+        $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        if (empty($campaign)) {
+            flash()->addWarning('Campaign not found.');
+
+            return redirect()->back();
+        }
+        $quantity = ! empty($request->quantity) && (int) $request->quantity > 0 ? $request->quantity : 1;
+
+        //check has ticket
+        $soldTicket = $campaign->tickets()->count();
+        $ticketRemain = $campaign->limit - $soldTicket;
+        if ($ticketRemain < $quantity) {
+            if ($ticketRemain <= 0) {
+                $ticketRemain = '0';
+            }
+            flash()->addWarning('Only '.$ticketRemain.' Tickets Are Available');
+
+            return redirect()->back();
+        }
+        $totalPrice = $campaign->price * $quantity;
+
+        return view('frontend.layouts.checkout', compact('campaign', 'quantity', 'totalPrice'));
     }
 
     public function buyEbook()
     {
-        return view('frontend.layouts.buy-ebook');
+        $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+
+        return view('frontend.layouts.buy-ebook', compact('campaign'));
     }
 
     public function submitContact(Request $request)

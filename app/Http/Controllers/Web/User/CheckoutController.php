@@ -20,7 +20,7 @@ class CheckoutController extends Controller
             }
 
             $ticket = Ticket::where('campaign_id', $campaign->id);
-            $quantity = $request->quantity ?? 1;
+            $quantity = ! empty($request->quantity) && (int) $request->quantity > 0 ? $request->quantity : 1;
             $totalTicketSold = $ticket->count();
 
             $ticketRemain = $campaign->limit - $totalTicketSold;

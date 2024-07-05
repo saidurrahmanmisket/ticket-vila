@@ -10,6 +10,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-fileinfo": "*",
+        "ext-pdo": "*",
+        "ext-zip": "*",
         "cerbero/laravel-enum": "^1.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
@@ -19,13 +22,11 @@
         "livewire/livewire": "^3.5",
         "orangehill/iseed": "^3.0",
         "php-flasher/flasher-laravel": "^1.15",
+        "propaganistas/laravel-phone": "^5.3",
         "spatie/laravel-permission": "^6.7",
         "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^14.8",
-      "yajra/laravel-datatables-oracle": "10.3.1",
-      "ext-fileinfo": "*",
-        "ext-zip": "*",
-        "ext-pdo": "*"
+        "yajra/laravel-datatables-oracle": "10.3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

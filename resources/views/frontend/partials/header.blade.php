@@ -28,6 +28,10 @@
                         <li data-aos="fade-down" data-aos-duration="1000">
                             <a href="{{ route('frontend.how-it-works') }}" class="{{ Route::is('frontend.how-it-works')  ? 'active' : '' }}">{{ __('How it Works') }}</a>
                         </li>
+                        <li data-aos="fade-down" data-aos-duration="1000">
+                            <a href="{{ route('frontend.web-shop.buy-ebook') }}"
+                               class="{{ Route::is('frontend.web-shop.buy-ebook')  ? 'active' : '' }}">{{ __('Web Shop') }}</a>
+                        </li>
                         <li data-aos="fade-down" data-aos-duration="1200">
                             <a href="{{ route('frontend.the-house') }}" class="{{ Route::is('frontend.the-house')  ? 'active' : '' }}">{{ __("The House") }}</a>
                         </li>
