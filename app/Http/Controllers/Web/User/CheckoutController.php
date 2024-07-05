@@ -35,6 +35,11 @@ class CheckoutController extends Controller
             }
 
             $totalPrice = $campaign->price * $quantity;
+            if (! $quantity) {
+                flash()->addError('Quantity Required');
+
+                return redirect()->back();
+            }
 
             return view('user.layouts.checkout', compact('campaign', 'totalPrice', 'quantity'));
         } catch (\Exception $e) {
