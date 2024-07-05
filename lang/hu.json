@@ -56,9 +56,9 @@
     "Learn how you can win your dream house with just one ticket!": "Ismerje meg, hogyan nyerheti meg álmai házát egyetlen jeggyel!",
 
 
-    
 
-    "comment : for contact page and the house page and about us page" : "From here contact page and the house page and about us page start ", 
+
+    "comment : for contact page and the house page and about us page" : "From here contact page and the house page and about us page start ",
 
     "The Mission": "A küldetésünk",
     "Transforming home ownership dreams into reality with just a €99 ticket. Our house raffle is more than a chance to win; it's a step towards making owning a home accessible for everyone. Join the movement. Own your dream.": "Álom otthonunk valósággá változtatása mindössze egy €99-es jeggyel. Házunk sorsolása több, mint egy esély a nyerésre; ez egy lépés a ház tulajdonának elérhetővé tétele felé mindenki számára. Csatlakozz a mozgalomhoz. Legyen saját álmaid.",
@@ -209,11 +209,11 @@
     "Follow the draw live": "Kövesse a sorsolást élőben",
     "Take the keys": "Vegye át a kulcsokat",
     "The costs are covered - sign and live!": "A költségek fedezve vannak - írja alá és éljen!",
-    "€850.000€ dream home for just 99€!": "850.000€ értékű álomház csak 99€-ért!",
+    "dream home for just": ":giftPrice€ értékű álomház csak :price€-ért!",
     "Real!": "Valós!",
     "The costs are covered - sign and move in!": "A költségek fedezve vannak - írja alá és költözzön be!",
     "Per Ticket, the winner gets the house": "Jegyenként a nyertes megkapja a házat",
-    "Just 99€€": "Csak 99€€",
+    "Just GiftPrice": "Csak :price€",
     "Visit Your New Home": "Látogassa meg új otthonát",
     "Buy the e-book now!": "Vásárolja meg az e-könyvet most!",
     "Safe": "Biztonságos",
