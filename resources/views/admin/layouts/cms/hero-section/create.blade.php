@@ -68,8 +68,8 @@
                                                name="title_hu">
                                         @error('title_hu')
                                         <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
+                                             <strong>{{ $message }}</strong>
+                                           </span>
                                         @enderror
                                     </div>
                                 </div>

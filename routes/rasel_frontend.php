@@ -1,6 +1,9 @@
 <?php
 
 use App\Enums\Lang;
+use App\Http\Controllers\Payment\PaypalController;
+use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\Web\Frontend\PageController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +11,21 @@ use Illuminate\Support\Facades\URL;
 
 Route::get('/', function () {
     return view('frontend.layouts.index');
+});
+Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->name('buy-ebook');
+Route::prefix('web-shop')->middleware('guest')->name('frontend.web-shop.')->group(function () {
+    //web shop view
+    Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+
+    //Stripe payment for web shop
+    Route::post('/stripe/payment', [StripeController::class, 'web_shop_payment'])->name('stripe.payment');
+    Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
+    Route::get('/stripe/payment/cancel', [StripeController::class, 'web_shop_cancel'])->name('stripe.cancel');
+
+    //PayPal's payment for web shop routes
+    Route::post('/paypal/payment', [PaypalController::class, 'web_shop_payment'])->name('paypal.payment');
+    Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
+    Route::get('/paypal/payment/cancel', [PaypalController::class, 'web_shop_cancel'])->name('paypal.cancel');
 });
 
 //Change Language route

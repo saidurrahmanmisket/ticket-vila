@@ -16,6 +16,7 @@ class ChatController extends Controller
     {
         $userId = auth()->user()->id;
         $chats = Chat::with('chatReply.user')->where('user_id', $userId)->orderBy('id', 'desc')->get();
+
         return view('user.layouts.live-chat', compact('chats'));
     }
 
@@ -31,7 +32,8 @@ class ChatController extends Controller
 
             // Check if validation fails
             if ($validate->fails()) {
-                flash()->addError('error','Please Check your data and try again');
+                flash()->addError('error', 'Please Check your data and try again');
+
                 return redirect()->route('user.live-chat')
                     ->withErrors($validate)
                     ->withInput();
@@ -62,9 +64,9 @@ class ChatController extends Controller
             $validate = Validator::make($request->all(), [
                 'chat_id' => 'required|integer',
                 'reply_message' => 'required|string|max:1000',
-            ],[
+            ], [
                 'chat_id.required' => 'Invalid chat ID',
-               'reply_message.required' => 'Reply message is required',
+                'reply_message.required' => 'Reply message is required',
                 'reply_message.string' => 'Message should be text',
                 'reply_message.max' => 'Message should not exceed 1000 characters',
             ]);
@@ -76,15 +78,16 @@ class ChatController extends Controller
                 foreach ($errors as $error) {
                     flash()->addError('error', $error);
                 }
+
                 return redirect()->route('user.live-chat')
                     ->withErrors($validate)
                     ->withInput();
             }
 
-            if ($request->chat_status !== Status::PENDING){
+            if ($request->chat_status !== Status::PENDING) {
                 $chat = Chat::findOrFail($request->chat_id);
                 $chat->update([
-                    'status' => Status::PENDING
+                    'status' => Status::PENDING,
                 ]);
             }
 
@@ -92,7 +95,7 @@ class ChatController extends Controller
             $chat = ChatReply::create([
                 'content' => $request->reply_message,
                 'user_id' => auth()->user()->id,
-                'chat_id' => $request->chat_id
+                'chat_id' => $request->chat_id,
             ]);
 
             // Redirect with success message
@@ -104,20 +107,21 @@ class ChatController extends Controller
         }
     }
 
-    public  function chatDetails($randomChatId){
+    public function chatDetails($randomChatId)
+    {
         try {
             $userId = auth()->user()->id;
-            $chatsDetails = Chat::with('user:id,avatar,role','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
+            $chatsDetails = Chat::with('user:id,avatar,role', 'chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
+
             return response()->json([
                 'success' => true,
                 'data' => $chatsDetails,
             ]);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
-               'success' => false,
-               'message' => $e->getMessage(),
+                'success' => false,
+                'message' => $e->getMessage(),
             ]);
         }
     }
-
 }

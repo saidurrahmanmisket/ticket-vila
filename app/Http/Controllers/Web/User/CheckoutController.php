@@ -20,7 +20,7 @@ class CheckoutController extends Controller
             }
 
             $ticket = Ticket::where('campaign_id', $campaign->id);
-            $quantity = $request->quantity ?? 1;
+            $quantity = ! empty($request->quantity) && (int) $request->quantity > 0 ? $request->quantity : 1;
             $totalTicketSold = $ticket->count();
 
             $ticketRemain = $campaign->limit - $totalTicketSold;
@@ -35,6 +35,11 @@ class CheckoutController extends Controller
             }
 
             $totalPrice = $campaign->price * $quantity;
+            if (! $quantity) {
+                flash()->addError('Quantity Required');
+
+                return redirect()->back();
+            }
 
             return view('user.layouts.checkout', compact('campaign', 'totalPrice', 'quantity'));
         } catch (\Exception $e) {

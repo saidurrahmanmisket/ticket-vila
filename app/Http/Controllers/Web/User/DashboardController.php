@@ -21,6 +21,13 @@ class DashboardController extends Controller
             $userTickets = Ticket::where('campaign_id', $campaign->id)
                 ->where('user_id', '=', $user->id)
                 ->get();
+
+            $data = [
+                'campaign' => $campaign,
+                'userTickets' => $userTickets,
+            ];
+
+            return view('user.layouts.dashboard', compact('data'));
         } else {
             $campaign = null;
             $userTickets = null;

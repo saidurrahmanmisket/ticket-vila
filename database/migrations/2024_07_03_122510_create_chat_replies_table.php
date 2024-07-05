@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('chat_replies', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignId("user_id")->references("id")->on("users");
-            $table->foreignId("chat_id")->references("id")->on("chats");
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('chat_id')->references('id')->on('chats');
             $table->timestamps();
         });
     }

@@ -14,13 +14,7 @@
             <div class="checkout--popup default--scrollbar" id="checkout--popup">
                 <form method="POST" action="{{ route('user.stripe.payment') }}" id="payment--form">
                     @csrf
-
-                    <input type="hidden" name="productId" value="{{ $campaign->id ?? '' }}">
-                    <input type="hidden" name="productName" value="{{ $campaign['name_' . locale()] ?? '' }}">
-                    <input type="hidden" name="perPrice" value="{{ $campaign->price ?? 0 }}">
-                    <input type="hidden" name="totalPrice" value="{{ $totalPrice ?? 0 }}">
                     <input type="hidden" name="quantity" value="{{ $quantity ?? 1 }}">
-                    <input type="hidden" name="paymentMethod" value="stripe">
                     <!-- step  -->
                     <div class="">
                         <div class="billing--info">
@@ -30,16 +24,23 @@
                                 <li>
                                     <div class="options">
                                         <p>{{ $campaign['name_' . locale()] ?? '' }}</p>
-                                        <p>{{ $campaign->price ?? '' }}€</p>
+                                        <p>{{ number_format($campaign->price,2) ?? '' }} €</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="options">
-                                        <p>Quentity</p>
-                                        <p>{{ $quantity ?? 1 }}</p>
+                                        <p>Quantity</p>
+                                        <p>{{$quantity ?? 1}}</p>
+                                        <input type="hidden" name="quantity" value="{{$quantity ?? 1}}">
                                     </div>
                                 </li>
-                                @if($campaign->how_many_buy && $campaign->how_many_free)
+                                <li>
+                                    <div class="options">
+                                        <p>Subtotal</p>
+                                        <p>{{ number_format($totalPrice,2) }} €</p>
+                                    </div>
+                                </li>
+                                @if(!empty($campaign->how_many_buy) && !empty($campaign->how_many_free))
                                     <li>
                                         <div class="options">
                                             <p>Free Tickets</p>
@@ -52,27 +53,15 @@
                                         <div class="options">
                                             <p>Discount ({{$campaign->discount_percent}}%)</p>
                                             <p>
-                                                -{{ $totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent) }}
+                                                -{{ number_format($totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent),2) }}
                                                 €</p>
                                         </div>
                                     </li>
                                 @endif
-                                {{-- <li>
-                                    <p class="extra">
-                                        Of the 99C Price, 59C is directly allocated to the
-                                        notary escrow account, ensuring secure transaction
-                                        handling, while the remaining 40C covers administration
-                                        costs associated with the service.
-                                    </p>
-                                    <div class="options mt_25">
-                                        <p>VAT Included (3%)</p>
-                                        <p>18.81€</p>
-                                    </div>
-                                </li> --}}
                                 <li>
                                     <div class="options total">
                                         <p>Total</p>
-                                        <p class="text-green">{{ $campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice }}
+                                        <p class="text-green">{{ number_format($campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice,2) }}
                                             €</p>
                                     </div>
                                 </li>

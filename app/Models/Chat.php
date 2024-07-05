@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     public function chatReply()
     {
         return $this->hasMany(ChatReply::class);
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

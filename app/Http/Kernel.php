@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckVerifyUserMiddleware;
 use App\Http\Middleware\UserRoutes;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         //Admin Middleware
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user.route' => UserRoutes::class,
+        'auth.verify' => CheckVerifyUserMiddleware::class,
     ];
 }
