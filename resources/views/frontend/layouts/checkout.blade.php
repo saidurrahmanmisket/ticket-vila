@@ -3,83 +3,167 @@
 @section('title', 'Checkout')
 
 @section('content')
+	@push('style')
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/css/intlTelInput.css"/>
+		<style>
+            .single--input .iti__selected-country-primary {
+                padding-left: 20px;
+            }
+
+            input#country-code {
+                width: 100%;
+            }
+		</style>
+	@endpush
 <!-- main area starts -->
 <main>
     <section class="banner--top--gap home--check--out--wrapper">
         <div class="container">
-            <div class="home--checkout--content">
+	        <form action="{{route('frontend.web-shop.stripe.payment')}}" id="payment--form"
+	              class="home--checkout--content"
+	              method="POST"> @csrf
                 <div class="single--area personal--info">
                     <h3 class="section--title">Personal Information's</h3>
-
                     <div class="input--area--wrapper">
                         <div class="single--input">
-                            <label>First Name</label>
-                            <input type="text" placeholder="first name" />
+	                        <label class="required" for="first_name">First Name</label>
+	                        <input value="{{old('first_name')}}"
+	                               class="{{!empty($errors->first('first_name')) ? 'is_invalid' : ''}}" type="text"
+	                               name="first_name" id="first_name" placeholder="first name"/>
+	                        @error('first_name')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="last name" />
+	                        <label class="required" for="last_name">Last Name</label>
+	                        <input value="{{old('last_name')}}"
+	                               class="{{!empty($errors->first('last_name')) ? 'is_invalid' : ''}}" type="text"
+	                               id="last_name"
+	                               name="last_name" placeholder="last name"/>
+	                        @error('last_name')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>Birthday</label>
-                            <input type="date" />
+	                        <label class="required" for="birth_date">Birthday</label>
+	                        <input value="{{old('birth_date')}}"
+	                               class="{{!empty($errors->first('birth_date'))? 'is_invalid' : ''}}" type="date"
+	                               name="birth_date"
+	                               id="birth_date"/>
+	                        @error('birth_date')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>City</label>
-                            <input type="text" placeholder="city" />
+	                        <label class="required" for="city">City</label>
+	                        <input value="{{old('city')}}" class="{{!empty($errors->first('city'))? 'is_invalid' : ''}}"
+	                               type="text"
+	                               placeholder="city"
+	                               name="city" id="city"/>
+	                        @error('city')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>State of the Birth</label>
-                            <input type="text" placeholder="state of the birth" />
+	                        <label class="required" for="birth_state">State of the Birth</label>
+	                        <input value="{{old('birth_state')}}"
+	                               class="{{ !empty($errors->first('birth_state')) ? 'is_invalid' : ''}}" type="text"
+	                               id="birth_state"
+	                               name="birth_state" placeholder="state of the birth"/>
+	                        @error('birth_state')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>Telephone</label>
-                            <input type="tel" placeholder="telephone" />
+	                        <label class="required" for="country-code">Telephone</label>
+	                        <input value="{{old('phone')}}"
+	                               class="{{ !empty($errors->first('phone')) ? 'is_invalid' : ''}}" type="tel"
+	                               id="country-code"
+	                               name="phone" placeholder="telephone"/>
+	                        <input type="hidden" name="phone_code" id="phone_code">
+	                        <input type="hidden" value="{{old('iso')}}" name="iso" id="iso">
+	                        @error('phone')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="example@gmail.com" />
+	                        <label class="required" for="email">Email Address</label>
+	                        <input value="{{old('email')}}"
+	                               class="{{ !empty($errors->first('email')) ? 'is_invalid' : ''}}" type="email"
+	                               id="email"
+	                               name="email"
+	                               placeholder="example@gmail.com"/>
+	                        @error('email')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label> Address</label>
-                            <input type="text" placeholder="address" />
+	                        <label class="required" for="address"> Address</label>
+	                        <input value="{{old('address')}}"
+	                               class="{{!empty($errors->first('address')) ? 'is_invalid' : ''}}" type="text"
+	                               id="address"
+	                               name="address" placeholder="address"/>
+	                        @error('address')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
-
                         <div class="input--group">
                             <div class="single--input">
-                                <label>ZIP</label>
-                                <input type="number" placeholder="344497" />
+	                            <label class="required" for="zip">ZIP</label>
+	                            <input value="{{old('zip')}}"
+	                                   class="{{ !empty($errors->first('zip')) ? 'is_invalid' : ''}}" type="number"
+	                                   name="zip"
+	                                   placeholder="344497"/>
+	                            @error('zip')
+	                            <span class="invalid-feedback d-block">{{$message}}</span>
+	                            @enderror
                             </div>
                             <div class="single--input">
-                                <label>Gender</label>
-                                <select name="gender-select" id="gender-select">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+	                            <label class="required" for="gender">Gender</label>
+	                            <select class="{{ !empty($errors->first('gender')) ? 'is_invalid' : ''}}" name="gender"
+	                                    id="gender-select">
+		                            <option @if(old('gender') == 'male') selected @endif value="male">Male</option>
+		                            <option @if(old('gender') == 'female') selected @endif value="female">Female
+		                            </option>
                                 </select>
+	                            @error('gender')
+	                            <span class="invalid-feedback d-block">{{$message}}</span>
+	                            @enderror
                             </div>
                         </div>
 
                         <div class="single--input">
-                            <label>Password</label>
-                            <input type="password" placeholder="*******" />
+	                        <label class="required" for="password">Password</label>
+	                        <input class="{{ !empty($errors->first('password')) ? 'is_invalid' : ''}}" type="password"
+	                               id="password"
+	                               name="password" placeholder="*******"/>
+	                        @error('password')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
                         <div class="single--input">
-                            <label>Confirm Password</label>
-                            <input type="password" placeholder="Retype password" />
+	                        <label class="required" for="password_confirmation">Confirm Password</label>
+	                        <input class="{{ !empty($errors->first('password_confirmation')) ? 'is_invalid' : ''}}"
+	                               type="password"
+	                               id="password_confirmation" name="password_confirmation"
+	                               placeholder="Retype password"/>
+	                        @error('password_confirmation')
+	                        <span class="invalid-feedback d-block">{{$message}}</span>
+	                        @enderror
                         </div>
 
-                        <div class="checkbox--wrapper">
-                            <input
-                                type="checkbox"
-                                name="accept-terms"
-                                id="accept-terms"
-                            />
+	                    {{--                        <div class="checkbox--wrapper">--}}
+	                    {{--                            <input--}}
+	                    {{--                                type="checkbox"--}}
+	                    {{--                                name="accept_terms"--}}
+	                    {{--                                id="accept-terms"--}}
+	                    {{--                            />--}}
 
-                            <label for="accept-terms">
-                                I hereby confirm and accept the Terms and Conditions and
-                                Privacy Policy. I confirm that I am over 18 years of age.
-                            </label>
-                        </div>
+	                    {{--                            <label for="accept-terms">--}}
+	                    {{--                                I hereby confirm and accept the Terms and Conditions and--}}
+	                    {{--                                Privacy Policy. I confirm that I am over 18 years of age.--}}
+	                    {{--                            </label>--}}
+	                    {{--                        </div>--}}
                     </div>
                 </div>
 
@@ -98,34 +182,48 @@
                                     <ul>
                                         <li>
                                             <div class="options">
-                                                <p>Escrow account notary</p>
-                                                <p>59.00€</p>
+	                                            <p>{{ $campaign['name_' . locale()] ?? '' }}</p>
+	                                            <p>{{ number_format($campaign->price,2) ?? '' }} €</p>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="options">
-                                                <p>Service and administration fee</p>
-                                                <p>40.00€</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p class="extra">
-                                                Of the 99C Price, 59C is directly allocated to the
-                                                notary escrow account, ensuring secure transaction
-                                                handling, while the remaining 40C covers
-                                                administration costs associated with the service.
-                                            </p>
-                                            <div class="options mt_25">
-                                                <p>VAT Included (3%)</p>
-                                                <p>18.81€</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="options total">
-                                                <p>Total</p>
-                                                <p class="text-green">99.00€</p>
-                                            </div>
-                                        </li>
+	                                    <li>
+		                                    <div class="options">
+			                                    <p>Quantity</p>
+			                                    <p>{{$quantity ?? 1}}</p>
+			                                    <input type="hidden" name="quantity" value="{{$quantity ?? 1}}">
+		                                    </div>
+	                                    </li>
+	                                    <li>
+		                                    <div class="options">
+			                                    <p>Subtotal</p>
+			                                    <p>{{ number_format($totalPrice,2) }} €</p>
+		                                    </div>
+	                                    </li>
+	                                    @if(!empty($campaign->how_many_buy) && !empty($campaign->how_many_free))
+		                                    <li>
+			                                    <div class="options">
+				                                    <p>Free Tickets</p>
+				                                    <p>{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
+			                                    </div>
+		                                    </li>
+	                                    @endif
+	                                    @if($campaign->discount_percent && Carbon\Carbon::parse($campaign->discount_expire_date)->greaterThan(now()))
+		                                    <li>
+			                                    <div class="options">
+				                                    <p>Discount ({{$campaign->discount_percent}}%)</p>
+				                                    <p>
+					                                    -{{ number_format($totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent),2) }}
+					                                    €</p>
+			                                    </div>
+		                                    </li>
+	                                    @endif
+	                                    <li>
+		                                    <div class="options total">
+			                                    <p>Total</p>
+			                                    <p class="text-green">{{ number_format($campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice,2) }}
+				                                    €</p>
+		                                    </div>
+	                                    </li>
                                     </ul>
 
                                     <!-- payment method  -->
@@ -134,130 +232,14 @@
                                         <div class="methods">
                                             <!-- radio group  -->
                                             <div class="radio--group">
-                                                <input id="ipay" type="radio" name="radio--group" />
-                                                <label for="ipay">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="44"
-                                                        height="19"
-                                                        viewBox="0 0 44 19"
-                                                        fill="none"
-                                                    >
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M7.94911 2.33117C7.43924 2.94192 6.62344 3.42364 5.80764 3.35482C5.70567 2.52902 6.10507 1.6516 6.57245 1.10967C7.08233 0.481718 7.97461 0.0344084 8.69693 0C8.78191 0.86021 8.45049 1.70322 7.94911 2.33117ZM8.68836 3.51823C7.96966 3.47636 7.31387 3.73703 6.78418 3.94757C6.44331 4.08306 6.15465 4.1978 5.93505 4.1978C5.6886 4.1978 5.38803 4.07693 5.05055 3.94122C4.60835 3.76339 4.10279 3.56009 3.57263 3.56985C2.35743 3.58705 1.22721 4.28382 0.606864 5.39349C-0.66782 7.61283 0.275446 10.8988 1.50764 12.7053C2.11099 13.5999 2.83331 14.5805 3.78508 14.5461C4.2038 14.5301 4.505 14.4008 4.81671 14.2669C5.17558 14.1127 5.54839 13.9526 6.1305 13.9526C6.69242 13.9526 7.04892 14.1085 7.39114 14.2583C7.71654 14.4006 8.02902 14.5373 8.49291 14.5289C9.47867 14.5117 10.099 13.6343 10.7024 12.7397C11.3535 11.7795 11.6396 10.8424 11.683 10.7002L11.6881 10.6838C11.6871 10.6827 11.679 10.679 11.6649 10.6724L11.6648 10.6724C11.4472 10.5716 9.78355 9.8006 9.7676 7.73326C9.75158 5.99803 11.0871 5.11885 11.2974 4.98045C11.3102 4.97203 11.3188 4.96635 11.3227 4.96339C10.4729 3.69028 9.14725 3.55264 8.68836 3.51823ZM15.5122 14.4344V1.02373H20.4835C23.0499 1.02373 24.8429 2.81297 24.8429 5.42801C24.8429 8.04305 23.0159 9.84949 20.4155 9.84949H17.5687V14.4344H15.5122ZM17.5686 2.77841H19.9395C21.724 2.77841 22.7438 3.74185 22.7438 5.43646C22.7438 7.13107 21.724 8.10311 19.931 8.10311H17.5686V2.77841ZM31.6328 12.8257C31.089 13.8752 29.8907 14.5375 28.5991 14.5375C26.687 14.5375 25.3529 13.3848 25.3529 11.6472C25.3529 9.9268 26.6446 8.93755 29.0325 8.79132L31.5988 8.63648V7.8967C31.5988 6.80423 30.8935 6.21069 29.6358 6.21069C28.5991 6.21069 27.8428 6.75262 27.6898 7.57842H25.8372C25.8967 5.8408 27.5113 4.57629 29.6953 4.57629C32.0492 4.57629 33.5788 5.8236 33.5788 7.75907V14.4343H31.6753V12.8257H31.6328ZM29.1513 12.9463C28.055 12.9463 27.3582 12.4129 27.3582 11.5957C27.3582 10.7527 28.0296 10.2624 29.3127 10.185L31.5987 10.0387V10.7957C31.5987 12.0516 30.5449 12.9463 29.1513 12.9463ZM39.8927 14.959C39.0684 17.3074 38.1251 18.0815 36.1196 18.0815C35.9667 18.0815 35.4568 18.0643 35.3378 18.0299V16.4213C35.4653 16.4385 35.7797 16.4558 35.9412 16.4558C36.8505 16.4558 37.3603 16.0687 37.6748 15.0622L37.8617 14.4687L34.3776 4.70529H36.5275L38.9494 12.6278H38.9919L41.4138 4.70529H43.5043L39.8927 14.959Z"
-                                                            fill="black"
-                                                        ></path>
-                                                    </svg>
-                                                </label>
-                                            </div>
-                                            <!-- radio group  -->
-                                            <div class="radio--group">
-                                                <input id="visa" type="radio" name="radio--group" />
-                                                <label for="visa">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="44"
-                                                        height="14"
-                                                        viewBox="0 0 44 14"
-                                                        fill="none"
-                                                    >
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M11.2544 13.6166H7.53298L4.7424 2.97034C4.60994 2.48061 4.32871 2.04767 3.91502 1.84362C2.88261 1.33082 1.74497 0.922717 0.503906 0.71689V0.30701H6.49876C7.32614 0.30701 7.94667 0.922717 8.05009 1.63779L9.498 9.31727L13.2176 0.30701H16.8355L11.2544 13.6166ZM18.904 13.6166H15.3895L18.2835 0.30701H21.798L18.904 13.6166ZM26.3449 3.99411C26.4483 3.27726 27.0689 2.86738 27.7928 2.86738C28.9305 2.76447 30.1697 2.9703 31.2039 3.48132L31.8245 0.615707C30.7902 0.205827 29.6526 0 28.6202 0C25.2091 0 22.7269 1.84357 22.7269 4.40221C22.7269 6.3487 24.4851 7.37074 25.7262 7.98644C27.0689 8.60038 27.586 9.01026 27.4825 9.62419C27.4825 10.5451 26.4483 10.955 25.4159 10.955C24.1748 10.955 22.9338 10.648 21.798 10.1352L21.1774 13.0026C22.4185 13.5136 23.7612 13.7194 25.0022 13.7194C28.827 13.8206 31.2039 11.9788 31.2039 9.21431C31.2039 5.73299 26.3449 5.52894 26.3449 3.99411ZM43.5039 13.6166L40.7133 0.30701H37.7159C37.0954 0.30701 36.4748 0.71689 36.268 1.33082L31.1005 13.6166H34.7185L35.4406 11.6719H39.886L40.2997 13.6166H43.5039ZM38.233 3.89113L39.2654 8.90727H36.3714L38.233 3.89113Z"
-                                                            fill="#172B85"
-                                                        ></path>
-                                                    </svg>
-                                                </label>
-                                            </div>
-                                            <!-- radio group  -->
-                                            <div class="radio--group">
-                                                <input
-                                                    id="master"
-                                                    type="radio"
-                                                    name="radio--group"
-                                                />
-                                                <label for="master">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="44"
-                                                        height="27"
-                                                        viewBox="0 0 44 27"
-                                                        fill="none"
-                                                    >
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M30.4629 26.3848C37.6653 26.3848 43.5039 20.4783 43.5039 13.1924C43.5039 5.90643 37.6653 0 30.4629 0C27.2351 0 24.2811 1.18634 22.0039 3.15151C19.7267 1.18636 16.7727 4.40854e-05 13.5449 4.40854e-05C6.34256 4.40854e-05 0.503906 5.90647 0.503906 13.1924C0.503906 20.4784 6.34256 26.3848 13.5449 26.3848C16.7728 26.3848 19.7267 25.1985 22.0039 23.2333C24.2812 25.1984 27.2351 26.3848 30.4629 26.3848Z"
-                                                            fill="#ED0006"
-                                                        ></path>
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M22.0039 23.2333C24.8079 20.8135 26.5859 17.213 26.5859 13.1924C26.5859 9.17175 24.8079 5.57121 22.0039 3.15149C24.2811 1.18633 27.2351 0 30.4629 0C37.6653 0 43.5039 5.90643 43.5039 13.1924C43.5039 20.4783 37.6653 26.3848 30.4629 26.3848C27.2351 26.3848 24.2811 25.1984 22.0039 23.2333Z"
-                                                            fill="#F9A000"
-                                                        ></path>
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M22.0038 23.2331C24.8077 20.8133 26.5857 17.2128 26.5857 13.1922C26.5857 9.17161 24.8077 5.57109 22.0038 3.15137C19.1998 5.57109 17.4219 9.17161 17.4219 13.1922C17.4219 17.2128 19.1998 20.8133 22.0038 23.2331Z"
-                                                            fill="#FF5E00"
-                                                        ></path>
-                                                    </svg>
-                                                </label>
-                                            </div>
-                                            <!-- radio group  -->
-                                            <div class="radio--group">
-                                                <input
-                                                    id="paypal"
-                                                    type="radio"
-                                                    name="radio--group"
-                                                />
-                                                <label for="paypal">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="22"
-                                                        height="26"
-                                                        viewBox="0 0 22 26"
-                                                        fill="none"
-                                                    >
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M6.59653 24.5714L7.03496 21.7752L6.0583 21.7524H1.39453L4.63568 1.11822C4.64578 1.05574 4.67842 0.997738 4.72609 0.956475C4.774 0.915213 4.83506 0.892578 4.89893 0.892578H12.7628C15.3736 0.892578 17.1752 1.43795 18.1158 2.51453C18.5568 3.01958 18.8376 3.5475 18.9736 4.12824C19.1161 4.73774 19.1185 5.46584 18.9795 6.35403L18.9694 6.41864V6.98782L19.4104 7.23869C19.7816 7.43652 20.0768 7.66287 20.3032 7.92199C20.6804 8.35395 20.9243 8.90285 21.0274 9.55338C21.134 10.2225 21.0988 11.019 20.9243 11.9206C20.7231 12.9576 20.3978 13.8609 19.9585 14.5999C19.5546 15.2808 19.0398 15.8457 18.4285 16.2834C17.845 16.6993 17.1518 17.015 16.3679 17.2171C15.6082 17.4156 14.7422 17.5158 13.7923 17.5158H13.1803C12.7428 17.5158 12.3177 17.674 11.984 17.9577C11.6494 18.2472 11.4282 18.6428 11.3603 19.0755L11.3141 19.3273L10.5394 24.2559L10.5044 24.4367C10.495 24.494 10.479 24.5226 10.4555 24.5419C10.4346 24.5596 10.4046 24.5714 10.3752 24.5714H6.59653Z"
-                                                            fill="#28356A"
-                                                        ></path>
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M19.8259 6.4834C19.8027 6.63406 19.7757 6.78803 19.7456 6.94624C18.7086 12.2924 15.1605 14.1393 10.6292 14.1393H8.32197C7.76777 14.1393 7.30069 14.5432 7.2145 15.0921L5.69866 24.7462C5.64254 25.1068 5.91917 25.4314 6.28128 25.4314H10.3735C10.8579 25.4314 11.2696 25.078 11.3459 24.5982L11.3861 24.3895L12.1565 19.4803L12.2061 19.211C12.2815 18.7295 12.6941 18.3758 13.1785 18.3758H13.7905C17.7552 18.3758 20.859 16.7598 21.7661 12.0828C22.1449 10.1291 21.9488 8.4977 20.9461 7.35037C20.6427 7.00448 20.2662 6.7173 19.8259 6.4834Z"
-                                                            fill="#298FC2"
-                                                        ></path>
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M18.7416 6.0495C18.5831 6.00305 18.4196 5.96108 18.252 5.92312C18.0833 5.8861 17.9107 5.85333 17.733 5.82456C17.1109 5.72365 16.4292 5.67578 15.6991 5.67578H9.53545C9.38352 5.67578 9.23933 5.71021 9.11041 5.77245C8.82603 5.90968 8.61491 6.17989 8.56372 6.51069L7.25242 14.8494L7.21484 15.0925C7.30103 14.5436 7.76811 14.1397 8.32231 14.1397H10.6295C15.1609 14.1397 18.7089 12.2919 19.746 6.94665C19.777 6.78844 19.803 6.63448 19.8263 6.48381C19.564 6.34399 19.2798 6.22445 18.9738 6.12259C18.8982 6.09736 18.8202 6.07308 18.7416 6.0495Z"
-                                                            fill="#22284F"
-                                                        ></path>
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            clip-rule="evenodd"
-                                                            d="M8.56398 6.51102C8.61517 6.18021 8.82628 5.91001 9.11067 5.77372C9.24053 5.71124 9.38378 5.67682 9.53571 5.67682H15.6993C16.4294 5.67682 17.1112 5.72492 17.7332 5.82583C17.911 5.85436 18.0836 5.88737 18.2522 5.92439C18.4199 5.96212 18.5833 6.00432 18.7418 6.05053C18.8205 6.07411 18.8985 6.09863 18.9748 6.12292C19.2808 6.22478 19.5652 6.34526 19.8275 6.48414C20.136 4.50851 19.8249 3.16336 18.7611 1.94531C17.5881 0.604171 15.4713 0.0302734 12.7625 0.0302734H4.89848C4.34522 0.0302734 3.87321 0.434171 3.78773 0.984018L0.512289 21.8303C0.44771 22.2427 0.764499 22.6148 1.17874 22.6148H6.03366L8.56398 6.51102Z"
-                                                            fill="#28356A"
-                                                        ></path>
-                                                    </svg>
-                                                </label>
-                                            </div>
-                                            <!-- radio group  -->
-                                            <div class="radio--group">
                                                 <input
                                                     id="stripe"
                                                     type="radio"
+                                                    value="stripe"
+                                                    checked
                                                     name="radio--group"
                                                 />
-                                                <label for="stripe">
+	                                            <label for="stripe">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="43"
@@ -274,14 +256,58 @@
                                                     </svg>
                                                 </label>
                                             </div>
+	                                        <!-- radio group  -->
+	                                        <div class="radio--group">
+		                                        <input
+				                                        id="paypal"
+				                                        type="radio"
+				                                        value="paypal"
+				                                        name="radio--group"
+		                                        />
+		                                        <label for="paypal">
+			                                        <svg
+					                                        xmlns="http://www.w3.org/2000/svg"
+					                                        width="22"
+					                                        height="26"
+					                                        viewBox="0 0 22 26"
+					                                        fill="none"
+			                                        >
+				                                        <path
+						                                        fill-rule="evenodd"
+						                                        clip-rule="evenodd"
+						                                        d="M6.59653 24.5714L7.03496 21.7752L6.0583 21.7524H1.39453L4.63568 1.11822C4.64578 1.05574 4.67842 0.997738 4.72609 0.956475C4.774 0.915213 4.83506 0.892578 4.89893 0.892578H12.7628C15.3736 0.892578 17.1752 1.43795 18.1158 2.51453C18.5568 3.01958 18.8376 3.5475 18.9736 4.12824C19.1161 4.73774 19.1185 5.46584 18.9795 6.35403L18.9694 6.41864V6.98782L19.4104 7.23869C19.7816 7.43652 20.0768 7.66287 20.3032 7.92199C20.6804 8.35395 20.9243 8.90285 21.0274 9.55338C21.134 10.2225 21.0988 11.019 20.9243 11.9206C20.7231 12.9576 20.3978 13.8609 19.9585 14.5999C19.5546 15.2808 19.0398 15.8457 18.4285 16.2834C17.845 16.6993 17.1518 17.015 16.3679 17.2171C15.6082 17.4156 14.7422 17.5158 13.7923 17.5158H13.1803C12.7428 17.5158 12.3177 17.674 11.984 17.9577C11.6494 18.2472 11.4282 18.6428 11.3603 19.0755L11.3141 19.3273L10.5394 24.2559L10.5044 24.4367C10.495 24.494 10.479 24.5226 10.4555 24.5419C10.4346 24.5596 10.4046 24.5714 10.3752 24.5714H6.59653Z"
+						                                        fill="#28356A"
+				                                        ></path>
+				                                        <path
+						                                        fill-rule="evenodd"
+						                                        clip-rule="evenodd"
+						                                        d="M19.8259 6.4834C19.8027 6.63406 19.7757 6.78803 19.7456 6.94624C18.7086 12.2924 15.1605 14.1393 10.6292 14.1393H8.32197C7.76777 14.1393 7.30069 14.5432 7.2145 15.0921L5.69866 24.7462C5.64254 25.1068 5.91917 25.4314 6.28128 25.4314H10.3735C10.8579 25.4314 11.2696 25.078 11.3459 24.5982L11.3861 24.3895L12.1565 19.4803L12.2061 19.211C12.2815 18.7295 12.6941 18.3758 13.1785 18.3758H13.7905C17.7552 18.3758 20.859 16.7598 21.7661 12.0828C22.1449 10.1291 21.9488 8.4977 20.9461 7.35037C20.6427 7.00448 20.2662 6.7173 19.8259 6.4834Z"
+						                                        fill="#298FC2"
+				                                        ></path>
+				                                        <path
+						                                        fill-rule="evenodd"
+						                                        clip-rule="evenodd"
+						                                        d="M18.7416 6.0495C18.5831 6.00305 18.4196 5.96108 18.252 5.92312C18.0833 5.8861 17.9107 5.85333 17.733 5.82456C17.1109 5.72365 16.4292 5.67578 15.6991 5.67578H9.53545C9.38352 5.67578 9.23933 5.71021 9.11041 5.77245C8.82603 5.90968 8.61491 6.17989 8.56372 6.51069L7.25242 14.8494L7.21484 15.0925C7.30103 14.5436 7.76811 14.1397 8.32231 14.1397H10.6295C15.1609 14.1397 18.7089 12.2919 19.746 6.94665C19.777 6.78844 19.803 6.63448 19.8263 6.48381C19.564 6.34399 19.2798 6.22445 18.9738 6.12259C18.8982 6.09736 18.8202 6.07308 18.7416 6.0495Z"
+						                                        fill="#22284F"
+				                                        ></path>
+				                                        <path
+						                                        fill-rule="evenodd"
+						                                        clip-rule="evenodd"
+						                                        d="M8.56398 6.51102C8.61517 6.18021 8.82628 5.91001 9.11067 5.77372C9.24053 5.71124 9.38378 5.67682 9.53571 5.67682H15.6993C16.4294 5.67682 17.1112 5.72492 17.7332 5.82583C17.911 5.85436 18.0836 5.88737 18.2522 5.92439C18.4199 5.96212 18.5833 6.00432 18.7418 6.05053C18.8205 6.07411 18.8985 6.09863 18.9748 6.12292C19.2808 6.22478 19.5652 6.34526 19.8275 6.48414C20.136 4.50851 19.8249 3.16336 18.7611 1.94531C17.5881 0.604171 15.4713 0.0302734 12.7625 0.0302734H4.89848C4.34522 0.0302734 3.87321 0.434171 3.78773 0.984018L0.512289 21.8303C0.44771 22.2427 0.764499 22.6148 1.17874 22.6148H6.03366L8.56398 6.51102Z"
+						                                        fill="#28356A"
+				                                        ></path>
+			                                        </svg>
+		                                        </label>
+	                                        </div>
                                         </div>
                                     </div>
                                     <div class="checkbox--wrapper mt_35">
-                                        <input id="terms" type="checkbox" />
-                                        <label for="terms"
+	                                    <input id="terms" name="terms" @if(old('terms')) checked
+	                                           @endif type="checkbox"/>
+	                                    <label for="terms"
                                         >By checking this box, I agree to the
-                                            <a href="#">Terms of Service</a> and
-                                            <a href="#">Privacy Policy</a> confirm I am of legal
+		                                    <a href="/page/terms-and-conditions">Terms of Service</a> and
+		                                    <a href="/page/privacy-policy">Privacy Policy</a> confirm I am of legal
                                             age, and consent to the use of my personal Information
                                             os described. I understand my participation is
                                             voluntary and accept all related risks and rewards. I
@@ -289,13 +315,16 @@
                                             "Raffle Rules", which I have read and have no
                                             objection to.
                                         </label>
+	                                    @error('terms')
+	                                    <span class="invalid-feedback d-block">{{$message}}</span>
+	                                    @enderror
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Proceed to Payment button -->
                             <button class="proceed">
-                                <span>Procceed to payment</span>
+	                            <span>Proceed to payment</span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"
@@ -322,10 +351,45 @@
                         </form>
                     </div>
                 </div>
-            </div>
+	        </form>
         </div>
     </section>
 </main>
 <!-- main area ends -->
-
 @endsection
+@push('scripts')
+	<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/intlTelInput.min.js"></script>
+	<script>
+        $(document).ready(function () {
+            const input = document.querySelector("#country-code");
+            const iso = "{{old('iso')}}"
+            if (input) {
+                let iti = window.intlTelInput(input, {
+                    separateDialCode: true,
+                    initialCountry: iso ? iso : "bd",
+                    // utilsScript: "/intl-tel-input/js/utils.js?1716383386062",
+                });
+                input.addEventListener("countrychange", function (item) {
+                    document.querySelector("#phone_code").value = iti.getSelectedCountryData().dialCode;
+                    document.querySelector("#iso").value = iti.getSelectedCountryData().iso2;
+                });
+                // Set the initial value
+                document.querySelector("#phone_code").value = iti.getSelectedCountryData().dialCode;
+            }
+
+        })
+	</script>
+	<script>
+        let form = $('#payment--form')
+        $("input[name='radio--group']").each(function (el) {
+            $(this).on('change', function () {
+                if ($(this).is(':checked') && $(this).val() === 'stripe') {
+                    form.attr('action', "{{route('frontend.web-shop.stripe.payment')}}")
+                } else {
+                    form.attr('action', "{{route('frontend.web-shop.paypal.payment')}}")
+                }
+            })
+        })
+	</script>
+@endpush
+

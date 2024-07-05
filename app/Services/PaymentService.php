@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Order;
 use App\Models\Ticket;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class PaymentService
 {
@@ -23,7 +22,7 @@ class PaymentService
             'transaction_id' => $orderInfo['transaction_id'],
             'quantity' => $orderInfo['quantity'],
             'discount_quantity' => $orderInfo['discount_quantity'],
-            'discount_percent' => $orderInfo['discount_percent'],
+            'discount_percent' => $orderInfo['discount_percent'] ?? 0,
             'total_price' => $discount_totalPrice,
             'payment_method' => $orderInfo['payment_method'],
             'campaign_id' => $orderInfo['campaign_id'],
@@ -32,7 +31,7 @@ class PaymentService
         ]);
     }
 
-    public function ticketCreate($order_id, $quantity, $campaign_id, $discount_quantity, $prefix): array
+    public function ticketCreate($order_id, $user_id, $quantity, $campaign_id, $discount_quantity, $prefix): array
     {
         $lastTicket = Ticket::where('campaign_id', $campaign_id)->latest()->first();
         $last_sequence = $lastTicket ? $lastTicket->ticket_number : $prefix.'-000000';
@@ -42,7 +41,7 @@ class PaymentService
             $newTicketNumber = unique_ticket_number($prefix, $last_sequence);
             Ticket::create([
                 'ticket_number' => $newTicketNumber,
-                'user_id' => Auth::user()->id,
+                'user_id' => $user_id,
                 'order_id' => $order_id,
                 'campaign_id' => $campaign_id,
                 'payment_status' => $i < $quantity ? 'paid' : 'free',

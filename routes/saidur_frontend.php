@@ -31,8 +31,6 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
     Route::get('page/{page_slug}', 'dynamicPage')->name('custom.page');
     Route::get('/faqs', 'faq')->name('faqs');
-    Route::get('/checkout', 'checkout')->name('checkout');
-    Route::get('/buy-ebook', 'buyEbook')->name('buy-ebook');
 
 });
 
@@ -47,7 +45,7 @@ Route::controller(OTPVerificationController::class)->group(function () {
 });
 
 //-----user dashboard route start from here =====================================------by: saidur
-Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(function () {
+Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
@@ -75,7 +73,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
     //Paypal payment routes
     Route::post('/paypal/payment', [PaypalController::class, 'checkout'])->name('paypal.payment');
     Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
-    Route::get('/paypal/payment/cancel', [PaypalController::class, 'success'])->name('paypal.cancel');
+    Route::get('/paypal/payment/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 
     //success message
     Route::get('/payment/success/message', function () {
