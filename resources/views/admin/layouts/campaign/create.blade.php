@@ -14,7 +14,6 @@
                     <div class="personal--info profile--info--box">
                         <h3>Campaign Create</h3>
                     </div>
-                    ar
                 </div>
                 <div class="col-12">
                     <div>
@@ -83,7 +82,7 @@
                                                value="{{ old('unique_text') }}" name="unique_text">
                                         <div class="mt-1">
                                             <small class="form-text text-muted block">You can't update this prefix
-                                                forever.</small>
+                                                forever and value must (a-zA-Z)</small>
                                         </div>
                                         @error('unique_text')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -91,6 +90,95 @@
                                     </span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="mt-5">
+                                    <h5 class="mb-3">Promotion Section</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label for="how_many_buy" class="form-label h6">How Many Ticket
+                                                Buy?</label>
+                                            <input type="number" class="form-control" id="unique_text"
+                                                   value="{{ old('how_many_buy') }}" placeholder="9"
+                                                   name="how_many_buy">
+                                            @error('how_many_buy')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="how_many_free" class="form-label h6">How Many Ticket
+                                                Free?</label>
+                                            <input type="number" class="form-control" id="how_many_free"
+                                                   value="{{ old('how_many_free') }}" placeholder="1"
+                                                   name="how_many_free">
+                                            @error('how_many_free')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label for="discount_percent" class="form-label h6">Discount
+                                                Percent(%)</label>
+                                            <input type="number" class="form-control" id="discount_percent" min="0"
+                                                   max="100"
+                                                   step="0.01"
+                                                   value="{{ old('discount_percent') }}" placeholder="99"
+                                                   name="discount_percent">
+                                            <div class="mt-1">
+                                                <small class="form-text text-muted block">Max value 100</small>
+                                            </div>
+                                            @error('discount_percent')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="discount_expire_date" class="form-label h6">Discount Expire
+                                                Date</label>
+                                            <input type="datetime-local" class="form-control"
+                                                   id="discount_expire_date"
+                                                   value="{{ old('discount_expire_date') }}"
+                                                   name="discount_expire_date">
+                                            @error('discount_expire_date')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="promotion_banner" class="form-label h6">Banner</label>
+                                        <input type="file" class="form-control dropify" id="promotion_banner"
+                                               name="promotion_banner"
+                                               accept="image/png,image/gif,image/jpeg,image/jpg,image/svg">
+                                        @error('promotion_banner')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3 d-flex flex-column">
+                                    <label for="gift_id" class="form-label required h6">Gift</label>
+                                    <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
+                                        <option selected>Select gift</option>
+                                        @foreach($gifts as $gift)
+                                            <option @if(old('gift_id') == $gift->id) selected
+                                                    @endif value="{{ $gift->id }}">{{ $gift->name_en }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('gift_id')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="thumbnail" class="form-label required h6">Thumbnail</label>
@@ -101,74 +189,6 @@
                                       <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3 d-flex flex-column">
-                                    <label for="gift_id" class="form-label required h6">Gift</label>
-                                    <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
-                                        <option selected>Select gift</option>
-                                        @foreach($gifts as $gift)
-                                            <option @if(old('gift_id') == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name_en }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('gift_id')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <label for="how_many_buy" class="form-label h6">How Many Ticket Buy?</label>
-                                        <input type="number" class="form-control" id="unique_text"
-                                               value="{{ old('how_many_buy') }}" placeholder="9" name="how_many_buy">
-                                        @error('how_many_buy')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="how_many_free" class="form-label h6">How Many Ticket Free?</label>
-                                        <input type="number" class="form-control" id="how_many_free"
-                                               value="{{ old('how_many_free') }}" placeholder="1" name="how_many_free">
-                                        @error('how_many_free')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <label for="discount_percent" class="form-label h6">Discount Percent(%)</label>
-                                        <input type="number" class="form-control" id="discount_percent" min="0"
-                                               max="100"
-                                               step="0.01"
-                                               value="{{ old('how_many_buy') }}" placeholder="99"
-                                               name="discount_percent">
-                                        <div class="mt-1">
-                                            <small class="form-text text-muted block">Max value 100</small>
-                                        </div>
-                                        @error('discount_percent')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                               <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="discount_expire_date" class="form-label h6">Discount Expire
-                                            Date</label>
-                                        <input type="datetime-local" class="form-control" id="discount_expire_date"
-                                               value="{{ old('discount_expire_date') }}"
-                                               name="discount_expire_date">
-                                        @error('discount_expire_date')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
                                 </div>
                                 <div id="ebook_files_list">
                                     <div class="d-flex justify-content-end">

@@ -11,7 +11,7 @@
                         {{ !empty($hero_section) && !empty($hero_section['title_' . locale()]) ? $hero_section['title_' . locale()] : __('Raffle Rules') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        {{ !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('Step into Your Future Home: Dive Deep into the Details with Our Comprehensive Guide to the Raffle Rules and Regulations.') }}
+                        {!! !empty($hero_section) && !empty($hero_section['description_' . locale()]) ? substr($hero_section['description_' . locale()], 0, 300) . '...' : __('Step into Your Future Home: Dive Deep into the Details with Our Comprehensive Guide to the Raffle Rules and Regulations.') !!}
                     </p>
                     @if (
                         !empty($hero_section) &&
@@ -60,7 +60,7 @@
                         <div class="right">
                             <h3 class="main--text">{{ $rule['title_' . locale()] ?? '' }}</h3>
                             <p class="sub--text">
-                                {{ $rule['description_' . locale()] ? substr($rule['description_' . locale()], 0, 300) . '...' : '' }}
+                                {!!  $rule['description_' . locale()] ? substr($rule['description_' . locale()], 0, 300) . '...' : '' !!}
                             </p>
                             <div class="d-flex gap-4 align-items-center">
                                 @if (!empty($rule) && !empty($rule['description_' . locale()]) && strlen($rule['description_' . locale()]) > 300)
@@ -95,7 +95,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        {{ $rule['description_' . locale()] }}
+                                        {!! $rule['description_' . locale()] !!}
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
 
                 @if (empty(Auth::user()))
                     <a href="{{ route('register') }}" class="btn--fill">
-                        <span>{{ __("Join Now") }}</span>
+                        <span>{{ __('Join Now') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
                             <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5" stroke-linecap="round"

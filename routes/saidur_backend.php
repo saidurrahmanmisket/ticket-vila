@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\Web\Admin\ChatController;
 use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
+use App\Http\Controllers\Web\Admin\HighlightImageController;
+use App\Http\Controllers\Web\Admin\HouseFileController;
 use App\Http\Controllers\Web\Admin\KeyFeatureController;
+use App\Http\Controllers\Web\Admin\NewsController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
@@ -30,5 +34,16 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/dynamic-page', DynamicPageController::class);
     Route::resource('/key-feature', KeyFeatureController::class)->except('show');
     Route::post('/key-feature/status/{id}', [KeyFeatureController::class, 'status'])->name('key-feature.status');
+    Route::resource('/house-files', HouseFileController::class)->except('show');
+    Route::post('/house-file/status/{id}', [HouseFileController::class, 'status'])->name('house-files.status');
+    Route::resource('/highlight-image', HighlightImageController::class)->except('show');
+    Route::post('/highlight-image/status/{id}', [HighlightImageController::class, 'status'])->name('highlight-image.status');
+    Route::resource('/news', NewsController::class)->except('show');
+    Route::post('/news/status/{id}', [NewsController::class, 'status'])->name('news.status');
+    Route::get('/settings/help', [ChatController::class, 'index'])->name('help');
+    Route::get('/settings/help/show/{id}', [ChatController::class, 'show'])->name('help.show');
+    Route::get('/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
+    Route::post('/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
+    Route::post('/live-chat/status/{id}', [ChatController::class, 'status'])->name('chat.status');
 
 });

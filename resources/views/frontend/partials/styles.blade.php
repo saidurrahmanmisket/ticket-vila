@@ -84,6 +84,14 @@
         }
     })();
 </script>
+<!-- weglot API -->
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_76d0661293fa2792efc9f4f6542062d31'
+    });
+</script>
+
 {{-- custom css --}}
 <style>
     /* expose  styles  */
@@ -250,9 +258,7 @@
 
 
     @media only screen and (min-width:992px) and (max-width:1199px) {
-        .header--content--wrapper .content--area {
-            gap: 10px;
-        }
+
     }
 
 
@@ -329,5 +335,77 @@
         width: 100%;
     }
     /* updated styles house image end */
+
+</style>
+
+{{--Promotional Banner CSS --}}
+<style>
+    .promotion-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
+
+    .promotion-banner {
+        width: 100%;
+        height: 500px;
+        margin-top: -50px;
+        margin-bottom: 70px;
+    }
+
+    /* laptop devices */
+    @media only screen and (min-width: 1200px) and (max-width: 1365px) {
+        .promotion-banner {
+            height: 300px;
+            margin-top: -30px;
+            margin-bottom: 50px;
+        }
+    }
+
+    /* large tablet devices */
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .promotion-banner {
+            height: 280px;
+            margin-top: -30px;
+            margin-bottom: 50px;
+        }
+    }
+
+    /* medium tablet devices */
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .promotion-banner {
+            height: 220px;
+            margin-top: -30px;
+            margin-bottom: 40px;
+        }
+    }
+
+    /* small tablet devices */
+    @media only screen and (min-width: 576px) and (max-width: 767px) {
+        .promotion-banner {
+            height: 200px;
+            margin-top: -30px;
+            margin-bottom: 40px;
+        }
+    }
+
+    /* large mobile devices */
+    @media only screen and (min-width: 480px) and (max-width: 575px) {
+        .promotion-banner {
+            height: 150px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+    }
+
+    /* mobile devices */
+    @media only screen and (min-width: 375px) and (max-width: 479px) {
+        .promotion-banner {
+            height: 150px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+    }
 
 </style>

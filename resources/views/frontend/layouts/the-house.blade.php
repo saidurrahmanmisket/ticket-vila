@@ -89,17 +89,30 @@
                     @endif
                 </div>
 
-                <div class="image--grid">
-                    @if ($gift != null)
-                        @if ($giftImages['insideImage'] && $giftImages['insideImage']->isNotEmpty())
+
+                <div class="home--chance--slider ">
+                    @if (isset($gift) && $giftImages['insideImage'])
+                        <div class="owl-carousel owl-theme">
                             @foreach ($giftImages['insideImage'] as $item)
-                                <div class="img--holder">
-                                    <img src="{{ asset($item->image) }}" alt="" />
+                                <div class="item">
+                                    <div class="single--card ">
+                                        <img class="cover--img"
+                                             src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}" alt="" />
+                                        <div class="content">
+                                            <div class="icon">
+                                                <img src="{{ asset('frontend/images/chance-icon1.png') }}"
+                                                     alt="" />
+                                            </div>
+                                            <p class="text">{{ $item->gift_image_type ?? '' }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
-                        @endif
+                        </div>
                     @endif
                 </div>
+
+
             </div>
             <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
                      aria-hidden="true">
@@ -150,17 +163,28 @@
                     @endif
                 </div>
 
-                <div class="image--grid">
-                    @if ($gift != null)
-                        @if ($giftImages['outsideImage'] && $giftImages['outsideImage']->isNotEmpty())
+                <div class="home--chance--slider ">
+                    @if (isset($gift) && $giftImages['outsideImage'])
+                        <div class="owl-carousel owl-theme">
                             @foreach ($giftImages['outsideImage'] as $item)
-                                <div class="img--holder">
-                                    <img src="{{ asset($item->image) }}" alt="" />
+                                <div class="item">
+                                    <div class="single--card ">
+                                        <img class="cover--img"
+                                             src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}" alt="" />
+                                        <div class="content">
+                                            <div class="icon">
+                                                <img src="{{ asset('frontend/images/chance-icon1.png') }}"
+                                                     alt="" />
+                                            </div>
+                                            <p class="text">{{ $item->gift_image_type ?? '' }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
-                        @endif
+                        </div>
                     @endif
                 </div>
+
             </div>
         </section>
         <!-- outside the house area ends -->
@@ -402,7 +426,7 @@
     <script>
         $(document).ready(function() {
             // make image big on click
-            $('.house--image--grid--wrapper .image--grid .img--holder img').on('click', function(e) {
+            $('.house--image--grid--wrapper .home--chance--slider  .single--card>img').on('click', function(e) {
                 e.preventDefault();
                 var imgSrc = $(this).attr('src');
                 $('#modalImage').attr('src', imgSrc);
@@ -420,6 +444,23 @@
             $('.close').on('click', function() {
                 $('#imageModal').modal('hide');
             });
+        });
+
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:50,
+            nav:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
+            }
         });
     </script>
 @endpush

@@ -6,6 +6,7 @@ use App\Enums\Page;
 use App\Enums\Section;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\DynamicPage;
@@ -14,6 +15,8 @@ use App\Models\Gift;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -47,7 +50,7 @@ class PageController extends Controller
             $giftRandomImages = null;
         }
 
-        return view('frontend.layouts.index', compact('hero_section', 'houseTour', 'wit_spin', 'ticket_chance', 'theProcess', 'gift', 'giftRandomImages'));
+        return view('frontend.layouts.index', compact('hero_section', 'campaign', 'houseTour', 'wit_spin', 'ticket_chance', 'theProcess', 'gift', 'giftRandomImages'));
     }
 
     public function about()
@@ -168,5 +171,60 @@ class PageController extends Controller
 
         return view('frontend.layouts.faqs', compact('faqs'));
 
+    }
+
+    public function checkout()
+    {
+        return view('frontend.layouts.checkout');
+    }
+
+    public function buyEbook()
+    {
+        return view('frontend.layouts.buy-ebook');
+    }
+
+    public function submitContact(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'first-name' => 'required|string|max:255',
+            'last-name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric',
+            'company-name' => 'nullable|string|max:255',
+            'project' => 'nullable|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        try {
+            // Prepare the data for the email
+            $contactData = [
+                'first_name' => $request->input('first-name'),
+                'last_name' => $request->input('last-name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'company_name' => $request->input('company-name'),
+                'project' => $request->input('project'),
+                'city' => $request->input('city'),
+                'state' => $request->input('state'),
+                'country' => $request->input('country'),
+                'message' => $request->input('message'),
+            ];
+
+            // Send the email
+            Mail::to('ebook@ticketvilla.eu')->send(new ContactMail($contactData));
+
+            // Flash success message
+            flash()->addSuccess('Your message has been sent successfully!');
+        } catch (\Exception $e) {
+            // Flash error message
+            flash()->addError('Something went wrong: '.$e->getMessage());
+        }
+
+        // Redirect
+        return redirect()->route('frontend.contact');
     }
 }

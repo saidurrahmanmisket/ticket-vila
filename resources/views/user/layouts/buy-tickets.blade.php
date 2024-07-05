@@ -52,9 +52,8 @@
                             #9 Tickets left until you get 1 for free 🎉
                         </p> --}}
 
-                        <form action="{{ route('user.checkout') }}" method="POST">
+                        <form action="{{ route('user.checkout') }}" method="GET">
                             <div class="buttons">
-                                @csrf
                                 <input type="hidden" id="quantity" name="quantity" value="1">
                                 <a href="#" class="user--common--btn gift">Buy as a Gift 🎁</a>
                                 <button href="#" type="submit" class="user--common--btn">

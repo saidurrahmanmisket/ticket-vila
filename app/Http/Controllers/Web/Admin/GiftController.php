@@ -36,27 +36,26 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-
-        $validator = $request->validate([
-            'name_en' => 'required|string',
-            'name_de' => 'required|string',
-            'name_hu' => 'required|string',
-            'feature_title_en.*' => 'required',
-            'feature_title_de.*' => 'required',
-            'feature_title_hu.*' => 'required',
-            'feature_sub_title_en.*' => 'nullable|string',
-            'feature_sub_title_de.*' => 'nullable|string',
-            'feature_sub_title_hu.*' => 'nullable|string',
-            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         try {
+            DB::beginTransaction();
+
+            $validator = $request->validate([
+                'name_en' => 'required|string',
+                'name_de' => 'required|string',
+                'name_hu' => 'required|string',
+                'feature_title_en.*' => 'required',
+                'feature_title_de.*' => 'required',
+                'feature_title_hu.*' => 'required',
+                'feature_sub_title_en.*' => 'nullable|string',
+                'feature_sub_title_de.*' => 'nullable|string',
+                'feature_sub_title_hu.*' => 'nullable|string',
+                'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            ]);
 
             // Store data in the 'gifts' table
             if ($request->has('gift_image')) {
@@ -172,28 +171,34 @@ class GiftController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
-        DB::beginTransaction();
-
-        $validator = $request->validate([
-            'name_en' => 'required|string',
-            'name_de' => 'required|string',
-            'name_hu' => 'required|string',
-            'feature_title_en.*' => 'required',
-            'feature_title_de.*' => 'required',
-            'feature_title_hu.*' => 'required',
-            'feature_sub_title_en.*' => 'nullable|string',
-            'feature_sub_title_de.*' => 'nullable|string',
-            'feature_sub_title_hu.*' => 'nullable|string',
-            'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         try {
+            // dd($request->all());
+            DB::beginTransaction();
+
+            $validator = $request->validate([
+                'name_en' => 'required|string',
+                'name_de' => 'required|string',
+                'name_hu' => 'required|string',
+                'feature_title_en.*' => 'required',
+                'feature_title_de.*' => 'required',
+                'feature_title_hu.*' => 'required',
+                'feature_title_en_old.*' => 'required',
+                'feature_title_de_old.*' => 'required',
+                'feature_title_hu_old.*' => 'required',
+                'feature_sub_title_en.*' => 'nullable|string',
+                'feature_sub_title_de.*' => 'nullable|string',
+                'feature_sub_title_hu.*' => 'nullable|string',
+                'feature_sub_title_en_old.*' => 'nullable|string',
+                'feature_sub_title_de_old.*' => 'nullable|string',
+                'feature_sub_title_hu_old.*' => 'nullable|string',
+                'gift_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'gift_thum_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'inside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'outside_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'plan_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+                'feature_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            ]);
+
             $gift = Gift::findOrFail($id);
 
             // Update gift image

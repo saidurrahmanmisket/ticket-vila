@@ -45,7 +45,7 @@ class PaypalController extends Controller
                 }
 
                 // Redirect back with input and errors
-                return redirect()->route('user.buy-tickets');
+                return redirect()->back();
             }
 
             $productName = $request->productName;
@@ -106,7 +106,7 @@ class PaypalController extends Controller
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->route('user.buy-tickets')->with($e->getMessage());
+            return redirect()->back()->with($e->getMessage());
         }
     }
 
@@ -122,12 +122,14 @@ class PaypalController extends Controller
                 // Retrieve session data
                 $campaign = Campaign::latest()->with(['ebooks'])->where('status', 'published')->first();
                 $quantity = LaravelSession::get('quantity');
-                $discountQuantity = $quantity == 9 ? 1 : 0;
+                $discountQuantity = calculateFreeTicket($quantity, $campaign->how_many_buy, $campaign->how_many_free);
                 $paymentInfo = [
                     'user_id' => Auth::id(),
                     'transaction_id' => $response['purchase_units'][0]['payments']['captures'][0]['id'] ?? '',
                     'quantity' => LaravelSession::get('quantity'),
                     'discount_quantity' => $discountQuantity,
+                    'discount_percent' => $campaign->discount_percent,
+                    'discount_expire_date' => $campaign->discount_expire_date,
                     'total_price' => LaravelSession::get('totalPrice'),
                     'payment_method' => PaymentMethod::PAYPAL,
                     'campaign_id' => $campaign->id,

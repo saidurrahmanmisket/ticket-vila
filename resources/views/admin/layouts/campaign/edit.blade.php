@@ -58,36 +58,117 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="price" class="form-label required h6">Price</label>
-                                    <input type="text" class="form-control" id="price" value="{{ $campaign->price  }}"
-                                           name="price">
+                                    <input type="number" class="form-control" id="price" min="0" step="0.01"
+                                           value="{{ $campaign->price }}"
+                                           name="price" placeholder="99.00">
                                     @error('price')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label for="limit" class="form-label required h6">Ticket Limit</label>
-                                    <input type="number" class="form-control" id="limit" value="{{ $campaign->limit }}"
-                                           name="limit">
-                                    @error('limit')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="limit" class="form-label required h6">Ticket Limit</label>
+                                        <input type="number" class="form-control" id="limit"
+                                               value="{{$campaign->limit}}"
+                                               name="limit">
+                                        @error('limit')
+                                        <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="unique_text" class="form-label required h6">Ticket Prefix</label>
+                                        <input type="text" class="form-control" id="unique_text"
+                                               value="{{ $campaign->unique_text }}" name="unique_text" readonly>
+                                        <div class="mt-1">
+                                            <small class="form-text text-muted block">You can't update this
+                                                prefix.</small>
+                                        </div>
+                                        @error('unique_text')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="thumbnail" class="form-label h6">Thumbnail</label>
-                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
-                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
-                                           data-default-file="{{asset($campaign->thumbnail)}}">
-                                    @error('thumbnail')
-                                    <span class="invalid-feedback d-block" role="alert">
+                                <div class="mt-5">
+                                    <h5 class="mb-3">Promotion Section</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label for="how_many_buy" class="form-label h6">How Many Ticket
+                                                Buy?</label>
+                                            <input type="number" class="form-control" id="unique_text"
+                                                   value="{{ $campaign->how_many_buy }}" placeholder="9"
+                                                   name="how_many_buy">
+                                            @error('how_many_buy')
+                                            <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                            @enderror
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="how_many_free" class="form-label h6">How Many Ticket
+                                                Free?</label>
+                                            <input type="number" class="form-control" id="how_many_free"
+                                                   value="{{ $campaign->how_many_free }}" placeholder="1"
+                                                   name="how_many_free">
+                                            @error('how_many_free')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <label for="discount_percent" class="form-label h6">Discount
+                                                Percent(%)</label>
+                                            <input type="number" class="form-control" id="discount_percent" min="0"
+                                                   max="100"
+                                                   step="0.01"
+                                                   value="{{ $campaign->discount_percent }}" placeholder="99"
+                                                   name="discount_percent">
+                                            <div class="mt-1">
+                                                <small class="form-text text-muted block">Max value 100</small>
+                                            </div>
+                                            @error('discount_percent')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                               <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="discount_expire_date" class="form-label h6">Discount Expire
+                                                Date</label>
+                                            <input type="datetime-local" class="form-control"
+                                                   id="discount_expire_date"
+                                                   value="{{ $campaign->discount_expire_date }}"
+                                                   name="discount_expire_date">
+                                            @error('discount_expire_date')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="promotion_banner" class="form-label h6">Banner</label>
+                                        <input type="file" class="form-control dropify" id="promotion_banner"
+                                               name="promotion_banner"
+                                               accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                               data-default-file="{{asset($campaign->promotion_banner)}}">
+                                        @error('promotion_banner')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-6">
                                 <div class="mb-3 d-flex flex-column">
                                     <label for="gift_id" class="form-label required h6">Gift</label>
@@ -104,10 +185,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="unique_text" class="form-label required h6">Unique Text</label>
-                                    <input type="text" class="form-control" id="unique_text"
-                                           value="{{ $campaign->unique_text }}" name="unique_text" readonly disabled>
-                                    @error('unique_text')
+                                    <label for="thumbnail" class="form-label h6">Thumbnail</label>
+                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
+                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                           data-default-file="{{asset($campaign->thumbnail)}}">
+                                    @error('thumbnail')
                                     <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>
                                     </span>
@@ -217,33 +299,32 @@
             $(`#ebook_files_${$id}`).parent().remove()
         }
     </script>
-    @push('script')
-        <script>
-            function ebookDelete(id) {
-                var url = '{{ route('admin.campaign.destroyEbook', ':id') }}';
-                $.ajax({
-                    type: "POST",
-                    url: url.replace(':id', id),
-                    data:{
-                        "_token": "{{ csrf_token() }}",
-                        "_method": "DELETE"
-                    },
-                    success: function(resp) {
-                        if (resp.success === true) {
-                            // show toast message
-                            flasher.success(resp.message);
-                            $("#ebook_"+id).remove()
-                        } else if (resp.errors) {
-                            flasher.error(resp.errors[0]);
-                        } else {
-                            flasher.error(resp.message);
-                        }
-                    }, // success end
-                    error: function(error) {
-                        flasher.error(error?.responseJSON.message)
-                    } // Error
-                })
-            }
-        </script>
-    @endpush
+
+    <script>
+        function ebookDelete(id) {
+            var url = '{{ route('admin.campaign.destroyEbook', ':id') }}';
+            $.ajax({
+                type: "POST",
+                url: url.replace(':id', id),
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "_method": "DELETE"
+                },
+                success: function (resp) {
+                    if (resp.success === true) {
+                        // show toast message
+                        flasher.success(resp.message);
+                        $("#ebook_" + id).remove()
+                    } else if (resp.errors) {
+                        flasher.error(resp.errors[0]);
+                    } else {
+                        flasher.error(resp.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    flasher.error(error?.responseJSON.message)
+                } // Error
+            })
+        }
+    </script>
 @endpush

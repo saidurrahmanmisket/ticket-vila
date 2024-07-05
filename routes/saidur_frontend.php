@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\OTPVerificationController;
 use App\Http\Controllers\Payment\PaypalController;
 use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\Web\Frontend\PageController;
+use App\Http\Controllers\Web\User\ChatController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
 use App\Http\Controllers\Web\User\SettingsController;
@@ -19,6 +20,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact', 'submitContact')->name('contact.submit');
     Route::get('/imprint', 'imprint')->name('imprint');
     Route::get('/privacy', 'privacy')->name('privacy');
     Route::get('/rules', 'rules')->name('rules');
@@ -29,6 +31,8 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
     Route::get('page/{page_slug}', 'dynamicPage')->name('custom.page');
     Route::get('/faqs', 'faq')->name('faqs');
+    Route::get('/checkout', 'checkout')->name('checkout');
+    Route::get('/buy-ebook', 'buyEbook')->name('buy-ebook');
 
 });
 
@@ -47,7 +51,7 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
-    Route::post('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
     //static page views
@@ -55,8 +59,13 @@ Route::middleware(['auth', 'verified', 'user.route'])->name('user.')->group(func
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
+    Route::get('user/download/house-file/{id}', [TheHouseController::class, 'downloadHouseFile'])->name('download-house-file');
     Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
+    Route::get('/user/live-chat', [ChatController::class, 'index'])->name('live-chat');
+    Route::post('/user/live-chat', [ChatController::class, 'store'])->name('live-chat.store');
+    Route::post('/user/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
+    Route::get('/user/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
 
     //stripe payment routes
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');

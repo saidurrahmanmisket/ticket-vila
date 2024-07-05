@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/nice-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/apexcharts.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/helper.css"/>
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css"/>
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css"/>
@@ -236,6 +237,14 @@
             gap: 50px;
             position: relative;
         }
+    }
+</style>
+
+{{---Sweet Alert 2 CSS---}}
+<style>
+    .swal2-icon.swal2-error.swal2-icon-show {
+        margin: 0 auto;
+        margin-top: 30px;
     }
 </style>
 @stack('style')

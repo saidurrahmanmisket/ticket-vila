@@ -5,7 +5,7 @@
             <p><span>{{ $data['totalTicketSold'] ?? '0' }}</span> {{ __('Tickets Sold') }}</p>
         </div>
         <div class="single--one">
-            <p><span>{{ $data['campaign']->limit ?? 0 - $data['totalTicketSold'] }}</span> {{ __('to The Finish') }}</p>
+            <p><span>{{ ($data['campaign']->limit ?? 0) - $data['totalTicketSold'] }}</span> {{ __('to The Finish') }}</p>
         </div>
         <div class="single--one goal">
             <p>{{__('Goal')}} 🎉</p>

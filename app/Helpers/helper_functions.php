@@ -49,3 +49,26 @@ function convertToEmbedUrl($url)
 
     return $url;
 }
+
+function calculateDiscount($originalPrice, $discountPercent): float|int
+{
+    // Validate the parameters
+    if ($originalPrice < 0 || $discountPercent < 0 || $discountPercent > 100) {
+        return $originalPrice;
+    }
+
+    // Calculate the discount amount
+    $discountAmount = ($originalPrice * $discountPercent) / 100;
+
+    // Calculate the final price after discount
+    return number_format($originalPrice - $discountAmount);
+}
+
+function calculateFreeTicket($quantity, $buy, $get): float|int
+{
+    // Calculate the number of sets of 'buy' items
+    $setsOfBuy = floor($quantity / $buy);
+
+    // Return the number of free items
+    return $setsOfBuy * $get;
+}

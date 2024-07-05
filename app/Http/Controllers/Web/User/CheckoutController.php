@@ -20,7 +20,7 @@ class CheckoutController extends Controller
             }
 
             $ticket = Ticket::where('campaign_id', $campaign->id);
-            $quantity = $request->quantity;
+            $quantity = $request->quantity ?? 1;
             $totalTicketSold = $ticket->count();
 
             $ticketRemain = $campaign->limit - $totalTicketSold;
@@ -35,7 +35,6 @@ class CheckoutController extends Controller
             }
 
             $totalPrice = $campaign->price * $quantity;
-
             if (! $quantity) {
                 flash()->addError('Quantity Required');
 

@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string('ticket_number');
-            $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('random_chat_id');
+            $table->string('name');
+            $table->string('email');
+            $table->text('message');
+            $table->enum('status', ['pending', 'resolved', 'rejected'])->default('pending');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('chats');
     }
 };

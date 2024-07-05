@@ -1,7 +1,6 @@
 @extends('frontend.app')
 
 @section('title', 'Home')
-
 @section('content')
     <!-- home banner area starts -->
     <section class="home--banner--area--wrapper section--bottom--gap">
@@ -49,6 +48,17 @@
             </div>
         </div>
     </section>
+
+    {{--    Promotional Banner Section  --}}
+    @if($campaign && $campaign->promotion_banner)
+        <div class="container">
+            <div class="promotion-banner">
+                <img src="{{$campaign->promotion_banner}}" class="w-100"
+                     alt="{{$campaign->name_en}}">
+            </div>
+        </div>
+    @endif
+    {{--    End Promotional Banner Section--}}
     <!-- some facts area starts -->
     <section class="some--facts--area--wrapper section--bottom--gap">
         <div class="container">
@@ -142,8 +152,7 @@
                                 <div class="item">
                                     <div class="single--card">
                                         <img class="cover--img"
-                                            src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}"
-                                            {{-- facts1.svg') }} --}} alt="" />
+                                            src="{{ $item->image ? asset($item->image) : asset('frontend/images/single-chance1.png') }}" alt="" />
 
                                         {{-- <div class="overlay"></div> --}}
 
@@ -324,7 +333,7 @@
         <div class="container">
             <div class="home--special--feature--content">
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature">
-                    <h3 class="big--text">€{{ __('850.000€ dream home for just 99€!') }} </h3>
+                    <h3 class="big--text">{{ __('dream home for just',['price'=> $campaign->price,'giftPrice'=>'850.000' ]) }} </h3>
                     <p class="big--para">{{ __('no hidden additional costs!') }}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature">
@@ -342,7 +351,7 @@
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature common">
                     <div>
-                        <p class="title">{{ __('Just 99€') }}€</p>
+                        <p class="title">{{ __('Just GiftPrice',['price'=> $campaign->price]) }}</p>
                         <p class="sub--title">{{ __('Per Ticket, the winner gets the house') }}</p>
                     </div>
                 </div>
