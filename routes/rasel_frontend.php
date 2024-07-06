@@ -13,6 +13,9 @@ Route::get('/', function () {
     return view('frontend.layouts.index');
 });
 Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->prefix('web-shop')->name('frontend.web-shop.buy-ebook');
+Route::post('/add-to-cart/{id}', [PageController::class, 'add_to_cart'])->prefix('web-shop')->name('frontend.web-shop.add-to-cart');
+Route::get('/remove-cart', [PageController::class, 'remove_cart'])->prefix('web-shop')->name('frontend.web-shop.remove-cart');
+Route::post('/cart/quantity/change', [PageController::class, 'quantity_change'])->prefix('web-shop')->name('frontend.web-shop.quantity-change');
 Route::prefix('web-shop')->middleware('guest')->name('frontend.web-shop.')->group(function () {
     //web shop view
     Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');

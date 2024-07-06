@@ -15,6 +15,7 @@ use App\Models\Gift;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -175,7 +176,13 @@ class PageController extends Controller
 
     public function checkout(Request $request)
     {
-        $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        if ($request->has('campaign_id') && $request->has('cart') && $request->cart == 'true') {
+            $campaign = Campaign::where('status', Status::PUBLISHED)->findOrFail($request->campaign_id);
+            $cart = 'true';
+        } else {
+            $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+            $cart = 'false';
+        }
         if (empty($campaign)) {
             flash()->addWarning('Campaign not found.');
 
@@ -196,7 +203,7 @@ class PageController extends Controller
         }
         $totalPrice = $campaign->price * $quantity;
 
-        return view('frontend.layouts.checkout', compact('campaign', 'quantity', 'totalPrice'));
+        return view('frontend.layouts.checkout', compact('campaign', 'quantity', 'totalPrice', 'cart'));
     }
 
     public function buyEbook()
@@ -249,5 +256,102 @@ class PageController extends Controller
 
         // Redirect
         return redirect()->route('frontend.contact');
+    }
+
+    public function add_to_cart(Request $request, $id)
+    {
+
+        $validator = \Validator::make($request->all(), [
+            'quantity' => 'required|min:1',
+        ]);
+        if ($validator->fails()) {
+            flash()->addError($validator->errors()->first());
+
+            return redirect()->back();
+        }
+        $campaign = Campaign::findOrFail($id);
+
+        if (empty($campaign)) {
+            flash()->addError('Campaign not found.');
+
+            return redirect()->back();
+        }
+
+        session()->put('cartData', [
+            'id' => $campaign->id,
+            'name' => $campaign->name_en,
+            'price' => $campaign->price,
+            'quantity' => $request->quantity,
+            'discount_percent' => $campaign->discount_percent,
+            'discount_expire_date' => $campaign->discount_expire_date,
+            'how_many_buy' => $campaign->how_many_buy,
+            'how_many_free' => $campaign->how_many_free,
+            'thumbnail' => $campaign->thumbnail,
+        ]);
+        flash()->addSuccess('Campaign successfully added to cart.');
+
+        return redirect()->back();
+    }
+
+    public function remove_cart()
+    {
+        if (session()->has('cartData')) {
+            session()->forget('cartData');
+
+            flash()->addSuccess('Campaign successfully removed from cart.');
+
+            return redirect()->back();
+        } else {
+            flash()->addWarning('No campaigns in cart.');
+
+            return redirect()->back();
+        }
+    }
+
+    public function quantity_change(Request $request)
+    {
+        $request->validate([
+            'quantity' => 'required|min:1',
+        ]);
+
+        try {
+            if (! session()->has('cartData')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Cart is empty.',
+                ]);
+            }
+
+            $cartData = session('cartData');
+            $cartData['quantity'] = $request->quantity;
+            session()->put('cartData', $cartData);
+            if ($cartData['discount_percent'] && Carbon::parse($cartData['discount_expire_date'])->greaterThan(now())) {
+                $discount_price = number_format(($cartData['quantity'] * $cartData['price']) - calculateDiscount(($cartData['quantity'] * $cartData['price']), $cartData['discount_percent']), 2);
+            } else {
+                $discount_price = 0;
+            }
+
+            if (! empty($cartData['how_many_buy']) && ! empty($cartData['how_many_free'])) {
+                $free_ticket = calculateFreeTicket($cartData['quantity'], $cartData['how_many_buy'], $cartData['how_many_free']);
+            } else {
+                $free_ticket = 0;
+            }
+
+            return response()->json([
+                'success' => 'true',
+                'message' => 'Quantity change successfully.',
+                'data' => [
+                    'total_price' => number_format($cartData['discount_percent'] ? calculateDiscount($cartData['quantity'] * $cartData['price'], $cartData['discount_percent']) : ($cartData['quantity'] * $cartData['price']), 2),
+                    'discount_price' => $discount_price,
+                    'free_ticket' => $free_ticket,
+                    'subtotal' => number_format($cartData['price'] * $cartData['quantity'], 2),
+                ],
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ]);
+        }
     }
 }

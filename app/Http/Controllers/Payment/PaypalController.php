@@ -82,6 +82,11 @@ class PaypalController extends Controller
                 // redirect to approve href
                 foreach ($response['links'] as $links) {
                     if ($links['rel'] == 'approve') {
+                        //remove cart session item
+                        if ($request->cart == 'true') {
+                            session()->forget('cartData');
+                        }
+
                         return redirect()->away($links['href']);
                     }
                 }
@@ -270,6 +275,11 @@ class PaypalController extends Controller
                 // redirect to approve href
                 foreach ($response['links'] as $links) {
                     if ($links['rel'] == 'approve') {
+                        //remove cart session item
+                        if ($request->cart == 'true') {
+                            session()->forget('cartData');
+                        }
+
                         return redirect()->away($links['href']);
                     }
                 }

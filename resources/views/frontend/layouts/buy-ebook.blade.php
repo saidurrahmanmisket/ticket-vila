@@ -115,6 +115,11 @@
             opacity: 1;
             visibility: visible;
         }
+
+        .add--cart.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
     </style>
 @endpush
 @section('content')
@@ -130,8 +135,7 @@
                     </div>
 
                     <!-- buying area -->
-                    <form action="{{!empty(Auth::user()) ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
-                          method="GET" class="buying--area--wrapper">
+                    <div class="buying--area--wrapper">
                         <div class="top--part">
                             <div class="intro">
                                 <h3 class="title">{{ !empty($campaign) ? $campaign['name_'.locale()] : __('E-Book')}}</h3>
@@ -155,67 +159,81 @@
 
                         <div class="bottom--part">
                             <div class="ticket--purchase--amount--wrapper">
-                                <button type="button" class="minus">-</button>
-                                <input type="number" name="quantity" readonly value="1"/>
-                                <button type="button" class="plus">+</button>
+                                <button type="button" class="minus" id="decrement-button">-</button>
+                                <input type="number" id="quantity-value" readonly value="1"/>
+                                <button type="button" class="plus" id="increment-button">+</button>
                             </div>
 
+
                             <div class="button--wrapper">
-                                <button type="button" class="add--cart">
-                                    <span>Add to cart</span>
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="17"
-                                            viewBox="0 0 20 17"
-                                            fill="none"
+                                <form action="{{route('frontend.web-shop.add-to-cart',$campaign->id)}}"
+                                      method="POST"> @csrf
+                                    <input type="hidden" name="quantity" class="quantity" value="1">
+                                    <button @if(session()->has('cartData')) disabled @endif type="submit"
+                                            class="add--cart {{session()->has('cartData') ? 'disabled' : ''}}">
+                                        <span>{{session()->has('cartData') ? 'Added' : 'Add to cart'}}</span>
+                                        @if(!session()->has('cartData'))
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="20"
+                                                    height="17"
+                                                    viewBox="0 0 20 17"
+                                                    fill="none"
+                                            >
+                                                <path
+                                                        d="M18.7939 8.16371L1.82031 8.16371"
+                                                        stroke="white"
+                                                        stroke-width="2.26315"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                                <path
+                                                        d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
+                                                        stroke="white"
+                                                        stroke-width="2.26315"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        @endif
+                                    </button>
+                                </form>
+
+                                <form
+                                        action="{{!empty(Auth::user()) ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
+                                        method="GET">
+                                    <input type="hidden" name="quantity" class="quantity" value="1">
+                                    <button type="submit"
+                                            class="btn--fill blue--btn no--border"
                                     >
-                                        <path
-                                                d="M18.7939 8.16371L1.82031 8.16371"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                        />
-                                        <path
-                                                d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </button>
-                                <button type="submit"
-                                        class="btn--fill blue--btn no--border"
-                                >
-                                    <span>Buy Now</span>
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="17"
-                                            viewBox="0 0 20 17"
-                                            fill="none"
-                                    >
-                                        <path
-                                                d="M18.7939 8.16371L1.82031 8.16371"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                        />
-                                        <path
-                                                d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </button>
+                                        <span>Buy Now</span>
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="20"
+                                                height="17"
+                                                viewBox="0 0 20 17"
+                                                fill="none"
+                                        >
+                                            <path
+                                                    d="M18.7939 8.16371L1.82031 8.16371"
+                                                    stroke="white"
+                                                    stroke-width="2.26315"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                            />
+                                            <path
+                                                    d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
+                                                    stroke="white"
+                                                    stroke-width="2.26315"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
                 <!-- bottom area -->
@@ -324,6 +342,27 @@
         $('#overlay').on('click', function () {
             $("#success--popup").hide()
             $("#overlay").hide()
+        })
+
+        //quantity value set to hidden input
+
+        let quantity = 1;
+        $("#increment-button").on('click', function () {
+            if (quantity < 9) {
+                quantity++
+                $(".quantity").each(function () {
+                    $(this).val(quantity)
+                })
+            }
+
+        })
+        $("#decrement-button").on('click', function () {
+            if (quantity > 1) {
+                quantity--
+                $(".quantity").each(function () {
+                    $(this).val(quantity)
+                })
+            }
         })
     </script>
 @endpush

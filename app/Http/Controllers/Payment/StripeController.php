@@ -83,8 +83,14 @@ class StripeController extends Controller
                 'cancel_url' => route('user.paypal.cancel'),
             ]);
 
+            //remove cart session item
+            if ($request->cart == 'true') {
+                session()->forget('cartData');
+            }
+
             // Redirect the user to the Stripe checkout page
             return redirect()->away($session->url);
+
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
@@ -257,6 +263,11 @@ class StripeController extends Controller
                 'success_url' => $redirectUrl,
                 'cancel_url' => route('frontend.web-shop.paypal.cancel'),
             ]);
+
+            //remove cart session item
+            if ($request->cart == 'true') {
+                session()->forget('cartData');
+            }
 
             // Redirect the user to the Stripe checkout page
             return redirect()->away($session->url);

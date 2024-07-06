@@ -322,6 +322,9 @@
                                 </div>
                             </div>
 
+	                        {{--Hidden Input--}}
+	                        <input type="hidden" name="cart" value="{{$cart}}">
+
                             <!-- Proceed to Payment button -->
                             <button class="proceed">
 	                            <span>Proceed to payment</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\User;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Ticket;
@@ -13,7 +14,13 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         try {
-            $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
+            if ($request->has('campaign_id') && $request->has('cart') && $request->cart == 'true') {
+                $campaign = Campaign::withCount('tickets')->where('status', Status::PUBLISHED)->findOrFail($request->campaign_id);
+                $cart = 'true';
+            } else {
+                $campaign = Campaign::withCount('tickets')->latest()->where('status', 'published')->first();
+                $cart = 'false';
+            }
 
             if (! $campaign) {
                 return redirect()->back()->with('error', 'No campaign found');

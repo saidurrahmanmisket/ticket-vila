@@ -1,5 +1,6 @@
 <script src="https://ticket-villa.netlify.app/assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://ticket-villa.netlify.app/assets/js/plugins.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js"></script>
 <script src="https://ticket-villa.netlify.app/assets/js/main.js"></script>
 <script>
     // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/dkremsz8'

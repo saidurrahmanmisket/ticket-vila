@@ -1,3 +1,8 @@
+<style>
+    .empty-cart p {
+        padding: 160px;
+    }
+</style>
 <!-- header area starts -->
 <header>
     <div class="container">
@@ -53,46 +58,66 @@
                     <!-- cart button -->
                     <div class="add--cart--wrapper">
                         <div class="icon">
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
-                                    viewBox="0 0 28 28"
-                                    fill="none"
-                            >
-                                <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M7.51593 25.0786C8.11376 25.0786 8.59968 25.5645 8.59968 26.1624C8.59968 26.7602 8.11376 27.2447 7.51593 27.2447C6.91809 27.2447 6.43359 26.7602 6.43359 26.1624C6.43359 25.5645 6.91809 25.0786 7.51593 25.0786Z"
-                                        stroke="#1E1A32"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                />
-                                <path
-                                        fill-rule="evenodd"
-                                        clip-rule="evenodd"
-                                        d="M23.4568 25.0786C24.0546 25.0786 24.5406 25.5645 24.5406 26.1624C24.5406 26.7602 24.0546 27.2447 23.4568 27.2447C22.859 27.2447 22.373 26.7602 22.373 26.1624C22.373 25.5645 22.859 25.0786 23.4568 25.0786Z"
-                                        stroke="#1E1A32"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                />
-                                <path
-                                        d="M0.896484 1.604L3.84315 2.114L5.2074 18.3674C5.3179 19.692 6.42432 20.7092 7.75315 20.7092H23.2118C24.4812 20.7092 25.5578 19.777 25.7406 18.519L27.085 9.2285C27.2507 8.08242 26.3625 7.05675 25.2051 7.05675H4.31632"
-                                        stroke="#1E1A32"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                />
-                                <path
-                                        d="M17.0117 12.2928H20.9401"
-                                        stroke="#1E1A32"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                />
-                            </svg>
+                            @if(session()->has('cartData') && !empty(session('cartData')))
+                                <svg xmlns="http://www.w3.org/2000/svg" width="37" height="34" viewBox="0 0 37 34"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M10.5198 28.0791C11.1177 28.0791 11.6036 28.565 11.6036 29.1629C11.6036 29.7607 11.1177 30.2452 10.5198 30.2452C9.922 30.2452 9.4375 29.7607 9.4375 29.1629C9.4375 28.565 9.922 28.0791 10.5198 28.0791Z"
+                                          stroke="#1E1A32" stroke-width="1.5" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M26.4588 28.0791C27.0566 28.0791 27.5425 28.565 27.5425 29.1629C27.5425 29.7607 27.0566 30.2452 26.4588 30.2452C25.8609 30.2452 25.375 29.7607 25.375 29.1629C25.375 28.565 25.8609 28.0791 26.4588 28.0791Z"
+                                          stroke="#1E1A32" stroke-width="1.5" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M3.89844 4.60449L6.8451 5.11449L8.20935 21.3679C8.31985 22.6925 9.42627 23.7097 10.7551 23.7097H26.2138C27.4831 23.7097 28.5598 22.7775 28.7425 21.5195L30.0869 12.229C30.2527 11.0829 29.3644 10.0572 28.207 10.0572H7.31827"
+                                          stroke="#1E1A32" stroke-width="1.5" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M20.0156 15.2933H23.944" stroke="#1E1A32" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="29" cy="10.5" r="5" fill="#FF5630" stroke="#F9F9F9"/>
+                                </svg>
+                            @else
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 28 28"
+                                        fill="none"
+                                >
+                                    <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M7.51593 25.0786C8.11376 25.0786 8.59968 25.5645 8.59968 26.1624C8.59968 26.7602 8.11376 27.2447 7.51593 27.2447C6.91809 27.2447 6.43359 26.7602 6.43359 26.1624C6.43359 25.5645 6.91809 25.0786 7.51593 25.0786Z"
+                                            stroke="#1E1A32"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                    <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M23.4568 25.0786C24.0546 25.0786 24.5406 25.5645 24.5406 26.1624C24.5406 26.7602 24.0546 27.2447 23.4568 27.2447C22.859 27.2447 22.373 26.7602 22.373 26.1624C22.373 25.5645 22.859 25.0786 23.4568 25.0786Z"
+                                            stroke="#1E1A32"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                    <path
+                                            d="M0.896484 1.604L3.84315 2.114L5.2074 18.3674C5.3179 19.692 6.42432 20.7092 7.75315 20.7092H23.2118C24.4812 20.7092 25.5578 19.777 25.7406 18.519L27.085 9.2285C27.2507 8.08242 26.3625 7.05675 25.2051 7.05675H4.31632"
+                                            stroke="#1E1A32"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                    <path
+                                            d="M17.0117 12.2928H20.9401"
+                                            stroke="#1E1A32"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                </svg>
+                            @endif
                         </div>
 
                         <div class="content">
@@ -114,46 +139,71 @@
                                 </div>
                             </div>
 
-                            <div class="item--area">
-                                <div class="single--item">
-                                    <div class="img--area">
-                                        <img src="./assets/images/cart-mini-ticket.png" alt=""/>
-                                    </div>
-
-                                    <div class="description">
-                                        <p class="title">1 X House Ticket</p>
-                                        <p class="price">€<span>49.00</span></p>
-                                        <p class="additional--info">11.052024 - 11:01:25</p>
-                                    </div>
-
-                                    <div class="amount--wrapper">
-                                        <div class="ticket--purchase--amount--wrapper">
-                                            <button class="minus">-</button>
-                                            <input type="number" readonly value="1"/>
-                                            <button class="plus">+</button>
+                            @if(session()->has('cartData') && !empty(session('cartData')))
+                                @php($cart = session('cartData'))
+                                <div class="item--area">
+                                    <div class="single--item">
+                                        <div class="img--area">
+                                            <img src="{{asset($cart['thumbnail'] ?? '')}}" alt=""/>
                                         </div>
 
-                                        <p class="remove">Remove</p>
+                                        <div class="description">
+                                            <p class="title"><span
+                                                        id="cart_quantity">{{$cart['quantity'] ?? ''}}</span> X House
+                                                Ticket</p>
+                                            <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p>
+                                        </div>
+
+                                        <div class="amount--wrapper">
+                                            <div class="ticket--purchase--amount--wrapper">
+                                                <button class="minus" id="cart_quantity_decrement">-</button>
+                                                <input type="number" readonly id="cart_quantity"
+                                                       value="{{$cart['quantity'] ?? 1}}"/>
+                                                <button class="plus" id="cart_quantity_increment">+</button>
+                                            </div>
+
+                                            <a href="{{route('frontend.web-shop.remove-cart')}}"
+                                               class="remove">Remove</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                             <div class="price--details--area">
-                                <div class="vat">
-                                    <p>VAT Included (3%)</p>
-                                    <p class="value">€ <span>18.81</span></p>
-                                </div>
 
+                                <div class="vat">
+                                    <p>Subtotal</p>
+                                    <p id="cart_subtotal">{{ number_format($cart['quantity'] * $cart['price'],2) }}
+                                        €</p>
+                                </div>
+                                @if(!empty($cart['how_many_buy']) && !empty($cart['how_many_free']))
+                                    <div class="vat">
+                                        <p>Free Tickets</p>
+                                        <p id="cart_free_ticket">{{ calculateFreeTicket($cart['quantity'],$cart['how_many_buy'],$cart['how_many_free']) }}</p>
+                                    </div>
+                                @endif
+                                @if($cart['discount_percent'] && Carbon\Carbon::parse($cart['discount_expire_date'])->greaterThan(now()))
+                                    <div class="vat">
+                                        <p>Discount ({{$cart['discount_percent']}}%)</p>
+                                        <p></p>
+                                        <p id="cart_discount_price">
+                                            -{{ number_format(($cart['quantity'] * $cart['price']) - calculateDiscount(($cart['quantity'] * $cart['price']),$cart['discount_percent']),2) }}
+                                            €</p>
+                                    </div>
+                                @endif
                                 <div class="hr"></div>
 
                                 <div class="total">
                                     <p>Total</p>
-                                    <p class="value">99.00€</p>
+                                    <p class="value" id="cart_total_price">
+                                        {{number_format($cart['discount_percent'] ? calculateDiscount($cart['quantity'] * $cart['price'],$cart['discount_percent']) : ($cart['quantity'] * $cart['price']),2)}}
+                                        €</p>
                                 </div>
                             </div>
 
-                            <a class='proceed--btn btn--fill blue--btn' href='/checkout'>
-                                <span>Procceed to payment</span>
+                                <a class='proceed--btn btn--fill blue--btn'
+                                   id="cart-payment-process"
+                                   href='{{Auth::check() ? route('user.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true']) : route('frontend.web-shop.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true'])}}'>
+                                    <span>Proceed to payment</span>
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="18"
@@ -177,6 +227,11 @@
                                     />
                                 </svg>
                             </a>
+                            @else
+                                <div class="empty-cart">
+                                    <p class="h5">Cart is empty</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 <div class="language-dropdown">
@@ -236,6 +291,53 @@
                     flasher.error(error?.responseJson?.message);
                 } // Error
             })
+        })
+
+
+        //add to cart quantity change
+        function change_quantity(quantity) {
+            var url = '{{ route('frontend.web-shop.quantity-change') }}';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'quantity': quantity
+                },
+                success: function (resp) {
+                    if (resp.success == 'true') {
+                        let payment_url = new URL($("#cart-payment-process").attr('href'))
+                        payment_url.searchParams.set('quantity', quantity);
+                        $("#cart-payment-process").attr('href', payment_url)
+                        $("#cart_subtotal").text(resp.data?.subtotal + ' €')
+                        $("#cart_free_ticket").text(resp.data?.free_ticket)
+                        $("#cart_discount_price").text('-' + resp.data?.discount_price + ' €')
+                        $("#cart_total_price").text(resp.data?.total_price + ' €')
+                    } else {
+                        flasher.error(resp?.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    flasher.error(error?.responseJSON?.message);
+                } // Error
+            })
+        }
+
+        let cart_quantity = Number.parseInt("{{$cart['quantity'] ?? 1}}")
+        $("#cart_quantity_increment").on('click', function () {
+            if (cart_quantity < 9) {
+                cart_quantity++
+                $("#cart_quantity").text(cart_quantity)
+                change_quantity(cart_quantity)
+            }
+
+        })
+        $("#cart_quantity_decrement").on('click', function () {
+            if (cart_quantity > 1) {
+                cart_quantity--
+                $("#cart_quantity").text(cart_quantity)
+                change_quantity(cart_quantity)
+            }
         })
     }, true);
 </script>
