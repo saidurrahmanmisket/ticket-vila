@@ -44,6 +44,141 @@
 
             <!-- button area -->
             <div data-aos="fade-left" data-aos-duration="600" class="button--area">
+                <!-- button area -->
+                <div
+                        data-aos="fade-left"
+                        data-aos-duration="600"
+                        class="button--area"
+                >
+                    <!-- cart button -->
+                    <div class="add--cart--wrapper">
+                        <div class="icon">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 28 28"
+                                    fill="none"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M7.51593 25.0786C8.11376 25.0786 8.59968 25.5645 8.59968 26.1624C8.59968 26.7602 8.11376 27.2447 7.51593 27.2447C6.91809 27.2447 6.43359 26.7602 6.43359 26.1624C6.43359 25.5645 6.91809 25.0786 7.51593 25.0786Z"
+                                        stroke="#1E1A32"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M23.4568 25.0786C24.0546 25.0786 24.5406 25.5645 24.5406 26.1624C24.5406 26.7602 24.0546 27.2447 23.4568 27.2447C22.859 27.2447 22.373 26.7602 22.373 26.1624C22.373 25.5645 22.859 25.0786 23.4568 25.0786Z"
+                                        stroke="#1E1A32"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                                <path
+                                        d="M0.896484 1.604L3.84315 2.114L5.2074 18.3674C5.3179 19.692 6.42432 20.7092 7.75315 20.7092H23.2118C24.4812 20.7092 25.5578 19.777 25.7406 18.519L27.085 9.2285C27.2507 8.08242 26.3625 7.05675 25.2051 7.05675H4.31632"
+                                        stroke="#1E1A32"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                                <path
+                                        d="M17.0117 12.2928H20.9401"
+                                        stroke="#1E1A32"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <div class="content">
+                            <div class="top--area">
+                                <h3 class="title">Shopping Cart</h3>
+                                <div class="close">
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="37"
+                                            height="38"
+                                            viewBox="0 0 37 38"
+                                            fill="none"
+                                    >
+                                        <path
+                                                d="M18.4986 16.8594L26.1295 9.22852L28.3098 11.4088L20.6788 19.0397L28.3098 26.6704L26.1295 28.8507L18.4986 21.2199L10.8678 28.8507L8.6875 26.6704L16.3184 19.0397L8.6875 11.4088L10.8678 9.22852L18.4986 16.8594Z"
+                                                fill="#141414"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="item--area">
+                                <div class="single--item">
+                                    <div class="img--area">
+                                        <img src="./assets/images/cart-mini-ticket.png" alt=""/>
+                                    </div>
+
+                                    <div class="description">
+                                        <p class="title">1 X House Ticket</p>
+                                        <p class="price">€<span>49.00</span></p>
+                                        <p class="additional--info">11.052024 - 11:01:25</p>
+                                    </div>
+
+                                    <div class="amount--wrapper">
+                                        <div class="ticket--purchase--amount--wrapper">
+                                            <button class="minus">-</button>
+                                            <input type="number" readonly value="1"/>
+                                            <button class="plus">+</button>
+                                        </div>
+
+                                        <p class="remove">Remove</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="price--details--area">
+                                <div class="vat">
+                                    <p>VAT Included (3%)</p>
+                                    <p class="value">€ <span>18.81</span></p>
+                                </div>
+
+                                <div class="hr"></div>
+
+                                <div class="total">
+                                    <p>Total</p>
+                                    <p class="value">99.00€</p>
+                                </div>
+                            </div>
+
+                            <a class='proceed--btn btn--fill blue--btn' href='/checkout'>
+                                <span>Procceed to payment</span>
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="18"
+                                        height="15"
+                                        viewBox="0 0 18 15"
+                                        fill="none"
+                                >
+                                    <path
+                                            d="M16.25 7.72607L1.25 7.72607"
+                                            stroke="white"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                    <path
+                                            d="M10.2012 1.70149L16.2512 7.72549L10.2012 13.7505"
+                                            stroke="white"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 <div class="language-dropdown">
                     <select class="form-select select" id="change_locale">
                         @foreach(\App\Enums\Lang::map() as $key => $lang)
