@@ -109,7 +109,7 @@
                                 var chatData = response.data[0];
                                 var userName = chatData.name;
                                 var userMessage = chatData.message;
-                                var userAvatar = chatData.user.avatar;
+                                var userAvatar = chatData.user.avatar ?? 'user/images/profile.png';
 
                                 var userDate = new Date(chatData.created_at).toLocaleDateString();
 
@@ -117,7 +117,7 @@
                                 var singleChatHtml = `
                                     <div class="row user--chat--single mb-5">
                                         <div class="col">
-                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${userAvatar}') }}" alt="">
+                                            <img class="img-fluid mt-1 rounded rounded-circle p-2" src="{{ asset('${userAvatar}') }}" alt="">
                                         </div>
                                         <div class="col-11">
                                             <div class="border border-5 border-info-subtle rounded rounded-5 p-3">
@@ -143,7 +143,7 @@
                                     var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
                                     var replyMessage = reply.content;
                                     var replyDate = new Date(reply.created_at).toLocaleDateString();
-                                    var replyUserAvatar = reply.user.avatar;
+                                    var replyUserAvatar = reply.user.avatar  ?? 'user/images/profile.png';
 
                                     var replyHtml = '';
                                     console.log(reply.user.role)
@@ -163,7 +163,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                                    <img class="img-fluid mt-1 rounded rounded-circle p-2" src="{{ asset('${replyUserAvatar}') }}" alt="">
                                                 </div>
                                             </div>
                                         `;
@@ -173,7 +173,7 @@
 
                                     <div class="row admin--chat--single mb-5">
                                         <div class="col">
-                                            <img class="img-fluid mt-1 rounded rounded-circle" src="{{ asset('${replyUserAvatar}') }}" alt="">
+                                            <img class="img-fluid mt-1 rounded rounded-circle p-2" src="{{ asset('${replyUserAvatar}') }}" alt="">
                                         </div>
                                         <div class="col-11">
                                             <div class="border border-5 border-info-subtle rounded rounded-5 p-3">

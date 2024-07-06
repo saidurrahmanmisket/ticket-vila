@@ -97,20 +97,16 @@ Help Center
                                   @csrf
                                   <div class="form-group mb-3">
                                       <label for="name">Name</label>
-                                      <input type="text" class="form-control border-3 border-info-subtle @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name">
-                                      @error('name')
-                                      <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                      <input type="text" class="form-control border-3 border-info-subtle " readonly disabled id="name" value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" >
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="email">Email</label>
-                                      <input type="email" class="form-control border-3 border-info-subtle @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
-                                      @error('email')
-                                      <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                      <input type="email" class="form-control border-3 border-info-subtle " readonly disabled id="email" value="{{ auth()->user()->email }}">
                                   </div>
                                   <div class="form-group mb-3">
-                                      <label for="message">Message</label>
+                                      <label for="message">
+                                          Message <span class="text-danger">*</span>
+                                      </label>
                                       <textarea class="form-control border-3 border-info-subtle @error('message') is-invalid @enderror" rows="6" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
                                       @error('message')
                                       <div class="invalid-feedback">{{ $message }}</div>
@@ -189,7 +185,7 @@ Help Center
                                     var chatData = response.data[0];
                                     var userName = chatData.name;
                                     var userMessage = chatData.message;
-                                    var userAvatar = chatData.user.avatar;
+                                    var userAvatar = chatData.user.avatar ?? 'user/images/profile.png';
 
                                     var userDate = new Date(chatData.created_at).toLocaleDateString();
 
@@ -222,7 +218,7 @@ Help Center
                                         var replyUserName = reply.user.first_name + ' ' + reply.user.last_name;
                                         var replyMessage = reply.content;
                                         var replyDate = new Date(reply.created_at).toLocaleDateString();
-                                        var replyUserAvatar = reply.user.avatar;
+                                        var replyUserAvatar = reply.user.avatar ?? 'user/images/profile.png';
 
                                         var replyHtml = '';
                                         if (reply.user.role == 'admin') {
