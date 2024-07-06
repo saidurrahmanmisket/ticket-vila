@@ -10,9 +10,15 @@
             </div>
         </div>
         <div class="col-md-6">
-            
+
             <!-- notification--and--profile  -->
             <div class="notification--and--profile">
+                <!-- menu toggler  -->
+                <div class="hamburger-menu d-none">
+                    <span class="line-top"></span>
+                    <span class="line-center"></span>
+                    <span class="line-bottom"></span>
+                </div>
                 <div>
                     <select class="form-select select" id="change_locale_user">
                         @foreach(\App\Enums\Lang::map() as $key => $lang)
