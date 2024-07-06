@@ -25,6 +25,12 @@
         <div class="col-md-6">
             <!-- notification--and--profile  -->
             <div class="notification--and--profile">
+                <!-- menu toggler  -->
+                <div class="hamburger-menu d-none">
+                    <span class="line-top"></span>
+                    <span class="line-center"></span>
+                    <span class="line-bottom"></span>
+                </div>
                 <!-- notifications  -->
                 <a href="{{ route('admin.notifications.index') }}" class="notification">
                     <svg

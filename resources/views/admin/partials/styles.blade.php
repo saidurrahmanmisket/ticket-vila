@@ -55,7 +55,7 @@
         position: static;
     }
 
-  
+
 
 
     .sidebar-logo-container {
@@ -238,6 +238,15 @@
             position: relative;
         }
     }
+
+    /*for mobile hambarger start */
+
+    .hamburger-menu span.current {
+        display: block;
+        padding-top: 0px;
+    }
+
+    /*for mobile hambarger end */
 </style>
 
 {{---Sweet Alert 2 CSS---}}

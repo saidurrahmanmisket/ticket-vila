@@ -25,8 +25,6 @@ class ChatController extends Controller
         try {
             // Validate the request data
             $validate = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
                 'message' => 'required|string|max:1000',
             ]);
 
@@ -38,13 +36,13 @@ class ChatController extends Controller
                     ->withErrors($validate)
                     ->withInput();
             }
-
+            $user = \Auth::user();
             // Create a new chat message
             $chat = Chat::create([
                 'user_id' => auth()->user()->id,
                 'random_chat_id' => Str::random(10),
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' => $user->first_name . ' ' . $user->last_name,
+                'email' => $user->email,
                 'message' => $request->message,
             ]);
 

@@ -355,7 +355,7 @@
     <!-- analytics area  -->
     <div class="analytics--area">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xxl-8">
                 <!-- analytic--box  -->
                 <div class="sale--analytic analytic--box box--common">
                     <!-- title  -->
@@ -384,10 +384,10 @@
                         </select>
                     </div>
                     <!-- map area  -->
-                    <div class="map--area">
+                    <div class="map--area w-100 h-auto">
                         <!-- map  -->
-                        <div class="map">
-                            <img src="{{ asset('admin/images/Earth.svg') }}" alt="" />
+                        <div class="map ">
+                            <img class="img-fluid h-auto" src="{{ asset('admin/images/Earth.svg') }}" alt="" />
                         </div>
                         <div class="locations">
                             <!-- single location  -->
@@ -498,7 +498,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xxl-4">
                 <!-- site--visit  -->
                 <div class="site--visit box--common">
                     <div class="text">
