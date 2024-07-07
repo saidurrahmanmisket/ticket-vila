@@ -18,6 +18,6 @@ class InvoiceController extends Controller
             ->firstOrFail();
 
         $pdf = PDF::loadView('user.pdf.invoice', compact('order',));
-        return $pdf->stream('invoice-' . $order->id . '.pdf');
+        return $pdf->download('invoice-' . $order->id . '.pdf');
     }
 }
