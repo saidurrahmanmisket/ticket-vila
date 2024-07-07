@@ -41,7 +41,7 @@ Expose
                         <a href="{{route('frontend.faqs')}}" class="user--common--btn">FAQ</a>
                     </li>
                     <li>
-                        <a href="#" class="user--common--btn">Live Chat</a>
+                        <a href="{{route('user.live-chat')}}" class="user--common--btn">Live Chat</a>
                     </li>
                     <li>
                         <a href="mailto:{{env('mail_from_address')}}" class="user--common--btn">Email</a>
