@@ -22,6 +22,13 @@
                         Payment Configuration
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-google-configuration" data-bs-toggle="pill"
+                            data-bs-target="#pills-google-configuration"
+                            type="button" role="tab" aria-controls="pills-google-configuration" aria-selected="false">
+                        Google Login Configuration
+                    </button>
+                </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-personal-info" role="tabpanel"
@@ -278,6 +285,59 @@
                                 <button type="submit" class="user--common--btn">
                                     Save Changes
                                 </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{-- Google Login Configuration--}}
+                <div class="tab-pane fade show active" id="pills-google-configuration" role="tabpanel"
+                     aria-labelledby="pills-google-configuration" tabindex="0">
+                    <!-- personal--info  -->
+                    <div class="personal--info common--inputs mt_55">
+
+                        <form method="POST" action="{{ route('admin.google-login-config') }}"
+                              enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="row">
+
+                                <div class="input--group">
+                                    <label for="google_client_id">Google Client ID</label>
+                                    <input id="google_client_id" name="google_client_id" type="text"
+                                           value="{{ env('GOOGLE_CLIENT_ID') }}"/>
+                                    @error('google_client_id')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
+                                </div>
+                                <div class="input--group">
+                                    <label for="google_client_secret">Google Client Secret</label>
+                                    <input id="google_client_secret" name="google_client_secret" type="text"
+                                           value="{{ env('GOOGLE_CLIENT_SECRET') }}"/>
+                                    @error('google_client_secret')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
+                                </div>
+                                <div class="input--group">
+                                    <label for="google_call_back_url">Google Call Back URL</label>
+                                    <input id="google_call_back_url" name="google_call_back_url" type="text"
+                                           value="{{ env('GOOGLE_CALL_BACK_URL') }}"/>
+                                    @error('google_call_back_url')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="buttons mt_55">
+                                    <button type="submit" class="user--common--btn">
+                                        Save Changes
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>

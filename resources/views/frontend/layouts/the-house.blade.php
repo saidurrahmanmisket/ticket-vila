@@ -12,11 +12,11 @@
                         {{ !empty($hero_section) ? $hero_section['title_' . locale()] : __('The House') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        {{ !empty($hero_section)
+                        {!! !empty($hero_section)
                             ? $hero_section['description_' . locale()]
                             : __(
                                 'Welcome to i he House, where dreams come true. This stunning property offers the perfect blend of luxury, modern design, and spacious living. Enter our raffle for a chance to win this incredible home and make it your own.',
-                            ) }}
+                            ) !!}
                     </p>
 
                     <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">

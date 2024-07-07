@@ -30,7 +30,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        {{ $hero_section['description_' . locale()] }}
+                                        {!! $hero_section['description_' . locale()] !!}
                                     </div>
                                 </div>
                             </div>

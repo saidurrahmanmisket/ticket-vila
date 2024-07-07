@@ -100,4 +100,34 @@ class ConfigurationSettingController extends Controller
             return back()->with('error', 'Failed to update'.$e->getMessage());
         }
     }
+
+    public function googleLoginConfig(Request $request)
+    {
+        $request->validate([
+            'google_client_id' => ['required', 'string', new HasSpaceToAddComma()],
+            'google_client_secret' => ['required', 'string', new HasSpaceToAddComma()],
+            'google_call_back_url' => ['required', 'url', new HasSpaceToAddComma()],
+        ]);
+        try {
+            $envContent = File::get(base_path('.env'));
+            $lineBreak = "\n";
+            $envContent = preg_replace([
+                '/GOOGLE_CLIENT_ID=(.*)\s/',
+                '/GOOGLE_CLIENT_SECRET=(.*)\s/',
+                '/GOOGLE_CALL_BACK_URL=(.*)\s/',
+            ], [
+                'GOOGLE_CLIENT_ID='.$request->google_client_id.$lineBreak,
+                'GOOGLE_CLIENT_SECRET='.$request->google_client_secret.$lineBreak,
+                'GOOGLE_CALL_BACK_URL='.$request->google_call_back_url.$lineBreak,
+            ], $envContent);
+
+            if ($envContent !== null) {
+                File::put(base_path('.env'), $envContent);
+            }
+
+            return back()->with('success', 'Updated successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to update'.$e->getMessage());
+        }
+    }
 }
