@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\User\ChatController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
+use App\Http\Controllers\Web\User\InvoiceController;
 use App\Http\Controllers\Web\User\SettingsController;
 use App\Http\Controllers\Web\User\TheHouseController;
 use App\Http\Controllers\Web\User\TicketController;
@@ -91,6 +92,9 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
         Route::patch('user/settings/password/update', 'passwordUpdate')->name('settings.password.update');
         // Route::patch('/user/change','updatePassword')->name('user.profile.change');
     });
+
+    //invoice download
+    Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
 
 });
 

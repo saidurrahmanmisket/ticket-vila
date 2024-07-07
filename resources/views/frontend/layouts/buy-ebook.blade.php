@@ -243,7 +243,7 @@
                                 </p>
                                 <p class="subtitle">24/7 Chat support with the help of all.</p>
 
-                                <button class="btn--fill no--border">Start Chat</button>
+                                <a href="{{route('user.live-chat')}}" class="btn--fill no--border">Start Chat</a>
                             </div>
                             <div class="bonus--part">
                                 <div class="img--wrapper">
