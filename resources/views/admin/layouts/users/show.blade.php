@@ -104,14 +104,7 @@
                         <p class="common--pair--text">
                             Phone : <span>{{!empty($user->phone) ? $user->phone : 'N/A'}}</span>
                         </p>
-                        <p class="common--pair--text">
-                            Ip Address : <span>{{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Status : <span>{{!empty($user->status) ? $user->status : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">Tickets : <span>{{$user->tickets_count}}</span></p>
-                        <p class="common--pair--text">Role : <span>{{$user->role}}</span></p>
+
                     </div>
                 </div>
             </div>
@@ -130,6 +123,11 @@
                             <p class="common--pair--text">
                                 IP Address : <span> {{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
                             </p>
+                            <p class="common--pair--text">
+                                Status : <span>{{!empty($user->status) ? $user->status : 'N/A'}}</span>
+                            </p>
+                            <p class="common--pair--text">Role : <span>{{$user->role}}</span></p>
+
                         </div>
                         <a href="#" class="action--btn" id="ban-user">Ban User</a>
                     </div>
@@ -143,9 +141,8 @@
                         <p class="common--pair--text">
                             Total spend : <span class="text--green">{{number_format($totalSpent,2)}} €</span>
                         </p>
-{{--                        <p class="common--pair--text">--}}
-{{--                            Payment Method : <span class="text-orange">Stripe</span>--}}
-{{--                        </p>--}}
+                        <p class="common--pair--text">Tickets : <span>{{$user->tickets_count}}</span></p>
+
                     </div>
                 </div>
             </div>
