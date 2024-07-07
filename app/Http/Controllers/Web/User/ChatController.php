@@ -41,7 +41,7 @@ class ChatController extends Controller
             $chat = Chat::create([
                 'user_id' => auth()->user()->id,
                 'random_chat_id' => Str::random(10),
-                'name' => $user->first_name . ' ' . $user->last_name,
+                'name' => $user->first_name.' '.$user->last_name,
                 'email' => $user->email,
                 'message' => $request->message,
             ]);

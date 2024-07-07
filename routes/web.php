@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/auth/redirect', [GoogleController::class, 'login'])->name('auth.google');
+Route::get('/auth/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

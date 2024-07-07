@@ -114,10 +114,10 @@ $systemSetting = SystemSetting::first();
                     <div class="or">
                         <p>Or</p>
                     </div>
-                    <button class="google--btn">
+                    <a href="{{route('auth.google')}}" class="google--btn">
                         <img src="{{ asset('frontend/images/google-icon.svg') }}" alt="" />
                         <span>Login with Google</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

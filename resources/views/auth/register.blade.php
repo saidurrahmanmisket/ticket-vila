@@ -157,10 +157,10 @@
                     <div class="or">
                         <p>Or</p>
                     </div>
-                    <button class="google--btn">
+                    <a href="{{route('auth.google')}}" class="google--btn">
                         <img src="{{ asset('frontend/images/google-icon.svg') }}" alt="" />
                         <span>Sign Up with Google</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

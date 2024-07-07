@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Admin\CMS\HomePageController;
 use App\Http\Controllers\Web\Admin\CMS\RaffleRulesController;
 use App\Http\Controllers\Web\Admin\CMS\TheProcessController;
 use App\Http\Controllers\Web\Admin\CMS\ThreeDViewController;
+use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DashboardController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
@@ -82,4 +83,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     //User payment refund
     Route::post('/user/payment/refund/{id}', [PaymentController::class, 'refund'])->name('payment.refund');
+
+    //Google login configuration
+    Route::post('/google-login-configuration', [ConfigurationSettingController::class, 'googleLoginConfig'])->name('google-login-config');
 });

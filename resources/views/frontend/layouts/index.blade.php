@@ -11,9 +11,9 @@
                         {{ !empty($hero_section) ? $hero_section['title_' . locale()] ?? '' : __('Dream house Raffle') }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="500" class="main--subtext">
-                        {{ !empty($hero_section)
+                        {!! !empty($hero_section)
                             ? $hero_section['description_' . locale()] ?? ''
-                            : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') }}
+                            : __('Be the lucky owner of a dream home, win €850,000.00 for the purchase of a € 99.00 eBook') !!}
                     </p>
                     <div data-aos="fade-up" data-aos-duration="900" class="btn--wrapper aos-init aos-animate">
                         <a href="{{ route('frontend.how-it-works') }}" class="btn--fill">
