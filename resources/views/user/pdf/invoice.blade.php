@@ -136,6 +136,7 @@
                 <td>
                     <p>{{ $order->user->first_name }} {{ $order->user->last_name }}</p>
                     <p>{{ $order->user->email }}</p>
+                    <p>VAT Nr.: CY60076519A</p>
                 </td>
             </tr>
             </tbody>
