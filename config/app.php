@@ -196,7 +196,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\ViewServiceProvider::class
+        \App\Providers\ViewServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
     ],
 
@@ -213,6 +215,7 @@ return [
 
     'aliases'         => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Dompdf' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 
 ];
