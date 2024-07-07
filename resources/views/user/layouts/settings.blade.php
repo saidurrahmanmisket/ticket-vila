@@ -289,7 +289,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="ticket--actions">
-                                                        <a href="#" class="action--btn">
+                                                        <a href="{{route('user.invoice.download', $order->id)}}" class="action--btn">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none">
                                                                 <path

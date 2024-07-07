@@ -95,7 +95,7 @@ $systemSetting = SystemSetting::first();
                     </div>
 
                     <div data-aos="fade-up" data-aos-duration="700" class="send--message">
-                        <a href="mailto:{{env('mail_from_address')}}" class="btn--fill">
+                        <a href="mailto:ebook@ticketvilla.eu" class="btn--fill">
                             <span>{{ __('Send A Message') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
