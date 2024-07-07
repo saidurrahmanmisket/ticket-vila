@@ -66,18 +66,51 @@
                     <div class="informations">
                         <img src="{{!empty($user->avatar) ? asset($user->avatar) : asset('admin/images/user.png') }}" alt="" />
                         <p class="common--pair--text">
-                            First Name : <span>{{$user->first_name}}</span>
+                            First Name : <span>{{$user->first_name ?? 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Last Name : <span>{{$user->last_name}}</span>
+                            Last Name : <span>{{$user->last_name ?? 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Email Address : <span>{{$user->email}}</span>
+                            Email Address : <span>{{!empty($user->email) ? $user->email : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Address 01 : <span>{{!empty($user->address_1) ? $user->address_1 : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Address 02 : <span>{{!empty($user->address_2) ? $user->address_2 : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            City : <span>{{!empty($user->city) ? $user->city : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            State: <span>{{!empty($user->state) ? $user->state : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                           Zip Code : <span>{{!empty($user->zip_code) ? $user->zip_code : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Gender: <span>{{!empty($user->gender) ? $user->gender : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Birthday : <span>{{!empty($user->birthday) ? $user->birthday : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Country of birthday : <span>{{!empty($user->country_of_birthday) ? $user->country_of_birthday : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            City of birthday: <span>{{!empty($user->city_of_birthday) ? $user->city_of_birthday : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Phone : <span>{{!empty($user->phone) ? $user->phone : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Ip Address : <span>{{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
+                        </p>
+                        <p class="common--pair--text">
+                            Status : <span>{{!empty($user->status) ? $user->status : 'N/A'}}</span>
                         </p>
                         <p class="common--pair--text">Tickets : <span>{{$user->tickets_count}}</span></p>
-                        <p class="common--pair--text">
-                            Total spend : <span class="text--green">{{number_format($totalSpent,2)}} €</span>
-                        </p>
                         <p class="common--pair--text">Role : <span>{{$user->role}}</span></p>
                     </div>
                 </div>
@@ -108,20 +141,7 @@
                             Name : <span>{{$user->first_name}} {{$user->last_name}}</span>
                         </p>
                         <p class="common--pair--text">
-                            Address 01 : <span> {{!empty($user->address_1) ? $user->address_1 : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">
-                            IP Address : <span> {{!empty($user->ip_address) ? $user->ip_address : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Address 02 : <span>{{!empty($user->address_2) ? $user->address_2 : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">City : <span> {{!empty($user->city) ? $user->city : 'N/A'}}</span></p>
-                        <p class="common--pair--text">
-                            State : <span> {{!empty($user->state) ? $user->state : 'N/A'}}</span>
-                        </p>
-                        <p class="common--pair--text">
-                            Zip Code : <span>{{!empty($user->zip_code) ? $user->zip_code : 'N/A'}}</span>
+                            Total spend : <span class="text--green">{{number_format($totalSpent,2)}} €</span>
                         </p>
 {{--                        <p class="common--pair--text">--}}
 {{--                            Payment Method : <span class="text-orange">Stripe</span>--}}
