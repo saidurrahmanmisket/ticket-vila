@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
     Route::post('/live-chat/status/{id}', [ChatController::class, 'status'])->name('chat.status');
     //invoice download
+    Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
 
 });

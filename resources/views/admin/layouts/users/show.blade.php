@@ -171,7 +171,7 @@
                             </p>
                             <p class="common--pair--text">
                                 Gift :
-                                <span class="text-orange">No Gift</span>
+                                <span class="text-orange">{{$order->discount_quantity ?? '0'}} Tickets</span>
                             </p>
                         </div>
                     </div>
