@@ -310,7 +310,7 @@
                 </div>
                 <div>
                     <p>Profit Per user</p>
-                    <h3>114,19€</h3>
+                    <h3>{{ $usersInfo['averageTotalPrice'] ?? 0 }} €</h3>
                 </div>
             </div>
         </div>

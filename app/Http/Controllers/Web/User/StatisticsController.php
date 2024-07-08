@@ -14,11 +14,8 @@ class StatisticsController extends Controller
     public function index()
     {
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        $ticketsSoldToday = Ticket::whereDate('created_at', today())->count();
         if (!empty($campaign)) {
-            $ticketsSoldToday = Ticket::where('campaign_id', $campaign->id)
-                ->whereDate('created_at', today())
-                ->count();
-
             $previousDaySold = Ticket::where('campaign_id', $campaign->id)
                 ->whereDate('created_at', today()->subDays(1))
                 ->count();
@@ -28,9 +25,11 @@ class StatisticsController extends Controller
                 : 0;
             $todayProgress = number_format($todayProgress, 2);
 
-            return view('user.layouts.statistics', compact( 'ticketsSoldToday',  'todayProgress'));
+        }else {
+            $todayProgress = 0;
         }
-        return view('user.layouts.statistics');
+
+            return view('user.layouts.statistics', compact( 'ticketsSoldToday',  'todayProgress'));
     }
     public function getSalesData()
     {
