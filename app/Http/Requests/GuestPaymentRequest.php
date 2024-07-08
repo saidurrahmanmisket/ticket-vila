@@ -39,7 +39,7 @@ class GuestPaymentRequest extends FormRequest
             'phone' => 'required|phone',
             'email' => 'required|email',
             'address' => 'required|string',
-            'zip' => 'required|regex:/^\d{5}(-\d{4})?$/',
+            'zip' => 'required|integer',
             'gender' => 'required|string|in:male,female',
             'password' => 'required|string|min:8|confirmed',
             'terms' => 'accepted',
