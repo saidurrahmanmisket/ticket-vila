@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\Admin\NewsController;
 use App\Http\Controllers\Web\Admin\SocialMediaController;
 use App\Http\Controllers\Web\Admin\SystemSettingController;
 use App\Http\Controllers\Web\Admin\TeamController;
+use App\Http\Controllers\Web\User\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
@@ -45,5 +46,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/live-chat/details/{random_chat_id}', [ChatController::class, 'chatDetails'])->name('live-chat.reply.details');
     Route::post('/live-chat/reply/store', [ChatController::class, 'chatReplyStore'])->name('live-chat.reply.store');
     Route::post('/live-chat/status/{id}', [ChatController::class, 'status'])->name('chat.status');
+    //invoice download
+    Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
 
 });

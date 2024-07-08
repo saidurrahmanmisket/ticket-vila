@@ -66,7 +66,7 @@ $systemSetting = SystemSetting::first();
                             d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
                             stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    
+
                     {{ __("Expose") }}
                 </a>
             </li>
@@ -129,8 +129,8 @@ $systemSetting = SystemSetting::first();
                         <path d="M11.9961 16.5H12.0051" stroke="#868A9B" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    
-                    {{ __("Help & Center") }}
+
+                    {{ __("Help Center") }}
                 </a>
             </li>
             <li>

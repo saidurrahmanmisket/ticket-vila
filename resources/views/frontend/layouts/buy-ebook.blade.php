@@ -145,7 +145,7 @@
                                 <div class="price">
                                     <p class="tag">Price:</p>
                                     <p class="value">
-                                        <span>{{ !empty($campaign) ? number_format($campaign->price,2) : '99.00'}}</span>€
+                                        <span>{{ !empty($campaign) ? number_format($campaign->price,2) : '99.00'}}</span>€ <span class="fs-6 ">(VAT Included)</span>
                                     </p>
                                 </div>
                             </div>

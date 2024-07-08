@@ -12,6 +12,7 @@ use App\Models\CMS;
 use App\Models\DynamicPage;
 use App\Models\FAQ;
 use App\Models\Gift;
+use App\Models\HighlightImage;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
@@ -122,20 +123,23 @@ class PageController extends Controller
                     'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
                     'planImage' => $gift->giftGallary->where('gift_image_type', 'plan'),
                 ];
+                $highlightsImages = HighlightImage::where('status', Status::ACTIVE)->where('gift_id' , $gift->id)->get();
             } else {
                 $gift = null;
                 $giftImages = null;
+                $highlightsImages = null;
             }
         } else {
             $gift = null;
             $giftImages = null;
+            $highlightsImages = null;
         }
 
         $houseTour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
         $propertyView = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
         $streetView = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
 
-        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView'));
+        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView','highlightsImages'));
     }
 
     public function verifyEmail()

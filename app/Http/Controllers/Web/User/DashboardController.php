@@ -21,19 +21,20 @@ class DashboardController extends Controller
             $userTickets = Ticket::where('campaign_id', $campaign->id)
                 ->where('user_id', '=', $user->id)
                 ->get();
+            $news = News::with('user')->where('status', Status::ACTIVE)->get();
 
             $data = [
                 'campaign' => $campaign,
                 'userTickets' => $userTickets,
+                'news' => $news,
             ];
 
             return view('user.layouts.dashboard', compact('data'));
         } else {
             $campaign = null;
             $userTickets = null;
+            $news = null;
         }
-
-        $news = News::with('user')->where('status', Status::ACTIVE)->get();
 
         $data = [
             'campaign' => $campaign,

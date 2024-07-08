@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
 use App\Http\Controllers\Web\User\InvoiceController;
 use App\Http\Controllers\Web\User\SettingsController;
+use App\Http\Controllers\Web\User\StatisticsController;
 use App\Http\Controllers\Web\User\TheHouseController;
 use App\Http\Controllers\Web\User\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +60,8 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
     Route::get('user/download/house-file/{id}', [TheHouseController::class, 'downloadHouseFile'])->name('download-house-file');
-    Route::view('/user/statistics', 'user.layouts.statistics')->name('statistics');
+    Route::get('/user/statistics', [StatisticsController::class, 'index'])->name('statistics');
+    Route::get('/user/statistics/sales-data', [StatisticsController::class, 'getSalesData'])->name('statistics.getSalesData');
     Route::view('/user/help-center', 'user.layouts.help-center')->name('help-center');
     Route::get('/user/live-chat', [ChatController::class, 'index'])->name('live-chat');
     Route::post('/user/live-chat', [ChatController::class, 'store'])->name('live-chat.store');

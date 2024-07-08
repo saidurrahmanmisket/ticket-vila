@@ -151,7 +151,7 @@
                                             <p class="title"><span
                                                         id="cart_quantity">{{$cart['quantity'] ?? ''}}</span> X House
                                                 Ticket</p>
-                                            <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p>
+                                            <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p> <span class="fs-6 ">(VAT Included)</span>
                                         </div>
 
                                         <div class="amount--wrapper">

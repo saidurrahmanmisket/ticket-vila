@@ -64,7 +64,7 @@
                             <h3>{{ $campaign['name_' . locale()] ?? 'No Ticket Found' }}</h3>
                             <p class="id">Ticket ID: #{{ $campaign->unique_text ?? 'Not Found' }}</p>
                             <p class="price">Price: <span
-                                        id="totalPrice"> {{ number_format($campaign->price ?? 0,2) ?? 'Not Found' }}</span>€
+                                        id="totalPrice"> {{ number_format($campaign->price ?? 0,2) ?? 'Not Found' }}</span>€ <span class="fs-6 ">(VAT Included)</span>
                             </p>
                             <!-- quantity  -->
                             <div class="quantity">

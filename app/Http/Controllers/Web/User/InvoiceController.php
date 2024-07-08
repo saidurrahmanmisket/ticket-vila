@@ -10,11 +10,14 @@ class InvoiceController extends Controller
 {
     public function downloadInvoice($id)
     {
-        $order = Order::where('id', $id)
-            ->where('user_id', \Auth::user()->id)
-            ->with('tickets', 'user', 'campaign')
-            ->firstOrFail();
-
+        $query = Order::where('id', $id)
+            ->with('tickets', 'user', 'campaign');
+        if (\Auth::user()->role == 'admin') {
+            $order = $query->firstOrFail();
+        }else {
+            $query->where('user_id', \Auth::user()->id);
+            $order = $query->firstOrFail();
+        }
         $pdf = PDF::loadView('user.pdf.invoice', compact('order'));
 
         return $pdf->download('invoice-'.$order->id.'.pdf');
