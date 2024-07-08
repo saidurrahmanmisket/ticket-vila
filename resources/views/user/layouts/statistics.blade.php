@@ -29,7 +29,7 @@ Statistics
                         <!-- title  -->
                         <div class="top--title">
                             <h3>Ticket Sold</h3>
-                            <h3>4.358</h3>
+                            <h3>{{ !empty($ticketsSoldToday) ? $ticketsSoldToday : '0'  }}</h3>
                         </div>
                         <div class="chart">
                             <div id="sales--chart"></div>
@@ -46,9 +46,17 @@ Statistics
                     <!-- tickets box  -->
                     <div class="tickets--box w-100 position-relative">
                         <img src="{{ asset('user/images/tickets.png') }}" alt="" />
-                        <h3>178 {{ __("Tickets") }}</h3>
+                        <h3>{{ !empty($ticketsSoldToday) ? $ticketsSoldToday : '0'  }} {{ __("Tickets") }}</h3>
                         <p>Sold Today</p>
                         <p class="last-week">
+                            @if(!empty($todayProgress) && $todayProgress < 0)
+                                <span class="text-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M18.0699 14.4301L11.9999 20.5001L5.92993 14.4301" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 3.5V20.33" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            @else
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14"
                                 fill="none">
                                 <path d="M11.0426 5.58282L7.50177 2.04199L3.96094 5.58282" stroke="#12AF6C"
@@ -57,7 +65,8 @@ Statistics
                                 <path d="M7.5 11.9581V2.14062" stroke="#12AF6C" stroke-width="1.5" stroke-miterlimit="10"
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <strong>+35% </strong> Since last week
+                            @endif
+                            <strong class="{{ !empty($todayProgress) && $todayProgress < 0 ? 'text-danger' : '' }}">{{ !empty($todayProgress) ? $todayProgress : '0'  }}% </strong> Since last day
                         </p>
                         <div class="blur--box">
                             <p>
@@ -67,12 +76,12 @@ Statistics
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mt_35">
+                <div class="col mt_35">
                     <div class="compare--box position-relative">
                         <h4 class="common--title">Compare It</h4>
                         <!-- compare range  -->
                         <div class="compare--range">
-                            <div class="range--bar">
+                            <div class="range--bar w-100">
                                 <div class="range"></div>
                             </div>
                             <div class="range--ball">
@@ -119,53 +128,167 @@ Statistics
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mt_35">
-                    <!-- lotto--box -->
-                    <div class="lotto--box position-relative">
-                        <h4 class="common--title text-center">Lotto vs TicketHouse</h4>
-                        <!-- lotto--compare  -->
-                        <ul class="lotto--compare">
-                            <li>
-                                <p>1 : 140.000.000 Chance to Win</p>
-                                <span>0.00000714%</span>
-                            </li>
-                            <li>
-                                <p>1 : 150.000.000 Chance to Win</p>
-                                <span>0.000667%</span>
-                            </li>
-                        </ul>
-                        <!-- wining--chance -->
-                        <div class="wining--chance">
-                            <p>Chance of Winning the house is over</p>
-                            <h3>
-                                9332+
-                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"
-                                    viewBox="0 0 33 33" fill="none">
-                                    <path
-                                        d="M26.6202 14.3749L21.748 15.0391C21.102 15.128 20.537 14.5701 20.618 13.9233L21.2969 8.58352C21.4196 7.66469 20.3316 7.091 19.6428 7.71132L15.616 11.2745C15.1234 11.7157 14.3527 11.5693 14.0658 10.9771L11.8615 6.5816C11.415 5.71311 10.1089 5.91752 9.96705 6.89409L8.21312 19.1396C8.15039 19.5587 8.36526 19.9659 8.73678 20.1618L17.1667 24.6067C17.5382 24.8026 18.0003 24.741 18.306 24.4614L27.4195 16.0964C28.1541 15.4324 27.5849 14.2392 26.6202 14.3749ZM17.1405 19.8109L12.7177 17.4789C12.355 17.2876 12.2128 16.8283 12.4041 16.4656C12.5953 16.1029 13.0546 15.9608 13.4173 16.152L17.8401 18.4841C18.2028 18.6753 18.345 19.1346 18.1537 19.4973C17.9625 19.86 17.5032 20.0022 17.1405 19.8109Z"
-                                        fill="url(#paint0_linear_14156_2677)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_14156_2677" x1="21.91" y1="5.41806"
-                                            x2="8.71314" y2="28.7438" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#E8880F" />
-                                            <stop offset="1" stop-color="#FFCF7E" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </h3>
-                            <span class="text-green">Times Greater</span>
-                        </div>
-                        <div class="blur--box">
-                            <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
-                            </p>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-6 mt_35">--}}
+{{--                    <!-- lotto--box -->--}}
+{{--                    <div class="lotto--box position-relative">--}}
+{{--                        <h4 class="common--title text-center">Lotto vs TicketHouse</h4>--}}
+{{--                        <!-- lotto--compare  -->--}}
+{{--                        <ul class="lotto--compare">--}}
+{{--                            <li>--}}
+{{--                                <p>1 : 140.000.000 Chance to Win</p>--}}
+{{--                                <span>0.00000714%</span>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <p>1 : 150.000.000 Chance to Win</p>--}}
+{{--                                <span>0.000667%</span>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                        <!-- wining--chance -->--}}
+{{--                        <div class="wining--chance">--}}
+{{--                            <p>Chance of Winning the house is over</p>--}}
+{{--                            <h3>--}}
+{{--                                9332+--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"--}}
+{{--                                    viewBox="0 0 33 33" fill="none">--}}
+{{--                                    <path--}}
+{{--                                        d="M26.6202 14.3749L21.748 15.0391C21.102 15.128 20.537 14.5701 20.618 13.9233L21.2969 8.58352C21.4196 7.66469 20.3316 7.091 19.6428 7.71132L15.616 11.2745C15.1234 11.7157 14.3527 11.5693 14.0658 10.9771L11.8615 6.5816C11.415 5.71311 10.1089 5.91752 9.96705 6.89409L8.21312 19.1396C8.15039 19.5587 8.36526 19.9659 8.73678 20.1618L17.1667 24.6067C17.5382 24.8026 18.0003 24.741 18.306 24.4614L27.4195 16.0964C28.1541 15.4324 27.5849 14.2392 26.6202 14.3749ZM17.1405 19.8109L12.7177 17.4789C12.355 17.2876 12.2128 16.8283 12.4041 16.4656C12.5953 16.1029 13.0546 15.9608 13.4173 16.152L17.8401 18.4841C18.2028 18.6753 18.345 19.1346 18.1537 19.4973C17.9625 19.86 17.5032 20.0022 17.1405 19.8109Z"--}}
+{{--                                        fill="url(#paint0_linear_14156_2677)" />--}}
+{{--                                    <defs>--}}
+{{--                                        <linearGradient id="paint0_linear_14156_2677" x1="21.91" y1="5.41806"--}}
+{{--                                            x2="8.71314" y2="28.7438" gradientUnits="userSpaceOnUse">--}}
+{{--                                            <stop stop-color="#E8880F" />--}}
+{{--                                            <stop offset="1" stop-color="#FFCF7E" />--}}
+{{--                                        </linearGradient>--}}
+{{--                                    </defs>--}}
+{{--                                </svg>--}}
+{{--                            </h3>--}}
+{{--                            <span class="text-green">Times Greater</span>--}}
+{{--                        </div>--}}
+{{--                        <div class="blur--box">--}}
+{{--                            <p>--}}
+{{--                                You can't see this section, buy a eBook to get full data--}}
+{{--                                access--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
     <!-- end app content area  -->
 
 @endsection
+
+@push('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script>
+        $(document).ready(function() {
+            // Sample data
+            var tickets = 55000;
+            var winningChance = 30.04;
+            var potentialProfit = "850,000 €";
+
+            // Update the tickets, winning chance, and potential profit
+            $(".compare--box ul li").eq(0).find("p").eq(1).text(tickets);
+            $(".compare--box ul li").eq(1).find("p").eq(1).text(winningChance + "%");
+            $(".compare--box ul li").eq(2).find("p").eq(1).text(potentialProfit);
+
+            // Initialize the range bar and ball
+            var rangePercentage = winningChance; // Assuming winningChance is the range percentage
+            $(".range").css("width", rangePercentage + "%");
+            $(".range--ball").css("left", rangePercentage + "%");
+
+            // Make the range ball draggable
+            $(".range--ball").draggable({
+                axis: "x",
+                containment: ".compare--range",
+                drag: function(event, ui) {
+                    var rangeWidth = $(".compare--range").width();
+                    var ballPosition = ui.position.left;
+                    var newPercentage = (ballPosition / rangeWidth) * 100;
+
+                    // Update the range width and winning chance display
+                    $(".range").css("width", newPercentage + "%");
+                    $(".compare--box ul li").eq(1).find("p").eq(1).text(newPercentage.toFixed(2) + "%");
+                }
+            });
+
+
+            var SalesChart = document.getElementById("sales--chart");
+
+            if (SalesChart) {
+                function fetchSalesData() {
+                    $.ajax({
+                        url: "{{route('user.statistics.getSalesData')}}", // Route to fetch sales data
+                        type: 'GET',
+                        success: function (data) {
+                            if (SalesChart) {
+                                SalesChart.innerHTML = ''; // or SalesChart.empty() if using a library like jQuery
+                            }
+                            updateSalesChart(data);
+                        },
+                        error: function (error) {
+                            console.error("Error fetching sales data", error);
+                        }
+                    });
+                }
+
+                function updateSalesChart(data) {
+                    var options = {
+                        series: [
+                            {
+                                name: "series1",
+                                data: data, // Use the fetched data
+                            },
+                        ],
+                        chart: {
+                            height: 350,
+                            type: "area",
+                        },
+                        dataLabels: {
+                            enabled: false,
+                        },
+                        stroke: {
+                            curve: "smooth",
+                            width: 2,
+                        },
+                        markers: {
+                            size: 0,
+                            hover: {
+                                size: 6,
+                            },
+                        },
+                        fill: {
+                            type: "gradient",
+                            gradient: {
+                                shadeIntensity: 1,
+                                opacityFrom: 0.6,
+                                opacityTo: 0.4,
+                                stops: [0, 90, 100],
+                            },
+                        },
+                        xaxis: {
+                            type: "datetime",
+                            labels: {
+                                format: "MMM", // Display month name on x-axis
+                            },
+                        },
+                        tooltip: {
+                            x: {
+                                format: "MMM", // Display month name in tooltip
+                            },
+                        },
+                    };
+                    var chart1 = new ApexCharts(SalesChart, options);
+                    chart1.render();
+                }
+
+                fetchSalesData(); // Fetch data on page load
+            }
+
+
+        });
+    </script>
+@endpush
