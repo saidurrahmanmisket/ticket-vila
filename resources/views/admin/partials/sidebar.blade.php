@@ -319,7 +319,7 @@
                         <path d="M11.9961 16.5H12.0051" stroke="#868A9B" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    Help & Center
+                    Help Center
                 </a>
             </li>
             <li class="settings">
