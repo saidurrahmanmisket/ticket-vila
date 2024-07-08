@@ -85,7 +85,7 @@
         </div>
         <div class="container mb-5">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __('3D House Tour') }}</h3>
+                <h3 class="title">{{ __('Video presentation of our programme') }}</h3>
                 <div class="area--wrapper">
 
                     <iframe
