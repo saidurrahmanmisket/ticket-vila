@@ -173,7 +173,7 @@ Tickets
                             </p>
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.instagram.com/">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
                                             viewBox="0 0 17 17" fill="none">
                                             <path
@@ -189,7 +189,7 @@ Tickets
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fticketvilla.eu%2Fweb-shop%2Fbuy-ebook" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16"
                                             viewBox="0 0 8 16" fill="none">
                                             <path
@@ -199,7 +199,7 @@ Tickets
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a  href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fticketvilla.eu%2Fweb-shop%2Fbuy-ebook&text=Check%20out%20this%20ebook" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17"
                                             viewBox="0 0 15 17" fill="none">
                                             <path
@@ -209,7 +209,8 @@ Tickets
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fticketvilla.eu%2Fweb-shop%2Fbuy-ebook&title=Check%20out%20this%20ebook" target="_blank">
+                                        <!-- Insert LinkedIn icon or text here -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                             viewBox="0 0 12 12" fill="none">
                                             <path
@@ -222,7 +223,7 @@ Tickets
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="whatsapp://send?text=Check%20out%20this%20ebook%20-%20https%3A%2F%2Fticketvilla.eu%2Fweb-shop%2Fbuy-ebook" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                             viewBox="0 0 18 18" fill="none">
                                             <path
