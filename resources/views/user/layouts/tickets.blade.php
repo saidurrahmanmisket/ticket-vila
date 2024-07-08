@@ -167,7 +167,7 @@ Tickets
                         <h4 class="common--title">Social Share</h4>
                         <div class="icon--box">
                             <p>
-                                "I'm in for a chance to win a stunning house for just €99—why
+                                "I'm in for a chance to win a stunning house for just €{{$data['campaign']->price ?? ''}}—why
                                 not you? It's easy, fun, and somebody's got to win. Might as
                                 well be one of us, right?🥳 "
                             </p>
@@ -497,7 +497,7 @@ Tickets
                         <h4 class="common--title">Social Share</h4>
                         <div class="icon--box">
                             <p>
-                                "I'm in for a chance to win a stunning house for just €99—why
+                                "I'm in for a chance to win a stunning house for just €{{$data['campaign']->price ?? ''}}—why
                                 not you? It's easy, fun, and somebody's got to win. Might as
                                 well be one of us, right?🥳 "
                             </p>
