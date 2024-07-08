@@ -333,7 +333,7 @@
         <div class="container">
             <div class="home--special--feature--content">
                 <div data-aos="fade-right" data-aos-duration="600" class="single--feature">
-                    <h3 class="big--text">{{ __('dream home for just',['price'=> $campaign->price,'giftPrice'=>'850.000' ]) }} </h3>
+                    <h3 class="big--text">{{ __('dream home for just',['price'=> $campaign->price,'giftPrice'=>'850,000' ]) }} </h3>
                     <p class="big--para">{{ __('no hidden additional costs!') }}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="900" class="single--feature">
