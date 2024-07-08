@@ -145,9 +145,9 @@
             <li class="accordion-item">
                 <div class="accordion-header" id="headingBooks">
                     <a href="#"
-                        class="accordion-button {{ Route::is('admin.cms.*') ? 'active' : 'collapsed' }}"
+                        class="accordion-button {{ Route::is('admin.cms.*') || Route::is('admin.highlight-image.*') ? 'active' : 'collapsed' }}"
                         data-bs-toggle="collapse" data-bs-target="#collapseBooks"
-                        aria-expanded="{{ Route::is('admin.cms.*') ? 'true' : 'false' }}"
+                        aria-expanded="{{ Route::is('admin.cms.*') || Route::is('admin.highlight-image.*') ? 'true' : 'false' }}"
                         aria-controls="collapseBooks">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -178,7 +178,7 @@
                 </div>
 
                 <div id="collapseBooks"
-                    class="accordion-collapse collapse {{ Route::is('admin.cms.*') ? 'show' : '' }}"
+                    class="accordion-collapse collapse {{ Route::is('admin.cms.*') || Route::is('admin.highlight-image.*') ? 'show' : '' }}"
                     aria-labelledby="headingBooks" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <ul>
@@ -216,6 +216,12 @@
                                 <a href="{{ route('admin.cms.raffle-rules.index') }}"
                                    class="sub--menu--title {{ Route::is('admin.cms.raffle-rules.*') ? 'sub--active' : '' }}">
                                     Raffle Rules Page
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.highlight-image.index') }} "
+                                  class="sub--menu--title {{ Route::is('admin.highlight-image.*') ? 'sub--active' : '' }}">
+                                    Highlight Images
                                 </a>
                             </li>
                         </ul>
@@ -274,16 +280,6 @@
                         <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     House Files
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.highlight-image.index') }}"
-                   class="gift {{ Route::is('admin.highlight-image.*') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M21.6799 16.9599L18.5499 9.64988C17.4899 7.16988 15.5399 7.06988 14.2299 9.42988L12.3399 12.8399C11.3799 14.5699 9.58993 14.7199 8.34993 13.1699L8.12993 12.8899C6.83993 11.2699 5.01993 11.4699 4.08993 13.3199L2.36993 16.7699C1.15993 19.1699 2.90993 21.9999 5.58993 21.9999H18.3499C20.9499 21.9999 22.6999 19.3499 21.6799 16.9599Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6.96997 8C8.62682 8 9.96997 6.65685 9.96997 5C9.96997 3.34315 8.62682 2 6.96997 2C5.31312 2 3.96997 3.34315 3.96997 5C3.96997 6.65685 5.31312 8 6.96997 8Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Highlight Images
                 </a>
             </li>
             <li>
