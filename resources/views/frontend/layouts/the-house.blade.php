@@ -377,25 +377,14 @@
                     {{ __('Some Highlights') }}
                 </h3>
                 <div data-aos="fade-up" data-aos-duration="700" class="highlights--section--content">
-                    @if ($gift != null)
-                        @if (
-                            ($giftImages['insideImage'] && $giftImages['insideImage']->isNotEmpty()) ||
-                                ($giftImages['outsideImage'] && $giftImages['outsideImage']->isNotEmpty()))
-                            @php
-                                $allImages = $giftImages['insideImage']
-                                    ->merge($giftImages['outsideImage'])
-                                    ->shuffle()
-                                    ->take(4);
-                            @endphp
-
-                            @foreach ($allImages as $image)
-                                <div class="single--row">
-                                    <div class="img--holder">
-                                        <img src="{{ asset($image->image) }}" alt="" />
-                                    </div>
+                    @if ($gift != null && !empty($highlightsImages))
+                        @foreach($highlightsImages as $image)
+                            <div class="single--row">
+                                <div class="img--holder">
+                                    <img src="{{ asset($image->image) }}" alt="" />
                                 </div>
-                            @endforeach
-                        @endif
+                            </div>
+                        @endforeach
                     @endif
 
                 </div>
