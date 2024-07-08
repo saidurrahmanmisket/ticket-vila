@@ -8,6 +8,10 @@ use PDF; // Import Dompdf
 
 class InvoiceController extends Controller
 {
+    public function index(){
+        $orders = Order::with('user', 'campaign')->latest()->paginate(20);
+        return view('admin.layouts.invoice.index', compact('orders'));
+    }
     public function downloadInvoice($id)
     {
         $query = Order::where('id', $id)
