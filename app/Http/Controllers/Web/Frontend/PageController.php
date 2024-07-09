@@ -10,6 +10,7 @@ use App\Mail\ContactMail;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\DynamicPage;
+use App\Models\EbookDescription;
 use App\Models\FAQ;
 use App\Models\Gift;
 use App\Models\HighlightImage;
@@ -213,8 +214,9 @@ class PageController extends Controller
     public function buyEbook()
     {
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        $ebookDescription = EbookDescription::where('status', Status::ACTIVE)->first();
 
-        return view('frontend.layouts.buy-ebook', compact('campaign'));
+        return view('frontend.layouts.buy-ebook', compact('campaign', 'ebookDescription'));
     }
 
     public function submitContact(Request $request)

@@ -3,6 +3,13 @@
 @section('header_title')
     Dynamic-page
 @endsection;
+@push('style')
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            min-height: 150px;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- profile area  -->
     <div class="app--content--main">
