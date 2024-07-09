@@ -3,6 +3,13 @@
 @section('header_title')
 Dynamic Page
 @endsection;
+@push('style')
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            min-height: 150px;
+        }
+    </style>
+@endpush
 @section('content')
 
     <div class="app--content--main">
@@ -13,7 +20,7 @@ Dynamic Page
                     @method('PATCH')
                     <div class="personal--info profile--info--box">
                         <h3>Dynamic Page Update</h3>
-                
+
                         <!-- Title EN -->
                         <div class="input--group">
                             <label for="title_en">Title (EN)</label>
@@ -24,7 +31,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Title DE -->
                         <div class="input--group">
                             <label for="title_de">Title (DE)</label>
@@ -35,7 +42,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Title HU -->
                         <div class="input--group">
                             <label for="title_hu">Title (HU)</label>
@@ -46,7 +53,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Sub Title EN -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_en">Sub Title (EN)</label>
@@ -59,7 +66,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Sub Title DE -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_de">Sub Title (DE)</label>
@@ -72,7 +79,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Sub Title HU -->
                         <div class="mt-3 input--group">
                             <label for="sub_title_hu">Sub Title (HU)</label>
@@ -85,7 +92,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Description EN -->
                         <div class="mt-3 input--group">
                             <label for="description_en">Description (EN)</label>
@@ -98,7 +105,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Description DE -->
                         <div class="mt-3 input--group">
                             <label for="description_de">Description (DE)</label>
@@ -111,7 +118,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Description HU -->
                         <div class="mt-3 input--group">
                             <label for="description_hu">Description (HU)</label>
@@ -124,7 +131,7 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Gift Image -->
                         <div class="mt-5">
                             <label for="image">Image</label>
@@ -135,12 +142,12 @@ Dynamic Page
                                 </span>
                             @enderror
                         </div>
-                
+
                         <!-- Submit Button -->
                         <button type="submit" class="btn-info mt-4">Update</button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div>
@@ -156,5 +163,5 @@ Dynamic Page
             CKEDITOR.replace('sub_title_hu');
         </script>
     @endpush
-    
+
 @endsection

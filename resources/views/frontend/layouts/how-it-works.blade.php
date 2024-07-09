@@ -90,10 +90,10 @@
 
                     <iframe
                         src="{{ locale() == 'hu'
-                            ? 'https://www.youtube.com/embed/iG-1us9DFj0?si=yQtALyxEa2OCD2J-'
+                            ? 'https://www.youtube.com/embed/Y1mYsNYV4u8?si=B7EJMvgwqKUy3Jf6'
                             : (locale() == 'de'
                                 ? 'https://www.youtube.com/embed/pDfKaeL4Ldk?si=LB-7UIQBTvjCxuUY'
-                                : 'https://www.youtube.com/embed/9bk9pgn0cgw?si=Ss31NRiLejbxELzH') }}"
+                                : 'https://www.youtube.com/embed/CiYA4uQLtUs?si=tm6iyoQHWrOKYEyk') }}"
                         width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Admin\ChatController;
 use App\Http\Controllers\Web\Admin\ConfigurationSettingController;
 use App\Http\Controllers\Web\Admin\DynamicPageController;
+use App\Http\Controllers\Web\Admin\EbookDescriptionController;
 use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\HighlightImageController;
@@ -49,5 +50,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     //invoice download
     Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
+    //ebook description
+    Route::resource('/cms/ebook-descriptions', EbookDescriptionController::class)->names('cms.ebook-description')->except('show');
+    Route::post('/cms/ebook-descriptions/status/{id}', [EbookDescriptionController::class, 'status'])->name('cms.ebook-description.status');
 
 });

@@ -235,6 +235,14 @@
                         </div>
                     </div>
                 </div>
+                @if(!empty($ebookDescription))
+
+                <div class="ticket--purchase--bottom--content mb-5">
+                    <div class="faq--section w-100">
+                        {!! $ebookDescription['description_'.locale()] ?? '' !!}
+                    </div>
+                </div>
+                @endif
 
                 <!-- bottom area -->
                 <div class="ticket--purchase--bottom--content section--bottom--gap">

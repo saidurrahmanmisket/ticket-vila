@@ -238,6 +238,12 @@
                                     Highlight Images
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.cms.ebook-description.index') }}"
+                                   class="sub--menu--title {{ Route::is('admin.cms.ebook-description.*') ? 'sub--active' : '' }}">
+                                    E-Book Description
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
