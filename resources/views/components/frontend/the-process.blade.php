@@ -24,7 +24,7 @@
                             </p>
 
                             @if($process->button_type == \App\Enums\ButtonType::BUY_NOW)
-                                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
+                                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                                     <span>{{ __('Buy Now') }}</span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@
                                 </a>
                             @elseif($process->button_type == \App\Enums\ButtonType::BOTH)
                                 <div class="btn--wrapper">
-                                    <a href="{{route('user.buy-tickets')}}" style="margin-top: 0"
+                                    <a href="{{route('frontend.web-shop.buy-ebook')}}" style="margin-top: 0"
                                        class="btn--fill blue--btn">
                                         <span>{{ __('Buy Now') }}</span>
                                         <svg

@@ -215,7 +215,7 @@
                         class="gold--link">{{ !empty($ticket_chance) ? $ticket_chance['sub_title_' . locale()] ?? '' : __('This ticket can change your life.') }}</a>
 
                     <div class="btn--wrapper">
-                        <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
+                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                             <span>{{ __('Buy Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="none">
@@ -250,7 +250,7 @@
                 <h3 class="main gold--text">
                     {{ !empty($wit_spin) ? $wit_spin['sub_title_' . locale()] ?? '' : __('Dream Home') }}</h3>
 
-                <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
+                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
@@ -422,7 +422,7 @@
         <div class="container">
             <div class="get--your--tickets--area--content">
                 <h3 class="main">{{ __('Buy the e-book now!') }}</h3>
-                <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
+                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
