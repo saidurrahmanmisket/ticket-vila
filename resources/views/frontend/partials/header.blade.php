@@ -265,7 +265,7 @@
                     </a>
                 @endif
 
-                <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
+                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>

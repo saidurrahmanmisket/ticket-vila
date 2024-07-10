@@ -160,7 +160,7 @@
                         {{ !empty($the_transparency) ? $the_transparency['description_' . locale()] ?? '' : __('At TicketVilla, we value transparency, security, and fairness. We ensure that every participant has the same chances of winning, and all draws are conducted according to the established rules and standards. Our transparent procedures and security measures provide a trustworthy and fair gaming experience for all.') }}
                     </p>
 
-                    <a href="{{route('user.buy-tickets')}}" class="btn--fill blue--btn">
+                    <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                         <span>{{ __('Buy Now') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">

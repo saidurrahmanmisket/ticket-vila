@@ -71,7 +71,7 @@
                                 @endif
                                 @if ($rule->button_type === \App\Enums\ButtonType::BUY_NOW)
                                     <div class="btn--wrapper mt-4">
-                                        <a href="{{ route('user.buy-tickets') }}" class="btn--fill blue--btn">
+                                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
                                             <span>{{ __('Buy Now') }}</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
                                                 viewBox="0 0 17 15" fill="none">

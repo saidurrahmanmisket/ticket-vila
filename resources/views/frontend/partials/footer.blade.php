@@ -29,7 +29,7 @@
                     <a href="{{ route('frontend.privacy') }}">Privacy Policy</a>
                     <a href="{{ route('frontend.contact') }}">Contact</a> --}}
                     @foreach ($pageData as $index => $item)
-                    
+
                         <a
                             href="{{ route('frontend.custom.page', ['page_slug' => $item->page_slug]) }}">{{ $item['title_'.locale()] }}
                         </a>
@@ -39,7 +39,7 @@
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="site--links">
                     <p>{{ __("House Raffle") }}</p>
-                    <a href="{{ route('user.buy-tickets') }}">{{ __("Buy ticket") }}</a>
+                    <a href="{{route('frontend.web-shop.buy-ebook')}}">{{ __("Buy ticket") }}</a>
                     <a href="{{ route('frontend.rules') }}">{{ __("Raffle Rules") }}</a>
                     <a href="#">{{ __("Is This Legal?") }}</a>
                     <a href="{{ route('frontend.the-house') }}">{{ __("The House") }}</a>
