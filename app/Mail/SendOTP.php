@@ -34,7 +34,7 @@ class SendOTP extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send O T P',
+            subject: 'OTP From TicketVilla',
         );
     }
 
