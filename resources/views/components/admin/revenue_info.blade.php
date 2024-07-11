@@ -59,7 +59,7 @@
                 </div>
                 <div>
                     <p>Totals Profits</p>
-                    <h3>{{$revenueInfo['totalProfit']}}€</h3>
+                    <h3>{{$revenueInfo['totalProfit'] ?? 0}}€</h3>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div>
                     <p>Administrations Cut</p>
-                    <h3>174.320€</h3>
+                    <h3>{{ number_format((($revenueInfo['totalProfit'] ?? 0) / 100 ) * 40 , 2) }}€</h3>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@
                 </div>
                 <div>
                     <p>Notary</p>
-                    <h3>257.122€</h3>
+                    <h3>{{ number_format((($revenueInfo['totalProfit'] ?? 0) / 100 ) * 60, 2)  }}€</h3>
                 </div>
             </div>
         </div>

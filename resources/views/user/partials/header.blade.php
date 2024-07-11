@@ -43,8 +43,10 @@
                             d="M13.8748 16.8848C13.8748 18.4636 12.5807 19.7577 11.0018 19.7577C10.2167 19.7577 9.49204 19.4299 8.9744 18.9122C8.45675 18.3946 8.12891 17.6699 8.12891 16.8848"
                             stroke="#CFCFCF" stroke-width="1.29412" stroke-miterlimit="10" />
                     </svg>
-                    <!-- status  -->
-                    <span class="status"></span>
+                    @if(Auth::user()->unreadNotifications->count() > 0)
+                        <!-- status  -->
+                        <span class="status"></span>
+                    @endif
                 </a>
                 <!-- profile -->
                 <a href="{{ route('user.settings') }}" class="profile">

@@ -43,8 +43,10 @@
                             stroke-miterlimit="10"
                         />
                     </svg>
-                    <!-- status  -->
-                    <span class="status"></span>
+                    @if(Auth::user()->unreadNotifications->count() > 0)
+                        <!-- status  -->
+                        <span class="status"></span>
+                    @endif
                 </a>
                 <!-- profile -->
                 <a href="{{route('admin.profile.index')}}" class="profile">
