@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Frontend;
 
+use App\Enums\NotificationType;
 use App\Enums\Page;
 use App\Enums\Section;
 use App\Enums\Status;
@@ -17,8 +18,10 @@ use App\Models\HighlightImage;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
+use App\Notifications\NewNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
@@ -58,6 +61,23 @@ class PageController extends Controller
 
     public function about()
     {
+        //        for make notifications
+//        $user = \Auth::user();
+//        $message = "Something Went Wrong";
+////
+//        $user->notify(new NewNotification(
+//            from: 'ebook@ticketvilla.eu',
+//            owner: 'Admin',
+//            subject: "Error",
+//            message: $message,
+//            actionText: 'Buy Ebook',
+//            actionUrl: '/buy-ebook',
+//            channels: [ 'mail', 'database'],
+//            type: NotificationType::ERROR
+//
+//        ));
+
+
         $teams = Team::where('status', 'active')->get();
         $the_mission = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_MISSION)->first();
         $hero_section = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();

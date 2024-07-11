@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\User\ChatController;
 use App\Http\Controllers\Web\User\CheckoutController;
 use App\Http\Controllers\Web\User\DashboardController;
 use App\Http\Controllers\Web\User\InvoiceController;
+use App\Http\Controllers\Web\User\NotificationController;
 use App\Http\Controllers\Web\User\SettingsController;
 use App\Http\Controllers\Web\User\StatisticsController;
 use App\Http\Controllers\Web\User\TheHouseController;
@@ -97,6 +98,9 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
 
     //invoice download
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
 });
 
