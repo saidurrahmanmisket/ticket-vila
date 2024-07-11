@@ -117,7 +117,7 @@
                         </p>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="800" class="right">
-                        <a href="{{ route('frontend.the-house') }}" class="btn--fill">
+                        <a href="{{ route('frontend.rules') }}" class="btn--fill">
                             <span>{{ __('Learn More') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                 fill="transparent">

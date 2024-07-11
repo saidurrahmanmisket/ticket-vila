@@ -50,7 +50,7 @@
                                     </svg>
                                 </a>
                             @elseif($process->button_type == \App\Enums\ButtonType::LEARN_MORE)
-                                <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
+                                <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                     <span>{{ __('Learn More') }}</span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@
                                             />
                                         </svg>
                                     </a>
-                                    <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
+                                    <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                         <span>{{ __('Learn More') }}</span>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +274,7 @@
                                 {{ __('Experience peace of mind with our raffle: proven fair and legally secure. Enter for a chance to win your dream home!') }}
                             </p>
 
-                            <a href="{{route('frontend.the-house')}}" class="btn--normal border blank">
+                            <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                 <span>{{ __('Learn More') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                     <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -309,7 +309,7 @@
                                 winner can choose to claim the cash price instead.') }}
                             </p>
 
-                            <a href="#" class="btn--normal border blank">
+                            <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                 <span>Learn More</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                     <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -343,7 +343,7 @@
                                 legally secure. Enter for a chance to win your dream home!
                             </p>
 
-                            <a href="#" class="btn--normal border blank">
+                            <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                 <span>Learn More</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                     <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -378,14 +378,14 @@
                             </p>
 
                             <div class="btn--wrapper">
-                                <a href="#" class="btn--fill">
+                                <a href="{{route('frontend.rules')}}" class="btn--fill">
                                     <span>Learn More</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                         <path d="M15.75 7.72559L0.75 7.72559" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                         <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                 </a>
-                                <a href="#" class="btn--normal border blank">
+                                <a href="{{route('frontend.rules')}}" class="btn--normal border blank">
                                     <span>Learn More</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none">
                                         <path d="M15.75 7.72559L0.75 7.72559" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>

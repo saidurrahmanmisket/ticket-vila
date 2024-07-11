@@ -21,7 +21,7 @@
 
                     <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
                         @if(empty(Auth::user()))
-                            <a href="{{route('register')}}" class="btn--fill">
+                            <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill">
                                 <span>{{ __('Join Now') }}</span>
                             </a>
                         @endif
@@ -149,7 +149,7 @@
                     </div>
                     @if(empty(Auth::user()))
                         <div data-aos="fade-left" data-aos-duration="700" class="right">
-                            <a href="{{ route('register') }}" class="btn--normal border blank">
+                            <a href="{{ route('frontend.web-shop.buy-ebook') }}" class="btn--normal border blank">
                                 <span>{{ __('Join Now') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                      fill="none">
@@ -198,7 +198,7 @@
                     </div>
                     @if(empty(Auth::user()))
                         <div data-aos="fade-left" data-aos-duration="700" class="right">
-                            <a href="{{route('register')}}" class="btn--normal border blank">
+                            <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--normal border blank">
                                 <span>{{ __('Join Now') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                      fill="none">
@@ -272,7 +272,7 @@
                 <div class="top--part">
                     <h3 class="title">{{ __('3D Property View') }}</h3>
                     @if(empty(Auth::user()))
-                        <a href="{{route('register')}}" class="btn--normal blank border">
+                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--normal blank border">
                             <span>{{ __('Join Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">
@@ -324,7 +324,7 @@
                 <div class="top--part">
                     <h3 class="title">{{ __('3D Street View') }}</h3>
                     @if(empty(Auth::user()))
-                        <a href="{{route('register')}}" class="btn--normal blank border">
+                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--normal blank border">
                             <span>{{ __('Join Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">
@@ -390,7 +390,7 @@
                 </div>
                 @if(empty(Auth::user()))
                     <div data-aos="fade-up" data-aos-duration="600" class="btn--wrapper">
-                        <a href="{{route('register')}}" class="btn--fill">
+                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill">
                             <span>{{ __('Join Now') }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                  fill="none">

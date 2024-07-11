@@ -260,7 +260,7 @@
                             </div>
                         </section>
                     </div>
-                    @if(!empty($campaign) && !empty($campaign->how_many_free) && !empty($campaign->how_many_buy))
+                    @if(!empty($campaign) && !empty($campaign->how_many_free) && !empty($campaign->how_many_buy) )
                         <!-- chat and bonus area -->
                         <div class="chat--bonus--area">
                             <div class="chat--part">
