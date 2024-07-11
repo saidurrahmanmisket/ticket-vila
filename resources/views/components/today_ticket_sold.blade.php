@@ -1,4 +1,4 @@
-<div class="tickets--box w-100 position-relative">
+<div class="tickets--box w-100 position-relative p-0" >
     <img src="{{ asset('user/images/tickets.png') }}" alt="" />
     <h3>{{ !empty($ticketsSoldToday) ? $ticketsSoldToday : '0'  }} {{ __("Tickets") }}</h3>
     <p>Sold Today</p>

@@ -18,6 +18,7 @@ use App\Models\HighlightImage;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
+use App\Models\User;
 use App\Notifications\NewNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

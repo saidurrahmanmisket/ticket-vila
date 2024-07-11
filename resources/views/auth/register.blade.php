@@ -140,10 +140,15 @@
                         </div>
                         <div class="bottom--input--holder">
                             <div class="checkbox--wrapper">
-                                <input type="checkbox" name="terms" id="terms" />
+                                <input class="form-control @error('terms') is-invalid @enderror" type="checkbox" name="terms" id="terms" />
                                 <label for="terms">I hereby confirm and accept the Terms of Service and the
                                     Privacy Policy. I certify that I am over 18 years of age.
                                 </label>
+                                @error('terms')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>

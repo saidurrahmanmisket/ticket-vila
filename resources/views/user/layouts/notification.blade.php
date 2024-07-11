@@ -81,9 +81,9 @@
                                     <!-- icon  -->
                                     @if(!empty($notification->data['type']))
                                         @if($notification->data['type'] == \App\Enums\NotificationType::PURCHASE)
-                                            <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
-                                        @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
                                             <img src="{{asset('user/images/notification-icon (2).png')}}" alt="">
+                                        @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
+                                            <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
                                         @elseif($notification->data['type'] == \App\Enums\NotificationType::ERROR)
                                             <img src="{{asset('user/images/notification-icon (4).png')}}" alt="">
                                         @elseif($notification->data['type'] == \App\Enums\NotificationType::INFO)
@@ -176,9 +176,9 @@
                                 <!-- icon  -->
                                 @if(!empty($notification->data['type']))
                                     @if($notification->data['type'] == \App\Enums\NotificationType::PURCHASE)
-                                        <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
-                                    @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
                                         <img src="{{asset('user/images/notification-icon (2).png')}}" alt="">
+                                    @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
+                                        <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
                                     @elseif($notification->data['type'] == \App\Enums\NotificationType::ERROR)
                                         <img src="{{asset('user/images/notification-icon (4).png')}}" alt="">
                                     @elseif($notification->data['type'] == \App\Enums\NotificationType::INFO)
@@ -267,9 +267,9 @@
                                 <!-- icon  -->
                                 @if(!empty($notification->data['type']))
                                     @if($notification->data['type'] == \App\Enums\NotificationType::PURCHASE)
-                                        <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
-                                    @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
                                         <img src="{{asset('user/images/notification-icon (2).png')}}" alt="">
+                                    @elseif($notification->data['type'] == \App\Enums\NotificationType::REGISTRATION)
+                                        <img src="{{asset('user/images/notification-icon (3).png')}}" alt="">
                                     @elseif($notification->data['type'] == \App\Enums\NotificationType::ERROR)
                                         <img src="{{asset('user/images/notification-icon (4).png')}}" alt="">
                                     @elseif($notification->data['type'] == \App\Enums\NotificationType::INFO)
