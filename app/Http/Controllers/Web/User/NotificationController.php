@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Web\User;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -19,7 +19,7 @@ class NotificationController extends Controller
             $newNotification = Auth::user()->notifications()
                 ->whereDate('created_at', $today)
                 ->get();
-            return view('admin.layouts.notification.index', compact('notifications', 'unreadNotifications', 'newNotification'));
+            return view('user.layouts.notification', compact('notifications', 'unreadNotifications', 'newNotification'));
 
         }catch (\Exception $e) {
             flash()->addError($e->getMessage());
@@ -31,9 +31,9 @@ class NotificationController extends Controller
     {
         try {
 
-            Auth::user()->unreadNotifications->markAsRead();
+        Auth::user()->unreadNotifications->markAsRead();
 
-            return redirect()->route('admin.notifications.index');
+        return redirect()->route('user.notifications.index');
 
         }catch (\Exception $e) {
             flash()->addError($e->getMessage());
@@ -52,7 +52,7 @@ class NotificationController extends Controller
             }
 
             flash()->addSuccess('Notification deleted successfully');
-            return redirect()->route('admin.notifications.index');
+            return redirect()->route('user.notifications.index');
         }catch (\Exception $e) {
             flash()->addError($e->getMessage());
             return redirect()->back();

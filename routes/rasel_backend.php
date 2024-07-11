@@ -77,6 +77,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
     //Settings Routes
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::get('/settings/help', [SettingController::class, 'help'])->name('help');

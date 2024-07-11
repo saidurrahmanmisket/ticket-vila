@@ -31,7 +31,7 @@
                 </div>
 
                 <!-- notifications  -->
-                <a href="#" class="notification">
+                <a href="{{route('user.notifications.index')}}" class="notification">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                         fill="none">
                         <path d="M11 6.2041V9.07704" stroke="#CFCFCF" stroke-width="1.29412" stroke-miterlimit="10"
