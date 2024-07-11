@@ -22,36 +22,6 @@
             <!-- tickets box  -->
             <div class="tickets--box">
             <x-today_ticket_sold :ticketsSoldToday="$ticketsSoldToday" :todayProgress="$todayProgress" />
-{{--                <img src="{{ asset('admin/images/tickets.png') }}" alt="" />--}}
-{{--                <h3>178 Tickets</h3>--}}
-{{--                <p>Sold Today</p>--}}
-{{--                <p class="last-week">--}}
-{{--                    <svg--}}
-{{--                        xmlns="http://www.w3.org/2000/svg"--}}
-{{--                        width="15"--}}
-{{--                        height="14"--}}
-{{--                        viewBox="0 0 15 14"--}}
-{{--                        fill="none"--}}
-{{--                    >--}}
-{{--                        <path--}}
-{{--                            d="M11.0426 5.58282L7.50177 2.04199L3.96094 5.58282"--}}
-{{--                            stroke="#12AF6C"--}}
-{{--                            stroke-width="1.5"--}}
-{{--                            stroke-miterlimit="10"--}}
-{{--                            stroke-linecap="round"--}}
-{{--                            stroke-linejoin="round"--}}
-{{--                        />--}}
-{{--                        <path--}}
-{{--                            d="M7.5 11.9581V2.14062"--}}
-{{--                            stroke="#12AF6C"--}}
-{{--                            stroke-width="1.5"--}}
-{{--                            stroke-miterlimit="10"--}}
-{{--                            stroke-linecap="round"--}}
-{{--                            stroke-linejoin="round"--}}
-{{--                        />--}}
-{{--                    </svg>--}}
-{{--                    <strong>+35% </strong> Since last week--}}
-{{--                </p>--}}
             </div>
         </div>
     </div>

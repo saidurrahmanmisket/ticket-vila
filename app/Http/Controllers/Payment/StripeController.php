@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\Enums\NotificationType;
 use App\Enums\PaymentMethod;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,7 @@ use App\Mail\TicketMail;
 use App\Models\Campaign;
 use App\Models\Order;
 use App\Models\User;
+use App\Notifications\NewNotification;
 use App\Services\PaymentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -137,6 +139,25 @@ class StripeController extends Controller
 
                 // Send the email with tickets and ebook
                 Mail::to($user->email)->send(new TicketMail($order, $ticketNumbers, $campaign->ebooks->pluck('file')->toArray()));
+                //send notification to the user
+                $user->notify(new NewNotification(
+                    subject: "Payment Complete",
+                    message: "We received your payment, Thank you for purchasing!",
+                    actionText: 'View Your Ticket',
+                    actionUrl: route('user.tickets'),
+                    channels: [ 'mail', 'database'],
+                    type: NotificationType::PURCHASE
+                ));
+                //send notification to the admin
+                $admin = User::where('role', 'admin')->first();
+                $admin->notify(new NewNotification(
+                    subject: "New Payment",
+                    message: $user->first_name." ".$user->last_name." purchasing ".$order->quantity ." tickets and total pay:  ".$order->total_price,
+                    actionText: 'See Invoice',
+                    actionUrl: route('admin.invoice.index'),
+                    channels: [ 'mail', 'database'],
+                    type: NotificationType::PURCHASE
+                ));
 
                 // Clear session
                 LaravelSession::forget(['quantity', 'campaign_id', 'user_id']);

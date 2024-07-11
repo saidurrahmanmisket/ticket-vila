@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'terms' => ['required']
         ]);
     }
 
@@ -78,21 +79,23 @@ class RegisterController extends Controller
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
+                'last_login_at' => now(),
+                'ip_address' => request()->ip()
             ]);
-    
+
             // Generate OTP and save it to the database
             $otp = generateOTP();
             OTP::create([
                 'user_id' => $user->id,
                 'otp' => $otp,
             ]);
-    
+
             // Send OTP to the user's email
             Mail::to($user->email)->send(new SendOTP($otp));
             DB::commit();
 
             return $user;
-            
+
         } catch (\Exception $e) {
             // Handle the exception
             DB::rollBack();

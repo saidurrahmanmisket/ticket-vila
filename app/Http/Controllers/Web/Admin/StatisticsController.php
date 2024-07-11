@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Order;
+use App\Models\Ticket;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -36,6 +38,22 @@ class StatisticsController extends Controller
             'todayProfit' => $todayProfit,
         ];
 
-        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo'));
+        $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        $ticketsSoldToday = Ticket::whereDate('created_at', today())->count();
+        if (!empty($campaign)) {
+            $previousDaySold = Ticket::where('campaign_id', $campaign->id)
+                ->whereDate('created_at', today()->subDays(1))
+                ->count();
+
+            $todayProgress = ($previousDaySold > 0)
+                ? (($ticketsSoldToday - $previousDaySold) / $previousDaySold) * 100
+                : 0;
+            $todayProgress = number_format($todayProgress, 2);
+
+        }else {
+            $todayProgress = 0;
+        }
+
+        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress','ticketsSoldToday' ));
     }
 }

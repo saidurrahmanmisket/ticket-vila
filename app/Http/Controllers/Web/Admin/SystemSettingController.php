@@ -71,7 +71,7 @@ class SystemSettingController extends Controller
             'contact_number' => 'required|string',
             'address' => 'required|string',
             'company_open_hour' => 'required|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ], [
             'logo.max' => 'Maximum upload file size 2MB',
