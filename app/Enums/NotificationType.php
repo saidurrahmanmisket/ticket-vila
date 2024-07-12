@@ -11,10 +11,11 @@ use Rexlabs\Enum\Enum;
  */
 class NotificationType extends Enum
 {
-
     const ERROR = 'error';
-    const PURCHASE = 'purchase';
-    const REGISTRATION = 'registration';
-    const  INFO = 'info';
 
+    const PURCHASE = 'purchase';
+
+    const REGISTRATION = 'registration';
+
+    const INFO = 'info';
 }

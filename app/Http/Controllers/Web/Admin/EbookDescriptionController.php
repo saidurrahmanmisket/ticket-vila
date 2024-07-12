@@ -29,6 +29,7 @@ class EbookDescriptionController extends Controller
     public function create()
     {
         $campaigns = Campaign::where('status', Status::PUBLISHED)->get();
+
         return view('admin.layouts.cms.ebook-description.create', compact('campaigns'));
     }
 
@@ -87,9 +88,10 @@ class EbookDescriptionController extends Controller
         try {
             // Fetch the EbookDescription by id
             $ebookDescription = EbookDescription::findOrFail($id);
-            $campaign = Campaign::where('id', $ebookDescription->campaign_id )->first();
+            $campaign = Campaign::where('id', $ebookDescription->campaign_id)->first();
+
             // Return the edit view with the EbookDescription data
-            return view('admin.layouts.cms.ebook-description.edit', compact('ebookDescription','campaign' ));
+            return view('admin.layouts.cms.ebook-description.edit', compact('ebookDescription', 'campaign'));
         } catch (\Exception $e) {
             // Handle any errors that occur during the fetch process
             return redirect()->route('admin.cms.ebook-description.index')->with('error', $e->getMessage());
@@ -157,7 +159,6 @@ class EbookDescriptionController extends Controller
         }
     }
 
-
     public function status(Request $request, $id)
     {
         try {
@@ -177,9 +178,10 @@ class EbookDescriptionController extends Controller
             ]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
             return response()->json([
-               'success' => false,
-               'message' => $e->getMessage(),
+                'success' => false,
+                'message' => $e->getMessage(),
             ]);
         }
     }

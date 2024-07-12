@@ -16,7 +16,7 @@ class OTPVerificationController extends Controller
     {
         $user = User::where('email', $email)->first();
 
-        if (!$user) {
+        if (! $user) {
             return abort(404);
         }
         if ($user->hasVerifiedEmail($email)) {
@@ -24,6 +24,7 @@ class OTPVerificationController extends Controller
         }
 
         flash()->addSuccess('We Sent 6 Digit Code in your Mail');
+
         return view('auth.verify_otp', ['email' => $email]);
     }
 
@@ -47,11 +48,11 @@ class OTPVerificationController extends Controller
                 'otp6.required' => 'OTP 6 is required.',
             ]);
 
-            $makeOtp = $request->input('otp1') . $request->input('otp2') . $request->input('otp3') . $request->input('otp4') . $request->input('otp5') . $request->input('otp6');
+            $makeOtp = $request->input('otp1').$request->input('otp2').$request->input('otp3').$request->input('otp4').$request->input('otp5').$request->input('otp6');
 
             $otp = OTP::where('otp', $makeOtp)->first();
             // dd(o)
-            if (!$otp || $otp->user->email !== $request->input('email')) {
+            if (! $otp || $otp->user->email !== $request->input('email')) {
                 return back()->withErrors(['otp' => 'Invalid OTP.']);
             }
 
@@ -60,32 +61,34 @@ class OTPVerificationController extends Controller
             $user->save();
 
             Auth::login($user);
-//                for make notifications
+            //                for make notifications
             $user = \Auth::user();
             $user->notify(new NewNotification(
-                subject: "Registration Complete",
-                message: "Welcome to TicketVilla, Thank you for registering",
+                subject: 'Registration Complete',
+                message: 'Welcome to TicketVilla, Thank you for registering',
                 actionText: 'Dashboard',
                 actionUrl: '/',
-                channels: [ 'mail', 'database'],
+                channels: ['mail', 'database'],
                 type: NotificationType::REGISTRATION
             ));
             $admin = User::where('role', 'admin')->first();
             $admin->notify(new NewNotification(
-                subject: "New Registration",
-                message: $user->first_name." ".$user->last_name." registered now!",
+                subject: 'New Registration',
+                message: $user->first_name.' '.$user->last_name.' registered now!',
                 actionText: 'See user Details',
                 actionUrl: route('admin.user.show', $user->id),
-                channels: [ 'mail', 'database'],
+                channels: ['mail', 'database'],
                 type: NotificationType::REGISTRATION
             ));
 
             // Delete the used OTP
             $otp->delete();
             flash()->addSuccess('Email verified');
+
             return redirect()->route('user.dashboard');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             flash()->addError($e->getMessage());
+
             return redirect()->back();
         }
     }

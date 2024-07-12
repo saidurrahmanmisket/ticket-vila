@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Ticket;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
 {
@@ -15,7 +14,7 @@ class StatisticsController extends Controller
     {
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
         $ticketsSoldToday = Ticket::whereDate('created_at', today())->count();
-        if (!empty($campaign)) {
+        if (! empty($campaign)) {
             $previousDaySold = Ticket::where('campaign_id', $campaign->id)
                 ->whereDate('created_at', today()->subDays(1))
                 ->count();
@@ -25,12 +24,13 @@ class StatisticsController extends Controller
                 : 0;
             $todayProgress = number_format($todayProgress, 2);
 
-        }else {
+        } else {
             $todayProgress = 0;
         }
 
-            return view('user.layouts.statistics', compact( 'ticketsSoldToday',  'todayProgress'));
+        return view('user.layouts.statistics', compact('ticketsSoldToday', 'todayProgress'));
     }
+
     public function getSalesData()
     {
         $endDate = Carbon::now()->endOfMonth(); // End of current month
@@ -41,7 +41,7 @@ class StatisticsController extends Controller
             ->selectRaw('DATE_FORMAT(created_at, "%Y-%m-01") as month, COUNT(*) as count')
             ->groupBy('month')
             ->get()
-            ->map(function($data) {
+            ->map(function ($data) {
                 return [
                     'x' => (new Carbon($data->month))->getTimestamp() * 1000, // Convert to milliseconds
                     'y' => $data->count,
