@@ -3,10 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class NotificationMail extends Mailable
@@ -14,11 +11,17 @@ class NotificationMail extends Mailable
     use Queueable, SerializesModels;
 
     public $fromAddress;
+
     public $owner;
+
     public $subjectText;
+
     public $messageContent;
+
     public $actionText;
+
     public $actionUrl;
+
     public $notifiable;
 
     /**

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendOTP;
 use App\Models\OTP;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +49,6 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -60,14 +58,13 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'terms' => ['required']
+            'terms' => ['required'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
@@ -80,7 +77,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'last_login_at' => now(),
-                'ip_address' => request()->ip()
+                'ip_address' => request()->ip(),
             ]);
 
             // Generate OTP and save it to the database
@@ -100,11 +97,12 @@ class RegisterController extends Controller
             // Handle the exception
             DB::rollBack();
             Log::error($e->getMessage());
+
             return response()->json([
-            'success' => false,
-            'status' => 500,
-            'message' => 'Internal Server Error.',
-            'errors' => $e->getMessage()
+                'success' => false,
+                'status' => 500,
+                'message' => 'Internal Server Error.',
+                'errors' => $e->getMessage(),
             ], 500);
         }
     }
@@ -112,7 +110,6 @@ class RegisterController extends Controller
     /**
      * The user has been registered.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  mixed  $user
      * @return mixed
      */

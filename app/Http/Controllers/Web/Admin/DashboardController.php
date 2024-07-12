@@ -9,7 +9,6 @@ use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -31,7 +30,7 @@ class DashboardController extends Controller
             'payment_count' => $payment_count,
             'total_users_count' => $total_users_count,
             'today_users_count' => $today_users_count,
-            'averageTotalPrice' => $averageTotalPrice
+            'averageTotalPrice' => $averageTotalPrice,
         ];
 
         $revenueInfo = [
@@ -41,7 +40,7 @@ class DashboardController extends Controller
 
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
         $ticketsSoldToday = Ticket::whereDate('created_at', today())->count();
-        if (!empty($campaign)) {
+        if (! empty($campaign)) {
             $previousDaySold = Ticket::where('campaign_id', $campaign->id)
                 ->whereDate('created_at', today()->subDays(1))
                 ->count();
@@ -51,13 +50,11 @@ class DashboardController extends Controller
                 : 0;
             $todayProgress = number_format($todayProgress, 2);
 
-        }else {
+        } else {
             $todayProgress = 0;
         }
 
-
-
-        return view('admin.layouts.dashboard', compact( 'usersInfo', 'revenueInfo','ticketsSoldToday',  'todayProgress' ));
+        return view('admin.layouts.dashboard', compact('usersInfo', 'revenueInfo', 'ticketsSoldToday', 'todayProgress'));
 
     }
 }

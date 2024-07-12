@@ -3,12 +3,11 @@
 namespace App\Notifications;
 
 use App\Enums\NotificationType;
+use App\Mail\NotificationMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
-use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
-
 
 //        for make notifications
 //        $user = \Auth::user();
@@ -23,12 +22,19 @@ class NewNotification extends Notification implements ShouldQueue
     use Queueable;
 
     protected $from;
+
     protected $owner;
+
     protected $subject;
+
     protected $message;
+
     protected $actionText;
+
     protected $type; //Enums -> Notification Type
+
     protected $actionUrl;
+
     protected $channels; // for pass only email or store notification to database use ['mail', 'database'], for both email and database
 
     /**
@@ -37,7 +43,7 @@ class NewNotification extends Notification implements ShouldQueue
     public function __construct(
         $from = 'ebook@ticketvilla.eu',
         $owner = 'TicketVilla',
-        $subject = "Ticket Villa",
+        $subject = 'Ticket Villa',
         $message = null,
         $actionText = 'Dashboard',
         $actionUrl = '/',

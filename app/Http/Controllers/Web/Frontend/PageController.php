@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web\Frontend;
 
-use App\Enums\NotificationType;
 use App\Enums\Page;
 use App\Enums\Section;
 use App\Enums\Status;
@@ -18,11 +17,8 @@ use App\Models\HighlightImage;
 use App\Models\RaffleRules;
 use App\Models\Team;
 use App\Models\TheProcess;
-use App\Models\User;
-use App\Notifications\NewNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
@@ -63,21 +59,20 @@ class PageController extends Controller
     public function about()
     {
         //        for make notifications
-//        $user = \Auth::user();
-//        $message = "Something Went Wrong";
-////
-//        $user->notify(new NewNotification(
-//            from: 'ebook@ticketvilla.eu',
-//            owner: 'Admin',
-//            subject: "Error",
-//            message: $message,
-//            actionText: 'Buy Ebook',
-//            actionUrl: '/buy-ebook',
-//            channels: [ 'mail', 'database'],
-//            type: NotificationType::ERROR
-//
-//        ));
-
+        //        $user = \Auth::user();
+        //        $message = "Something Went Wrong";
+        ////
+        //        $user->notify(new NewNotification(
+        //            from: 'ebook@ticketvilla.eu',
+        //            owner: 'Admin',
+        //            subject: "Error",
+        //            message: $message,
+        //            actionText: 'Buy Ebook',
+        //            actionUrl: '/buy-ebook',
+        //            channels: [ 'mail', 'database'],
+        //            type: NotificationType::ERROR
+        //
+        //        ));
 
         $teams = Team::where('status', 'active')->get();
         $the_mission = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_MISSION)->first();
@@ -145,7 +140,7 @@ class PageController extends Controller
                     'outsideImage' => $gift->giftGallary->where('gift_image_type', 'outside'),
                     'planImage' => $gift->giftGallary->where('gift_image_type', 'plan'),
                 ];
-                $highlightsImages = HighlightImage::where('status', Status::ACTIVE)->where('gift_id' , $gift->id)->get();
+                $highlightsImages = HighlightImage::where('status', Status::ACTIVE)->where('gift_id', $gift->id)->get();
             } else {
                 $gift = null;
                 $giftImages = null;
@@ -161,7 +156,9 @@ class PageController extends Controller
         $propertyView = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
         $streetView = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
 
-        return view('frontend.layouts.the-house', compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView','highlightsImages'));
+        return view('frontend.layouts.the-house',
+            compact('hero_section', 'gift', 'giftImages', 'houseTour', 'propertyView', 'streetView',
+                'highlightsImages'));
     }
 
     public function verifyEmail()
@@ -285,6 +282,11 @@ class PageController extends Controller
         return redirect()->route('frontend.contact');
     }
 
+    public function cart()
+    {
+        return view('frontend.layouts.cart');
+    }
+
     public function add_to_cart(Request $request, $id)
     {
 
@@ -371,6 +373,7 @@ class PageController extends Controller
                     'total_price' => number_format($cartData['discount_percent'] ? calculateDiscount($cartData['quantity'] * $cartData['price'], $cartData['discount_percent']) : ($cartData['quantity'] * $cartData['price']), 2),
                     'discount_price' => $discount_price,
                     'free_ticket' => $free_ticket,
+                    'quantity' => $cartData['quantity'],
                     'subtotal' => number_format($cartData['price'] * $cartData['quantity'], 2),
                 ],
             ]);

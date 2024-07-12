@@ -30,7 +30,7 @@ class StatisticsController extends Controller
             'payment_count' => $payment_count,
             'total_users_count' => $total_users_count,
             'today_users_count' => $today_users_count,
-            'averageTotalPrice' => $averageTotalPrice
+            'averageTotalPrice' => $averageTotalPrice,
         ];
 
         $revenueInfo = [
@@ -40,7 +40,7 @@ class StatisticsController extends Controller
 
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
         $ticketsSoldToday = Ticket::whereDate('created_at', today())->count();
-        if (!empty($campaign)) {
+        if (! empty($campaign)) {
             $previousDaySold = Ticket::where('campaign_id', $campaign->id)
                 ->whereDate('created_at', today()->subDays(1))
                 ->count();
@@ -50,10 +50,10 @@ class StatisticsController extends Controller
                 : 0;
             $todayProgress = number_format($todayProgress, 2);
 
-        }else {
+        } else {
             $todayProgress = 0;
         }
 
-        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress','ticketsSoldToday' ));
+        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress', 'ticketsSoldToday'));
     }
 }

@@ -149,17 +149,17 @@
 
                                         <div class="description">
                                             <p class="title"><span
-                                                        id="cart_quantity">{{$cart['quantity'] ?? ''}}</span> X House
+                                                        class="cart_quantity">{{$cart['quantity'] ?? ''}}</span> X House
                                                 Ticket</p>
                                             <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p> <span class="fs-6 ">(VAT Included)</span>
                                         </div>
 
                                         <div class="amount--wrapper">
                                             <div class="ticket--purchase--amount--wrapper">
-                                                <button class="minus" id="cart_quantity_decrement">-</button>
-                                                <input type="number" readonly id="cart_quantity"
+                                                <button class="minus cart_quantity_decrement">-</button>
+                                                <input type="number" readonly class="cart_quantity"
                                                        value="{{$cart['quantity'] ?? 1}}"/>
-                                                <button class="plus" id="cart_quantity_increment">+</button>
+                                                <button class="plus cart_quantity_increment">+</button>
                                             </div>
 
                                             <a href="{{route('frontend.web-shop.remove-cart')}}"
@@ -172,20 +172,20 @@
 
                                 <div class="vat">
                                     <p>Subtotal</p>
-                                    <p id="cart_subtotal">{{ number_format($cart['quantity'] * $cart['price'],2) }}
+                                    <p class="cart_subtotal">{{ number_format($cart['quantity'] * $cart['price'],2) }}
                                         €</p>
                                 </div>
                                 @if(!empty($cart['how_many_buy']) && !empty($cart['how_many_free']))
                                     <div class="vat">
                                         <p>Free Tickets</p>
-                                        <p id="cart_free_ticket">{{ calculateFreeTicket($cart['quantity'],$cart['how_many_buy'],$cart['how_many_free']) }}</p>
+                                        <p class="cart_free_ticket">{{ calculateFreeTicket($cart['quantity'],$cart['how_many_buy'],$cart['how_many_free']) }}</p>
                                     </div>
                                 @endif
                                 @if($cart['discount_percent'] && Carbon\Carbon::parse($cart['discount_expire_date'])->greaterThan(now()))
                                     <div class="vat">
                                         <p>Discount ({{$cart['discount_percent']}}%)</p>
                                         <p></p>
-                                        <p id="cart_discount_price">
+                                        <p class="cart_discount_price">
                                             -{{ number_format(($cart['quantity'] * $cart['price']) - calculateDiscount(($cart['quantity'] * $cart['price']),$cart['discount_percent']),2) }}
                                             €</p>
                                     </div>
@@ -194,14 +194,13 @@
 
                                 <div class="total">
                                     <p>Total</p>
-                                    <p class="value" id="cart_total_price">
+                                    <p class="value cart_total_price">
                                         {{number_format($cart['discount_percent'] ? calculateDiscount($cart['quantity'] * $cart['price'],$cart['discount_percent']) : ($cart['quantity'] * $cart['price']),2)}}
                                         €</p>
                                 </div>
                             </div>
 
-                                <a class='proceed--btn btn--fill blue--btn'
-                                   id="cart-payment-process"
+                                <a class='proceed--btn btn--fill blue--btn cart-payment-process'
                                    href='{{Auth::check() ? route('user.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true']) : route('frontend.web-shop.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true'])}}'>
                                     <span>Proceed to payment</span>
                                 <svg
@@ -227,6 +226,32 @@
                                     />
                                 </svg>
                             </a>
+                                <a class='btn--fill mt-3'
+                                   href='{{route('frontend.web-shop.cart')}}'>
+                                    <span>View Cart</span>
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="15"
+                                            viewBox="0 0 18 15"
+                                            fill="none"
+                                    >
+                                        <path
+                                                d="M16.25 7.72607L1.25 7.72607"
+                                                stroke="white"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                        <path
+                                                d="M10.2012 1.70149L16.2512 7.72549L10.2012 13.7505"
+                                                stroke="white"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </a>
                             @else
                                 <div class="empty-cart">
                                     <p class="h5">Cart is empty</p>
@@ -306,13 +331,28 @@
                 },
                 success: function (resp) {
                     if (resp.success == 'true') {
-                        let payment_url = new URL($("#cart-payment-process").attr('href'))
+                        let payment_url = new URL($(".cart-payment-process").first().attr('href'))
                         payment_url.searchParams.set('quantity', quantity);
-                        $("#cart-payment-process").attr('href', payment_url)
-                        $("#cart_subtotal").text(resp.data?.subtotal + ' €')
-                        $("#cart_free_ticket").text(resp.data?.free_ticket)
-                        $("#cart_discount_price").text('-' + resp.data?.discount_price + ' €')
-                        $("#cart_total_price").text(resp.data?.total_price + ' €')
+                        $(".cart-payment-process").each(function () {
+                            $(this).attr('href', payment_url)
+                        })
+                        $(".cart_subtotal").each(function () {
+                            $(this).text(resp.data?.subtotal + ' €')
+                        })
+                        $(".cart_free_ticket").each(function () {
+                            $(this).text(resp.data?.free_ticket);
+                        })
+                        $(".cart_discount_price").each(function () {
+                            $(this).text('-' + resp.data?.discount_price + ' €')
+                        })
+                        console.log($(".cart_total_price"))
+                        $(".cart_total_price").each(function () {
+                            console.log($(this))
+                            $(this).text(resp.data?.total_price + ' €')
+                        })
+                        $(".cart_quantity").each(function () {
+                            $(this).val(resp.data?.quantity)
+                        })
                     } else {
                         flasher.error(resp?.message);
                     }
@@ -324,20 +364,28 @@
         }
 
         let cart_quantity = Number.parseInt("{{$cart['quantity'] ?? 1}}")
-        $("#cart_quantity_increment").on('click', function () {
-            if (cart_quantity < 9) {
-                cart_quantity++
-                $("#cart_quantity").text(cart_quantity)
-                change_quantity(cart_quantity)
-            }
+        $(".cart_quantity_increment").each(function () {
+            $(this).on('click', function () {
+                if (cart_quantity < 9) {
+                    cart_quantity++
+                    $(".cart_quantity").each(function () {
+                        $(this).text(cart_quantity)
+                    })
+                    change_quantity(cart_quantity)
+                }
 
+            })
         })
-        $("#cart_quantity_decrement").on('click', function () {
-            if (cart_quantity > 1) {
-                cart_quantity--
-                $("#cart_quantity").text(cart_quantity)
-                change_quantity(cart_quantity)
-            }
+        $(".cart_quantity_decrement").each(function () {
+            $(this).on('click', function () {
+                if (cart_quantity > 1) {
+                    cart_quantity--
+                    $(".cart_quantity").each(function () {
+                        $(this).text(cart_quantity)
+                    })
+                    change_quantity(cart_quantity)
+                }
+            })
         })
     }, true);
 </script>
