@@ -82,7 +82,7 @@ class StripeController extends Controller
                 ]],
                 'mode' => 'payment',
                 'success_url' => $redirectUrl,
-                'cancel_url' => route('user.paypal.cancel'),
+                'cancel_url' => route('frontend.payment-cancel-message'),
             ]);
 
             //remove cart session item
@@ -165,12 +165,12 @@ class StripeController extends Controller
                 flash()->addSuccess('Payment Success');
 
                 if (Auth::user()) {
-                    return redirect()->route('user.buy-tickets')->with('payment_success', 'true')
+                    return redirect()->route('user.payment.success.message')->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
                         ->with('free_ticket', $discountQuantity)
                         ->with('buy_time', $order->created_at);
                 } else {
-                    return redirect()->route('frontend.web-shop.buy-ebook')
+                    return redirect()->route('frontend.payment-success-message')
                         ->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
                         ->with('free_ticket', $discountQuantity)
@@ -196,13 +196,6 @@ class StripeController extends Controller
                 return redirect()->route('frontend.web-shop.buy-ebook');
             }
         }
-    }
-
-    public function cancel()
-    {
-        flash()->addError('Something went wrong');
-
-        return redirect()->route('user.buy-tickets');
     }
 
     //Web Shop Payment
@@ -282,7 +275,7 @@ class StripeController extends Controller
                 ]],
                 'mode' => 'payment',
                 'success_url' => $redirectUrl,
-                'cancel_url' => route('frontend.web-shop.paypal.cancel'),
+                'cancel_url' => route('frontend.payment-cancel-message'),
             ]);
 
             //remove cart session item

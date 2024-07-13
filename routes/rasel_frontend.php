@@ -23,12 +23,10 @@ Route::prefix('web-shop')->middleware('guest')->name('frontend.web-shop.')->grou
     //Stripe payment for web shop
     Route::post('/stripe/payment', [StripeController::class, 'web_shop_payment'])->name('stripe.payment');
     Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
-    Route::get('/stripe/payment/cancel', [StripeController::class, 'web_shop_cancel'])->name('stripe.cancel');
 
     //PayPal's payment for web shop routes
     Route::post('/paypal/payment', [PaypalController::class, 'web_shop_payment'])->name('paypal.payment');
     Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
-    Route::get('/paypal/payment/cancel', [PaypalController::class, 'web_shop_cancel'])->name('paypal.cancel');
 });
 
 //Change Language route

@@ -34,7 +34,8 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
     Route::get('/how-it-works', 'howItWorks')->name('how-it-works');
     Route::get('page/{page_slug}', 'dynamicPage')->name('custom.page');
     Route::get('/faqs', 'faq')->name('faqs');
-
+    Route::get('/payment/success/message', 'paymentSuccessMessage')->name('payment-success-message');
+    Route::get('/payment/cancel/message', 'paymentCancelMessage')->name('payment-cancel-message');
 });
 
 // Route to handle OTP verification by : saidur
@@ -72,20 +73,18 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
     //stripe payment routes
     Route::post('/stripe/payment', [StripeController::class, 'checkout'])->name('stripe.payment');
     Route::get('/stripe/payment/success', [StripeController::class, 'success'])->name('stripe.success');
-    Route::get('/stripe/payment/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
 
     //Paypal payment routes
     Route::post('/paypal/payment', [PaypalController::class, 'checkout'])->name('paypal.payment');
     Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
-    Route::get('/paypal/payment/cancel', [PaypalController::class, 'cancel'])->name('paypal.cancel');
 
-    //success message
-    Route::get('/payment/success/message', function () {
+    //success message page
+    Route::get('/user/payment/success/message', function () {
         if (! session()->has('payment_success')) {
             abort(404);
         }
 
-        return view('user.layouts.stripe_success');
+        return view('user.layouts.payment_success');
     })->name('payment.success.message');
 
     //Profile routes
