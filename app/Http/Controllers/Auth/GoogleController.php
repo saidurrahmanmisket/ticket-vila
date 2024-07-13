@@ -33,7 +33,11 @@ class GoogleController extends Controller
                     'email_verified_at' => now(),
                 ]);
             }
-
+            if ($user->email_verified_at === null) {
+                $user->update([
+                    'email_verified_at' => now(),
+                ]);
+            }
             \Auth::login($user);
             flash()->addSuccess('Logged in successfully.');
             if ($user->role == 'admin') {
@@ -42,7 +46,7 @@ class GoogleController extends Controller
                 return redirect()->route('user.dashboard');
             }
         } catch (\Exception $exception) {
-            flash()->addError($exception->getMessage());
+            flash()->addError('Google Login Fail.');
 
             return redirect()->route('login');
         }
