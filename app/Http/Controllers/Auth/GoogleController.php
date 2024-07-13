@@ -42,7 +42,7 @@ class GoogleController extends Controller
                 return redirect()->route('user.dashboard');
             }
         } catch (\Exception $exception) {
-            flash()->addError('Google login fail.');
+            flash()->addError($exception->getMessage());
 
             return redirect()->route('login');
         }
