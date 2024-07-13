@@ -45,7 +45,6 @@ $systemSetting = SystemSetting::first();
             <div class="middle--area">
                 <form method="POST" class="form--area" action="{{ route('verify.otp.post') }}">
                     @csrf
-                    <input type="hidden" name="email" value="{{ $email }}">
                     <div class="otp-input-fields">
                         <input name="otp1" type="number"
                             class="otp__digit otp__field__1 {{ $errors->has('otp1') ? 'is-invalid' : '' }}"
@@ -90,7 +89,7 @@ $systemSetting = SystemSetting::first();
             <div class="lower--area resend--pass">
                 <p>
                     Did you not receive the email?
-                    <a href="{{ route('verify.otp', ['email' => $email]) }}"> Resend Code</a>
+                    <a href="#"> Resend Code</a>
                 </p>
             </div>
         </div>

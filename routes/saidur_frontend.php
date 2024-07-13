@@ -42,7 +42,7 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
 Route::controller(OTPVerificationController::class)->group(function () {
 
     // Route to show OTP verification form
-    Route::get('/verify-otp/{email}', 'showVerificationForm')->name('verify.otp');
+    Route::get('/verify-otp', 'showVerificationForm')->name('verify.otp');
     // Route to handle OTP verification
     Route::post('/verify-otp', 'verify')->name('verify.otp.post');
 

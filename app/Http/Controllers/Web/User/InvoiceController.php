@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use PDF; // Import Dompdf
+use Barryvdh\DomPDF\Facade\Pdf;
+
+// Import Dompdf
 
 class InvoiceController extends Controller
 {
