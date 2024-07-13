@@ -206,7 +206,7 @@
                                     <button type="submit"
                                             class="btn--fill blue--btn no--border"
                                     >
-                                        <span>Buy Now</span>
+                                        <span>Proceed to payment</span>
                                         <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="20"

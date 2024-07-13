@@ -8,49 +8,30 @@ use App\Models\OTP;
 use App\Models\User;
 use App\Notifications\NewNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class OTPVerificationController extends Controller
 {
-    public function showVerificationForm($email)
+    public function showVerificationForm()
     {
-        $user = User::where('email', $email)->first();
-
-        if (! $user) {
-            return abort(404);
-        }
-        if ($user->hasVerifiedEmail($email)) {
+        if (! auth()->check() || auth()->user()->hasVerifiedEmail()) {
             return redirect()->route('frontend.home');
         }
 
         flash()->addSuccess('We Sent 6 Digit Code in your Mail');
 
-        return view('auth.verify_otp', ['email' => $email]);
+        return view('auth.verify_otp');
     }
 
     public function verify(Request $request)
     {
+        $makeOtp = $request->input('otp1').$request->input('otp2').$request->input('otp3').$request->input('otp4').$request->input('otp5').$request->input('otp6');
+        $request->merge(['otp' => $makeOtp]);
+
+        $request->validate([
+            'otp' => 'required|digits:6',
+        ]);
         try {
-            $this->validate($request, [
-                'email' => 'required|email|exists:users,email',
-                'otp1' => 'required|digits:1',
-                'otp2' => 'required|digits:1',
-                'otp3' => 'required|digits:1',
-                'otp4' => 'required|digits:1',
-                'otp5' => 'required|digits:1',
-                'otp6' => 'required|digits:1',
-            ], [
-                'otp1.required' => 'OTP 1 is required.',
-                'otp2.required' => 'OTP 2 is required.',
-                'otp3.required' => 'OTP 3 is required.',
-                'otp4.required' => 'OTP 4 is required.',
-                'otp5.required' => 'OTP 5 is required.',
-                'otp6.required' => 'OTP 6 is required.',
-            ]);
-
-            $makeOtp = $request->input('otp1').$request->input('otp2').$request->input('otp3').$request->input('otp4').$request->input('otp5').$request->input('otp6');
-
-            $otp = OTP::where('otp', $makeOtp)->first();
+            $otp = OTP::where('otp', $request->otp)->first();
             // dd(o)
             if (! $otp || $otp->user->email !== $request->input('email')) {
                 return back()->withErrors(['otp' => 'Invalid OTP.']);
@@ -59,8 +40,6 @@ class OTPVerificationController extends Controller
             $user = User::where('email', $request->input('email'))->first();
             $user->email_verified_at = now();
             $user->save();
-
-            Auth::login($user);
             //                for make notifications
             $user = \Auth::user();
             $user->notify(new NewNotification(

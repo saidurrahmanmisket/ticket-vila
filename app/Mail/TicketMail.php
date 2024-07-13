@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -59,12 +60,16 @@ class TicketMail extends Mailable implements ShouldQueue
     public function build()
     {
         $email = $this->view('emails.ticket')
-            ->subject('Your Tickets and eBooks')
+            ->subject('Your tickets, eBooks, and invoice')
             ->with([
                 'order' => $this->order,
                 'ticketNumbers' => $this->ticketNumbers,
             ]);
-
+        $order = $this->order;
+        $pdf = PDF::loadView('user.pdf.invoice', compact('order'));
+        $email->attachData($pdf->output(), 'invoice.pdf', [
+            'mime' => 'application/pdf',
+        ]);
         // Attach an ebook for each ticket number
         foreach ($this->ticketNumbers as $ticketNumber) {
             foreach ($this->files as $file) {

@@ -199,33 +199,6 @@
                                         €</p>
                                 </div>
                             </div>
-
-                                <a class='proceed--btn btn--fill blue--btn cart-payment-process'
-                                   href='{{Auth::check() ? route('user.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true']) : route('frontend.web-shop.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true'])}}'>
-                                    <span>Proceed to payment</span>
-                                <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="18"
-                                        height="15"
-                                        viewBox="0 0 18 15"
-                                        fill="none"
-                                >
-                                    <path
-                                            d="M16.25 7.72607L1.25 7.72607"
-                                            stroke="white"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                    />
-                                    <path
-                                            d="M10.2012 1.70149L16.2512 7.72549L10.2012 13.7505"
-                                            stroke="white"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </a>
                                 <a class='btn--fill mt-3'
                                    href='{{route('frontend.web-shop.cart')}}'>
                                     <span>View Cart</span>
