@@ -68,7 +68,7 @@ class PaypalController extends Controller
                 'intent' => 'CAPTURE',
                 'application_context' => [
                     'return_url' => route('user.paypal.success'),
-                    'cancel_url' => route('user.paypal.cancel'),
+                    'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [
                     0 => [
@@ -174,12 +174,12 @@ class PaypalController extends Controller
                 flash()->addSuccess('Payment Success');
 
                 if (Auth::user()) {
-                    return redirect()->route('user.buy-tickets')->with('payment_success', 'true')
+                    return redirect()->route('user.payment.success.message')->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
                         ->with('free_ticket', $discountQuantity)
                         ->with('buy_time', $order->created_at);
                 } else {
-                    return redirect()->route('frontend.web-shop.buy-ebook')
+                    return redirect()->route('frontend.payment-success-message')
                         ->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
                         ->with('free_ticket', $discountQuantity)
@@ -206,14 +206,6 @@ class PaypalController extends Controller
                 return redirect()->route('frontend.web-shop.buy-ebook');
             }
         }
-    }
-
-    public function cancel()
-    {
-        flash()->addError('Something went wrong');
-
-        return redirect()->route('user.buy-tickets');
-
     }
 
     public function web_shop_payment(GuestPaymentRequest $request)
@@ -280,7 +272,7 @@ class PaypalController extends Controller
                 'intent' => 'CAPTURE',
                 'application_context' => [
                     'return_url' => route('frontend.web-shop.paypal.success'),
-                    'cancel_url' => route('frontend.web-shop.paypal.cancel'),
+                    'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [
                     0 => [

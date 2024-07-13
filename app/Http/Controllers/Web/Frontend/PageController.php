@@ -384,4 +384,17 @@ class PageController extends Controller
             ]);
         }
     }
+
+    public  function paymentSuccessMessage()
+    {
+        if (!session()->has('payment_success')) {
+            abort(404);
+        }
+
+        return view('frontend.layouts.payment_success');
+    }
+    public  function paymentCancelMessage()
+    {
+        return view('frontend.layouts.payment_cancel');
+    }
 }
