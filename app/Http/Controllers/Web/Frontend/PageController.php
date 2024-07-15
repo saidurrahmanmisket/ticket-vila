@@ -385,15 +385,16 @@ class PageController extends Controller
         }
     }
 
-    public  function paymentSuccessMessage()
+    public function paymentSuccessMessage()
     {
-        if (!session()->has('payment_success')) {
+        if (! session()->has('payment_success')) {
             abort(404);
         }
 
         return view('frontend.layouts.payment_success');
     }
-    public  function paymentCancelMessage()
+
+    public function paymentCancelMessage()
     {
         return view('frontend.layouts.payment_cancel');
     }

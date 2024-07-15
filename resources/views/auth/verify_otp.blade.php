@@ -81,21 +81,30 @@ $systemSetting = SystemSetting::first();
                         </span>
                     @endif
 
+                    <div class="d-flex justify-content-center mt-3">
+                        <span class="info mx-auto d-inline-block">OTP will expire in 10 minutes.</span>
+                    </div>
+
                     <!-- submit button -->
                     <button class="submit">Submit</button>
                 </form>
             </div>
 
             <div class="lower--area resend--pass">
-                <p>
-                    Did you not receive the email?
-                    <a href="#"> Resend Code</a>
-                </p>
+                Did you not receive the email?
+                <form class="d-inline" id="resend-otp-form" action="{{route('verify-otp.resend')}}" method="post">@csrf
+                    <a href="#" id="resend-otp-submit"> Resend Code</a>
+                </form>
             </div>
         </div>
     </main>
 
     @include('auth.partials.scripts')
+    <script>
+        $("#resend-otp-submit").on('click', function () {
+            $("#resend-otp-form").submit()
+        })
+    </script>
 </body>
 
 </html>
