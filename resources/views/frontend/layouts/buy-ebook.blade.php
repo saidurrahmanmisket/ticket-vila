@@ -69,7 +69,7 @@
                                 <form action="{{route('frontend.web-shop.add-to-cart',$campaign->id)}}"
                                       method="POST"> @csrf
                                     <input type="hidden" name="quantity" class="quantity" value="1">
-                                    <button @if(session()->has('cartData')) disabled @endif type="submit"
+                                    <button @if(session()->has('cartData')) disabled @endif type="submit" id="addToCartButton"
                                             class="add--cart {{session()->has('cartData') ? 'disabled' : ''}}">
                                         <span>{{session()->has('cartData') ? 'Added' : 'Add to cart'}}</span>
                                         @if(!session()->has('cartData'))
@@ -105,6 +105,7 @@
                                     <input type="hidden" name="quantity" class="quantity" value="1">
                                     <button type="submit"
                                             class="btn--fill blue--btn no--border"
+                                            id="directBuyNow"
                                     >
                                         <span>Proceed to payment</span>
                                         <svg
@@ -242,6 +243,26 @@
 @endsection
 
 @push('scripts')
+{{--    for facebook pixel buy trac --}}
+    <script type="text/javascript">
+        let value = {{ !empty($campaign) ? number_format($campaign->price,2) : 0 }};
+        let productQty = $('#quantity-value').val();
+
+        $('#addToCartButton').click(function() {
+            console.log(value, productQty);
+            fbq('track', 'AddToCart', {num_items: productQty, value: value});
+        });
+
+        // for initial checkout
+        $('#directBuyNow').click(function() {
+            fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+        });
+
+
+
+    </script>
+
+
     <script>
         $('#close-popup').on('click', function () {
             $("#success--popup").hide()
