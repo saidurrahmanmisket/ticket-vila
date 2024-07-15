@@ -119,13 +119,6 @@
         'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '426725466924864');
     fbq('track', 'PageView');
-
-    // Track purchase
-    $('#buyNowHeaderBtn').click(function() {
-        var value = {{ !empty($campaign) ? number_format($campaign->price,2) : 0 }};
-        fbq('track', 'Purchase', {currency : "USD", value: value});
-    });
-
 </script>
 <noscript><img height="1" width="1" style="display:none"
                src="https://www.facebook.com/tr?id=426725466924864&ev=PageView&noscript=1"

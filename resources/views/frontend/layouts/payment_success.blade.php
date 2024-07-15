@@ -88,19 +88,13 @@
 @endsection
 
 
-{{--    for facebook pixel buy trac --}}
-<script type="text/javascript">
-    let value = {{ !empty($campaign) ? number_format($campaign->price,2) : 0 }};
-    let productQty = $('#quantity-value').val();
-
-    //for add to cart tracking
-    $('#addToCartButton').click(function() {
-        fbq('track', 'AddToCart', {num_items: productQty, value: value});
-    });
-
-    // for initial checkout
-    $('#directBuyNow').click(function() {
-        fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
-    });
-
-</script>
+@push('scripts')
+    {{--    for facebook pixel buy trac --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // for purchase tracking
+            let quantity = {{ session('buy_ticket') ?? 0 }};
+            fbq('track', 'Purchase', {currency: "EUR", value: quantity});
+        });
+    </script>
+@endpush

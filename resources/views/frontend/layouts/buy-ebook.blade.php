@@ -248,13 +248,13 @@
         let value = {{ !empty($campaign) ? number_format($campaign->price,2) : 0 }};
         let productQty = $('#quantity-value').val();
 
-        $('#addToCartButton').click(function() {
-            console.log(value, productQty);
+        //for add to cart tracking
+        $('#addToCartButton').click(function () {
             fbq('track', 'AddToCart', {num_items: productQty, value: value});
         });
 
         // for initial checkout
-        $('#directBuyNow').click(function() {
+        $('#directBuyNow').click(function () {
             fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
         });
 
