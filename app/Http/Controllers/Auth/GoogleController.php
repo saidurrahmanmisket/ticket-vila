@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\Notification;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
+    use Notification;
+
     public function login()
     {
         return Socialite::driver('google')->redirect();
@@ -32,12 +35,20 @@ class GoogleController extends Controller
                     'password' => bcrypt(\Str::random(12)),
                     'email_verified_at' => now(),
                 ]);
+                $this->sendRegistrationNotification($user);
             }
             if ($user->email_verified_at === null) {
                 $user->update([
                     'email_verified_at' => now(),
                 ]);
+                $this->sendRegistrationNotification($user);
             }
+
+            //update last login and ip address
+            $user->update([
+                'last_login_at' => now(),
+                'ip_address' => request()->ip(),
+            ]);
             \Auth::login($user);
             flash()->addSuccess('Logged in successfully.');
             if ($user->role == 'admin') {

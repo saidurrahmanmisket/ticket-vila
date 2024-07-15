@@ -38,14 +38,15 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login_at' => 'datetime',
     ];
 
-    public function tickets()
+    public function tickets(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Ticket::class);
     }
 
-    public function orders()
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Order::class);
     }

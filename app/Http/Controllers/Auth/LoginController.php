@@ -29,7 +29,11 @@ class LoginController extends Controller
     public function redirectTo()
     {
         $user = auth()->user(); // get the authenticated user
-
+        //update last login and ip address
+        $user->update([
+            'last_login_at' => now(),
+            'ip_address' => request()->ip(),
+        ]);
         if ($user->role === 'admin') {
             return '/admin/dashboard';
         }

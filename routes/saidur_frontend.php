@@ -39,13 +39,12 @@ Route::controller(PageController::class)->name('frontend.')->group(function () {
 });
 
 // Route to handle OTP verification by : saidur
-Route::controller(OTPVerificationController::class)->group(function () {
-
+Route::controller(OTPVerificationController::class)->middleware('auth')->group(function () {
     // Route to show OTP verification form
     Route::get('/verify-otp', 'showVerificationForm')->name('verify.otp');
     // Route to handle OTP verification
     Route::post('/verify-otp', 'verify')->name('verify.otp.post');
-
+    Route::post('/verify-otp/resend', 'resend')->name('verify-otp.resend');
 });
 
 //-----user dashboard route start from here =====================================------by: saidur

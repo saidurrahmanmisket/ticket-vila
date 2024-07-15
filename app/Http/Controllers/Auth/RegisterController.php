@@ -58,14 +58,14 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'terms' => ['required'],
+            'terms' => ['accepted'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @return \App\Models\User
+     * @return \Illuminate\Http\JsonResponse
      */
     protected function create(array $data)
     {
@@ -79,8 +79,6 @@ class RegisterController extends Controller
                 'last_login_at' => now(),
                 'ip_address' => request()->ip(),
             ]);
-
-            // Generate OTP and save it to the database
             $otp = generateOTP();
             OTP::create([
                 'user_id' => $user->id,
@@ -115,7 +113,9 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        flash()->addSuccess('We Sent 6 Digit Code in your Mail');
+
         // Redirect to the OTP verification page
-        return redirect()->route('verify.otp', ['email' => $user->email]);
+        return redirect()->route('verify.otp');
     }
 }
