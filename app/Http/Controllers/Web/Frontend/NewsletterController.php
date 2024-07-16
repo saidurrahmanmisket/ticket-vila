@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Newsletter\Facades\Newsletter;
 
-class NewsLatterController extends Controller
+class NewsletterController extends Controller
 {
     public function add(Request $request)
     {
