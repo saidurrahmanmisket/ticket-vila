@@ -263,7 +263,7 @@
                     </a>
                 @endif
 
-                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn">
+                <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn" id="buyNowHeaderBtn">
                     <span>{{ __('Buy Now') }}</span>
                 </a>
             </div>
