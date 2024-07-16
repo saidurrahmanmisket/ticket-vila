@@ -88,4 +88,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     //Google login configuration
     Route::post('/google-login-configuration', [ConfigurationSettingController::class, 'googleLoginConfig'])->name('google-login-config');
+    //Mailchimp configuration
+    Route::post('/mailchimp-configuration', [ConfigurationSettingController::class, 'mailchimpConfig'])->name('mailchimp-config');
 });

@@ -9,7 +9,63 @@
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css" />
 
-
+<script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/dkremsz8'
+    (function () {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === "function") {
+            ic('reattach_activator');
+            ic('update', w.intercomSettings);
+        } else {
+            var d = document;
+            var i = function () {
+                i.c(arguments);
+            };
+            i.q = [];
+            i.c = function (args) {
+                i.q.push(args);
+            };
+            w.Intercom = i;
+            var l = function () {
+                var s = d.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'https://widget.intercom.io/widget/dkremsz8';
+                var x = d.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            };
+            if (document.readyState === 'complete') {
+                l();
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', l);
+            } else {
+                w.addEventListener('load', l, false);
+            }
+        }
+    })();
+</script>
+<!-- weglot API -->
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'
+    });
+</script>
+<!-- Intercom -->
+@php
+    $user = Auth::user();
+@endphp
+<script>
+    window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "dkremsz8",
+        user_id: "{{ $user ? $user->id : '0' }}", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+        name: "{{ $user ? $user->first_name.' '.$user->last_name : 'Guest' }}", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+        email: "{{ $user ? $user->email : 'guest@gmail.com' }}", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+        created_at: "{{ $user ? $user->created_at : '' }}", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+</script>
 <style>
 
     /* user dashboard has not any css for upload here is custom */

@@ -3,6 +3,7 @@
 use App\Enums\Lang;
 use App\Http\Controllers\Payment\PaypalController;
 use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\Web\Frontend\NewsLatterController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\URL;
 Route::get('/', function () {
     return view('frontend.layouts.index');
 });
+Route::post('/add-to-news-latter', [NewsLatterController::class, 'add'])->name('add-to-news-latter');
 Route::prefix('web-shop')->name('frontend.web-shop.')->group(function () {
     Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->name('buy-ebook');
     Route::get('/add-to-cart', [PageController::class, 'cart'])->name('cart');
