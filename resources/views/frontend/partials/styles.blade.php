@@ -92,18 +92,38 @@
     });
 </script>
 <!-- Intercom -->
-@php
-    $user = Auth::user();
-@endphp
 <script>
+    @if(Auth::check())
+    let user = @json(Auth::user())
+        window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "dkremsz8",
+        user_id: user?.id, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+        name: user?.first_name + ' ' + user?.list_name, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+        email: user?.email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+        created_at: user?.created_at, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+    @else
+    function getGuestID() {
+        let guestID = localStorage.getItem('guestID')
+        if (!guestID) {
+            guestID = 'guest_{{request()->ip()}}' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('guestID', guestID)
+        }
+        return guestID;
+    }
     window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "dkremsz8",
-        user_id: "{{ $user ? $user->id : '0' }}", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-        name: "{{ $user ? $user->first_name.' '.$user->last_name : 'Guest' }}", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-        email: "{{ $user ? $user->email : 'guest@gmail.com' }}", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
-        created_at: "{{ $user ? $user->created_at : '' }}", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+        user_id: getGuestID(), // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+        name: 'Guest', // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+        created_at: Math.floor(Date.now() / 1000),
+        custom_attributes: {
+            guest: true
+        }
     };
+    @endif
+
 </script>
 {{-- custom css --}}
 

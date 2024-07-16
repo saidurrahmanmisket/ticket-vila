@@ -32,7 +32,7 @@ $systemSetting = SystemSetting::first();
                 <!-- content -->
                 <div class="content">
                     <h3 class="heading">{{ $systemSetting->system_name ?? 'TicketVilla' }}</h3>
-                    <p class="subtitle">The e-Book with a Ticket</p>
+                    <p class="subtitle">{{ __('The e-Book with a Ticket') }}</p>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@ $systemSetting = SystemSetting::first();
                         <div class="bottom--input--holder">
                             <div class="checkbox--wrapper">
                                 <input type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }} id="remember" />
+                                    {{ old('remember') ? 'checked' : '' }} />
                                 <label for="remember">Remember me</label>
                             </div>
 
@@ -100,7 +100,6 @@ $systemSetting = SystemSetting::first();
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             @endif
-                            {{-- <a href="#" class="">Forgot password  ?</a> --}}
                         </div>
                     </div>
 

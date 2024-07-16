@@ -24,9 +24,16 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pills-google-configuration" data-bs-toggle="pill"
-                            data-bs-target="#pills-google-configuration"
-                            type="button" role="tab" aria-controls="pills-google-configuration" aria-selected="false">
+                            data-bs-target="#pills-google"
+                            type="button" role="tab" aria-controls="pills-google" aria-selected="false">
                         Google Login Configuration
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-mailchimp-configuration" data-bs-toggle="pill"
+                            data-bs-target="#pills-mailchimp"
+                            type="button" role="tab" aria-controls="pills-mailchimp" aria-selected="false">
+                        Mailchimp Configuration
                     </button>
                 </li>
             </ul>
@@ -290,7 +297,7 @@
                     </div>
                 </div>
                 {{-- Google Login Configuration--}}
-                <div class="tab-pane fade show active" id="pills-google-configuration" role="tabpanel"
+                <div class="tab-pane fade" id="pills-google" role="tabpanel"
                      aria-labelledby="pills-google-configuration" tabindex="0">
                     <!-- personal--info  -->
                     <div class="personal--info common--inputs mt_55">
@@ -326,6 +333,49 @@
                                     <input id="google_call_back_url" name="google_call_back_url" type="text"
                                            value="{{ env('GOOGLE_CALL_BACK_URL') }}"/>
                                     @error('google_call_back_url')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="buttons mt_55">
+                                    <button type="submit" class="user--common--btn">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{-- Mailchimp configuration --}}
+                <div class="tab-pane fade" id="pills-mailchimp" role="tabpanel"
+                     aria-labelledby="pills-mailchimp-configuration" tabindex="0">
+                    <!-- personal--info  -->
+                    <div class="personal--info common--inputs mt_55">
+
+                        <form method="POST" action="{{ route('admin.mailchimp-config') }}"
+                              enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <div class="row">
+
+                                <div class="input--group">
+                                    <label for="news_latter_api_key">Newsletter API Key</label>
+                                    <input id="news_latter_api_key" name="news_latter_api_key" type="text"
+                                           value="{{ env('NEWSLETTER_API_KEY') }}"/>
+                                    @error('news_latter_api_key')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
+                                </div>
+                                <div class="input--group">
+                                    <label for="news_latter_list_id">News </label>
+                                    <input id="news_latter_list_id" name="news_latter_list_id" type="text"
+                                           value="{{ env('NEWSLETTER_LIST_ID') }}"/>
+                                    @error('news_latter_list_id')
                                     <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

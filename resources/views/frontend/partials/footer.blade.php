@@ -55,9 +55,9 @@
                 <div data-aos="fade-up" data-aos-duration="1000" class="subscribe">
                     <p>{{ __("Subscribe to Newsletter") }}</p>
 
-                    <form class="input--wrapper">
-                        <input type="email" placeholder="{{ __("Enter email address") }}"/>
-                        <button>{{ __("Subscribe") }}</button>
+                    <form action="{{route('add-to-news-latter')}}" method="POST" class="input--wrapper">@csrf
+                        <input type="email" name="email" placeholder="{{ __("Enter email address") }}"/>
+                        <button type="submit">{{ __("Subscribe") }}</button>
                     </form>
                 </div>
             </div>

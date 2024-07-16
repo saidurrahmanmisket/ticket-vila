@@ -130,4 +130,31 @@ class ConfigurationSettingController extends Controller
             return back()->with('error', 'Failed to update'.$e->getMessage());
         }
     }
+
+    public function mailchimpConfig(Request $request)
+    {
+        $request->validate([
+            'news_latter_api_key' => ['required', 'string', new HasSpaceToAddComma()],
+            'news_latter_list_id' => ['required', 'string', new HasSpaceToAddComma()],
+        ]);
+        try {
+            $envContent = File::get(base_path('.env'));
+            $lineBreak = "\n";
+            $envContent = preg_replace([
+                '/NEWSLETTER_API_KEY=(.*)\s/',
+                '/NEWSLETTER_LIST_ID=(.*)\s/',
+            ], [
+                'NEWSLETTER_API_KEY='.$request->news_latter_api_key.$lineBreak,
+                'NEWSLETTER_LIST_ID='.$request->news_latter_list_id.$lineBreak,
+            ], $envContent);
+
+            if ($envContent !== null) {
+                File::put(base_path('.env'), $envContent);
+            }
+
+            return back()->with('success', 'Updated successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to update'.$e->getMessage());
+        }
+    }
 }
