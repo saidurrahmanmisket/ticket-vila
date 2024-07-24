@@ -51,12 +51,13 @@
                         <div class="img--area text-center">
                             <img src="{{asset('user/images/cancelled.png')}}" alt=""/>
                         </div>
-                        <h4 class="text-danger">Payment Cancel !!!</h4>
+                        <h4 class="text-danger">{{ __("Payment Cancel") }} !!!</h4>
                         <div class="buttons mt-5">
-                            <a class='user--common--btn' href='{{route('frontend.web-shop.buy-ebook')}}'>Back to Web Shop</a
+                            <a class='user--common--btn'
+                               href='{{route('frontend.web-shop.buy-ebook')}}'>{{ __("Back to Web Shop") }}</a
                             >
                             <a class='user--common--btn' href='{{route('user.dashboard')}}'>
-                                Dashboard
+                                {{ __("Dashboard") }}
                             </a>
                         </div>
                     </div>

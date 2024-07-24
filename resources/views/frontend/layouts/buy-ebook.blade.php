@@ -181,8 +181,7 @@
                                 </div>
 
                                 <p class="title">{{ __("Get a Bonus") }}</p>
-                                <p class="subtitle">{{ __("Buy x Tickets and
-                                    get x for free!",['buy'=>$campaign->how_many_buy,'free'=>$campaign->how_many_free]) }}</p>
+                                <p class="subtitle">{{ __("Buy x Tickets and get x for free!",['buy'=>$campaign->how_many_buy,'free'=>$campaign->how_many_free]) }}</p>
                             </div>
                         </div>
                     @endif

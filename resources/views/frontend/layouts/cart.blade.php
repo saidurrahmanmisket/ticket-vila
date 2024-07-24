@@ -25,9 +25,10 @@
                             </div>
                             <div class="description">
                                 <p class="title"><span
-                                            class="cart_quantity">{{$cart['quantity'] ?? ''}}</span> X House
-                                    Ticket</p>
-                                <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p> <span class="fs-6 ">(VAT Included)</span>
+                                        class="cart_quantity">{{$cart['quantity'] ?? ''}}</span> {{ __("X House Ticket") }}
+                                </p>
+                                <p class="price"><span>{{number_format($cart['price'] ?? 0,2)}}€</span></p> <span
+                                    class="fs-6 ">({{ __("VAT Included") }})</span>
                             </div>
 
                             <div class="amount--wrapper">
@@ -39,7 +40,7 @@
                                 </div>
 
                                 <a href="{{route('frontend.web-shop.remove-cart')}}"
-                                   class="remove">Remove</a>
+                                   class="remove">{{ __("Remove") }}</a>
                             </div>
                         </div>
                     </div>
@@ -47,13 +48,13 @@
                     <div class="price--details--area">
 
                         <div class="vat">
-                            <p>Subtotal</p>
+                            <p>{{ __("Subtotal") }}</p>
                             <p class="cart_subtotal">{{ number_format($cart['quantity'] * $cart['price'],2) }}
                                 €</p>
                         </div>
                         @if(!empty($cart['how_many_buy']) && !empty($cart['how_many_free']))
                             <div class="vat">
-                                <p>Free Tickets</p>
+                                <p>{{ __("Free Tickets") }}</p>
                                 <p class="cart_free_ticket">{{ calculateFreeTicket($cart['quantity'],$cart['how_many_buy'],$cart['how_many_free']) }}</p>
                             </div>
                         @endif
@@ -69,7 +70,7 @@
                         <div class="hr"></div>
 
                         <div class="total">
-                            <p>Total</p>
+                            <p>{{ __("Total") }}</p>
                             <p class="value cart_total_price">
                                 {{number_format($cart['discount_percent'] ? calculateDiscount($cart['quantity'] * $cart['price'],$cart['discount_percent']) : ($cart['quantity'] * $cart['price']),2)}}
                                 €</p>
@@ -78,7 +79,7 @@
 
                     <a class='proceed--btn btn--fill blue--btn cart-payment-process'
                        href='{{Auth::check() ? route('user.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true']) : route('frontend.web-shop.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true'])}}'>
-                        <span>Proceed to payment</span>
+                        <span>{{ __("Proceed to payment") }}</span>
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="18"
@@ -104,7 +105,7 @@
                     </a>
                 @else
                     <div class="empty-cart">
-                        <p class="h5">Cart is empty</p>
+                        <p class="h5">{{ __("Cart is empty") }}</p>
                     </div>
                 @endif
             </div>

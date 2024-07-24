@@ -52,17 +52,16 @@
                         <div class="img--area text-center">
                             <img src="{{asset('user/images/congra.png')}}" alt=""/>
                         </div>
-                        <h4>Congratulation!!!</h4>
+                        <h4>{{ __("Congratulation!!!") }}</h4>
                         <p>
-                            You have bought {{session('buy_ticket')}}x eBook and got {{session('free_ticket')}}x free house
-                            ticket at
-                            TicketVilla on {{date('d M Y \a\t h:i A',strtotime(session('buy_time')))}}
+                            {{ __("You have bought") }} {{session('buy_ticket')}}{{__("x eBook and got")}} {{session('free_ticket')}}{{ __("x free house ticket at TicketVilla on") }} {{date('d M Y \a\t h:i A',strtotime(session('buy_time')))}}
                         </p>
                         <div class="buttons">
-                            <a class='user--common--btn' href='{{route('user.dashboard')}}'>Back to Dashboard</a
+                            <a class='user--common--btn'
+                               href='{{route('user.dashboard')}}'>{{ __("Back to Dashboard") }}</a
                             >
                             <a class='user--common--btn' href='{{route('user.tickets')}}'>
-                                View Ticket
+                                {{ __("View Ticket") }}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="17"

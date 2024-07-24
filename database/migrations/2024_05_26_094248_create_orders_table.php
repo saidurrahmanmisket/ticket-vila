@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('transaction_id');
             $table->integer('quantity')->default(0);
             $table->integer('discount_quantity')->default(0);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('total_price')->default(0);
             $table->string('payment_method')->nullable();
             $table->string('invoice_no')->nullable();
-            $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->nullOnDelete();
+            $table->foreignId('campaign_id')->constrained('campaigns');
             $table->enum('payment_status', ['pending', 'processing', 'completed', 'refund'])->default('pending');
             $table->timestamps();
             $table->softDeletes();

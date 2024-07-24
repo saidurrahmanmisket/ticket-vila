@@ -23,10 +23,10 @@
 	              class="home--checkout--content"
 	              method="POST"> @csrf
                 <div class="single--area personal--info">
-                    <h3 class="section--title">Personal Information's</h3>
+                    <h3 class="section--title">{{ __("Personal Information's") }}</h3>
                     <div class="input--area--wrapper">
                         <div class="single--input">
-	                        <label class="required" for="first_name">First Name</label>
+                            <label class="required" for="first_name">{{ __("First Name") }}</label>
 	                        <input value="{{old('first_name')}}"
 	                               class="{{!empty($errors->first('first_name')) ? 'is_invalid' : ''}}" type="text"
 	                               name="first_name" id="first_name" placeholder="first name"/>
@@ -35,7 +35,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="last_name">Last Name</label>
+                            <label class="required" for="last_name">{{ __("Last Name") }}</label>
 	                        <input value="{{old('last_name')}}"
 	                               class="{{!empty($errors->first('last_name')) ? 'is_invalid' : ''}}" type="text"
 	                               id="last_name"
@@ -45,7 +45,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="birth_date">Birthday</label>
+                            <label class="required" for="birth_date">{{ __("Birthday") }}</label>
 	                        <input value="{{old('birth_date')}}"
 	                               class="{{!empty($errors->first('birth_date'))? 'is_invalid' : ''}}" type="date"
 	                               name="birth_date"
@@ -55,7 +55,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="city">City</label>
+                            <label class="required" for="city">{{ __("City") }}</label>
 	                        <input value="{{old('city')}}" class="{{!empty($errors->first('city'))? 'is_invalid' : ''}}"
 	                               type="text"
 	                               placeholder="city"
@@ -65,17 +65,17 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="birth_state">State of the Birth</label>
+                            <label class="required" for="birth_state">{{ __("City of the Birth") }}</label>
 	                        <input value="{{old('birth_state')}}"
 	                               class="{{ !empty($errors->first('birth_state')) ? 'is_invalid' : ''}}" type="text"
 	                               id="birth_state"
-	                               name="birth_state" placeholder="state of the birth"/>
+                                   name="birth_state" placeholder="city of the birth"/>
 	                        @error('birth_state')
 	                        <span class="invalid-feedback d-block">{{$message}}</span>
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="country-code">Telephone</label>
+                            <label class="required" for="country-code">{{ __("Telephone") }}</label>
 	                        <input value="{{old('phone')}}"
 	                               class="{{ !empty($errors->first('phone')) ? 'is_invalid' : ''}}" type="tel"
 	                               id="country-code"
@@ -87,7 +87,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="email">Email Address</label>
+                            <label class="required" for="email">{{ __("Email Address") }}</label>
 	                        <input value="{{old('email')}}"
 	                               class="{{ !empty($errors->first('email')) ? 'is_invalid' : ''}}" type="email"
 	                               id="email"
@@ -98,7 +98,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="address"> Address</label>
+                            <label class="required" for="address">{{ __("Address") }}</label>
 	                        <input value="{{old('address')}}"
 	                               class="{{!empty($errors->first('address')) ? 'is_invalid' : ''}}" type="text"
 	                               id="address"
@@ -109,7 +109,7 @@
                         </div>
                         <div class="input--group">
                             <div class="single--input">
-	                            <label class="required" for="zip">ZIP</label>
+                                <label class="required" for="zip">{{ __("Zip") }}</label>
 	                            <input value="{{old('zip')}}"
 	                                   class="{{ !empty($errors->first('zip')) ? 'is_invalid' : ''}}" type="number"
 	                                   name="zip"
@@ -119,12 +119,13 @@
 	                            @enderror
                             </div>
                             <div class="single--input">
-	                            <label class="required" for="gender">Gender</label>
+                                <label class="required" for="gender">{{ __("Gender") }}</label>
 	                            <select class="{{ !empty($errors->first('gender')) ? 'is_invalid' : ''}}" name="gender"
 	                                    id="gender-select">
-		                            <option @if(old('gender') == 'male') selected @endif value="male">Male</option>
-		                            <option @if(old('gender') == 'female') selected @endif value="female">Female
-		                            </option>
+                                    <option @if(old('gender') == 'male') selected
+                                            @endif value="male">{{ __("Male") }}</option>
+                                    <option @if(old('gender') == 'female') selected
+                                            @endif value="female">{{ __("Female") }}</option>
                                 </select>
 	                            @error('gender')
 	                            <span class="invalid-feedback d-block">{{$message}}</span>
@@ -133,7 +134,7 @@
                         </div>
 
                         <div class="single--input">
-	                        <label class="required" for="password">Password</label>
+                            <label class="required" for="password">{{ __("Password") }}</label>
 	                        <input class="{{ !empty($errors->first('password')) ? 'is_invalid' : ''}}" type="password"
 	                               id="password"
 	                               name="password" placeholder="*******"/>
@@ -142,7 +143,7 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
-	                        <label class="required" for="password_confirmation">Confirm Password</label>
+                            <label class="required" for="password_confirmation">{{ __("Confirm Password") }}</label>
 	                        <input class="{{ !empty($errors->first('password_confirmation')) ? 'is_invalid' : ''}}"
 	                               type="password"
 	                               id="password_confirmation" name="password_confirmation"
@@ -168,7 +169,7 @@
                 </div>
 
                 <div class="single--area billing--info">
-                    <h3 class="section--title">Billing Information</h3>
+                    <h3 class="section--title">{{ __("Billing Information") }}</h3>
 
                     <div
                         class="checkout--popup default--scrollbar"
@@ -188,21 +189,21 @@
                                         </li>
 	                                    <li>
 		                                    <div class="options">
-			                                    <p>Quantity</p>
+                                                <p>{{ __("Quantity") }}</p>
 			                                    <p>{{$quantity ?? 1}}</p>
 			                                    <input type="hidden" name="quantity" value="{{$quantity ?? 1}}">
 		                                    </div>
 	                                    </li>
 	                                    <li>
 		                                    <div class="options">
-			                                    <p>Subtotal</p>
+                                                <p>{{ __("Subtotal") }}</p>
 			                                    <p>{{ number_format($totalPrice,2) }} €</p>
 		                                    </div>
 	                                    </li>
 	                                    @if(!empty($campaign->how_many_buy) && !empty($campaign->how_many_free))
 		                                    <li>
 			                                    <div class="options">
-				                                    <p>Free Tickets</p>
+                                                    <p>{{ __("Free Tickets") }}</p>
 				                                    <p>{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
 			                                    </div>
 		                                    </li>
@@ -210,7 +211,7 @@
 	                                    @if($campaign->discount_percent && Carbon\Carbon::parse($campaign->discount_expire_date)->greaterThan(now()))
 		                                    <li>
 			                                    <div class="options">
-				                                    <p>Discount ({{$campaign->discount_percent}}%)</p>
+                                                    <p>({{$campaign->discount_percent}}%)</p>
 				                                    <p>
 					                                    -{{ number_format($totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent),2) }}
 					                                    €</p>
@@ -219,7 +220,7 @@
 	                                    @endif
 	                                    <li>
 		                                    <div class="options total">
-			                                    <p>Total</p>
+                                                <p>{{ __("Total") }}</p>
 			                                    <p class="text-green">{{ number_format($campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice,2) }}
 				                                    €</p>
 		                                    </div>
@@ -228,7 +229,7 @@
 
                                     <!-- payment method  -->
                                     <div class="payment--method mt_45">
-                                        <h4>Payment Method</h4>
+                                        <h4>{{ __("Payment Method") }}</h4>
                                         <div class="methods">
                                             <!-- radio group  -->
                                             <div class="radio--group">
@@ -327,7 +328,7 @@
 
                             <!-- Proceed to Payment button -->
                             <button class="proceed">
-	                            <span>Proceed to payment</span>
+                                <span>{{ __("Proceed to payment") }}</span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="18"

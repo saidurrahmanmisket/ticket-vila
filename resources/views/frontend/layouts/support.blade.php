@@ -9,10 +9,10 @@
             <div class="imprint--banner--area--content">
                 <div class="left">
                     <h3 data-aos="fade-down" data-aos-duration="600" class="banner--main--text">
-                        Get Support
+                        {{ __("Get Support") }}
                     </h3>
                     <p data-aos="fade-up" data-aos-duration="800" class="banner--para">
-                        Here to guide you every step of the way.
+                        {{ __("Here to guide you every step of the way.") }}
                     </p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="600" class="right">
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">Account</p>
+                        <p class="main">{{ __("Account") }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="800" class="single--step">
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">Security</p>
+                        <p class="main">{{ __("Security") }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1100" class="single--step">
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">House</p>
+                        <p class="main">{{ __("House") }}</p>
                     </div>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1400" class="single--step">
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="text">
-                        <p class="main">Legal</p>
+                        <p class="main">{{ __("Legal") }}</p>
                     </div>
                 </div>
             </div>
@@ -79,12 +79,12 @@
         <div class="container">
             <div class="special--information--content">
                 <div data-aos="fade-up" data-aos-duration="600" class="text--area">
-                    <p>Can’t Find Your Answers?</p>
+                    <p>{{ __("Can’t Find Your Answers?") }}</p>
                 </div>
 
                 <div data-aos="fade-up" data-aos-duration="700" class="btn--area">
                     <a href="#" class="btn--fill">
-                        <span>Live Chat</span>
+                        <span>{{ __("Live Chat") }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15"
                             fill="none">
                             <path d="M17.3959 7.70296L1.14587 7.70296" stroke="#fff" stroke-width="1.5"
@@ -95,7 +95,7 @@
                     </a>
 
                     <a href="{{route('frontend.contact')}}" class="btn--normal blank border">
-                        <span>Contact Us</span>
+                        <span>{{ __("Contact Us") }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                             fill="none">
                             <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5" stroke-linecap="round"

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_number')->unique();
-            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
-            $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('campaign_id')->constrained('campaigns');
             $table->enum('payment_status', ['paid', 'free'])->default('paid');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
