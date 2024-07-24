@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class=" d-flex justify-content-center btn--wrapper">
-                <a href="{{route('frontend./')}}" class="btn--normal btn-fill text-white bg-dark"> Back To Home</a>
+                <a href="{{route('frontend./')}}"
+                   class="btn--normal btn-fill text-white bg-dark">{{ __("Back To Home") }}</a>
             </div>
         </div>
     </section>

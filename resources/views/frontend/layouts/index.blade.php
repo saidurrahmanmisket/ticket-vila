@@ -3,6 +3,7 @@
 @section('title', 'Home')
 @section('content')
     <!-- home banner area starts -->
+
     <section class="home--banner--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="home--banner--content">
@@ -58,7 +59,6 @@
             </div>
         </div>
     @endif
-    {{--    End Promotional Banner Section--}}
     <!-- some facts area starts -->
     <section class="some--facts--area--wrapper section--bottom--gap">
         <div class="container">

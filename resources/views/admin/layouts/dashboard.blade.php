@@ -52,7 +52,7 @@
                         <h3>Top Country Visits</h3>
                         <select id="map-select">
                             <option value="1" selected>Top Country Visits</option>
-                            <option value="2">Top Countrys Income</option>
+                            <option value="2">Top Country's Income</option>
                             <option value="3">Total Affiliates Sales</option>
                         </select>
                     </div>
@@ -161,6 +161,18 @@
                                     <img src="{{ asset('admin/images/germany.png') }}" alt="" />
                                     <div>
                                         <h4>Germany</h4>
+                                        <p>55.346 Visits</p>
+                                    </div>
+                                </div>
+                                <!-- pointer  -->
+                                <div class="pointer"></div>
+                            </div>
+                            <div class="location">
+                                <!-- location--box  -->
+                                <div class="location--box">
+                                    <img src="{{ asset('admin/images/germany.png') }}" alt=""/>
+                                    <div>
+                                        <h4>Bangladesh</h4>
                                         <p>55.346 Visits</p>
                                     </div>
                                 </div>

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer('discount_percent')->default(0)->after('discount_quantity');
+        Schema::create('visitors', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip');
+            $table->string('country');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('discount_percent');
-        });
+        Schema::dropIfExists('visitors');
     }
 };

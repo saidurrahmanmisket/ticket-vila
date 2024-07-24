@@ -30,6 +30,8 @@
         "spatie/laravel-permission": "^6.7",
         "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^14.8",
+        "torann/geoip": "^3.0",
+        "umpirsky/country-list": "^2.0",
         "yajra/laravel-datatables-oracle": "10.3.1"
     },
     "require-dev": {

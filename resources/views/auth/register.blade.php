@@ -31,15 +31,15 @@
                 <!-- content -->
                 <div class="content">
                     <h3 class="heading">{{ $systemSetting->system_name ?? 'TicketVilla' }}</h3>
-                    <p class="subtitle">The e-Book with a Ticket</p>
+                    <p class="subtitle">{{ __("The e-Book with a Ticket") }}</p>
                 </div>
             </div>
         </div>
         <div class="input--area">
             <div class="top--area">
-                <h3 class="main--text">Sign Up</h3>
+                <h3 class="main--text">{{ __("Sign Up") }}</h3>
                 <p class="sub--text">
-                    To Create Account, Please Fill in the From Below.
+                    {{ __("To Create Account, Please Fill in the From Below.") }}
                 </p>
             </div>
 
@@ -48,7 +48,7 @@
                     @csrf
                     <div class="input--holder">
                         <div class="single--input">
-                            <label for="full-name">First Name</label>
+                            <label for="full-name">{{ __("First Name") }}</label>
                             <input class="  @error('first_name') is-invalid @enderror" type="text" name="first_name"
                                 id="full-name" value="{{ old('first_name') }}" placeholder="Enter your First name"
                                 required />
@@ -60,7 +60,7 @@
                             @enderror
                         </div>
                         <div class="single--input">
-                            <label for="full-name">Last Name</label>
+                            <label for="full-name">{{ __("Last Name") }}</label>
                             <input class="  @error('last_name') is-invalid @enderror" type="text" name="last_name"
                                 id="full-name" value="{{ old('last_name') }}" placeholder="Enter your Last name"
                                 required />
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
                         <div class="single--input">
-                            <label for="email">Email Address</label>
+                            <label for="email">{{ __("Email Address") }}</label>
                             <input type="email" class="  @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" id="email" placeholder="ticketvilla@gmail.com"
                                 required />
@@ -84,7 +84,7 @@
                             @enderror
                         </div>
                         <div class="single--input pass">
-                            <label for="password">Password</label>
+                            <label for="password">{{ __("Password") }}</label>
                             <input type="password" class="  @error('password') is-invalid @enderror" name="password"
                                 id="password" placeholder="******************" required />
 
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="single--input pass">
-                            <label for="confirm-pass">Confirm Password</label>
+                            <label for="confirm-pass">{{ __("Confirm Password") }}</label>
                             <input type="password" name="password_confirmation" id="confirm-pass"
                                 placeholder="******************" required />
 
@@ -141,9 +141,8 @@
                         <div class="bottom--input--holder">
                             <div class="checkbox--wrapper">
                                 <input class="form-control @error('terms') is-invalid @enderror" type="checkbox" name="terms" id="terms" />
-                                <label for="terms">I hereby confirm and accept the Terms of Service and the
-                                    Privacy Policy. I certify that I am over 18 years of age.
-                                </label>
+                                <label
+                                    for="terms">{{ __("I hereby confirm and accept the Terms of Service and the Privacy Policy. I certify that I am over 18 years of age.") }}</label>
                                 @error('terms')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -154,23 +153,23 @@
                     </div>
 
                     <!-- submit button -->
-                    <button class="submit">Sign Up</button>
+                    <button class="submit">{{ __("Sign Up") }}</button>
                 </form>
 
                 <!-- other logins area -->
                 <div class="other--logins--area">
                     <div class="or">
-                        <p>Or</p>
+                        <p>{{ __("Or") }}</p>
                     </div>
                     <a href="{{route('auth.google')}}" class="google--btn">
                         <img src="{{ asset('frontend/images/google-icon.svg') }}" alt="" />
-                        <span>Sign Up with Google</span>
+                        <span>{{ __("Sign Up with Google") }}</span>
                     </a>
                 </div>
             </div>
 
             <div class="lower--area">
-                <p>Already have an account? <a href="{{ route('login') }}">Log In</a></p>
+                <p>{{ __("Already have an account?") }} <a href="{{ route('login') }}">{{ __("Log In") }}</a></p>
             </div>
         </div>
     </main>

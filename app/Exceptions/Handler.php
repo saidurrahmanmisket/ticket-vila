@@ -3,14 +3,11 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
-class Handler extends ExceptionHandler {
+class Handler extends ExceptionHandler
+{
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -43,7 +40,8 @@ class Handler extends ExceptionHandler {
     /**
      * Register the exception handling callbacks for the application.
      */
-    public function register(): void {
+    public function register(): void
+    {
         $this->reportable(function (Throwable $e) {
             //
         });
@@ -56,10 +54,10 @@ class Handler extends ExceptionHandler {
             return response()->view('frontend.layouts.error.404', [], 404);
         }
 
-        // Handle other exceptions
-        if (view()->exists("frontend.layouts.error.500")) {
-            return response()->view("frontend.layouts.error.500", [], 500);
-        }
+        //        // Handle other exceptions
+        //        if (view()->exists('frontend.layouts.error.500')) {
+        //            return response()->view('frontend.layouts.error.500', [], 500);
+        //        }
 
         return parent::render($request, $exception);
     }
