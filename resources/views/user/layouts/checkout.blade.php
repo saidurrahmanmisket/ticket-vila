@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-    Checkout
+    {{ __('Checkout') }}
 @endsection;
 
 @section('content')
@@ -18,7 +18,7 @@
                     <!-- step  -->
                     <div class="">
                         <div class="billing--info">
-                            <h4 class="common--title">Billing Information</h4>
+                            <h4 class="common--title">{{ __('Billing Information') }}</h4>
                             <!-- billing information  -->
                             <ul>
                                 <li>
@@ -29,21 +29,21 @@
                                 </li>
                                 <li>
                                     <div class="options">
-                                        <p>Quantity</p>
+                                        <p>{{ __('Quantity') }}</p>
                                         <p>{{$quantity ?? 1}}</p>
                                         <input type="hidden" name="quantity" value="{{$quantity ?? 1}}">
                                     </div>
                                 </li>
                                 <li>
                                     <div class="options">
-                                        <p>Subtotal</p>
+                                        <p>{{ __('Subtotal') }}</p>
                                         <p>{{ number_format($totalPrice,2) }} €</p>
                                     </div>
                                 </li>
                                 @if(!empty($campaign->how_many_buy) && !empty($campaign->how_many_free))
                                     <li>
                                         <div class="options">
-                                            <p>Free Tickets</p>
+                                            <p>{{ __('Free Tickets') }}</p>
                                             <p>{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
                                         </div>
                                     </li>
@@ -51,7 +51,7 @@
                                 @if($campaign->discount_percent && Carbon\Carbon::parse($campaign->discount_expire_date)->greaterThan(now()))
                                     <li>
                                         <div class="options">
-                                            <p>Discount ({{$campaign->discount_percent}}%)</p>
+                                            <p>{{ __('Discount') }} ({{$campaign->discount_percent}}%)</p>
                                             <p>
                                                 -{{ number_format($totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent),2) }}
                                                 €</p>
@@ -60,7 +60,7 @@
                                 @endif
                                 <li>
                                     <div class="options total">
-                                        <p>Total</p>
+                                        <p>{{ __('Total') }}</p>
                                         <p class="text-green">{{ number_format($campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice,2) }}
                                             €</p>
                                     </div>
@@ -74,7 +74,7 @@
                             </div> --}}
                             <!-- payment method  -->
                             <div class="payment--method mt_45">
-                                <h4>Payment Method</h4>
+                                <h4>{{ __('Payment Method') }}</h4>
                                 <div class="methods">
                                     <!-- radio group  -->
                                     {{-- implement it later --}}
@@ -176,12 +176,7 @@
                             </div>
                             <div class="condition mt_35">
                                 <input id="terms" type="checkbox" name="terms_and_condition" />
-                                <label for="terms">By checking this box, I agree to the
-                                    <a href="#">Terms of Service</a> and
-                                    <a href="#">Privacy Policy</a> confirm I am of legal age,
-                                    and consent to the use of my personal Information os
-                                    described. I understand my participation is voluntary and
-                                    accept all related risks and rewards.
+                                <label for="terms">{{ __('By checking this box, I agree to the Terms of Service and Privacy Policy confirm I am of legal age, and consent to the use of my personal Information as described. I understand my participation is voluntary and accept all related risks and rewards.') }}
                                 </label>
                             </div>
                             <!-- button  -->

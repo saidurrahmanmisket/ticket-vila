@@ -49,14 +49,13 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        // Handle 404 errors
-        if ($exception instanceof NotFoundHttpException) {
-            return response()->view('frontend.layouts.error.404', [], 404);
-        }
-
+        //        // Handle 404 errors
+        //        if ($exception instanceof NotFoundHttpException) {
+        //            return response()->view('error.404', [], 404);
+        //        }
         //        // Handle other exceptions
-        //        if (view()->exists('frontend.layouts.error.500')) {
-        //            return response()->view('frontend.layouts.error.500', [], 500);
+        //        if (view()->exists('error.500')) {
+        //            return response()->view('error.500', [], 500);
         //        }
 
         return parent::render($request, $exception);
