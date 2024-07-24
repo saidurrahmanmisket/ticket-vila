@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-    Notification
+    {{ __('Notification') }}
 @endsection;
 
 @section('content')
@@ -12,10 +12,10 @@
     <div class="notification--area">
         @if(!empty($unreadNotifications) && $unreadNotifications && $unreadNotifications->count() > 0)
             <div class="top--title">
-                <h3>You have {{$unreadNotifications->count()}} unread message</h3>
+                <h3>{{ __('You have :count unread message', ['count' => $unreadNotifications->count()]) }}</h3>
                 <form action="{{ route('user.notifications.markAllAsRead') }}" method="POST" class="d-flex align-items-center">
                     @csrf
-                    <button type="submit" class="button">Mark All as Read</button>
+                    <button type="submit" class="button">{{ __('Mark All as Read') }}</button>
                 </form>
             </div>
         @endif
@@ -32,7 +32,7 @@
                         aria-controls="pills-all"
                         aria-selected="true"
                     >
-                        All
+                        {{ __('All') }}
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -46,7 +46,7 @@
                         aria-controls="pills-new"
                         aria-selected="false"
                     >
-                        New
+                        {{ __('New') }}
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -60,7 +60,7 @@
                         aria-controls="pills-unread"
                         aria-selected="false"
                     >
-                        Unread
+                        {{ __('Unread') }}
                     </button>
                 </li>
             </ul>
@@ -105,7 +105,7 @@
                                 <form action="{{ route('user.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="action--btn">Delete
+                                    <button type="submit" class="action--btn">{{ __('Delete') }}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="25"
@@ -200,7 +200,7 @@
                             <form action="{{ route('user.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="action--btn">Delete
+                                <button type="submit" class="action--btn">{{ __('Delete') }}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="25"
@@ -291,7 +291,7 @@
                             <form action="{{ route('user.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="action--btn">Delete
+                                <button type="submit" class="action--btn">{{ __('Delete') }}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="25"

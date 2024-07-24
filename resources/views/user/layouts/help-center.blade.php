@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-Help Center
+{{ __('Help Center') }}
 @endsection;
 
 @section('content')
@@ -14,7 +14,7 @@ Help Center
       <div class="row">
         <div class="col-md-8">
           <div class="faq--box h-100">
-            <h4 class="common--title">Frequently Asked Questions</h4>
+            <h4 class="common--title">{{ __('Frequently Asked Questions') }}</h4>
 
             {{-- this is daynamic faq component --}}
             <x-faq></x-faq>
@@ -26,16 +26,16 @@ Help Center
           <!-- chat--box  -->
           <div class="chat--box">
             <h3>
-              We are here to help, please do not hesitate to contact us!
+                {{ __('We are here to help, please do not hesitate to contact us!') }}
             </h3>
-            <p>24/7 Chat support with the help of all.</p>
-            <a href="{{route('user.live-chat')}}" class="user--common--btn">Chat</a>
+            <p>{{ __('24/7 Chat support with the help of all.') }}</p>
+            <a href="{{route('user.live-chat')}}" class="user--common--btn">{{ __('Chat') }}</a>
           </div>
           <!-- affiliate--box  -->
           <div class="affiliate--box text-center mt_35">
-            <h3>Join Affiliate Program</h3>
-            <p>Become an affiliates partner and earn extra money.</p>
-            <a href="#" class="user--common--btn">Join Now</a>
+            <h3>{{ __('Join Affiliate Program') }}</h3>
+            <p>{{ __('Become an affiliates partner and earn extra money.') }}</p>
+            <a href="#" class="user--common--btn">{{ __('Join Now') }}</a>
           </div>
         </div>
       </div>
