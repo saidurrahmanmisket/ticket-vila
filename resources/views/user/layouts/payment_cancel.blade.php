@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-Payment Sussess
+    {{ __('Payment Success') }}
 @endsection;
 
 
@@ -17,15 +17,15 @@ Payment Sussess
                         <div class="img--area text-center">
                             <img src="{{asset('user/images/cancelled.png')}}" alt=""/>
                         </div>
-                        <h4>oops sorry!!!</h4>
+                        <h4>{{ __('oops sorry!!!') }}</h4>
                         <p>
-                           Something went wrong.
+                            {{ __('Something went wrong.') }}
                         </p>
                         <div class="buttons">
                             <a class='user--common--btn' href='{{route('user.dashboard')}}'>Back to Dashboard</a
                             >
                             <a class='user--common--btn' href='{{route('user.tickets')}}'>
-                                View Ticket
+                                {{ __('View Ticket') }}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="17"

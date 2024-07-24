@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-Help Center
+    {{ __('Help Center') }}
 @endsection;
 
 @push('style')
@@ -25,13 +25,13 @@ Help Center
               <div class="">
                   <div class="ticket--history--box position-relative">
                       <div class="top--title">
-                          <h3 class="common--title">Chat Reply</h3>
+                          <h3 class="common--title">{{ __('Chat Reply') }}</h3>
                           {{-- <a href="#" class="button mb_25">See All</a> --}}
                       </div>
                       <div class="">
 
                           <div class="all--purchase--tickets default--scrollbar" id="all-chat-reply" >
-                              <p class="text-center">No Chat Found</p>
+                              <p class="text-center">{{ __('No Chat Found') }}</p>
 
                               <!-- message single  -->
                           </div>
@@ -48,7 +48,7 @@ Help Center
                                               </div>
                                               <div class="modal-body">
                                                       <div class="form-group mb-3">
-                                                          <label for="message">Reply Message</label>
+                                                          <label for="message">{{ __('Reply Message') }}</label>
                                                           <textarea class="mt-3 border-5 border-info-subtle form-control @error('reply_message') is-invalid @enderror "
                                                                     id="reply_message" name="reply_message"
                                                                     placeholder="Enter your reply message"
@@ -62,8 +62,8 @@ Help Center
 
                                               </div>
                                               <div class="modal-footer">
-                                                  <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
-                                                  <button type="submit" class="user--common--btn">Submit</button>
+                                                  <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                                  <button type="submit" class="user--common--btn">{{ __('Submit') }}</button>
                                               </div>
                                           </form>
                                       </div>
@@ -79,9 +79,9 @@ Help Center
               <!-- chat--box  -->
               <div class="chat--box">
                   <h3>
-                      We are here to help, please do not hesitate to contact us!
+                      {{ __('We are here to help, please do not hesitate to contact us!') }}
                   </h3>
-                  <a class="user--common--btn" href="" data-bs-toggle="modal" data-bs-target="#chat-modal">Start a new chat</a>
+                  <a class="user--common--btn" href="" data-bs-toggle="modal" data-bs-target="#chat-modal">{{ __('Start a new chat') }}</a>
               </div>
               <!-- Modal -->
               <form action="{{ route('user.live-chat.store') }}" method="POST">
@@ -96,16 +96,16 @@ Help Center
                           <div class="modal-body">
                                   @csrf
                                   <div class="form-group mb-3">
-                                      <label for="name">Name</label>
+                                      <label for="name">{{ __('Name') }}</label>
                                       <input type="text" class="form-control border-3 border-info-subtle " readonly disabled id="name" value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" >
                                   </div>
                                   <div class="form-group mb-3">
-                                      <label for="email">Email</label>
+                                      <label for="email">{{ __('Email') }}</label>
                                       <input type="email" class="form-control border-3 border-info-subtle " readonly disabled id="email" value="{{ auth()->user()->email }}">
                                   </div>
                                   <div class="form-group mb-3">
                                       <label for="message">
-                                          Message <span class="text-danger">*</span>
+                                          {{ __('Message') }} <span class="text-danger">*</span>
                                       </label>
                                       <textarea class="form-control border-3 border-info-subtle @error('message') is-invalid @enderror" rows="6" id="message" name="message" placeholder="Enter your message">{{ old('message') }}</textarea>
                                       @error('message')
@@ -116,7 +116,7 @@ Help Center
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="user--common--btn bg-dark" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="user--common--btn">Submit</button>
+                                  <button type="submit" class="user--common--btn">{{ __('Submit') }}</button>
                           </div>
                       </div>
                   </div>
@@ -124,7 +124,7 @@ Help Center
               </form>
 
                 <div class="chat--box mt-3" style="height: 460px">
-                    <h4 class="mb-3">All Chat</h4>
+                    <h4 class="mb-3">{{ __('All Chat') }}</h4>
                   <div class="all--purchase--tickets default--scrollbar h-100">
                       @foreach($chats as $chat)
                         <div class="single--chat border mb-3 border-3 border-success  rounded rounded-3 p-3 cursor--pointer  {{$chat->status == \App\Enums\Status::PENDING ? ' border-dark' : '' }}  {{$chat->status == \App\Enums\Status::REJECTED ? 'border-0 bg-body-secondary' : '' }}"
@@ -136,7 +136,7 @@ Help Center
                                   {{$chat->status ?? ''}}
                               </p>
                               <p>
-                                  Date: {{$chat->created_at ?? ''}}
+                                  {{ __('Date') }}: {{$chat->created_at ?? ''}}
                               </p>
                           </div>
                               <p class="text-start mt-3">

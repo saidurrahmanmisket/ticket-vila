@@ -3,7 +3,7 @@
 @section('title', 'Settings')
 
 @section('header_title')
-    Settings
+    {{ __('Settings') }}
 @endsection;
 
 @section('content')
@@ -11,7 +11,7 @@
     <!-- start app content area  -->
     <section class="app--content--main user--portal statistics">
         <div class="account--settings--area">
-            <h3>Account Settings</h3>
+            <h3>{{ __('Account Settings') }}</h3>
             <!-- information box  -->
             <div class="info--box mt_45">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -19,21 +19,21 @@
                         <button class="nav-link active" id="pills-personal-info-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-personal-info" type="button" role="tab"
                             aria-controls="pills-personal-info" aria-selected="true">
-                            Personal Info
+                            {{ __('Personal Info') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ isset($tabIsActive) ? 'active' : '' }}" id="pills-security-tab"
                             data-bs-toggle="pill" data-bs-target="#pills-security" type="button" role="tab"
                             aria-controls="pills-security" aria-selected="false">
-                            Security
+                            {{ __('Security') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-billing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-billing" type="button" role="tab" aria-controls="pills-billing"
                             aria-selected="false">
-                            Billing
+                            {{ __('Billing') }}
                         </button>
                     </li>
                 </ul>
@@ -86,12 +86,12 @@
                                     </div>
                                 </div>
                                 <h4>
-                                    Personal Info
+                                    {{ __('Personal Info') }}
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input--group">
-                                            <label for="fname">First Name <span class="text-danger">*</span> </label>
+                                            <label for="fname">{{ __('First Name') }} <span class="text-danger">*</span> </label>
                                             <input class="form-control @error('first_name') is-invalid @enderror" id="fname" name="first_name" type="text" value="{{ old('first_name', Auth::user()->first_name ?? '') }}" />
                                             @error('first_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -99,7 +99,7 @@
                                         </div>
 
                                         <div class="input--group">
-                                            <label for="lname">Last Name<span class="text-danger">*</span></label>
+                                            <label for="lname">{{ __('Last Name') }}<span class="text-danger">*</span></label>
                                             <input class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="lname" type="text" value="{{ old('last_name', Auth::user()->last_name ?? '') }}" />
                                             @error('last_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -107,7 +107,7 @@
                                         </div>
 
                                         <div class="input--group">
-                                            <label for="email">Email Address<span class="text-danger">*</span></label>
+                                            <label for="email">{{ __('Email Address') }}<span class="text-danger">*</span></label>
                                             <input class="form-control @error('email') is-invalid @enderror" name="email" id="email" type="email" value="{{ old('email', Auth::user()->email ?? '') }}" />
                                             @error('email')
                                             <span class="text-danger">{{ $message }}</span>
@@ -115,7 +115,7 @@
                                         </div>
 
                                         <div class="input--group">
-                                            <label for="address">Address</label>
+                                            <label for="address">{{ __('Address') }}</label>
                                             <input class="form-control @error('address_1') is-invalid @enderror" name="address_1" id="address" type="text" value="{{ old('address_1', Auth::user()->address_1 ?? '') }}" />
                                             @error('address_1')
                                             <span class="text-danger">{{ $message }}</span>
@@ -127,7 +127,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="city">City</label>
+                                                    <label for="city">{{ __('City') }}</label>
                                                     <input class="form-control @error('city') is-invalid @enderror" name="city" id="city" type="text" value="{{ old('city', Auth::user()->city ?? '') }}" />
                                                     @error('city')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="state">State</label>
+                                                    <label for="state">{{ __('State') }}</label>
                                                     <input class="form-control @error('state') is-invalid @enderror" name="state" id="state" type="text" value="{{ old('state', Auth::user()->state ?? '') }}" />
                                                     @error('state')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -147,7 +147,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="zip">Zip</label>
+                                                    <label for="zip">{{ __('Zip') }}</label>
                                                     <input class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" id="zip" type="text" value="{{ old('zip_code', Auth::user()->zip_code ?? '') }}" />
                                                     @error('zip_code')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -156,11 +156,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="gender">Gender</label>
+                                                    <label for="gender">{{ __('Gender') }}</label>
                                                     <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
-                                                        <option value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>Male</option>
-                                                        <option value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>Female</option>
-                                                        <option value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>Others</option>
+                                                        <option value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>{{ __('Male') }}</option>
+                                                        <option value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>{{ __('Female') }}</option>
+                                                        <option value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>{{ __('Others') }}</option>
                                                     </select>
                                                     @error('gender')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -171,7 +171,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="city_of_birthday">Birth City</label>
+                                                    <label for="city_of_birthday">{{ __('Birth City') }}</label>
                                                     <input class="form-control @error('city_of_birthday') is-invalid @enderror" name="city_of_birthday" id="city_of_birthday" type="text" value="{{ old('city_of_birthday', Auth::user()->city_of_birthday ?? '') }}" />
                                                     @error('city_of_birthday')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -180,7 +180,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="country_of_birthday">Birth Country</label>
+                                                    <label for="country_of_birthday">{{ __('Birth Country') }}</label>
                                                     <input class="form-control @error('country_of_birthday') is-invalid @enderror" name="country_of_birthday" id="country_of_birthday" type="text" value="{{ old('country_of_birthday', Auth::user()->country_of_birthday ?? '') }}" />
                                                     @error('country_of_birthday')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -191,7 +191,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="birthday">Birth Date</label>
+                                                    <label for="birthday">{{ __('Birth Date') }}</label>
                                                     <input class="form-control @error('birthday') is-invalid @enderror" name="birthday" id="birthday" type="date" value="{{ old('birthday', Auth::user()->birthday ?? '') }}" />
                                                     @error('birthday')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -200,7 +200,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="phone">Telephone</label>
+                                                    <label for="phone">{{ __('Telephone') }}</label>
                                                     <input class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" type="text" value="{{ old('phone', Auth::user()->phone ?? '') }}" />
                                                     @error('phone')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -213,7 +213,7 @@
 
                                 <div class="buttons mt_55">
                                     <button type="submit" class="user--common--btn">
-                                        Save Changes
+                                        {{ __('Save Changes') }}
                                     </button>
                                 </div>
                             </form>
@@ -229,41 +229,41 @@
                             <!-- security  -->
                             <div class="security common--inputs mt_50">
                                 <h3>
-                                    Security
-                                    <span>(Your email address is {{ Auth::user()->email ?? '' }})</span>
+                                    {{ __('Security')}}
+                                    <span>{{ __('(Your email address is :email)', ['email' => Auth::user()->email ?? '']) }}</span>
                                 </h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input--group">
-                                            <label for="current-password">Current password</label>
+                                            <label for="current-password">{{ __('Current password') }}</label>
                                             <input name="current_password" id="current-password" type="password"
                                                 placeholder="***********" />
                                         </div>
                                         <div class="input--group">
-                                            <label for="new--password">New password</label>
+                                            <label for="new--password">{{ __('New password') }}</label>
                                             <input name="password" id="new--password" type="password"
                                                 placeholder="Enter your new password" />
                                         </div>
                                         <div class="input--group">
-                                            <label for="confirm--password">Confirm password</label>
+                                            <label for="confirm--password">{{ __('Confirm password') }}</label>
                                             <input name="password_confirmation" id="confirm--password" type="password"
                                                 placeholder="Confirm password" />
                                         </div>
                                         <div class="buttons mt_55">
                                             <button type="submit" class="user--common--btn">
-                                                Save Changes
+                                                {{ __('Save Changes') }}
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="pills-billing" role="tabpanel" aria-labelledby="pills-billing-tab"
                         tabindex="0">
                         <!-- billing informations  -->
                         <div class="billing--info mt_50">
-                            <h3>Billing Information</h3>
+                            <h3>{{ __('Billing Information') }}</h3>
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="billing--information">
@@ -303,7 +303,7 @@
                                                                     stroke-miterlimit="10" stroke-linecap="round"
                                                                     stroke-linejoin="round"></path>
                                                             </svg>
-                                                            Download
+                                                            {{ __('Download') }}
                                                         </a>
                                                     </div>
                                                 </div>

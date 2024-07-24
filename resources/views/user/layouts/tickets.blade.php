@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 @section('header_title')
-Tickets
+    {{ __('Tickets') }}
 @endsection;
 @section('content')
     <!-- start app content area  -->
@@ -19,8 +19,8 @@ Tickets
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
-                        <h4 class="common--title">Your Ticket</h4>
-                        <p class="total--tickets">Total Ticket : {{ $data['userTickets']->count() ?? 0 }}</p>
+                        <h4 class="common--title">{{ __('Your Ticket') }}</h4>
+                        <p class="total--tickets">{{ __('Total Ticket : :count', ['count' => $data['userTickets']->count() ?? 0]) }}</p>
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
                             @if(!empty($data['userTickets']))
@@ -31,7 +31,7 @@ Tickets
                                                 <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
                                                      alt="" />
                                             </div>
-                                            <p class="ticket--id">Ticket ID: {{ $ticket->ticket_number ?? '' }}</p>
+                                            <p class="ticket--id">{{ __('Ticket ID: :ticket_number', ['ticket_number' => $ticket->ticket_number ?? '']) }}</p>
 
                                             <!-- ticket--details  -->
                                             <div class="ticket--details">
@@ -84,20 +84,17 @@ Tickets
                                                         <p>{{ number_format($ticket->order->total_price / $ticket->order->quantity) }}
                                                             €</p>
                                                     @else
-                                                        <p>Free</p>
+                                                        <p>{{ __('Free') }}</p>
                                                     @endif
                                                 </div>
                                             </div>
                                             <!-- no ticket  -->
                                             <div class="no--ticket d-none text-center">
-                                                <p>Currently, you don’t own a ticket.</p>
-                                                <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
+                                                <p>{{ __('Currently, you don’t own a ticket.') }}</p>
+                                                <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">{{ __('Buy Now') }}</a>
                                             </div>
                                             <div class="button--area text-center">
-                                                <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">Buy
-                                                    more
-                                                    E-Book to get more
-                                                    Ticket</a>
+                                                <a href="{{ route('user.buy-tickets') }}" class="user--common--btn mt_45">{{ __('Buy more E-Book to get more Ticket') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +108,7 @@ Tickets
                     <!-- ticket--history--box  -->
                     <div class="ticket--history--box position-relative">
                         <div class="top--title">
-                            <h3 class="common--title">History</h3>
+                            <h3 class="common--title">{{ __('History') }}</h3>
                             {{-- <a href="#" class="button mb_25">See All</a> --}}
                         </div>
                         <div class="all--purchase--tickets default--scrollbar">
@@ -147,7 +144,7 @@ Tickets
                                                         stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
                                                         stroke-linecap="round" stroke-linejoin="round"></path>
                                                 </svg>
-                                                Download
+                                                {{ __('Download') }}
                                             </a>
                                         </div>
                                     </div>
@@ -157,8 +154,7 @@ Tickets
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
                             </p>
                         </div>
                     </div>
@@ -167,9 +163,7 @@ Tickets
                         <h4 class="common--title">Social Share</h4>
                         <div class="icon--box">
                             <p>
-                                "I'm in for a chance to win a stunning house for just €{{$data['campaign']->price ?? ''}}—why
-                                not you? It's easy, fun, and somebody's got to win. Might as
-                                well be one of us, right?🥳 "
+                                {{ __('I\'m in for a chance to win a stunning house for just €:price — why not you? It\'s easy, fun, and somebody\'s got to win. Might as well be one of us, right?🥳', ['price' => $data['campaign']->price ?? '']) }}
                             </p>
                             <ul>
                                 <li>
@@ -239,8 +233,8 @@ Tickets
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
+
                             </p>
                         </div>
                     </div>
@@ -255,12 +249,11 @@ Tickets
                 <div class="col-md-3 pl_17 mt_35">
                     <div class="affiliate--box gift--box h-100 text-center">
                         <img src="{{ asset('user/images/gift--box.png') }}" alt="" />
-                        <h3>Buy Tickets as a Gift</h3>
+                        <h3>{{ __('Buy Tickets as a Gift') }}</h3>
                         <p>
-                            Surprise your friends and loved ones with a unique gift that
-                            could change their lives forever!
+                            {{ __('Surprise your friends and loved ones with a unique gift that could change their lives forever!') }}
                         </p>
-                        <a href="#" class="user--common--btn">Join Now</a>
+                        <a href="#" class="user--common--btn">{{ __('Join Now') }}</a>
                     </div>
                 </div>
             </div>
@@ -278,7 +271,7 @@ Tickets
             <div class="row">
                 <div class="col-md-5 mt_35 pr_17">
                     <div class="user--ticketslider--wrapper">
-                        <h4 class="common--title">Your Ticket</h4>
+                        <h4 class="common--title">{{ __('Your Ticket') }}</h4>
                         {{-- <p class="total--tickets">Total Ticket : 08</p> --}}
                         <!-- user ticket slider  -->
                         <div class="owl-carousel ticket-slider">
@@ -288,7 +281,7 @@ Tickets
                                         <img src="{{ asset($data['campaign']->thumbnail ?? 'user/images/ticket.png') }}"
                                             alt="" />
                                     </div>
-                                    <p class="ticket--id">Ticket ID: XXXXXX</p>
+                                    <p class="ticket--id">{{ __('Ticket ID')}}: XXXXXX</p>
 
                                     <!-- ticket--details  -->
                                     <div class="ticket--details">
@@ -326,7 +319,7 @@ Tickets
                                                         fill="#E8880F" />
                                                 </svg>
                                             </div>
-                                            <p>Credit Card</p>
+                                            <p>{{ __('Credit Card') }}</p>
                                         </div>
                                         <div class="details">
                                             <div class="icon">
@@ -342,12 +335,11 @@ Tickets
                                     </div>
                                     <!-- no ticket  -->
                                     <div class="no--ticket d-none text-center">
-                                        <p>Currently, you don’t own a ticket.</p>
+                                        <p>{{ __('Currently, you don’t own a ticket.') }}</p>
                                         <a href="{{ route('user.buy-tickets') }}" class="user--common--btn">Buy Now</a>
                                     </div>
                                     <div class="button--area text-center">
-                                        <a href="#" class="user--common--btn mt_45">Buy more E-Book to get more
-                                            Ticket</a>
+                                        <a href="#" class="user--common--btn mt_45">{{ __('Buy more E-Book to get more Ticket') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -358,8 +350,8 @@ Tickets
                     <!-- ticket--history--box  -->
                     <div class="ticket--history--box position-relative">
                         <div class="top--title">
-                            <h3 class="common--title">History</h3>
-                            <a href="#" class="button mb_25">See All</a>
+                            <h3 class="common--title">{{ __('History')}}</h3>
+                            <a href="#" class="button mb_25">{{ __('See All') }}</a>
                         </div>
                         <div class="all--purchase--tickets default--scrollbar">
                             <!-- ticket single  -->
@@ -371,7 +363,7 @@ Tickets
                                         <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                     </div>
                                     <div class="details">
-                                        <p>1 X House Ticket</p>
+                                        <p>{{ __('1 X House Ticket') }}</p>
                                         <p class="text-green">99.00€</p>
                                         <p>11.052024 - 11:01:25</p>
                                     </div>
@@ -389,10 +381,10 @@ Tickets
                                                 stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                        Download
+                                        {{ __('Download')}}
                                     </a>
                                     <a href="user.html" class="action--btn action--btnv2 mt_20">
-                                        View User
+                                        {{ __('View User')}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
                                             viewBox="0 0 17 15" fill="none">
                                             <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
@@ -412,7 +404,7 @@ Tickets
                                         <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                     </div>
                                     <div class="details">
-                                        <p>1 X House Ticket</p>
+                                        <p>{{ __('1 X House Ticket') }}</p>
                                         <p class="text-green">99.00€</p>
                                         <p>11.052024 - 11:01:25</p>
                                     </div>
@@ -430,10 +422,10 @@ Tickets
                                                 stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                        Download
+                                        {{ __('Download')}}
                                     </a>
                                     <a href="user.html" class="action--btn action--btnv2 mt_20">
-                                        View User
+                                        {{ __('View User')}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
                                             viewBox="0 0 17 15" fill="none">
                                             <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
@@ -453,7 +445,7 @@ Tickets
                                         <img src="{{ asset('user/images/ticket.png') }}" alt="" />
                                     </div>
                                     <div class="details">
-                                        <p>1 X House Ticket</p>
+                                        <p>{{ __('1 X House Ticket') }}</p>
                                         <p class="text-green">99.00€</p>
                                         <p>11.052024 - 11:01:25</p>
                                     </div>
@@ -471,10 +463,10 @@ Tickets
                                                 stroke="#141414" stroke-width="1.5" stroke-miterlimit="10"
                                                 stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                        Download
+                                        {{ __('Download')}}
                                     </a>
                                     <a href="user.html" class="action--btn action--btnv2 mt_20">
-                                        View User
+                                        {{ __('View User')}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15"
                                             viewBox="0 0 17 15" fill="none">
                                             <path d="M16.25 7.72559L1.25 7.72559" stroke="#04BAFF" stroke-width="1.5"
@@ -488,8 +480,7 @@ Tickets
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
                             </p>
                         </div>
                     </div>
@@ -498,9 +489,8 @@ Tickets
                         <h4 class="common--title">Social Share</h4>
                         <div class="icon--box">
                             <p>
-                                "I'm in for a chance to win a stunning house for just €{{$data['campaign']->price ?? ''}}—why
-                                not you? It's easy, fun, and somebody's got to win. Might as
-                                well be one of us, right?🥳 "
+                                {{ __('I\'m in for a chance to win a stunning house for just €:price — why not you? It\'s easy, fun, and somebody\'s got to win. Might as well be one of us, right?🥳', ['price' => $data['campaign']->price ?? '']) }}
+
                             </p>
                             <ul>
                                 <li>
@@ -569,15 +559,15 @@ Tickets
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
+
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-9 mt_35 pr_17">
                     <div class="cool--facts box--common position-relative h-100">
-                        <h4 class="common--title">Some cool facts 😎</h4>
+                        <h4 class="common--title">{{ __('Some cool facts 😎') }}</h4>
                         <div class="row">
                             <div class="col-md-4 mt_20 pr_10">
                                 <div class="facts--card">
@@ -609,12 +599,12 @@ Tickets
                                             </svg>
                                         </div>
                                         <div>
-                                            <p>Winning Chance</p>
+                                            <p>{{ __('Winning Chance') }}</p>
                                             <h3>0,023 %</h3>
                                         </div>
                                     </div>
                                     <p class="mt_40">
-                                        Based on the amount of your current tickets.
+                                        {{ __('Based on the amount of your current tickets.') }}
                                     </p>
                                 </div>
                             </div>
@@ -671,7 +661,7 @@ Tickets
                                         </div>
                                     </div>
                                     <p class="mt_40">
-                                        Your amount of tickets compared to other Users.
+                                        {{ __('Based on the amount of your current tickets.') }}
                                     </p>
                                 </div>
                             </div>
@@ -701,15 +691,15 @@ Tickets
                                         </div>
                                     </div>
                                     <p class="mt_40">
-                                        Based on the amount of your current tickets.
+                                        {{ __('Based on the amount of your current tickets.') }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
+
                             </p>
                         </div>
                     </div>
@@ -717,12 +707,12 @@ Tickets
                 <div class="col-md-3 pl_17 mt_35">
                     <div class="affiliate--box gift--box h-100 text-center">
                         <img src="{{ asset('user/images/gift--box.png') }}" alt="" />
-                        <h3>Buy Tickets as a Gift</h3>
+                        <h3>{{ __('Buy Tickets as a Gift')}}</h3>
                         <p>
-                            Surprise your friends and loved ones with a unique gift that
-                            could change their lives forever!
+                            {{ __('Surprise your friends and loved ones with a unique gift that could change their lives forever!') }}
+
                         </p>
-                        <a href="#" class="user--common--btn">Join Now</a>
+                        <a href="#" class="user--common--btn">{{ __('Join Now')}}</a>
                     </div>
                 </div>
             </div>
