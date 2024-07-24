@@ -261,7 +261,7 @@
     "Add to cart": "Kosárba",
     "Added": "Hozzáadva",
     "Proceed to payment": "Tovább a fizetéshez",
-    "We are here to help, please feel free to contact Us!": "Azért vagyunk itt, hogy segítsünk, kérjük, bátran lépjen velünk kapcsolatba!"
+    "We are here to help, please feel free to contact Us!": "Azért vagyunk itt, hogy segítsünk, kérjük, bátran lépjen velünk kapcsolatba!",
     "Buy an E-Book, get a free Ticket": "Vegyél egy E-könyvet, és kapj egy ingyenes jegyet",
     "Tickets left until you get": "Jegyek maradtak, amíg megkapod",
     "for free 🎉": "ingyen 🎉",
@@ -284,5 +284,20 @@
     "Subtotal": "Részösszeg",
     "Free Tickets": "Ingyenes jegyek",
     "Discount": "Kedvezmény",
-    "Total": "Összesen"
+    "Total": "Összesen",
+    "Remove": "Eltávolítás",
+    "Cart is empty": "A kosár üres",
+    "X House Ticket": "X Ház Jegy",
+    "Personal Information's": "Személyes adatok",
+    "Birthday": "Születésnap",
+    "City of the Birth": "Születési város",
+    "Telephone": "Telefon",
+    "Payment Cancel": "Fizetés törlése",
+    "Back to Web Shop": "Vissza a webáruházhoz",
+    "Get Support": "Támogatás kérése",
+    "Here to guide you every step of the way.": "Itt vagyunk, hogy minden lépésnél irányítsuk Önt.",
+    "Account": "Fiók",
+    "House": "Ház",
+    "Can’t Find Your Answers?": "Nem találja a válaszokat?",
+    "Web Shop": "Webáruház"
 }

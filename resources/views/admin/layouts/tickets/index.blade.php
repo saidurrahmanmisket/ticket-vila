@@ -66,6 +66,7 @@
                             </p>
                             <p class="common--pair--text">
                                 Email :
+
                                 <span>{{ $ticket->user->email }}</span>
                             </p>
 {{--                            <p class="common--pair--text">--}}

@@ -67,7 +67,7 @@ class StripeController extends Controller
             }
 
             // Create the Stripe checkout session
-            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}';
+            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.Auth::id().'&quantity='.$quantity.'&campaign_id='.$campaign->id;
             $session = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -81,6 +81,7 @@ class StripeController extends Controller
                     'quantity' => $quantity,
                 ]],
                 'mode' => 'payment',
+                'customer_email' => Auth::user()->email,
                 'success_url' => $redirectUrl,
                 'cancel_url' => route('frontend.payment-cancel-message'),
             ]);
@@ -112,11 +113,22 @@ class StripeController extends Controller
             //check has session & payment status
             if (! empty($session) && $session->payment_status == 'paid' && empty($order)) {
                 DB::beginTransaction(); // Start transaction to ensure data integrity
+                $quantity = ! empty(LaravelSession::get('quantity')) ? LaravelSession::get('quantity') : $request->quantity;
+                $campaign_id = ! empty(LaravelSession::get('campaign_id')) ? LaravelSession::get('campaign_id') : $request->campaign_id;
 
-                $quantity = LaravelSession::get('quantity');
-                $campaign_id = LaravelSession::get('campaign_id');
-                $user_id = LaravelSession::get('user_id');
-                $user = ! empty(Auth::user()) ? Auth::user() : User::findOrFail($user_id);
+                $user_id = ! empty(LaravelSession::get('user_id')) ? LaravelSession::get('user_id') : $request->user_id;
+                $user = null;
+                if (Auth::check()) {
+                    $user = Auth::user();
+                }
+
+                if (empty($user)) {
+                    $user = User::findOrFail($user_id);
+                }
+
+                if (empty($user)) {
+                    $user = User::where('email', $session->customer_email)->first();
+                }
                 $campaign = Campaign::with(['ebooks'])->findOrFail($campaign_id);
 
                 $discountQuantity = calculateFreeTicket($quantity, $campaign->how_many_buy, $campaign->how_many_free);
@@ -243,6 +255,11 @@ class StripeController extends Controller
                 return redirect()->route('frontend.web-shop.checkout');
             }
 
+            if (empty($user)) {
+                flash()->addWarning('User not found.');
+
+                return redirect()->back();
+            }
             //Store data to session
             LaravelSession::put([
                 'quantity' => $quantity,
@@ -260,7 +277,7 @@ class StripeController extends Controller
                 $campaign_price = $campaign->price;
             }
             // Create the Stripe checkout session
-            $redirectUrl = route('frontend.web-shop.stripe.success').'?session_id={CHECKOUT_SESSION_ID}';
+            $redirectUrl = route('frontend.web-shop.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.$user->id.'&quantity='.$quantity.'&campaign_id='.$campaign->id;
             $session = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -273,6 +290,7 @@ class StripeController extends Controller
                     ],
                     'quantity' => $quantity,
                 ]],
+                'customer_email' => $user->email,
                 'mode' => 'payment',
                 'success_url' => $redirectUrl,
                 'cancel_url' => route('frontend.payment-cancel-message'),

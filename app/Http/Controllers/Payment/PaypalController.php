@@ -67,7 +67,7 @@ class PaypalController extends Controller
             $response = $provider->createOrder([
                 'intent' => 'CAPTURE',
                 'application_context' => [
-                    'return_url' => route('user.paypal.success'),
+                    'return_url' => route('user.paypal.success', ['user_id' => Auth::id(), 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => Auth::user()->email]),
                     'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [
@@ -114,6 +114,7 @@ class PaypalController extends Controller
 
     public function success(Request $request, PaymentService $paymentService)
     {
+
         try {
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
@@ -122,10 +123,14 @@ class PaypalController extends Controller
             if (isset($response['status']) && $response['status'] == 'COMPLETED') {
                 DB::beginTransaction(); // Start transaction to ensure data integrity
                 // Retrieve session data
-                $quantity = LaravelSession::get('quantity');
-                $campaign_id = LaravelSession::get('campaign_id');
-                $user_id = LaravelSession::get('user_id');
-                $user = ! empty(Auth::user()) ? Auth::user() : User::findOrFail($user_id);
+                $quantity = ! empty(LaravelSession::get('quantity')) ? LaravelSession::get('quantity') : $request->quantity;
+                $campaign_id = ! empty(LaravelSession::get('campaign_id')) ? LaravelSession::get('campaign_id') : $request->campaign_id;
+                $user_id = ! empty(LaravelSession::get('user_id')) ? LaravelSession::get('user_id') : $request->user_id;
+                $user = Auth::check() ? Auth::user() : User::findOrFail($user_id);
+
+                if (empty($user)) {
+                    $user = User::where('email', $request->email)->first();
+                }
                 $campaign = Campaign::with(['ebooks'])->findOrFail($campaign_id);
                 $discountQuantity = calculateFreeTicket($quantity, $campaign->how_many_buy, $campaign->how_many_free);
                 // Store order in the database
@@ -251,6 +256,12 @@ class PaypalController extends Controller
                 return redirect()->route('frontend.web-shop.checkout');
             }
 
+            if (empty($user)) {
+                flash()->addError('Something was wrong.');
+
+                return redirect()->back();
+            }
+
             //Store data to session
             LaravelSession::put([
                 'quantity' => $quantity,
@@ -271,7 +282,7 @@ class PaypalController extends Controller
             $response = $provider->createOrder([
                 'intent' => 'CAPTURE',
                 'application_context' => [
-                    'return_url' => route('frontend.web-shop.paypal.success'),
+                    'return_url' => route('frontend.web-shop.paypal.success', ['user_id' => $user->id, 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => $user->email]),
                     'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [
@@ -296,14 +307,12 @@ class PaypalController extends Controller
                         return redirect()->away($links['href']);
                     }
                 }
-                dd('problem_1');
                 flash()->addError('Something went wrong.');
 
                 return redirect()
                     ->route('frontend.web-shop.checkout');
 
             } else {
-                dd('problem_2');
                 flash()->addError('Something went wrong.');
 
                 return redirect()

@@ -265,7 +265,7 @@
     "Add to cart": "Add to cart",
     "Added": "Added",
     "Proceed to payment": "Proceed to payment",
-    "We are here to help, please feel free to contact Us!": "We are here to help, please feel free to contact Us!"
+    "We are here to help, please feel free to contact Us!": "We are here to help, please feel free to contact Us!",
     "Buy an E-Book, get a free Ticket": "Buy an E-Book, get a free Ticket",
     "Tickets left until you get": "Tickets left until you get",
     "for free 🎉": "for free 🎉",
@@ -288,5 +288,20 @@
     "Subtotal": "Subtotal",
     "Free Tickets": "Free Tickets",
     "Discount": "Discount",
-    "Total": "Total"
+    "Total": "Total",
+    "Remove": "Remove",
+    "Cart is empty": "Cart is empty",
+    "X House Ticket": "X House Ticket",
+    "Personal Information's": "Personal Information's",
+    "Birthday": "Birthday",
+    "City of the Birth": "City of the Birth",
+    "Telephone": "Telephone",
+    "Payment Cancel": "Payment Cancel",
+    "Back to Web Shop": "Back to Web Shop",
+    "Get Support": "Get Support",
+    "Here to guide you every step of the way.": "Here to guide you every step of the way.",
+    "Account": "Account",
+    "House": "House",
+    "Can’t Find Your Answers?": "Can’t Find Your Answers?",
+    "Web Shop": "Web Shop"
 }

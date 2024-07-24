@@ -259,7 +259,7 @@
     "Add to cart": "In den Warenkorb",
     "Added": "Hinzugefügt",
     "Proceed to payment": "Zur Zahlung fortfahren",
-    "We are here to help, please feel free to contact Us!": "Wir sind hier, um zu helfen. Bitte zögern Sie nicht, uns zu kontaktieren!"
+    "We are here to help, please feel free to contact Us!": "Wir sind hier, um zu helfen. Bitte zögern Sie nicht, uns zu kontaktieren!",
     "Buy an E-Book, get a free Ticket": "Kaufe ein E-Book, erhalte ein kostenloses Ticket",
     "Tickets left until you get": "Verbleibende Tickets bis zum Erhalt",
     "for free 🎉": "kostenlos 🎉",
@@ -282,5 +282,20 @@
     "Subtotal": "Zwischensumme",
     "Free Tickets": "Kostenlose Tickets",
     "Discount": "Rabatt",
-    "Total": "Gesamt"
+    "Total": "Gesamt",
+    "Remove": "Entfernen",
+    "Cart is empty": "Der Warenkorb ist leer",
+    "X House Ticket": "X Haus Ticket",
+    "Personal Information's": "Persönliche Informationen",
+    "Birthday": "Geburtstag",
+    "City of the Birth": "Geburtsstadt",
+    "Telephone": "Telefon",
+    "Payment Cancel": "Zahlung abbrechen",
+    "Back to Web Shop": "Zurück zum Webshop",
+    "Get Support": "Unterstützung erhalten",
+    "Here to guide you every step of the way.": "Hier, um Sie bei jedem Schritt zu begleiten.",
+    "Account": "Konto",
+    "House": "Haus",
+    "Can’t Find Your Answers?": "Können Sie Ihre Antworten nicht finden?",
+    "Web Shop": "Webshop"
 }
