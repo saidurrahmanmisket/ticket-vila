@@ -22,7 +22,12 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
+            $table->string('gender')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
+            $table->date('birthday')->nullable();
+            $table->string('city_of_birthday')->nullable();
+            $table->string('country_of_birthday')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->dateTime('last_login_at')->nullable();

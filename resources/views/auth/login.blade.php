@@ -38,9 +38,9 @@ $systemSetting = SystemSetting::first();
         </div>
         <div class="input--area">
             <div class="top--area">
-                <h3 class="main--text">Login</h3>
+                <h3 class="main--text">{{__("Login")}}</h3>
                 <p class="sub--text">
-                    Welcome Back, Please Enter your Details to Log In.
+                    {{ __("Welcome Back, Please Enter your Details to Log In.") }}
                 </p>
             </div>
 
@@ -49,7 +49,7 @@ $systemSetting = SystemSetting::first();
                     @csrf
                     <div class="input--holder">
                         <div class="single--input">
-                            <label for="email">Email Address</label>
+                            <label for="email">{{ __("Email Address") }}</label>
                             <input type="email" class=" @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" id="email" placeholder="ticketvilla@gmail.com"
                                 required />
@@ -60,7 +60,7 @@ $systemSetting = SystemSetting::first();
                             @enderror
                         </div>
                         <div class="single--input pass">
-                            <label for="password">Password</label>
+                            <label for="password">{{ __("Password") }}</label>
                             <input type="password" class=" @error('password') is-invalid @enderror" name="password"
                                 id="password" placeholder="******************" required />
                             @error('password')
@@ -92,7 +92,7 @@ $systemSetting = SystemSetting::first();
                             <div class="checkbox--wrapper">
                                 <input type="checkbox" name="remember" id="remember"
                                     {{ old('remember') ? 'checked' : '' }} />
-                                <label for="remember">Remember me</label>
+                                <label for="remember">{{ __("Remember me") }}</label>
                             </div>
 
                             @if (Route::has('password.request'))
@@ -104,24 +104,24 @@ $systemSetting = SystemSetting::first();
                     </div>
 
                     <!-- submit button -->
-                    <button class="submit">Log In</button>
+                    <button class="submit">{{ __("Log In") }}</button>
 
                 </form>
 
                 <!-- other logins area -->
                 <div class="other--logins--area">
                     <div class="or">
-                        <p>Or</p>
+                        <p>{{ __("Or") }}</p>
                     </div>
                     <a href="{{route('auth.google')}}" class="google--btn">
                         <img src="{{ asset('frontend/images/google-icon.svg') }}" alt="" />
-                        <span>Login with Google</span>
+                        <span>{{ __("Login with Google") }}</span>
                     </a>
                 </div>
             </div>
 
             <div class="lower--area">
-                <p>Don’t have an account? <a href="{{ route('register') }}">Sign Up</a></p>
+                <p>{{ __("Don’t have an account?") }} <a href="{{ route('register') }}">{{ __("Sign Up") }}</a></p>
             </div>
         </div>
     </main>

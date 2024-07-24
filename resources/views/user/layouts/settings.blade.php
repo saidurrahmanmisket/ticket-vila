@@ -114,12 +114,41 @@
                                             @enderror
                                         </div>
 
-                                        <div class="input--group">
-                                            <label for="address">Address</label>
-                                            <input class="form-control @error('address_1') is-invalid @enderror" name="address_1" id="address" type="text" value="{{ old('address_1', Auth::user()->address_1 ?? '') }}" />
-                                            @error('address_1')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="gender">Gender</label>
+                                                    <select class="form-control @error('gender') is-invalid @enderror"
+                                                            id="gender" name="gender">
+                                                        <option
+                                                            value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>
+                                                            Male
+                                                        </option>
+                                                        <option
+                                                            value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>
+                                                            Female
+                                                        </option>
+                                                        <option
+                                                            value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>
+                                                            Others
+                                                        </option>
+                                                    </select>
+                                                    @error('gender')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="country">Country</label>
+                                                    <input class="form-control @error('address_1') is-invalid @enderror"
+                                                           name="address_1" id="country" type="text"
+                                                           value="{{ old('country', Auth::user()->country_id ?? '') }}"/>
+                                                    @error('address_1')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -156,13 +185,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="gender">Gender</label>
-                                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
-                                                        <option value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>Male</option>
-                                                        <option value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>Female</option>
-                                                        <option value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>Others</option>
-                                                    </select>
-                                                    @error('gender')
+                                                    <label for="address">Address</label>
+                                                    <input class="form-control @error('address_1') is-invalid @enderror"
+                                                           name="address_1" id="address" type="text"
+                                                           value="{{ old('address_1', Auth::user()->address_1 ?? '') }}"/>
+                                                    @error('address_1')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
