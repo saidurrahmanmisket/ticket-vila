@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title_de', 150)->nullable();
             $table->string('title_hu', 150)->nullable();
             $table->string('icon')->nullable();
-
+            $table->string('link')->nullable();
             $table->unsignedBigInteger('gift_id');
             $table->foreign('gift_id')->references('id')->on('gifts')->onDelete('cascade');
 

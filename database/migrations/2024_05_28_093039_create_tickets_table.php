@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
             $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->nullOnDelete();
+            $table->enum('payment_status', ['paid', 'free'])->default('paid');
             $table->timestamps();
         });
     }

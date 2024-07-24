@@ -54,3 +54,7 @@ Route::get('/set-locale/{locale}', function ($locale) {
     }
 
 })->name('setLocale');
+
+Route::get('/getimage', function () {
+    return 'https://www.instagram.com/p/C9VO2i4yzE7/media/?size=l';
+});

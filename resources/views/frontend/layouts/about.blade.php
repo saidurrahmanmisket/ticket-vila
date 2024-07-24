@@ -19,7 +19,7 @@
                             !empty($hero_section['description_' . locale()]) &&
                             strlen($hero_section['description_' . locale()]) > 300)
                             <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
-                               data-bs-target="#exampleModal">Read More</a>
+                               data-bs-target="#exampleModal">{{ __("Read More") }}</a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -68,7 +68,7 @@
                             !empty($the_mission['description_' . locale()]) &&
                             strlen($the_mission['description_' . locale()]) > 300)
                             <a href="#" class="btn--normal border blank mt-4" data-bs-toggle="modal"
-                               data-bs-target="#exampleModal">Read More</a>
+                               data-bs-target="#exampleModal">{{ __("Read More") }}</a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
