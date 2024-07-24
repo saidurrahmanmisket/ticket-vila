@@ -282,182 +282,89 @@
                     <div class="news--wrapper ">
                         <!-- top title  -->
                         <div class="top--title mb_25">
-                            <h3 class="common--title">News</h3>
-                            <a href="#" class="button">See All</a>
+                            <h3 class="common--title">{{ __('News') }}</h3>
+                            <a href="#" class="button">{{ __('See All') }}</a>
                         </div>
                         <div class="all--news default--scrollbar">
                             <!-- single card  -->
-                            <div class="ticket--post--card">
-                                <!-- top -->
-                                <div class="top">
-                                    <div class="ticket--info">
-                                        <!-- icon  -->
-                                        <div class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                    fill="#FEC054" />
-                                            </svg>
+                            @if(isset($data['news']) && $data['news'])
+                                @foreach($data['news'] as $item)
+                                    <!-- single card  -->
+                                    <div class="ticket--post--card">
+                                        <!-- top -->
+                                        <div class="top">
+                                            <div class="ticket--info">
+                                                <!-- icon  -->
+                                                <div class="icon">
+                                                    @if(!empty($item->image))
+                                                        <img class="img-fluid object-fit-cover rounded rounded-circle h-100" src="{{ asset($item->image) }}" alt="">
+                                                    @else
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z" fill="#FEC054"></path>
+                                                        </svg>
+                                                    @endif
+                                                </div>
+                                                <p>{{$item['title_'.locale()]}}</p>
+                                            </div>
+                                            <!-- date and actions  -->
+                                            <div class="date--and--actions">
+                                                <p class="date">{{$item->created_at ?? '' }}</p>
+                                            </div>
                                         </div>
-                                        <p>12.500 {{__("Tickets Sold") }}</p>
-                                    </div>
-                                    <!-- date and actions  -->
-                                    <div class="date--and--actions">
-                                        <p class="date">03/04/2024 - 11:20 AM</p>
-                                    </div>
-                                </div>
-                                <p class="message">
-                                    12.500 Ticket sold, Thanks to everyone. We wish best of
-                                    luck. 👍
-                                </p>
-                                <div class="moderator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#" class="read--more">
-                                        Read More
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                            viewBox="0 0 18 15" fill="none">
-                                            <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- single card  -->
-                            <div class="ticket--post--card">
-                                <!-- top -->
-                                <div class="top">
-                                    <div class="ticket--info">
-                                        <!-- icon  -->
-                                        <div class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                    fill="#FEC054" />
-                                            </svg>
+                                        <div class="message">
+                                            {!!
+                                                $item['description_' . locale()]
+                                                    ? (strlen($item['description_' . locale()]) > 150
+                                                        ? substr($item['description_' . locale()], 0, 150) . "..."
+                                                        : $item['description_' . locale()])
+                                                    : "12,500 tickets sold. Thanks to everyone. We wish you the best of luck. 👍"
+                                            !!}
+
                                         </div>
-                                        <p>12.500 {{__("Tickets Sold") }}</p>
-                                    </div>
-                                    <!-- date and actions  -->
-                                    <div class="date--and--actions">
-                                        <p class="date">03/04/2024 - 11:20 AM</p>
-                                    </div>
-                                </div>
-                                <p class="message">
-                                    12.500 Ticket sold, Thanks to everyone. We wish best of
-                                    luck. 👍
-                                </p>
-                                <div class="moderator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#" class="read--more">
-                                        Read More
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                            viewBox="0 0 18 15" fill="none">
-                                            <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- single card  -->
-                            <div class="ticket--post--card">
-                                <!-- top -->
-                                <div class="top">
-                                    <div class="ticket--info">
-                                        <!-- icon  -->
-                                        <div class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                    fill="#FEC054" />
-                                            </svg>
+                                        <div class="moderator--area">
+                                            <!-- moderator  -->
+                                            <div class="moderator">
+                                                <img src="{{ $item->user->avatar ? asset($item->user->avatar) : asset('user/images/profile.png') }}" alt="" />
+                                                <p>{{$item->user->first_name ?? ""}} {{$item->user->last_name ?? ""}}</p>
+                                            </div>
+
+                                            @if (!empty($item['description_' . locale()]) && strlen($item['description_' . locale()]) > 150)
+
+                                                <a href="#" class="read--more" data-bs-toggle="modal" data-bs-target="#readmoreModal{{$item->id}}">
+                                                    Read More
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
+                                                         viewBox="0 0 18 15" fill="none">
+                                                        <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
+                                                              stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
+                                                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </a>
+
+
+
+                                            @endif
                                         </div>
-                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
-                                    <!-- date and actions  -->
-                                    <div class="date--and--actions">
-                                        <p class="date">03/04/2024 - 11:20 AM</p>
-                                    </div>
-                                </div>
-                                <p class="message">
-                                    12.500 Ticket sold, Thanks to everyone. We wish best of
-                                    luck. 👍
-                                </p>
-                                <div class="moderator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#" class="read--more">
-                                        Read More
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                            viewBox="0 0 18 15" fill="none">
-                                            <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- single card  -->
-                            <div class="ticket--post--card">
-                                <!-- top -->
-                                <div class="top">
-                                    <div class="ticket--info">
-                                        <!-- icon  -->
-                                        <div class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M19.5 3.67C19.5 3.66 19.5 3.65 19.48 3.64C19.26 3.36 18.97 3.21 18.63 3.21C18.1 3.21 17.46 3.56 16.77 4.3C15.95 5.18 14.69 5.11 13.97 4.15L12.96 2.81C12.56 2.27 12.03 2 11.5 2C10.97 2 10.44 2.27 10.04 2.81L9.02 4.16C8.31 5.11 7.06 5.18 6.24 4.31L6.23 4.3C5.1 3.09 4.09 2.91 3.52 3.64C3.5 3.65 3.5 3.66 3.5 3.67C3.14 4.44 3 5.52 3 7.04V16.96C3 18.48 3.14 19.56 3.5 20.33C3.5 20.34 3.51 20.36 3.52 20.37C4.1 21.09 5.1 20.91 6.23 19.7L6.24 19.69C7.06 18.82 8.31 18.89 9.02 19.84L10.04 21.19C10.44 21.73 10.97 22 11.5 22C12.03 22 12.56 21.73 12.96 21.19L13.97 19.85C14.69 18.89 15.95 18.82 16.77 19.7C17.46 20.44 18.1 20.79 18.63 20.79C18.97 20.79 19.26 20.65 19.48 20.37C19.49 20.36 19.5 20.34 19.5 20.33C19.86 19.56 20 18.48 20 16.96V7.04C20 5.52 19.86 4.44 19.5 3.67ZM14 14.5H8C7.59 14.5 7.25 14.16 7.25 13.75C7.25 13.34 7.59 13 8 13H14C14.41 13 14.75 13.34 14.75 13.75C14.75 14.16 14.41 14.5 14 14.5ZM16 11H8C7.59 11 7.25 10.66 7.25 10.25C7.25 9.84 7.59 9.5 8 9.5H16C16.41 9.5 16.75 9.84 16.75 10.25C16.75 10.66 16.41 11 16 11Z"
-                                                    fill="#FEC054" />
-                                            </svg>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="readmoreModal{{$item->id}}" tabindex="-1" aria-labelledby="readmoreModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {!! $item['description_' . locale()] ?? " "  !!}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p>12.500 {{__("Tickets Sold") }}</p>
                                     </div>
-                                    <!-- date and actions  -->
-                                    <div class="date--and--actions">
-                                        <p class="date">03/04/2024 - 11:20 AM</p>
-                                    </div>
-                                </div>
-                                <p class="message">
-                                    12.500 Ticket sold, Thanks to everyone. We wish best of
-                                    luck. 👍
-                                </p>
-                                <div class="moderator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{ asset('user/images/profile.png') }}" alt="" />
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#" class="read--more">
-                                        Read More
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
-                                            viewBox="0 0 18 15" fill="none">
-                                            <path d="M16.75 7.72607L1.75 7.72607" stroke="#04BAFF" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M10.7031 1.70149L16.7531 7.72549L10.7031 13.7505" stroke="#04BAFF"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endif
+
                         </div>
                     </div>
                 </div>

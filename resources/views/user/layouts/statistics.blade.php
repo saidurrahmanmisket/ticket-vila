@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-Statistics
+    {{ __('Statistics') }}
 @endsection;
 
 @section('content')
@@ -12,7 +12,7 @@ Statistics
     <section class="app--content--main user--portal statistics">
         <!-- live statistics  -->
         <div class="live--statistics--wrapper">
-            <p class="intro">Live Statistics</p>
+            <p class="intro">{{ __('Live Statistics') }}</p>
 
             <!-- live ticket statistics  -->
             <x-user.live-ticket-statistics />
@@ -28,7 +28,7 @@ Statistics
                     <div class="sale--analytic analytic--box box--common position-relative">
                         <!-- title  -->
                         <div class="top--title">
-                            <h3>Ticket Sold</h3>
+                            <h3>{{ __('Ticket Sold') }}</h3>
                             <h3>{{ !empty($ticketsSoldToday) ? $ticketsSoldToday : '0'  }}</h3>
                         </div>
                         <div class="chart">
@@ -36,8 +36,8 @@ Statistics
                         </div>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
+
                             </p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ Statistics
                 </div>
                 <div class="col mt_35">
                     <div class="compare--box position-relative">
-                        <h4 class="common--title">Compare It</h4>
+                        <h4 class="common--title">{{ __('Compare It') }}</h4>
                         <!-- compare range  -->
                         <div class="compare--range">
                             <div class="range--bar w-100">
@@ -82,18 +82,17 @@ Statistics
                                 <p>4506</p>
                             </li>
                             <li>
-                                <p>Winning Chance :</p>
+                                <p>{{ __('Winning Chance') }} :</p>
                                 <p>30.04%</p>
                             </li>
                             <li>
-                                <p>Potential Profit :</p>
+                                <p>{{ __('Potential Profit') }} :</p>
                                 <p class="text-green">1.020.000 EUR</p>
                             </li>
                         </ul>
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
                             </p>
                         </div>
                     </div>

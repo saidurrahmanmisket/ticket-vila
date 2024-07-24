@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 @section('header_title')
-Expose
+{{ __('Expose') }}
 @endsection;
 @push('style')
     <style>
@@ -35,16 +35,16 @@ Expose
                         </div>
                     </div>
                 </div>
-                <h3>Need A Helping Hand? We are Here.</h3>
+                <h3>{{ __('Need A Helping Hand? We are Here.') }}</h3>
                 <ul>
                     <li>
-                        <a href="{{route('frontend.faqs')}}" class="user--common--btn">FAQ</a>
+                        <a href="{{route('frontend.faqs')}}" class="user--common--btn">{{ __('FAQ') }}</a>
                     </li>
                     <li>
-                        <a href="{{route('user.live-chat')}}" class="user--common--btn">Live Chat</a>
+                        <a href="{{route('user.live-chat')}}" class="user--common--btn">{{ __('Live Chat') }}</a>
                     </li>
                     <li>
-                        <a href="mailto:{{env('mail_from_address')}}" class="user--common--btn">Email</a>
+                        <a href="mailto:{{env('mail_from_address')}}" class="user--common--btn">{{ __('Email') }}</a>
                     </li>
                 </ul>
             </div>

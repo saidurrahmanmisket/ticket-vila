@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-    The House
+    {{ __('The House') }}
 @endsection;
 
 @section('content')
@@ -51,9 +51,9 @@
                             @method('PATCH')
                             <div class="personal--info profile--info--box">
                                 <input type="file" class="d-none" name="avatar" id="upload" />
-                                <h3>Personal Info <span>(Name, Surname, Email address)</span></h3>
+                                <h3>{{ __('Personal Info') }} <span>{{ __('(Name, Surname, Email address)') }}</span></h3>
                                 <div class="input--group">
-                                    <label for="first_name">First Name</label>
+                                    <label for="first_name">{{ __('First Name') }}</label>
                                     <input id="first_name" name="first_name" type="text"
                                         value="{{ Auth::user()->first_name }}">
                                     @error('first_name')
@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <div class="input--group">
-                                    <label for="last_name">Last Name</label>
+                                    <label for="last_name">{{ __('Last Name') }}</label>
                                     <input id="last_name" name="last_name" type="text"
                                         value="{{ Auth::user()->last_name }}">
                                     @error('last_name')
@@ -73,7 +73,7 @@
                                     @enderror
                                 </div>
                                 <div class="input--group">
-                                    <label for="email">Email Address</label>
+                                    <label for="email">{{ __('Email Address') }}</label>
                                     <input id="email" type="email" name="email" value="{{ Auth::user()->email }}">
                                     @error('email')
                                         <span class="invalid-feedback d-block" role="alert">
@@ -81,16 +81,16 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <button type="submit">Update Personal Info</button>
+                                <button type="submit">{{ __('Update Personal Info') }}</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6 mt_30">
                         <form action="" method="POST"> @csrf @method('PATCH')
                             <div class="security--info profile--info--box">
-                                <h3>Security <span>(Your email address is {{ Auth::user()->email }})</span></h3>
+                                <h3>{{ __('Security') }} <span>{{ __('(Your email address is :email)', ['email' => Auth::user()->email]) }}</span></h3>
                                 <div class="input--group">
-                                    <label for="current_password">Current password</label>
+                                    <label for="current_password">{{ __('Current password') }}</label>
                                     <input id="current_password" name="current_password" type="password"
                                         placeholder="6632645fsdg12105">
                                     @error('current_password')
@@ -100,7 +100,7 @@
                                     @enderror
                                 </div>
                                 <div class="input--group">
-                                    <label for="password">New password</label>
+                                    <label for="password">{{ __('New password') }}</label>
                                     <input id="password" type="password" name="password"
                                         placeholder="Enter your new password">
                                     @error('password')
@@ -110,7 +110,7 @@
                                     @enderror
                                 </div>
                                 <div class="input--group">
-                                    <label for="password_confirmation">Confirm password</label>
+                                    <label for="password_confirmation">{{ __('Confirm password') }}</label>
                                     <input id="password_confirmation" name="password_confirmation" type="password"
                                         placeholder="Confirm password">
                                     @error('password_confirmation')
@@ -119,7 +119,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <button type="submit">Update Password</button>
+                                <button type="submit">{{ __('Update Password') }}</button>
                             </div>
                         </form>
                     </div>

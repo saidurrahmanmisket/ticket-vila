@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('header_title')
-    The House
+    {{ __('The House') }}
 @endsection;
 
 @section('content')
@@ -16,10 +16,10 @@
                 <!-- house--tour  -->
                 <div class="house--tour box--common">
                     <div class="top">
-                        <h4 class="common--title">3D house tour</h4>
+                        <h4 class="common--title">{{ __('3D house tour') }}</h4>
                         <div class="buttons">
-                            <a href="#" class="button btn btn-primary text-light" id="btn3dInside">Inside</a>
-                            <a href="#" class="button btn " id="btn3dOutside">Outside</a>
+                            <a href="#" class="button btn btn-primary text-light" id="btn3dInside">{{ __('Inside') }}</a>
+                            <a href="#" class="button btn " id="btn3dOutside">{{ __('Outside') }}</a>
                         </div>
                     </div>
 {{--                    toggle section--}}
@@ -62,7 +62,7 @@
                 <div class="photo--and--gallery box--common">
                     <!-- top  -->
                     <div class="top">
-                        <h4 class="common--title">Photo & Gallery</h4>
+                        <h4 class="common--title">{{ __('Photo & Gallery') }}</h4>
                     </div>
                     <!-- photo--slider   -->
                     <div class="photo--slider--wrap position-relative">
@@ -83,16 +83,15 @@
                         <!-- blur box  -->
                         <div class="blur--box">
                             <p>
-                                You can't see this section, buy a eBook to get full data
-                                access
+                                {{ __('You can\'t see this section, buy a eBook to get full data access') }}
                             </p>
-                            <a href="buy-ticket.html" class="user--common--btn">Buy a E-Book</a>
+                            <a href="buy-ticket.html" class="user--common--btn">{{ __('Buy a E-Book') }}</a>
                         </div>
                     </div>
                 </div>
                 <!-- download--box  -->
                 <div class="download--box box--common">
-                    <h4>Downloads</h4>
+                    <h4>{{ __('Downloads') }}</h4>
                     <ul>
                         @if(isset($houseFiles) && $houseFiles)
                             @foreach ($houseFiles as $item)
@@ -100,7 +99,7 @@
                                 <li>
                                     <p>{{$item['file_name_'.locale()]}}</p>
                                     <a href="{{route('user.download-house-file', $item->id)}}">
-                                        Download
+                                        {{ __('Download') }}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15"
                                              fill="none">
                                             <path
@@ -122,14 +121,14 @@
             <div class="row">
                 <div class="col-md-7 mt_35 pr_17">
                     <div class="faq--box h-100">
-                        <h4 class="common--title">Frequently Asked Questions</h4>
+                        <h4 class="common--title">{{ __('Frequently Asked Questions') }}</h4>
                         {{-- this is daynamic faq component --}}
                         <x-faq></x-faq>
                     </div>
                 </div>
                 <div class="col-md-5 mt_35 pl_17">
                     <div class="key--feature--box h-100">
-                        <h4 class="common--title">Key Features</h4>
+                        <h4 class="common--title">{{ __('Key Features') }}</h4>
                         <ul>
                             @if(isset($keyFeatures) && $keyFeatures)
                                 @foreach($keyFeatures as $item)
