@@ -230,6 +230,9 @@ class PaypalController extends Controller
                     'email' => $request->email,
                     'address_1' => $request->address,
                     'zip_code' => $request->zip,
+                    'country_id' => $request->country_id,
+                    'state' => $request->state,
+                    'country_of_birthday' => $request->country_of_birthday,
                     'gender' => $request->gender,
                     'password' => bcrypt($request->password),
                 ]);

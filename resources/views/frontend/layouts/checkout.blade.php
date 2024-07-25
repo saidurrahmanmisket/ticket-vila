@@ -4,6 +4,7 @@
 
 @section('content')
 	@push('style')
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/css/intlTelInput.css"/>
 		<style>
             .single--input .iti__selected-country-primary {
@@ -14,6 +15,44 @@
                 width: 100%;
             }
 		</style>
+        <style>
+            .country .nice-select {
+                display: none;
+            }
+
+            .select2-selection.select2-selection--single {
+                height: 52px;
+                border: 1px solid #e2e2e2;
+                border-radius: 10px;
+                font-size: 16px;
+                padding: 0 12px;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                color: #444;
+                line-height: 50px;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                height: 26px;
+                position: absolute;
+                top: 13px;
+                right: 13px;
+                width: 20px
+            }
+
+            .select2-dropdown, .select2-container--default .select2-search--dropdown .select2-search__field {
+                border: 1px solid #e2e2e2
+            }
+
+            .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable .country-text {
+                color: #ffffff;
+            }
+
+            .select2.select2-container.select2-container--default {
+                width: 100% !important;
+            }
+        </style>
 	@endpush
 <!-- main area starts -->
 <main>
@@ -65,6 +104,17 @@
 	                        @enderror
                         </div>
                         <div class="single--input">
+                            <label class="required" for="state">{{ __("State") }}</label>
+                            <input value="{{old('state')}}"
+                                   class="{{!empty($errors->first('state'))? 'is_invalid' : ''}}"
+                                   type="text"
+                                   placeholder="state"
+                                   name="state" id="state"/>
+                            @error('state')
+                            <span class="invalid-feedback d-block">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="single--input">
                             <label class="required" for="birth_state">{{ __("City of the Birth") }}</label>
 	                        <input value="{{old('birth_state')}}"
 	                               class="{{ !empty($errors->first('birth_state')) ? 'is_invalid' : ''}}" type="text"
@@ -73,6 +123,41 @@
 	                        @error('birth_state')
 	                        <span class="invalid-feedback d-block">{{$message}}</span>
 	                        @enderror
+                        </div>
+                        <div class="input--group">
+                            <div class="single--input country">
+                                <label for="country_id" class="required">{{ __('Country') }}</label>
+                                <select
+                                    class=" @error('country_id') is-invalid @enderror"
+                                    id="country_id" name="country_id">
+                                    <option code="count" value="">Select Country</option>
+                                    @foreach($countries as $country)
+                                        <option
+                                            value="{{$country->id}}"
+                                            code="{{$country->code}}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="single--input country">
+                                <label for="country_of_birthday"
+                                       class="required">{{ __('Birth Country') }}</label>
+                                <select
+                                    class=" @error('country_of_birthday') is-invalid @enderror"
+                                    id="country_of_birthday" name="country_of_birthday">
+                                    <option code="count" value="">Select Country</option>
+                                    @foreach($countries as $country)
+                                        <option
+                                            value="{{$country->name}}"
+                                            code="{{$country->code}}" {{ old('country_of_birthday') == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country_of_birthday')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="single--input">
                             <label class="required" for="country-code">{{ __("Telephone") }}</label>
@@ -126,13 +211,14 @@
                                             @endif value="male">{{ __("Male") }}</option>
                                     <option @if(old('gender') == 'female') selected
                                             @endif value="female">{{ __("Female") }}</option>
+                                    <option @if(old('gender') == 'others') selected
+                                            @endif value="others">{{ __("Others") }}</option>
                                 </select>
 	                            @error('gender')
-	                            <span class="invalid-feedback d-block">{{$message}}</span>
+                                <span class="invalid-feedback d-block">{{$message}}</span>
 	                            @enderror
                             </div>
                         </div>
-
                         <div class="single--input">
                             <label class="required" for="password">{{ __("Password") }}</label>
 	                        <input class="{{ !empty($errors->first('password')) ? 'is_invalid' : ''}}" type="password"
@@ -362,6 +448,7 @@
 <!-- main area ends -->
 @endsection
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/intlTelInput.min.js"></script>
 	<script>
         $(document).ready(function () {
@@ -370,7 +457,7 @@
             if (input) {
                 let iti = window.intlTelInput(input, {
                     separateDialCode: true,
-                    initialCountry: iso ? iso : "bd",
+                    initialCountry: iso ? iso : "{{$isoCode}}",
                     // utilsScript: "/intl-tel-input/js/utils.js?1716383386062",
                 });
                 input.addEventListener("countrychange", function (item) {
@@ -395,5 +482,25 @@
             })
         })
 	</script>
+    <script>
+        $(document).ready(function () {
+            function formatState(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                if (state.element.getAttribute('code') === 'count') {
+                    return state.text;
+                }
+                return $('<span class="country-text"><img width="20" style="margin-right: 10px" src="https://flagcdn.com/48x36/' + state.element.getAttribute('code').toLowerCase() + '.png" class="img-flag"  alt=""/>' + state.text + '</span>')
+            }
+
+            $('#country_id').select2({
+                templateResult: formatState
+            });
+            $('#country_of_birthday').select2({
+                templateResult: formatState
+            });
+        });
+    </script>
 @endpush
 

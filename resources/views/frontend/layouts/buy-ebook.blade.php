@@ -102,7 +102,7 @@
                                 </form>
 
                                 <form
-                                        action="{{!empty(Auth::user()) ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
+                                    action="{{Auth::check() ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
                                         method="GET">
                                     <input type="hidden" name="quantity" class="quantity" value="1">
                                     <button type="submit"

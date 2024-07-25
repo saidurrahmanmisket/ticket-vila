@@ -17,6 +17,7 @@
         "cerbero/laravel-enum": "^1.3",
         "drewm/mailchimp-api": "^2.5",
         "guzzlehttp/guzzle": "^7.2",
+        "io238/laravel-iso-countries": "^1.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.15",

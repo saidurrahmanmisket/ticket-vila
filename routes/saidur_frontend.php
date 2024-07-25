@@ -48,7 +48,7 @@ Route::controller(OTPVerificationController::class)->middleware('auth')->group(f
 });
 
 //-----user dashboard route start from here =====================================------by: saidur
-Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(function () {
+Route::middleware(['auth', 'auth.verify', 'user.route', 'profile.completed'])->name('user.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/buy-tickets', [DashboardController::class, 'buyTickets'])->name('buy-tickets');
@@ -86,14 +86,6 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
         return view('user.layouts.payment_success');
     })->name('payment.success.message');
 
-    //Profile routes
-    Route::controller(SettingsController::class)->group(function () {
-        Route::get('/user/settings', 'index')->name('settings');
-        Route::patch('user/settings/personal-info/update', 'infoUpdate')->name('settings.personal-info.update');
-        Route::patch('user/settings/password/update', 'passwordUpdate')->name('settings.password.update');
-        // Route::patch('/user/change','updatePassword')->name('user.profile.change');
-    });
-
     //invoice download
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
@@ -101,5 +93,11 @@ Route::middleware(['auth', 'auth.verify', 'user.route'])->name('user.')->group(f
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
 });
-
+//Profile routes
+Route::controller(SettingsController::class)->name('user.')->middleware(['auth', 'auth.verify', 'user.route'])->group(function () {
+    Route::get('/user/settings', 'index')->name('settings');
+    Route::patch('user/settings/personal-info/update', 'infoUpdate')->name('settings.personal-info.update');
+    Route::patch('user/settings/password/update', 'passwordUpdate')->name('settings.password.update');
+    // Route::patch('/user/change','updatePassword')->name('user.profile.change');
+});
 //-----user dashboard route end  here ===========================================------by: saidur
