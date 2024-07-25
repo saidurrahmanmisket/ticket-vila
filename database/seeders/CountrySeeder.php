@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use Illuminate\Database\Seeder;
+use Io238\ISOCountries\Models\Country as ISOCountry;
 
 class CountrySeeder extends Seeder
 {
@@ -11,6 +13,16 @@ class CountrySeeder extends Seeder
      */
     public function run(): void
     {
-        //        $countries = Country
+
+        foreach (ISOCountry::all()->toArray() as $country) {
+            Country::create([
+                'name' => $country['name']['en'],
+                'code' => $country['id'],
+                'calling_code' => '+'.$country['calling_code'],
+                'region' => $country['region'],
+                'subregion' => $country['subregion'],
+                'alpha3' => $country['alpha3'],
+            ]);
+        }
     }
 }

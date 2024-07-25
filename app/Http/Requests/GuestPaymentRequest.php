@@ -39,9 +39,12 @@ class GuestPaymentRequest extends FormRequest
             'phone' => 'required|phone',
             'email' => 'required|email',
             'address' => 'required|string',
-            'zip' => 'required|integer|min:4',
-            'gender' => 'required|string|in:male,female',
+            'state' => 'required|string|max:100',
+            'zip' => 'required|string|max:20|min:4',
+            'gender' => 'required|string|in:male,female,others',
+            'country_id' => 'required|exists:countries,id',
             'password' => 'required|string|min:8|confirmed',
+            'country_of_birthday' => 'required|string|max:100',
             'terms' => 'accepted',
         ];
 

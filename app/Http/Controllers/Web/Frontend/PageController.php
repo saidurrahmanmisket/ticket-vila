@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\Campaign;
 use App\Models\CMS;
+use App\Models\Country;
 use App\Models\DynamicPage;
 use App\Models\EbookDescription;
 use App\Models\FAQ;
@@ -225,8 +226,10 @@ class PageController extends Controller
             return redirect()->back();
         }
         $totalPrice = $campaign->price * $quantity;
+        $countries = Country::all();
+        $isoCode = $location = geoip(request()->ip())->iso_code;
 
-        return view('frontend.layouts.checkout', compact('campaign', 'quantity', 'totalPrice', 'cart'));
+        return view('frontend.layouts.checkout', compact('campaign', 'quantity', 'totalPrice', 'cart', 'countries', 'isoCode'));
     }
 
     public function buyEbook()

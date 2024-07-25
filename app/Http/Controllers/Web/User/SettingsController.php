@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\User;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\Country;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,29 +28,37 @@ class SettingsController extends Controller
             $userOrder = null;
         }
 
-        return view('user.layouts.settings', compact('userOrder'));
+        $countries = Country::all();
+
+        $isoCode = $location = geoip(request()->ip())->iso_code;
+
+        return view('user.layouts.settings', compact('userOrder', 'countries', 'isoCode'));
     }
 
     public function infoUpdate(Request $request)
     {
+        $request['phone'] = '+'.$request['phone_code'].$request['phone'];
         $input = $request->validate([
             'first_name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
-            'email' => 'required|string|email|max:100|unique:users,email,'.Auth::user()->id,
-            'zip_code' => 'nullable|string|max:20',
-            'gender' => 'required|in:1,2,3',
-            'address_1' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:100',
-            'city_of_birthday' => 'nullable|string|max:100',
-            'country_of_birthday' => 'nullable|string|max:100',
-            'state' => 'nullable|string|max:100',
+            'zip_code' => 'required|string|max:20|min:4',
+            'gender' => 'required|in:male,female,others',
+            'address_1' => 'required|string|max:255',
+            'city' => 'required|string|max:100',
+            'city_of_birthday' => 'required|string|max:100',
+            'country_id' => 'required|exists:countries,id',
+            'country_of_birthday' => 'required|string|max:100',
+            'state' => 'required|string|max:100',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'birthday' => 'nullable|date',
-            'phone' => 'nullable|max:25',
+            'birthday' => 'required|date',
+            'phone' => 'required|phone|max:25',
         ],
             [
                 'avatar.max' => 'Max file size 2 MB',
+                'phone.phone' => 'Please enter a valid phone number.',
             ]);
+
+        //        dd($request->all());
         try {
 
             $file = $request->file('avatar');
@@ -66,7 +75,6 @@ class SettingsController extends Controller
             Auth::user()->update([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'email' => $request->email,
                 'zip_code' => $request->zip_code,
                 'gender' => $request->gender,
                 'address_1' => $request->address_1,
@@ -76,6 +84,7 @@ class SettingsController extends Controller
                 'phone' => $request->phone,
                 'city' => $request->city,
                 'state' => $request->state,
+                'country_id' => $request->country_id,
                 'avatar' => $avatar,
             ]);
 

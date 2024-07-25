@@ -5,7 +5,66 @@
 @section('header_title')
     {{ __('Settings') }}
 @endsection;
+@push('style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/css/intlTelInput.css"/>
+    <style>
+        .input--group .iti__selected-country-primary {
+            padding-left: 20px;
+        }
 
+        input#country-code {
+            width: 100%;
+        }
+
+        .input--group .iti.iti--allow-dropdown.iti--show-flags.iti--inline-dropdown {
+            width: 100%;
+        }
+
+        .required:after {
+            content: "*";
+            position: relative;
+            font-size: inherit;
+            color: rgba(var(--bs-danger-rgb)) !important;
+            padding-left: 0.15rem;
+            font-weight: 600;
+        }
+    </style>
+    <style>
+        .country .nice-select {
+            display: none;
+        }
+
+        .select2-selection.select2-selection--single {
+            height: 52px;
+            border: 1px solid #e2e2e2;
+            border-radius: 10px;
+            font-size: 16px;
+            padding: 0 12px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 50px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 13px;
+            right: 13px;
+            width: 20px
+        }
+
+        .select2-dropdown, .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #e2e2e2
+        }
+
+        .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable .country-text {
+            color: #ffffff;
+        }
+    </style>
+@endpush
 @section('content')
 
     <!-- start app content area  -->
@@ -91,7 +150,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input--group">
-                                            <label for="fname">{{ __('First Name') }} <span class="text-danger">*</span> </label>
+                                            <label for="fname" class="required">{{ __('First Name') }}</label>
                                             <input class="form-control @error('first_name') is-invalid @enderror" id="fname" name="first_name" type="text" value="{{ old('first_name', Auth::user()->first_name ?? '') }}" />
                                             @error('first_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -99,27 +158,52 @@
                                         </div>
 
                                         <div class="input--group">
-                                            <label for="lname">{{ __('Last Name') }}<span class="text-danger">*</span></label>
+                                            <label for="lname" class="required">{{ __('Last Name') }}</label>
                                             <input class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="lname" type="text" value="{{ old('last_name', Auth::user()->last_name ?? '') }}" />
                                             @error('last_name')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
                                         <div class="input--group">
-                                            <label for="email">{{ __('Email Address') }}<span class="text-danger">*</span></label>
-                                            <input class="form-control @error('email') is-invalid @enderror" name="email" id="email" type="email" value="{{ old('email', Auth::user()->email ?? '') }}" />
-                                            @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="input--group">
-                                            <label for="address">{{ __('Address') }}</label>
-                                            <input class="form-control @error('address_1') is-invalid @enderror" name="address_1" id="address" type="text" value="{{ old('address_1', Auth::user()->address_1 ?? '') }}" />
+                                            <label for="address" class="required">{{ __('Address') }}</label>
+                                            <input class="form-control @error('address_1') is-invalid @enderror"
+                                                   name="address_1" id="address" type="text"
+                                                   value="{{ old('address_1', Auth::user()->address_1 ?? '') }}"/>
                                             @error('address_1')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="email"
+                                                           class="required">{{ __('Email Address') }}</label>
+                                                    <input readonly
+                                                           class="form-control @error('email') is-invalid @enderror"
+                                                           name="email" id="email" type="email"
+                                                           value="{{ old('email', Auth::user()->email ?? '') }}"/>
+                                                    @error('email')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input--group">
+                                                    <label for="gender" class="required">{{ __('Gender') }}</label>
+                                                    <select class="form-control @error('gender') is-invalid @enderror"
+                                                            id="gender" name="gender">
+                                                        <option
+                                                            value="male" {{ old('gender', Auth::user()->gender) == 'male' ? 'selected' : '' }}>{{ __('Male') }}</option>
+                                                        <option
+                                                            value="female" {{ old('gender', Auth::user()->gender) == 'female' ? 'selected' : '' }}>{{ __('Female') }}</option>
+                                                        <option
+                                                            value="others" {{ old('gender', Auth::user()->gender) == 'others' ? 'selected' : '' }}>{{ __('Others') }}</option>
+                                                    </select>
+                                                </div>
+                                                @error('gender')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
@@ -127,7 +211,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="city">{{ __('City') }}</label>
+                                                    <label for="city" class="required">{{ __('City') }}</label>
                                                     <input class="form-control @error('city') is-invalid @enderror" name="city" id="city" type="text" value="{{ old('city', Auth::user()->city ?? '') }}" />
                                                     @error('city')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -136,7 +220,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="state">{{ __('State') }}</label>
+                                                    <label for="state" class="required">{{ __('State') }}</label>
                                                     <input class="form-control @error('state') is-invalid @enderror" name="state" id="state" type="text" value="{{ old('state', Auth::user()->state ?? '') }}" />
                                                     @error('state')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -146,23 +230,30 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="input--group">
-                                                    <label for="zip">{{ __('Zip') }}</label>
-                                                    <input class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" id="zip" type="text" value="{{ old('zip_code', Auth::user()->zip_code ?? '') }}" />
-                                                    @error('zip_code')
+                                                <div class="input--group country">
+                                                    <label for="country_id" class="required">{{ __('Country') }}</label>
+                                                    <select
+                                                        class=" @error('country_id') is-invalid @enderror"
+                                                        id="country_id" name="country_id">
+                                                        <option code="count" value="">Select Country</option>
+                                                        @foreach($countries as $country)
+                                                            <option
+                                                                value="{{$country->id}}"
+                                                                code="{{$country->code}}" {{ old('country_id', Auth::user()->country_id) == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('country_id')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="gender">{{ __('Gender') }}</label>
-                                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
-                                                        <option value="1" {{ old('gender', Auth::user()->gender) == 1 ? 'selected' : '' }}>{{ __('Male') }}</option>
-                                                        <option value="2" {{ old('gender', Auth::user()->gender) == 2 ? 'selected' : '' }}>{{ __('Female') }}</option>
-                                                        <option value="3" {{ old('gender', Auth::user()->gender) == 3 ? 'selected' : '' }}>{{ __('Others') }}</option>
-                                                    </select>
-                                                    @error('gender')
+                                                    <label for="zip" class="required">{{ __('Zip') }}</label>
+                                                    <input class="form-control @error('zip_code') is-invalid @enderror"
+                                                           name="zip_code" id="zip" type="text"
+                                                           value="{{ old('zip_code', Auth::user()->zip_code ?? '') }}"/>
+                                                    @error('zip_code')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -171,7 +262,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="city_of_birthday">{{ __('Birth City') }}</label>
+                                                    <label for="city_of_birthday"
+                                                           class="required">{{ __('Birth City') }}</label>
                                                     <input class="form-control @error('city_of_birthday') is-invalid @enderror" name="city_of_birthday" id="city_of_birthday" type="text" value="{{ old('city_of_birthday', Auth::user()->city_of_birthday ?? '') }}" />
                                                     @error('city_of_birthday')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -179,9 +271,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="input--group">
-                                                    <label for="country_of_birthday">{{ __('Birth Country') }}</label>
-                                                    <input class="form-control @error('country_of_birthday') is-invalid @enderror" name="country_of_birthday" id="country_of_birthday" type="text" value="{{ old('country_of_birthday', Auth::user()->country_of_birthday ?? '') }}" />
+                                                <div class="input--group country">
+                                                    <label for="country_of_birthday"
+                                                           class="required">{{ __('Birth Country') }}</label>
+                                                    <select
+                                                        class=" @error('country_of_birthday') is-invalid @enderror"
+                                                        id="country_of_birthday2" name="country_of_birthday">
+                                                        <option code="count" value="">Select Country</option>
+                                                        @foreach($countries as $country)
+                                                            <option
+                                                                value="{{$country->name}}"
+                                                                code="{{$country->code}}" {{ old('country_of_birthday', Auth::user()->country_of_birthday) == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     @error('country_of_birthday')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -191,7 +293,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="birthday">{{ __('Birth Date') }}</label>
+                                                    <label for="birthday"
+                                                           class="required">{{ __('Birth Date') }}</label>
                                                     <input class="form-control @error('birthday') is-invalid @enderror" name="birthday" id="birthday" type="date" value="{{ old('birthday', Auth::user()->birthday ?? '') }}" />
                                                     @error('birthday')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -200,10 +303,17 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input--group">
-                                                    <label for="phone">{{ __('Telephone') }}</label>
-                                                    <input class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" type="text" value="{{ old('phone', Auth::user()->phone ?? '') }}" />
+                                                    <label class="required"
+                                                           for="country-code">{{ __("Telephone") }}</label>
+                                                    <input value="{{old('phone',Auth::user()->phone)}}"
+                                                           class="form-control {{ !empty($errors->first('phone')) ? 'is_invalid' : ''}}"
+                                                           type="tel"
+                                                           id="country-code"
+                                                           name="phone" placeholder="telephone"/>
+                                                    <input type="hidden" name="phone_code" id="phone_code">
+                                                    <input type="hidden" value="{{old('iso')}}" name="iso" id="iso">
                                                     @error('phone')
-                                                    <span class="text-danger">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block">{{$message}}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -322,3 +432,49 @@
     <!-- end app content area  -->
 
 @endsection
+
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.10/build/js/intlTelInput.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const input = document.querySelector("#country-code");
+            const iso = "{{old('iso')}}"
+            if (input) {
+                let iti = window.intlTelInput(input, {
+                    separateDialCode: true,
+                    initialCountry: iso ? iso : "{{$isoCode}}",
+                    // utilsScript: "/intl-tel-input/js/utils.js?1716383386062",
+                });
+                input.addEventListener("countrychange", function (item) {
+                    document.querySelector("#phone_code").value = iti.getSelectedCountryData().dialCode;
+                    document.querySelector("#iso").value = iti.getSelectedCountryData().iso2;
+                });
+                // Set the initial value
+                document.querySelector("#phone_code").value = iti.getSelectedCountryData().dialCode;
+            }
+
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            function formatState(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                if (state.element.getAttribute('code') === 'count') {
+                    return state.text;
+                }
+                return $('<span class="country-text"><img width="20" style="margin-right: 10px" src="https://flagcdn.com/48x36/' + state.element.getAttribute('code').toLowerCase() + '.png" class="img-flag"  alt=""/>' + state.text + '</span>')
+            }
+
+            $('#country_id').select2({
+                templateResult: formatState
+            });
+            $('#country_of_birthday2').select2({
+                templateResult: formatState
+            });
+        });
+    </script>
+@endpush
