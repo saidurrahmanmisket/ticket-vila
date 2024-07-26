@@ -1,6 +1,6 @@
 @extends('frontend.app')
 
-@section('title', 'About')
+@section('title', 'Web shop')
 
 @push('style')
     <style>

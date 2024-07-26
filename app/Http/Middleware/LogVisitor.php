@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Visitor;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class LogVisitor
@@ -24,6 +25,7 @@ class LogVisitor
             Visitor::create([
                 'ip' => $ip,
                 'country' => $country,
+                'user_id' => Auth::id(),
             ]);
         }
 
