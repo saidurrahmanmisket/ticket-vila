@@ -186,6 +186,7 @@ class StripeController extends Controller
                         ->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
                         ->with('free_ticket', $discountQuantity)
+                        ->with('total_price', $order->total_price)
                         ->with('buy_time', $order->created_at);
                 }
             } else {

@@ -92,8 +92,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // for purchase tracking
-            let quantity = {{ session('buy_ticket') ?? 0 }};
-            fbq('track', 'Purchase', {currency: "EUR", value: quantity});
+            let totalPrice = {{ session('total_price') ?? 0 }};
+            fbq('track', 'Purchase', {currency: "EUR", value: totalPrice});
         });
     </script>
 @endpush

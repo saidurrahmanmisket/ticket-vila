@@ -187,6 +187,7 @@ class PaypalController extends Controller
                     return redirect()->route('frontend.payment-success-message')
                         ->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
+                        ->with('total_price', $order->total_price)
                         ->with('free_ticket', $discountQuantity)
                         ->with('buy_time', $order->created_at);
                 }
