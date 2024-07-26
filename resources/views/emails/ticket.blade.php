@@ -59,7 +59,7 @@
         </ul>
         <p>Your eBook is attached to this email.</p>
         <div class="footer">
-            <p>&copy; {{ date('Y') }} Your Company. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Ticket Villa. All rights reserved.</p>
         </div>
     </div>
 </body>
