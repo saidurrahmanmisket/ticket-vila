@@ -65,38 +65,8 @@
       chart1.render();
     }
 
-    // pie chart
-    var pieChart = document.getElementById("pie--chart");
 
-    if (pieChart) {
-      var options = {
-        series: [30, 70],
-        chart: {
-          type: "donut",
-          width: 240,
-          height: 240,
-        },
-        colors: ["#FFAC45", "#04BAFF"],
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200,
-              },
-              legend: {
-                position: "bottom",
-              },
-            },
-          },
-        ],
-      };
-
-      var chart2 = new ApexCharts(pieChart, options);
-      chart2.render();
-    }
-
-    // handle locations
+      // handle locations
     function handleLocations() {
       var locations = document.querySelectorAll(".location");
 
