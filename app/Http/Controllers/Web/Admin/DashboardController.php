@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Models\Visitor;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -54,7 +55,14 @@ class DashboardController extends Controller
             $todayProgress = 0;
         }
 
-        return view('admin.layouts.dashboard', compact('usersInfo', 'revenueInfo', 'ticketsSoldToday', 'todayProgress'));
+        $countryVisits = Visitor::select('country', \DB::raw('count(*) as total'))->groupBy('country')->get()->map(function (Visitor $visitor) {
+            return [$visitor->country, $visitor->total];
+        })->toArray();
+
+        $loginVisitors = Visitor::whereNotNull('user_id')->count();
+        $guestVisitors = Visitor::whereNull('user_id')->count();
+
+        return view('admin.layouts.dashboard', compact('usersInfo', 'revenueInfo', 'ticketsSoldToday', 'todayProgress', 'countryVisits', 'loginVisitors', 'guestVisitors'));
 
     }
 }

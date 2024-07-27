@@ -49,137 +49,16 @@
                 <div class="country--details box--common mt_35">
                     <!-- top title  -->
                     <div class="top--title">
-                        <h3>Top Country Visits</h3>
-                        <select id="map-select">
-                            <option value="1" selected>Top Country Visits</option>
-                            <option value="2">Top Country's Income</option>
-                            <option value="3">Total Affiliates Sales</option>
-                        </select>
+                        <h3>Country Visits</h3>
+                        {{--                        <select id="map-select">--}}
+                        {{--                            <option value="1" selected>Top Country Visits</option>--}}
+                        {{--                            <option value="2">Top Country's Income</option>--}}
+                        {{--                            <option value="3">Total Affiliates Sales</option>--}}
+                        {{--                        </select>--}}
                     </div>
                     <!-- map area  -->
-                    <div class="map--area w-100 h-auto">
-                        <!-- map  -->
-                        <div class="map ">
-                            <img class="img-fluid h-auto" src="{{ asset('admin/images/Earth.svg') }}" alt="" />
-                        </div>
-                        <div class="locations">
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('/admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('/admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <!-- single location  -->
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt="" />
-                                    <div>
-                                        <h4>Germany</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                            <div class="location">
-                                <!-- location--box  -->
-                                <div class="location--box">
-                                    <img src="{{ asset('admin/images/germany.png') }}" alt=""/>
-                                    <div>
-                                        <h4>Bangladesh</h4>
-                                        <p>55.346 Visits</p>
-                                    </div>
-                                </div>
-                                <!-- pointer  -->
-                                <div class="pointer"></div>
-                            </div>
-                        </div>
+                    <div class="map--area w-100 h-auto" id="regions_div">
+
                     </div>
                 </div>
             </div>
@@ -191,15 +70,20 @@
                         <!-- total--visit  -->
                         <div class="total--visit">
                             <p>Total Site Visit</p>
-                            <h5>21.034</h5>
+                            <h5>{{formatNumber($loginVisitors+$guestVisitors)}}</h5>
                         </div>
+                        @php
+                            $totalVisitors = $loginVisitors + $guestVisitors;
+                            $loginPercent = ($loginVisitors / $totalVisitors) * 100;
+                            $guestPercent = ($guestVisitors / $totalVisitors) * 100;
+                        @endphp
                         <ul class="visit--traffic">
-                            <li>Male (70%)</li>
-                            <li>Female (30%)</li>
+                            <li>Login ({{number_format($loginPercent,2)}}%)</li>
+                            <li>Guest ({{number_format($guestPercent,2)}}%)</li>
                         </ul>
                     </div>
                     <div class="pie--chart--wrap">
-                        <div id="pie--chart"></div>
+                        <div id="pie--chart--visitors"></div>
                     </div>
                 </div>
                 <!-- Affiliates  -->
@@ -265,7 +149,7 @@
                                                 y2="8.92"
                                                 gradientUnits="userSpaceOnUse"
                                             >
-                                                <stop stop-color="#E8880F" />
+                                                <stop stop-color="#E8880F" offset=""/>
                                                 <stop offset="1" stop-color="#FFCF7E" />
                                             </linearGradient>
                                             <linearGradient
@@ -588,5 +472,83 @@
     </div>
     </section>
 @endsection
+
+
+@push('script')
+
+    {{--    counry visitors geo chart--}}
+    <script
+        type="text/javascript"
+        src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ["geochart"],
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+            let countryVisits = @json($countryVisits);
+            countryVisits.unshift(["Country", "Visitors"])
+            var data = google.visualization.arrayToDataTable(countryVisits);
+
+            var options = {
+                colorAxis: {colors: ["#e7711c", "#4374e0"]},
+            };
+
+            var chart = new google.visualization.GeoChart(
+                document.getElementById("regions_div")
+            );
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+    {{--    visitor pie chart--}}
+    <script>
+        // pie chart
+        var pieChart = document.getElementById("pie--chart--visitors");
+        var loginVisitors = Number.parseInt("{{$loginVisitors}}")
+        var guestVisitors = Number.parseInt("{{$guestVisitors}}")
+        var totalVisitors = loginVisitors + guestVisitors
+        var loginPercent = (loginVisitors / totalVisitors
+            ) *
+            100;
+        var guestPercent = (guestVisitors / totalVisitors
+            ) *
+            100;
+
+        console.log(guestPercent)
+        if (pieChart) {
+            var options = {
+                labels: ['Guest', 'Login'],
+                series: [Number.parseFloat(guestPercent.toFixed(2)), Number.parseFloat(loginPercent.toFixed(2))],
+                chart: {
+                    type: "donut",
+                    width: 240,
+                    height: 240,
+                },
+                colors: ["#FFAC45", "#04BAFF"],
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200,
+                            },
+                            legend: {
+                                position: "bottom",
+                            },
+                        },
+                    },
+                ],
+            };
+
+            var chart2 = new ApexCharts(pieChart, options);
+            chart2.render();
+        }
+    </script>
+@endpush
 
 
