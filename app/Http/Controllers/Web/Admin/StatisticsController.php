@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
+use App\Models\Country;
 use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Models\Visitor;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $payment_count = Order::where('payment_status', Status::COMPLETED)->count();
         $total_users_count = User::where('role', 'user')->count();
@@ -54,6 +58,89 @@ class StatisticsController extends Controller
             $todayProgress = 0;
         }
 
-        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress', 'ticketsSoldToday'));
+        //salesData
+        $salesData = $this->getOrderData();
+
+        if ($request->ajax()) {
+            $salesData = $this->getOrderData($request->slesDateRange);
+
+            return response()->json([
+                'salesData' => $salesData,
+            ]);
+        }
+
+        //today login user count
+        $todayLoginUsersCount = User::whereDate('last_login_at', Carbon::today())->count();
+        //sitevisits
+        $totalSiteVisits = Visitor::count();
+
+        //top country visits count
+        $topCountryVisits = Visitor::select('country', DB::raw('count(*) as total'))
+            ->groupBy('country')
+            ->orderByDesc('total')
+            ->first();
+        $topCountryCode = Country::where('name', $topCountryVisits?->country)->first()?->code;
+        $topTenCountryVisits = Visitor::select('country', 'code', DB::raw('count(*) as total'))->groupBy('country', 'code')->orderByDesc('total')->take(10)->get();
+        $topCountryIncomes = DB::table('orders')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->join('countries', 'users.country_id', '=', 'countries.id')
+            ->select('countries.name as country', 'countries.code as code', DB::raw('SUM(orders.total_price) as total_income'))
+            ->groupBy('countries.name')
+            ->orderByDesc('total_income')
+            ->take(10)
+            ->get();
+        $analyticsData = [
+            'todayLoginUsersCount' => $todayLoginUsersCount,
+            'totalSiteVisits' => $totalSiteVisits,
+            'topCountryVisits' => [
+                'code' => strtolower($topCountryCode),
+                'name' => $topCountryVisits?->country,
+                'visits' => $topCountryVisits?->total,
+            ],
+            'topTenCountryVisits' => $topTenCountryVisits,
+            'topCountryIncomes' => $topCountryIncomes,
+        ];
+
+        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress', 'ticketsSoldToday', 'salesData', 'analyticsData'));
+    }
+
+    public function getOrderData($range = 'last_week')
+    {
+        $query = Order::query();
+        $dateFormat = 'Y-m-d';
+
+        switch ($range) {
+            case 'last_week':
+                $query->where('created_at', '>=', Carbon::now()->subWeek());
+                break;
+
+            case 'last_month':
+                $query->where('created_at', '>=', Carbon::now()->subMonth());
+                break;
+
+            case 'last_year':
+                $query->where('created_at', '>=', Carbon::now()->subYear());
+                break;
+            default:
+
+                break;
+        }
+
+        if (in_array($range, ['last_week', 'last_month', 'last_year', 'since_start', 'day'])) {
+            $orders = $query->selectRaw('DATE(created_at) as date, SUM(total_price) as total')
+                ->groupBy('date')
+                ->orderBy('date', 'asc')
+                ->get();
+        } else {
+            $orders = $query->get();
+        }
+
+        // Format the data for ApexCharts
+        return $orders->map(function ($order) use ($dateFormat) {
+            return [
+                'x' => Carbon::parse($order->date)->format($dateFormat),
+                'y' => $order->total,
+            ];
+        });
     }
 }

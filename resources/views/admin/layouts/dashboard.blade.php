@@ -34,15 +34,15 @@
                     <!-- title  -->
                     <div class="top--title">
                         <h3>Sales Analytics</h3>
-                        <select>
-                            <option value="1" selected>Day</option>
-                            <option value="2">Week</option>
-                            <option value="3">Month</option>
-                            <option value="4">Since Start</option>
+                        <select id="sale--analytic-select">
+                            <option value="last_week">Last Week</option>
+                            <option value="last_month">Last Month</option>
+                            <option value="last_year">Last Year</option>
+                            <option value="since_start">Since Start</option>
                         </select>
                     </div>
                     <div class="chart">
-                        <div id="sales--chart"></div>
+                        <div id="sales--chart-statistics"></div>
                     </div>
                 </div>
                 <!-- country details  -->
@@ -548,6 +548,105 @@
             var chart2 = new ApexCharts(pieChart, options);
             chart2.render();
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            function formatYLabel(value) {
+                if (value >= 1e15) {
+                    return (value / 1e15).toFixed(1) + 'Q';
+                } else if (value >= 1e12) {
+                    return (value / 1e12).toFixed(1) + 'T';
+                } else if (value >= 1e9) {
+                    return (value / 1e9).toFixed(1) + 'B';
+                } else if (value >= 1e6) {
+                    return (value / 1e6).toFixed(1) + 'M';
+                } else if (value >= 1e3) {
+                    return (value / 1e3).toFixed(1) + 'K';
+                }
+                return value.toFixed(2);
+            }
+
+
+            var SalesChart = document.getElementById("sales--chart-statistics");
+            if (SalesChart) {
+                var salesData = @json($salesData);
+                var options = {
+                    series: [
+                        {
+                            name: "Sales",
+                            data: salesData,
+                        },
+                    ],
+                    chart: {
+                        height: 350,
+                        type: "area",
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    stroke: {
+                        curve: "smooth", // Smooth line
+                        width: 2,
+                    },
+                    markers: {
+                        size: 0,
+                        hover: {
+                            size: 6,
+                        },
+                    },
+                    fill: {
+                        type: "gradient",
+                        gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.6,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100],
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function (value) {
+                                return formatYLabel(value);
+                            }
+                        }
+                    },
+                    xaxis: {
+                        type: "datetime",
+                        // labels: {
+                        //     format: "MMM", // Display month name on x-axis
+                        // },
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (value) {
+                                return '€' + formatYLabel(value);
+                            }
+                        }
+                    },
+                };
+
+                var chart1 = new ApexCharts(SalesChart, options);
+                chart1.render();
+
+
+                $("#sale--analytic-select").on('change', function () {
+                    const range = $('#sale--analytic-select').val();
+                    $.ajax({
+                        url: "{{route('admin.statistics.index')}}" + "?slesDateRange=" + range,
+                        method: 'GET',
+                        success: function (response) {
+                            chart1.updateSeries([{
+                                name: 'Sales',
+                                data: response.salesData
+                            }])
+                        },
+                        error: function (error) {
+                            console.error('Error fetching order data:', error);
+                        }
+                    });
+                })
+            }
+        })
     </script>
 @endpush
 

@@ -26,6 +26,7 @@ class LogVisitor
                 'ip' => $ip,
                 'country' => $country,
                 'user_id' => Auth::id(),
+                'code' => $location->iso_code,
             ]);
         } elseif (Auth::check()) {
             $visitorExist->update(['user_id' => Auth::id()]);
