@@ -18,7 +18,7 @@ class LogVisitor
     public function handle(Request $request, Closure $next): Response
     {
         $ip = $request->ip();
-        $visitorExist = Visitor::where('ip', $ip)->whereDate('created_at', today())->exists();
+        $visitorExist = Visitor::where('ip', $ip)->whereDate('created_at', today())->first();
         if (! $visitorExist) {
             $location = geoip($ip);
             $country = $location->country;
@@ -27,6 +27,8 @@ class LogVisitor
                 'country' => $country,
                 'user_id' => Auth::id(),
             ]);
+        } elseif (Auth::check()) {
+            $visitorExist->update(['user_id' => Auth::id()]);
         }
 
         return $next($request);
