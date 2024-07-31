@@ -17,6 +17,10 @@ class NewsController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('news menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $news = News::paginate();
 
         return view('admin.layouts.news.index', compact('news'));
@@ -27,6 +31,11 @@ class NewsController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('news create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.news.create');
     }
 
@@ -35,6 +44,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('news create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the request data
         $request->validate([
             'title_en' => 'required|string|max:255',
@@ -77,18 +90,14 @@ class NewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('news edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $news = News::findOrFail($id);
 
         return view('admin.layouts.news.edit', compact('news'));
@@ -99,6 +108,10 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
+        //permission check
+        if (! has_permission('news edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the request data
         $request->validate([
             'title_en' => 'required|string|max:255',
@@ -146,6 +159,10 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
+        //permission check
+        if (! has_permission('news delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         Helper::deleteFile(public_path($news->image));
         $news->delete();
 
@@ -156,6 +173,13 @@ class NewsController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('news status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         $news = News::findOrFail($id);
         if ($news->status == Status::ACTIVE) {
             $news->status = Status::INACTIVE;

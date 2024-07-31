@@ -11,11 +11,20 @@ class ConfigurationSettingController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('configuration settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.configuration-setting.index');
     }
 
     public function mailSettingUpdate(Request $request)
     {
+        //permission check
+        if (! has_permission('configuration settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'mail_mailer' => 'required|string',
             'mail_host' => 'required|string',
@@ -58,6 +67,10 @@ class ConfigurationSettingController extends Controller
 
     public function paymentConfigurationUpdate(Request $request)
     {
+        //permission check
+        if (! has_permission('configuration settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'STRIPE_PK' => ['required', 'string', new HasSpaceToAddComma()],
             'STRIPE_SK' => ['required', 'string', new HasSpaceToAddComma()],
@@ -103,6 +116,10 @@ class ConfigurationSettingController extends Controller
 
     public function googleLoginConfig(Request $request)
     {
+        //permission check
+        if (! has_permission('configuration settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'google_client_id' => ['required', 'string', new HasSpaceToAddComma()],
             'google_client_secret' => ['required', 'string', new HasSpaceToAddComma()],
@@ -133,6 +150,10 @@ class ConfigurationSettingController extends Controller
 
     public function mailchimpConfig(Request $request)
     {
+        //permission check
+        if (! has_permission('configuration settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'news_latter_api_key' => ['required', 'string', new HasSpaceToAddComma()],
             'news_latter_list_id' => ['required', 'string', new HasSpaceToAddComma()],

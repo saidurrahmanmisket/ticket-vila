@@ -15,6 +15,9 @@ class AboutPageController extends Controller
 {
     public function index()
     {
+        if (! has_permission('cms menu')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $the_mission = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_MISSION)->first();
         $the_transparency = CMS::where('page', Page::ABOUT_US)->where('section_name', Section::THE_TRANSPARENCY)->first();
 
@@ -23,6 +26,9 @@ class AboutPageController extends Controller
 
     public function theMission(Request $request)
     {
+        if (! has_permission('cms edit')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'title_en' => 'required|string',
             'title_de' => 'required|string',
@@ -66,6 +72,9 @@ class AboutPageController extends Controller
 
     public function theTransparency(Request $request)
     {
+        if (! has_permission('cms edit')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             't_title_en' => 'required|string',
             't_title_de' => 'required|string',

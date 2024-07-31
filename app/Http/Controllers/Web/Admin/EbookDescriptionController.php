@@ -18,6 +18,10 @@ class EbookDescriptionController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('cms menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $ebookDescription = EbookDescription::with('campaign')->paginate();
 
         return view('admin.layouts.cms.ebook-description.index', compact('ebookDescription'));
@@ -28,6 +32,10 @@ class EbookDescriptionController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('cms create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $campaigns = Campaign::where('status', Status::PUBLISHED)->get();
 
         return view('admin.layouts.cms.ebook-description.create', compact('campaigns'));
@@ -38,6 +46,10 @@ class EbookDescriptionController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('cms create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'campaign' => 'required',
@@ -73,18 +85,14 @@ class EbookDescriptionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             // Fetch the EbookDescription by id
             $ebookDescription = EbookDescription::findOrFail($id);
@@ -103,6 +111,10 @@ class EbookDescriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'description_en' => 'required|string',
@@ -144,6 +156,10 @@ class EbookDescriptionController extends Controller
      */
     public function destroy($id)
     {
+        //permission check
+        if (! has_permission('cms delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             // Find the EbookDescription by id
             $ebookDescription = EbookDescription::findOrFail($id);
@@ -161,6 +177,13 @@ class EbookDescriptionController extends Controller
 
     public function status(Request $request, $id)
     {
+        //permission check
+        if (! has_permission('cms status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
             $ebookDescription = EbookDescription::findOrFail($id);
 

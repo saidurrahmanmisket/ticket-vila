@@ -10,6 +10,10 @@ class UserController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('user menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $users = User::latest()->withCount(['tickets'])->paginate(20);
 
         return view('admin.layouts.users.index', compact('users'));
@@ -17,6 +21,10 @@ class UserController extends Controller
 
     public function show($id)
     {
+        //permission check
+        if (! has_permission('user view')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $user = User::withCount('tickets')->findOrFail($id);
         $orders = Order::where('user_id', $user->id)->with(['campaign', 'user'])->paginate(10);
         $totalSpent = Order::where('user_id', $user->id)->where('payment_status', 'completed')->sum('total_price');

@@ -20,6 +20,10 @@ class RaffleRulesController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('cms menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $raffleRules = RaffleRules::orderBy('sort_id', 'asc')->paginate(20);
         $the_transparency = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::THE_TRANSPARENCY)->where('status', Status::ACTIVE)->first();
 
@@ -31,6 +35,11 @@ class RaffleRulesController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('cms create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.cms.pages.raffle-rules.create');
     }
 
@@ -39,6 +48,10 @@ class RaffleRulesController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('cms create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'title_en' => 'required|string',
             'title_de' => 'required|string',
@@ -77,6 +90,10 @@ class RaffleRulesController extends Controller
 
     public function status(string $id)
     {
+        //permission check
+        if (! has_permission('cms status')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $raffleRules = RaffleRules::findOrFail($id);
         if ($raffleRules->status == Status::ACTIVE) {
             $raffleRules->status = Status::INACTIVE;
@@ -94,6 +111,10 @@ class RaffleRulesController extends Controller
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $raffleRule = RaffleRules::findOrFail($id);
 
         return view('admin.layouts.cms.pages.raffle-rules.edit', compact('raffleRule'));
@@ -104,6 +125,10 @@ class RaffleRulesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'title_en' => 'required|string',
             'title_de' => 'required|string',
@@ -142,6 +167,10 @@ class RaffleRulesController extends Controller
      */
     public function destroy(string $id)
     {
+        //permission check
+        if (! has_permission('cms delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $raffle_rule = RaffleRules::findOrFail($id);
         Helper::deleteFile(public_path($raffle_rule->image));
         $raffle_rule->delete();
@@ -152,7 +181,10 @@ class RaffleRulesController extends Controller
 
     public function orderUpdate(Request $request)
     {
-
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         if ($request->has('ids')) {
             $arr = explode(',', $request->input('ids'));
 
@@ -169,6 +201,10 @@ class RaffleRulesController extends Controller
 
     public function theTransparency(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             't_title_en' => 'required|string',
             't_title_de' => 'required|string',

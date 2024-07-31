@@ -19,6 +19,10 @@ class CampaignController extends Controller
      */
     public function index()
     {
+        //check permission
+        if (! has_permission('campaign menu')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $campaigns = Campaign::paginate(20);
 
         return view('admin.layouts.campaign.index', compact('campaigns'));
@@ -29,6 +33,9 @@ class CampaignController extends Controller
      */
     public function create()
     {
+        if (! has_permission('campaign create')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::where('status', 'active')->get();
 
         return view('admin.layouts.campaign.create', compact('gifts'));
@@ -39,6 +46,9 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
+        if (! has_permission('campaign create')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'name_en' => 'required|string',
             'name_de' => 'required|string',
@@ -125,6 +135,9 @@ class CampaignController extends Controller
      */
     public function edit(string $id)
     {
+        if (! has_permission('campaign edit')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $campaign = Campaign::with(['ebooks'])->findOrFail($id);
         $gifts = Gift::where('status', 'active')->get();
 
@@ -136,6 +149,9 @@ class CampaignController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (! has_permission('campaign edit')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'name_en' => 'required|string',
             'name_de' => 'required|string',
@@ -218,6 +234,9 @@ class CampaignController extends Controller
      */
     public function destroy(string $id)
     {
+        if (! has_permission('campaign delete')) {
+            abort(403, 'Permission denied: You do not have permission access this page');
+        }
         try {
             $campaign = Campaign::with(['ebooks'])->findOrFail($id);
 
@@ -245,7 +264,12 @@ class CampaignController extends Controller
 
     public function destroyEbook($id)
     {
-
+        if (! has_permission('campaign edit')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         $ebook = Ebook::findOrFail($id);
         $campaign = Campaign::withCount(['ebooks'])->findOrFail($ebook->campaign_id);
         if ($campaign->ebooks_count <= 1) {
@@ -267,6 +291,13 @@ class CampaignController extends Controller
 
     public function status(Request $request, $id)
     {
+        //permission check
+        if (! has_permission('campaign status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
             if ($request->status === Status::PUBLISHED) {
                 $campaign_count = Campaign::where('status', Status::PUBLISHED)->where('id', '!=', $id)->count();

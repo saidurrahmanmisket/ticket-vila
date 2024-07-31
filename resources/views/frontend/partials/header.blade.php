@@ -246,7 +246,16 @@
                     </div>
                 </div>
                 @if (Auth::user())
-                    <a href="{{ route('user.dashboard') }}" class="profile btn--fill"
+                        <a href="{{ auth()->user()->role == 'admin' ? (has_any_permission(['dashboard live statics',
+                                                                                            'dashboard revenue details',
+                                                                                            'dashboard users details',
+                                                                                            'dashboard sales analytics',
+                                                                                            'dashboard sold today',
+                                                                                            'dashboard site visit',
+                                                                                            'dashboard affiliates details',
+                                                                                            'dashboard top country visits',
+                                                                                            'dashboard top affiliates user']) ? route('admin.dashboard') : route('admin.profile.index')) : route('user.dashboard') }}"
+                           class="profile btn--fill"
                        style="background: rgba(1, 12, 15, 0.05);color: black;gap: 6px">
                         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="Frame">

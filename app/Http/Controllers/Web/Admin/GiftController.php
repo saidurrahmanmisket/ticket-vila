@@ -18,6 +18,10 @@ class GiftController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('gift menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::paginate(20);
 
         return view('admin.layouts.gift.index', compact('gifts'));
@@ -28,6 +32,11 @@ class GiftController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('gift create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.gift.create');
     }
 
@@ -36,6 +45,10 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('gift store')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             DB::beginTransaction();
 
@@ -152,14 +165,6 @@ class GiftController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -171,6 +176,10 @@ class GiftController extends Controller
 
     public function update(Request $request, $id)
     {
+        //permission check
+        if (! has_permission('gift edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             // dd($request->all());
             DB::beginTransaction();
@@ -322,6 +331,10 @@ class GiftController extends Controller
      */
     public function destroy(string $id)
     {
+        //permission check
+        if (! has_permission('gift delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gift = Gift::findOrFail($id);
         Helper::deleteFile(public_path($gift->image));
         $gift->delete();
@@ -333,7 +346,10 @@ class GiftController extends Controller
 
     public function deleteGiftGallaryImage(Request $request)
     {
-
+        //permission check
+        if (! has_permission('gift delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $type = $request->gift_image_type;
             $gift_id = $request->gift_id;
@@ -365,7 +381,10 @@ class GiftController extends Controller
 
     public function deleteGifFeatureItem(Request $request)
     {
-
+        //permission check
+        if (! has_permission('gift delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $gift_id = $request->gift_id;
 

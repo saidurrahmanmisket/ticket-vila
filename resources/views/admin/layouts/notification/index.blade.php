@@ -10,10 +10,13 @@
             @if(!empty($unreadNotifications) && $unreadNotifications && $unreadNotifications->count() > 0)
                 <div class="top--title">
                     <h3>You have {{$unreadNotifications->count()}} unread message</h3>
-                    <form action="{{ route('admin.notifications.markAllAsRead') }}" method="POST" class="d-flex align-items-center">
-                        @csrf
-                        <button type="submit" class="button">Mark All as Read</button>
-                    </form>
+                    @can('notification all read')
+                        <form action="{{ route('admin.notifications.markAllAsRead') }}" method="POST"
+                              class="d-flex align-items-center">
+                            @csrf
+                            <button type="submit" class="button">Mark All as Read</button>
+                        </form>
+                    @endcan
                 </div>
             @endif
             <div class="notification--wrapper">
@@ -99,62 +102,62 @@
                                         </div>
                                     </div>
                                     <p class="status text-green">{{ $notification->read_at == null ? "New" : $notification->created_at->format('d-m-Y (h:i )') }}</p>
-                                    <form action="{{ route('admin.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="action--btn">Delete
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="25"
-                                                height="24"
-                                                viewBox="0 0 25 24"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    d="M21.5 5.98047C18.17 5.65047 14.82 5.48047 11.48 5.48047C9.5 5.48047 7.52 5.58047 5.54 5.78047L3.5 5.98047"
-                                                    stroke="#FF5630"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M9 4.97L9.22 3.66C9.38 2.71 9.5 2 11.19 2H13.81C15.5 2 15.63 2.75 15.78 3.67L16 4.97"
-                                                    stroke="#FF5630"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M19.3484 9.13965L18.6984 19.2096C18.5884 20.7796 18.4984 21.9996 15.7084 21.9996H9.28844C6.49844 21.9996 6.40844 20.7796 6.29844 19.2096L5.64844 9.13965"
-                                                    stroke="#FF5630"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M10.8281 16.5H14.1581"
-                                                    stroke="#FF5630"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M10 12.5H15"
-                                                    stroke="#FF5630"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                            </svg>
-                                        </button>
+                                    @can('notification delete')
+                                        <form action="{{ route('admin.notifications.destroy', $notification->id) }}"
+                                              method="POST" class="d-flex align-items-center">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="action--btn">Delete
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="25"
+                                                    height="24"
+                                                    viewBox="0 0 25 24"
+                                                    fill="none"
+                                                >
+                                                    <path
+                                                        d="M21.5 5.98047C18.17 5.65047 14.82 5.48047 11.48 5.48047C9.5 5.48047 7.52 5.58047 5.54 5.78047L3.5 5.98047"
+                                                        stroke="#FF5630"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                    <path
+                                                        d="M9 4.97L9.22 3.66C9.38 2.71 9.5 2 11.19 2H13.81C15.5 2 15.63 2.75 15.78 3.67L16 4.97"
+                                                        stroke="#FF5630"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                    <path
+                                                        d="M19.3484 9.13965L18.6984 19.2096C18.5884 20.7796 18.4984 21.9996 15.7084 21.9996H9.28844C6.49844 21.9996 6.40844 20.7796 6.29844 19.2096L5.64844 9.13965"
+                                                        stroke="#FF5630"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                    <path
+                                                        d="M10.8281 16.5H14.1581"
+                                                        stroke="#FF5630"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                    <path
+                                                        d="M10 12.5H15"
+                                                        stroke="#FF5630"
+                                                        stroke-width="1.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    />
+                                                </svg>
+                                            </button>
 
 
-                                    </form>
-
-
+                                        </form>
+                                    @endcan
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                     <div
@@ -194,6 +197,7 @@
                                     </div>
                                 </div>
                                 <p class="status text-green">{{ $notification->read_at == null ? "New" : $notification->created_at->format('d-m-Y (h:i )') }}</p>
+                                @can('notification delete')
                                 <form action="{{ route('admin.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
                                     @method('DELETE')
                                     @csrf
@@ -245,8 +249,7 @@
 
 
                                 </form>
-
-
+                                @endcan
                             </div>
                         @endforeach
 
@@ -289,6 +292,7 @@
                                     </div>
                                 </div>
                                 <p class="status text-green">{{ $notification->read_at == null ? "New" : $notification->created_at->format('d-m-Y (h:i )') }}</p>
+                                @can('notification delete')
                                 <form action="{{ route('admin.notifications.destroy', $notification->id) }}" method="POST" class="d-flex align-items-center">
                                     @method('DELETE')
                                     @csrf
@@ -340,8 +344,7 @@
 
 
                                 </form>
-
-
+                                @endcan
                             </div>
                         @endforeach
                     </div>

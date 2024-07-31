@@ -18,6 +18,21 @@ class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
+
+        if (! auth()->user()->hasAnyPermission([
+            'statistics live statics',
+            'statistics revenue details',
+            'statistics users details',
+            'statistics sales analytics',
+            'statistics Sold Today',
+            'statistics average details',
+            'statistics top country visits',
+            'statistics top country income',
+            'statistics top affiliates user',
+            'statistics total affiliates sales',
+        ])) {
+            abort(403, 'Permission denied: you don\'t have permission to access this page.');
+        }
         $payment_count = Order::where('payment_status', Status::COMPLETED)->count();
         $total_users_count = User::where('role', 'user')->count();
         $today_users_count = User::whereDate('created_at', Carbon::today())->count();

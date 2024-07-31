@@ -10,6 +10,10 @@ class NotificationController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('notification menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
 
             $today = Carbon::today();
@@ -30,6 +34,10 @@ class NotificationController extends Controller
 
     public function markAllAsRead()
     {
+        //permission check
+        if (! has_permission('notification all read')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
 
             Auth::user()->unreadNotifications->markAsRead();
@@ -45,6 +53,10 @@ class NotificationController extends Controller
 
     public function destroy($id)
     {
+        //permission check
+        if (! has_permission('notification delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
 
             $notification = Auth::user()->notifications()->find($id);

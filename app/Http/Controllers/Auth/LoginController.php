@@ -35,7 +35,22 @@ class LoginController extends Controller
             'ip_address' => request()->ip(),
         ]);
         if ($user->role === 'admin') {
-            return '/admin/dashboard';
+            if (has_any_permission([
+                'dashboard live statics',
+                'dashboard revenue details',
+                'dashboard users details',
+                'dashboard sales analytics',
+                'dashboard sold today',
+                'dashboard site visit',
+                'dashboard affiliates details',
+                'dashboard top country visits',
+                'dashboard top affiliates user',
+            ])) {
+                return '/admin/dashboard';
+            } else {
+                return '/admin/profile';
+            }
+
         }
 
         return '/dashboard';

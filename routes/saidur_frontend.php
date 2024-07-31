@@ -13,7 +13,6 @@ use App\Http\Controllers\Web\User\SettingsController;
 use App\Http\Controllers\Web\User\StatisticsController;
 use App\Http\Controllers\Web\User\TheHouseController;
 use App\Http\Controllers\Web\User\TicketController;
-use App\Models\Visitor;
 use Illuminate\Support\Facades\Route;
 
 //-----all page route ------by: saidur
@@ -102,19 +101,3 @@ Route::controller(SettingsController::class)->name('user.')->middleware(['auth',
     // Route::patch('/user/change','updatePassword')->name('user.profile.change');
 });
 //-----user dashboard route end  here ===========================================------by: saidur
-
-//Modify visitors
-Route::get('/modify', function () {
-    $visitors = \App\Models\Visitor::get();
-    $visitors->map(function (Visitor $visitor) {
-        $countryCode = \App\Models\Country::where('name', $visitor->country)->first()?->code;
-        $visitor->update([
-            'code' => $countryCode,
-        ]);
-    });
-
-    return response()->json([
-        'success' => 'true',
-        'message' => 'visitors updated successfully',
-    ]);
-});

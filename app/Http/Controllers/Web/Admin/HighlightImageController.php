@@ -17,6 +17,10 @@ class HighlightImageController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('gift menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $highlightImage = HighlightImage::with('gift')->paginate();
 
         return view('admin.layouts.highlight-image.index', compact('highlightImage'));
@@ -27,6 +31,10 @@ class HighlightImageController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('gift create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.highlight-image.create', compact('gifts'));
@@ -37,6 +45,10 @@ class HighlightImageController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('gift create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $validatedData = $request->validate([
             'image' => 'required|max:5120|mimes:jpg,png,svg,gif',
             'gift_id' => 'required|integer',
@@ -64,18 +76,14 @@ class HighlightImageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(HighlightImage $highlightImage)
     {
+        //permission check
+        if (! has_permission('gift edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.highlight-image.edit', compact('gifts', 'highlightImage'));
@@ -86,6 +94,10 @@ class HighlightImageController extends Controller
      */
     public function update(Request $request, HighlightImage $highlightImage)
     {
+        //permission check
+        if (! has_permission('gift edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $validatedData = $request->validate([
             'image' => 'nullable|max:5120|mimes:jpg,png,svg,gif',
             'gift_id' => 'required|integer',
@@ -123,6 +135,10 @@ class HighlightImageController extends Controller
      */
     public function destroy(HighlightImage $highlightImage)
     {
+        //permission check
+        if (! has_permission('gift delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
 
             $highlightImage->delete();
@@ -137,6 +153,13 @@ class HighlightImageController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('gift status')) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
 
             $highlightImage = HighlightImage::findOrFail($id);

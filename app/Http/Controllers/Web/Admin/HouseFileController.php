@@ -7,7 +7,6 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Gift;
 use App\Models\HouseFile;
-use App\Models\KeyFeature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -18,6 +17,10 @@ class HouseFileController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('house file menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $houseFiles = HouseFile::with('gift')->paginate();
 
         return view('admin.layouts.house-file.index', compact('houseFiles'));
@@ -28,6 +31,10 @@ class HouseFileController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('house file create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.house-file.create', compact('gifts'));
@@ -38,6 +45,10 @@ class HouseFileController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('house file create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $validatedData = $request->validate([
             'file_name_en' => 'required|string|max:255',
             'file_name_de' => 'required|string|max:255',
@@ -71,18 +82,14 @@ class HouseFileController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(KeyFeature $keyFeature)
-    {
-        //        return view('admin.layouts.house-file.show', compact('keyFeature'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(HouseFile $houseFile)
     {
+        //permission check
+        if (! has_permission('house file edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.house-file.edit', compact('gifts', 'houseFile'));
@@ -93,6 +100,10 @@ class HouseFileController extends Controller
      */
     public function update(Request $request, HouseFile $houseFile)
     {
+        //permission check
+        if (! has_permission('house file update')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $validatedData = $request->validate([
             'file_name_en' => 'required|string|max:255',
             'file_name_de' => 'required|string|max:255',
@@ -136,6 +147,10 @@ class HouseFileController extends Controller
      */
     public function destroy(HouseFile $houseFile)
     {
+        //permission check
+        if (! has_permission('house file delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
 
             $houseFile->delete();
@@ -150,6 +165,13 @@ class HouseFileController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('house file status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
 
             $houseFile = HouseFile::findOrFail($id);

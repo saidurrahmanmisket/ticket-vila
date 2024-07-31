@@ -78,40 +78,44 @@
                             </td>
                             <td>{{ $chat->user->email }}</td>
                             <td class="status">
-                                <select class="form-select select" id="change_status"
-                                        onchange="statusChange({{$chat->id}},this)">
-                                    @foreach(\App\Enums\Status::chatStatus() as $key => $val)
-                                        <option @if($chat->status === $key) selected
-                                                @endif value="{{$key}}">{{$val}}</option>
-                                    @endforeach
-                                </select>
+                                @can('help center status')
+                                    <select class="form-select select" id="change_status"
+                                            onchange="statusChange({{$chat->id}},this)">
+                                        @foreach(\App\Enums\Status::chatStatus() as $key => $val)
+                                            <option @if($chat->status === $key) selected
+                                                    @endif value="{{$key}}">{{$val}}</option>
+                                        @endforeach
+                                    </select>
+                                @endcan
                             </td>
                             <td>
-                                <a href="{{route('admin.help.show',$chat->id)}}" class="action--btn action--btnv2">
-                                    View
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="17"
-                                        height="15"
-                                        viewBox="0 0 17 15"
-                                        fill="none"
-                                    >
-                                        <path
-                                            d="M15.75 7.72559L0.75 7.72559"
-                                            stroke="#04BAFF"
-                                            stroke-width="1.5"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M9.69922 1.701L15.7492 7.725L9.69922 13.75"
-                                            stroke="#04BAFF"
-                                            stroke-width="1.5"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </a>
+                                @can('help center replay')
+                                    <a href="{{route('admin.help.show',$chat->id)}}" class="action--btn action--btnv2">
+                                        View
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="17"
+                                            height="15"
+                                            viewBox="0 0 17 15"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M15.75 7.72559L0.75 7.72559"
+                                                stroke="#04BAFF"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            <path
+                                                d="M9.69922 1.701L15.7492 7.725L9.69922 13.75"
+                                                stroke="#04BAFF"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </a>
+                                @endcan
                             </td>
                         </tr>
                     @empty
