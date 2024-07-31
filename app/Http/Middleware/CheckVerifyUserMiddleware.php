@@ -24,9 +24,9 @@ class CheckVerifyUserMiddleware
             return $next($request);
         } else {
             $existOTP = OTP::where('user_id', Auth::id())->latest()->first();
-            $otpCreationTime = Carbon::parse($existOTP->created_at);
-            $otpExpiryTime = $otpCreationTime->addMinutes(10);
-            if (! Carbon::now()->lessThanOrEqualTo($otpExpiryTime)) {
+            $otpCreationTime = Carbon::parse($existOTP?->created_at);
+            $otpExpiryTime = $otpCreationTime?->addMinutes(10);
+            if (! Carbon::now()->lessThanOrEqualTo($otpExpiryTime) || empty($existOTP)) {
                 OTP::where('user_id', Auth::id())->delete();
                 $otp = generateOTP();
                 OTP::create([

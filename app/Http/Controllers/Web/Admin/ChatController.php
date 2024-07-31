@@ -13,6 +13,10 @@ class ChatController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('help center menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $chats = Chat::with('user:id,first_name,last_name,email,avatar')->paginate(20);
 
         return view('admin.layouts.help-center.index', compact('chats'));
@@ -20,6 +24,10 @@ class ChatController extends Controller
 
     public function show($id)
     {
+        //permission check
+        if (! has_permission('help center replay')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $chat = Chat::with('user:id,first_name,last_name,email,avatar')->findOrFail($id);
 
         return view('admin.layouts.help-center.show', compact('chat'));
@@ -27,6 +35,10 @@ class ChatController extends Controller
 
     public function chatDetails($randomChatId)
     {
+        //permission check
+        if (! has_permission('help center replay')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $userId = auth()->user()->id;
             //            $chatsDetails = Chat::with('user:id,avatar','chatReply.user')->where('user_id', $userId)->where('random_chat_id', $randomChatId)->limit(100)->get();
@@ -47,6 +59,10 @@ class ChatController extends Controller
 
     public function chatReplyStore(Request $request)
     {
+        //permission check
+        if (! has_permission('help center replay')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             // Validate the request data
             $validate = Validator::make($request->all(), [
@@ -90,6 +106,12 @@ class ChatController extends Controller
 
     public function status(Request $request, $id)
     {
+        if (! has_permission('help center status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
             Chat::findOrFail($id)->update([
                 'status' => $request->status,

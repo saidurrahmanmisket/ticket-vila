@@ -14,6 +14,10 @@ class PaymentController extends Controller
 {
     public function refund($id)
     {
+        //permission check
+        if (! has_permission('invoice refund')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $order = Order::with('tickets')->findOrFail($id);
             if ($order) {

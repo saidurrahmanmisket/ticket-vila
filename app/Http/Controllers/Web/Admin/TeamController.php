@@ -16,6 +16,10 @@ class TeamController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('team menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $teams = Team::paginate(20);
 
@@ -32,6 +36,11 @@ class TeamController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('team create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.team.create');
     }
 
@@ -40,6 +49,10 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('team create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'name' => 'required|string',
             'position' => 'required|string',
@@ -65,18 +78,14 @@ class TeamController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('team edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $team = Team::findOrFail($id);
 
         return view('admin.layouts.team.edit', compact('team'));
@@ -87,6 +96,10 @@ class TeamController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //permission check
+        if (! has_permission('team edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'name' => 'required|string',
             'position' => 'required|string',
@@ -122,6 +135,10 @@ class TeamController extends Controller
      */
     public function destroy(string $id)
     {
+        //permission check
+        if (! has_permission('team delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $team = Team::findOrFail($id);
         Helper::deleteFile(public_path($team->image));
         $team->delete();
@@ -133,6 +150,13 @@ class TeamController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('team status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
             $team = Team::findOrFail($id);
             if ($team->status == Status::ACTIVE) {

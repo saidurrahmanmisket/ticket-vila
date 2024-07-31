@@ -16,6 +16,10 @@ class FaqController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('faq menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $faqs = FAQ::paginate(20);
 
@@ -32,6 +36,11 @@ class FaqController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('faq create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.faq.create');
     }
 
@@ -40,6 +49,10 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('faq create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'question_en' => 'required|string',
             'question_de' => 'required|string',
@@ -70,20 +83,14 @@ class FaqController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        // $faq = FAQ::findOrFail($id);
-
-        // return view('admin.layouts.faq.edit', compact('faq'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('faq edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $faq = FAQ::findOrFail($id);
 
         return view('admin.layouts.faq.edit', compact('faq'));
@@ -94,6 +101,10 @@ class FaqController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //permission check
+        if (! has_permission('faq edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $request->validate([
                 'question_en' => 'required|string',
@@ -131,6 +142,10 @@ class FaqController extends Controller
      */
     public function destroy(string $id)
     {
+        //permission check
+        if (! has_permission('faq delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $faq = FAQ::findOrFail($id);
         Helper::deleteFile(public_path($faq->image));
         $faq->delete();
@@ -142,6 +157,13 @@ class FaqController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('faq status')) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         try {
             $faq = FAQ::findOrFail($id);
             if ($faq->status == Status::ACTIVE) {

@@ -15,6 +15,10 @@ class DynamicPageController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('dynamic page menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $allPages = DynamicPage::paginate();
 
         return view('admin.layouts.dynamic-page.index', compact('allPages'));
@@ -25,6 +29,11 @@ class DynamicPageController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('dynamic page create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.dynamic-page.create');
     }
 
@@ -33,6 +42,10 @@ class DynamicPageController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('dynamic page create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the request data
         $request->validate([
             'title_en' => 'required|string|max:255',
@@ -75,18 +88,14 @@ class DynamicPageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('dynamic page edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $dynamicPage = DynamicPage::findOrFail($id);
 
         return view('admin.layouts.dynamic-page.edit', compact('dynamicPage'));
@@ -97,6 +106,10 @@ class DynamicPageController extends Controller
      */
     public function update(Request $request, DynamicPage $dynamicPage)
     {
+        //permission check
+        if (! has_permission('dynamic page edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the request data
         $request->validate([
             'title_en' => 'required|string|max:255',
@@ -148,6 +161,10 @@ class DynamicPageController extends Controller
      */
     public function destroy(DynamicPage $dynamicPage)
     {
+        //permission check
+        if (! has_permission('dynamic page delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         Helper::deleteFile(public_path($dynamicPage->image));
         $dynamicPage->delete();
 

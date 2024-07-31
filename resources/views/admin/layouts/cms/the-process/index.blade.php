@@ -54,11 +54,13 @@
                     </button>
                 </div>
             </form>
-            <div class="">
-                <a href="{{ route('admin.cms.the-process.create') }}" class="btn btn-success">
-                    Add new
-                </a>
-            </div>
+            @can('cms create')
+                <div class="">
+                    <a href="{{ route('admin.cms.the-process.create') }}" class="btn btn-success">
+                        Add new
+                    </a>
+                </div>
+            @endcan
         </div>
         <!-- users table  -->
         <div class="users--table--wrapper campaign default--scrollbar">

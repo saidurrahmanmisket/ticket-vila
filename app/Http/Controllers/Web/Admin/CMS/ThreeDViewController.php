@@ -12,6 +12,10 @@ class ThreeDViewController extends Controller
 {
     public function mapOrVideo()
     {
+        //permission check
+        if (! has_permission('cms menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $house_tour = CMS::where('section_name', Section::TREE_D_HOUSE_TOUR)->first();
         $property_view = CMS::where('section_name', Section::TREE_D_PROPERTY_VIEW)->first();
         $street_view = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
@@ -22,6 +26,10 @@ class ThreeDViewController extends Controller
 
     public function updateOrCreateHoursTour(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'link_type' => 'required|in:youtube_link,map_link',
             'map_link' => 'required_if:link_type,map_link|url|nullable',
@@ -55,6 +63,10 @@ class ThreeDViewController extends Controller
 
     public function updateOrCreatePropertyView(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'p_link_type' => 'required|in:youtube_link,map_link',
             'p_map_link' => 'required_if:p_link_type,map_link|url|nullable',
@@ -88,6 +100,10 @@ class ThreeDViewController extends Controller
 
     public function updateOrCreateStreetView(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'link_type' => 'required|in:youtube_link,map_link',
             'map_link' => 'required_if:link_type,map_link|url|nullable',
@@ -121,6 +137,10 @@ class ThreeDViewController extends Controller
 
     public function updateOrCreateVisitYourNewHome(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'h_link_type' => 'required|in:youtube_link,map_link',
             'h_map_link' => 'required_if:h_link_type,map_link|url|nullable',

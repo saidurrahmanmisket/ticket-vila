@@ -15,6 +15,10 @@ class SystemSettingController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('system settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $system = SystemSetting::first();
 
@@ -27,42 +31,14 @@ class SystemSettingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
     {
+        //permission check
+        if (! has_permission('system settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the request inputs
         $request->validate([
             'system_name' => 'required|string',
@@ -131,13 +107,5 @@ class SystemSettingController extends Controller
         flash()->addSuccess('Updated Successfully.');
 
         return redirect()->route('admin.settings.system-setting.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

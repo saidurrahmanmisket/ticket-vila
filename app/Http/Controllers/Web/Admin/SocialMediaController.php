@@ -15,6 +15,10 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $socials = SocialMedia::paginate(10);
 
         return view('admin.layouts.social.index', compact('socials'));
@@ -25,6 +29,11 @@ class SocialMediaController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return view('admin.layouts.social.create');
     }
 
@@ -33,6 +42,10 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'name' => 'required|string',
             'link' => 'required|string',
@@ -62,18 +75,14 @@ class SocialMediaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $social = SocialMedia::findOrFail($id);
 
         return view('admin.layouts.social.edit', compact('social'));
@@ -84,6 +93,10 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $request->validate([
                 'name' => 'required|string',
@@ -126,6 +139,10 @@ class SocialMediaController extends Controller
      */
     public function destroy(string $id)
     {
+        //permission check
+        if (! has_permission('social media settings')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $social = SocialMedia::findOrFail($id);
         Helper::deleteFile(public_path($social->icon));
         $social->delete();

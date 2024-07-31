@@ -70,7 +70,7 @@
                     <tbody>
                     @forelse($users as $user)
                         <tr>
-                            <td>1</td>
+                            <td>{{$user->id}}</td>
                             <td>
                                 <div class="profile">
                                     <img src="{{!empty($user->avatar) ? asset($user->avatar) : asset('admin/images/user.png')}}" alt="" />
@@ -85,31 +85,33 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{route('admin.user.show',$user->id)}}" class="action--btn action--btnv2">
-                                    View
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="17"
-                                        height="15"
-                                        viewBox="0 0 17 15"
-                                        fill="none"
-                                    >
-                                        <path
-                                            d="M15.75 7.72559L0.75 7.72559"
-                                            stroke="#04BAFF"
-                                            stroke-width="1.5"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M9.69922 1.701L15.7492 7.725L9.69922 13.75"
-                                            stroke="#04BAFF"
-                                            stroke-width="1.5"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </a>
+                                @can('user view')
+                                    <a href="{{route('admin.user.show',$user->id)}}" class="action--btn action--btnv2">
+                                        View
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="17"
+                                            height="15"
+                                            viewBox="0 0 17 15"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M15.75 7.72559L0.75 7.72559"
+                                                stroke="#04BAFF"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            <path
+                                                d="M9.69922 1.701L15.7492 7.725L9.69922 13.75"
+                                                stroke="#04BAFF"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </a>
+                                @endcan
                             </td>
                         </tr>
                     @empty
@@ -119,8 +121,10 @@
                     @endforelse
                     </tbody>
                 </table>
-                {{$users->links()}}
             </div>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+            {{$users->links()}}
         </div>
     </div>
     </section>

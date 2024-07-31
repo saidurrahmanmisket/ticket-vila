@@ -17,6 +17,10 @@ class KeyFeatureController extends Controller
      */
     public function index()
     {
+        //permission check
+        if (! has_permission('gift key feature menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $keyFeatures = KeyFeature::paginate();
 
         return view('admin.layouts.key-feature.index', compact('keyFeatures'));
@@ -27,6 +31,10 @@ class KeyFeatureController extends Controller
      */
     public function create()
     {
+        //permission check
+        if (! has_permission('gift key feature create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.key-feature.create', compact('gifts'));
@@ -37,6 +45,10 @@ class KeyFeatureController extends Controller
      */
     public function store(Request $request)
     {
+        //permission check
+        if (! has_permission('gift key feature create')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $validatedData = $request->validate([
                 'title_en.*' => 'required|string|max:255',
@@ -83,18 +95,14 @@ class KeyFeatureController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(KeyFeature $keyFeature)
-    {
-        //        return view('admin.layouts.key-feature.show', compact('keyFeature'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(KeyFeature $keyFeature)
     {
+        //permission check
+        if (! has_permission('gift key feature edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $gifts = Gift::all();
 
         return view('admin.layouts.key-feature.edit', compact('keyFeature', 'gifts'));
@@ -105,6 +113,10 @@ class KeyFeatureController extends Controller
      */
     public function update(Request $request, KeyFeature $keyFeature)
     {
+        //permission check
+        if (! has_permission('gift key feature edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         try {
             $validated = $request->validate([
                 'title_en' => 'required|string|max:255',
@@ -137,6 +149,10 @@ class KeyFeatureController extends Controller
      */
     public function destroy(KeyFeature $keyFeature)
     {
+        //permission check
+        if (! has_permission('gift key feature delete')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $keyFeature->delete();
 
         return redirect()->route('admin.key-feature.index')->with('success', 'Key Feature deleted successfully.');
@@ -144,6 +160,13 @@ class KeyFeatureController extends Controller
 
     public function status($id)
     {
+        //permission check
+        if (! has_permission('gift key feature status')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Permission denied: You do not have permission access this page',
+            ]);
+        }
         $keyFeature = KeyFeature::findOrFail($id);
         if ($keyFeature->status == Status::ACTIVE) {
             $keyFeature->status = Status::INACTIVE;

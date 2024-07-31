@@ -98,3 +98,17 @@ if (! function_exists('formatNumber')) {
         }
     }
 }
+
+if (! function_exists('has_permission')) {
+    function has_permission(string $permission): bool
+    {
+        return auth()->check() ? auth()->user()->hasPermissionTo($permission) : false;
+    }
+}
+
+if (! function_exists('has_any_permission')) {
+    function has_any_permission(array $permissions): bool
+    {
+        return auth()->check() ? auth()->user()->hasAnyPermission($permissions) : false;
+    }
+}

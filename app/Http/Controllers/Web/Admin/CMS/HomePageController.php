@@ -15,6 +15,10 @@ class HomePageController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('cms menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $ticket_chance = CMS::where('page', Page::HOME)->where('section_name', Section::TICKET_CHANCE)->first();
         $win_spin = CMS::where('page', Page::HOME)->where('section_name', Section::WIN_SPIN)->first();
 
@@ -23,6 +27,10 @@ class HomePageController extends Controller
 
     public function updateOrCreateChance(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'title_en' => 'required|string',
             'title_de' => 'required|string',
@@ -72,6 +80,10 @@ class HomePageController extends Controller
 
     public function updateOrCreateWinSpin(Request $request)
     {
+        //permission check
+        if (! has_permission('cms edit')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $request->validate([
             'win_title_en' => 'required|string',
             'win_title_de' => 'required|string',

@@ -11,6 +11,10 @@ class TicketController extends Controller
 {
     public function index()
     {
+        //permission check
+        if (! has_permission('tickets menu')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $tickets = Ticket::latest()->with(['user', 'campaign', 'order'])->paginate(20);
 
         return view('admin.layouts.tickets.index', compact('tickets'));
@@ -18,6 +22,10 @@ class TicketController extends Controller
 
     public function download($id)
     {
+        //permission check
+        if (! has_permission('tickets download')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         $ticket = Ticket::findOrFail($id);
         $campaign = Campaign::with(['ebooks'])->findOrFail($ticket->campaign_id);
 

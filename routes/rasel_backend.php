@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\Admin\AdminUserController;
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\PaymentController;
 use App\Http\Controllers\Web\Admin\ProfileController;
-use App\Http\Controllers\Web\Admin\SettingController;
+use App\Http\Controllers\Web\Admin\RolePermissionController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
 use App\Http\Controllers\Web\Admin\UserController;
@@ -27,6 +28,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/ticket/download/{id}', [TicketController::class, 'download'])->name('ticket.download');
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/show/{id}', [UserController::class, 'show'])->name('user.show');
+
+    Route::resource('/role', RolePermissionController::class)->except('show');
+    Route::resource('/admin-user', AdminUserController::class)->except('show', 'destroy');
 
     //Profile routes
     Route::controller(ProfileController::class)->group(function () {
@@ -79,10 +83,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
-    //Settings Routes
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-    Route::get('/settings/help', [SettingController::class, 'help'])->name('help');
-
     //User payment refund
     Route::post('/user/payment/refund/{id}', [PaymentController::class, 'refund'])->name('payment.refund');
 
