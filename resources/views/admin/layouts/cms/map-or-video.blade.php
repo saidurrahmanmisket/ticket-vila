@@ -339,7 +339,194 @@
 								<button type="submit" class="btn btn-primary mt-3">Submit</button>
 							</form>
 						</div>
-					</div>
+                        <!-- Video Presentation One Section -->
+                        <div class="border p-4 rounded mt-5">
+                            <h5 class="mb-4">Video Presentation One Section</h5>
+                            <form method="POST"
+                                  action="{{ route('admin.cms.three-d-map-or-video.video-presentation-one') }}">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="d-flex flex-column">
+                                            <label for="presentation_one_link_type" class="form-label required h6">3D
+                                                link Type</label>
+                                            <select class="form-select form-select-lg mb-3"
+                                                    id="presentation_one_link_type" name="presentation_one_link_type">
+                                                <option
+                                                    {{!empty($video_presentation_one) ? (!empty($video_presentation_one->link) ? '' : 'selected') : (old('presentation_one_link_type') == 'youtube_link' ? 'selected' : '')}} value="youtube_link">
+                                                    Youtube Video
+                                                </option>
+                                                <option
+                                                    {{!empty($video_presentation_one) ? (!empty($video_presentation_one->link) ? 'selected' : '') : (old('presentation_one_link_type') == 'map_link' ? 'selected' : '')}} value="map_link">
+                                                    Google Map
+                                                </option>
+                                            </select>
+                                            @error('presentation_one_link_type')
+                                            <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        {{-- map link --}}
+                                        <div id="presentation_one_map_input">
+                                            <label for="presentation_one_map_link" class="form-label required h6">Map
+                                                Embed</label>
+                                            <input type="url" class="form-control" id="presentation_one_map_link"
+                                                   value="{{!empty($video_presentation_one) ? $video_presentation_one->link : old('presentation_one_map_link')}}"
+                                                   name="presentation_one_map_link">
+                                            @error('presentation_one_map_link')
+                                            <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                            @enderror
+                                        </div>
+                                        {{-- Video Link --}}
+                                        <div id="presentation_one_video_link">
+                                            <h6 class="mb-2">Youtube Embed</h6>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_one_video_url_en"
+                                                           class="form-label required">En</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_one_video_url_en"
+                                                           value="{{!empty($video_presentation_one) ? $video_presentation_one->link_en : old('presentation_one_video_url_en')}}"
+                                                           name="presentation_one_video_url_en">
+                                                    @error('presentation_one_video_url_en')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_one_video_url_de"
+                                                           class="form-label required">De</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_one_video_url_de"
+                                                           value="{{!empty($video_presentation_one) ? $video_presentation_one->link_de : old('presentation_one_video_url_de')}}"
+                                                           name="presentation_one_video_url_de">
+                                                    @error('presentation_one_video_url_de')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_one_video_url_hu"
+                                                           class="form-label required">Hu</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_one_video_url_hu"
+                                                           value="{{!empty($video_presentation_one) ? $video_presentation_one->link_hu : old('presentation_one_video_url_hu')}}"
+                                                           name="presentation_one_video_url_hu">
+                                                    @error('presentation_one_video_url_hu')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            </form>
+                        </div>
+
+                        <!-- Video Presentation Two Section -->
+                        <div class="border p-4 rounded mt-5">
+                            <h5 class="mb-4">Video Presentation Two Section</h5>
+                            <form method="POST"
+                                  action="{{ route('admin.cms.three-d-map-or-video.video-presentation-two') }}">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="d-flex flex-column">
+                                            <label for="presentation_two_link_type" class="form-label required h6">3D
+                                                link Type</label>
+                                            <select class="form-select form-select-lg mb-3"
+                                                    id="presentation_two_link_type" name="presentation_two_link_type">
+                                                <option
+                                                    {{!empty($video_presentation_two) ? (!empty($video_presentation_two->link) ? '' : 'selected') : (old('presentation_two_link_type') == 'youtube_link' ? 'selected' : '')}} value="youtube_link">
+                                                    Youtube Video
+                                                </option>
+                                                <option
+                                                    {{!empty($video_presentation_two) ? (!empty($video_presentation_two->link) ? 'selected' : '') : (old('presentation_two_link_type') == 'map_link' ? 'selected' : '')}} value="map_link">
+                                                    Google Map
+                                                </option>
+                                            </select>
+                                            @error('presentation_two_link_type')
+                                            <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        {{-- map link --}}
+                                        <div id="presentation_two_map_input">
+                                            <label for="presentation_two_map_link" class="form-label required h6">Map
+                                                Embed</label>
+                                            <input type="url" class="form-control" id="presentation_two_map_link"
+                                                   value="{{!empty($video_presentation_two) ? $video_presentation_two->link : old('presentation_two_map_link')}}"
+                                                   name="presentation_two_map_link">
+                                            @error('presentation_two_map_link')
+                                            <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                            @enderror
+                                        </div>
+                                        {{-- Video Link --}}
+                                        <div id="presentation_two_video_link">
+                                            <h6 class="mb-2">Youtube Embed</h6>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_two_video_url_en"
+                                                           class="form-label required">En</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_two_video_url_en"
+                                                           value="{{!empty($video_presentation_two) ? $video_presentation_two->link_en : old('presentation_two_video_url_en')}}"
+                                                           name="presentation_two_video_url_en">
+                                                    @error('presentation_two_video_url_en')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_two_video_url_de"
+                                                           class="form-label required">De</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_two_video_url_de"
+                                                           value="{{!empty($video_presentation_two) ? $video_presentation_two->link_de : old('presentation_two_video_url_de')}}"
+                                                           name="presentation_two_video_url_de">
+                                                    @error('presentation_two_video_url_de')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="presentation_two_video_url_hu"
+                                                           class="form-label required">Hu</label>
+                                                    <input type="url" class="form-control"
+                                                           id="presentation_two_video_url_hu"
+                                                           value="{{!empty($video_presentation_two) ? $video_presentation_two->link_hu : old('presentation_two_video_url_hu')}}"
+                                                           name="presentation_two_video_url_hu">
+                                                    @error('presentation_two_video_url_hu')
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            </form>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -426,5 +613,47 @@
                 $("#h_map_input").hide()
             }
         });
-	</script>
+
+        //other section script
+        // Script for Video Presentation One
+        const presentation_one_link_type = $("#presentation_one_link_type");
+        if (presentation_one_link_type.val() === 'map_link') {
+            $("#presentation_one_video_link").hide();
+            $("#presentation_one_map_input").show();
+        } else {
+            $("#presentation_one_video_link").show();
+            $("#presentation_one_map_input").hide();
+        }
+
+        presentation_one_link_type.on('change', function () {
+            if (presentation_one_link_type.val() === 'map_link') {
+                $("#presentation_one_video_link").hide();
+                $("#presentation_one_map_input").show();
+            } else {
+                $("#presentation_one_video_link").show();
+                $("#presentation_one_map_input").hide();
+            }
+        });
+
+        // Script for Video Presentation Two
+        const presentation_two_link_type = $("#presentation_two_link_type");
+        if (presentation_two_link_type.val() === 'map_link') {
+            $("#presentation_two_video_link").hide();
+            $("#presentation_two_map_input").show();
+        } else {
+            $("#presentation_two_video_link").show();
+            $("#presentation_two_map_input").hide();
+        }
+
+        presentation_two_link_type.on('change', function () {
+            if (presentation_two_link_type.val() === 'map_link') {
+                $("#presentation_two_video_link").hide();
+                $("#presentation_two_map_input").show();
+            } else {
+                $("#presentation_two_video_link").show();
+                $("#presentation_two_map_input").hide();
+            }
+        });
+
+    </script>
 @endpush

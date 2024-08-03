@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\PaymentController;
 use App\Http\Controllers\Web\Admin\ProfileController;
+use App\Http\Controllers\Web\Admin\PromoCodeController;
 use App\Http\Controllers\Web\Admin\RolePermissionController;
 use App\Http\Controllers\Web\Admin\StatisticsController;
 use App\Http\Controllers\Web\Admin\TicketController;
@@ -41,7 +42,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
     //Gift routes
     Route::resource('/gift', GiftController::class);
-    //    Route::get('/gift/')
+
+    //Promo Code
+    Route::resource('/promo-code', PromoCodeController::class)->except('show');
+    Route::post('/promo-code/status/{id}', [PromoCodeController::class, 'status'])->name('promo-code.status');
 
     //Campaign routes
     Route::resource('/campaign', CampaignController::class);
@@ -77,6 +81,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::post('/3d_map_or_video_section/property_view', [ThreeDViewController::class, 'updateOrCreatePropertyView'])->name('three-d-map-or-video.property-view');
         Route::post('/3d_map_or_video_section/street_view', [ThreeDViewController::class, 'updateOrCreateStreetView'])->name('three-d-map-or-video.street-view');
         Route::post('/3d_map_or_video_section/visit_your_new_home', [ThreeDViewController::class, 'updateOrCreateVisitYourNewHome'])->name('three-d-map-or-video.visit-your-new-home');
+        Route::post('/3d_map_or_video_section/video-presentation-one', [ThreeDViewController::class, 'videoPresentationOne'])->name('three-d-map-or-video.video-presentation-one');
+        Route::post('/3d_map_or_video_section/video-presentation-two', [ThreeDViewController::class, 'videoPresentationTwo'])->name('three-d-map-or-video.video-presentation-two');
     });
 
     //Notification Routes

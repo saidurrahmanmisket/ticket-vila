@@ -18,8 +18,9 @@
                             <img src="{{asset('user/images/congra.png')}}" alt=""/>
                         </div>
                         <h4>{{ __('Congratulation!!!') }}</h4>
+                        <p>{{ __("In order to participate in the competitions and the house prize draw, it is obligatory to provide the necessary personal data after registration (which is possible after the ticket purchase at the customer's section). This must be done at least one week before the draw or the closing date of the raffle.") }}</p>
                         <p>
-                            {{ __('You have bought :buy_ticket x eBook and got :free_ticket x free house ticket at TicketVilla on :buy_time', ['buy_ticket' => session('buy_ticket'), 'free_ticket' => session('free_ticket'), 'buy_time' => date('d M Y \a\t h:i A', strtotime(session('buy_time')))]) }}
+                            {{ __('You have bought :buy_ticket x eBook and got :free_ticket x free house ticket at TicketVilla on :buy_time' }}
                         </p>
                         <div class="buttons">
                             <a class='user--common--btn' href='{{route('user.dashboard')}}'>{{ __('Back to Dashboard') }}</a

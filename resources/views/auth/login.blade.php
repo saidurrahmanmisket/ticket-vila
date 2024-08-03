@@ -120,9 +120,9 @@ $systemSetting = SystemSetting::first();
                 </div>
             </div>
 
-            <div class="lower--area">
-                <p>{{ __("Don’t have an account?") }} <a href="{{ route('register') }}">{{ __("Sign Up") }}</a></p>
-            </div>
+            {{--            <div class="lower--area">--}}
+            {{--                <p>{{ __("Don’t have an account?") }} <a href="{{ route('register') }}">{{ __("Sign Up") }}</a></p>--}}
+            {{--            </div>--}}
         </div>
     </main>
 

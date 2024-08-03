@@ -199,32 +199,39 @@
                                         €</p>
                                 </div>
                             </div>
-                                <a class='btn--fill mt-3'
-                                   href='{{route('frontend.web-shop.cart')}}'>
-                                    <span>View Cart</span>
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
+                                <form
+                                    action="{{Auth::check() ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
+                                    method="GET">
+                                    <input type="hidden" name="quantity" class="quantity" value="1">
+                                    <button type="submit"
+                                            class="btn--fill blue--btn no--border"
+                                            id="directBuyNow"
                                     >
-                                        <path
-                                                d="M16.25 7.72607L1.25 7.72607"
+                                        <span>{{ __("Proceed to payment") }}</span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="17"
+                                            viewBox="0 0 20 17"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M18.7939 8.16371L1.82031 8.16371"
                                                 stroke="white"
-                                                stroke-width="2"
+                                                stroke-width="2.26315"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
-                                        />
-                                        <path
-                                                d="M10.2012 1.70149L16.2512 7.72549L10.2012 13.7505"
+                                            />
+                                            <path
+                                                d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
                                                 stroke="white"
-                                                stroke-width="2"
+                                                stroke-width="2.26315"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </a>
+                                            />
+                                        </svg>
+                                    </button>
+                                </form>
                             @else
                                 <div class="empty-cart">
                                     <p class="h5">Cart is empty</p>
@@ -233,11 +240,12 @@
                         </div>
                     </div>
                 <div class="language-dropdown">
-                    <select class="form-select select" id="change_locale">
+                    <select class="form-select select" style="padding-right: 40px" id="change_locale">
                         @foreach(\App\Enums\Lang::map() as $key => $lang)
-                            <option @if(locale() == $key) selected @endif value="{{$key}}">{{$lang}}</option>
+                            <option @if(locale() == $key) selected @endif value="{{$key}}">
+                                {{ucfirst($key)}}
+                            </option>
                         @endforeach
-
                     </select>
 
                     {{--  --}}

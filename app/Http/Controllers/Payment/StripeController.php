@@ -223,17 +223,17 @@ class StripeController extends Controller
                 $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
-                    'birthday' => $request->birth_date,
+                    //                    'birthday' => $request->birth_date,
                     'city' => $request->city,
-                    'city_of_birthday' => $request->birth_state,
-                    'phone' => $request->phone,
+                    //                    'city_of_birthday' => $request->birth_state,
+                    //                    'phone' => $request->phone,
                     'email' => $request->email,
                     'address_1' => $request->address,
                     'zip_code' => $request->zip,
                     'country_id' => $request->country_id,
                     'state' => $request->state,
-                    'country_of_birthday' => $request->country_of_birthday,
-                    'gender' => $request->gender,
+                    //                    'country_of_birthday' => $request->country_of_birthday,
+                    //                    'gender' => $request->gender,
                     'password' => bcrypt($request->password),
                 ]);
             }

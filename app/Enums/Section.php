@@ -30,4 +30,8 @@ class Section extends Enum
     const THE_MISSION = 'the_mission';
 
     const THE_TRANSPARENCY = 'the_transparency';
+
+    const VIDEO_PRESENTATION_1 = 'video_presentation_1';
+
+    const VIDEO_PRESENTATION_2 = 'video_presentation_2';
 }

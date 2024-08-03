@@ -73,10 +73,9 @@
                             {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
-                    @if(empty(Auth::user()))
-                        <div data-aos="fade-left" data-aos-duration="700" class="right">
-                            <a href="{{route('register')}}" class="btn--normal border blank">
-                                <span>{{ __('Sign Up') }}</span>
+                    <div data-aos="fade-left" data-aos-duration="700" class="right">
+                        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--normal border blank">
+                            <span>{{ __('Buy Now') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                      fill="none">
                                     <path d="M15.75 7.72607L0.75 7.72607" stroke="#010C0F" stroke-width="1.5"
@@ -86,7 +85,6 @@
                                 </svg>
                             </a>
                         </div>
-                    @endif
                 </div>
 
 
