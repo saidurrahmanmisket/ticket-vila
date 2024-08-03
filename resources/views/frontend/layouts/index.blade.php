@@ -109,7 +109,7 @@
                 <div class="top--area">
                     <div data-aos="fade-up" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">
-                            {{ __('Experience Your new home') }}
+                            {{ __('Discover your new home') }}
                         </h3>
 
                         <p class="sub--text">
@@ -128,9 +128,8 @@
                                     stroke-linecap="round" stroke-linejoin="round" fill="transparent" />
                             </svg>
                         </a>
-                        @if (empty(Auth::user()))
-                            <a href="{{ route('register') }}" class="btn--fill blue--btn">
-                                <span>{{ __('Sign Up') }}</span>
+                        <a href="{{ route('frontend.web-shop.buy-ebook') }}" class="btn--fill blue--btn">
+                            <span>{{ __('Buy Now') }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
                                     fill="none">
                                     <path d="M15.75 7.72607L0.75 7.72607" stroke="white" stroke-width="1.5"
@@ -139,7 +138,6 @@
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </a>
-                        @endif
                     </div>
                 </div>
 
@@ -205,7 +203,7 @@
 
                 <div data-aos="fade-left" data-aos-duration="700" class="text--holder">
                     <h3 class="common--heading--title">
-                        {{ !empty($ticket_chance) ? $ticket_chance['title_' . locale()] ?? '' : __('Don’t miss out!') }}
+                        {{ !empty($ticket_chance) ? $ticket_chance['title_' . locale()] ?? '' : __('Don’t Miss Out!') }}
                     </h3>
                     <p class="subtext">
                         {{ !empty($ticket_chance) ? $ticket_chance['description_' . locale()] ?? '' : __("Don't miss your chance to win your dream home! With just one e-book purchase, you can participate in the house raffle and pave your way to homeownership. Our raffles are transparent, fair, and offer everyone an equal chance. Take advantage of this opportunity and join today!") }}
@@ -364,7 +362,7 @@
     <section class="house--tour--area--wrapper section--bottom--gap">
         <div class="container">
             <div class="house--tour--area--content">
-                <h3 class="title">{{ __('Visit Your new Home') }}</h3>
+                <h3 class="title">{{ __('Visit Your New Home') }}</h3>
 
                 <div class="area--wrapper">
                     @if (!empty($houseTour) && !empty($houseTour->link))

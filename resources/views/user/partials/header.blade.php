@@ -17,7 +17,7 @@
                 <div>
                     <select class="form-select select" id="change_locale_user">
                         @foreach(\App\Enums\Lang::map() as $key => $lang)
-                            <option @if(locale() == $key) selected @endif value="{{$key}}">{{$lang}}</option>
+                            <option @if(locale() == $key) selected @endif value="{{$key}}">{{ucfirst($key)}}</option>
                         @endforeach
 
                     </select>

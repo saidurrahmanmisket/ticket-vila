@@ -172,8 +172,10 @@ class PageController extends Controller
         $hero_section = CMS::where('page', Page::HOW_IT_WORKS)->where('section_name', Section::HERO)->where('status', Status::ACTIVE)->first();
         $theProcess = TheProcess::orderBy('sort_id', 'asc')->where('status', Status::ACTIVE)->get();
         $houseTour = CMS::where('section_name', Section::TREE_D_STREET_VIEW)->first();
+        $videoPresentationOne = CMS::where('section_name', Section::VIDEO_PRESENTATION_1)->first();
+        $videoPresentationTwo = CMS::where('section_name', Section::VIDEO_PRESENTATION_2)->first();
 
-        return view('frontend.layouts.how-it-works', compact('hero_section', 'theProcess', 'houseTour'));
+        return view('frontend.layouts.how-it-works', compact('hero_section', 'theProcess', 'houseTour', 'videoPresentationOne', 'videoPresentationTwo'));
     }
 
     public function dynamicPage(string $page_slug)

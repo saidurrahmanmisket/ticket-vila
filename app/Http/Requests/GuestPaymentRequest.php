@@ -6,14 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class GuestPaymentRequest extends FormRequest
 {
-    public function all($keys = null)
-    {
-        $requestData = parent::all($keys);
-        // Modify data as needed
-        $requestData['phone'] = '+'.$requestData['phone_code'].$requestData['phone'];
-
-        return $requestData;
-    }
+    //    public function all($keys = null)
+    //    {
+    //        $requestData = parent::all($keys);
+    //        // Modify data as needed
+    //        $requestData['phone'] = '+'.$requestData['phone_code'].$requestData['phone'];
+    //
+    //        return $requestData;
+    //    }
 
     /**
      * Determine if the user is authorized to make this request.
@@ -33,19 +33,20 @@ class GuestPaymentRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:30',
             'last_name' => 'required|string|max:30',
-            'birth_date' => 'required|date',
+            //            'birth_date' => 'required|date',
             'city' => 'required|string',
-            'birth_state' => 'required|string',
-            'phone' => 'required|phone',
+            //            'birth_state' => 'required|string',
+            //            'phone' => 'required|phone',
             'email' => 'required|email',
             'address' => 'required|string',
             'state' => 'required|string|max:100',
             'zip' => 'required|string|max:20|min:4',
-            'gender' => 'required|string|in:male,female,others',
+            //            'gender' => 'required|string|in:male,female,others',
             'country_id' => 'required|exists:countries,id',
             'password' => 'required|string|min:8|confirmed',
-            'country_of_birthday' => 'required|string|max:100',
+            //            'country_of_birthday' => 'required|string|max:100',
             'terms' => 'accepted',
+            'rules' => 'accepted',
         ];
 
     }

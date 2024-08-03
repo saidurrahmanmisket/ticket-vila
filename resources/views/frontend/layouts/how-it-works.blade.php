@@ -39,8 +39,9 @@
                     @endif
                 </div>
                 <div data-aos="fade-left" data-aos-duration="600" class="right">
-                    <img src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/how-it-work-banner.png') }}"
-                        alt="" />
+                    <img
+                        src="{{ asset(!empty($hero_section) ? $hero_section->image : 'frontend/images/how-it-work-banner.png') }}"
+                        alt=""/>
                 </div>
             </div>
         </div>
@@ -48,7 +49,7 @@
     <!-- banner area ends -->
 
     <!-- the process area starts -->
-    <x-frontend.the-process :theProcess="$theProcess" />
+    <x-frontend.the-process :theProcess="$theProcess"/>
     <!-- the process area ends -->
 
     <!-- faq area starts -->
@@ -59,23 +60,24 @@
                 <div class="area--wrapper">
                     @if (!empty($houseTour) && !empty($houseTour->link))
                         <iframe src="{{ $houseTour->link }}" width="600" height="450" style="border: 0"
-                            allowfullscreen="false" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @elseif(empty($houseTour))
                         <iframe src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh" width="600"
-                            height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
                         <iframe width="560" height="315" src="{{ $houseTour['link_' . locale()] ?? '' }}"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     @endif
 
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
-                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
                             <p>{{ __('Click to start') }}</p>
                         </div>
@@ -87,23 +89,26 @@
             <div class="house--tour--area--content">
                 <h3 class="title">{{ __('Video presentation of our programme') }}</h3>
                 <div class="area--wrapper">
-
-                    <iframe
-                        src="{{ locale() == 'hu'
-                            ? 'https://www.youtube.com/embed/Y1mYsNYV4u8?si=B7EJMvgwqKUy3Jf6'
-                            : (locale() == 'de'
-                                ? 'https://www.youtube.com/embed/pDfKaeL4Ldk?si=LB-7UIQBTvjCxuUY'
-                                : 'https://www.youtube.com/embed/CiYA4uQLtUs?si=tm6iyoQHWrOKYEyk') }}"
-                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
+                    @if (!empty($videoPresentationOne) && !empty($videoPresentationOne->link))
+                        <iframe src="{{ $videoPresentationOne->link }}" width="600" height="450" style="border: 0"
+                                allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($videoPresentationOne))
+                        <iframe src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh" width="600"
+                                height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe width="560" height="315" src="{{ $videoPresentationOne['link_' . locale()] ?? '' }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @endif
 
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
-                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
                             <p>{{ __('Click to start') }}</p>
                         </div>
@@ -116,21 +121,26 @@
                 <div class="area--wrapper">
 
 
-                    <iframe
-                        src="{{ locale() == 'hu'
-                            ? 'https://www.youtube.com/embed/iG-1us9DFj0?si=0dpd3nuIm3ApU-RQ'
-                            : (locale() == 'de'
-                                ? 'https://www.youtube.com/embed/Gv-Lp0jH1X4?si=fGDRYkYHvKcO7zHf'
-                                : 'https://www.youtube.com/embed/Re2zKrIAM-k?si=dBE8s3fGejNaPqz2') }}"
-                        width="600" height="450" style="border: 0" allowfullscreen="false" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    @if (!empty($videoPresentationTwo) && !empty($videoPresentationTwo->link))
+                        <iframe src="{{ $videoPresentationTwo->link }}" width="600" height="450" style="border: 0"
+                                allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @elseif(empty($videoPresentationTwo))
+                        <iframe src="https://www.youtube.com/embed/xVTF4M3I1-w?si=V9ESVFiRGqjvtKTh" width="600"
+                                height="450" style="border: 0" allowfullscreen="false" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @else
+                        <iframe width="560" height="315" src="{{ $videoPresentationTwo['link_' . locale()] ?? '' }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @endif
 
 
                     <div class="overlay">
                         <div class="instruction--text">
                             <div class="icon">
-                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt="" />
+                                <img src="{{ asset('frontend/images/icon-360.png') }}" alt=""/>
                             </div>
                             <p>{{ __('Click to start') }}</p>
                         </div>

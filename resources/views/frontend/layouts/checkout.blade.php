@@ -83,16 +83,16 @@
 	                        <span class="invalid-feedback d-block">{{$message}}</span>
 	                        @enderror
                         </div>
-                        <div class="single--input">
-                            <label class="required" for="birth_date">{{ __("Birthday") }}</label>
-	                        <input value="{{old('birth_date')}}"
-	                               class="{{!empty($errors->first('birth_date'))? 'is_invalid' : ''}}" type="date"
-	                               name="birth_date"
-	                               id="birth_date"/>
-	                        @error('birth_date')
-	                        <span class="invalid-feedback d-block">{{$message}}</span>
-	                        @enderror
-                        </div>
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="birth_date">{{ __("Birthday") }}</label>--}}
+                        {{--	                        <input value="{{old('birth_date')}}"--}}
+                        {{--	                               class="{{!empty($errors->first('birth_date'))? 'is_invalid' : ''}}" type="date"--}}
+                        {{--	                               name="birth_date"--}}
+                        {{--	                               id="birth_date"/>--}}
+                        {{--	                        @error('birth_date')--}}
+                        {{--	                        <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--	                        @enderror--}}
+                        {{--                        </div>--}}
                         <div class="single--input">
                             <label class="required" for="city">{{ __("City") }}</label>
 	                        <input value="{{old('city')}}" class="{{!empty($errors->first('city'))? 'is_invalid' : ''}}"
@@ -114,16 +114,16 @@
                             <span class="invalid-feedback d-block">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="single--input">
-                            <label class="required" for="birth_state">{{ __("City of the Birth") }}</label>
-	                        <input value="{{old('birth_state')}}"
-	                               class="{{ !empty($errors->first('birth_state')) ? 'is_invalid' : ''}}" type="text"
-	                               id="birth_state"
-                                   name="birth_state" placeholder="city of the birth"/>
-	                        @error('birth_state')
-	                        <span class="invalid-feedback d-block">{{$message}}</span>
-	                        @enderror
-                        </div>
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="birth_state">{{ __("City of the Birth") }}</label>--}}
+                        {{--	                        <input value="{{old('birth_state')}}"--}}
+                        {{--	                               class="{{ !empty($errors->first('birth_state')) ? 'is_invalid' : ''}}" type="text"--}}
+                        {{--	                               id="birth_state"--}}
+                        {{--                                   name="birth_state" placeholder="city of the birth"/>--}}
+                        {{--	                        @error('birth_state')--}}
+                        {{--	                        <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--	                        @enderror--}}
+                        {{--                        </div>--}}
                         <div class="input--group">
                             <div class="single--input country">
                                 <label for="country_id" class="required">{{ __('Country') }}</label>
@@ -141,36 +141,36 @@
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="single--input country">
-                                <label for="country_of_birthday"
-                                       class="required">{{ __('Birth Country') }}</label>
-                                <select
-                                    class=" @error('country_of_birthday') is-invalid @enderror"
-                                    id="country_of_birthday" name="country_of_birthday">
-                                    <option code="count" value="">Select Country</option>
-                                    @foreach($countries as $country)
-                                        <option
-                                            value="{{$country->name}}"
-                                            code="{{$country->code}}" {{ old('country_of_birthday') == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('country_of_birthday')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            {{--                            <div class="single--input country">--}}
+                            {{--                                <label for="country_of_birthday"--}}
+                            {{--                                       class="required">{{ __('Birth Country') }}</label>--}}
+                            {{--                                <select--}}
+                            {{--                                    class=" @error('country_of_birthday') is-invalid @enderror"--}}
+                            {{--                                    id="country_of_birthday" name="country_of_birthday">--}}
+                            {{--                                    <option code="count" value="">Select Country</option>--}}
+                            {{--                                    @foreach($countries as $country)--}}
+                            {{--                                        <option--}}
+                            {{--                                            value="{{$country->name}}"--}}
+                            {{--                                            code="{{$country->code}}" {{ old('country_of_birthday') == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>--}}
+                            {{--                                    @endforeach--}}
+                            {{--                                </select>--}}
+                            {{--                                @error('country_of_birthday')--}}
+                            {{--                                <span class="text-danger">{{ $message }}</span>--}}
+                            {{--                                @enderror--}}
+                            {{--                            </div>--}}
                         </div>
-                        <div class="single--input">
-                            <label class="required" for="country-code">{{ __("Telephone") }}</label>
-	                        <input value="{{old('phone')}}"
-	                               class="{{ !empty($errors->first('phone')) ? 'is_invalid' : ''}}" type="tel"
-	                               id="country-code"
-	                               name="phone" placeholder="telephone"/>
-	                        <input type="hidden" name="phone_code" id="phone_code">
-	                        <input type="hidden" value="{{old('iso')}}" name="iso" id="iso">
-	                        @error('phone')
-	                        <span class="invalid-feedback d-block">{{$message}}</span>
-	                        @enderror
-                        </div>
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="country-code">{{ __("Telephone") }}</label>--}}
+                        {{--	                        <input value="{{old('phone')}}"--}}
+                        {{--	                               class="{{ !empty($errors->first('phone')) ? 'is_invalid' : ''}}" type="tel"--}}
+                        {{--	                               id="country-code"--}}
+                        {{--	                               name="phone" placeholder="telephone"/>--}}
+                        {{--	                        <input type="hidden" name="phone_code" id="phone_code">--}}
+                        {{--	                        <input type="hidden" value="{{old('iso')}}" name="iso" id="iso">--}}
+                        {{--	                        @error('phone')--}}
+                        {{--	                        <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--	                        @enderror--}}
+                        {{--                        </div>--}}
                         <div class="single--input">
                             <label class="required" for="email">{{ __("Email Address") }}</label>
 	                        <input value="{{old('email')}}"
@@ -203,21 +203,21 @@
 	                            <span class="invalid-feedback d-block">{{$message}}</span>
 	                            @enderror
                             </div>
-                            <div class="single--input">
-                                <label class="required" for="gender">{{ __("Gender") }}</label>
-	                            <select class="{{ !empty($errors->first('gender')) ? 'is_invalid' : ''}}" name="gender"
-	                                    id="gender-select">
-                                    <option @if(old('gender') == 'male') selected
-                                            @endif value="male">{{ __("Male") }}</option>
-                                    <option @if(old('gender') == 'female') selected
-                                            @endif value="female">{{ __("Female") }}</option>
-                                    <option @if(old('gender') == 'others') selected
-                                            @endif value="others">{{ __("Others") }}</option>
-                                </select>
-	                            @error('gender')
-                                <span class="invalid-feedback d-block">{{$message}}</span>
-	                            @enderror
-                            </div>
+                            {{--                            <div class="single--input">--}}
+                            {{--                                <label class="required" for="gender">{{ __("Gender") }}</label>--}}
+                            {{--	                            <select class="{{ !empty($errors->first('gender')) ? 'is_invalid' : ''}}" name="gender"--}}
+                            {{--	                                    id="gender-select">--}}
+                            {{--                                    <option @if(old('gender') == 'male') selected--}}
+                            {{--                                            @endif value="male">{{ __("Male") }}</option>--}}
+                            {{--                                    <option @if(old('gender') == 'female') selected--}}
+                            {{--                                            @endif value="female">{{ __("Female") }}</option>--}}
+                            {{--                                    <option @if(old('gender') == 'others') selected--}}
+                            {{--                                            @endif value="others">{{ __("Others") }}</option>--}}
+                            {{--                                </select>--}}
+                            {{--	                            @error('gender')--}}
+                            {{--                                <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                            {{--	                            @enderror--}}
+                            {{--                            </div>--}}
                         </div>
                         <div class="single--input">
                             <label class="required" for="password">{{ __("Password") }}</label>
@@ -238,19 +238,17 @@
 	                        <span class="invalid-feedback d-block">{{$message}}</span>
 	                        @enderror
                         </div>
-
-	                    {{--                        <div class="checkbox--wrapper">--}}
-	                    {{--                            <input--}}
-	                    {{--                                type="checkbox"--}}
-	                    {{--                                name="accept_terms"--}}
-	                    {{--                                id="accept-terms"--}}
-	                    {{--                            />--}}
-
-	                    {{--                            <label for="accept-terms">--}}
-	                    {{--                                I hereby confirm and accept the Terms and Conditions and--}}
-	                    {{--                                Privacy Policy. I confirm that I am over 18 years of age.--}}
-	                    {{--                            </label>--}}
-	                    {{--                        </div>--}}
+                        <div class="checkbox--wrapper">
+                            <input id="rules" name="rules" @if(old('rules')) checked
+                                   @endif type="checkbox"/>
+                            <label for="rules"
+                            >
+                                {{ __("I agree to receive newsletters and promotional offers related to the campaign at my email address.") }}
+                            </label>
+                            @error('rules')
+                            <span class="invalid-feedback d-block">{{$message}}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
 
@@ -392,15 +390,11 @@
 	                                    <input id="terms" name="terms" @if(old('terms')) checked
 	                                           @endif type="checkbox"/>
 	                                    <label for="terms"
-                                        >By checking this box, I agree to the
-		                                    <a href="/page/terms-and-conditions">Terms of Service</a> and
-		                                    <a href="/page/privacy-policy">Privacy Policy</a> confirm I am of legal
-                                            age, and consent to the use of my personal Information
-                                            os described. I understand my participation is
-                                            voluntary and accept all related risks and rewards. I
-                                            irrevocably accept the Rules of Registration and the
-                                            "Raffle Rules", which I have read and have no
-                                            objection to.
+                                        >{{ __("By checking this box, I agree to the") }}
+                                            <a href="/page/terms-and-conditions">{{ __("Terms of Service") }}</a> {{ __("and") }}
+                                            <a href="/page/privacy-policy">{{ __("Privacy Policy") }}</a>
+                                            {{ __("confirm I am of legal age, and consent to the use of my personal Information as described. I understand my participation is voluntary and accept all related risks and rewards. I irrevocably accept the Rules of Registration and the 'Raffle Rules', which I have read and have no objection to.") }}
+                                            {{ __('For every eBook purchased, you will receive a second eBook with a second free ticket, which will also be entered into the advertised house prize draw among our eBook buyers.') }}
                                         </label>
 	                                    @error('terms')
 	                                    <span class="invalid-feedback d-block">{{$message}}</span>
