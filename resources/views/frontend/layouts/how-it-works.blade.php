@@ -1,7 +1,22 @@
 @extends('frontend.app')
 
 @section('title', 'How it Works')
+@push('style')
+    <style>
+        .single--process .text--area .main--text {
+            font-size: 37px;
+            line-height: 55.16px;
+        }
 
+        .single--process.with--btn:nth-child(odd) .text--area .featured--content {
+            bottom: -105%;
+        }
+
+        .single--process.extra--content .text--area .featured--content {
+            bottom: -100% !important;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- banner area starts -->
     <section class="about--us--banner--area--wrapper banner--top--gap section--bottom--gap how--it--works">
