@@ -11,7 +11,8 @@
 
             <div class="the--process--area--content">
                 @forelse($theProcess as $process)
-                    <div class="single--process {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}} {{ (strlen($process['description_'.locale()] ?? '') < 160 && strlen( $process['title_'.locale()] ?? '') < 44 ) ? 'less--content' : '' }} {{ (strlen($process['description_'.locale()] ?? '')  > 250 && strlen( $process['title_'.locale()] ?? '')  > 50) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--content' : '' }} {{ (strlen( $process['title_'.locale()] ?? '') > 50 && strlen($process['description_'.locale()] ?? '') > 280) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'over--text' : '' }}">
+                    <div
+                        class="single--process with--btn {{$process->button_type != \App\Enums\ButtonType::NONE ? 'with--btn' : ''}} {{ (strlen($process['description_'.locale()] ?? '')  > 200 && strlen( $process['title_'.locale()] ?? '')  > 21) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--content' : '' }} {{ (strlen( $process['title_'.locale()] ?? '') > 50 && strlen($process['description_'.locale()] ?? '') > 280) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'over--text' : '' }}">
                         <div class="img--container">
                             <img src="{{ asset(!empty($process->image) ? $process->image :'frontend/images/single-process.png') }}" alt="" />
                         </div>
@@ -20,7 +21,7 @@
                                 {{$process['title_'.locale()] ?? ''}}
                             </h3>
                             <p class="subtext">
-                                {{$process['description_'.locale()] ?? ''}}
+                                {{$process['description_'.locale()]?? ''}}
                             </p>
 
                             @if($process->button_type == \App\Enums\ButtonType::BUY_NOW)

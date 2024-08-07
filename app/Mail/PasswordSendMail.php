@@ -9,21 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendOTP extends Mailable implements ShouldQueue
+class PasswordSendMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $otp;
+    public string $name;
 
-    public $name;
+    public string $email;
+
+    public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($otp, $name)
+    public function __construct($name, $email, $password)
     {
-        $this->otp = $otp;
         $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -32,7 +35,7 @@ class SendOTP extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirm Your Email to Get Started with Ticket Villa',
+            subject: 'Welcome to Ticket Villa! Your Account Details Inside 🎟️✨',
         );
     }
 
@@ -42,7 +45,7 @@ class SendOTP extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'emails.send_otp',
+            view: 'emails.user_registration_password_send',
         );
     }
 

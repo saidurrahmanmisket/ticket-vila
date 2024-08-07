@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Payment;
 use App\Enums\NotificationType;
 use App\Enums\PaymentMethod;
 use App\Enums\Status;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuestPaymentRequest;
+use App\Mail\PasswordSendMail;
 use App\Mail\TicketMail;
 use App\Models\Campaign;
 use App\Models\Order;
+use App\Models\PromoCode;
 use App\Models\User;
 use App\Notifications\NewNotification;
 use App\Services\PaymentService;
@@ -38,6 +41,12 @@ class StripeController extends Controller
 
                 return redirect()->back();
             }
+            $promoCode = PromoCode::where('code', $request->promo_code)->first();
+            if ((! empty($request->promo_code) && ! empty($promoCode)) && ! Helper::isValidPromoCode($promoCode, $campaign)) {
+                flash()->addError('Invalid Promo Code');
+
+                return redirect()->back()->withInput();
+            }
             $quantity = $request->quantity ?? 1;
 
             //check has ticket
@@ -55,6 +64,7 @@ class StripeController extends Controller
             LaravelSession::put([
                 'quantity' => $quantity,
                 'campaign_id' => $campaign->id,
+                'promo_code_id' => $promoCode?->id,
             ]);
 
             // Set the Stripe API key
@@ -66,8 +76,14 @@ class StripeController extends Controller
                 $campaign_price = $campaign->price;
             }
 
+            if (! empty($promoCode)) {
+                $campaign_price = Helper::promoCodeDiscountPrice($promoCode, $campaign);
+            }
+
+            $promo_code_id = isset($promoCode) ? $promoCode?->id : '';
+
             // Create the Stripe checkout session
-            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.Auth::id().'&quantity='.$quantity.'&campaign_id='.$campaign->id;
+            $redirectUrl = route('user.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.Auth::id().'&quantity='.$quantity.'&campaign_id='.$campaign->id.'&promo_code_id='.$promo_code_id;
             $session = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -115,8 +131,8 @@ class StripeController extends Controller
                 DB::beginTransaction(); // Start transaction to ensure data integrity
                 $quantity = ! empty(LaravelSession::get('quantity')) ? LaravelSession::get('quantity') : $request->quantity;
                 $campaign_id = ! empty(LaravelSession::get('campaign_id')) ? LaravelSession::get('campaign_id') : $request->campaign_id;
-
                 $user_id = ! empty(LaravelSession::get('user_id')) ? LaravelSession::get('user_id') : $request->user_id;
+                $promo_code_id = ! empty(LaravelSession::get('promo_code_id')) ? LaravelSession::get('promo_code_id') : $request->promo_code_id;
                 $user = null;
                 if (Auth::check()) {
                     $user = Auth::user();
@@ -132,17 +148,16 @@ class StripeController extends Controller
                 $campaign = Campaign::with(['ebooks'])->findOrFail($campaign_id);
 
                 $discountQuantity = calculateFreeTicket($quantity, $campaign->how_many_buy, $campaign->how_many_free);
+
                 // Store order in the database
                 $order = $paymentService->orderCreate([
                     'user_id' => $user->id,
+                    'campaign' => $campaign,
+                    'promo_code_id' => $promo_code_id,
                     'transaction_id' => $session->payment_intent,
                     'quantity' => $quantity,
                     'discount_quantity' => $discountQuantity,
-                    'discount_percent' => $campaign->discount_percent,
-                    'discount_expire_date' => $campaign->discount_expire_date,
-                    'total_price' => $campaign->price * $quantity,
                     'payment_method' => PaymentMethod::STRIPE,
-                    'campaign_id' => $campaign->id,
                     'payment_status' => Status::COMPLETED,
                 ]);
                 // Generate the ticket numbers and create ticket entries
@@ -172,7 +187,7 @@ class StripeController extends Controller
                 ));
 
                 // Clear session
-                LaravelSession::forget(['quantity', 'campaign_id', 'user_id']);
+                LaravelSession::forget(['quantity', 'campaign_id', 'user_id', 'promo_code_id']);
 
                 flash()->addSuccess('Payment Success');
 
@@ -216,10 +231,18 @@ class StripeController extends Controller
     public function web_shop_payment(GuestPaymentRequest $request)
     {
         try {
+            $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+            $promoCode = PromoCode::where('code', $request->promo_code)->first();
+            if ((! empty($request->promo_code) && ! empty($promoCode) && ! empty($campaign)) && ! Helper::isValidPromoCode($promoCode, $campaign)) {
+                flash()->addError('Invalid Promo Code');
+
+                return redirect()->back()->withInput();
+            }
             $user = User::where('email', $request->email)->first();
 
             //check user and create user
             if (empty($user)) {
+                $password = generatePassword(12);
                 $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
@@ -231,13 +254,15 @@ class StripeController extends Controller
                     'address_1' => $request->address,
                     'zip_code' => $request->zip,
                     'country_id' => $request->country_id,
-                    'state' => $request->state,
+                    //                    'state' => $request->state,
                     //                    'country_of_birthday' => $request->country_of_birthday,
                     //                    'gender' => $request->gender,
-                    'password' => bcrypt($request->password),
+                    'password' => bcrypt($password),
                 ]);
+
+                //login credentials to email
+                Mail::to($user->email)->send(new PasswordSendMail($user->first_name.' '.$user->last_name, $user->email, $password));
             }
-            $campaign = Campaign::where('status', Status::PUBLISHED)->first();
 
             //check campaign is exist & ticket limit
             if (empty($campaign)) {
@@ -269,6 +294,7 @@ class StripeController extends Controller
                 'quantity' => $quantity,
                 'user_id' => $user->id,
                 'campaign_id' => $campaign->id,
+                'promo_code_id' => $promoCode?->id,
             ]);
 
             // Set the Stripe API key
@@ -280,8 +306,13 @@ class StripeController extends Controller
             } else {
                 $campaign_price = $campaign->price;
             }
+
+            if (! empty($promoCode)) {
+                $campaign_price = Helper::promoCodeDiscountPrice($promoCode, $campaign);
+            }
+            $promo_code_id = isset($promoCode) ? $promoCode?->id : '';
             // Create the Stripe checkout session
-            $redirectUrl = route('frontend.web-shop.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.$user->id.'&quantity='.$quantity.'&campaign_id='.$campaign->id;
+            $redirectUrl = route('frontend.web-shop.stripe.success').'?session_id={CHECKOUT_SESSION_ID}'.'&user_id='.$user->id.'&quantity='.$quantity.'&campaign_id='.$campaign->id.'&promo_code_id='.$promo_code_id;
             $session = StripeSession::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[

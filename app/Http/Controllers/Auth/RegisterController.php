@@ -86,7 +86,7 @@ class RegisterController extends Controller
             ]);
 
             // Send OTP to the user's email
-            Mail::to($user->email)->send(new SendOTP($otp));
+            Mail::to($user->email)->send(new SendOTP($otp, $user->first_name.' '.$user->last_name));
             DB::commit();
 
             return $user;

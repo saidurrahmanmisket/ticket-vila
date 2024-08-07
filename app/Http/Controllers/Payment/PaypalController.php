@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Payment;
 use App\Enums\NotificationType;
 use App\Enums\PaymentMethod;
 use App\Enums\Status;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuestPaymentRequest;
+use App\Mail\PasswordSendMail;
 use App\Mail\TicketMail;
 use App\Models\Campaign;
+use App\Models\PromoCode;
 use App\Models\User;
 use App\Notifications\NewNotification;
 use App\Services\PaymentService;
@@ -35,6 +38,13 @@ class PaypalController extends Controller
 
                 return redirect()->back();
             }
+
+            $promoCode = PromoCode::where('code', $request->promo_code)->first();
+            if ((! empty($request->promo_code) && ! empty($promoCode)) && ! Helper::isValidPromoCode($promoCode, $campaign)) {
+                flash()->addError('Invalid Promo Code');
+
+                return redirect()->back()->withInput();
+            }
             $quantity = $request->quantity ?? 1;
 
             //check has ticket
@@ -52,6 +62,7 @@ class PaypalController extends Controller
             LaravelSession::put([
                 'quantity' => $quantity,
                 'campaign_id' => $campaign->id,
+                'promo_code_id' => $promoCode?->id,
             ]);
 
             $provider = new PayPalClient;
@@ -64,10 +75,16 @@ class PaypalController extends Controller
                 $campaign_price = $campaign->price;
             }
 
+            if (! empty($promoCode)) {
+                $campaign_price = Helper::promoCodeDiscountPrice($promoCode, $campaign);
+            }
+
+            $promo_code_id = isset($promoCode) ? $promoCode?->id : '';
+
             $response = $provider->createOrder([
                 'intent' => 'CAPTURE',
                 'application_context' => [
-                    'return_url' => route('user.paypal.success', ['user_id' => Auth::id(), 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => Auth::user()->email]),
+                    'return_url' => route('user.paypal.success', ['user_id' => Auth::id(), 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => Auth::user()->email, 'promo_code_id' => $promo_code_id]),
                     'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [
@@ -127,6 +144,7 @@ class PaypalController extends Controller
                 $campaign_id = ! empty(LaravelSession::get('campaign_id')) ? LaravelSession::get('campaign_id') : $request->campaign_id;
                 $user_id = ! empty(LaravelSession::get('user_id')) ? LaravelSession::get('user_id') : $request->user_id;
                 $user = Auth::check() ? Auth::user() : User::findOrFail($user_id);
+                $promo_code_id = ! empty(LaravelSession::get('promo_code_id')) ? LaravelSession::get('promo_code_id') : $request->promo_code_id;
 
                 if (empty($user)) {
                     $user = User::where('email', $request->email)->first();
@@ -136,14 +154,12 @@ class PaypalController extends Controller
                 // Store order in the database
                 $order = $paymentService->orderCreate([
                     'user_id' => $user->id,
+                    'campaign' => $campaign,
+                    'promo_code_id' => $promo_code_id,
                     'transaction_id' => $response['purchase_units'][0]['payments']['captures'][0]['id'] ?? '',
                     'quantity' => $quantity,
                     'discount_quantity' => $discountQuantity,
-                    'discount_percent' => $campaign->discount_percent,
-                    'discount_expire_date' => $campaign->discount_expire_date,
-                    'total_price' => $campaign->price * $quantity,
                     'payment_method' => PaymentMethod::PAYPAL,
-                    'campaign_id' => $campaign->id,
                     'payment_status' => Status::COMPLETED,
                     'invoice_no' => $response['id'] ?? null,
                 ]);
@@ -174,7 +190,7 @@ class PaypalController extends Controller
                 ));
 
                 // Clear session
-                LaravelSession::forget(['quantity', 'campaign_id', 'user_id']);
+                LaravelSession::forget(['quantity', 'campaign_id', 'user_id', 'promo_code_id']);
 
                 flash()->addSuccess('Payment Success');
 
@@ -217,10 +233,17 @@ class PaypalController extends Controller
     public function web_shop_payment(GuestPaymentRequest $request)
     {
         try {
+            $campaign = Campaign::where('status', Status::PUBLISHED)->first();
             $user = User::where('email', $request->email)->first();
+            $promoCode = PromoCode::where('code', $request->promo_code)->first();
+            if ((! empty($request->promo_code) && ! empty($promoCode) && ! empty($campaign)) && ! Helper::isValidPromoCode($promoCode, $campaign)) {
+                flash()->addError('Invalid Promo Code');
 
+                return redirect()->back()->withInput();
+            }
             //check user and create user
             if (empty($user)) {
+                $password = generatePassword(12);
                 $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
@@ -232,14 +255,14 @@ class PaypalController extends Controller
                     'address_1' => $request->address,
                     'zip_code' => $request->zip,
                     'country_id' => $request->country_id,
-                    'state' => $request->state,
+                    //                    'state' => $request->state,
                     //                    'country_of_birthday' => $request->country_of_birthday,
                     //                    'gender' => $request->gender,
-                    'password' => bcrypt($request->password),
+                    'password' => bcrypt($password),
                 ]);
+                //login credentials to email
+                Mail::to($user->email)->send(new PasswordSendMail($user->first_name.' '.$user->last_name, $user->email, $password));
             }
-            $campaign = Campaign::where('status', Status::PUBLISHED)->first();
-
             //check campaign is exist & ticket limit
             if (empty($campaign)) {
                 flash()->addWarning('Campaign not found.');
@@ -271,6 +294,7 @@ class PaypalController extends Controller
                 'quantity' => $quantity,
                 'user_id' => $user->id,
                 'campaign_id' => $campaign->id,
+                'promo_code_id' => $promoCode?->id,
             ]);
 
             $provider = new PayPalClient;
@@ -282,11 +306,14 @@ class PaypalController extends Controller
             } else {
                 $campaign_price = $campaign->price;
             }
-
+            if (! empty($promoCode)) {
+                $campaign_price = Helper::promoCodeDiscountPrice($promoCode, $campaign);
+            }
+            $promo_code_id = isset($promoCode) ? $promoCode?->id : '';
             $response = $provider->createOrder([
                 'intent' => 'CAPTURE',
                 'application_context' => [
-                    'return_url' => route('frontend.web-shop.paypal.success', ['user_id' => $user->id, 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => $user->email]),
+                    'return_url' => route('frontend.web-shop.paypal.success', ['user_id' => $user->id, 'campaign_id' => $campaign->id, 'quantity' => $quantity, 'email' => $user->email, 'promo_code_id' => $promo_code_id]),
                     'cancel_url' => route('frontend.payment-cancel-message'),
                 ],
                 'purchase_units' => [

@@ -9,7 +9,7 @@ class PromoCode extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code', 'type', 'discount_amount', 'discount_percentage', 'expires_at', 'usage_limit', 'times_used', 'status'];
+    protected $fillable = ['code', 'discount_percentage', 'expires_at', 'usage_limit', 'times_used', 'status'];
 
     protected $casts = [
         'expires_at' => 'datetime',

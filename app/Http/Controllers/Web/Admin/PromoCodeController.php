@@ -49,17 +49,13 @@ class PromoCodeController extends Controller
         //validate request
         $request->validate([
             'code' => 'required|string|max:30|unique:promo_codes,code',
-            'type' => 'required|string|in:fixed,percentage',
-            'discount_amount' => 'nullable|required_if:type,fixed|numeric|min:0',
-            'discount_percentage' => 'nullable|required_if:type,percentage|numeric|min:0|max:100',
+            'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
         ]);
 
         PromoCode::create([
             'code' => $request->code,
-            'type' => $request->type,
-            'discount_amount' => $request->discount_amount,
             'discount_percentage' => $request->discount_percentage,
             'expires_at' => $request->expires_at,
             'usage_limit' => $request->usage_limit,
@@ -100,9 +96,7 @@ class PromoCodeController extends Controller
 
         $request->validate([
             'code' => 'required|string|max:30|unique:promo_codes,code,'.$id,
-            'type' => 'required|string|in:fixed,percentage',
-            'discount_amount' => 'nullable|required_if:type,fixed|numeric|min:0',
-            'discount_percentage' => 'nullable|required_if:type,percentage|numeric|min:0|max:100',
+            'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
         ]);
@@ -114,9 +108,7 @@ class PromoCodeController extends Controller
 
         $promoCode->update([
             'code' => $request->code,
-            'type' => $request->type,
-            'discount_amount' => $request->type === 'fixed' ? $request->discount_amount : null,
-            'discount_percentage' => $request->type === 'percentage' ? $request->discount_percentage : null,
+            'discount_percentage' => $request->discount_percentage,
             'expires_at' => $request->expires_at,
             'usage_limit' => $request->usage_limit,
         ]);

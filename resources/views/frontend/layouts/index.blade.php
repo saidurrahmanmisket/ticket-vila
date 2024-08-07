@@ -1,6 +1,22 @@
 @extends('frontend.app')
 
 @section('title', 'Home')
+@push('style')
+    <style>
+        .single--process .text--area .main--text {
+            font-size: 37px;
+            line-height: 55.16px;
+        }
+
+        .single--process.with--btn:nth-child(odd) .text--area .featured--content {
+            bottom: -105%;
+        }
+
+        .single--process.extra--content .text--area .featured--content {
+            bottom: -100% !important;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- home banner area starts -->
 
@@ -49,7 +65,18 @@
             </div>
         </div>
     </section>
-
+    <div class="d-flex justify-content-center align-items-center py-5">
+        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="btn--fill blue--btn hero-buy-btn">
+            <span>{{ __('Buy Now') }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15"
+                 fill="none">
+                <path d="M15.75 7.72559L0.75 7.72559" stroke="white" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.7002 1.70124L15.7502 7.72524L9.7002 13.7502" stroke="white" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
     {{--    Promotional Banner Section  --}}
     @if($campaign && $campaign->promotion_banner)
         <div class="container">
@@ -472,12 +499,17 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            function isMobileDevice() {
+                return window.innerWidth <= 600;
+            }
             // make image big on click
             $('.home--chance--slider .single--card .cover--img').on('click', function(e) {
                 e.preventDefault();
-                var imgSrc = $(this).attr('src');
-                $('#modalImage').attr('src', imgSrc);
-                $('#imageModal').modal('show');
+                if (!isMobileDevice()) {
+                    var imgSrc = $(this).attr('src');
+                    $('#modalImage').attr('src', imgSrc);
+                    $('#imageModal').modal('show');
+                }
             });
 
             // Handle modal close button click event
@@ -486,4 +518,5 @@
             });
         });
     </script>
+
 @endpush
