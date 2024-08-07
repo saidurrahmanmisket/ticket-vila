@@ -12,7 +12,7 @@
             <div class="the--process--area--content">
                 @forelse($theProcess as $process)
                     <div
-                        class="single--process with--btn {{ (strlen($process['description_'.locale()] ?? '')  > 200 && strlen( $process['title_'.locale()] ?? '')  > 21) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--content' : '' }} {{ (strlen( $process['title_'.locale()] ?? '') > 50 && strlen($process['description_'.locale()] ?? '') > 280) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'over--text' : '' }} {{ (strlen($process['description_'.locale()] ?? '')  > 350 && strlen( $process['title_'.locale()] ?? '')  > 20) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--more--over--content' : '' }}">
+                        class="single--process with--btn {{ (strlen($process['description_'.locale()] ?? '')  > 200 && strlen( $process['title_'.locale()] ?? '')  > 21) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--content' : '' }} {{ (strlen( $process['title_'.locale()] ?? '') > 50 && strlen($process['description_'.locale()] ?? '') > 280) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'over--text' : '' }} {{ (strlen($process['description_'.locale()] ?? '')  > 380 && strlen( $process['title_'.locale()] ?? '')  > 20) && ($process->button_type != \App\Enums\ButtonType::NONE) ? 'extra--more--over--content' : '' }}">
                         <div class="img--container">
                             <img src="{{ asset(!empty($process->image) ? $process->image :'frontend/images/single-process.png') }}" alt="" />
                         </div>
