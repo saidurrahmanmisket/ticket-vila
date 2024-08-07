@@ -15,6 +15,10 @@
         .single--process.extra--content .text--area .featured--content {
             bottom: -100% !important;
         }
+
+        .single--process.extra--content.extra--more--over--content .text--area .featured--content {
+            bottom: -82% !important;
+        }
     </style>
 @endpush
 @section('content')
