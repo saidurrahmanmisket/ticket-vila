@@ -34,8 +34,9 @@ class CheckVerifyUserMiddleware
                     'otp' => $otp,
                 ]);
 
+                $user = auth()->user();
                 // Send OTP to the user's email
-                Mail::to(Auth::user()->email)->send(new SendOTP($otp));
+                Mail::to(Auth::user()->email)->send(new SendOTP($otp, $user->first_name.' '.$user->last_name));
                 flash()->addSuccess('We Sent 6 Digit Code in your Mail');
             }
 

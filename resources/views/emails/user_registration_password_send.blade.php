@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Your Email - Ticket Villa</title>
+    <title>Welcome to Ticket Villa</title>
     <style>
         body {
             font-family: 'Helvetica', 'Arial', sans-serif;
@@ -64,32 +64,30 @@
             background-color: #f3ac4e;
         }
 
-        .verification-code {
+        .credentials {
             background-color: #f5f5f5;
             padding: 15px;
             border-radius: 5px;
             margin: 20px 0;
             font-size: 16px;
-            text-align: center;
-            font-weight: bold;
-            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1>Verify Your Email</h1>
+        <h1>Welcome to Ticket Villa</h1>
     </div>
     <div class="content">
         <p>Hi {{ $name }},</p>
-        <p>Thank you for registering with Ticket Villa! Please use the verification code below to verify your email
-            address and complete your registration.</p>
-        <div class="verification-code">
-            {{ $otp }}
+        <p>Welcome to Ticket Villa! We're excited to have you join us.</p>
+        <div class="credentials">
+            <p><strong>Email:</strong> {{ $email }}</p>
+            <p><strong>Password:</strong> {{ $password }}</p>
         </div>
-        <p>If you did not create an account, no further action is required.</p>
+        <p>Please make sure to change your password after your first login.</p>
         <p>If you have any questions, feel free to contact our support team.</p>
+        <a href="{{ url('/login') }}" class="button" style="color: #ffffff">Login to Your Account</a>
         <p>Thank you,<br>Ticket Villa Team</p>
     </div>
     <div class="footer">

@@ -112,3 +112,20 @@ if (! function_exists('has_any_permission')) {
         return auth()->check() ? auth()->user()->hasAnyPermission($permissions) : false;
     }
 }
+
+if (! function_exists('generatePassword')) {
+    function generatePassword($length = 8): string
+    {
+        // Characters to be included in the password
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $password = '';
+
+        // Generate a random password
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $password;
+    }
+}

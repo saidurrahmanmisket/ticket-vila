@@ -103,17 +103,17 @@
 	                        <span class="invalid-feedback d-block">{{$message}}</span>
 	                        @enderror
                         </div>
-                        <div class="single--input">
-                            <label class="required" for="state">{{ __("State") }}</label>
-                            <input value="{{old('state')}}"
-                                   class="{{!empty($errors->first('state'))? 'is_invalid' : ''}}"
-                                   type="text"
-                                   placeholder="state"
-                                   name="state" id="state"/>
-                            @error('state')
-                            <span class="invalid-feedback d-block">{{$message}}</span>
-                            @enderror
-                        </div>
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="state">{{ __("State") }}</label>--}}
+                        {{--                            <input value="{{old('state')}}"--}}
+                        {{--                                   class="{{!empty($errors->first('state'))? 'is_invalid' : ''}}"--}}
+                        {{--                                   type="text"--}}
+                        {{--                                   placeholder="state"--}}
+                        {{--                                   name="state" id="state"/>--}}
+                        {{--                            @error('state')--}}
+                        {{--                            <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--                            @enderror--}}
+                        {{--                        </div>--}}
                         {{--                        <div class="single--input">--}}
                         {{--                            <label class="required" for="birth_state">{{ __("City of the Birth") }}</label>--}}
                         {{--	                        <input value="{{old('birth_state')}}"--}}
@@ -219,25 +219,25 @@
                             {{--	                            @enderror--}}
                             {{--                            </div>--}}
                         </div>
-                        <div class="single--input">
-                            <label class="required" for="password">{{ __("Password") }}</label>
-	                        <input class="{{ !empty($errors->first('password')) ? 'is_invalid' : ''}}" type="password"
-	                               id="password"
-	                               name="password" placeholder="*******"/>
-	                        @error('password')
-	                        <span class="invalid-feedback d-block">{{$message}}</span>
-	                        @enderror
-                        </div>
-                        <div class="single--input">
-                            <label class="required" for="password_confirmation">{{ __("Confirm Password") }}</label>
-	                        <input class="{{ !empty($errors->first('password_confirmation')) ? 'is_invalid' : ''}}"
-	                               type="password"
-	                               id="password_confirmation" name="password_confirmation"
-	                               placeholder="Retype password"/>
-	                        @error('password_confirmation')
-	                        <span class="invalid-feedback d-block">{{$message}}</span>
-	                        @enderror
-                        </div>
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="password">{{ __("Password") }}</label>--}}
+                        {{--	                        <input class="{{ !empty($errors->first('password')) ? 'is_invalid' : ''}}" type="password"--}}
+                        {{--	                               id="password"--}}
+                        {{--	                               name="password" placeholder="*******"/>--}}
+                        {{--	                        @error('password')--}}
+                        {{--	                        <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--	                        @enderror--}}
+                        {{--                        </div>--}}
+                        {{--                        <div class="single--input">--}}
+                        {{--                            <label class="required" for="password_confirmation">{{ __("Confirm Password") }}</label>--}}
+                        {{--	                        <input class="{{ !empty($errors->first('password_confirmation')) ? 'is_invalid' : ''}}"--}}
+                        {{--	                               type="password"--}}
+                        {{--	                               id="password_confirmation" name="password_confirmation"--}}
+                        {{--	                               placeholder="Retype password"/>--}}
+                        {{--	                        @error('password_confirmation')--}}
+                        {{--	                        <span class="invalid-feedback d-block">{{$message}}</span>--}}
+                        {{--	                        @enderror--}}
+                        {{--                        </div>--}}
                         <div class="checkbox--wrapper">
                             <input id="rules" name="rules" @if(old('rules')) checked
                                    @endif type="checkbox"/>
@@ -295,21 +295,54 @@
 	                                    @if($campaign->discount_percent && Carbon\Carbon::parse($campaign->discount_expire_date)->greaterThan(now()))
 		                                    <li>
 			                                    <div class="options">
-                                                    <p>({{$campaign->discount_percent}}%)</p>
+                                                    <p>{{__("Discount")}}({{$campaign->discount_percent}}%)</p>
 				                                    <p>
 					                                    -{{ number_format($totalPrice - calculateDiscount($totalPrice,$campaign->discount_percent),2) }}
 					                                    €</p>
 			                                    </div>
 		                                    </li>
 	                                    @endif
+                                        <li style="display: none" id="promo-discount" class="position-relative">
+                                            <div class="options">
+                                                <p>{{ __("Promo Discount") }}<span id="discount-percent"></span></p>
+                                                <p id="discount-value"></p>
+                                                <input type="hidden" id="promo_code" name="promo_code" value="">
+                                                <span class="position-absolute" id="removeAppycode"
+                                                      style="cursor:pointer;top: -6px;right: 1px">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         width="24" height="24" style="color: red">
+                                                              <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                                            </svg>
+                                                </span>
+                                            </div>
+                                        </li>
 	                                    <li>
 		                                    <div class="options total">
                                                 <p>{{ __("Total") }}</p>
-			                                    <p class="text-green">{{ number_format($campaign->discount_percent ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice,2) }}
+                                                @php($totalAmount = $campaign->discount_percent && $campaign->discount_expire_date->greaterThan(now()) ? calculateDiscount($totalPrice,$campaign->discount_percent) : $totalPrice)
+                                                <p class="text-green"
+                                                   id="total-amount">{{ number_format($totalAmount,2) }}
 				                                    €</p>
 		                                    </div>
 	                                    </li>
                                     </ul>
+                                    <div id="apply-promo-code">
+                                        <div class="d-flex mt-3 gap-3">
+                                            <div class="single--input">
+                                                <input
+                                                    type="text"
+                                                    placeholder="code"
+                                                    name="code" id="code"/>
+                                            </div>
+                                            <button type="button" id="apply-button" class="btn btn-info text-white">
+                                                Apply
+                                            </button>
+                                        </div>
+                                        <span id="discount-error" style="display: none"
+                                              class="invalid-feedback"></span>
+                                    </div>
 
                                     <!-- payment method  -->
                                     <div class="payment--method mt_45">
@@ -494,6 +527,55 @@
             $('#country_of_birthday').select2({
                 templateResult: formatState
             });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var discountVal = 0;
+            var totalAmount = Number.parseInt("{{$totalAmount}}")
+            $('#apply-button').click(function () {
+                $("#discount-error").hide()
+                $("#discount-error").text('')
+                var code = $('#code').val();
+                var quantity = Number.parseInt("{{$quantity}}")
+                $.ajax({
+                    url: '{{ route('apply-promo-code') }}',
+                    type: 'POST',
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        code: code
+                    },
+                    success: function (response) {
+                        if (response.success === 'true') {
+                            discountVal = response.data.value * quantity;
+                            $("#promo-discount").show()
+                            $("#discount-percent").text('(' + response.data.percent + '%)')
+                            $("#discount-value").text('-' + discountVal.toFixed(2) + ' €')
+                            $("#promo_code").val(response.data.code)
+                            $("#total-amount").text((totalAmount - discountVal).toFixed(2) + ' €')
+                            flasher.success('Promo Code Applied Successfully.')
+                            $("#apply-promo-code").hide()
+                            $("#code").val('')
+                        } else {
+                            flasher.error('Something was wrong.')
+                        }
+                    },
+                    error: function (res) {
+                        $("#discount-error").show()
+                        $("#discount-error").text(res.responseJSON?.message)
+                    }
+                });
+            });
+
+            $("#removeAppycode").click(function () {
+                $("#promo-discount").hide()
+                $("#discount-percent").text('')
+                $("#discount-value").text('')
+                $("#promo_code").val('')
+                $("#total-amount").text((totalAmount).toFixed(2) + ' €')
+                $("#apply-promo-code").show()
+            })
         });
     </script>
 @endpush

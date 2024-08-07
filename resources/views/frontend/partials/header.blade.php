@@ -199,39 +199,32 @@
                                         €</p>
                                 </div>
                             </div>
-                                <form
-                                    action="{{Auth::check() ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
-                                    method="GET">
-                                    <input type="hidden" name="quantity" class="quantity" value="1">
-                                    <button type="submit"
-                                            class="btn--fill blue--btn no--border"
-                                            id="directBuyNow"
+                                <a class='proceed--btn btn--fill blue--btn cart-payment-process'
+                                   href='{{Auth::check() ? route('user.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true']) : route('frontend.web-shop.checkout',['quantity'=>$cart['quantity'],'campaign_id'=>$cart['id'],'cart'=>'true'])}}'>
+                                    <span>{{ __("Proceed to payment") }}</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="18"
+                                        height="15"
+                                        viewBox="0 0 18 15"
+                                        fill="none"
                                     >
-                                        <span>{{ __("Proceed to payment") }}</span>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="20"
-                                            height="17"
-                                            viewBox="0 0 20 17"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M18.7939 8.16371L1.82031 8.16371"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                            <path
-                                                d="M11.9531 1.34613L18.7991 8.16273L11.9531 14.9805"
-                                                stroke="white"
-                                                stroke-width="2.26315"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </button>
-                                </form>
+                                        <path
+                                            d="M16.25 7.72607L1.25 7.72607"
+                                            stroke="white"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M10.2012 1.70149L16.2512 7.72549L10.2012 13.7505"
+                                            stroke="white"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </a>
                             @else
                                 <div class="empty-cart">
                                     <p class="h5">Cart is empty</p>
@@ -321,9 +314,9 @@
                 },
                 success: function (resp) {
                     if (resp.success == 'true') {
-                        let payment_url = new URL($(".cart-payment-process").first().attr('href'))
+                        let payment_url = new URL($(".cart-payment-process")?.first()?.attr('href'))
                         payment_url.searchParams.set('quantity', quantity);
-                        $(".cart-payment-process").each(function () {
+                        $(".cart-payment-process")?.each(function () {
                             $(this).attr('href', payment_url)
                         })
                         $(".cart_subtotal").each(function () {
@@ -335,9 +328,7 @@
                         $(".cart_discount_price").each(function () {
                             $(this).text('-' + resp.data?.discount_price + ' €')
                         })
-                        console.log($(".cart_total_price"))
                         $(".cart_total_price").each(function () {
-                            console.log($(this))
                             $(this).text(resp.data?.total_price + ' €')
                         })
                         $(".cart_quantity").each(function () {

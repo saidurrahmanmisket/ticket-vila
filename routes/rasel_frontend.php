@@ -5,6 +5,7 @@ use App\Http\Controllers\Payment\PaypalController;
 use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\Web\Frontend\NewsletterController;
 use App\Http\Controllers\Web\Frontend\PageController;
+use App\Http\Controllers\Web\Frontend\PromoCodeController;
 use App\Http\Controllers\Web\LogBrowsingTime;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -35,8 +36,9 @@ Route::prefix('web-shop')->middleware('guest')->name('frontend.web-shop.')->grou
     Route::get('/paypal/payment/success', [PaypalController::class, 'success'])->name('paypal.success');
 });
 
-Route::post('/log-browsing-time', [LogBrowsingTime::class, 'store'])->name('log-browsing-time');
+Route::post('/apply-promo-code', [PromoCodeController::class, 'applyPromoCode'])->name('apply-promo-code');
 
+Route::post('/log-browsing-time', [LogBrowsingTime::class, 'store'])->name('log-browsing-time');
 //Change Language route
 Route::get('/set-locale/{locale}', function ($locale) {
     //check valid lang code

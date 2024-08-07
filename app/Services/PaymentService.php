@@ -3,18 +3,32 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\PromoCode;
 use App\Models\Ticket;
-use Carbon\Carbon;
 
 class PaymentService
 {
     public function orderCreate($orderInfo)
     {
 
-        if (Carbon::parse($orderInfo['discount_expire_date'])->greaterThan(now())) {
-            $discount_totalPrice = calculateDiscount($orderInfo['total_price'] ?? 0, $orderInfo['discount_percent'] ?? 0);
+        $totalAmount = $orderInfo['campaign']->price * $orderInfo['quantity'];
+        $discountAmount = ! empty($orderInfo['campaign']->discount_percent) && $orderInfo['campaign']->discount_expire_date->greaterThan(now()) ? calculateDiscount($totalAmount, $orderInfo['campaign']->discount_percent) : $totalAmount;
+        if (! empty($orderInfo['promo_code_id'])) {
+            $promoCode = PromoCode::findOrFail($orderInfo['promo_code_id']);
+            if (! empty($promoCode)) {
+                $code = $promoCode->code;
+                $promo_discount_percent = $promoCode->discount_percentage;
+                $promo_discount_amount = calculateDiscount($discountAmount, $promoCode->discount_percentage);
+                $promoCode->increment('times_used');
+            } else {
+                $code = null;
+                $promo_discount_percent = null;
+                $promo_discount_amount = $discountAmount;
+            }
         } else {
-            $discount_totalPrice = $orderInfo['total_price'];
+            $code = null;
+            $promo_discount_percent = null;
+            $promo_discount_amount = $discountAmount;
         }
 
         return Order::create([
@@ -23,9 +37,13 @@ class PaymentService
             'quantity' => $orderInfo['quantity'],
             'discount_quantity' => $orderInfo['discount_quantity'],
             'discount_percent' => $orderInfo['discount_percent'] ?? 0,
-            'total_price' => $discount_totalPrice,
+            'discount_amount' => $totalAmount - $discountAmount,
+            'promo_discount_percent' => $promo_discount_percent,
+            'promo_discount_amount' => $discountAmount - $promo_discount_amount,
+            'total_price' => $promo_discount_amount,
+            'promo_discount_code' => $code,
             'payment_method' => $orderInfo['payment_method'],
-            'campaign_id' => $orderInfo['campaign_id'],
+            'campaign_id' => $orderInfo['campaign']->id,
             'payment_status' => $orderInfo['payment_status'],
             'invoice_no' => $orderInfo['invoice_no'] ?? null,
         ]);

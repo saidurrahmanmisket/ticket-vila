@@ -51,16 +51,6 @@
                                                     </span>
                                     @enderror
                                 </div>
-                                <div id="fixed">
-                                    <label class="form-label required">Discount Amount</label>
-                                    <input class="form-control" name="discount_amount" type="number" min="0" value="{{ old('discount_amount',$promoCode->discount_amount) }}"
-                                           placeholder="amount">
-                                    @error('discount_amount')
-                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                    @enderror
-                                </div>
                             </div>
                             <div class="col-4 mb-3">
                                 <label class="form-label required">Expire At</label>
@@ -90,25 +80,3 @@
         </div>
     </section>
 @endsection
-
-
-
-@push('script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function checkType(){
-                if($("#type").val() === 'percentage'){
-                    $("#percentage").show()
-                    $("#fixed").hide()
-                }else {
-                    $("#percentage").hide()
-                    $("#fixed").show()
-                }
-            }
-            $("#type").on('change',function (){
-                checkType()
-            })
-            checkType()
-        });
-    </script>
-@endpush

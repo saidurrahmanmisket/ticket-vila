@@ -28,34 +28,12 @@
                                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-4 mb-3">
-                                <label class="form-label required d-block">Type</label>
-                                <select class="form-select form-select-lg w-100 mb-3" id="type" name="type">
-                                    <option selected value="percentage">Percentage</option>
-                                    <option value="fixed">fixed</option>
-                                </select>
-                                @error('type')
-                                <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                @enderror
-                            </div>
                             <div class="col-4 mb-3" id="promo_code_value">
                                 <div id="percentage">
                                     <label class="form-label required">Discount Percentage</label>
                                     <input class="form-control" name="discount_percentage" type="number" min="0" max="100" value="{{ old('discount_percentage') }}"
                                            placeholder="percentage">
                                     @error('discount_percentage')
-                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                    @enderror
-                                </div>
-                                <div id="fixed">
-                                    <label class="form-label required">Discount Amount</label>
-                                    <input class="form-control" name="discount_amount" type="number" min="0" value="{{ old('discount_amount') }}"
-                                           placeholder="amount">
-                                    @error('discount_amount')
                                     <span class="text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -91,24 +69,3 @@
     </section>
 @endsection
 
-
-
-@push('script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function checkType(){
-                if($("#type").val() === 'percentage'){
-                    $("#percentage").show()
-                    $("#fixed").hide()
-                }else {
-                    $("#percentage").hide()
-                    $("#fixed").show()
-                }
-            }
-            $("#type").on('change',function (){
-                checkType()
-            })
-            checkType()
-        });
-    </script>
-@endpush

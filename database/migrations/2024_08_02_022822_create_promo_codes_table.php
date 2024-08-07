@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->enum('type', ['percentage', 'fixed'])->default('percentage');
-            $table->decimal('discount_amount', 8, 2)->nullable();
-            $table->integer('discount_percentage')->nullable();
+            $table->integer('discount_percentage');
             $table->dateTime('expires_at');
             $table->integer('usage_limit')->default(0);
             $table->integer('times_used')->default(0);

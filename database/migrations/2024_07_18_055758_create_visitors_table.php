@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
+            $table->foreignId('user_id')->after('country')->nullable()->constrained('users')->nullOnDelete();
             $table->string('ip');
             $table->string('country');
             $table->timestamps();

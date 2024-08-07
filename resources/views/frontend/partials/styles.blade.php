@@ -410,12 +410,33 @@
         margin-bottom: 70px;
     }
 
+    .hero-buy-btn {
+        margin-top: -226px;
+    }
+
+    @media only screen and (min-width: 1601px) and (max-width: 1800px) {
+        .hero-buy-btn {
+            margin-top: -132px;
+        }
+    }
+
+    /* large laptop devices */
+    @media only screen and (min-width: 1366px) and (max-width: 1600px) {
+        .hero-buy-btn {
+            margin-top: -150px;
+        }
+    }
+
     /* laptop devices */
     @media only screen and (min-width: 1200px) and (max-width: 1365px) {
         .promotion-banner {
             height: 300px;
             margin-top: -30px;
             margin-bottom: 50px;
+        }
+
+        .hero-buy-btn {
+            margin-top: -80px;
         }
     }
 
@@ -426,6 +447,10 @@
             margin-top: -30px;
             margin-bottom: 50px;
         }
+
+        .hero-buy-btn {
+            margin-top: -80px;
+        }
     }
 
     /* medium tablet devices */
@@ -434,6 +459,10 @@
             height: 220px;
             margin-top: -30px;
             margin-bottom: 40px;
+        }
+
+        .hero-buy-btn {
+            margin-top: -80px;
         }
     }
 
@@ -444,6 +473,10 @@
             margin-top: -30px;
             margin-bottom: 40px;
         }
+
+        .hero-buy-btn {
+            margin-top: -80px;
+        }
     }
 
     /* large mobile devices */
@@ -453,6 +486,10 @@
             margin-top: -20px;
             margin-bottom: 30px;
         }
+
+        .hero-buy-btn {
+            margin-top: -80px;
+        }
     }
 
     /* mobile devices */
@@ -461,6 +498,10 @@
             height: 150px;
             margin-top: -20px;
             margin-bottom: 30px;
+        }
+
+        .hero-buy-btn {
+            margin-top: -80px;
         }
     }
 

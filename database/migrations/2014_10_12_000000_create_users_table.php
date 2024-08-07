@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address_2')->nullable();
             $table->string('avatar')->nullable();
             $table->string('city')->nullable();
+            $table->foreignId('country_id')->nullable()->constrained('countries')->nullOnDelete();
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('gender')->nullable();

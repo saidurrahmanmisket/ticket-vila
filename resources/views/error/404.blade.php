@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>404</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
 </head>
 <body>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class=" d-flex justify-content-center btn--wrapper">
-            <a href="{{route('frontend./')}}" class="btn--normal btn-fill btn  text-white bg-dark"> Back To Home</a>
+            <a href="{{route('frontend./')}}" class="btn--normal btn-fill btn  text-white bg-dark">Back To Home</a>
         </div>
     </div>
 </section>
