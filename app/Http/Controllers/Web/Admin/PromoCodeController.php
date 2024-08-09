@@ -48,7 +48,7 @@ class PromoCodeController extends Controller
 
         //validate request
         $request->validate([
-            'code' => 'required|string|max:30|unique:promo_codes,code',
+            'code' => 'required|string|max:150|unique:promo_codes,code',
             'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
@@ -95,7 +95,7 @@ class PromoCodeController extends Controller
         }
 
         $request->validate([
-            'code' => 'required|string|max:30|unique:promo_codes,code,'.$id,
+            'code' => 'required|string|max:150|unique:promo_codes,code,'.$id,
             'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
