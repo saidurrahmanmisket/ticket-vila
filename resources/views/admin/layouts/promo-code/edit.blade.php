@@ -28,18 +28,6 @@
                                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-4 mb-3">
-                                <label class="form-label required d-block">Type</label>
-                                <select class="form-select form-select-lg w-100 mb-3" id="type" name="type">
-                                    <option {{ $promoCode->type === 'percentage' ? 'selected' : '' }} value="percentage">Percentage</option>
-                                    <option {{ $promoCode->type === 'fixed' ? 'selected' : '' }} value="fixed">fixed</option>
-                                </select>
-                                @error('type')
-                                <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                @enderror
-                            </div>
                             <div class="col-4 mb-3" id="promo_code_value">
                                 <div id="percentage">
                                     <label class="form-label required">Discount Percentage</label>
