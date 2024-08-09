@@ -90,7 +90,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Code</th>
-                            <th>Type</th>
                             <th>Value</th>
                             <th>Usage Limit</th>
                             <th>Times Used</th>
@@ -104,8 +103,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><span class="btn btn-primary">{{ $promoCode->code }}</span></td>
-                                <td>{{$promoCode->type}}</td>
-                                <td>{{$promoCode->type === 'percentage' ? $promoCode->discount_percentage.'%' : $promoCode->discount_amount}}</td>
+                                <td>{{ $promoCode->discount_percentage.'%' }}</td>
                                 <td>{{ $promoCode->usage_limit }}</td>
                                 <td>{{ $promoCode->times_used }}</td>
                                 <td><span class="btn {{$promoCode->expires_at > now() ? 'btn-success' : 'btn-danger'}} ">{{ $promoCode->expires_at->format('Y-m-d g:i a') }}</span></td>
