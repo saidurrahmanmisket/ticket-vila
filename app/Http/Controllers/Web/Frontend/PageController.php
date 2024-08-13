@@ -403,4 +403,11 @@ class PageController extends Controller
     {
         return view('frontend.layouts.payment_cancel');
     }
+
+    public function landingPage()
+    {
+        $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+
+        return view('frontend.layouts.landing-page', compact('campaign'));
+    }
 }

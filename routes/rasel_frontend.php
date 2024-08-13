@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\URL;
 Route::get('/', function () {
     return view('frontend.layouts.index');
 });
+
+Route::get('/landing-page', [PageController::class, 'landingPage'])->name('landing-page');
+
 Route::post('/add-to-news-latter', [NewsletterController::class, 'add'])->name('add-to-news-latter');
 Route::prefix('web-shop')->name('frontend.web-shop.')->group(function () {
     Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->name('buy-ebook');
