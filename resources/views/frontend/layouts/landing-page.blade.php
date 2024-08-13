@@ -15,6 +15,12 @@
             margin-top: 10px;
             margin-right: 10px;
         }
+
+        @media only screen and (min-width: 320px) and (max-width: 479px) {
+            .landing-page .dropdown-selected .lang-text {
+                display: inline;
+            }
+        }
     </style>
 </head>
 <body>
