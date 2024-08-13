@@ -40,7 +40,7 @@
         <p>
             {!! __('You too dream of a <b>new home of your own</b>, where you can live comfortably, raise a family or simply enjoy everyday life. But in reality, <b>house prices are often sky-high, borrowing is complicated and time-consuming,</b> and savings are not always enough to buy the home you want. This can leave those who want a safe place of their own to relax at the end of the day feeling frustrated and hopeless.') !!}
         </p>
-        <a href="#" class="common-btn btn-1">{{ __('I WIN MY DREAM HOME') }}</a>
+        <a href="{{route('frontend.rules')}}" class="common-btn btn-1">{{ __('I WIN MY DREAM HOME') }}</a>
         <div class="section-text-container">
             <p>
                 {!! __('Imagine no longer having to rent or share your home with strangers. Imagine not having to worry about rising house prices because you have a place to call your own. For many people, this dream seems out of reach because of high property prices and difficult financial circumstances. Traditional methods of buying a home are too expensive and complicated, and taking out a loan is a long and stressful process.') !!}
