@@ -41,6 +41,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/rasel_frontend.php'));
             Route::middleware(['web'])
                 ->group(base_path('routes/saidur_frontend.php'));
+            Route::middleware(['web', 'auth', 'auth.verify'])->prefix('affiliate')->name('affiliate.')->group(base_path('routes/affiliate.php'));
         });
     }
 

@@ -407,7 +407,27 @@ class PageController extends Controller
     public function landingPage()
     {
         $campaign = Campaign::where('status', Status::PUBLISHED)->first();
+        if ($campaign) {
+            $gift = Gift::where('status', 'active')->where('id', $campaign->gift_id)->first();
 
-        return view('frontend.layouts.landing-page', compact('campaign'));
+            if (! empty($gift)) {
+                $giftRandomImages = $gift->giftGallary()
+                    ->where(function ($query) {
+                        $query->where('gift_image_type', 'inside')
+                            ->orWhere('gift_image_type', 'outside');
+                    })
+                    ->inRandomOrder()
+                    ->limit(20)
+                    ->get();
+            } else {
+                $gift = null;
+                $giftRandomImages = null;
+            }
+        } else {
+            $gift = null;
+            $giftRandomImages = null;
+        }
+
+        return view('frontend.layouts.landing-page', compact('campaign', 'giftRandomImages'));
     }
 }
