@@ -174,7 +174,6 @@
 
                 <!-- slider area -->
                 <div class="home--chance--slider">
-
                     @if (isset($giftRandomImages) && $giftRandomImages)
                         <div class="owl-carousel owl-theme">
                             @foreach ($giftRandomImages as $item)
@@ -197,9 +196,6 @@
                             @endforeach
                         </div>
                     @endif
-
-
-
                 </div>
             </div>
         </div>
@@ -522,5 +518,4 @@
             });
         });
     </script>
-
 @endpush
