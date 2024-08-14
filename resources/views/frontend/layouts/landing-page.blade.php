@@ -417,7 +417,7 @@
         $('.card-item').on('click', function (e) {
             e.preventDefault();
             if (!isMobileDevice()) {
-                var imgSrc = $(this).attr('src');
+                var imgSrc = $(this).find('img').attr('src');
                 $('#modalImage').attr('src', imgSrc);
                 $('#imageModal').modal('show');
             }
