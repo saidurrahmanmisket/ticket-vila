@@ -46,7 +46,7 @@
         <p>
             {!! __('You too dream of a <b>new home of your own</b>, where you can live comfortably, raise a family or simply enjoy everyday life. But in reality, <b>house prices are often sky-high, borrowing is complicated and time-consuming,</b> and savings are not always enough to buy the home you want. This can leave those who want a safe place of their own to relax at the end of the day feeling frustrated and hopeless.') !!}
         </p>
-        <a href="{{route('frontend.rules')}}" class="common-btn btn-1">{{ __('I WIN MY DREAM HOME') }}</a>
+        <a href="#buy-section" class="common-btn btn-1">{{ __('I WIN MY DREAM HOME') }}</a>
         <div class="section-text-container">
             <p>
                 {!! __('Imagine no longer having to rent or share your home with strangers. Imagine not having to worry about rising house prices because you have a place to call your own. For many people, this dream seems out of reach because of high property prices and difficult financial circumstances. Traditional methods of buying a home are too expensive and complicated, and taking out a loan is a long and stressful process.') !!}
@@ -54,10 +54,9 @@
             <h5 class="center-text">
                 {!! __('But what if we told you that there is a simple and accessible way to get the chance to buy the home of your dreams?') !!}
             </h5>
-            <h5>
+            <p class="text-center mx-auto">
                 {!! __("All you need to do is buy an e-book and you'll be entered into a draw to win a house worth up to €850,000! This chance is now yours, and all you have to do is take one simple step to get closer to your dreams.") !!}
-
-            </h5>
+            </p>
         </div>
     </section>
 
@@ -69,7 +68,7 @@
             {!! __('This is exactly what TicketVilla.eu offers. By buying a simple e-book, you not only gain valuable knowledge, but also a lottery ticket to enter the draw. So you get a great read and a chance to win the home of your dreams.') !!}
         </h1>
 
-        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="common-btn btn-2">{{__('I\'LL BUY IT')}}</a>
+        <a href="#buy-section" class="common-btn btn-2">{{__('I\'LL BUY IT')}}</a>
         <h1>{{__('100% transparency')}}</h1>
         <p>
             {!! __('We, the TicketVilla team, are committed to full transparency and honesty. Yes, as a business, we make a profit from this sweepstakes, but we do it completely legally and with 100% transparency. Visit us in person! Once a month, anyone can come and visit us and can visit the property in person. This is not only a fantastic opportunity to see the house you could win, but also to meet us in person.') !!}
@@ -81,7 +80,7 @@
             <img src="{{asset('frontend/images/Sale.png')}}" alt="" srcset=""/>
         </a>
 
-        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="common-btn btn-2"
+        <a href="#buy-section" class="common-btn btn-2"
            style="text-transform: uppercase">{{ __("Buy") }}</a>
         <h1>{{ __("Why is this important?") }}</h1>
         <p class="text-padding-x">
@@ -99,11 +98,11 @@
         <h1 class="mt-lg-5">
             {{ __("Buy now and be part of this revolution - win the home of your dreams in a transparent and legal way!") }}
         </h1>
-        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="common-btn btn-2">{{ __("Buy Now") }}</a>
+        <a href="#buy-section" class="common-btn btn-2">{{ __("Buy Now") }}</a>
         <h1>
             {{ __("Special offer, only") }}
             <b class="text-uppercase text-orange">{{ __("RETIRED UNTIL NOW!") }}</b> <br/>
-            <b class="text-uppercase text-blue">{{ __("DOUBLE YOUR CHANCES NOW") }}</b>
+            <b class="text-uppercase" style="color: #00FF00">{{ __("DOUBLE YOUR CHANCES NOW") }}</b>
         </h1>
         <p class="text-padding-x">
             {!! __('For every e-book you buy, you will receive not one but 2 raffle tickets! This means you could be twice as likely to win an impressive €850,000 dream home. Buy one e-book and get two raffle tickets. So you have 2x the chance of being the winner!') !!}
@@ -222,7 +221,7 @@
             {!! __('This dream home can now be yours with a simple e-book purchase. Don\'t miss this unique opportunity to win the home of your dreams!') !!}
         </h1>
 
-        <a href="{{route('frontend.web-shop.buy-ebook')}}"
+        <a href="#buy-section"
            class="common-btn btn-2 mt-2 text-padding-x">{{ __("Buy") }}</a>
         <h1 class="special-feature-h2 mt-5">
             {!! __('Just 3 simple steps to be the happy owner of a property worth €850,000.') !!}
@@ -248,7 +247,7 @@
         <p class="text-padding-x">
             {!! __('This process offers you the chance to win a luxury home with the purchase of a single e-book. Don\'t miss this once-in-a-lifetime opportunity! Buy NOW and take the first step towards your dream home!') !!}
         </p>
-        <a href="{{route('frontend.web-shop.buy-ebook')}}" class="common-btn btn-2">{{ __("Get tickets") }}</a>
+        <a href="#buy-section" class="common-btn btn-2">{{ __("Get tickets") }}</a>
         <h3>
             {!! __('This is not just a simple prize game. This is YOUR CHANCE to change your life.') !!}
         </h3>
