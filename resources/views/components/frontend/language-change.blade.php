@@ -57,6 +57,9 @@
             display: none;
         }
 
+        .dropdown-options {
+            width: 120px;
+        }
         .custom-dropdown {
             width: auto;
         }
