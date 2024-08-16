@@ -336,7 +336,7 @@
             width: 40px;
             --bs-form-select-bg-img: none;
             background: transparent;
-            z-index: 1050;
+            z-index: 30;
             position: relative;
             border: none;
             padding: .375rem 2.25rem .375rem .75rem;
