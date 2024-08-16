@@ -43,7 +43,6 @@ class PageController extends Controller
                             ->orWhere('gift_image_type', 'outside');
                     })
                     ->inRandomOrder()
-                    ->limit(20)
                     ->get();
             } else {
                 $gift = null;
@@ -417,7 +416,6 @@ class PageController extends Controller
                             ->orWhere('gift_image_type', 'outside');
                     })
                     ->inRandomOrder()
-                    ->limit(20)
                     ->get();
             } else {
                 $gift = null;
