@@ -2,6 +2,26 @@
     .empty-cart p {
         padding: 160px;
     }
+
+    .login-icon {
+        display: none;
+    }
+
+    .lang-text {
+        display: inline;
+    }
+
+
+    /* mobile devices */
+    @media only screen and (min-width: 200px) and (max-width: 575px) {
+        .login-icon {
+            display: inline;
+        }
+
+        .login-text {
+            display: none;
+        }
+    }
 </style>
 <!-- header area starts -->
 <header>
@@ -258,7 +278,10 @@
                     </a>
                 @else
                     <a href="{{ route('login') }}" class="link">
-                        <span>{{ __("Login") }}</span>
+                        <span class="login-text">{{ __("Login") }}</span>
+                        <span class="login-icon">
+                            <img width="30" height="30" alt="login" src="{{asset('frontend/images/login-icon.png')}}">
+                        </span>
                     </a>
                 @endif
 

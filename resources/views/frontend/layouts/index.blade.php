@@ -82,10 +82,18 @@
         </a>
     </div>
     {{--    Promotional Banner Section  --}}
-    @if($campaign && $campaign->promotion_banner)
-        <div class="container">
+    @if($campaign && $campaign->promotion_banner_en && $campaign->promotion_banner_de && $campaign->promotion_banner_hu)
+        <div class="container desktop">
             <div class="promotion-banner">
-                <img src="{{$campaign->promotion_banner}}" class="w-100"
+                <img src="{{$campaign['promotion_banner_'.locale()] ?? ''}}" class="w-100"
+                     alt="{{$campaign->name_en}}">
+            </div>
+        </div>
+    @endif
+    @if($campaign && $campaign->mobile_promotion_banner_en && $campaign->mobile_promotion_banner_de && $campaign->mobile_promotion_banner_hu)
+        <div class="container mobile">
+            <div class="promotion-banner">
+                <img src="{{$campaign['mobile_promotion_banner_'.locale()] ?? ''}}" class="w-100"
                      alt="{{$campaign->name_en}}">
             </div>
         </div>

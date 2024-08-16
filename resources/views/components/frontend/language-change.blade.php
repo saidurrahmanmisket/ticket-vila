@@ -51,9 +51,14 @@
     .show {
         display: block;
     }
-    @media only screen and (min-width: 320px) and (max-width: 479px) {
+
+    @media only screen and (min-width: 200px) and (max-width: 479px) {
         .dropdown-selected .lang-text{
             display: none;
+        }
+
+        .custom-dropdown {
+            width: auto;
         }
     }
 </style>

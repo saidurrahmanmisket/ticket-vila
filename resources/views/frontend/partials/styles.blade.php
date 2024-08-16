@@ -398,18 +398,20 @@
 <style>
     .promotion-banner img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
         border-radius: 25px;
     }
 
     .promotion-banner {
         width: 100%;
-        height: 500px;
+        max-height: 500px;
         margin-top: -50px;
         margin-bottom: 70px;
     }
 
+    .mobile .promotion-banner {
+        display: none;
+    }
     .hero-buy-btn {
         margin-top: -226px;
     }
@@ -430,7 +432,6 @@
     /* laptop devices */
     @media only screen and (min-width: 1200px) and (max-width: 1365px) {
         .promotion-banner {
-            height: 300px;
             margin-top: -30px;
             margin-bottom: 50px;
         }
@@ -443,7 +444,6 @@
     /* large tablet devices */
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .promotion-banner {
-            height: 280px;
             margin-top: -30px;
             margin-bottom: 50px;
         }
@@ -456,7 +456,6 @@
     /* medium tablet devices */
     @media only screen and (min-width: 768px) and (max-width: 991px) {
         .promotion-banner {
-            height: 220px;
             margin-top: -30px;
             margin-bottom: 40px;
         }
@@ -469,7 +468,6 @@
     /* small tablet devices */
     @media only screen and (min-width: 576px) and (max-width: 767px) {
         .promotion-banner {
-            height: 200px;
             margin-top: -30px;
             margin-bottom: 40px;
         }
@@ -481,12 +479,19 @@
 
     /* large mobile devices */
     @media only screen and (min-width: 480px) and (max-width: 575px) {
-        .promotion-banner {
-            height: 150px;
+        .desktop .promotion-banner {
+            display: none;
             margin-top: -20px;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
 
+        .mobile .promotion-banner {
+            display: block;
+            margin-top: -30px;
+            margin-bottom: 40px;
+            height: auto !important;
+            max-height: none !important;
+        }
         .hero-buy-btn {
             margin-top: -80px;
         }
@@ -494,12 +499,17 @@
 
     /* mobile devices */
     @media only screen and (min-width: 375px) and (max-width: 479px) {
-        .promotion-banner {
-            height: 150px;
-            margin-top: -20px;
-            margin-bottom: 30px;
+        .desktop .promotion-banner {
+            display: none;
         }
 
+        .mobile .promotion-banner {
+            display: block;
+            margin-top: -30px;
+            height: auto !important;
+            max-height: none !important;
+            margin-bottom: 40px;
+        }
         .hero-buy-btn {
             margin-top: -80px;
         }

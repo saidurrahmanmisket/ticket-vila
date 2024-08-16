@@ -95,6 +95,123 @@
                                     </div>
                                 </div>
                                 <div class="mt-5">
+                                    <h5>Promotion Banner</h5>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-4">
+                                            <label for="promotion_banner_en" class="form-label h6">Banner(En)</label>
+                                            <input type="file" class="form-control dropify" id="promotion_banner_en"
+                                                   name="promotion_banner_en"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->promotion_banner_en)}}">
+                                            @error('promotion_banner_en')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label for="promotion_banner_de" class="form-label h6">Banner(De)</label>
+                                            <input type="file" class="form-control dropify" id="promotion_banner_de"
+                                                   name="promotion_banner_de"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->promotion_banner_de)}}">
+                                            @error('promotion_banner_de')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label for="promotion_banner_hu" class="form-label h6">Banner(hu)</label>
+                                            <input type="file" class="form-control dropify" id="promotion_banner_hu"
+                                                   name="promotion_banner_hu"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->promotion_banner_hu)}}">
+                                            @error('promotion_banner_hu')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <h4>Mobile Version</h4>
+                                    <div class="row">
+
+                                        <!-- Mobile banners -->
+                                        <div class="mb-3 col-md-4">
+                                            <label for="mobile_promotion_banner_en" class="form-label h6">Mobile
+                                                Banner(En)</label>
+                                            <input type="file" class="form-control dropify"
+                                                   id="mobile_promotion_banner_en"
+                                                   name="mobile_promotion_banner_en"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->mobile_promotion_banner_en)}}">
+                                            @error('mobile_promotion_banner_en')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label for="mobile_promotion_banner_de" class="form-label h6">Mobile
+                                                Banner(De)</label>
+                                            <input type="file" class="form-control dropify"
+                                                   id="mobile_promotion_banner_de"
+                                                   name="mobile_promotion_banner_de"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->mobile_promotion_banner_de)}}">
+                                            @error('mobile_promotion_banner_de')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label for="mobile_promotion_banner_hu" class="form-label h6">Mobile
+                                                Banner(hu)</label>
+                                            <input type="file" class="form-control dropify"
+                                                   id="mobile_promotion_banner_hu"
+                                                   name="mobile_promotion_banner_hu"
+                                                   accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                                   data-default-file="{{asset($campaign->mobile_promotion_banner_hu)}}">
+                                            @error('mobile_promotion_banner_hu')
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mb-3 d-flex flex-column">
+                                    <label for="gift_id" class="form-label required h6">Gift</label>
+                                    <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
+                                        <option selected>Select gift</option>
+                                        @foreach($gifts as $gift)
+                                            <option @if($campaign->gift_id == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name_en }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('gift_id')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="thumbnail" class="form-label h6">Thumbnail</label>
+                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
+                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
+                                           data-default-file="{{asset($campaign->thumbnail)}}">
+                                    @error('thumbnail')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="mt-5">
                                     <h5 class="mb-3">Promotion Section</h5>
                                     <div class="row mb-3">
                                         <div class="col-6">
@@ -154,46 +271,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="promotion_banner" class="form-label h6">Banner</label>
-                                        <input type="file" class="form-control dropify" id="promotion_banner"
-                                               name="promotion_banner"
-                                               accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
-                                               data-default-file="{{asset($campaign->promotion_banner)}}">
-                                        @error('promotion_banner')
-                                        <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="mb-3 d-flex flex-column">
-                                    <label for="gift_id" class="form-label required h6">Gift</label>
-                                    <select class="form-select form-select-lg mb-3" id="gift_id" name="gift_id">
-                                        <option selected>Select gift</option>
-                                        @foreach($gifts as $gift)
-                                            <option @if($campaign->gift_id == $gift->id) selected @endif value="{{ $gift->id }}">{{ $gift->name_en }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('gift_id')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="thumbnail" class="form-label h6">Thumbnail</label>
-                                    <input type="file" class="form-control dropify" id="thumbnail" name="thumbnail"
-                                           accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
-                                           data-default-file="{{asset($campaign->thumbnail)}}">
-                                    @error('thumbnail')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                                 <div id="ebook_files_list">
                                     <div class="d-flex justify-content-end">
