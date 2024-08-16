@@ -322,6 +322,7 @@
                         🎉</p>
                 @endif
                 <form
+                    id="directBuyNow"
                     action="{{Auth::check() ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
                     method="GET">
                     <input type="hidden" name="quantity" class="quantity" value="1">
@@ -427,6 +428,15 @@
             $('#imageModal').modal('hide');
         });
     });
+</script>
+{{--    for facebook pixel buy trac --}}
+<script type="text/javascript">
+    let value = "{{ !empty($campaign) ? number_format($campaign->price,2) : 0 }}";
+    // for initial checkout
+    $('#directBuyNow').on('submit', function (event) {
+        var productQty = $('input[name="quantity"].quantity').val()
+        fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+    })
 </script>
 <script src="https://ticketvilla-landing.vercel.app/assets/js/main.js"></script>
 </body>

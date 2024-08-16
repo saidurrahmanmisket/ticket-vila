@@ -102,12 +102,12 @@
                                 </form>
 
                                 <form
+                                    id="directBuyNow"
                                     action="{{Auth::check() ? route('user.checkout') : route('frontend.web-shop.checkout')}}"
                                         method="GET">
                                     <input type="hidden" name="quantity" class="quantity" value="1">
                                     <button type="submit"
                                             class="btn--fill blue--btn no--border"
-                                            id="directBuyNow"
                                     >
                                         <span>{{ __("Proceed to payment") }}</span>
                                         <svg
@@ -195,21 +195,20 @@
 @push('scripts')
 {{--    for facebook pixel buy trac --}}
     <script type="text/javascript">
-        let value = {{ !empty($campaign) ? number_format($campaign->price,2) : 0 }};
-        let productQty = $('#quantity-value').val();
+        let value = "{{ !empty($campaign) ? number_format($campaign->price,2) : 0 }}";
+
 
         //for add to cart tracking
         $('#addToCartButton').click(function () {
+            var productQty = $('#quantity-value').val();
             fbq('track', 'AddToCart', {num_items: productQty, value: value});
         });
 
         // for initial checkout
-        $('#directBuyNow').click(function () {
+        $('#directBuyNow').on('submit', function () {
+            var productQty = $('#quantity-value').val();
             fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
         });
-
-
-
     </script>
 
 
