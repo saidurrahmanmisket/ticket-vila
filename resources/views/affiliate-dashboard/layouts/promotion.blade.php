@@ -62,7 +62,7 @@
                             <div class="img--area">
                                 <img
                                     class="w-100"
-                                    src="../assets/images/tips1.png"
+                                    src="{{asset('user/images/tips1.png')}}"
                                     alt=""
                                 />
                             </div>
@@ -112,7 +112,7 @@
                             <div class="img--area">
                                 <img
                                     class="w-100"
-                                    src="../assets/images/tips2.png"
+                                    src="{{asset('user/images/tips2.png')}}"
                                     alt=""
                                 />
                             </div>
@@ -124,7 +124,7 @@
                                 <div class="modarator--area">
                                     <!-- moderator  -->
                                     <div class="moderator">
-                                        <img src="../assets/images/moderator.png" alt="" />
+                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
                                         <p>Henrik</p>
                                     </div>
                                     <a href="#">
@@ -162,7 +162,7 @@
                             <div class="img--area">
                                 <img
                                     class="w-100"
-                                    src="../assets/images/tips3.png"
+                                    src="{{asset('user/images/tips3.png')}}"
                                     alt=""
                                 />
                             </div>
@@ -174,7 +174,7 @@
                                 <div class="modarator--area">
                                     <!-- moderator  -->
                                     <div class="moderator">
-                                        <img src="../assets/images/moderator.png" alt="" />
+                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
                                         <p>Henrik</p>
                                     </div>
                                     <a href="#">
@@ -212,7 +212,7 @@
                             <div class="img--area">
                                 <img
                                     class="w-100"
-                                    src="../assets/images/tips4.png"
+                                    src="{{asset('user/images/tips4.png')}}"
                                     alt=""
                                 />
                             </div>
@@ -224,7 +224,7 @@
                                 <div class="modarator--area">
                                     <!-- moderator  -->
                                     <div class="moderator">
-                                        <img src="../assets/images/moderator.png" alt="" />
+                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
                                         <p>Henrik</p>
                                     </div>
                                     <a href="#">
