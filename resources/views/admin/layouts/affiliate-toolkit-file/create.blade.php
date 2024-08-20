@@ -58,9 +58,9 @@
                                     <label for="file_type" class="form-label required h6">File Type</label>
                                     <select class="form-select form-select-lg mb-3" id="file_type" name="file_type">
                                         <option selected>Select file type</option>
-                                        @foreach(\App\Enums\ToolkitType::map() as $type)
+                                        @foreach(\App\Enums\ToolkitType::map() as $type => $value)
                                             <option @if(old('file_type') == $type) selected
-                                                    @endif value="{{ $type }}">{{ $type }}</option>
+                                                    @endif value="{{ $type }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     @error('file_type')

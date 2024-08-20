@@ -24,7 +24,7 @@
                                 <th class="no">No</th>
                                 <th class="ticket">Tickets</th>
                                 <th class="ticket-sold-date">Date</th>
-                                <th class="ticket-sold-price">Price</th>
+                                <th class="ticket-sold-price"></th>
                                 <th class="ticket-sold-total--price">Total Price</th>
                                 <th class="ticket-sold-income">Income</th>
                                 <th class="ticket-sold-id">ID</th>
@@ -38,12 +38,11 @@
                                     <td class="ticket">
                                         <div class="user--tickets">
                                             <p>{{$ticket->order->tickets_count}}</p>
-                                            <img src="{{asset('user/images/ticket.png')}}" alt="ticket">
+                                            <img src="{{asset('user/images/user-ticket.png')}}" alt="ticket">
                                         </div>
                                     </td>
                                     <td class="ticket-sold-date">{{$ticket->created_at->format('d.m.Y - H:i:s')}}</td>
-                                    <td class="ticket-sold-price">{{number_format($ticket->order->total_price,2)}}€
-                                    </td>
+                                    <td class="ticket-sold-price"></td>
                                     <td class="ticket-sold-total--price">{{number_format($ticket->order->total_price,2)}}
                                         €
                                     </td>
@@ -60,6 +59,9 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                {{$tickets->links()}}
             </div>
         </div>
     </section>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Web\Affiliate;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\AffiliateCommission;
+use App\Models\AffiliateFile;
 use DB;
 
 class PageController extends Controller
@@ -57,7 +59,9 @@ class PageController extends Controller
 
     public function promotion()
     {
-        return view('affiliate-dashboard.layouts.promotion');
+        $toolkits = AffiliateFile::where('status', Status::ACTIVE)->get();
+
+        return view('affiliate-dashboard.layouts.promotion', compact('toolkits'));
     }
 
     public function ticketSold()
