@@ -11,6 +11,7 @@ Route::middleware(['isAffiliate'])->group(function () {
         Route::get('/statistics', 'statistics')->name('statistics');
     });
     Route::post('/send_invitation', [AffiliateController::class, 'sendInvitation'])->name('send-invitation');
+    Route::get('/toolkit/download/{type}', [AffiliateController::class, 'downloadFile'])->name('download-file');
 });
 
 //join affiliate

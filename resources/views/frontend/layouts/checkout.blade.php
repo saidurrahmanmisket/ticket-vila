@@ -287,8 +287,8 @@
 	                                    @if(!empty($campaign->how_many_buy) && !empty($campaign->how_many_free))
 		                                    <li>
 			                                    <div class="options">
-                                                    <p>{{ __("Free Tickets") }}</p>
-				                                    <p>{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
+                                                    <p style="color: red;font-weight: bold;font-size: 18px">{{ __("Free Tickets") }}</p>
+                                                    <p style="color: red;font-weight: bold;font-size: 18px">{{ calculateFreeTicket($quantity,$campaign->how_many_buy,$campaign->how_many_free) }}</p>
 			                                    </div>
 		                                    </li>
 	                                    @endif
@@ -328,12 +328,14 @@
 		                                    </div>
 	                                    </li>
                                     </ul>
-                                    <div id="apply-promo-code">
-                                        <div class="d-flex mt-3 gap-3">
+                                    <div id="apply-promo-code" class="mt-3">
+                                        <label class="form-label"
+                                               style="font-weight: bold">{{ __("Promotional code (Optional)") }}</label>
+                                        <div class="d-flex gap-3">
                                             <div class="single--input">
                                                 <input
                                                     type="text"
-                                                    placeholder="{{ __("Promotional code (Optional)") }}"
+                                                    placeholder="ABC10"
                                                     name="code" id="code"/>
                                             </div>
                                             <button type="button" id="apply-button" class="btn btn-info text-white">

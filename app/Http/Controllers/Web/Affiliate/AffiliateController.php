@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Web\Affiliate;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Mail\AffiliateInvite;
+use App\Models\AffiliateFile;
 use App\Models\AffiliateUser;
 use Illuminate\Http\Request;
 use Str;
+use ZipArchive;
 
 class AffiliateController extends Controller
 {
@@ -66,5 +69,49 @@ class AffiliateController extends Controller
                 'message' => $exception->getMessage(),
             ]);
         }
+    }
+
+    public function downloadFile($type)
+    {
+        $zip = new ZipArchive;
+        if ($type == 'all') {
+            $fileName = 'toolkit-files.zip';
+        } else {
+            $fileName = $type.'.zip';
+        }
+
+        // Path to store the zip file
+        $zipPath = storage_path($fileName);
+
+        if ($zip->open($zipPath, ZipArchive::CREATE) === true) {
+            // Add files to the zip
+            if ($type == 'all') {
+                $files = AffiliateFile::where('status', Status::ACTIVE)->pluck('file')->toArray();
+            } else {
+                $files = AffiliateFile::where('file_type', $type)->where('status', Status::ACTIVE)->pluck('file')->toArray();
+            }
+            if (count($files) > 0) {
+                foreach ($files as $file) {
+                    $filePath = public_path($file);
+                    if (file_exists($filePath)) {
+                        $zip->addFile($filePath, basename($file));
+                    }
+                }
+            } else {
+                flash()->addError('file  not found.');
+
+                return redirect()->back();
+            }
+
+            // Close the zip after adding the files
+            $zip->close();
+        } else {
+            flash()->addError('Could not create the zip file.');
+
+            return redirect()->back();
+        }
+
+        // Download the generated zip file
+        return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 }
