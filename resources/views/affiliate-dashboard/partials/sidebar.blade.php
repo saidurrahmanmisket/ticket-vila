@@ -7,9 +7,9 @@
                 alt="" />
         </a>
     </div>
-    <!-- mainmenu  -->
+    <!-- main menu  -->
     <div class="main--menu">
-        <h4>MAINMENU</h4>
+        <h4>MAIN MENU</h4>
         <ul class="menu">
             <li>
                 <a href="{{ route('affiliate.dashboard') }}"
@@ -64,6 +64,33 @@
                     Statistics
                 </a>
             </li>
+            <li>
+                <a href="{{ route('user.dashboard') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" width="25" height="24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
+                    </svg>
+                    {{ __("Profile") }}
+                </a>
+            </li>
         </ul>
     </div>
+    <!-- logout  -->
+    <a href="#" style="position: absolute !important;" class="logout"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+            <path
+                d="M8.89844 8.06023C9.20844 4.46023 11.0584 2.99023 15.1084 2.99023H15.2384C19.7084 2.99023 21.4984 4.78023 21.4984 9.25023V15.7702C21.4984 20.2402 19.7084 22.0302 15.2384 22.0302H15.1084C11.0884 22.0302 9.23844 20.5802 8.90844 17.0402"
+                stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.0011 12.5H3.62109" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M5.85 9.15039L2.5 12.5004L5.85 15.8504" stroke="#868A9B" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ __("Log Out") }}
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 </div>

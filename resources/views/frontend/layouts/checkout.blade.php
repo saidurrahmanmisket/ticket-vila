@@ -333,7 +333,7 @@
                                             <div class="single--input">
                                                 <input
                                                     type="text"
-                                                    placeholder="code"
+                                                    placeholder="{{ __("Promotional code (Optional)") }}"
                                                     name="code" id="code"/>
                                             </div>
                                             <button type="button" id="apply-button" class="btn btn-info text-white">

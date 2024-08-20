@@ -163,6 +163,10 @@ class PaypalController extends Controller
                     'payment_status' => Status::COMPLETED,
                     'invoice_no' => $response['id'] ?? null,
                 ]);
+                //if has referral and create commission
+                if (session('referrer_id')) {
+                    $paymentService->AffiliateCommission(session('referrer_id'), $order, $user->id);
+                }
                 // Generate the ticket numbers and create ticket entries
                 $ticketNumbers = $paymentService->ticketCreate($order->id, $user->id, $quantity, $campaign->id, $discountQuantity, $campaign->unique_text);
                 DB::commit(); // Commit transaction
@@ -354,7 +358,7 @@ class PaypalController extends Controller
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->route('frontend.web-shop.checkout')->with($e->getMessage());
+            return redirect()->route('frontend.web-shop.checkout');
         }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Admin\AdminUserController;
+use App\Http\Controllers\Web\Admin\AffiliateToolkitFile;
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
@@ -84,7 +85,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::post('/3d_map_or_video_section/video-presentation-one', [ThreeDViewController::class, 'videoPresentationOne'])->name('three-d-map-or-video.video-presentation-one');
         Route::post('/3d_map_or_video_section/video-presentation-two', [ThreeDViewController::class, 'videoPresentationTwo'])->name('three-d-map-or-video.video-presentation-two');
     });
-
+    //Affiliate Toolkit routes
+    Route::resource('/affiliate-toolkit', AffiliateToolkitFile::class)->except(['show']);
+    Route::post('/affiliate-toolkit/status/{id}', [AffiliateToolkitFile::class, 'status'])->name('affiliate-toolkit.status');
+    Route::get('/affiliate-toolkit/download/{affiliateFile}', [AffiliateToolkitFile::class, 'download'])->name('affiliate-toolkit.download');
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');

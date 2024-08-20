@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::get('/soechau-haus', [PageController::class, 'landingPage'])->name('landing-page');
 
+Route::get('/ref/{code}', [PageController::class, 'referral'])->name('referral');
+
 Route::post('/add-to-news-latter', [NewsletterController::class, 'add'])->name('add-to-news-latter');
 Route::prefix('web-shop')->name('frontend.web-shop.')->group(function () {
     Route::get('/buy-ebook', [PageController::class, 'buyEbook'])->name('buy-ebook');

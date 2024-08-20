@@ -283,7 +283,7 @@
                 </li>
             @endcan
 
-            @can('cms menu')
+                @canany(['affiliate manage file','affiliate manage trips & tricks'])
                 <li class="accordion-item">
                     <div class="accordion-header" id="headingBooks">
                         <a href="#"
@@ -308,7 +308,7 @@
                                 <path d="M6.70001 16H14.7" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
                                       stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span class="accordion--header-text">CMS</span>
+                            <span class="accordion--header-text">Affiliate</span>
                             <span class="bi-chevron-down ms-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                  fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -325,58 +325,22 @@
                         <div class="accordion-body">
                             <ul>
                                 <li>
-                                    <a href="{{ route('admin.cms.hero.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.hero.*') ? 'sub--active' : '' }}">
-                                        Hero Section
+                                    <a href="{{ route('admin.affiliate-toolkit.index') }}"
+                                       class="sub--menu--title {{ Route::is('admin.affiliate-toolkit.*') ? 'sub--active' : '' }}">
+                                        Toolkit Files
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.cms.the-process.index') }}"
                                        class="sub--menu--title {{ Route::is('admin.cms.the-process.*') ? 'sub--active' : '' }}">
-                                        The Process
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cms.three-d-map-or-video') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.three-d-map-or-video') ? 'sub--active' : '' }}">
-                                        3D House Section
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cms.home-page.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.home-page.*') ? 'sub--active' : '' }}">
-                                        Home Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cms.about.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.about.*') ? 'sub--active' : '' }}">
-                                        About Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cms.raffle-rules.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.raffle-rules.*') ? 'sub--active' : '' }}">
-                                        Raffle Rules Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.highlight-image.index') }} "
-                                       class="sub--menu--title {{ Route::is('admin.highlight-image.*') ? 'sub--active' : '' }}">
-                                        Highlight Images
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cms.ebook-description.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.cms.ebook-description.*') ? 'sub--active' : '' }}">
-                                        E-Book Description
+                                        Useful trips and tricks
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
-            @endcan
+                @endcanany
             @can('faq menu')
                 <li>
                     <a href="{{ route('admin.faq.index') }}"

@@ -41,7 +41,7 @@ class PromoCodeController extends Controller
             ], 422);
         }
 
-        if ($promoCode->usage_limit < $promoCode->times_used) {
+        if ($promoCode->usage_limit <= $promoCode->times_used) {
             return response()->json([
                 'success' => 'false',
                 'message' => 'Promo code usage limit reached.',

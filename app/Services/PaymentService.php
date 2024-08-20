@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\AffiliateCommission;
+use App\Models\AffiliateUser;
 use App\Models\Order;
 use App\Models\PromoCode;
 use App\Models\Ticket;
@@ -70,5 +72,27 @@ class PaymentService
         }
 
         return $ticketNumbers;
+    }
+
+    public function AffiliateCommission($referrerId, Order $order, $current_user_id): void
+    {
+        $affiliateUser = AffiliateUser::find($referrerId);
+
+        if ($affiliateUser && $affiliateUser->user_id != $current_user_id) {
+            // Get the affiliate's custom commission rate
+            $commissionRate = $affiliateUser->commission_rate;
+
+            // Calculate the commission
+            $commission = $order->total_price * ($commissionRate / 100);
+
+            // Save the commission in the database
+            AffiliateCommission::create([
+                'affiliate_user_id' => $affiliateUser->id,
+                'order_id' => $order->id,
+                'referrer_user_id' => $current_user_id,
+                'commission_rate' => $commissionRate,
+                'amount' => $commission,
+            ]);
+        }
     }
 }

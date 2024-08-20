@@ -15,12 +15,9 @@ class AddExtraPermission extends Seeder
     {
         // Array of permissions to be created
         $permissions = [
-            'promo code' => [
-                'promo code menu',
-                'promo code create',
-                'promo code edit',
-                'promo code status',
-                'promo code delete',
+            'affiliate' => [
+                'affiliate manage file',
+                'affiliate manage trips & tricks',
             ],
         ];
 

@@ -129,3 +129,28 @@ if (! function_exists('generatePassword')) {
         return $password;
     }
 }
+
+if (! function_exists('mask_email')) {
+    /**
+     * Mask an email address like 'max****@gmail.com'.
+     *
+     * @param  string  $email
+     */
+    function mask_email($email): string
+    {
+        $email_parts = explode('@', $email);
+        $name_part = $email_parts[0];
+        $domain_part = '@'.$email_parts[1];
+
+        // Mask the email by revealing the first three characters and adding stars
+        $name_length = strlen($name_part);
+        $mask_length = $name_length > 3 ? $name_length - 3 : 1;
+        $masked_name = substr($name_part, 0, 3).str_repeat('*', $mask_length);
+
+        return $masked_name.$domain_part;
+    }
+}
+function getFileName($file): string
+{
+    return time().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+}
