@@ -124,7 +124,6 @@ class StripeController extends Controller
         try {
             $stripe = new \Stripe\StripeClient(Config::get('stripe.sk'));
             $session = $stripe->checkout->sessions->retrieve($request->session_id);
-            dd($session->payment_intent);
             //check transaction has already
             $order = Order::where('transaction_id', $session->payment_intent)->first();
             //check has session & payment status
