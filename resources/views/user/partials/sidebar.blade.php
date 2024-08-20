@@ -13,7 +13,7 @@ $systemSetting = SystemSetting::first();
     </a>
     <!-- mainmenu  -->
     <div class="main--menu">
-        <h4>MAINMENU</h4>
+        <h4>MAIN MENU</h4>
         <ul class="menu">
             <li>
                 <a href="{{ route('user.dashboard') }}"
@@ -110,6 +110,18 @@ $systemSetting = SystemSetting::first();
                     {{ __("Statistics") }}
                 </a>
             </li>
+            @if(!empty(auth()->user()->load('affiliate')->affiliate))
+                <li>
+                    <a href="{{ route('affiliate.dashboard') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" width="25" height="24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
+                        </svg>
+                        {{ __("Affiliate") }}
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
     <!-- help and support  -->

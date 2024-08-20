@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\Web\Affiliate\AffiliateController;
 use App\Http\Controllers\Web\Affiliate\PageController;
 
-Route::controller(PageController::class)->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
-    Route::get('/promotions', 'promotion')->name('promotion');
-    Route::get('/ticket-sold', 'ticketSold')->name('ticket-sold');
-    Route::get('/statistics', 'statistics')->name('statistics');
+Route::middleware(['isAffiliate'])->group(function () {
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/promotions', 'promotion')->name('promotion');
+        Route::get('/ticket-sold', 'ticketSold')->name('ticket-sold');
+        Route::get('/statistics', 'statistics')->name('statistics');
+    });
+    Route::post('/send_invitation', [AffiliateController::class, 'sendInvitation'])->name('send-invitation');
 });
+
+//join affiliate
+Route::post('/join-affiliate', [AffiliateController::class, 'join'])->name('join');

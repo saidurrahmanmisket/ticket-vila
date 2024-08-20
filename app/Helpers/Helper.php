@@ -56,7 +56,7 @@ class Helper
         }
 
         $discount_price = calculateDiscount($campaign_price, $promoCode->discount_percentage);
-        if (! $promoCode->expires_at->greaterThan(now()) || ($promoCode->usage_limit < $promoCode->times_used) || $discount_price < 0) {
+        if (! $promoCode->expires_at->greaterThan(now()) || ($promoCode->usage_limit <= $promoCode->times_used) || $discount_price < 0) {
             return false;
         } else {
             return true;
@@ -72,7 +72,7 @@ class Helper
         }
 
         $discount_price = calculateDiscount($campaign_price, $promoCode->discount_percentage);
-        if (! $promoCode->expires_at->greaterThan(now()) || ($promoCode->usage_limit < $promoCode->times_used) || $discount_price < 0) {
+        if (! $promoCode->expires_at->greaterThan(now()) || ($promoCode->usage_limit <= $promoCode->times_used) || $discount_price < 0) {
             return $campaign_price;
         } else {
             return $discount_price;

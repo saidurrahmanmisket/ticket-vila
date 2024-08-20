@@ -143,6 +143,13 @@ class PermissionSeeder extends Seeder
                 'notification all read',
                 'notification delete',
             ],
+            'promo code' => [
+                'promo code menu',
+                'promo code create',
+                'promo code edit',
+                'promo code status',
+                'promo code delete',
+            ],
         ];
 
         // Loop through the permissions array and create each permission

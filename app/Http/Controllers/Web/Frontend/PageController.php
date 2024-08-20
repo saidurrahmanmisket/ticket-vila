@@ -7,6 +7,7 @@ use App\Enums\Section;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
+use App\Models\AffiliateUser;
 use App\Models\Campaign;
 use App\Models\CMS;
 use App\Models\Country;
@@ -427,5 +428,20 @@ class PageController extends Controller
         }
 
         return view('frontend.layouts.landing-page', compact('campaign', 'giftRandomImages'));
+    }
+
+    public function referral($code)
+    {
+        $affiliateUser = AffiliateUser::where('affiliate_code', $code)->first();
+
+        if ($affiliateUser && $affiliateUser->user_id == auth()->id()) {
+            flash()->addWarning('You can\'t use self referral url');
+        } elseif (! empty($affiliateUser)) {
+            session(['referrer_id' => $affiliateUser->id]);
+        } else {
+            flash()->addWarning('Invalid referral url.');
+        }
+
+        return redirect()->route('frontend.web-shop.buy-ebook');
     }
 }

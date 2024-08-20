@@ -15,12 +15,7 @@
             <div class="notification--and--profile">
 
                 <div>
-                    <select class="form-select select" id="change_locale_user">
-                        @foreach(\App\Enums\Lang::map() as $key => $lang)
-                            <option @if(locale() == $key) selected @endif value="{{$key}}">{{ucfirst($key)}}</option>
-                        @endforeach
-
-                    </select>
+                    <x-frontend.language-change/>
                 </div>
 
                 <!-- menu toggler  -->
@@ -62,25 +57,3 @@
     </div>
 </header>
 <!-- end header area  -->
-
-<script>
-    window.addEventListener('DOMContentLoaded', function () {
-        $("#change_locale_user").on("change", function () {
-            let code = $(this).val();
-            var url = '{{ route('setLocale', ':code') }}';
-            $.ajax({
-                type: "GET",
-                url: url.replace(':code', code),
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function (resp) {
-                    location.reload();
-                }, // success end
-                error: function (error) {
-                    flasher.error(error?.responseJson?.message);
-                } // Error
-            })
-        })
-    }, true);
-</script>

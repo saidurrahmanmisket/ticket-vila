@@ -124,6 +124,7 @@ class StripeController extends Controller
         try {
             $stripe = new \Stripe\StripeClient(Config::get('stripe.sk'));
             $session = $stripe->checkout->sessions->retrieve($request->session_id);
+            dd($session->payment_intent);
             //check transaction has already
             $order = Order::where('transaction_id', $session->payment_intent)->first();
             //check has session & payment status
@@ -160,6 +161,10 @@ class StripeController extends Controller
                     'payment_method' => PaymentMethod::STRIPE,
                     'payment_status' => Status::COMPLETED,
                 ]);
+                //if has referral and create commission
+                if (session('referrer_id')) {
+                    $paymentService->AffiliateCommission(session('referrer_id'), $order, $user->id);
+                }
                 // Generate the ticket numbers and create ticket entries
                 $ticketNumbers = $paymentService->ticketCreate($order->id, $user->id, $quantity, $campaign->id, $discountQuantity, $campaign->unique_text);
                 DB::commit(); // Commit transaction

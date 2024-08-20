@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckIsAffiliate;
 use App\Http\Middleware\CheckIsProfileComplete;
 use App\Http\Middleware\CheckVerifyUserMiddleware;
 use App\Http\Middleware\UserRoutes;
@@ -73,5 +74,6 @@ class Kernel extends HttpKernel
         'user.route' => UserRoutes::class,
         'auth.verify' => CheckVerifyUserMiddleware::class,
         'profile.completed' => CheckIsProfileComplete::class,
+        'isAffiliate' => CheckIsAffiliate::class,
     ];
 }
