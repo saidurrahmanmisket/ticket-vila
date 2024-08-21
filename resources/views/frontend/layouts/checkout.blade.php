@@ -546,7 +546,8 @@
                     type: 'POST',
                     data: {
                         _token: "{{csrf_token()}}",
-                        code: code
+                        code: code,
+                        quantity: "{{$quantity ?? 1}}"
                     },
                     success: function (response) {
                         if (response.success === 'true') {

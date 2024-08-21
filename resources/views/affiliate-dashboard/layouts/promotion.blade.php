@@ -56,206 +56,63 @@
                     <h3>Useful Tipps & Tricks</h3>
                 </div>
                 <div class="row">
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mt_20">
-                        <!-- tips--card  -->
-                        <div class="tips--card">
-                            <div class="img--area">
-                                <img
-                                    class="w-100"
-                                    src="{{asset('user/images/tips1.png')}}"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="details">
-                                <h4>
-                                    Affiliate Marketing for Beginners What it is + How to
-                                    Succeed
-                                </h4>
-                                <div class="modarator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{asset('/admin/images/moderator.png')}}" alt=""/>
-                                        <p>Henrik</p>
+                    @forelse($trips as $trip)
+                        <div class="col-xxl-3 col-lg-4 col-md-6 mt_20">
+                            <!-- tips--card  -->
+                            <div class="tips--card">
+                                <div class="img--area">
+                                    <img
+                                        class="w-100"
+                                        src="{{asset($trip->image)}}"
+                                        alt="{{$trip['title_'.locale() ?? '']}}"
+                                    />
+                                </div>
+                                <div class="details">
+                                    <h4>
+                                        {{strlen($trip['title_'.locale() ?? '']) > 100 ? substr($trip['title_'.locale() ?? ''],0,100).'...' : $trip['title_'.locale() ?? '']}}
+                                    </h4>
+                                    <div class="modarator--area">
+                                        <!-- moderator  -->
+                                        <div class="moderator">
+                                            <img src="{{asset($trip->user->avatar ?? '/admin/images/user.png')}}"
+                                                 alt="{{$trip->user->first_name.' '.$trip->user->last_name}}"/>
+                                            <p>{{$trip->user->first_name.' '.$trip->user->last_name}}</p>
+                                        </div>
+                                        <a href="#">
+                                            Read
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="18"
+                                                height="15"
+                                                viewBox="0 0 18 15"
+                                                fill="none"
+                                            >
+                                                <path
+                                                    d="M16.25 7.72461L1.25 7.72461"
+                                                    stroke="#04BAFF"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+                                                <path
+                                                    d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
+                                                    stroke="#04BAFF"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </a>
                                     </div>
-                                    <a href="#">
-                                        Read
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M16.25 7.72461L1.25 7.72461"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                            <path
-                                                d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mt_20">
-                        <!-- tips--card  -->
-                        <div class="tips--card">
-                            <div class="img--area">
-                                <img
-                                    class="w-100"
-                                    src="{{asset('user/images/tips2.png')}}"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="details">
-                                <h4>
-                                    Affiliate Marketing for Beginners What it is + How to
-                                    Succeed
-                                </h4>
-                                <div class="modarator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#">
-                                        Read
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M16.25 7.72461L1.25 7.72461"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                            <path
-                                                d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
+                    @empty
+                        <div class="d-flex mt-5 justify-content-center">
+                            Not found!
                         </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mt_20">
-                        <!-- tips--card  -->
-                        <div class="tips--card">
-                            <div class="img--area">
-                                <img
-                                    class="w-100"
-                                    src="{{asset('user/images/tips3.png')}}"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="details">
-                                <h4>
-                                    Affiliate Marketing for Beginners What it is + How to
-                                    Succeed
-                                </h4>
-                                <div class="modarator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#">
-                                        Read
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M16.25 7.72461L1.25 7.72461"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                            <path
-                                                d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mt_20">
-                        <!-- tips--card  -->
-                        <div class="tips--card">
-                            <div class="img--area">
-                                <img
-                                    class="w-100"
-                                    src="{{asset('user/images/tips4.png')}}"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="details">
-                                <h4>
-                                    Affiliate Marketing for Beginners What it is + How to
-                                    Succeed
-                                </h4>
-                                <div class="modarator--area">
-                                    <!-- moderator  -->
-                                    <div class="moderator">
-                                        <img src="{{asset('admin/images/user.png')}}" alt=""/>
-                                        <p>Henrik</p>
-                                    </div>
-                                    <a href="#">
-                                        Read
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="18"
-                                            height="15"
-                                            viewBox="0 0 18 15"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M16.25 7.72461L1.25 7.72461"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                            <path
-                                                d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
-                                                stroke="#04BAFF"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
+
                 </div>
             </div>
         </div>

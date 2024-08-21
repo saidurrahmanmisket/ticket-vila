@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('description_de');
             $table->longText('description_hu');
             $table->text('image');
+            $table->foreignId('user_id')->constrained('users');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

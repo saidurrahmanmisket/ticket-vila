@@ -6,6 +6,7 @@ use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\AffiliateCommission;
 use App\Models\AffiliateFile;
+use App\Models\AffiliateTrips;
 use DB;
 
 class PageController extends Controller
@@ -60,8 +61,9 @@ class PageController extends Controller
     public function promotion()
     {
         $toolkits = AffiliateFile::where('status', Status::ACTIVE)->get();
+        $trips = AffiliateTrips::with(['user'])->where('status', Status::ACTIVE)->get();
 
-        return view('affiliate-dashboard.layouts.promotion', compact('toolkits'));
+        return view('affiliate-dashboard.layouts.promotion', compact('toolkits', 'trips'));
     }
 
     public function ticketSold()
@@ -100,6 +102,31 @@ class PageController extends Controller
 
     public function statistics()
     {
-        return view('affiliate-dashboard.layouts.statistics');
+        $affiliate_user_id = auth()->user()->load('affiliate')->affiliate->id;
+        $ticketCounts = DB::table('tickets')
+            ->join('orders', 'tickets.order_id', '=', 'orders.id')
+            ->where('orders.payment_status', 'completed')
+            ->join('affiliate_commissions', 'affiliate_commissions.order_id', '=', 'orders.id')
+            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id)
+            ->whereDate('affiliate_commissions.created_at', today())
+            ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
+            ->first();
+
+        $profitQuery = AffiliateCommission::query()
+            ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
+            ->where('orders.payment_status', 'completed')
+            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
+
+        $profitDetails = $profitQuery->select(
+            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
+            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
+
+        return view('affiliate-dashboard.layouts.statistics', compact('profitDetails', 'toDayProfitDetails'));
     }
 }

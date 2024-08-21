@@ -52,6 +52,8 @@ class PromoCodeController extends Controller
             'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
+            'min_quantity' => 'required|integer|min:0|max:9|lte:max_quantity',
+            'max_quantity' => 'required|integer|min:0|max:9|gte:min_quantity',
         ]);
 
         PromoCode::create([
@@ -59,6 +61,8 @@ class PromoCodeController extends Controller
             'discount_percentage' => $request->discount_percentage,
             'expires_at' => $request->expires_at,
             'usage_limit' => $request->usage_limit,
+            'min_quantity' => $request->min_quantity,
+            'max_quantity' => $request->max_quantity,
         ]);
 
         flash()->addSuccess('Promo code has been created successfully.');
@@ -99,6 +103,8 @@ class PromoCodeController extends Controller
             'discount_percentage' => 'required|numeric|min:0|max:100',
             'expires_at' => 'required|date|date_format:Y-m-d\TH:i',
             'usage_limit' => 'required|numeric|min:0|max:2147483647',
+            'min_quantity' => 'required|integer|min:0|max:9',
+            'max_quantity' => 'required|integer|min:0|max:9',
         ]);
 
         $promoCode = PromoCode::findOrFail($id);
@@ -111,6 +117,8 @@ class PromoCodeController extends Controller
             'discount_percentage' => $request->discount_percentage,
             'expires_at' => $request->expires_at,
             'usage_limit' => $request->usage_limit,
+            'min_quantity' => $request->min_quantity,
+            'max_quantity' => $request->max_quantity,
         ]);
 
         flash()->addSuccess('Promo code has been updated successfully.');

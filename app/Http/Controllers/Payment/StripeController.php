@@ -8,14 +8,16 @@ use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuestPaymentRequest;
-use App\Mail\PasswordSendMail;
 use App\Mail\TicketMail;
 use App\Models\Campaign;
 use App\Models\Order;
 use App\Models\PromoCode;
 use App\Models\User;
 use App\Notifications\NewNotification;
+use App\Services\CampaignService;
 use App\Services\PaymentService;
+use App\Services\PromoCodeService;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +31,7 @@ use Stripe\Stripe;
 
 class StripeController extends Controller
 {
-    public function checkout(Request $request)
+    public function checkout(Request $request, PromoCodeService $codeService)
     {
         $request->validate([
             'terms_and_condition' => 'required',
@@ -48,6 +50,14 @@ class StripeController extends Controller
                 return redirect()->back()->withInput();
             }
             $quantity = $request->quantity ?? 1;
+
+            //check promo code validation
+            if (! empty($request->promo_code) && ! empty($promoCode)) {
+                $validation = $codeService->validatePromoCode($promoCode, $quantity);
+                if ($validation !== true) {
+                    return $validation;
+                }
+            }
 
             //check has ticket
             $soldTicket = $campaign->tickets()->count();
@@ -232,7 +242,7 @@ class StripeController extends Controller
 
     //Web Shop Payment
 
-    public function web_shop_payment(GuestPaymentRequest $request)
+    public function web_shop_payment(GuestPaymentRequest $request, UserService $userService, CampaignService $campaignService, PromoCodeService $codeService)
     {
         try {
             $campaign = Campaign::where('status', Status::PUBLISHED)->first();
@@ -242,56 +252,28 @@ class StripeController extends Controller
 
                 return redirect()->back()->withInput();
             }
-            $user = User::where('email', $request->email)->first();
-
-            //check user and create user
+            //getting user
+            $user = $userService->existOrCreateUser($request);
+            //check user is existed
             if (empty($user)) {
-                $password = generatePassword(12);
-                $user = User::create([
-                    'first_name' => $request->first_name,
-                    'last_name' => $request->last_name,
-                    //                    'birthday' => $request->birth_date,
-                    'city' => $request->city,
-                    //                    'city_of_birthday' => $request->birth_state,
-                    //                    'phone' => $request->phone,
-                    'email' => $request->email,
-                    'address_1' => $request->address,
-                    'zip_code' => $request->zip,
-                    'country_id' => $request->country_id,
-                    //                    'state' => $request->state,
-                    //                    'country_of_birthday' => $request->country_of_birthday,
-                    //                    'gender' => $request->gender,
-                    'password' => bcrypt($password),
-                ]);
-
-                //login credentials to email
-                Mail::to($user->email)->send(new PasswordSendMail($user->first_name.' '.$user->last_name, $user->email, $password));
-            }
-
-            //check campaign is exist & ticket limit
-            if (empty($campaign)) {
-                flash()->addWarning('Campaign not found.');
+                flash()->addError('Something was wrong.');
 
                 return redirect()->back();
             }
-
+            //gating quantity
             $quantity = $request->quantity ?? 1;
-            $soldTicket = $campaign->tickets()->count();
-            $ticketRemain = $campaign->limit - $soldTicket;
 
-            if ($ticketRemain < $quantity) {
-                if ($ticketRemain <= 0) {
-                    $ticketRemain = '0';
+            //check promo code validation
+            if (! empty($request->promo_code) && ! empty($promoCode)) {
+                $validation = $codeService->validatePromoCode($promoCode, $quantity);
+                if ($validation !== true) {
+                    return $validation;
                 }
-                flash()->addWarning('Only '.$ticketRemain.' Tickets Are Available');
-
-                return redirect()->route('frontend.web-shop.checkout');
             }
-
-            if (empty($user)) {
-                flash()->addWarning('User not found.');
-
-                return redirect()->back();
+            //check campaign
+            $campaignCheck = $campaignService->checkCampaignAndTickets($campaign, $quantity);
+            if ($campaignCheck !== true) {
+                return $campaignCheck;
             }
             //Store data to session
             LaravelSession::put([
