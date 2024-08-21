@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\Admin\AdminUserController;
 use App\Http\Controllers\Web\Admin\AffiliateToolkitFile;
+use App\Http\Controllers\Web\Admin\AffiliateTripsAndTricksController;
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
@@ -89,6 +90,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/affiliate-toolkit', AffiliateToolkitFile::class)->except(['show']);
     Route::post('/affiliate-toolkit/status/{id}', [AffiliateToolkitFile::class, 'status'])->name('affiliate-toolkit.status');
     Route::get('/affiliate-toolkit/download/{affiliateFile}', [AffiliateToolkitFile::class, 'download'])->name('affiliate-toolkit.download');
+
+    //Affiliate trips and tricks routes
+    Route::resource('/affiliate-trips', AffiliateTripsAndTricksController::class)->except(['show']);
+    Route::post('/affiliate-trips/status/{id}', [AffiliateTripsAndTricksController::class, 'status'])->name('affiliate-trips.status');
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');

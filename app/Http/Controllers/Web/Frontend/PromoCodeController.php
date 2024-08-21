@@ -15,6 +15,7 @@ class PromoCodeController extends Controller
     {
         $request->validate([
             'code' => 'required|max:255',
+            'quantity' => 'required|integer|min:1',
         ]);
 
         $promoCode = PromoCode::where('code', $request->code)->first();
@@ -33,6 +34,22 @@ class PromoCodeController extends Controller
                 'message' => 'Invalid promo code.',
             ], 422);
         }
+        if ($promoCode->min_quantity == 0 || $promoCode->max_quantity == 0) {
+            return response()->json([
+                'success' => 'false',
+                'message' => 'Invalid promo code.',
+            ], 422);
+        }
+        if ($promoCode->max_quantity == $promoCode->min_quantity && $promoCode->max_quantity != $request->quantity) {
+            return response()->json([
+                'message' => 'The quantity must be '.$promoCode->max_quantity.'.',
+            ], 422);
+        }
+        if ($request->quantity < $promoCode->min_quantity || $request->quantity > $promoCode->max_quantity) {
+            return response()->json([
+                'message' => 'The quantity must be between '.$promoCode->min_quantity.' and '.$promoCode->max_quantity.'.',
+            ], 422);
+        }
 
         if (! $promoCode->expires_at->greaterThan(now())) {
             return response()->json([
@@ -40,7 +57,6 @@ class PromoCodeController extends Controller
                 'message' => 'Promo code has expired.',
             ], 422);
         }
-
         if ($promoCode->usage_limit <= $promoCode->times_used) {
             return response()->json([
                 'success' => 'false',

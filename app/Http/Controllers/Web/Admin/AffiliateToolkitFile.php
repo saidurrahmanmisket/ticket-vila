@@ -100,6 +100,10 @@ class AffiliateToolkitFile extends Controller
      */
     public function update(Request $request, AffiliateFile $affiliateToolkit)
     {
+        //permission check
+        if (! has_permission('affiliate manage file')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
         // Validate the form data
         $validatedData = $request->validate([
             'title_en' => 'required|string|max:255',
@@ -201,6 +205,11 @@ class AffiliateToolkitFile extends Controller
 
     public function download(AffiliateFile $affiliateFile)
     {
+        //permission check
+        if (! has_permission('affiliate manage file')) {
+            abort('403', 'Permission denied: You do not have permission access this page');
+        }
+
         return response()->download(public_path($affiliateFile->file));
     }
 }

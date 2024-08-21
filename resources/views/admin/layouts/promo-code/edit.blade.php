@@ -60,6 +60,28 @@
                                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-4 mb-3">
+                                <label class="form-label required">Min Quantity</label>
+                                <input class="form-control" name="min_quantity" type="number" min="0"
+                                       value="{{ old('min_quantity',$promoCode->min_quantity) }}"
+                                       placeholder="00">
+                                @error('min_quantity')
+                                <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label class="form-label required">Max Quantity</label>
+                                <input class="form-control" name="max_quantity" type="number" min="0"
+                                       value="{{ old('max_quantity',$promoCode->max_quantity) }}"
+                                       placeholder="00">
+                                @error('max_quantity')
+                                <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
