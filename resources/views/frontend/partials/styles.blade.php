@@ -498,7 +498,7 @@
     }
 
     /* mobile devices */
-    @media only screen and (min-width: 375px) and (max-width: 479px) {
+    @media only screen and (min-width: 200px) and (max-width: 479px) {
         .desktop .promotion-banner {
             display: none;
         }
