@@ -333,7 +333,8 @@
                     type: 'POST',
                     data: {
                         _token: "{{csrf_token()}}",
-                        code: code
+                        code: code,
+                        quantity: quantity
                     },
                     success: function (response) {
                         if (response.success === 'true') {

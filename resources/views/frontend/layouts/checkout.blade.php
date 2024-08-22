@@ -547,7 +547,7 @@
                     data: {
                         _token: "{{csrf_token()}}",
                         code: code,
-                        quantity: "{{$quantity ?? 1}}"
+                        quantity: quantity
                     },
                     success: function (response) {
                         if (response.success === 'true') {
