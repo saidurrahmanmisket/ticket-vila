@@ -48,14 +48,16 @@ class PaypalController extends Controller
                 return redirect()->back()->withInput();
             }
             $quantity = $request->quantity ?? 1;
-
+            //check quantity
+            if ($quantity > 9) {
+                flash()->addError('Quantity cannot be getter then 9.');
+            }
             if (! empty($request->promo_code) && ! empty($promoCode)) {
                 $validation = $codeService->validatePromoCode($promoCode, $quantity);
                 if ($validation !== true) {
                     return $validation;
                 }
             }
-
             //check has ticket
             $soldTicket = $campaign->tickets()->count();
             $ticketRemain = $campaign->limit - $soldTicket;
@@ -256,7 +258,10 @@ class PaypalController extends Controller
 
             //gating quantity
             $quantity = $request->quantity ?? 1;
-
+            //check quantity
+            if ($quantity > 9) {
+                flash()->addError('Quantity cannot be getter then 9.');
+            }
             if (! empty($request->promo_code) && ! empty($promoCode)) {
                 $validation = $codeService->validatePromoCode($promoCode, $quantity);
                 if ($validation !== true) {

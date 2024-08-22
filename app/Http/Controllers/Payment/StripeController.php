@@ -50,7 +50,10 @@ class StripeController extends Controller
                 return redirect()->back()->withInput();
             }
             $quantity = $request->quantity ?? 1;
-
+            //check quantity
+            if ($quantity > 9) {
+                flash()->addError('Quantity cannot be getter then 9.');
+            }
             //check promo code validation
             if (! empty($request->promo_code) && ! empty($promoCode)) {
                 $validation = $codeService->validatePromoCode($promoCode, $quantity);
@@ -262,7 +265,10 @@ class StripeController extends Controller
             }
             //gating quantity
             $quantity = $request->quantity ?? 1;
-
+            //check quantity
+            if ($quantity > 9) {
+                flash()->addError('Quantity cannot be getter then 9.');
+            }
             //check promo code validation
             if (! empty($request->promo_code) && ! empty($promoCode)) {
                 $validation = $codeService->validatePromoCode($promoCode, $quantity);
