@@ -23,7 +23,7 @@
                 />
             </svg>
         </div>
-        <a href="#" class="share--btn btn--common-affiliate">
+        <a data-bs-toggle="modal" href="#referral-link-share" role="button" class="share--btn btn--common-affiliate">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -66,6 +66,21 @@
             </svg>
             Share
         </a>
+    </div>
+    <div class="modal fade" id="referral-link-share" aria-hidden="true" aria-labelledby="share-modal"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="share-modal">Share</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Share this link via</p>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @push('script')

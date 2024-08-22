@@ -3,6 +3,41 @@
 @section('header_title')
     Affiliate Promotion
 @endsection;
+@push('style')
+    <style>
+        .tips--card .modarator--area button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 23.76px;
+            letter-spacing: -0.36px;
+            color: #04baff;
+        }
+
+        .modal-body {
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            max-height: 90vh;
+            overflow: hidden;
+        }
+
+        @media only screen and (min-width: 200px) and (max-width: 479px) {
+            .modal-body {
+                max-height: 90vh;
+            }
+
+            .modal-content {
+                max-height: 95vh;
+            }
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main">
         <div class="row">
@@ -50,10 +85,10 @@
 
                 </div>
             </div>
-            <!-- affiliate--usefull--tips -->
+            <!-- affiliate--usefully--tips -->
             <div class="affiliate--usefull--tips box--common mt_35">
                 <div class="top--title">
-                    <h3>Useful Tipps & Tricks</h3>
+                    <h3>Useful Tips & Tricks</h3>
                 </div>
                 <div class="row">
                     @forelse($trips as $trip)
@@ -78,31 +113,49 @@
                                                  alt="{{$trip->user->first_name.' '.$trip->user->last_name}}"/>
                                             <p>{{$trip->user->first_name.' '.$trip->user->last_name}}</p>
                                         </div>
-                                        <a href="#">
+                                        <button data-bs-toggle="modal"
+                                                data-bs-target="#viewPostModal-{{$trip->id}}">
                                             Read
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="15"
-                                                viewBox="0 0 18 15"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    d="M16.25 7.72461L1.25 7.72461"
-                                                    stroke="#04BAFF"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M10.1992 1.701L16.2492 7.725L10.1992 13.75"
-                                                    stroke="#04BAFF"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                            </svg>
-                                        </a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{--Modal--}}
+                        <div
+                            class="modal fade"
+                            id="viewPostModal-{{$trip->id}}"
+                            tabindex="-1"
+                            aria-labelledby="viewPostModalLabel-{{$trip->id}}"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <!-- Full Title in Modal -->
+                                        <h5 class="modal-title" id="viewPostModalLabel-{{$trip->id}}">
+                                            {{$trip['title_'.locale() ?? '']}}
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="d-flex justify-content-center">
+                                            <img
+                                                src="{{asset($trip->image)}}"
+                                                class="img-fluid mb-3"
+                                                alt="{{$trip['title_'.locale() ?? '']}}"
+                                            />
+                                        </div>
+                                        {!! $trip['description_'.locale() ?? ''] !!}
+                                        <!-- Additional Content -->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Close
+                                        </button>
                                     </div>
                                 </div>
                             </div>
