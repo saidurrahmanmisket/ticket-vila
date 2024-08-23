@@ -68,14 +68,14 @@
 <div class="custom-dropdown">
     <div class="dropdown-selected form-select select">
         <span>
-          <img src="https://flagcdn.com/{{locale() === 'en' ? 'us' : locale()}}.svg" alt="{{locale()}}" width="24" />
+          <img src="https://flagcdn.com/{{locale() === 'en' ? 'gb' : locale()}}.svg" alt="{{locale()}}" width="24"/>
             <span class="lang-text">{{ucfirst(locale())}}</span>
         </span>
     </div>
     <div class="dropdown-options">
         @foreach(\App\Enums\Lang::map() as $key => $lang)
             <div data-value="{{$key}}">
-                <img src="https://flagcdn.com/{{$key=='en' ? 'us' : $key}}.svg" alt="{{$lang}}" width="24" />
+                <img src="https://flagcdn.com/{{$key=='en' ? 'gb' : $key}}.svg" alt="{{$lang}}" width="24"/>
                 <span class="lang-text">{{ucfirst($key)}}</span>
             </div>
         @endforeach
