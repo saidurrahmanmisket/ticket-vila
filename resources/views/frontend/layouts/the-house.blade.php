@@ -70,7 +70,7 @@
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">{{ __('Inside The House') }}</h3>
                         <p class="subtitle">
-                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
+                            {{ __("Experience the thrill of winning a house through our raffle with just a 19.90€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="700" class="right">
@@ -142,7 +142,7 @@
                     <div data-aos="fade-right" data-aos-duration="600" class="left">
                         <h3 class="common--heading--title">{{ __('Outside The House') }}</h3>
                         <p class="subtitle">
-                            {{ __("Experience the thrill of winning a house through our raffle with just a 99€ ticket. Don't miss out on this incredible opportunity!") }}
+                            {{ __("Experience the thrill of winning a house through our raffle with just a 19.90€ ticket. Don't miss out on this incredible opportunity!") }}
                         </p>
                     </div>
                     @if(empty(Auth::user()))
