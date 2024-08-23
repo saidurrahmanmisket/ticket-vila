@@ -33,7 +33,7 @@
     </div>
     <section class="container top-section">
         <h1>
-            {{ __('What would you say if I told you that, regardless of your current income, you too could own a 411 sqm detached house in the quietest part of Söchau for just €49... Sounds incredible, doesn\'t it?') }}
+            {{ __('What would you say if I told you that, regardless of your current income, you too could own a 411 sqm detached house in the quietest part of Söchau for just €19.90... Sounds incredible, doesn\'t it?') }}
             <br/>
             <strong>{{ __('Then check this out....') }}</strong>
         </h1>
@@ -113,7 +113,7 @@
 
         <div class="tickets">
             <a href="#buy-section" class="book">
-                <img src="{{asset('frontend/images/special-announcement.png')}}" alt="" srcset="">
+                <img src="{{asset('frontend/images/one-ticket-one-book.png')}}" alt="" srcset="">
             </a>
         </div>
 
@@ -291,7 +291,7 @@
         <h1>{{ __("YOUR DREAM HOME") }}</h1>
         <div class="footer-image">
             <iframe width="560" height="315"
-                    src="{{locale() === 'hu' ? 'https://www.youtube.com/embed/Y1mYsNYV4u8?si=tLXOJf9KAixHhRT0' : (locale()==='de' ? 'https://www.youtube.com/embed/AypYwVveK5U?si=zKgf_mN3E1KHyZFD' : 'https://www.youtube.com/embed/CiYA4uQLtUs?si=BkJYqdWbypxq98vV')}}"
+                    src="{{locale() === 'hu' ? 'https://www.youtube.com/embed/FN3fXUp_OCw?si=T1l1cp8VSvNmXgMF' : (locale()==='de' ? 'https://www.youtube.com/embed/GiuiV-098Zw?si=TtkF_BFqsgJQFcGx' : 'https://www.youtube.com/embed/EPMnZah-zeU?si=L7HnDqo9aOun6a8H')}}"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -323,6 +323,26 @@
                     <p>
                         #{{ __("x Tickets left until you get x for free",['buy'=>$campaign->how_many_buy,'free' => $campaign->how_many_free]) }}
                         🎉</p>
+                @else
+                    @if(locale() == 'hu')
+                        <p>Vásároljon legalább két e-könyvet, és kap 33% kedvezményt ezzel az utalványkóddal:
+                            <b style="color: #E8880F">TicketVilla33</b>. Az utalványokat a pénztárnál lehet beváltani a
+                            kód beírásával a 'Kupon'
+                            mezőbe. A kedvezmény azonnal levonásra kerül, amikor a pénztár előtt megnyomja az aktiváló
+                            gombot.</p>
+                    @elseif(locale() == 'de')
+                        <p>Kaufe mindestens zwei eBooks und erhalte 33% Rabatt mit diesem Gutscheincode: <b
+                                style="color: #E8880F">TicketVilla33</b>.
+                            Gutscheine können beim Checkout eingelöst werden, indem der Code in das Feld 'Coupon'
+                            eingegeben wird. Der Rabatt wird sofort abgezogen, wenn Sie vor dem Bezahlvorgang den
+                            Aktivierungsbutton drücken.</p>
+                    @else
+                        <p>Buy at least two eBooks and get a 33% discount with this Coupon Code: <b
+                                style="color: #E8880F">TicketVilla33</b>.
+                            Coupons can
+                            be applied at checkout by entering the code in the 'Coupon' field. The discount will be
+                            immediately deducted when you press the activate button before proceeding to payment.</p>
+                    @endif
                 @endif
                 <form
                     id="directBuyNow"

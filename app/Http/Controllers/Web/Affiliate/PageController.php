@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AffiliateCommission;
 use App\Models\AffiliateFile;
 use App\Models\AffiliateTrips;
+use App\Models\AffiliateUser;
+use Carbon\Carbon;
 use DB;
 
 class PageController extends Controller
@@ -37,20 +39,18 @@ class PageController extends Controller
             ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
 
         $profitDetails = $profitQuery->select(
-            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
+        $profitDetails->total_amount = AffiliateUser::find($affiliate_user_id)->balance;
         $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
         $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
 
-        $rankQuery = DB::table(DB::raw('(SELECT users.id as user_id, users.first_name, users.last_name, COALESCE(SUM(affiliate_commissions.amount), 0) as total_commission, RANK() OVER (ORDER BY COALESCE(SUM(affiliate_commissions.amount), 0) DESC) as user_rank
-                     FROM affiliate_users
-                     LEFT JOIN users ON users.id = affiliate_users.user_id
-                     LEFT JOIN affiliate_commissions ON affiliate_users.id = affiliate_commissions.affiliate_user_id
-                     GROUP BY users.id, users.first_name, users.last_name) as ranked_users'));
+        $rankQuery = DB::table(DB::raw('(SELECT user_id, balance, RANK() OVER (ORDER BY balance DESC) as user_rank FROM affiliate_users) as affiliate_users'))
+            ->join('users', 'users.id', '=', 'affiliate_users.user_id')
+            ->select('users.id as user_id', 'users.first_name as first_name', 'users.last_name as last_name', 'users.email as email', 'balance', 'user_rank');
         $rank = clone $rankQuery;
         $rank = $rank->where('user_id', auth()->id())->first();
         $rankList = clone $rankQuery->take(10)->get();
@@ -84,9 +84,14 @@ class PageController extends Controller
             ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
 
         $profitDetails = $profitQuery->select(
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $profitDetails->total_amount = AffiliateUser::find($affiliate_user_id)->balance;
+        $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
+        $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
         $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
@@ -103,30 +108,54 @@ class PageController extends Controller
     public function statistics()
     {
         $affiliate_user_id = auth()->user()->load('affiliate')->affiliate->id;
-        $ticketCounts = DB::table('tickets')
+        $ticketQuery = DB::table('tickets')
             ->join('orders', 'tickets.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')
             ->join('affiliate_commissions', 'affiliate_commissions.order_id', '=', 'orders.id')
-            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id)
-            ->whereDate('affiliate_commissions.created_at', today())
-            ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
-            ->first();
-
+            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
+        $ticketCounts = clone $ticketQuery;
+        //        $ticketCounts = $
         $profitQuery = AffiliateCommission::query()
             ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')
             ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
 
         $profitDetails = $profitQuery->select(
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $total_balance = AffiliateUser::find($affiliate_user_id)->balance;
+        $profitDetails->total_amount = $total_balance;
+        $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
+        $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
         $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
         $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
 
-        return view('affiliate-dashboard.layouts.statistics', compact('profitDetails', 'toDayProfitDetails'));
+        //revenue details
+        $revenueDetails['total_amount'] = $total_balance;
+        $revenueDetails['complete_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::COMPLETED);
+        })->count();
+        $revenueDetails['pending_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::PENDING);
+        })->count();
+        $revenueDetails['refunded_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::REFUND);
+        })->count();
+        //        dd('okk');
+        //today's users
+        $newUserCount = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)
+            ->whereDate('created_at', Carbon::today())->whereDoesntHave('previousCommissions', function ($query) {
+                $query->whereColumn('referrer_user_id', 'affiliate_commissions.referrer_user_id')
+                    ->whereColumn('affiliate_user_id', 'affiliate_commissions.affiliate_user_id')
+                    ->whereDate('created_at', '<', Carbon::today());
+            })->distinct('referrer_user_id')->count();
+
+        return view('affiliate-dashboard.layouts.statistics', compact('profitDetails', 'toDayProfitDetails', 'revenueDetails', 'newUserCount'));
     }
 }

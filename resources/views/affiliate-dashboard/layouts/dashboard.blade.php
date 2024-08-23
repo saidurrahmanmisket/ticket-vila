@@ -252,7 +252,7 @@
                                                 Rank</p>
                                         </div>
                                     </td>
-                                    <td class="sales">{{number_format($rank?->total_commission ?? 0,2)}}€</td>
+                                    <td class="sales">{{number_format($rank->balance ?? 0,2)}}€</td>
                                 </tr>
                             @empty
                                 <tr>

@@ -20,4 +20,9 @@ class AffiliateCommission extends Model
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
+
+    public function previousCommissions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AffiliateCommission::class, 'referrer_user_id', 'referrer_user_id');
+    }
 }

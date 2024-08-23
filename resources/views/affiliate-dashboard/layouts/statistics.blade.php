@@ -85,7 +85,7 @@
                                 </div>
                                 <div>
                                     <p>Totals Profits</p>
-                                    <h3>180€</h3>
+                                    <h3>{{number_format($revenueDetails['total_amount'],2)}}€</h3>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div>
                                     <p>Pending</p>
-                                    <h3>4</h3>
+                                    <h3>{{$revenueDetails['pending_order']}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div>
                                     <p>Confirmed</p>
-                                    <h3>6</h3>
+                                    <h3>{{$revenueDetails['complete_order']}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div>
                                     <p>Refund</p>
-                                    <h3>1</h3>
+                                    <h3>{{ $revenueDetails['refunded_order'] }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +261,7 @@
                                 </div>
                                 <div>
                                     <p>Totals User</p>
-                                    <h3>04</h3>
+                                    <h3>{{$profitDetails->referrer_user}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                                 </div>
                                 <div>
                                     <p>Total payments</p>
-                                    <h3>6</h3>
+                                    <h3>{{$revenueDetails['complete_order'] + $revenueDetails['pending_order'] + $revenueDetails['refunded_order']}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -409,7 +409,7 @@
                                 </div>
                                 <div>
                                     <p>New User’s Today</p>
-                                    <h3>01</h3>
+                                    <h3>{{$newUserCount}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -446,7 +446,8 @@
                                 </div>
                                 <div>
                                     <p>Profit Per user</p>
-                                    <h3>45,00€</h3>
+                                    <h3>{{ ($profitDetails->total_amount > 0 && $profitDetails->referrer_user > 0 ) ? number_format(($profitDetails->total_amount ?? 0) / $profitDetails->referrer_user,2) : 0}}
+                                        €</h3>
                                 </div>
                             </div>
                         </div>
@@ -454,8 +455,8 @@
                 </div>
                 <!-- tickets box  -->
                 <div class="tickets--box">
-                    <img src="../assets/images/tickets.png" alt="" />
-                    <h3>02 Tickets</h3>
+                    <img src="{{asset('user/images/tickets.png')}}" alt=""/>
+                    <h3>{{$toDayProfitDetails->total_tickets ?? 0}} Tickets</h3>
                     <p>Sold Today</p>
                     <p class="last-week">
                         <svg

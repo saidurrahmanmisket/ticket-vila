@@ -85,6 +85,8 @@ class PaymentService
             // Calculate the commission
             $commission = $order->total_price * ($commissionRate / 100);
 
+            $affiliateUser->balance += $commission;
+            $affiliateUser->save();
             // Save the commission in the database
             AffiliateCommission::create([
                 'affiliate_user_id' => $affiliateUser->id,
