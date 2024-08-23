@@ -26,7 +26,12 @@ return new class extends Migration
             $table->dateTime('discount_expire_date')->nullable();
             $table->integer('how_many_buy')->nullable();
             $table->integer('how_many_free')->nullable();
-            $table->string('promotion_banner')->nullable();
+            $table->string('promotion_banner_en')->nullable();
+            $table->string('promotion_banner_de')->nullable();
+            $table->string('promotion_banner_hu')->nullable();
+            $table->string('mobile_promotion_banner_de')->nullable();
+            $table->string('mobile_promotion_banner_en')->nullable();
+            $table->string('mobile_promotion_banner_hu')->nullable();
             $table->foreignId('gift_id')->nullable()->constrained('gifts')->nullOnDelete();
             $table->enum('status', ['draft', 'published', 'completed'])->default('published');
             $table->timestamps();

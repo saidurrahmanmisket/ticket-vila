@@ -18,6 +18,8 @@ return new class extends Migration
             $table->dateTime('expires_at');
             $table->integer('usage_limit')->default(0);
             $table->integer('times_used')->default(0);
+            $table->integer('min_quantity')->default(0);
+            $table->integer('max_quantity')->default(0);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
