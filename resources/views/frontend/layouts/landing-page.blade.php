@@ -326,19 +326,19 @@
                 @else
                     @if(locale() == 'hu')
                         <p>Vásároljon legalább két e-könyvet, és kap 33% kedvezményt ezzel az utalványkóddal:
-                            <b style="color: #E8880F">TicketVilla33</b>. Az utalványokat a pénztárnál lehet beváltani a
+                            <b style="color: #E8880F">villa33</b>. Az utalványokat a pénztárnál lehet beváltani a
                             kód beírásával a 'Kupon'
                             mezőbe. A kedvezmény azonnal levonásra kerül, amikor a pénztár előtt megnyomja az aktiváló
                             gombot.</p>
                     @elseif(locale() == 'de')
                         <p>Kaufe mindestens zwei eBooks und erhalte 33% Rabatt mit diesem Gutscheincode: <b
-                                style="color: #E8880F">TicketVilla33</b>.
+                                style="color: #E8880F">villa33</b>.
                             Gutscheine können beim Checkout eingelöst werden, indem der Code in das Feld 'Coupon'
                             eingegeben wird. Der Rabatt wird sofort abgezogen, wenn Sie vor dem Bezahlvorgang den
                             Aktivierungsbutton drücken.</p>
                     @else
                         <p>Buy at least two eBooks and get a 33% discount with this Coupon Code: <b
-                                style="color: #E8880F">TicketVilla33</b>.
+                                style="color: #E8880F">villa33</b>.
                             Coupons can
                             be applied at checkout by entering the code in the 'Coupon' field. The discount will be
                             immediately deducted when you press the activate button before proceeding to payment.</p>
