@@ -52,4 +52,13 @@ class Status extends Enum
             self::REJECTED => 'Rejected',
         ];
     }
+    public static function withdrawRequestStatus(): array
+    {
+        return [
+            self::PENDING => 'Pending',
+            self::APPROVED => 'Approved',
+            self::REJECTED => 'Rejected',
+        ];
+    }
+
 }

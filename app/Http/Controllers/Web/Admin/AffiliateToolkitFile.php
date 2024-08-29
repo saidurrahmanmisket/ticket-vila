@@ -6,6 +6,7 @@ use App\Enums\Status;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\AffiliateFile;
+use App\Models\AffiliateUserWithdrawalRequest;
 use Illuminate\Http\Request;
 
 class AffiliateToolkitFile extends Controller
