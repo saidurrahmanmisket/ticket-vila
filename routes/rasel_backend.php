@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Admin\AdminUserController;
 use App\Http\Controllers\Web\Admin\AffiliateToolkitFile;
 use App\Http\Controllers\Web\Admin\AffiliateTripsAndTricksController;
+use App\Http\Controllers\Web\Admin\AffiliateWithdrawController;
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
 use App\Http\Controllers\Web\Admin\CMS\HeroController;
@@ -90,6 +91,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('/affiliate-toolkit', AffiliateToolkitFile::class)->except(['show']);
     Route::post('/affiliate-toolkit/status/{id}', [AffiliateToolkitFile::class, 'status'])->name('affiliate-toolkit.status');
     Route::get('/affiliate-toolkit/download/{affiliateFile}', [AffiliateToolkitFile::class, 'download'])->name('affiliate-toolkit.download');
+    Route::get('/affiliate/withdraw-request', [AffiliateWithdrawController::class, 'show'])->name('affiliate-withdraw-request.show');
+    Route::post('/affiliate/withdraw-request/status/{id}', [AffiliateWithdrawController::class, 'status'])->name('affiliate-withdraw-request.status');
+    Route::delete('/affiliate/withdraw-request/destroy/{id}', [AffiliateWithdrawController::class, 'destroy'])->name('affiliate-withdraw-request.destroy');
 
     //Affiliate trips and tricks routes
     Route::resource('/affiliate-trips', AffiliateTripsAndTricksController::class)->except(['show']);
