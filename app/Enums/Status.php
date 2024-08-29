@@ -26,6 +26,7 @@ class Status extends Enum
     const PROCESSING = 'processing';
 
     const PENDING = 'pending';
+    const APPROVED = 'approved';
 
     const REFUND = 'refund';
 
