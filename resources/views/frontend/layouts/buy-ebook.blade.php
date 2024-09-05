@@ -205,9 +205,11 @@
         });
 
         // for initial checkout
-        $('#directBuyNow').on('submit', function () {
+        $('#directBuyNow').on('submit', function (event) {
+            event.preventDefault()
             var productQty = $('#quantity-value').val();
             fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+            this.submit()
         });
     </script>
 

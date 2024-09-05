@@ -28,7 +28,8 @@ class AffiliateInvite extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Affiliate Invite Link',
+            bcc: ['email@yourfreeimmoin.eu'],
+            subject: 'Affiliate Invite Link'
         );
     }
 

@@ -289,4 +289,61 @@ class PageController extends Controller
             ];
         });
     }
+
+    public function withdraw()
+    {
+        $affiliate_user_id = auth()->user()->load('affiliate')->affiliate->id;
+        $ticketQuery = DB::table('tickets')
+            ->join('orders', 'tickets.order_id', '=', 'orders.id')
+            ->where('orders.payment_status', 'completed')
+            ->join('affiliate_commissions', 'affiliate_commissions.order_id', '=', 'orders.id')
+            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
+        $ticketCounts = clone $ticketQuery;
+        //        $ticketCounts = $
+        $ticketCountResult = $ticketCounts->count();
+        $profitQuery = AffiliateCommission::query()
+            ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
+            ->where('orders.payment_status', 'completed')
+            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
+
+        $profitDetails = $profitQuery->select(
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $total_balance = AffiliateUser::find($affiliate_user_id)->balance;
+        $profitDetails->total_amount = $total_balance;
+        $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
+            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $toDayProfitDetails->total_tickets = $ticketCountResult;
+        $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
+            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
+            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
+        )->first();
+        $toDayProfitDetails->total_tickets = $ticketCountResult;
+
+        //revenue details
+        $revenueDetails['total_amount'] = $total_balance;
+        $revenueDetails['complete_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::COMPLETED);
+        })->count();
+        $revenueDetails['pending_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::PENDING);
+        })->count();
+        $revenueDetails['refunded_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
+            $query->where('payment_status', Status::REFUND);
+        })->count();
+        //        dd('okk');
+        //today's users
+        $newUserCount = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)
+            ->whereDate('created_at', Carbon::today())->whereDoesntHave('previousCommissions', function ($query) {
+                $query->whereColumn('referrer_user_id', 'affiliate_commissions.referrer_user_id')
+                    ->whereColumn('affiliate_user_id', 'affiliate_commissions.affiliate_user_id')
+                    ->whereDate('created_at', '<', Carbon::today());
+            })->distinct('referrer_user_id')->count();
+
+        $allWithdrawRequest = AffiliateUserWithdrawalRequest::where('affiliate_user_id', Auth::user()->id)->paginate(10);
+
+        return view('affiliate-dashboard.layouts.withdraw', compact('profitDetails', 'toDayProfitDetails', 'revenueDetails', 'newUserCount', 'allWithdrawRequest'));
+    }
 }
