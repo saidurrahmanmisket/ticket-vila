@@ -25,4 +25,9 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function affiliate_commissions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AffiliateCommission::class);
+    }
 }

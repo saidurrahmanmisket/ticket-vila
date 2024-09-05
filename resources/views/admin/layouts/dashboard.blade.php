@@ -537,8 +537,6 @@
         var guestPercent = (guestVisitors / totalVisitors
             ) *
             100;
-
-        console.log(guestPercent)
         if (pieChart) {
             var options = {
                 labels: ['Guest', 'Login'],

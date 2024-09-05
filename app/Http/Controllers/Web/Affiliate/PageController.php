@@ -8,12 +8,14 @@ use App\Models\AffiliateCommission;
 use App\Models\AffiliateFile;
 use App\Models\AffiliateTrips;
 use App\Models\AffiliateUser;
+use App\Models\Order;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $affiliate_user_id = auth()->user()->load('affiliate')->affiliate->id;
         $userWithTotalCommissions = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->select('referrer_user_id', DB::raw('SUM(amount) as total_amount'))
@@ -55,7 +57,18 @@ class PageController extends Controller
         $rank = $rank->where('user_id', auth()->id())->first();
         $rankList = clone $rankQuery->take(10)->get();
 
-        return view('affiliate-dashboard.layouts.dashboard', compact('userWithTotalCommissions', 'profitDetails', 'toDayProfitDetails', 'rank', 'rankList'));
+        //earning analytics
+        $earningData = $this->getEarningData('last_week', $affiliate_user_id);
+
+        if ($request->ajax()) {
+            $earningData = $this->getEarningData($request->earningDateRange, $affiliate_user_id);
+
+            return response()->json([
+                'earningData' => $earningData,
+            ]);
+        }
+
+        return view('affiliate-dashboard.layouts.dashboard', compact('userWithTotalCommissions', 'profitDetails', 'toDayProfitDetails', 'rank', 'rankList', 'earningData'));
     }
 
     public function promotion()
@@ -105,7 +118,7 @@ class PageController extends Controller
         return view('affiliate-dashboard.layouts.ticket-sold', compact('profitDetails', 'toDayProfitDetails', 'tickets'));
     }
 
-    public function statistics()
+    public function statistics(Request $request)
     {
         $affiliate_user_id = auth()->user()->load('affiliate')->affiliate->id;
         $ticketQuery = DB::table('tickets')
@@ -114,7 +127,10 @@ class PageController extends Controller
             ->join('affiliate_commissions', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('affiliate_commissions.affiliate_user_id', $affiliate_user_id);
         $ticketCounts = clone $ticketQuery;
-        //        $ticketCounts = $
+        $ticketCounts = $ticketCounts->whereDate('affiliate_commissions.created_at', today())
+            ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
+            ->first();
+
         $profitQuery = AffiliateCommission::query()
             ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')
@@ -156,6 +172,121 @@ class PageController extends Controller
                     ->whereDate('created_at', '<', Carbon::today());
             })->distinct('referrer_user_id')->count();
 
-        return view('affiliate-dashboard.layouts.statistics', compact('profitDetails', 'toDayProfitDetails', 'revenueDetails', 'newUserCount'));
+        ///ticket sales analytics
+
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek();
+        $endOfLastWeek = Carbon::now()->subWeek()->endOfWeek();
+        $ticketsThisWeek = clone $ticketQuery;
+        $ticketsThisWeek = $ticketsThisWeek->whereBetween('affiliate_commissions.created_at', [$startOfWeek, $endOfWeek])->select(DB::raw('COUNT(tickets.id) as total_tickets'))
+            ->first()?->total_tickets;
+        $ticketsLastWeek = clone $ticketQuery;
+
+        $ticketsLastWeek = $ticketsLastWeek->whereBetween('affiliate_commissions.created_at', [$startOfLastWeek, $endOfLastWeek])->select(DB::raw('COUNT(tickets.id) as total_tickets'))
+            ->first()?->total_tickets;
+
+        // Avoid division by zero
+        if ($ticketsLastWeek > 0) {
+            $percentageChange = (($ticketsThisWeek - $ticketsLastWeek) / $ticketsLastWeek) * 100;
+        } else {
+            // If no tickets were sold last week, we assume a 100% increase
+            $percentageChange = $ticketsThisWeek > 0 ? 100 : 0;
+        }
+
+        //sales analytics
+        $salesData = $this->getOrderData('last_week', $affiliate_user_id);
+
+        if ($request->ajax()) {
+            $salesData = $this->getOrderData($request->slesDateRange, $affiliate_user_id);
+
+            return response()->json([
+                'salesData' => $salesData,
+            ]);
+        }
+
+        return view('affiliate-dashboard.layouts.statistics', compact('profitDetails', 'toDayProfitDetails', 'revenueDetails', 'newUserCount', 'percentageChange', 'salesData'));
+    }
+
+    public function getOrderData($range, $affiliate_user_id)
+    {
+        $query = Order::whereHas('affiliate_commissions', function ($query) use ($affiliate_user_id) {
+            $query->where('affiliate_user_id', $affiliate_user_id);
+        });
+        $dateFormat = 'Y-m-d';
+
+        switch ($range) {
+            case 'last_week':
+                $query->where('created_at', '>=', Carbon::now()->subWeek());
+                break;
+
+            case 'last_month':
+                $query->where('created_at', '>=', Carbon::now()->subMonth());
+                break;
+
+            case 'last_year':
+                $query->where('created_at', '>=', Carbon::now()->subYear());
+                break;
+            default:
+
+                break;
+        }
+
+        if (in_array($range, ['last_week', 'last_month', 'last_year', 'since_start', 'day'])) {
+            $orders = $query->selectRaw('DATE(created_at) as date, SUM(total_price) as total')
+                ->groupBy('date')
+                ->orderBy('date', 'asc')
+                ->get();
+        } else {
+            $orders = $query->get();
+        }
+
+        // Format the data for ApexCharts
+        return $orders->map(function ($order) use ($dateFormat) {
+            return [
+                'x' => Carbon::parse($order->date)->format($dateFormat),
+                'y' => $order->total,
+            ];
+        });
+    }
+
+    public function getEarningData($range, $affiliate_user_id)
+    {
+        $query = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id);
+        $dateFormat = 'Y-m-d';
+
+        switch ($range) {
+            case 'last_week':
+                $query->where('created_at', '>=', Carbon::now()->subWeek());
+                break;
+
+            case 'last_month':
+                $query->where('created_at', '>=', Carbon::now()->subMonth());
+                break;
+
+            case 'last_year':
+                $query->where('created_at', '>=', Carbon::now()->subYear());
+                break;
+            default:
+
+                break;
+        }
+
+        if (in_array($range, ['last_week', 'last_month', 'last_year', 'since_start', 'day'])) {
+            $earning = $query->selectRaw('DATE(created_at) as date, SUM(amount) as total')
+                ->groupBy('date')
+                ->orderBy('date', 'asc')
+                ->get();
+        } else {
+            $earning = $query->get();
+        }
+
+        // Format the data for ApexCharts
+        return $earning->map(function ($earn) use ($dateFormat) {
+            return [
+                'x' => Carbon::parse($earn->date)->format($dateFormat),
+                'y' => $earn->total,
+            ];
+        });
     }
 }
