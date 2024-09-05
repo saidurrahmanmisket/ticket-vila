@@ -10,4 +10,9 @@ class AffiliateUser extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'affiliate_code', 'commission_rate'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

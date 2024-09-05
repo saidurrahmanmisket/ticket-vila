@@ -8,7 +8,9 @@ use App\Models\AffiliateCommission;
 use App\Models\AffiliateFile;
 use App\Models\AffiliateTrips;
 use App\Models\AffiliateUser;
+use App\Models\AffiliateUserWithdrawalRequest;
 use App\Models\Order;
+use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -90,7 +92,6 @@ class PageController extends Controller
             ->whereDate('affiliate_commissions.created_at', today())
             ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
             ->first();
-
         $profitQuery = AffiliateCommission::query()
             ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')
@@ -130,7 +131,7 @@ class PageController extends Controller
         $ticketCounts = $ticketCounts->whereDate('affiliate_commissions.created_at', today())
             ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
             ->first();
-
+        $ticketCountResult = $ticketCounts->count();
         $profitQuery = AffiliateCommission::query()
             ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')
@@ -145,12 +146,12 @@ class PageController extends Controller
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
-        $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
+        $toDayProfitDetails->total_tickets = $ticketCountResult;
         $toDayProfitDetails = $profitQuery->whereDate('affiliate_commissions.created_at', today())->select(
             DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
             DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
         )->first();
-        $toDayProfitDetails->total_tickets = $ticketCounts->total_tickets;
+        $toDayProfitDetails->total_tickets = $ticketCountResult;
 
         //revenue details
         $revenueDetails['total_amount'] = $total_balance;

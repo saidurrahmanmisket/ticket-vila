@@ -431,6 +431,10 @@
                                        class="sub--menu--title {{ Route::is('admin.affiliate-trips.*') ? 'sub--active' : '' }}">
                                         Useful trips and tricks
                                     </a>
+                                    <a href="{{ route('admin.affiliate-withdraw-request.show') }}"
+                                       class="sub--menu--title {{ Route::is('admin.affiliate-withdraw-request.*') ? 'sub--active' : '' }}">
+                                        Withdraw Request
+                                    </a>
                                 </li>
                             </ul>
                         </div>

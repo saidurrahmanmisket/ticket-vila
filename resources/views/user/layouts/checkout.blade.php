@@ -322,7 +322,7 @@
     <script>
         $(document).ready(function () {
             var discountVal = 0;
-            var totalAmount = Number.parseInt("{{$totalAmount}}")
+            var totalAmount = Number.parseFloat("{{$totalAmount}}")
             $('#apply-button').click(function () {
                 $("#discount-error").hide()
                 $("#discount-error").text('')

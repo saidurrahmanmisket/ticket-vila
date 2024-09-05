@@ -27,6 +27,8 @@ class Status extends Enum
 
     const PENDING = 'pending';
 
+    const APPROVED = 'approved';
+
     const REFUND = 'refund';
 
     const RESOLVED = 'resolved';
@@ -48,6 +50,15 @@ class Status extends Enum
         return [
             self::PENDING => 'Pending',
             self::RESOLVED => 'Resolved',
+            self::REJECTED => 'Rejected',
+        ];
+    }
+
+    public static function withdrawRequestStatus(): array
+    {
+        return [
+            self::PENDING => 'Pending',
+            self::APPROVED => 'Approved',
             self::REJECTED => 'Rejected',
         ];
     }

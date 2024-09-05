@@ -9,9 +9,11 @@ Route::middleware(['isAffiliate'])->group(function () {
         Route::get('/promotions', 'promotion')->name('promotion');
         Route::get('/ticket-sold', 'ticketSold')->name('ticket-sold');
         Route::get('/statistics', 'statistics')->name('statistics');
+        Route::get('/withdraw', 'withdraw')->name('withdraw');
     });
     Route::post('/send_invitation', [AffiliateController::class, 'sendInvitation'])->name('send-invitation');
     Route::get('/toolkit/download/{type}', [AffiliateController::class, 'downloadFile'])->name('download-file');
+    Route::post('/withdraw/store', [AffiliateController::class, 'storeWithdrawRequest'])->name('withdraw.store');
 });
 
 //join affiliate
