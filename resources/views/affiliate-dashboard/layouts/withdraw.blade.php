@@ -227,7 +227,7 @@
                                 </div>
                                 <div>
                                     <p>Balance</p>
-                                    <h3>{{ $profitDetails->referrer_user }}</h3>
+                                    <h3>{{ $revenueDetails['total_amount'] }}€</h3>
                                 </div>
                             </div>
                         </div>

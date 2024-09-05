@@ -463,7 +463,7 @@
                             xmlns="http://www.w3.org/2000/svg"
                             width="15"
                             height="14"
-                            style="{{$percentageChange < 0 ? 'transform: rotate(180deg)' : ''}}"
+                            style="{{$percentageChange <= 0 ? 'transform: rotate(180deg)' : ''}}"
                             viewBox="0 0 15 14"
                             fill="none"
                         >
