@@ -26,6 +26,7 @@ class Status extends Enum
     const PROCESSING = 'processing';
 
     const PENDING = 'pending';
+
     const APPROVED = 'approved';
 
     const REFUND = 'refund';
@@ -52,6 +53,7 @@ class Status extends Enum
             self::REJECTED => 'Rejected',
         ];
     }
+
     public static function withdrawRequestStatus(): array
     {
         return [
@@ -60,5 +62,4 @@ class Status extends Enum
             self::REJECTED => 'Rejected',
         ];
     }
-
 }

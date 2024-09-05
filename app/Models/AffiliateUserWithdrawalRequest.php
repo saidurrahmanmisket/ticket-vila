@@ -33,6 +33,7 @@ class AffiliateUserWithdrawalRequest extends Model
     protected $casts = [
         'requested_at' => 'datetime',
     ];
+
     /**
      * Get the affiliate user associated with the withdrawal request.
      */

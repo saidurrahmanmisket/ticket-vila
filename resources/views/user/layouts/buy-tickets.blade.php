@@ -96,11 +96,11 @@
                             </p>
                         @endif
 
-                        <form action="{{ route('user.checkout') }}" method="GET">
+                            <form action="{{ route('user.checkout') }}" id="directBuyNow" method="GET">
                             <div class="buttons">
-                                <input type="hidden" id="quantity" name="quantity" value="1">
-                                <a href="#" class="user--common--btn gift" style="opacity: 0;visibility: hidden">{{ __('Buy as a Gift 🎁') }}</a>
-                                <button href="#" type="submit" class="user--common--btn">
+                                <input type="hidden" id="quantity" class="quantity" name="quantity" value="1">
+                                {{--                                <a href="#" class="user--common--btn gift" style="opacity: 0;visibility: hidden">{{ __('Buy as a Gift 🎁') }}</a>--}}
+                                <button type="submit" class="user--common--btn">
                                     {{ __('Buy ticket') }}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15"
                                          viewBox="0 0 18 15" fill="none">
@@ -183,5 +183,17 @@
             $("#success--popup").hide()
             $("#overlay").hide()
         })
+    </script>
+    {{--    for facebook pixel buy trac --}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let value = "{{ !empty($campaign) ? number_format($campaign->price,2) : 0 }}";
+            // for initial checkout
+            $('#directBuyNow').on('submit', function (event) {
+                event.preventDefault()
+                var productQty = $('input[name="quantity"].quantity').val()
+                fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+            })
+        });
     </script>
 @endpush

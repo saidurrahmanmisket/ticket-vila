@@ -32,6 +32,7 @@ class SendOTP extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
+            bcc: ['email@yourfreeimmoin.eu'],
             subject: 'Confirm Your Email to Get Started with Ticket Villa',
         );
     }

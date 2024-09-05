@@ -249,7 +249,7 @@ class StripeController extends Controller
 
     public function web_shop_payment(GuestPaymentRequest $request, UserService $userService, CampaignService $campaignService, PromoCodeService $codeService)
     {
-        
+
         try {
             $campaign = Campaign::where('status', Status::PUBLISHED)->first();
             $promoCode = PromoCode::where('code', $request->promo_code)->first();
@@ -318,7 +318,7 @@ class StripeController extends Controller
                         'product_data' => [
                             'name' => $campaign->name_en,
                         ],
-                        'unit_amount' => (int)($campaign_price * 100),
+                        'unit_amount' => (int) ($campaign_price * 100),
                     ],
                     'quantity' => $quantity,
                 ]],

@@ -80,7 +80,7 @@ class AffiliateController extends Controller
         if ($type == 'all') {
             $fileName = 'toolkit-files.zip';
         } else {
-            $fileName = $type . '.zip';
+            $fileName = $type.'.zip';
         }
 
         // Path to store the zip file
@@ -130,7 +130,7 @@ class AffiliateController extends Controller
             'bank_routing_number' => 'required|string|max:255',
             'swift_bic_code' => 'nullable|string|max:255',
             'country_of_bank' => 'required|string|max:255',
-            'amount' => 'required|numeric|min:1'
+            'amount' => 'required|numeric|min:1',
         ]);
 
         // Check if the user has sufficient balance for the withdrawal request
@@ -139,7 +139,7 @@ class AffiliateController extends Controller
         if ($totalCommissionAmount < $request->amount) {
             return response()->json([
                 'success' => false,
-                'message' => 'Insufficient Balance'
+                'message' => 'Insufficient Balance',
             ]);
         }
 
@@ -152,7 +152,7 @@ class AffiliateController extends Controller
         if ($lastRequest && $lastRequest->requested_at->gt(now()->subMonth())) {
             return response()->json([
                 'success' => false,
-                'message' => 'You can\'t request again before one month'
+                'message' => 'You can\'t request again before one month',
             ]);
         }
 
@@ -167,10 +167,9 @@ class AffiliateController extends Controller
         if ($balanceWithoutPending < $request->amount) {
             return response()->json([
                 'success' => false,
-                'message' => 'Insufficient Balance'
+                'message' => 'Insufficient Balance',
             ]);
         }
-
 
         // Create a new withdrawal request
         AffiliateUserWithdrawalRequest::create([
@@ -190,7 +189,7 @@ class AffiliateController extends Controller
         // Redirect back with success message
         return response()->json([
             'success' => true,
-            'message' => 'Withdrawal Request Submitted!, Admin will review your request and Transfer your money to your bank account'
+            'message' => 'Withdrawal Request Submitted!, Admin will review your request and Transfer your money to your bank account',
         ]);
     }
 }

@@ -463,12 +463,13 @@
                             xmlns="http://www.w3.org/2000/svg"
                             width="15"
                             height="14"
+                            style="{{$percentageChange < 0 ? 'transform: rotate(180deg)' : ''}}"
                             viewBox="0 0 15 14"
                             fill="none"
                         >
                             <path
                                 d="M11.0426 5.58282L7.50177 2.04199L3.96094 5.58282"
-                                stroke="#12AF6C"
+                                stroke="{{$percentageChange > 0 ? '#12AF6C' : '#FF0000'}}"
                                 stroke-width="1.5"
                                 stroke-miterlimit="10"
                                 stroke-linecap="round"
@@ -476,14 +477,16 @@
                             />
                             <path
                                 d="M7.5 11.9581V2.14062"
-                                stroke="#12AF6C"
+                                stroke="{{$percentageChange > 0 ? '#12AF6C' : '#FF0000'}}"
                                 stroke-width="1.5"
                                 stroke-miterlimit="10"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             />
                         </svg>
-                        <strong>+35% </strong> Since last week
+                        <strong
+                            style="color: {{$percentageChange > 0 ? '#12AF6C' : '#FF0000'}}">{{$percentageChange < 0 ? '+ '.number_format($percentageChange,2) : '- '.number_format($percentageChange,2) }}
+                            % </strong> Since last week
                     </p>
                 </div>
             </div>
@@ -497,15 +500,15 @@
                         <!-- title  -->
                         <div class="top--title">
                             <h3>Sales Analytics</h3>
-                            <select>
-                                <option value="1" selected>Day</option>
-                                <option value="2">Week</option>
-                                <option value="3">Month</option>
-                                <option value="4">Since Start</option>
+                            <select id="sale--analytic-select">
+                                <option value="last_week">Last Week</option>
+                                <option value="last_month">Last Month</option>
+                                <option value="last_year">Last Year</option>
+                                <option value="since_start">Since Start</option>
                             </select>
                         </div>
                         <div class="chart">
-                            <div id="sales--chart"></div>
+                            <div id="sales--chart-statistics"></div>
                         </div>
                     </div>
                 </div>
@@ -513,4 +516,106 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+            function formatYLabel(value) {
+                if (value >= 1e15) {
+                    return (value / 1e15).toFixed(1) + 'Q';
+                } else if (value >= 1e12) {
+                    return (value / 1e12).toFixed(1) + 'T';
+                } else if (value >= 1e9) {
+                    return (value / 1e9).toFixed(1) + 'B';
+                } else if (value >= 1e6) {
+                    return (value / 1e6).toFixed(1) + 'M';
+                } else if (value >= 1e3) {
+                    return (value / 1e3).toFixed(1) + 'K';
+                }
+                return value.toFixed(2);
+            }
+
+
+            var SalesChart = document.getElementById("sales--chart-statistics");
+            if (SalesChart) {
+                var salesData = @json($salesData);
+                var options = {
+                    series: [
+                        {
+                            name: "Sales",
+                            data: salesData,
+                        },
+                    ],
+                    chart: {
+                        height: 350,
+                        type: "area",
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    stroke: {
+                        curve: "smooth", // Smooth line
+                        width: 2,
+                    },
+                    markers: {
+                        size: 0,
+                        hover: {
+                            size: 6,
+                        },
+                    },
+                    fill: {
+                        type: "gradient",
+                        gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.6,
+                            opacityTo: 0.4,
+                            stops: [0, 90, 100],
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function (value) {
+                                return formatYLabel(value);
+                            }
+                        }
+                    },
+                    xaxis: {
+                        type: "datetime",
+                        // labels: {
+                        //     format: "MMM", // Display month name on x-axis
+                        // },
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (value) {
+                                return '€' + formatYLabel(value);
+                            }
+                        }
+                    },
+                };
+
+                var chart1 = new ApexCharts(SalesChart, options);
+                chart1.render();
+
+
+                $("#sale--analytic-select").on('change', function () {
+                    const range = $('#sale--analytic-select').val();
+                    $.ajax({
+                        url: "{{route('affiliate.statistics')}}" + "?slesDateRange=" + range,
+                        method: 'GET',
+                        success: function (response) {
+                            chart1.updateSeries([{
+                                name: 'Sales',
+                                data: response.salesData
+                            }])
+                        },
+                        error: function (error) {
+                            console.error('Error fetching order data:', error);
+                        }
+                    });
+                })
+            }
+        })
+    </script>
+@endpush
 

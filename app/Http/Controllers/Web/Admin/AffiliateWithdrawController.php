@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
-use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\AffiliateUserWithdrawalRequest;
 use Exception;
@@ -10,15 +9,17 @@ use Illuminate\Http\Request;
 
 class AffiliateWithdrawController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         $allWithdrawRequest = AffiliateUserWithdrawalRequest::with('affiliateUser.user:id,first_name,last_name,email,phone')->paginate(15);
-        // return $allWithdrawRequest; 
+
+        // return $allWithdrawRequest;
         return view('admin.layouts.affiliate-toolkit-file.affiliate-withdraw-request', compact('allWithdrawRequest'));
     }
 
     public function destroy($id)
     {
-        
+
         try {
 
             $withdrawRequest = AffiliateUserWithdrawalRequest::find($id);

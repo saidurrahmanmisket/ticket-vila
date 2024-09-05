@@ -56,7 +56,7 @@ Route::middleware(['auth', 'auth.verify', 'user.route', 'profile.completed'])->n
     Route::get('/user/tickets', [TicketController::class, 'index'])->name('tickets');
 
     //static page views
-    Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
+    //    Route::view('/user/dashboard', 'user.layouts.dashboard-purchase')->name('dashboard-purchase');
     Route::view('/user/expose', 'user.layouts.expose')->name('expose');
     Route::get('/user/house', [TheHouseController::class, 'index'])->name('house');
     Route::get('/user/change-house-url', [TheHouseController::class, 'changeHouseLink'])->name('change-house-url');
