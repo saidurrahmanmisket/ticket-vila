@@ -131,7 +131,7 @@ class PageController extends Controller
         $ticketCounts = $ticketCounts->whereDate('affiliate_commissions.created_at', today())
             ->select(DB::raw('COUNT(tickets.id) as total_tickets'))
             ->first();
-        $ticketCountResult = $ticketCounts->count();
+        $ticketCountResult = $ticketCounts->total_tickets;
         $profitQuery = AffiliateCommission::query()
             ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
             ->where('orders.payment_status', 'completed')

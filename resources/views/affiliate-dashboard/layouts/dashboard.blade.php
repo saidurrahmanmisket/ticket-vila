@@ -69,31 +69,31 @@
                             <!-- progress -->
                             <div class="progress">
                                 <!-- icon -->
-                                <div class="icon">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="12"
-                                        height="8"
-                                        viewBox="0 0 12 8"
-                                        fill="none"
-                                    >
-                                        <path
-                                            d="M10.5913 1.29492L5.94581 5.94038L4.17611 3.28583L0.636719 6.82522"
-                                            stroke="#36B37E"
-                                            stroke-width="1.24432"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M8.37891 1.29492H10.591V3.50704"
-                                            stroke="#36B37E"
-                                            stroke-width="1.24432"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </div>
-                                <p><span>+60% </span>more in 2022</p>
+                                {{--                                <div class="icon">--}}
+                                {{--                                    <svg--}}
+                                {{--                                        xmlns="http://www.w3.org/2000/svg"--}}
+                                {{--                                        width="12"--}}
+                                {{--                                        height="8"--}}
+                                {{--                                        viewBox="0 0 12 8"--}}
+                                {{--                                        fill="none"--}}
+                                {{--                                    >--}}
+                                {{--                                        <path--}}
+                                {{--                                            d="M10.5913 1.29492L5.94581 5.94038L4.17611 3.28583L0.636719 6.82522"--}}
+                                {{--                                            stroke="#36B37E"--}}
+                                {{--                                            stroke-width="1.24432"--}}
+                                {{--                                            stroke-linecap="round"--}}
+                                {{--                                            stroke-linejoin="round"--}}
+                                {{--                                        />--}}
+                                {{--                                        <path--}}
+                                {{--                                            d="M8.37891 1.29492H10.591V3.50704"--}}
+                                {{--                                            stroke="#36B37E"--}}
+                                {{--                                            stroke-width="1.24432"--}}
+                                {{--                                            stroke-linecap="round"--}}
+                                {{--                                            stroke-linejoin="round"--}}
+                                {{--                                        />--}}
+                                {{--                                    </svg>--}}
+                                {{--                                </div>--}}
+                                {{--                                <p><span>+60% </span>more in 2022</p>--}}
                             </div>
                         </div>
                         <select id="sale--analytic-select">
