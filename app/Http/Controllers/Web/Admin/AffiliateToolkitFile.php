@@ -13,13 +13,15 @@ class AffiliateToolkitFile extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('affiliate manage file')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $toolkitFiles = AffiliateFile::paginate(20);
+        $toolkitFiles = AffiliateFile::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->paginate(20);
 
         return view('admin.layouts.affiliate-toolkit-file.index', compact('toolkitFiles'));
     }

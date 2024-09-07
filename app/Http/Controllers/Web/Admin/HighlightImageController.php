@@ -15,15 +15,18 @@ class HighlightImageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('gift menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $highlightImage = HighlightImage::with('gift')->paginate();
+        $gifts = Gift::all();
+        $highlightImage = HighlightImage::when($request->gift, function ($query, $value) {
+            $query->where('gift_id', $value);
+        })->with('gift')->paginate();
 
-        return view('admin.layouts.highlight-image.index', compact('highlightImage'));
+        return view('admin.layouts.highlight-image.index', compact('highlightImage', 'gifts'));
     }
 
     /**

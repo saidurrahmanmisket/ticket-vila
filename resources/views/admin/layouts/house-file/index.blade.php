@@ -9,44 +9,32 @@
         <h4 class="common--title">Filter</h4>
         <!-- filter--and--search  -->
         <div class="filter--and--search d-flex justify-content-between align-items-center">
-            <form action="#">
+            <form action="{{route('admin.house-files.index')}}" method="GET">
                 <!-- select  -->
                 <div class="select">
-                    <select id="sortby-date">
-                        <option value="1" selected>All</option>
+                    <select id="sortby-date" name="gift">
+                        <option value="" selected>All</option>
+                        @foreach($gifts as $gift)
+                            <option @if(request('gift') == $gift->id) selected
+                                    @endif value="{{$gift->id}}">{{ substr($gift->name_en,0,20)  }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <!-- search  -->
                 <div class="search">
-                    <input type="search" placeholder="Search Users" />
+                    <input type="search" name="search" value="{{request('search')}}"
+                           placeholder="Search media by name"/>
                     <button>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="19"
-                            viewBox="0 0 18 19"
-                            fill="none"
-                        >
-                            <ellipse
-                                cx="8.80687"
-                                cy="8.80592"
-                                rx="7.49047"
-                                ry="7.45533"
-                                stroke="#868A9B"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M14.0156 14.3789L16.9523 17.2942"
-                                stroke="#868A9B"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                             fill="none">
+                            <ellipse cx="8.80687" cy="8.80592" rx="7.49047" ry="7.45533" stroke="#868A9B"
+                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.0156 14.3789L16.9523 17.2942" stroke="#868A9B" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
             </form>
             @can('house file create')
                 <div class="">
@@ -72,7 +60,7 @@
                     <tbody>
                     @forelse($houseFiles as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>@index($houseFiles)</td>
                             <td>{{ $item->file_name_en }}</td>
                             <td>{{ $item->gift->name_en}}</td>
                             <td>

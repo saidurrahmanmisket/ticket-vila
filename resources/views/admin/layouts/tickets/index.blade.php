@@ -3,6 +3,15 @@
 @section('header_title')
     Tickets
 @endsection;
+@push('style')
+    <style>
+        span.current {
+            display: block;
+            padding-top: 0 !important;
+            left: 17px;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main">
     <!-- tickets area  -->
@@ -10,29 +19,27 @@
         <h4 class="common--title">Filter</h4>
         <!-- filter--and--search  -->
         <div class="filter--and--search">
-            <form action="#">
+            <form action="{{route('admin.ticket.index')}}" method="GET">
                 <!-- select  -->
+                <div class="d-flex gap-3 align-items-center">
+                    <input type="date" value="{{request('start_date')}}" name="start_date" class="form-control">
+                    <span>To</span>
+                    <input type="date" name="end_date" value="{{request('end_date')}}" class="form-control">
+                </div>
+                {{--select by campaign--}}
                 <div class="select">
-                    <select id="sortby-date">
-                        <option selected disabled>Sort by Date</option>
-                        <option value="1">11.052024</option>
-                        <option value="2">11.052024</option>
-                        <option value="3">11.052024</option>
-                        <option value="4">11.052024</option>
-                        <option value="5">11.052024</option>
+                    <select id="sortby-campaign" name="campaign">
+                        <option value="" selected>Select campaign</option>
+                        @foreach($campaigns as $campaign)
+                            <option @if(request('campaign') == $campaign->id) selected
+                                    @endif value="{{$campaign->id}}">{{substr($campaign->name_en,0,20)}}</option>
+                        @endforeach
                     </select>
-                    <div class="sort--icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                            fill="none">
-                            <path d="M2.25 5.25H15.75" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M4.5 9H13.5" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M7.5 12.75H10.5" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                    </div>
                 </div>
                 <!-- search  -->
                 <div class="search">
-                    <input type="search" placeholder="Search Ticket" />
+                    <input type="search" name="search" value="{{request('search')}}"
+                           placeholder="Search Ticket using user name/email"/>
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
                             fill="none">
@@ -43,6 +50,7 @@
                         </svg>
                     </button>
                 </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
             </form>
         </div>
         <!-- tickets  -->
@@ -57,7 +65,7 @@
                             <img src="{{ isset($ticket->campaign->thumbnail ) ? asset($ticket->campaign->thumbnail) : asset('admin/images/ticket.png') }}"
                                 alt="" />
                             <p>Ticket ID: #{{ $ticket->ticket_number }}</p>
-                            <span>#{{ $loop->iteration }}</span>
+                            <span>#@index($tickets)</span>
                         </div>
                         <div>
                             <p class="common--pair--text">

@@ -20,10 +20,11 @@
             <h4 class="common--title">Filter</h4>
             <!-- filter--and--search  -->
             <div class="filter--and--search d-flex justify-content-between align-items-center">
-                <form action="#">
+                <form action="{{route('admin.affiliate-trips.index')}}" method="GET">
                     <!-- search  -->
                     <div class="search">
-                        <input type="search" placeholder="Search Affiliate Trips"/>
+                        <input type="search" name="search" value="{{request('search')}}"
+                               placeholder="Search a trips by title"/>
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
                                  fill="none">
@@ -34,6 +35,7 @@
                             </svg>
                         </button>
                     </div>
+                    <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
                 <div class="">
                     <a href="{{ route('admin.affiliate-trips.create') }}" class="btn btn-success">
@@ -58,7 +60,7 @@
                         <tbody>
                         @forelse($affiliateTrips as $trip)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>@index($affiliateTrips)</td>
                                 <td>{{ strlen($trip->title_en) > 30 ? substr($trip->title_en,0,30).'...' : $trip->title_en }}</td>
                                 <td>
                                     @if(!empty($trip->image))

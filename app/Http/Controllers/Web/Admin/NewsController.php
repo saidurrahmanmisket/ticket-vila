@@ -15,13 +15,15 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('news menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $news = News::paginate();
+        $news = News::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->paginate(15);
 
         return view('admin.layouts.news.index', compact('news'));
     }

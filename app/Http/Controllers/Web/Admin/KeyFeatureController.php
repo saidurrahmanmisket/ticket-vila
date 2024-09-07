@@ -15,13 +15,15 @@ class KeyFeatureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('gift key feature menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $keyFeatures = KeyFeature::paginate();
+        $keyFeatures = KeyFeature::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->paginate();
 
         return view('admin.layouts.key-feature.index', compact('keyFeatures'));
     }

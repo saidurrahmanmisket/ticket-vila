@@ -12,13 +12,15 @@ class RolePermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('role menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $roles = Role::whereNot('name', 'Super Admin')->with('permissions')->paginate(20);
+        $roles = Role::when($request->search, function ($query, $value) {
+            $query->where('name', 'like', '%'.$value.'%');
+        })->whereNot('name', 'Super Admin')->with('permissions')->paginate(20);
 
         return view('admin.layouts.role.index', compact('roles'));
     }

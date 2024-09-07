@@ -16,15 +16,18 @@ class EbookDescriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('cms menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $ebookDescription = EbookDescription::with('campaign')->paginate();
+        $ebookDescription = EbookDescription::when($request->campaign, function ($query, $value) {
+            $query->where('campaign_id', $value);
+        })->with('campaign')->paginate();
+        $campaigns = Campaign::all();
 
-        return view('admin.layouts.cms.ebook-description.index', compact('ebookDescription'));
+        return view('admin.layouts.cms.ebook-description.index', compact('ebookDescription', 'campaigns'));
     }
 
     /**
@@ -36,7 +39,7 @@ class EbookDescriptionController extends Controller
         if (! has_permission('cms create')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $campaigns = Campaign::where('status', Status::PUBLISHED)->get();
+        $campaigns = Campaign::all();
 
         return view('admin.layouts.cms.ebook-description.create', compact('campaigns'));
     }

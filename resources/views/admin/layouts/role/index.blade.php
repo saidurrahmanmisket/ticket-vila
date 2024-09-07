@@ -28,21 +28,11 @@
             <h4 class="common--title">Filter</h4>
             <!-- filter--and--search  -->
             <div class="filter--and--search d-flex justify-content-between align-items-center">
-                <form action="#">
-                    <!-- select  -->
-                    <div class="select">
-                        <select id="sortby-date">
-                            <option value="1" selected>1 Ticket’s</option>
-                            <option value="2">2 Ticket’s</option>
-                            <option value="3">3 Ticket’s</option>
-                            <option value="4">4 Ticket’s</option>
-                            <option value="5">5 Ticket’s</option>
-                        </select>
-                    </div>
+                <form action="{{route('admin.role.index')}}" method="GET">
                     <!-- search  -->
                     <div class="search">
-                        <input type="search" placeholder="Search Users"/>
-                        <button>
+                        <input type="search" name="search" value="{{request('search')}}" placeholder="Search Roles"/>
+                        <button type="submit">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="18"
@@ -70,6 +60,7 @@
                             </svg>
                         </button>
                     </div>
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </form>
                 @can('role create')
                     <div class="">
@@ -95,7 +86,7 @@
                         <tbody>
                         @forelse($roles as $role)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>@index($roles)</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
                                     <div class="d-flex flex-wrap gap-3">

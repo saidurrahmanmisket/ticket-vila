@@ -14,14 +14,16 @@ class FaqController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('faq menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
         try {
-            $faqs = FAQ::paginate(20);
+            $faqs = FAQ::when($request->search, function ($query, $value) {
+                $query->where('question_en', 'like', '%'.$value.'%');
+            })->paginate(20);
 
             return view('admin.layouts.faq.index', compact('faqs'));
         } catch (\Exception $e) {

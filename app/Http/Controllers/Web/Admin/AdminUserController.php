@@ -12,15 +12,29 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('admin user menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $users = User::where('role', 'admin')->whereNot('email', 'admin@admin.com')->with(['roles'])->paginate(10);
+        $users = User::where('role', 'admin')->whereNot('email', 'admin@admin.com')->when($request->role, function ($query, $value) {
+            if ($value != 'not_assign') {
+                $query->whereHas('roles', function ($query) use ($value) {
+                    $query->where('name', $value);
+                });
+            } else {
+                $query->whereDoesntHave('roles');
+            }
+        })->when($request->search, function ($query, $value) {
+            $query->where(function ($q) use ($value) {
+                $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$value}%"])
+                    ->orWhere('email', 'like', '%'.$value.'%');
+            });
+        })->with(['roles'])->paginate(10);
+        $roles = Role::whereNot('name', 'Super Admin')->get();
 
-        return view('admin.layouts.adminUser.index', compact('users'));
+        return view('admin.layouts.adminUser.index', compact('users', 'roles'));
     }
 
     /**

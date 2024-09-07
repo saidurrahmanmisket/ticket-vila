@@ -14,13 +14,15 @@ class TheProcessController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('cms menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $theProcess = TheProcess::orderBy('sort_id', 'asc')->paginate(20);
+        $theProcess = TheProcess::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->orderBy('sort_id', 'asc')->paginate(20);
 
         return view('admin.layouts.cms.the-process.index', compact('theProcess'));
     }
