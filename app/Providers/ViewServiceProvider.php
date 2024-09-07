@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\DynamicPage;
 use App\Models\SocialMedia;
 use App\Models\SystemSetting;
+use Blade;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -56,6 +57,10 @@ class ViewServiceProvider extends ServiceProvider
             $pageData = DynamicPage::where('status', 'active')->get();
 
             $view->with(['socialMedia' => $socialMedia, 'pageData' => $pageData]);
+        });
+
+        Blade::directive('index', function ($expression) {
+            return "<?php echo \$loop->iteration + ({$expression}->currentPage() - 1) * {$expression}->perPage(); ?>";
         });
     }
 }

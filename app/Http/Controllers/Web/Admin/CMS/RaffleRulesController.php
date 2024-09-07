@@ -18,13 +18,15 @@ class RaffleRulesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('cms menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $raffleRules = RaffleRules::orderBy('sort_id', 'asc')->paginate(20);
+        $raffleRules = RaffleRules::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', "%{$value}%");
+        })->orderBy('sort_id', 'asc')->paginate(20);
         $the_transparency = CMS::where('page', Page::Raffle_Rules)->where('section_name', Section::THE_TRANSPARENCY)->where('status', Status::ACTIVE)->first();
 
         return view('admin.layouts.cms.pages.raffle-rules.index', compact('raffleRules', 'the_transparency'));

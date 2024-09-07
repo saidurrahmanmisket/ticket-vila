@@ -5,19 +5,36 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Ticket;
+use Illuminate\Http\Request;
 use ZipArchive;
 
 class TicketController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('tickets menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $tickets = Ticket::latest()->with(['user', 'campaign', 'order'])->paginate(20);
+        $tickets = Ticket::when($request->search, function ($query, $value) {
+            $query->whereHas('user', function ($queryTwo) use ($value) {
+                $queryTwo->where(function ($q) use ($value) {
+                    $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$value}%"])
+                        ->orWhere('email', 'like', '%'.$value.'%');
+                });
+            });
+        })->when($request->campaign, function ($query, $value) {
+            $query->whereHas('campaign', function ($queryTwo) use ($value) {
+                $queryTwo->where('id', $value);
+            });
+        })->when($request->start_date && $request->end_date, function ($query) use ($request) {
+            $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        })->latest()->with(['user', 'campaign', 'order'])->paginate(20);
 
-        return view('admin.layouts.tickets.index', compact('tickets'));
+        //campaigns
+        $campaigns = Campaign::all();
+
+        return view('admin.layouts.tickets.index', compact('tickets', 'campaigns'));
     }
 
     public function download($id)

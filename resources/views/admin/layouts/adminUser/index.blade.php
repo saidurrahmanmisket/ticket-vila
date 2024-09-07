@@ -9,20 +9,22 @@
             <h4 class="common--title">Filter</h4>
             <!-- filter--and--search  -->
             <div class="filter--and--search d-flex justify-content-between align-items-center">
-                <form action="#">
+                <form action="{{route('admin.admin-user.index')}}" method="GET">
                     <!-- select  -->
                     <div class="select">
-                        <select id="sortby-date">
-                            <option value="1" selected>1 Ticket’s</option>
-                            <option value="2">2 Ticket’s</option>
-                            <option value="3">3 Ticket’s</option>
-                            <option value="4">4 Ticket’s</option>
-                            <option value="5">5 Ticket’s</option>
+                        <select id="sortby-role" name="role">
+                            <option value="" selected>Select role</option>
+                            <option @if(request('role') == 'not_assign') selected @endif value="not_assign">Not assign
+                            </option>
+                            @foreach($roles as $role)
+                                <option @if(request('role') == $role->name) selected
+                                        @endif value="{{$role->name}}">{{$role->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <!-- search  -->
                     <div class="search">
-                        <input type="search" placeholder="Search Users" />
+                        <input type="search" name="search" value="{{request('search')}}" placeholder="Search Users"/>
                         <button>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +53,7 @@
                             </svg>
                         </button>
                     </div>
+                    <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
                 @can('admin user menu')
                     <div class="">

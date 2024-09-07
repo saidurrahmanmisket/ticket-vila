@@ -11,13 +11,18 @@ use Illuminate\Support\Facades\Validator;
 
 class ChatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('help center menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $chats = Chat::with('user:id,first_name,last_name,email,avatar')->paginate(20);
+        $chats = Chat::when($request->search, function ($query, $value) {
+            $query->whereHas('user', function ($q) use ($value) {
+                $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$value}%"])
+                    ->orWhere('email', 'like', '%'.$value.'%');
+            });
+        })->with('user:id,first_name,last_name,email,avatar')->paginate(20);
 
         return view('admin.layouts.help-center.index', compact('chats'));
     }

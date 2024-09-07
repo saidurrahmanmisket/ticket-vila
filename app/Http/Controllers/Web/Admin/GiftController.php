@@ -16,13 +16,15 @@ class GiftController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('gift menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $gifts = Gift::paginate(20);
+        $gifts = Gift::when($request->search, function ($query, $value) {
+            $query->where('name_en', 'like', '%'.$value.'%');
+        })->paginate(20);
 
         return view('admin.layouts.gift.index', compact('gifts'));
     }

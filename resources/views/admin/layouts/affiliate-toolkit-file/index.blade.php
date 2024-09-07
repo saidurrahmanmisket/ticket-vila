@@ -16,48 +16,22 @@
         <h4 class="common--title">Filter</h4>
         <!-- filter--and--search  -->
         <div class="filter--and--search d-flex justify-content-between align-items-center">
-            <form action="#">
-                <!-- select  -->
-                <div class="select">
-                    <select id="sortby-date">
-                        <option value="1" selected>1 Ticket’s</option>
-                        <option value="2">2 Ticket’s</option>
-                        <option value="3">3 Ticket’s</option>
-                        <option value="4">4 Ticket’s</option>
-                        <option value="5">5 Ticket’s</option>
-                    </select>
-                </div>
+            <form action="{{route('admin.affiliate-toolkit.index')}}" method="GET">
                 <!-- search  -->
                 <div class="search">
-                    <input type="search" placeholder="Search Users" />
+                    <input type="search" name="search" value="{{request('search')}}"
+                           placeholder="Search a toolkit by title"/>
                     <button>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="19"
-                            viewBox="0 0 18 19"
-                            fill="none"
-                        >
-                            <ellipse
-                                cx="8.80687"
-                                cy="8.80592"
-                                rx="7.49047"
-                                ry="7.45533"
-                                stroke="#868A9B"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M14.0156 14.3789L16.9523 17.2942"
-                                stroke="#868A9B"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                             fill="none">
+                            <ellipse cx="8.80687" cy="8.80592" rx="7.49047" ry="7.45533" stroke="#868A9B"
+                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.0156 14.3789L16.9523 17.2942" stroke="#868A9B" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
             </form>
             <div class="">
                 <a href="{{ route('admin.affiliate-toolkit.create') }}" class="btn btn-success">
@@ -83,7 +57,7 @@
                     <tbody>
                     @forelse($toolkitFiles as $file)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>@index($toolkitFiles)</td>
                             <td>{{ $file->title_en }}</td>
                             <td><span class="btn-sm btn-warning">{{ $file->file_type }}</span></td>
                             <td><a href="{{route('admin.affiliate-toolkit.download',$file->id)}}" class="btn btn-primary btn-sm">Download</a></td>

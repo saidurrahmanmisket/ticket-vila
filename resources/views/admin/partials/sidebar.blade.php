@@ -383,9 +383,9 @@
                 <li class="accordion-item">
                     <div class="accordion-header" id="headingBooks">
                         <a href="#"
-                           class="accordion-button {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') ? 'active' : 'collapsed' }}"
+                           class="accordion-button {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'active' : 'collapsed' }}"
                            data-bs-toggle="collapse" data-bs-target="#collapseBooks"
-                           aria-expanded="{{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') ? 'true' : 'false' }}"
+                           aria-expanded="{{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'true' : 'false' }}"
                            aria-controls="collapseBooks">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">
@@ -416,7 +416,7 @@
                     </div>
 
                     <div id="collapseBooks"
-                         class="accordion-collapse collapse {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') ? 'show' : '' }}"
+                         class="accordion-collapse collapse {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'show' : '' }}"
                          aria-labelledby="headingBooks" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <ul>

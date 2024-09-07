@@ -15,13 +15,17 @@ class HeroController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('cms menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $hero_sections = CMS::paginate(20);
+        $hero_sections = CMS::when($request->search, function ($query, $value) {
+            $query->where(function ($query) use ($value) {
+                $query->where('title_en', 'like', '%'.$value.'%')->orWhere('page', 'like', '%'.str_replace(' ', '_', $value).'%');
+            });
+        })->paginate(20);
 
         return view('admin.layouts.cms.hero-section.index', compact('hero_sections'));
     }

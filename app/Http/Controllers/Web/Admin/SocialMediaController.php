@@ -13,13 +13,15 @@ class SocialMediaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('social media settings')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $socials = SocialMedia::paginate(10);
+        $socials = SocialMedia::when($request->search, function ($query, $value) {
+            $query->where('name', 'like', '%'.$value.'%');
+        })->paginate(10);
 
         return view('admin.layouts.social.index', compact('socials'));
     }

@@ -7,6 +7,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Gift;
 use App\Models\HouseFile;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -15,15 +16,20 @@ class HouseFileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('house file menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $houseFiles = HouseFile::with('gift')->paginate();
+        $houseFiles = HouseFile::when($request->gift, function ($query, $value) {
+            $query->where('gift_id', $value);
+        })->when($request->search, function (Builder $query, $value) {
+            $query->where('file_name_en', 'LIKE', '%'.$value.'%');
+        })->with('gift')->paginate();
+        $gifts = Gift::all();
 
-        return view('admin.layouts.house-file.index', compact('houseFiles'));
+        return view('admin.layouts.house-file.index', compact('houseFiles', 'gifts'));
     }
 
     /**

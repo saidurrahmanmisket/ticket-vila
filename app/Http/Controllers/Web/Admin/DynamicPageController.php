@@ -13,13 +13,15 @@ class DynamicPageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('dynamic page menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $allPages = DynamicPage::paginate();
+        $allPages = DynamicPage::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->paginate(20);
 
         return view('admin.layouts.dynamic-page.index', compact('allPages'));
     }

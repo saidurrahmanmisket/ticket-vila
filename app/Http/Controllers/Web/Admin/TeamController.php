@@ -14,14 +14,18 @@ class TeamController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('team menu')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
         try {
-            $teams = Team::paginate(20);
+            $teams = Team::when($request->search, function ($query, $value) {
+                $query->where(function ($query) use ($value) {
+                    $query->where('name', 'like', '%'.$value.'%')->orWhere('position', 'like', '%'.$value.'%');
+                });
+            })->paginate(20);
 
             return view('admin.layouts.team.index', compact('teams'));
         } catch (\Exception $e) {

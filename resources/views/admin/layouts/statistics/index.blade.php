@@ -715,106 +715,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>
-                                    <div class="affiliates--profile">
-                                        <img src="{{ asset('admin/images/profile.png') }}" alt="">
-                                        <p>Max Musternann</p>
-                                    </div>
-                                </td>
-                                <td class="sales">12 Sales</td>
-                            </tr>
+                            @forelse($affiliateUsersRankingList as $user)
+                                <tr>
+
+                                    <td>{{$user->user_rank}}</td>
+                                    <td>
+                                        <div class="affiliates--profile">
+                                            <img
+                                                src="{{ $user->avatar ? asset($user->avatar) : asset('admin/images/user.png') }}"
+                                                alt="{{$user->first_name. ' '.$user->last_name }}">
+                                            <p>{{$user->first_name. ' '.$user->last_name }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="sales">{{number_format($user->total_amount,2)}}€</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="1" rowspan="1">Not found.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -833,286 +752,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9488)">
-                                                <path
-                                                    d="M12.9997 25.9995C20.1791 25.9995 25.9995 20.1786 25.9995 12.9997C25.9995 5.82094 20.1796 0 12.9997 0C5.81993 0 0 5.82145 0 12.9997C0 20.178 5.82043 25.9995 12.9997 25.9995Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M24.0759 6.21204H12.4127V2.81738H21.0789C22.2689 3.7648 23.2833 4.9138 24.0759 6.21204ZM25.9969 12.9998H12.4198V9.6062H25.5496C25.8474 10.7128 25.9979 11.8539 25.9969 12.9998ZM12.9972 25.9996C15.9362 26.0064 18.7896 25.0104 21.086 23.1762H4.9089C7.20495 25.0107 10.0583 26.0067 12.9972 25.9996ZM24.0901 19.7892H1.90423C1.25714 18.7339 0.765766 17.5907 0.445312 16.395H25.549C25.2287 17.5907 24.7373 18.7339 24.0901 19.7892Z"
-                                                    fill="#D80027"
-                                                />
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M6.03523 2.0231H6.02356V2.03122L6.03523 2.0231ZM6.03523 2.0231H7.2108L6.10328 2.81781L6.52222 4.11778L5.41724 3.32307L4.31937 4.11778L4.68042 2.99605C3.71005 3.8082 2.86342 4.75765 2.1673 5.81435H2.55019L1.84942 6.32215L1.53153 6.88074L1.86364 7.91361L1.23548 7.45658L0.802329 8.46508L1.16338 9.59748H2.53444L1.4447 10.4003L1.86364 11.7003L0.758658 10.9056L0.10867 11.3819C0.036137 11.9181 -0.000168546 12.4586 5.88214e-07 12.9998H12.9997V1.09495e-05C10.5329 -0.00319741 8.11647 0.698731 6.03523 2.0231ZM6.51968 11.6937L6.52933 11.7013H6.52222L6.51968 11.6937ZM6.10277 10.4008L6.51968 11.6937L5.41673 10.9066L4.31175 11.7013L4.73069 10.4013L3.62571 9.60662H4.99678L5.41572 8.30665L5.83465 9.60662H7.20572L6.10277 10.4008ZM6.11039 6.61668L6.52933 7.91665L5.42435 7.12194L4.31937 7.91665L4.73831 6.61668L3.63333 5.82197H5.0044L5.42333 4.52199L5.84227 5.82197H7.21334L6.11039 6.61668ZM10.0895 10.9066L11.1945 11.7013L10.7756 10.4013L11.8826 9.60662H10.5115L10.0926 8.30665L9.67364 9.60662H8.30257L9.40755 10.4013L8.98861 11.7013L10.0895 10.9066ZM10.7756 6.61668L11.1945 7.91665L10.0895 7.12194L8.98455 7.91665L9.40349 6.61668L8.29851 5.82197H9.66958L10.0885 4.52199L10.5075 5.82197H11.8785L10.7756 6.61668ZM11.1945 4.132L10.7756 2.83203L11.8826 2.03731H10.5115L10.0926 0.73734L9.67364 2.03731H8.30257L9.40755 2.83203L8.98861 4.132L10.0936 3.33729L11.1945 4.132Z"
-                                                    fill="#0052B4"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9488">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>USA</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9532)">
-                                                <path
-                                                    d="M0.804688 17.522C2.6415 22.4724 7.40655 26.0003 12.9961 26.0003C18.5856 26.0003 23.3507 22.4724 25.1875 17.522L12.9961 16.3916L0.804688 17.522Z"
-                                                    fill="#FFDA44"
-                                                />
-                                                <path
-                                                    d="M12.9961 0C7.40655 0 2.6415 3.52788 0.804688 8.47829L12.9961 9.60868L25.1875 8.47823C23.3507 3.52787 18.5856 0 12.9961 0Z"
-                                                    fill="black"
-                                                />
-                                                <path
-                                                    d="M0.80859 8.47852C0.286051 9.88683 0 11.4101 0 13.0002C0 14.5904 0.286051 16.1136 0.80859 17.5219H25.1915C25.714 16.1136 26 14.5904 26 13.0002C26 11.4101 25.714 9.88683 25.1914 8.47852H0.80859Z"
-                                                    fill="#D80027"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9532">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Germany</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9507)">
-                                                <path
-                                                    d="M25.1914 17.5215C25.714 16.1133 26 14.59 26 12.9998C26 11.4096 25.714 9.88646 25.1914 8.4781L13 7.34766L0.80859 8.4781C0.286051 9.88646 0 11.4096 0 12.9998C0 14.59 0.286051 16.1133 0.80859 17.5215L13 18.652L25.1914 17.5215Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                                <path
-                                                    d="M12.9961 26C18.5856 26 23.3507 22.4721 25.1875 17.5217H0.804688C2.64155 22.4721 7.40655 26 12.9961 26ZM12.9961 0C7.40655 0 2.64155 3.52787 0.804688 8.47828H25.1876C23.3507 3.52787 18.5856 0 12.9961 0Z"
-                                                    fill="#D80027"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9507">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Austria</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9552)">
-                                                <path
-                                                    d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26Z"
-                                                    fill="#D80027"
-                                                />
-                                                <path
-                                                    d="M19.7839 10.7395H15.2622V6.21777H10.7405V10.7395H6.21875V15.2613H10.7405V19.783H15.2622V15.2613H19.7839V10.7395Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9552">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Schweizerland</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9488)">
-                                                <path
-                                                    d="M12.9997 25.9995C20.1791 25.9995 25.9995 20.1786 25.9995 12.9997C25.9995 5.82094 20.1796 0 12.9997 0C5.81993 0 0 5.82145 0 12.9997C0 20.178 5.82043 25.9995 12.9997 25.9995Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M24.0759 6.21204H12.4127V2.81738H21.0789C22.2689 3.7648 23.2833 4.9138 24.0759 6.21204ZM25.9969 12.9998H12.4198V9.6062H25.5496C25.8474 10.7128 25.9979 11.8539 25.9969 12.9998ZM12.9972 25.9996C15.9362 26.0064 18.7896 25.0104 21.086 23.1762H4.9089C7.20495 25.0107 10.0583 26.0067 12.9972 25.9996ZM24.0901 19.7892H1.90423C1.25714 18.7339 0.765766 17.5907 0.445312 16.395H25.549C25.2287 17.5907 24.7373 18.7339 24.0901 19.7892Z"
-                                                    fill="#D80027"
-                                                />
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M6.03523 2.0231H6.02356V2.03122L6.03523 2.0231ZM6.03523 2.0231H7.2108L6.10328 2.81781L6.52222 4.11778L5.41724 3.32307L4.31937 4.11778L4.68042 2.99605C3.71005 3.8082 2.86342 4.75765 2.1673 5.81435H2.55019L1.84942 6.32215L1.53153 6.88074L1.86364 7.91361L1.23548 7.45658L0.802329 8.46508L1.16338 9.59748H2.53444L1.4447 10.4003L1.86364 11.7003L0.758658 10.9056L0.10867 11.3819C0.036137 11.9181 -0.000168546 12.4586 5.88214e-07 12.9998H12.9997V1.09495e-05C10.5329 -0.00319741 8.11647 0.698731 6.03523 2.0231ZM6.51968 11.6937L6.52933 11.7013H6.52222L6.51968 11.6937ZM6.10277 10.4008L6.51968 11.6937L5.41673 10.9066L4.31175 11.7013L4.73069 10.4013L3.62571 9.60662H4.99678L5.41572 8.30665L5.83465 9.60662H7.20572L6.10277 10.4008ZM6.11039 6.61668L6.52933 7.91665L5.42435 7.12194L4.31937 7.91665L4.73831 6.61668L3.63333 5.82197H5.0044L5.42333 4.52199L5.84227 5.82197H7.21334L6.11039 6.61668ZM10.0895 10.9066L11.1945 11.7013L10.7756 10.4013L11.8826 9.60662H10.5115L10.0926 8.30665L9.67364 9.60662H8.30257L9.40755 10.4013L8.98861 11.7013L10.0895 10.9066ZM10.7756 6.61668L11.1945 7.91665L10.0895 7.12194L8.98455 7.91665L9.40349 6.61668L8.29851 5.82197H9.66958L10.0885 4.52199L10.5075 5.82197H11.8785L10.7756 6.61668ZM11.1945 4.132L10.7756 2.83203L11.8826 2.03731H10.5115L10.0926 0.73734L9.67364 2.03731H8.30257L9.40755 2.83203L8.98861 4.132L10.0936 3.33729L11.1945 4.132Z"
-                                                    fill="#0052B4"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9488">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>USA</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9532)">
-                                                <path
-                                                    d="M0.804688 17.522C2.6415 22.4724 7.40655 26.0003 12.9961 26.0003C18.5856 26.0003 23.3507 22.4724 25.1875 17.522L12.9961 16.3916L0.804688 17.522Z"
-                                                    fill="#FFDA44"
-                                                />
-                                                <path
-                                                    d="M12.9961 0C7.40655 0 2.6415 3.52788 0.804688 8.47829L12.9961 9.60868L25.1875 8.47823C23.3507 3.52787 18.5856 0 12.9961 0Z"
-                                                    fill="black"
-                                                />
-                                                <path
-                                                    d="M0.80859 8.47852C0.286051 9.88683 0 11.4101 0 13.0002C0 14.5904 0.286051 16.1136 0.80859 17.5219H25.1915C25.714 16.1136 26 14.5904 26 13.0002C26 11.4101 25.714 9.88683 25.1914 8.47852H0.80859Z"
-                                                    fill="#D80027"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9532">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Germany</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9507)">
-                                                <path
-                                                    d="M25.1914 17.5215C25.714 16.1133 26 14.59 26 12.9998C26 11.4096 25.714 9.88646 25.1914 8.4781L13 7.34766L0.80859 8.4781C0.286051 9.88646 0 11.4096 0 12.9998C0 14.59 0.286051 16.1133 0.80859 17.5215L13 18.652L25.1914 17.5215Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                                <path
-                                                    d="M12.9961 26C18.5856 26 23.3507 22.4721 25.1875 17.5217H0.804688C2.64155 22.4721 7.40655 26 12.9961 26ZM12.9961 0C7.40655 0 2.64155 3.52787 0.804688 8.47828H25.1876C23.3507 3.52787 18.5856 0 12.9961 0Z"
-                                                    fill="#D80027"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9507">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Austria</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>
-                                    <div class="profile">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="26"
-                                            height="26"
-                                            viewBox="0 0 26 26"
-                                            fill="none"
-                                        >
-                                            <g clip-path="url(#clip0_14010_9552)">
-                                                <path
-                                                    d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26Z"
-                                                    fill="#D80027"
-                                                />
-                                                <path
-                                                    d="M19.7839 10.7395H15.2622V6.21777H10.7405V10.7395H6.21875V15.2613H10.7405V19.783H15.2622V15.2613H19.7839V10.7395Z"
-                                                    fill="#F0F0F0"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_14010_9552">
-                                                    <rect width="26" height="26" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>Schweizerland</p>
-                                    </div>
-                                </td>
-                                <td class="visit">65.456 Visits</td>
-                            </tr>
+                            @forelse($topCountries as $country)
+                                <tr>
+                                    <td>{{$country->country_rank}}</td>
+                                    <td>
+                                        <div class="profile">
+                                            <img
+                                                width="30"
+                                                src="https://flagcdn.com/48x36/{{strtolower($country->country_code)}}.png"
+                                                alt="{{$country->country_name}}">
+                                            <p>{{$country->country_name}}</p>
+                                        </div>
+                                    </td>
+                                    <td class="sales">{{number_format($country->total_amount,2)}}€</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="1" rowspan="1">Not found.</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

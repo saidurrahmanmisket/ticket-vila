@@ -10,13 +10,15 @@ use Illuminate\Http\Request;
 
 class AffiliateTripsAndTricksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //permission check
         if (! has_permission('affiliate manage trips & tricks')) {
             abort('403', 'Permission denied: You do not have permission access this page');
         }
-        $affiliateTrips = AffiliateTrips::paginate(20);
+        $affiliateTrips = AffiliateTrips::when($request->search, function ($query, $value) {
+            $query->where('title_en', 'like', '%'.$value.'%');
+        })->paginate(20);
 
         return view('admin.layouts.affiliate-trips.index', compact('affiliateTrips'));
     }

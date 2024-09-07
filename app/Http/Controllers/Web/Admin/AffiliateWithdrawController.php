@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 
 class AffiliateWithdrawController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        $allWithdrawRequest = AffiliateUserWithdrawalRequest::with('affiliateUser.user:id,first_name,last_name,email,phone')->paginate(15);
+        $allWithdrawRequest = AffiliateUserWithdrawalRequest::when($request->search, function ($query, $value) {
+            $query->where(function ($q) use ($value) {
+                $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$value}%"])
+                    ->orWhere('email', 'like', '%'.$value.'%');
+            });
+        })->with('affiliateUser.user:id,first_name,last_name,email,phone')->paginate(15);
 
         // return $allWithdrawRequest;
         return view('admin.layouts.affiliate-toolkit-file.affiliate-withdraw-request', compact('allWithdrawRequest'));

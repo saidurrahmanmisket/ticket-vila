@@ -17,13 +17,17 @@ class CampaignController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //check permission
         if (! has_permission('campaign menu')) {
             abort(403, 'Permission denied: You do not have permission access this page');
         }
-        $campaigns = Campaign::paginate(20);
+        $campaigns = Campaign::when($request->status, function ($query, $value) {
+            $query->where('status', $value);
+        })->when($request->search, function ($query, $value) {
+            $query->where('name_en', 'like', '%'.$value.'%');
+        })->paginate(20);
 
         return view('admin.layouts.campaign.index', compact('campaigns'));
     }

@@ -3,6 +3,15 @@
 @section('header_title')
     Invoices
 @endsection;
+@push('style')
+    <style>
+        span.current {
+            display: block;
+            padding-top: 0 !important;
+            left: 17px;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main">
     <!-- Invoices area  -->
@@ -10,39 +19,38 @@
         <h4 class="common--title">Filter</h4>
         <!-- filter--and--search  -->
         <div class="filter--and--search">
-            <form action="#">
+            <form action="{{route('admin.invoice.index')}}" method="GET">
                 <!-- select  -->
+                <div class="d-flex gap-3 align-items-center">
+                    <input type="date" value="{{request('start_date')}}" name="start_date" class="form-control">
+                    <span>To</span>
+                    <input type="date" name="end_date" value="{{request('end_date')}}" class="form-control">
+                </div>
+                {{--select by campaign--}}
                 <div class="select">
-                    <select id="sortby-date">
-                        <option selected disabled>Sort by Date</option>
-                        <option value="1">11.052024</option>
-                        <option value="2">11.052024</option>
-                        <option value="3">11.052024</option>
-                        <option value="4">11.052024</option>
-                        <option value="5">11.052024</option>
+                    <select id="sortby-campaign" name="campaign">
+                        <option value="" selected>Select campaign</option>
+                        @foreach($campaigns as $campaign)
+                            <option @if(request('campaign') == $campaign->id) selected
+                                    @endif value="{{$campaign->id}}">{{substr($campaign->name_en,0,20)}}</option>
+                        @endforeach
                     </select>
-                    <div class="sort--icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                            fill="none">
-                            <path d="M2.25 5.25H15.75" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M4.5 9H13.5" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M7.5 12.75H10.5" stroke="#868A9B" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                    </div>
                 </div>
                 <!-- search  -->
                 <div class="search">
-                    <input type="search" placeholder="Search Invoice" />
+                    <input type="search" name="search" value="{{request('search')}}"
+                           placeholder="Search invoice using user name/email"/>
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
-                            fill="none">
+                             fill="none">
                             <ellipse cx="8.80687" cy="8.80592" rx="7.49047" ry="7.45533" stroke="#868A9B"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.0156 14.3789L16.9523 17.2942" stroke="#868A9B" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                                  stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
             </form>
         </div>
         <!-- Invoices  -->
@@ -57,7 +65,7 @@
                             <img src="{{ isset($order->campaign->thumbnail ) ? asset($order->campaign->thumbnail) : asset('admin/images/ticket.png') }}"
                                 alt="" />
                             <p>invoice ID: #{{ $order->id.'/'.date('Y',strtotime($order->created_at)) }}</p>
-                            <span>#{{ $loop->iteration }}</span>
+                            <span>#@index($orders)</span>
                         </div>
                         <div>
                             <p class="common--pair--text">

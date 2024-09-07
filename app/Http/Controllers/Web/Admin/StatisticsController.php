@@ -116,7 +116,20 @@ class StatisticsController extends Controller
             'topCountryIncomes' => $topCountryIncomes,
         ];
 
-        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress', 'ticketsSoldToday', 'salesData', 'analyticsData'));
+        //top 10 affiliate users
+        $affiliateUsersRankingList = DB::table(DB::raw('(SELECT affiliate_users.user_id, SUM(orders.total_price) as total_amount, RANK() OVER (ORDER BY SUM(orders.total_price) DESC) as user_rank FROM affiliate_users LEFT JOIN affiliate_commissions ON affiliate_commissions.affiliate_user_id = affiliate_users.id LEFT JOIN orders ON orders.id = affiliate_commissions.order_id GROUP BY affiliate_users.user_id) as affiliate_users'))
+            ->join('users', 'users.id', '=', 'affiliate_users.user_id')
+            ->select('users.id as user_id', 'users.first_name as first_name', 'users.last_name as last_name', 'users.avatar as avatar', 'users.email as email', 'total_amount', 'user_rank')
+            ->take(10)
+            ->get();
+
+        //top countries
+        $topCountries = DB::table(DB::raw('(SELECT countries.id as country_id, countries.name as country_name,countries.code as country_code,SUM(orders.total_price) as total_amount,RANK() OVER (ORDER BY SUM(orders.total_price) DESC) as country_rank FROM countries JOIN users ON users.country_id = countries.id JOIN affiliate_users ON affiliate_users.user_id = users.id LEFT JOIN affiliate_commissions ON affiliate_commissions.affiliate_user_id = affiliate_users.id LEFT JOIN orders ON orders.id = affiliate_commissions.order_id GROUP BY countries.id, countries.name) as country_data'))
+            ->select('country_data.country_id', 'country_data.country_name', 'country_code', 'total_amount', 'country_rank')
+            ->take(10)
+            ->get();
+
+        return view('admin.layouts.statistics.index', compact('usersInfo', 'revenueInfo', 'todayProgress', 'ticketsSoldToday', 'salesData', 'analyticsData', 'affiliateUsersRankingList', 'topCountries'));
     }
 
     public function getOrderData($range = 'last_week')

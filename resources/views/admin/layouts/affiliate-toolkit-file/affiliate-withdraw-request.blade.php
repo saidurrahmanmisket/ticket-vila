@@ -16,30 +16,22 @@
             <h4 class="common--title">Filter</h4>
             <!-- filter--and--search  -->
             <div class="filter--and--search d-flex justify-content-between align-items-center">
-                <form action="#">
-                    <!-- select  -->
-                    <div class="select">
-                        <select id="sortby-date">
-                            <option value="1" selected>1 Ticket’s</option>
-                            <option value="2">2 Ticket’s</option>
-                            <option value="3">3 Ticket’s</option>
-                            <option value="4">4 Ticket’s</option>
-                            <option value="5">5 Ticket’s</option>
-                        </select>
-                    </div>
+                <form action="{{route('admin.affiliate-withdraw-request.show')}}" method="GET">
                     <!-- search  -->
                     <div class="search">
-                        <input type="search" placeholder="Search Users" />
+                        <input type="search" name="search" value="{{request('search')}}"
+                               placeholder="Search user by name or email"/>
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
-                                fill="none">
+                                 fill="none">
                                 <ellipse cx="8.80687" cy="8.80592" rx="7.49047" ry="7.45533" stroke="#868A9B"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M14.0156 14.3789L16.9523 17.2942" stroke="#868A9B" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
+                                      stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
                     </div>
+                    <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
             </div>
             <!-- users table  -->
@@ -61,7 +53,7 @@
                         <tbody>
                             @forelse($allWithdrawRequest as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>@index($allWithdrawRequest)</td>
                                     <td>{{ $item->affiliateUser->user->first_name ?? '' }}</td>
                                     <td>{{ $item->affiliateUser->user->email ?? '' }}</td>
                                     <td>{{ $item->bank_account_number ?? '' }}</td>
@@ -85,7 +77,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2 align-items-center">
-                                            
+
                                             <form action="{{ route('admin.affiliate-withdraw-request.destroy', $item->id) }}"
                                                 method="POST"> @csrf @method('DELETE')
                                                 <button type="submit" style="color: #dc2626"
@@ -99,7 +91,7 @@
                                                     </svg>
                                                 </button>
                                             </form>
-                                            
+
                                         </div>
                                     </td>
                                 </tr>
@@ -125,7 +117,7 @@
                                                         <p class="mb-2"><strong><i class="bi bi-flag me-2"></i> Country of Bank:</strong> {{ $item->country_of_bank }}</p>
                                                         <p class="mb-2"><strong><i class="bi bi-cash me-2"></i> Amount:</strong> ${{ number_format($item->amount, 2) }}</p>
                                                         <p class="mb-2"><strong><i class="bi bi-clock me-2"></i> Requested At:</strong> {{ \Carbon\Carbon::parse($item->requested_at)->diffForHumans() }}</p>
-                                                        <p class="mt-3"><strong>Status:</strong> 
+                                                        <p class="mt-3"><strong>Status:</strong>
                                                             <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }} text-dark">
                                                                 {{ ucfirst($item->status) }}
                                                             </span>
