@@ -85,12 +85,12 @@
     })();
 </script>
 <!-- weglot API -->
-<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-<script>
-    Weglot.initialize({
-        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'
-    });
-</script>
+{{--<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>--}}
+{{--<script>--}}
+{{--    Weglot.initialize({--}}
+{{--        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'--}}
+{{--    });--}}
+{{--</script>--}}
 <!-- Intercom -->
 <script>
     @if(Auth::check())
