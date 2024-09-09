@@ -193,6 +193,8 @@
                 event.preventDefault()
                 var productQty = $('input[name="quantity"].quantity').val()
                 fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+
+                this.submit()
             })
         });
     </script>

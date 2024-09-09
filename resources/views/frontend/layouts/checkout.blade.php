@@ -306,7 +306,7 @@
                                             <div class="options">
                                                 <p>{{ __("Promo Discount") }}<span id="discount-percent"></span></p>
                                                 <p id="discount-value"></p>
-                                                <input type="hidden" id="promo_code" name="promo_code" value="">
+                                                <input type="hidden" id="promo_code" name="promo_code">
                                                 <span class="position-absolute" id="removeAppycode"
                                                       style="cursor:pointer;top: -6px;right: 1px">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -536,10 +536,11 @@
         $(document).ready(function () {
             var discountVal = 0;
             var totalAmount = Number.parseFloat("{{$totalAmount}}")
-            $('#apply-button').click(function () {
+
+            function applyCode(defaultCode = '') {
                 $("#discount-error").hide()
                 $("#discount-error").text('')
-                var code = $('#code').val();
+                var code = typeof defaultCode != 'object' ? defaultCode : $('#code').val();
                 var quantity = Number.parseInt("{{$quantity}}")
                 $.ajax({
                     url: '{{ route('apply-promo-code') }}',
@@ -557,7 +558,11 @@
                             $("#discount-value").text('-' + discountVal.toFixed(2) + ' €')
                             $("#promo_code").val(response.data.code)
                             $("#total-amount").text((totalAmount - discountVal).toFixed(2) + ' €')
-                            flasher.success('Promo Code Applied Successfully.')
+                            if (typeof defaultCode == 'object') {
+                                flasher.success('Promo Code Applied Successfully.')
+                            }
+                            console.log()
+
                             $("#apply-promo-code").hide()
                             $("#code").val('')
                         } else {
@@ -569,7 +574,16 @@
                         $("#discount-error").text(res.responseJSON?.message)
                     }
                 });
-            });
+
+            }
+
+            let oldPromoCode = "{{old('promo_code')}}"
+            if (oldPromoCode.length > 0) {
+                applyCode(oldPromoCode)
+            }
+
+            $('#apply-button').click(applyCode);
+
 
             $("#removeAppycode").click(function () {
                 $("#promo-discount").hide()

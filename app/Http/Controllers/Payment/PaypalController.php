@@ -38,7 +38,7 @@ class PaypalController extends Controller
             if (empty($campaign)) {
                 flash()->addWarning('Campaign not found.');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
             $promoCode = PromoCode::where('code', $request->promo_code)->first();
@@ -69,7 +69,7 @@ class PaypalController extends Controller
                 }
                 flash()->addWarning('Only '.$ticketRemain.' Tickets Are Available');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
             // Store data in session
             LaravelSession::put([
@@ -138,7 +138,7 @@ class PaypalController extends Controller
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->back()->with($e->getMessage());
+            return redirect()->back()->with($e->getMessage())->withInput();
         }
     }
 
@@ -280,7 +280,7 @@ class PaypalController extends Controller
             if (empty($user)) {
                 flash()->addError('Something was wrong.');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
             //check campaign
             $campaignCheck = $campaignService->checkCampaignAndTickets($campaign, $quantity);
@@ -339,20 +339,20 @@ class PaypalController extends Controller
                 flash()->addError('Something went wrong.');
 
                 return redirect()
-                    ->route('frontend.web-shop.checkout');
+                    ->route('frontend.web-shop.checkout')->withInput();
 
             } else {
                 flash()->addError('Something went wrong.');
 
                 return redirect()
-                    ->route('frontend.web-shop.checkout');
+                    ->route('frontend.web-shop.checkout')->withInput();
             }
         } catch (\Exception $e) {
             // Handle the exception
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->route('frontend.web-shop.checkout');
+            return redirect()->route('frontend.web-shop.checkout')->withInput();
         }
     }
 }

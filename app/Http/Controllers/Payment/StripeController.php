@@ -41,7 +41,7 @@ class StripeController extends Controller
             if (empty($campaign)) {
                 flash()->addWarning('Campaign not found.');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
             $promoCode = PromoCode::where('code', $request->promo_code)->first();
             if ((! empty($request->promo_code) && ! empty($promoCode)) && ! Helper::isValidPromoCode($promoCode, $campaign)) {
@@ -73,7 +73,7 @@ class StripeController extends Controller
                 }
                 flash()->addWarning('Only '.$ticketRemain.' Tickets Are Available');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
             // Store data in session
             LaravelSession::put([
@@ -130,7 +130,7 @@ class StripeController extends Controller
             Log::error($e->getMessage());
             flash()->addError($e->getMessage());
 
-            return redirect()->back()->with($e->getMessage());
+            return redirect()->back()->with($e->getMessage())->withInput();
         }
     }
 
@@ -264,7 +264,7 @@ class StripeController extends Controller
             if (empty($user)) {
                 flash()->addError('Something was wrong.');
 
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
             //gating quantity
             $quantity = $request->quantity ?? 1;
@@ -338,7 +338,7 @@ class StripeController extends Controller
         } catch (\Exception $exception) {
             flash()->addError($exception->getMessage());
 
-            return redirect()->back();
+            return redirect()->back()->withInput();
         }
     }
 }
