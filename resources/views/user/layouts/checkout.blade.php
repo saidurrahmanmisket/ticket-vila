@@ -84,10 +84,10 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div id="apply-promo-code">
+                            <div id="apply-promo-code" class="mt-3">
                                 <label class="form-label"
                                        style="font-weight: bold">{{ __("Promotional code (Optional)") }}</label>
-                                <div class="d-flex mt-3 gap-3">
+                                <div class="d-flex mt-2 gap-3">
                                     <div class="single--input">
                                         <input
                                             type="text"
@@ -323,10 +323,11 @@
         $(document).ready(function () {
             var discountVal = 0;
             var totalAmount = Number.parseFloat("{{$totalAmount}}")
-            $('#apply-button').click(function () {
+
+            function applyCode(defaultCode = '') {
                 $("#discount-error").hide()
                 $("#discount-error").text('')
-                var code = $('#code').val();
+                var code = typeof defaultCode != 'object' ? defaultCode : $('#code').val();
                 var quantity = Number.parseInt("{{$quantity}}")
                 $.ajax({
                     url: '{{ route('apply-promo-code') }}',
@@ -344,7 +345,9 @@
                             $("#discount-value").text('-' + discountVal.toFixed(2) + ' €')
                             $("#promo_code").val(response.data.code)
                             $("#total-amount").text((totalAmount - discountVal).toFixed(2) + ' €')
-                            flasher.success('Promo Code Applied Successfully.')
+                            if (typeof defaultCode == 'object') {
+                                flasher.success('Promo Code Applied Successfully.')
+                            }
                             $("#apply-promo-code").hide()
                             $("#code").val('')
                         } else {
@@ -356,8 +359,14 @@
                         $("#discount-error").text(res.responseJSON?.message)
                     }
                 });
-            });
+            }
 
+            let oldPromoCode = "{{old('promo_code')}}"
+            if (oldPromoCode.length > 0) {
+                applyCode(oldPromoCode)
+            }
+
+            $('#apply-button').click(applyCode);
             $("#removeAppycode").click(function () {
                 $("#promo-discount").hide()
                 $("#discount-percent").text('')
