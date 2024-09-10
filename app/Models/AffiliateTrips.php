@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class AffiliateTrips extends Model
 {
-    use HasFactory;
+    use HasFactory,HasTranslations;
+
+    public $translatable = ['title', 'description'];
 
     protected $fillable = [
-        'title_en',
-        'title_de',
-        'title_hu',
-        'description_en',
-        'description_de',
-        'description_hu',
+        'title',
+        'description',
         'image',
         'user_id',
         'status',

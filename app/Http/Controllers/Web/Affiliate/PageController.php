@@ -10,7 +10,6 @@ use App\Models\AffiliateTrips;
 use App\Models\AffiliateUser;
 use App\Models\AffiliateUserWithdrawalRequest;
 use App\Models\Order;
-use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -334,7 +333,6 @@ class PageController extends Controller
         $revenueDetails['refunded_order'] = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)->whereHas('order', function ($query) {
             $query->where('payment_status', Status::REFUND);
         })->count();
-        //        dd('okk');
         //today's users
         $newUserCount = AffiliateCommission::where('affiliate_user_id', $affiliate_user_id)
             ->whereDate('created_at', Carbon::today())->whereDoesntHave('previousCommissions', function ($query) {
@@ -343,7 +341,7 @@ class PageController extends Controller
                     ->whereDate('created_at', '<', Carbon::today());
             })->distinct('referrer_user_id')->count();
 
-        $allWithdrawRequest = AffiliateUserWithdrawalRequest::where('affiliate_user_id', Auth::user()->id)->paginate(10);
+        $allWithdrawRequest = AffiliateUserWithdrawalRequest::where('affiliate_user_id', $affiliate_user_id)->latest()->paginate(10);
 
         return view('affiliate-dashboard.layouts.withdraw', compact('profitDetails', 'toDayProfitDetails', 'revenueDetails', 'newUserCount', 'allWithdrawRequest'));
     }

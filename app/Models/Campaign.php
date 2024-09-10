@@ -10,9 +10,9 @@ class Campaign extends Model
 {
     use HasFactory,HasTranslations;
 
-    public $translatable = [];
+    public $translatable = ['name', 'promotion_banner', 'mobile_promotion_banner'];
 
-    protected $fillable = ['name_en', 'name_de', 'name_hu', 'target_type', 'thumbnail', 'how_many_buy', 'how_many_free', 'discount_percent', 'discount_expire_date', 'promotion_banner_en', 'promotion_banner_de', 'promotion_banner_hu', 'mobile_promotion_banner_en', 'mobile_promotion_banner_de', 'mobile_promotion_banner_hu', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
+    protected $fillable = ['name', 'target_type', 'thumbnail', 'how_many_buy', 'how_many_free', 'discount_percent', 'discount_expire_date', 'promotion_banner', 'mobile_promotion_banner', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
 
     protected $casts = [
         'discount_expire_date' => 'datetime',

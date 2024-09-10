@@ -442,6 +442,6 @@ class PageController extends Controller
             flash()->addWarning('Invalid referral url.');
         }
 
-        return redirect()->route('frontend.web-shop.buy-ebook');
+        return redirect()->route('landing-page');
     }
 }

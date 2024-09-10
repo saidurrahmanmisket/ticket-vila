@@ -379,13 +379,13 @@
                     </li>
 
                 @endcan
-                @canany(['affiliate manage file','affiliate manage trips & tricks'])
+                @canany(['affiliate manage file','affiliate manage trips & tricks','manage withdraw request','manage affiliate users'])
                 <li class="accordion-item">
                     <div class="accordion-header" id="headingBooks">
                         <a href="#"
-                           class="accordion-button {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'active' : 'collapsed' }}"
+                           class="accordion-button {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') || Route::is('admin.affiliate-users.*') ? 'active' : 'collapsed' }}"
                            data-bs-toggle="collapse" data-bs-target="#collapseBooks"
-                           aria-expanded="{{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'true' : 'false' }}"
+                           aria-expanded="{{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') || Route::is('admin.affiliate-users.*') ? 'true' : 'false' }}"
                            aria-controls="collapseBooks">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">
@@ -416,26 +416,42 @@
                     </div>
 
                     <div id="collapseBooks"
-                         class="accordion-collapse collapse {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') ? 'show' : '' }}"
+                         class="accordion-collapse collapse {{ Route::is('admin.affiliate-toolkit.*') || Route::is('admin.affiliate-trips.*') || Route::is('admin.affiliate-withdraw-request.*') || Route::is('admin.affiliate-users.*') ? 'show' : '' }}"
                          aria-labelledby="headingBooks" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <ul>
-                                <li>
-                                    <a href="{{ route('admin.affiliate-toolkit.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.affiliate-toolkit.*') ? 'sub--active' : '' }}">
-                                        Toolkit Files
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.affiliate-trips.index') }}"
-                                       class="sub--menu--title {{ Route::is('admin.affiliate-trips.*') ? 'sub--active' : '' }}">
-                                        Useful trips and tricks
-                                    </a>
-                                    <a href="{{ route('admin.affiliate-withdraw-request.show') }}"
-                                       class="sub--menu--title {{ Route::is('admin.affiliate-withdraw-request.*') ? 'sub--active' : '' }}">
-                                        Withdraw Request
-                                    </a>
-                                </li>
+                                @can('affiliate manage file')
+                                    <li>
+                                        <a href="{{ route('admin.affiliate-toolkit.index') }}"
+                                           class="sub--menu--title {{ Route::is('admin.affiliate-toolkit.*') ? 'sub--active' : '' }}">
+                                            Toolkit Files
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('affiliate manage trips & tricks')
+                                    <li>
+                                        <a href="{{ route('admin.affiliate-trips.index') }}"
+                                           class="sub--menu--title {{ Route::is('admin.affiliate-trips.*') ? 'sub--active' : '' }}">
+                                            Useful trips and tricks
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('manage withdraw request')
+                                    <li>
+                                        <a href="{{ route('admin.affiliate-withdraw-request.show') }}"
+                                           class="sub--menu--title {{ Route::is('admin.affiliate-withdraw-request.*') ? 'sub--active' : '' }}">
+                                            Withdraw Request
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('manage affiliate users')
+                                    <li>
+                                        <a href="{{ route('admin.affiliate-users.index') }}"
+                                           class="sub--menu--title {{ Route::is('admin.affiliate-users.*') ? 'sub--active' : '' }}">
+                                            Affiliate Users
+                                        </a>
+                                    </li>
+                                @endcan
                             </ul>
                         </div>
                     </div>
@@ -622,8 +638,6 @@
                             </ul>
                         </div>
                     </div>
-
-
                 </li>
             @endcanany
             <li>

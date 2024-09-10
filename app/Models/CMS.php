@@ -12,5 +12,5 @@ class CMS extends Model
 
     protected $guarded = ['id'];
 
-    public $translatable = [];
+    public $translatable = ['title', 'sub_title', 'description', 'links'];
 }

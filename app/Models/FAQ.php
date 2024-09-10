@@ -12,5 +12,5 @@ class FAQ extends Model
 
     protected $guarded = ['id'];
 
-    public $translatable = [];
+    public $translatable = ['question', 'answer'];
 }

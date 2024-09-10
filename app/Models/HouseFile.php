@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class HouseFile extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
-    protected $guarded = [];
+    public $translatable = ['file_name'];
+
+    protected $guarded = ['id'];
 
     public function gift()
     {

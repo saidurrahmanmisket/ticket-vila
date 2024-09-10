@@ -10,5 +10,5 @@ class GiftFeaturedItem extends Model
 {
     use HasFactory,HasTranslations;
 
-    public $translatable = [];
+    public $translatable = ['title', 'sub_title'];
 }

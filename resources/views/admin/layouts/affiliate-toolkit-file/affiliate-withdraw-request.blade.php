@@ -8,6 +8,11 @@
         .status .nice-select.form-select.select {
             width: 160px;
         }
+
+        .swal2-icon.swal2-question.swal2-icon-show {
+            margin: 0 auto;
+            margin-top: 20px;
+        }
     </style>
 @endpush
 @section('content')
@@ -17,6 +22,27 @@
             <!-- filter--and--search  -->
             <div class="filter--and--search d-flex justify-content-between align-items-center">
                 <form action="{{route('admin.affiliate-withdraw-request.show')}}" method="GET">
+                    {{--select by campaign--}}
+                    @php
+                        use App\Enums\Status;
+                    @endphp
+                    <div class="select">
+                        <select id="sortby-status" name="status">
+                            <option value="" selected>Select status</option>
+                            <option
+                                {{request('status') === Status::APPROVED ? 'selected' : ''}} value="{{Status::APPROVED}}">
+                                Approved
+                            </option>
+                            <option
+                                {{request('status') === Status::PENDING ? 'selected' : ''}} value="{{Status::PENDING}}">
+                                Pending
+                            </option>
+                            <option
+                                {{request('status') === Status::REJECTED ? 'selected' : ''}} value="{{Status::REJECTED}}">
+                                Rejected
+                            </option>
+                        </select>
+                    </div>
                     <!-- search  -->
                     <div class="search">
                         <input type="search" name="search" value="{{request('search')}}"
@@ -47,7 +73,6 @@
                                 <th>Bank Account No</th>
                                 <th>Status</th>
                                 <th>Details</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,13 +83,20 @@
                                     <td>{{ $item->affiliateUser->user->email ?? '' }}</td>
                                     <td>{{ $item->bank_account_number ?? '' }}</td>
                                     <td class="status">
-                                        <select class="form-select select" id="change_status"
-                                            onchange="statusChange({{ $item->id }},this)">
-                                            @foreach (\App\Enums\Status::withdrawRequestStatus() as $key => $val)
-                                                <option @if ($item->status === $key) selected @endif
+                                        @if($item->status === \App\Enums\Status::PENDING)
+                                            <select class="form-select select" id="change_status_{{$item->id}}"
+                                                    onchange="confirmationForChangeStatus({{ $item->id }},this)">
+                                                <option value="">Select a status</option>
+                                                @foreach (\App\Enums\Status::withdrawRequestStatus() as $key => $val)
+                                                    <option @if ($item->status === $key) selected @endif
                                                     value="{{ $key }}">{{ $val }}</option>
-                                            @endforeach
-                                        </select>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <span
+                                                class="btn btn-sm text-uppercase {{$item->status === \App\Enums\Status::APPROVED ? 'btn-success' : 'btn-danger'}}">{{$item->status}}</span>
+                                        @endif
+
                                     </td>
                                     <td>
                                         <button href="#" class="action--btn action--btnv2" data-bs-toggle="modal" data-bs-target="#modal-{{ $item->id }}">
@@ -74,25 +106,6 @@
                                                 <path d="M9.69922 1.701L15.7492 7.725L9.69922 13.75" stroke="#04BAFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </button>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex gap-2 align-items-center">
-
-                                            <form action="{{ route('admin.affiliate-withdraw-request.destroy', $item->id) }}"
-                                                method="POST"> @csrf @method('DELETE')
-                                                <button type="submit" style="color: #dc2626"
-                                                    onclick="return confirm('Are you sure you want to delete?')">
-                                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" fill="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                            </form>
-
-                                        </div>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="modal-{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel-{{ $item->id }}" aria-hidden="true">
@@ -116,9 +129,13 @@
                                                         <p class="mb-2"><strong><i class="bi bi-globe me-2"></i> SWIFT/BIC Code:</strong> {{ $item->swift_bic_code }}</p>
                                                         <p class="mb-2"><strong><i class="bi bi-flag me-2"></i> Country of Bank:</strong> {{ $item->country_of_bank }}</p>
                                                         <p class="mb-2"><strong><i class="bi bi-cash me-2"></i> Amount:</strong> ${{ number_format($item->amount, 2) }}</p>
-                                                        <p class="mb-2"><strong><i class="bi bi-clock me-2"></i> Requested At:</strong> {{ \Carbon\Carbon::parse($item->requested_at)->diffForHumans() }}</p>
+                                                        <p class="mb-2"><strong><i class="bi bi-clock me-2"></i>
+                                                                Requested
+                                                                At:</strong> {{ \Carbon\Carbon::parse($item->requested_at)->format('Y-m-d H:i:s') }}
+                                                        </p>
                                                         <p class="mt-3"><strong>Status:</strong>
-                                                            <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }} text-dark">
+                                                            <span
+                                                                class="badge text-white {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }} text-dark">
                                                                 {{ ucfirst($item->status) }}
                                                             </span>
                                                         </p>
@@ -163,6 +180,22 @@
 {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet"> --}}
 
     <script>
+        function confirmationForChangeStatus(id, event) {
+            let status = $(event).val()
+            Swal.fire({
+                title: `Are you sure you want to ${status}?`,
+                text: `This action will change the status to ${status}.`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: status === '{{\App\Enums\Status::APPROVED}}' ? '#28a745' : '#d33', // Green for approve, Red for reject
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: `Yes, ${status} it!`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    statusChange(id, event)
+                }
+            });
+        }
         function statusChange(id, event) {
             var url = '{{ route('admin.affiliate-withdraw-request.status', ':id') }}';
             $.ajax({
@@ -174,17 +207,11 @@
                 },
                 success: function (resp) {
                     if (resp.success === true) {
-
                         // show toast message
                         flasher.success(resp.message);
-                    } else if (resp.success === false && resp.is_exist === true) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: resp.message,
-                        }).then(() => {
-                            location.reload();
-                        });
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 1000)
                     } else {
                         flasher.error(resp.message);
                     }

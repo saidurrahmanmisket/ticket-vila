@@ -479,7 +479,7 @@
         $('#directBuyNow').on('submit', function (event) {
             event.preventDefault()
             var productQty = $('input[name="quantity"].quantity').val()
-            fbq('track', 'InitiateCheckout', {num_items: productQty, value: value});
+            fbq('track', 'AddToCart', {num_items: productQty, value: value});
             this.submit()
         })
     });

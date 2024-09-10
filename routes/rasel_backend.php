@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Admin\AdminUserController;
 use App\Http\Controllers\Web\Admin\AffiliateToolkitFile;
 use App\Http\Controllers\Web\Admin\AffiliateTripsAndTricksController;
+use App\Http\Controllers\Web\Admin\AffiliateUsersController;
 use App\Http\Controllers\Web\Admin\AffiliateWithdrawController;
 use App\Http\Controllers\Web\Admin\CampaignController;
 use App\Http\Controllers\Web\Admin\CMS\AboutPageController;
@@ -98,6 +99,11 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     //Affiliate trips and tricks routes
     Route::resource('/affiliate-trips', AffiliateTripsAndTricksController::class)->except(['show']);
     Route::post('/affiliate-trips/status/{id}', [AffiliateTripsAndTricksController::class, 'status'])->name('affiliate-trips.status');
+
+    //Affiliate users routes
+    Route::get('/affiliate-users', [AffiliateUsersController::class, 'index'])->name('affiliate-users.index');
+    Route::post('/affiliate-users/update-commission', [AffiliateUsersController::class, 'updateCommission'])->name('affiliate-users.update-commission');
+
     //Notification Routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');

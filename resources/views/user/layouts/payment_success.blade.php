@@ -45,9 +45,17 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     @endif
-
 @endsection
+@push('scripts')
+    {{--    for facebook pixel buy trac --}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // for purchase tracking
+            let totalPrice = {{ session('total_price') ?? 0 }};
+            fbq('track', 'Purchase', {currency: "EUR", value: totalPrice});
+        });
+    </script>
+@endpush

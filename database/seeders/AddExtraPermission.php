@@ -16,8 +16,8 @@ class AddExtraPermission extends Seeder
         // Array of permissions to be created
         $permissions = [
             'affiliate' => [
-                'affiliate manage file',
-                'affiliate manage trips & tricks',
+                'manage withdraw request',
+                'manage affiliate users',
             ],
         ];
 

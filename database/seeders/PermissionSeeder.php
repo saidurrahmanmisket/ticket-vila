@@ -150,6 +150,10 @@ class PermissionSeeder extends Seeder
                 'promo code status',
                 'promo code delete',
             ],
+            'affiliate' => [
+                'affiliate manage file',
+                'affiliate manage trips & tricks',
+            ],
         ];
 
         // Loop through the permissions array and create each permission

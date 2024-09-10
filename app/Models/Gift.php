@@ -10,7 +10,7 @@ class Gift extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = [];
+    public $translatable = ['name'];
 
     protected $guarded = ['id'];
 
