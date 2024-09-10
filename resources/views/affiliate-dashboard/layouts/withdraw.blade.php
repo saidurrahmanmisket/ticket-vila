@@ -15,6 +15,11 @@
                 margin-top: 35px;
                 height: fit-content;
             }
+
+            .swal2-icon.swal2-success.swal2-icon-show {
+                margin: 0 auto;
+                margin-top: 20px;
+            }
         </style>
     @endpush
     <section class="app--content--main">
@@ -476,7 +481,7 @@
                         @forelse($allWithdrawRequest as $item)
                             <tr>
                                 <td class="ticket-sold-no">{{$loop->iteration}}</td>
-                                <td class="ticket-sold-date">{{$item->requested_at->diffForHumans()}}</td>
+                                <td class="ticket-sold-date">{{$item->requested_at->format('Y-m-d H:i:s')}}</td>
                                 <td class="ticket-sold-price">{{$item->bank_name}}</td>
                                 <td class="ticket-sold-price">{{$item->bank_branch_name}}</td>
                                 <td class="ticket-sold-price">{{$item->bank_account_number}}</td>

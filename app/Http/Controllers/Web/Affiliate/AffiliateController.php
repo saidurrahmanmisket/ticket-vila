@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Web\Affiliate;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Mail\AffiliateInvite;
-use App\Models\AffiliateCommission;
 use App\Models\AffiliateFile;
 use App\Models\AffiliateUser;
 use App\Models\AffiliateUserWithdrawalRequest;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Str;
@@ -130,21 +130,28 @@ class AffiliateController extends Controller
             'bank_routing_number' => 'required|string|max:255',
             'swift_bic_code' => 'nullable|string|max:255',
             'country_of_bank' => 'required|string|max:255',
-            'amount' => 'required|numeric|min:1',
+            'amount' => 'required|numeric|min:100',
         ]);
 
         // Check if the user has sufficient balance for the withdrawal request
-        $totalCommissionAmount = AffiliateCommission::where('affiliate_user_id', Auth::user()->id)->sum('amount');
+        $affiliate_user = AffiliateUser::where('user_id', Auth::id())->first();
+        if (empty($affiliate_user)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found.',
+            ]);
+        }
 
+        $totalCommissionAmount = $affiliate_user->balance;
         if ($totalCommissionAmount < $request->amount) {
             return response()->json([
                 'success' => false,
                 'message' => 'Insufficient Balance',
             ]);
         }
-
         // Get the latest withdrawal request
-        $lastRequest = AffiliateUserWithdrawalRequest::where('affiliate_user_id', Auth::user()->id)
+        $lastRequest = AffiliateUserWithdrawalRequest::where('affiliate_user_id', $affiliate_user->id)
+            ->whereIn('status', [Status::PENDING, Status::APPROVED])
             ->latest('requested_at') // Get the most recent request
             ->first(); // Get the first record
 
@@ -155,36 +162,37 @@ class AffiliateController extends Controller
                 'message' => 'You can\'t request again before one month',
             ]);
         }
+        try {
+            // Begin the transaction
+            DB::beginTransaction();
+            // Create a new withdrawal request
+            AffiliateUserWithdrawalRequest::create([
+                'affiliate_user_id' => $affiliate_user->id, // Get the currently authenticated user's ID
+                'account_holder_name' => $request->account_holder_name,
+                'bank_account_number' => $request->bank_account_number,
+                'bank_name' => $request->bank_name,
+                'bank_branch_name' => $request->bank_branch_name,
+                'bank_routing_number' => $request->bank_routing_number,
+                'swift_bic_code' => $request->swift_bic_code,
+                'country_of_bank' => $request->country_of_bank,
+                'amount' => $request->amount,
+                'status' => 'pending', // Default status
+                'requested_at' => now(), // Current timestamp
+            ]);
+            $affiliate_user->balance -= $request->amount;
+            $affiliate_user->save();
 
-        // Check user pending balance
-        $pendingBalance = AffiliateUserWithdrawalRequest::where('affiliate_user_id', Auth::user()->id)
-            ->where('status', Status::PENDING)
-            ->sum('amount');
+            // Commit the transaction
+            DB::commit();
+        } catch (\Exception $e) {
+            // Rollback the transaction
+            DB::rollBack();
 
-        // Calculate the available balance without pending requests
-        $balanceWithoutPending = $totalCommissionAmount - $pendingBalance;
-
-        if ($balanceWithoutPending < $request->amount) {
             return response()->json([
                 'success' => false,
-                'message' => 'Insufficient Balance',
+                'message' => $e->getMessage(),
             ]);
         }
-
-        // Create a new withdrawal request
-        AffiliateUserWithdrawalRequest::create([
-            'affiliate_user_id' => Auth::id(), // Get the currently authenticated user's ID
-            'account_holder_name' => $request->account_holder_name,
-            'bank_account_number' => $request->bank_account_number,
-            'bank_name' => $request->bank_name,
-            'bank_branch_name' => $request->bank_branch_name,
-            'bank_routing_number' => $request->bank_routing_number,
-            'swift_bic_code' => $request->swift_bic_code,
-            'country_of_bank' => $request->country_of_bank,
-            'amount' => $request->amount,
-            'status' => 'pending', // Default status
-            'requested_at' => now(), // Current timestamp
-        ]);
 
         // Redirect back with success message
         return response()->json([

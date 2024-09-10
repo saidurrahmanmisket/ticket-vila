@@ -37,7 +37,7 @@ class AffiliateUserWithdrawalRequest extends Model
     /**
      * Get the affiliate user associated with the withdrawal request.
      */
-    public function affiliateUser()
+    public function affiliateUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(AffiliateUser::class);
     }

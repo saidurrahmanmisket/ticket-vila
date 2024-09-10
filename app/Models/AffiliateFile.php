@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class AffiliateFile extends Model
 {
-    use HasFactory;
+    use HasFactory,HasTranslations;
 
-    protected $fillable = ['file', 'status', 'icon', 'file_type', 'title_en', 'title_de', 'title_hu'];
+    public $translatable = ['title'];
+
+    protected $fillable = ['file', 'status', 'icon', 'file_type', 'title'];
 }
