@@ -24,20 +24,20 @@
                                     <div class="col-lg-4">
                                         <label for="name_en" class="form-label required">En</label>
                                         <input type="text" class="form-control" id="name_en"
-                                               value="{{$campaign->name_en}}"
-                                               name="name_en">
-                                        @error('name_en')
+                                               value="{{old('name.en',$campaign->getTranslation('name','en'))}}"
+                                               name="name[en]">
+                                        @error('name.en')
                                         <span class="invalid-feedback d-block" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                   </span>
+                                           <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="name_de" class="form-label required">De</label>
                                         <input type="text" class="form-control" id="name_de"
-                                               value="{{$campaign->name_de}}"
-                                               name="name_de">
-                                        @error('name_de')
+                                               value="{{old('name.de',$campaign->getTranslation('name','de'))}}"
+                                               name="name[de]">
+                                        @error('name.de')
                                         <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
@@ -45,9 +45,76 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="name_hu" class="form-label required">Hu</label>
-                                        <input type="text" class="form-control" id="name" value="{{$campaign->name_hu}}"
-                                               name="name_hu">
-                                        @error('name_hu')
+                                        <input type="text" class="form-control" id="name_hu"
+                                               value="{{old('name.hu',$campaign->getTranslation('name','hu'))}}"
+                                               name="name[hu]">
+                                        @error('name.hu')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_uk" class="form-label required">Uk</label>
+                                        <input type="text" class="form-control" id="name_uk"
+                                               value="{{old('name.uk',$campaign->getTranslation('name','uk'))}}"
+                                               name="name[uk]">
+                                        @error('name.uk')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_pl" class="form-label required">Pl</label>
+                                        <input type="text" class="form-control" id="name_pl"
+                                               value="{{old('name.pl',$campaign->getTranslation('name','pl'))}}"
+                                               name="name[pl]">
+                                        @error('name.pl')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_tw" class="form-label required">Tw</label>
+                                        <input type="text" class="form-control" id="name_tw"
+                                               value="{{old('name.tw',$campaign->getTranslation('name','tw'))}}"
+                                               name="name[tw]">
+                                        @error('name.tw')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_ar" class="form-label required">Ar</label>
+                                        <input type="text" class="form-control" id="name_ar"
+                                               value="{{old('name.ar',$campaign->getTranslation('name','ar'))}}"
+                                               name="name[ar]">
+                                        @error('name.ar')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_tr" class="form-label required">Tr</label>
+                                        <input type="text" class="form-control" id="name_tr"
+                                               value="{{old('name.tr',$campaign->getTranslation('name','tr'))}}"
+                                               name="name[tr]">
+                                        @error('name.tr')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                   </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 mt-2">
+                                        <label for="name_es" class="form-label required">Es</label>
+                                        <input type="text" class="form-control" id="name_es"
+                                               value="{{old('name.es',$campaign->getTranslation('name','es'))}}"
+                                               name="name[es]">
+                                        @error('name.es')
                                         <span class="invalid-feedback d-block" role="alert">
                                      <strong>{{ $message }}</strong>
                                    </span>
@@ -102,7 +169,7 @@
                                             <input type="file" class="form-control dropify" id="promotion_banner_en"
                                                    name="promotion_banner_en"
                                                    accept="image/png,image/gif,image/jpeg,image/jpg,image/svg"
-                                                   data-default-file="{{asset($campaign->promotion_banner_en)}}">
+                                                   data-default-file="{{asset($campaign->getTranslation('promotion_banner','en'))}}">
                                             @error('promotion_banner_en')
                                             <span class="invalid-feedback d-block" role="alert">
                                       <strong>{{ $message }}</strong>

@@ -53,10 +53,10 @@ class CampaignController extends Controller
         if (! has_permission('campaign create')) {
             abort(403, 'Permission denied: You do not have permission access this page');
         }
+        //        dd($request->all());
         $request->validate([
-            'name_en' => 'required|string',
-            'name_de' => 'required|string',
-            'name_hu' => 'required|string',
+            'name' => 'required|array',
+            'name.*' => 'required|string',
             'gift_id' => 'required|integer|exists:gifts,id',
             //           'campaign_type'=>'required|in:2,3',
             'unique_text' => 'required|string|regex:/^[a-zA-Z]+$/|unique:campaigns,unique_text',
