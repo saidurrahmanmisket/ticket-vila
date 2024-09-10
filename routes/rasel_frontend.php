@@ -7,8 +7,6 @@ use App\Http\Controllers\Web\Frontend\NewsletterController;
 use App\Http\Controllers\Web\Frontend\PageController;
 use App\Http\Controllers\Web\Frontend\PromoCodeController;
 use App\Http\Controllers\Web\LogBrowsingTime;
-use App\Models\AffiliateCommission;
-use App\Models\AffiliateUser;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
@@ -66,27 +64,3 @@ Route::get('/set-locale/{locale}', function ($locale) {
     }
 
 })->name('setLocale');
-
-Route::get('/update-balance', function () {
-    $affiliate_users = AffiliateUser::all();
-    foreach ($affiliate_users as $affiliate_user) {
-        $profitQuery = AffiliateCommission::query()
-            ->join('orders', 'affiliate_commissions.order_id', '=', 'orders.id')
-            ->where('orders.payment_status', 'completed')
-            ->where('affiliate_commissions.affiliate_user_id', $affiliate_user->id);
-
-        $profitDetails = $profitQuery->select(
-            DB::raw('SUM(affiliate_commissions.amount) as total_amount'),
-            DB::raw('COUNT(DISTINCT affiliate_commissions.referrer_user_id) as referrer_user'),
-        )->first();
-
-        $totalBalance = $profitDetails->total_amount;
-        $currentBalance = $affiliate_user->balance - $totalBalance;
-        $affiliate_user->balance += $currentBalance;
-        $affiliate_user->save();
-    }
-
-    return response()->json([
-        'message' => 'updated balance',
-    ]);
-});
