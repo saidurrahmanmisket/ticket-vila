@@ -33,6 +33,7 @@
 
         .tips--card .img--area {
             display: flex;
+            justify-content: center;
         }
 
         @media only screen and (min-width: 200px) and (max-width: 479px) {
