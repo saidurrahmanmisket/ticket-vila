@@ -21,7 +21,7 @@ class AffiliateUsersController extends Controller
                         ->orWhere('email', 'like', '%'.$value.'%');
                 });
             });
-        })->with('user')->paginate(15);
+        })->with('user')->withSum('commissions', 'amount')->with('commissions.order')->orderBy('commissions_sum_amount', 'desc')->paginate(15);
 
         return view('admin.layouts.affiliate-user.index', compact('affiliateUsers'));
     }
@@ -36,7 +36,7 @@ class AffiliateUsersController extends Controller
             ]);
         }
         $validator = \Validator::make($request->all(), [
-            'commission_rate' => 'required|numeric|min:0|max:100|regex:/^\d+\.\d{2}$/',
+            'commission_rate' => 'required|numeric|min:0|max:100|regex:/^\d+(?:\.\d{2})?$/',
         ], [
             'commission_rate.regex' => 'The amount must be a valid number with exactly two decimal places.',
         ]);

@@ -191,7 +191,7 @@ class StripeController extends Controller
                     message: 'We received your payment, Thank you for purchasing!',
                     actionText: 'View Your Ticket',
                     actionUrl: route('user.tickets'),
-                    channels: ['mail', 'database'],
+                    channels: ['database'],
                     type: NotificationType::PURCHASE
                 ));
                 //send notification to the admin
@@ -201,7 +201,7 @@ class StripeController extends Controller
                     message: $user->first_name.' '.$user->last_name.' purchasing '.$order->quantity.' tickets and total pay:  '.$order->total_price,
                     actionText: 'See Invoice',
                     actionUrl: route('admin.invoice.index'),
-                    channels: ['mail', 'database'],
+                    channels: ['database'],
                     type: NotificationType::PURCHASE
                 ));
 

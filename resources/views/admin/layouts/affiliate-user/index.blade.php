@@ -3,6 +3,25 @@
 @section('header_title')
     Admin User
 @endsection;
+@push('style')
+    <style>
+        .users--table--wrapper th:nth-child(2) {
+            width: 18%;
+        }
+
+        .users--table--wrapper th:nth-child(3) {
+            width: 20%;
+        }
+
+        .users--table--wrapper th:nth-child(4) {
+            width: 10%;
+        }
+
+        .users--table--wrapper th:nth-child(5) {
+            width: 27%;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="app--content--main">
         <div class="tickets--area users--area">
@@ -54,8 +73,10 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Expected Sales(100€)</th>
                             <th>Percentage</th>
                             <th>Balance</th>
+                            <th>Total Revenue</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,6 +92,14 @@
                                     </div>
                                 </td>
                                 <td>{{ $user->user->email }}</td>
+                                <td>
+                                    @if($user->getTotalOrderAmount($user) <100)
+                                        <span class="badge bg-danger text-white">Not reached</span>
+                                    @else
+                                        <span class="badge bg-success text-white">Reached</span>
+                                    @endif
+
+                                </td>
                                 <td>
                                     <div style="display: flex" class="gap-3" id="commission_value_{{$user->id}}">
                                         <span class="btn btn-sm btn-success" id="commission_rate_show_{{$user->id}}">{{$user->commission_rate}}%</span>
@@ -102,6 +131,9 @@
                                 </td>
                                 <td>
                                     <span class="btn btn-sm btn-primary">{{formatNumber($user->balance)}}€</span>
+                                </td>
+                                <td><span
+                                        class="btn btn-sm btn-secondary">{{formatNumber($user->commissions_sum_amount)}}€</span>
                                 </td>
                             </tr>
                         @empty
