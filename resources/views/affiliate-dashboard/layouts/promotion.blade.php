@@ -27,6 +27,14 @@
             overflow: hidden;
         }
 
+        img.img-fluid.mb-3 {
+            max-height: 250px;
+        }
+
+        .tips--card .img--area {
+            display: flex;
+        }
+
         @media only screen and (min-width: 200px) and (max-width: 479px) {
             .modal-body {
                 max-height: 90vh;
@@ -34,6 +42,10 @@
 
             .modal-content {
                 max-height: 95vh;
+            }
+
+            img.img-fluid.mb-3 {
+                max-height: 200px;
             }
         }
     </style>
@@ -97,7 +109,6 @@
                             <div class="tips--card">
                                 <div class="img--area">
                                     <img
-                                        class="w-100"
                                         src="{{asset($trip->image)}}"
                                         alt="{{$trip['title_'.locale() ?? '']}}"
                                     />
