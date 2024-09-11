@@ -12,5 +12,5 @@ class AffiliateFile extends Model
 
     public $translatable = ['title'];
 
-    protected $fillable = ['file', 'status', 'icon', 'file_type', 'title'];
+    protected $fillable = ['file', 'title_en', 'title_hu', 'title_de', 'status', 'icon', 'file_type', 'title'];
 }

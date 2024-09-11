@@ -10,7 +10,7 @@ class DynamicPage extends Model
 {
     use HasFactory,HasTranslations;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public $translatable = ['title', 'sub_title', 'description'];
 }
