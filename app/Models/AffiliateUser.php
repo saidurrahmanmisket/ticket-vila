@@ -15,4 +15,16 @@ class AffiliateUser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function commissions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AffiliateCommission::class);
+    }
+
+    public function getTotalOrderAmount($affiliateUsers)
+    {
+        return $affiliateUsers->commissions->reduce(function ($carry, $commission) {
+            return $carry + $commission->order->total_price;
+        }, 0);
+    }
 }
