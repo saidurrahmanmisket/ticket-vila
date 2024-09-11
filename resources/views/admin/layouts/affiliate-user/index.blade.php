@@ -93,7 +93,7 @@
                                 </td>
                                 <td>{{ $user->user->email }}</td>
                                 <td>
-                                    @if($user->getTotalOrderAmount($user) <100)
+                                    @if($user->getTotalOrderAmount($user) < 100)
                                         <span class="badge bg-danger text-white">Not reached</span>
                                     @else
                                         <span class="badge bg-success text-white">Reached</span>
@@ -133,7 +133,7 @@
                                     <span class="btn btn-sm btn-primary">{{formatNumber($user->balance)}}€</span>
                                 </td>
                                 <td><span
-                                        class="btn btn-sm btn-secondary">{{formatNumber($user->commissions_sum_amount)}}€</span>
+                                        class="btn btn-sm btn-secondary">{{formatNumber($user->commissions_sum_amount ?? 0.00)}}€</span>
                                 </td>
                             </tr>
                         @empty
