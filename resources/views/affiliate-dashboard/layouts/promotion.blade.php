@@ -36,6 +36,11 @@
             justify-content: center;
         }
 
+        .affiliate--promotion--toolkit.box--common {
+            max-height: 478px;
+            overflow: auto;
+            margin-top: 20px;
+        }
         @media only screen and (min-width: 200px) and (max-width: 479px) {
             .modal-body {
                 max-height: 90vh;
