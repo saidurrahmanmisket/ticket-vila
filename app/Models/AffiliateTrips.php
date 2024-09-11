@@ -15,6 +15,12 @@ class AffiliateTrips extends Model
     protected $fillable = [
         'title',
         'description',
+        'title_en',
+        'title_de',
+        'title_hu',
+        'description_en',
+        'description_de',
+        'description_hu',
         'image',
         'user_id',
         'status',

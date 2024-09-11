@@ -12,7 +12,7 @@ class Campaign extends Model
 
     public $translatable = ['name', 'promotion_banner', 'mobile_promotion_banner'];
 
-    protected $fillable = ['name', 'target_type', 'thumbnail', 'how_many_buy', 'how_many_free', 'discount_percent', 'discount_expire_date', 'promotion_banner', 'mobile_promotion_banner', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
+    protected $fillable = ['name', 'name_en', 'name_de', 'name_hu', 'target_type', 'thumbnail', 'how_many_buy', 'how_many_free', 'discount_percent', 'discount_expire_date', 'promotion_banner', 'mobile_promotion_banner', 'limit', 'end_time', 'purchase_limit', 'price', 'ebook', 'unique_text', 'gift_id', 'status'];
 
     protected $casts = [
         'discount_expire_date' => 'datetime',

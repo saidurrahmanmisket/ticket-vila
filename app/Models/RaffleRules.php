@@ -10,5 +10,7 @@ class RaffleRules extends Model
 {
     use HasFactory,HasTranslations;
 
+    protected $guarded = ['id'];
+
     public $translatable = ['title', 'description'];
 }
