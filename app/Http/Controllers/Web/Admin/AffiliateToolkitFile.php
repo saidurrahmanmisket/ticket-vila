@@ -56,7 +56,7 @@ class AffiliateToolkitFile extends Controller
             'title_hu' => 'required|string|max:255',
             'file_type' => 'required|string|in:video,image,text',
             'file' => 'required|file|max:10240',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,mp4,mov,avi,txt,pdf,doc,docx|max:10240',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,mp4,mov,avi,txt,pdf,doc,docx|max:102400',
         ]);
 
         // Handle file upload
@@ -113,7 +113,7 @@ class AffiliateToolkitFile extends Controller
             'title_hu' => 'required|string|max:255',
             'file_type' => 'required|string|in:video,image,text',
             'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,mov,avi,txt,pdf,doc,docx|max:10240',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:102400',
         ]);
 
         // Handle file upload (file)
