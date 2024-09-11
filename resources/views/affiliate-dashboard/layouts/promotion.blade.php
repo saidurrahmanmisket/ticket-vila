@@ -39,7 +39,22 @@
         .affiliate--promotion--toolkit.box--common {
             max-height: 478px;
             overflow: auto;
-            margin-top: 20px;
+        }
+
+        @media only screen and (min-width: 1366px) and (max-width: 1439px) {
+            .affiliate--promotion--toolkit.box--common {
+                max-height: 395px;
+            }
+
+            .affiliate--promotion--toolkit {
+                margin-top: 0 !important;
+            }
+        }
+
+        @media only screen and (max-width: 1365px) {
+            .affiliate--promotion--toolkit.box--common {
+                margin-top: 20px;
+            }
         }
         @media only screen and (min-width: 200px) and (max-width: 479px) {
             .modal-body {
