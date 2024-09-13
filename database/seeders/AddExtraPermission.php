@@ -15,9 +15,12 @@ class AddExtraPermission extends Seeder
     {
         // Array of permissions to be created
         $permissions = [
-            'affiliate' => [
-                'manage withdraw request',
-                'manage affiliate users',
+            'product' => [
+                'product menu',
+                'product create',
+                'product edit',
+                'product status',
+                'product delete',
             ],
         ];
 

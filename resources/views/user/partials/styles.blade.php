@@ -9,6 +9,40 @@
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css" />
 
+
+<!-- Hotjar Tracking Code for Site 4998564 (name missing) -->
+<script>
+    (function (h, o, t, j, a, r) {
+        h.hj = h.hj || function () {
+            (h.hj.q = h.hj.q || []).push(arguments)
+        };
+        h._hjSettings = {
+            hjid: 4998564,
+            hjsv: 6
+        };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script');
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QHWEZJLXC"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-5QHWEZJLXC');
+</script>
+
 <script>
     // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/dkremsz8'
     (function () {
@@ -46,12 +80,12 @@
     })();
 </script>
 <!-- weglot API -->
-{{--<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>--}}
-{{--<script>--}}
-{{--    Weglot.initialize({--}}
-{{--        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'--}}
-{{--    });--}}
-{{--</script>--}}
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'
+    });
+</script>
 <!-- Intercom -->
 <script>
     @if(Auth::check())
@@ -128,6 +162,11 @@
         position: relative;
     }
 
+    .weglot-container {
+        position: fixed;
+        bottom: 75px;
+        right: 13px;
+    }
     .upload--wrapper label {
         position: absolute;
         bottom: 14px;
@@ -153,11 +192,6 @@
         width: 220px;
     height: 220px;
     border-radius: 50%;
-    }
-
-    /* fix header dropdown issue  */
-    .notification--and--profile .form-select {
-        --bs-form-select-bg-img : url('') !important;
     }
 
     .cursor--pointer{
