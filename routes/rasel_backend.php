@@ -17,6 +17,7 @@ use App\Http\Controllers\Web\Admin\DashboardController;
 use App\Http\Controllers\Web\Admin\GiftController;
 use App\Http\Controllers\Web\Admin\NotificationController;
 use App\Http\Controllers\Web\Admin\PaymentController;
+use App\Http\Controllers\Web\Admin\ProductController;
 use App\Http\Controllers\Web\Admin\ProfileController;
 use App\Http\Controllers\Web\Admin\PromoCodeController;
 use App\Http\Controllers\Web\Admin\RolePermissionController;
@@ -115,4 +116,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::post('/google-login-configuration', [ConfigurationSettingController::class, 'googleLoginConfig'])->name('google-login-config');
     //Mailchimp configuration
     Route::post('/mailchimp-configuration', [ConfigurationSettingController::class, 'mailchimpConfig'])->name('mailchimp-config');
+
+    //Product routes
+    Route::resource('/products', ProductController::class)->except(['show']);
+    Route::post('/products/status/{id}', [ProductController::class, 'status'])->name('products.status');
+    Route::get('/products/download/{id}', [ProductController::class, 'downloadEbook'])->name('products.download');
 });

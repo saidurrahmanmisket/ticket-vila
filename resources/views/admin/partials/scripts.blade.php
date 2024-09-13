@@ -24,7 +24,8 @@
         document.querySelectorAll('.ck_editor').forEach((editor) => {
             ClassicEditor
                     .create(editor, {
-                        removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed']
+                        removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+                        height: '500px'
                     })
                     .catch(error => {
                         console.error(error);

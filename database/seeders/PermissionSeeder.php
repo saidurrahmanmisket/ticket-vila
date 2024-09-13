@@ -153,6 +153,8 @@ class PermissionSeeder extends Seeder
             'affiliate' => [
                 'affiliate manage file',
                 'affiliate manage trips & tricks',
+                'manage withdraw request',
+                'manage affiliate users',
             ],
         ];
 
