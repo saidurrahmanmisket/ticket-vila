@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 @section('header_title')
 {{ __("Dashboard") }}
-@endsection;
+@endsection
 
 @section('content')
     <!-- start app content area  -->
