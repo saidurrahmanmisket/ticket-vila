@@ -83,13 +83,20 @@
 <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
 <script>
     Weglot.initialize({
-        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'
+        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593',
+        button_style: {
+            full_name: false,
+            with_name: true,
+            is_dropdown: true,
+            with_flags: true,
+            flag_type: "circle",
+            invert_flags: false
+        },
     });
 </script>
 <!-- Intercom -->
 <script>
-    @if(Auth::check())
-    let user = @json(Auth::user())
+    let user = @json(Auth::user());
         window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "dkremsz8",
@@ -98,27 +105,6 @@
         email: user?.email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
         created_at: user?.created_at, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
     };
-    @else
-    function getGuestID() {
-        let guestID = localStorage.getItem('guestID')
-        if (!guestID) {
-            guestID = 'guest_{{request()->ip()}}' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('guestID', guestID)
-        }
-        return guestID;
-    }
-
-    window.intercomSettings = {
-        api_base: "https://api-iam.intercom.io",
-        app_id: "dkremsz8",
-        user_id: getGuestID(), // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-        name: 'Guest', // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-        created_at: Math.floor(Date.now() / 1000),
-        custom_attributes: {
-            guest: true
-        }
-    };
-    @endif
 </script>
 <!-- Meta Pixel Code -->
 <script>
@@ -163,9 +149,15 @@
     }
 
     .weglot-container {
-        position: fixed;
-        bottom: 75px;
-        right: 13px;
+        position: fixed !important;
+        bottom: 75px !important;
+        right: 13px !important;
+    }
+
+    aside.weglot_switcher.country-selector {
+        position: fixed !important;
+        bottom: 75px !important;
+        right: 12px !important;
     }
     .upload--wrapper label {
         position: absolute;

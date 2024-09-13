@@ -14,7 +14,21 @@
 <link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/responsive.css" />
 
-
+<!-- weglot API -->
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593',
+        button_style: {
+            full_name: false,
+            with_name: true,
+            is_dropdown: true,
+            with_flags: true,
+            flag_type: "circle",
+            invert_flags: false
+        },
+    });
+</script>
 
 <!-- Hotjar Tracking Code for Site 4998564 (name missing) -->
 <script>
@@ -84,17 +98,10 @@
         }
     })();
 </script>
-<!-- weglot API -->
-<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-<script>
-    Weglot.initialize({
-        api_key: 'wg_dd3db602f930ad509000a13c0c89cd593'
-    });
-</script>
 <!-- Intercom -->
 <script>
     @if(Auth::check())
-    let user = @json(Auth::user())
+    let user = @json(Auth::user());
         window.intercomSettings = {
         api_base: "https://api-iam.intercom.io",
         app_id: "dkremsz8",
@@ -156,9 +163,15 @@
     }
 
     .weglot-container {
-        position: fixed;
-        bottom: 75px;
-        right: 13px;
+        position: fixed !important;
+        bottom: 75px !important;
+        right: 13px !important;
+    }
+
+    aside.weglot_switcher.country-selector {
+        position: fixed !important;
+        bottom: 75px !important;
+        right: 12px !important;
     }
     .expose--box ul {
         display: -webkit-box;
