@@ -22,5 +22,8 @@ Route::get('/', function () {
 Route::get('/auth/redirect', [GoogleController::class, 'login'])->name('auth.google');
 Route::get('/auth/callback', [GoogleController::class, 'callback'])->name('auth.google.callback');
 Auth::routes();
+Route::get('/register', function () {
+    abort(404);
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
