@@ -49,7 +49,7 @@
         </section>
     @endif
 @endsection
-@push('scripts')
+@push('script')
     {{--    for facebook pixel buy trac --}}
     <script type="text/javascript">
         $(document).ready(function () {

@@ -212,8 +212,10 @@ class PaypalController extends Controller
                 flash()->addSuccess('Payment Success');
 
                 if (Auth::user()) {
-                    return redirect()->route('user.payment.success.message')->with('payment_success', 'true')
+                    return redirect()->route('user.payment.success.message')
+                        ->with('payment_success', 'true')
                         ->with('buy_ticket', $quantity)
+                        ->with('total_price', $order->total_price)
                         ->with('free_ticket', $discountQuantity)
                         ->with('buy_time', $order->created_at);
                 } else {
