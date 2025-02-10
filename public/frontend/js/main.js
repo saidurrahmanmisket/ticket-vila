@@ -2,6 +2,7 @@ $(document).ready(function () {
   // initializing AOS
   AOS.init({
     once: true,
+    disable: "mobile",
   });
 
   // initializing counter up
@@ -66,7 +67,10 @@ $(document).ready(function () {
           0: {
             items: 1,
           },
-          600: {
+          576: {
+            items: 2,
+          },
+          768: {
             items: 3,
           },
           1000: {
@@ -254,18 +258,32 @@ $(document).ready(function () {
 
   contactFormFunction();
 
-  const houseTour = () => {
-    let wrapper = document.querySelector(".house--tour--area--content");
+  const houseTourAutoPlay = () => {
+    let wrappers = document.querySelectorAll(".house--tour--area--content");
 
-    if (wrapper) {
-      let overlay = wrapper.querySelector(".overlay");
+    if (wrappers) {
+      wrappers.forEach((wrapper) => {
+        let targetPosition = wrapper.offsetTop - 120;
 
-      overlay.addEventListener("click", () => {
-        overlay.classList.add("hidden");
+        function playVideo() {
+          let scrollPos = window.scrollY;
+
+          if (scrollPos >= targetPosition) {
+            // playing the video inside of it
+            let video = wrapper.querySelector("iframe");
+            let source = video.getAttribute("src");
+            video.setAttribute("src", `${source}&autoplay=1`);
+
+            // removing the event listner after done
+            document.removeEventListener("scroll", playVideo);
+          }
+        }
+
+        document.addEventListener("scroll", playVideo);
       });
     }
   };
-  houseTour();
+  // houseTourAutoPlay();
 
   const raffleRulesAnimation = () => {
     let wrapper = document.querySelector(".raffle--rules--content--wrapper ");
@@ -325,4 +343,107 @@ $(document).ready(function () {
   };
 
   houseGridAnimation();
+
+  // navbar hamburger icon
+  const hamburger = () => {
+    let wrapper = document.querySelector(".header--content--wrapper");
+
+    if (wrapper) {
+      let menuLinks = wrapper.querySelector(
+        ".header--content--wrapper .menu--links"
+      );
+
+      let icon = wrapper.querySelector(".hamburger--icon");
+
+      icon.addEventListener("click", () => {
+        icon.classList.toggle("active");
+        menuLinks.classList.toggle("active");
+      });
+
+      // closing the nav menu on outside click
+      document.addEventListener("click", (event) => {
+        if (!menuLinks.contains(event.target) && !icon.contains(event.target)) {
+          icon.classList.remove("active");
+          menuLinks.classList.remove("active");
+        }
+      });
+    }
+  };
+  hamburger();
+
+  // initializing nice select
+  $(".home--checkout--content select").niceSelect();
+
+  // landing website buying ticket functionality
+  const shopBuyTicket = () => {
+    let wrappers = document.querySelectorAll(
+      ".ticket--purchase--amount--wrapper"
+    );
+
+    if (wrappers) {
+      wrappers.forEach((wrapper) => {
+        let plus = wrapper.querySelector(".plus");
+        let minus = wrapper.querySelector(".minus");
+        let input = wrapper.querySelector("input");
+
+        // increasing function
+        function increase() {
+          let value = parseInt(input.value);
+
+          if (value < 9) {
+            value++;
+            input.value = value;
+          }
+        }
+        // decreasing function
+        function decrease() {
+          let value = parseInt(input.value);
+
+          if (value > 1) {
+            value--;
+            input.value = value;
+          }
+        }
+
+        plus.addEventListener("click", () => {
+          increase();
+        });
+
+        minus.addEventListener("click", () => {
+          decrease();
+        });
+      });
+    }
+  };
+
+  shopBuyTicket();
+
+  // navbar cart button function
+  const navCart = () => {
+    let wrapper = document.querySelector(".add--cart--wrapper");
+
+    if (wrapper) {
+      let icon = wrapper.querySelector(".icon");
+      let content = wrapper.querySelector(".content");
+      let close = wrapper.querySelector(".close");
+
+      // opeing cart
+      icon.addEventListener("click", () => {
+        content.classList.add("active");
+      });
+
+      // closing cart
+      close.addEventListener("click", () => {
+        content.classList.remove("active");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!icon.contains(event.target) && !content.contains(event.target)) {
+          content.classList.remove("active");
+        }
+      });
+    }
+  };
+
+  navCart();
 });

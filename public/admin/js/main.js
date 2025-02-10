@@ -2,6 +2,14 @@
   "use strict";
 
   $(document).ready(function () {
+    // hamburger menu
+    $(".hamburger-menu").on("click", function () {
+      $(".line-top, .line-center, .line-bottom, .sidebar").toggleClass(
+        "current"
+      );
+    });
+
+    // nice select
     $("select").niceSelect();
 
     var SalesChart = document.getElementById("sales--chart");
@@ -65,8 +73,38 @@
       chart1.render();
     }
 
+    // pie chart
+    var pieChart = document.getElementById("pie--chart");
 
-      // handle locations
+    if (pieChart) {
+      var options = {
+        series: [30, 70],
+        chart: {
+          type: "donut",
+          width: 240,
+          height: 240,
+        },
+        colors: ["#FFAC45", "#04BAFF"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
+              legend: {
+                position: "bottom",
+              },
+            },
+          },
+        ],
+      };
+
+      var chart2 = new ApexCharts(pieChart, options);
+      chart2.render();
+    }
+
+    // handle locations
     function handleLocations() {
       var locations = document.querySelectorAll(".location");
 
@@ -82,6 +120,13 @@
           pointer.addEventListener("mouseleave", function () {
             locationCard.classList.remove("show");
           });
+
+          if (window.matchMedia("(max-width: 991px)").matches) {
+            pointer.addEventListener("click", function (e) {
+              e.stopPropagation();
+              locationCard.classList.add("show");
+            });
+          }
         });
       }
     }
@@ -126,7 +171,9 @@
     }
 
     // show popup for refund
-    var triggers = document.querySelectorAll('.ticket--actions .action--btn');
+    var triggers = document.querySelectorAll(
+      ".user--area .ticket--actions .action--btn"
+    );
 
     if (triggers) {
       triggers.forEach((btn) => {
@@ -148,5 +195,173 @@
         });
       });
     }
+
+    // uploadProfileImage
+    function uploadProfileImage() {
+      var upload = document.getElementById("upload");
+      if (upload) {
+        upload.addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              document.getElementById("image-preview").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+    }
+    uploadProfileImage();
+
+    // mode toggler
+    function toggle_light_mode() {
+      var togglers = document.querySelectorAll(".light-mode-button");
+      if (togglers) {
+        togglers.forEach((toggler) => {
+          toggler.addEventListener("click", function () {
+            this.classList.toggle("active");
+          });
+        });
+      }
+    }
+    toggle_light_mode();
+
+    // user ticket slider
+    $(".ticket-slider").owlCarousel({
+      loop: false,
+      margin: 10,
+      nav: true,
+      items: 1,
+      navText: [
+        `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <path d="M6.461 12.762L2.379 8.68l4.082-4.082" stroke="#FAF9F6" stroke-width="1.345" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.813 8.681H2.495" stroke="#FAF9F6" stroke-width="1.345" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <path d="M10.5391 4.59863L14.6211 8.68063L10.5391 12.7626" stroke="#FAF9F6" stroke-width="1.34497" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3.1875 8.68164H14.5055" stroke="#FAF9F6" stroke-width="1.34497" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+      ],
+    });
+
+    // quantity
+    const minusButton = document.querySelector(".minus");
+    const plusButton = document.querySelector(".plus");
+    const quantityInput = document.getElementById("quantityInput");
+
+    if (quantityInput) {
+      minusButton.addEventListener("click", decreaseQuantity);
+      plusButton.addEventListener("click", increaseQuantity);
+
+      updateButtons();
+
+      function updateButtons() {
+        const currentValue = parseInt(quantityInput.value);
+        const minValue = parseInt(quantityInput.min);
+        const maxValue = parseInt(quantityInput.max);
+
+        minusButton.classList.toggle("disabled", currentValue <= minValue);
+        plusButton.classList.toggle("disabled", currentValue >= maxValue);
+      }
+
+      function increaseQuantity() {
+        const currentValue = parseInt(quantityInput.value);
+        const maxValue = parseInt(quantityInput.max);
+
+        if (currentValue < maxValue) {
+          quantityInput.value = currentValue + 1;
+          updateButtons();
+        }
+      }
+
+      function decreaseQuantity() {
+        const currentValue = parseInt(quantityInput.value);
+        const minValue = parseInt(quantityInput.min);
+
+        if (currentValue > minValue) {
+          quantityInput.value = currentValue - 1;
+          updateButtons();
+        }
+      }
+    }
+
+    // checkoutStepForm
+    function checkoutStepForm() {
+      const steps = document.querySelectorAll(".step");
+      const nextBtn = document.querySelector(".checkout-next-button");
+      let closeButtons = document.querySelectorAll(".checkout-close--pop");
+      const form = document.querySelector("#checkout-form");
+      let currentStep = 0;
+
+      if (steps) {
+        steps.forEach((step, index) => {
+          if (index !== currentStep) {
+            step.style.display = "none";
+          }
+        });
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            steps[currentStep].style.display = "none";
+            currentStep++;
+            steps[currentStep].style.display = "block";
+            console.log(currentStep);
+          });
+        }
+
+        function resetForm() {
+          currentStep = 0;
+          steps.forEach((step, index) => {
+            if (index === 0) {
+              step.style.display = "block";
+            } else {
+              step.style.display = "none";
+            }
+            const errorElement = step.querySelector(".error");
+            if (errorElement) {
+              errorElement.textContent = "";
+            }
+          });
+        }
+        // reset form step
+        if (closeButtons) {
+          closeButtons.forEach((btn) => {
+            btn.addEventListener("click", function () {
+              resetForm();
+            });
+          });
+        }
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            steps[currentStep].style.display = "none";
+            currentStep = 2;
+            steps[currentStep].style.display = "block";
+          });
+        }
+      }
+    }
+    checkoutStepForm();
+
+    // user ticket slider
+    $(".photo--slider").owlCarousel({
+      loop: false,
+      margin: 10,
+      nav: true,
+      items: 1,
+      navText: [
+        `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <path d="M6.461 12.762L2.379 8.68l4.082-4.082" stroke="#FAF9F6" stroke-width="1.345" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.813 8.681H2.495" stroke="#FAF9F6" stroke-width="1.345" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+        <path d="M10.5391 4.59863L14.6211 8.68063L10.5391 12.7626" stroke="#FAF9F6" stroke-width="1.34497" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3.1875 8.68164H14.5055" stroke="#FAF9F6" stroke-width="1.34497" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`,
+      ],
+    });
   });
 })(jQuery);

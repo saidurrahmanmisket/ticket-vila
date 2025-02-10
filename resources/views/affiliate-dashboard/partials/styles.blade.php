@@ -1,17 +1,16 @@
-{{-- dropify cdn --}}
+{{-- Dropify CDN --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"/>
 
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css"
-      href="https://ticketvilla-admin.netlify.app/assets/icon/boxicons/css/boxicons.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/owl.carousel.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/nice-select.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/apexcharts.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/icon/boxicons/css/boxicons.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/owl.carousel.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/nice-select.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/apexcharts.min.css') }}"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/helper.css"/>
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="https://ticketvilla-admin.netlify.app/assets/css/responsive.css"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/helper.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/style.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/css/responsive.css') }}"/>
 
 
 <style>
