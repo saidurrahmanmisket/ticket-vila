@@ -6,32 +6,17 @@
 />
 
 <!-- ==== All Css Links ==== -->
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="https://ticket-villa.netlify.app/assets/css/plugins/bootstrap.min.css"
-/>
-<link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/plugins/aos.css" />
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="https://ticket-villa.netlify.app/assets/css/plugins/owl.carousel.min.css"
-/>
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="https://ticket-villa.netlify.app/assets/css/plugins/magnific-popup.min.css"
-/>
-<link
-    rel="stylesheet"
-    type="text/css"
-    href="https://ticket-villa.netlify.app/assets/css/plugins/nice-select.min.css"
-/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/bootstrap.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/aos.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/owl.carousel.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/magnific-popup.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/plugins/nice-select.min.css') }}"/>
 
 <!-- All custom CSS Links -->
-<link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/helper.css" />
-<link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/style.css" />
-<link rel="stylesheet" type="text/css" href="https://ticket-villa.netlify.app/assets/css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/helper.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/responsive.css') }}"/>
+
 
 <!-- Hotjar Tracking Code for Site 4998564 (name missing) -->
 <script>
