@@ -16,6 +16,7 @@ class RichDataSeeder extends Seeder
         // Truncate all tables we will re-seed
         DB::table('tickets')->truncate();
         DB::table('orders')->truncate();
+        DB::table('visitors')->truncate();
         DB::table('ebook_descriptions')->truncate();
         DB::table('affiliate_files')->truncate();
         DB::table('affiliate_trips')->truncate();
@@ -481,50 +482,58 @@ class RichDataSeeder extends Seeder
         }
 
         // ─── ORDERS & TICKETS ────────────────────────────────────────────
-        $orderData = [
-            [2, 1, 'TXN-1001', 1, 99.00,  1, 'INV-2026-001'],
-            [3, 1, 'TXN-1002', 1, 99.00,  1, 'INV-2026-002'],
-            [4, 1, 'TXN-1003', 2, 198.00, 2, 'INV-2026-003'],
-            [5, 2, 'TXN-1004', 1, 49.00,  1, 'INV-2026-004'],
-            [6, 2, 'TXN-1005', 3, 297.00, 3, 'INV-2026-005'],
-            [7, 3, 'TXN-1006', 1, 99.00,  1, 'INV-2026-006'],
-            [8, 3, 'TXN-1007', 1, 149.00, 1, 'INV-2026-007'],
-            [9, 4, 'TXN-1008', 2, 298.00, 2, 'INV-2026-008'],
-            [10, 5, 'TXN-1009', 1, 99.00,  1, 'INV-2026-009'],
-            [11, 5, 'TXN-1010', 1, 79.00,  1, 'INV-2026-010'],
-            [12, 4, 'TXN-1011', 2, 158.00, 2, 'INV-2026-011'],
-            [13, 3, 'TXN-1012', 1, 199.00, 1, 'INV-2026-012'],
-        ];
-        $tktId = 1;
-        foreach ($orderData as $idx => [$uid, $camId, $txn, $qty, $total, $ticketCount, $inv]) {
+        // ─── ORDERS & TICKETS (Generate 200 random tickets sold) ──────────
+        $prefixes = ['AB', 'AA', 'PE', 'EB', 'AC'];
+        $userCount = 13; // We have up to ID 14 (1 Admin + 13 users)
+        
+        for ($i = 1; $i <= 200; $i++) {
+            $uid = rand(2, $userCount); // Random user ID (excluding admin)
+            $camId = rand(1, 5); // Random campaign ID (1 to 5)
+            $prices = [1 => 99.00, 2 => 49.00, 3 => 149.00, 4 => 79.00, 5 => 199.00];
+            $price = $prices[$camId];
+            $qty = rand(1, 3); // Random quantity 1-3
+            $total = $price * $qty;
+
             $oid = DB::table('orders')->insertGetId([
-                'user_id'        => $uid,
-                'transaction_id' => $txn,
-                'quantity'       => $qty,
+                'user_id'           => $uid,
+                'transaction_id'    => 'TXN-' . str_pad($i + 1000, 6, '0', STR_PAD_LEFT),
+                'quantity'          => $qty,
                 'discount_quantity' => 0,
-                'discount_percent' => 0,
-                'total_price'    => $total,
-                'payment_method' => ['stripe','paypal','card'][rand(0,2)],
-                'invoice_no'     => $inv,
-                'campaign_id'    => $camId,
-                'payment_status' => 'completed',
-                'created_at'     => now()->subDays(rand(1, 120)),
-                'updated_at'     => now(),
+                'discount_percent'  => 0,
+                'total_price'       => $total,
+                'payment_method'    => ['stripe', 'paypal', 'card'][rand(0, 2)],
+                'invoice_no'        => 'INV-2026-' . str_pad($i, 4, '0', STR_PAD_LEFT),
+                'campaign_id'       => $camId,
+                'payment_status'    => 'completed',
+                'created_at'        => now()->subDays(rand(1, 120)),
+                'updated_at'        => now(),
             ]);
 
-            $prefixes = ['AB','AA','PE','EB','AC'];
-            for ($t = 0; $t < $ticketCount; $t++) {
+            for ($t = 0; $t < $qty; $t++) {
                 DB::table('tickets')->insert([
                     'user_id'       => $uid,
                     'order_id'      => $oid,
                     'campaign_id'   => $camId,
-                    'ticket_number' => $prefixes[$camId - 1] . '-' . str_pad($tktId, 6, '0', STR_PAD_LEFT),
+                    'ticket_number' => $prefixes[$camId - 1] . '-' . str_pad($i * 10 + $t + 100000, 6, '0', STR_PAD_LEFT),
                     'status'        => 'active',
                     'created_at'    => now()->subDays(rand(1, 120)),
                     'updated_at'    => now(),
                 ]);
-                $tktId++;
             }
+        }
+
+        // ─── VISITORS (Generate 200 random visitors) ─────────────────────
+        $countries = ['Austria', 'Germany', 'Hungary', 'Switzerland', 'Croatia', 'Slovenia', 'Slovakia', 'Italy', 'Czech Republic'];
+        for ($v = 1; $v <= 200; $v++) {
+            $hasUser = rand(0, 1);
+            DB::table('visitors')->insert([
+                'code'       => 'VIS-' . str_pad($v, 5, '0', STR_PAD_LEFT),
+                'ip'         => rand(1, 255) . '.' . rand(0, 255) . '.' . rand(0, 255) . '.' . rand(1, 254),
+                'country'    => $countries[rand(0, count($countries) - 1)],
+                'user_id'    => $hasUser ? rand(2, $userCount) : null,
+                'created_at' => now()->subDays(rand(1, 90))->subHours(rand(1, 23)),
+                'updated_at' => now(),
+            ]);
         }
     }
 }
