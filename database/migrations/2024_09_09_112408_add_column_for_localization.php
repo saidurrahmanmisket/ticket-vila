@@ -53,7 +53,7 @@ return new class extends Migration
 
         //dynamic pages table modify
         Schema::table('dynamic_pages', function (Blueprint $table) {
-            $table->json('title');
+            $table->json('title')->nullable();
             $table->json('sub_title')->nullable();
             $table->json('description')->nullable();
         });
