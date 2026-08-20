@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             PermissionSeeder::class,
+            CmsSeeder::class,
+            CampaignSeeder::class,
+            TheProcessesTableSeeder::class,
+            RaffleRulesTableSeeder::class,
         ]);
-        $this->call(TheProcessesTableSeeder::class);
-
-        $this->call(RaffleRulesTableSeeder::class);
     }
 }
