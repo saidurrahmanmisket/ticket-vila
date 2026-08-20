@@ -18,11 +18,16 @@ class RaffleRulesTableSeeder extends Seeder
         $raffleImages = public_path('uploads/raffle-rules');
         $existsRaffleImages = public_path('seed-files/raffle-rules');
 
+        if (!File::exists(public_path('uploads'))) {
+            File::makeDirectory(public_path('uploads'), 0755, true);
+        }
         if (File::exists($raffleImages)) {
             File::deleteDirectory($raffleImages);
         }
-        File::makeDirectory($raffleImages);
-        File::copyDirectory($existsRaffleImages, $raffleImages);
+        File::makeDirectory($raffleImages, 0755, true);
+        if (File::exists($existsRaffleImages)) {
+            File::copyDirectory($existsRaffleImages, $raffleImages);
+        }
         \DB::table('raffle_rules')->delete();
 
         \DB::table('raffle_rules')->insert([

@@ -20,16 +20,23 @@ class TheProcessesTableSeeder extends Seeder
         $existsProcessImage = public_path('seed-files/the-process');
         $existsProcessIcon = public_path('seed-files/the-process-icon');
 
+        if (!File::exists(public_path('uploads'))) {
+            File::makeDirectory(public_path('uploads'), 0755, true);
+        }
         if (File::exists($the_process_images)) {
             File::deleteDirectory($the_process_images);
         }
-        File::makeDirectory($the_process_images);
-        File::copyDirectory($existsProcessImage, $the_process_images);
+        File::makeDirectory($the_process_images, 0755, true);
+        if (File::exists($existsProcessImage)) {
+            File::copyDirectory($existsProcessImage, $the_process_images);
+        }
         if (File::exists($the_process_icon)) {
             File::deleteDirectory($the_process_icon);
         }
-        File::makeDirectory($the_process_icon);
-        File::copyDirectory($existsProcessIcon, $the_process_icon);
+        File::makeDirectory($the_process_icon, 0755, true);
+        if (File::exists($existsProcessIcon)) {
+            File::copyDirectory($existsProcessIcon, $the_process_icon);
+        }
 
         \DB::table('the_processes')->insert([
             0 => [

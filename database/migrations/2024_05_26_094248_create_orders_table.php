@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('invoice_no')->nullable();
             $table->foreignId('campaign_id')->constrained('campaigns');
-            $table->decimal('discount_amount', 8, 2)->after('discount_percent')->nullable();
-            $table->integer('promo_discount_percent')->after('discount_amount')->nullable();
-            $table->decimal('promo_discount_amount', 8, 2)->after('promo_discount_percent')->nullable();
-            $table->string('promo_discount_code')->after('promo_discount_amount')->nullable();
+            $table->decimal('discount_amount', 8, 2)->nullable();
+            $table->integer('promo_discount_percent')->nullable();
+            $table->decimal('promo_discount_amount', 8, 2)->nullable();
+            $table->string('promo_discount_code')->nullable();
             $table->enum('payment_status', ['pending', 'processing', 'completed', 'refund'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
