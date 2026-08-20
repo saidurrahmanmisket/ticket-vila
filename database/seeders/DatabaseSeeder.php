@@ -18,9 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PermissionSeeder::class,
             CmsSeeder::class,
-            CampaignSeeder::class,
-            SystemSettingSeeder::class,
-            AdminFeaturesSeeder::class,
+            RichDataSeeder::class,
             TheProcessesTableSeeder::class,
             RaffleRulesTableSeeder::class,
         ]);
