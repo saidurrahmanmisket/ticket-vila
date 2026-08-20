@@ -68,7 +68,7 @@
 
 
                             <div class="button--wrapper">
-                                <form action="{{route('frontend.web-shop.add-to-cart',$campaign->id)}}"
+                                <form action="{{route('frontend.web-shop.add-to-cart', $campaign->id ?? 0)}}"
                                       method="POST"> @csrf
                                     <input type="hidden" name="quantity" class="quantity" value="1">
                                     <button @if(session()->has('cartData')) disabled @endif type="submit" id="addToCartButton"
