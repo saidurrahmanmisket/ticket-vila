@@ -91,8 +91,8 @@ return new class extends Migration
 
         //affiliate trips table modify
         Schema::table('affiliate_trips', function (Blueprint $table) {
-            $table->json('title');
-            $table->json('description');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
         });
     }
 

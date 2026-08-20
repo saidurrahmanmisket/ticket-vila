@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CmsSeeder::class,
             CampaignSeeder::class,
             SystemSettingSeeder::class,
+            AdminFeaturesSeeder::class,
             TheProcessesTableSeeder::class,
             RaffleRulesTableSeeder::class,
         ]);
