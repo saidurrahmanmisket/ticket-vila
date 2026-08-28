@@ -29,8 +29,8 @@ class GoogleController extends Controller
             $user = User::where('email', $googleUser->getEmail())->first();
             if (empty($user)) {
                 $user = User::create([
-                    'first_name' => $googleUser->user['given_name'],
-                    'last_name' => $googleUser->user['family_name'],
+                    'first_name' => $googleUser->user['given_name'] ?? $googleUser->getName(),
+                    'last_name' => $googleUser->user['family_name'] ?? '',
                     'email' => $googleUser->getEmail(),
                     'password' => bcrypt(\Str::random(12)),
                     'email_verified_at' => now(),
