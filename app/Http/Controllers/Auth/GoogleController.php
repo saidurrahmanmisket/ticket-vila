@@ -21,7 +21,7 @@ class GoogleController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
             if (empty($googleUser)) {
-                flash()->addWarning('Google login fail.');
+                flash()->addWarning('Your Google Login information are invalid. Please try again.');
 
                 return redirect()->route('login');
             }
@@ -58,6 +58,8 @@ class GoogleController extends Controller
             }
         } catch (\Exception $exception) {
             flash()->addError('Google Login Fail.');
+            //log the error message in user.log
+            \Log::info('Google Login Fail: ' . $exception->getMessage());
 
             return redirect()->route('login');
         }
