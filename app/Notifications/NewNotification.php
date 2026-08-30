@@ -41,7 +41,7 @@ class NewNotification extends Notification implements ShouldQueue
      * Create a new notification instance.
      */
     public function __construct(
-        $from = config('mail.from.address'),
+        $from = null,
         $owner = 'TicketVilla',
         $subject = 'Ticket Villa',
         $message = null,
@@ -50,7 +50,7 @@ class NewNotification extends Notification implements ShouldQueue
         $channels = ['mail', 'database'],
         $type = NotificationType::INFO
     ) {
-        $this->from = $from;
+        $this->from = $from ?? config('mail.from.address');
         $this->owner = $owner;
         $this->subject = $subject;
         $this->message = $message;
